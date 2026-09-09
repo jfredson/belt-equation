@@ -13,6 +13,7 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 - Nothing personal about John's health goes into this repo. The access branch stays a sketch until pipeline graduation (expected May 2027).
 - No probabilities until the tree is stable (end of Phase 2). Estimating against a moving structure wastes the estimates.
 - Every change to the tree or the definitions gets a dated line in belt-equation/CHANGELOG.md.
+- Every design choice put to John comes with three things before he is asked to accept it: how confident Claude is in it, whether it is standard practice or a judgment call, and the strongest alternative with what it would cost. Ruled by John 2026-09-08 after the node-schema review, where this habit changed two of six proposals. A choice presented without them is not ready to be accepted.
 - Commit at the end of every session. From a Claude Code session on the Mac this is ordinary git; from a Cowork session the lock files git leaves behind have to be moved out of the way (see the note at the bottom).
 
 ## Phase 1. Definitions complete (target 2026-09-21)
