@@ -45,14 +45,16 @@ name = "An intelligence not descended from us is detected"
 factor = "C"
 kind = "world"
 description = """
-A technosignature, a biosignature implying more than microbes, or an artefact. Low
+A signal or structure that only technology could have made (a technosignature), evidence of
+life more complex than microbes on another world (a biosignature), or an artefact. Low
 probability, fully resolvable. The instruments that would find it, a radio array on the far
 side of the Moon and a telescope at the Sun's gravitational focus, are the kind of large
 off-Earth projects the rest of the tree makes possible."""
 resolution = """
-A detection of a technosignature, a biosignature implying multicellular life, or an artefact
-of non-human origin is confirmed by at least two independent teams and accepted as such in
-the peer-reviewed record."""
+A detection of a signal or structure that only technology could have made, of evidence of
+life more complex than microbes beyond Earth, or of an artefact of non-human origin is
+confirmed by at least two independent teams and accepted as such in the peer-reviewed
+record."""
 source = "The peer-reviewed record, two independent confirmations"
 horizon = "root"
 depends_on = []

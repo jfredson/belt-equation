@@ -44,9 +44,7 @@ source = "The regulator's own published guidance"
 horizon = "leaf"
 depends_on = []
 status = "open"
-verify = [
-  "That the 2015 agreement between the trial's investigators and the US regulator covered the composite endpoint only and not an approvable indication; confirmed 2026-09-08 from reputable reporting, but the regulator's own document has not been read.",
-]
+notes = "Checked 2026-09-08 against the trial's own design papers and the National Institute on Aging's page on regulator review of aging-related applications: the regulator approved the trial's composite design and the trial 'holds the potential' to lead to aging being considered an indication, which confirms that no approvable indication exists yet."
 
 [[node]]
 id = "W-composite-aging-trial-positive-in-humans"
@@ -60,15 +58,14 @@ A positive result is the first proof in humans that aging can be slowed as a who
 one disease at a time."""
 resolution = """
 A randomized, placebo-controlled trial of at least a thousand older adults reports a
-statistically significant delay in a pre-registered composite of age-related diseases or
-death, published in a peer-reviewed journal."""
+statistically significant delay in a combined measure, fixed before the trial began, of
+several age-related diseases or death (a pre-registered composite endpoint), published in
+a peer-reviewed journal."""
 source = "The trial's peer-reviewed primary publication and its pre-registration record"
 horizon = "mid"
 depends_on = []
 status = "open"
-verify = [
-  "Aggregator sites in 2026 claim the Targeting Aging with Metformin trial has already reported a positive result; the trial sponsor's site and journal sources found on 2026-09-08 describe only the design (about 3,000 adults aged 65 to 79, four years, composite of heart disease, cancer, dementia, and death). Check the primary publication record before Phase 3; if it has reported positive, this node resolves yes.",
-]
+notes = "Checked twice on 2026-09-08: no primary results publication for the Targeting Aging with Metformin trial (about 3,000 adults aged 65 to 79, four years, composite of heart disease, cancer, dementia, and death) was found in journal, registry, or sponsor sources; aggregator sites claiming a positive result are unconfirmed. Stays open. Re-check at the first quarterly scan."
 
 [[node]]
 id = "W-partial-reprogramming-reaches-human-trials"
@@ -119,8 +116,8 @@ quarter or more over the trial period. Nothing yet approved comes close; statins
 pressure drugs move single causes of death by smaller amounts."""
 resolution = """
 A randomized, placebo-controlled trial in adults aged sixty-five or over, followed for at least
-five years, reports a reduction in all-cause mortality of twenty-five percent or more,
-published in a peer-reviewed journal and not later retracted."""
+five years, reports that deaths from any cause fell by twenty-five percent or more in the
+treated group, published in a peer-reviewed journal and not later retracted."""
 source = "The trial's peer-reviewed primary publication"
 horizon = "root"
 depends_on = []
@@ -143,9 +140,7 @@ source = "Gerontology Research Group validated supercentenarian records"
 horizon = "root"
 depends_on = []
 status = "open"
-verify = [
-  "That no verified case since 1997 has come within three years of the record (the closest known is a 119-year-old who died in 2022); the record itself, 122 years and 164 days, was confirmed 2026-09-08.",
-]
+notes = "Checked 2026-09-08: the record is 122 years and 164 days (1997); the second-longest verified life is 119 years and 107 days (2022), just over three years short, and the third is 119 years and 97 days (1999)."
 long_shot = true
 mechanism = """
 Someone born around 1905 to 1930 who has already reached 110 benefits from late-life medicine

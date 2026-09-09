@@ -135,8 +135,9 @@ quarry for everything built in space. A hundred tonnes a year is the scale at wh
 or a propellant depot can be fed from the Moon rather than from Earth."""
 resolution = """
 In one calendar year, at least one hundred tonnes of material originating on the Moon
-(regolith, oxygen, water, metal, or products made from them) are delivered to lunar or
-Earth orbit and used there, reported by the operator with independent confirmation."""
+(loose surface rock and dust, oxygen, water, metal, or products made from them) are
+delivered to lunar or Earth orbit and used there, reported by the operator with independent
+confirmation."""
 source = "The operator's public accounting, confirmed by the customer or an agency"
 horizon = "root"
 depends_on = ["L-crew-lands-on-moon-in-reusable-lander", "E-fission-reactor-runs-on-lunar-surface", "R-crewed-lunar-program-outlives-two-changes-of-president"]
