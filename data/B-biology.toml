@@ -92,9 +92,9 @@ more in radius, spinning about three times a minute) that its occupants feel Ear
 and need no adaptation at all. If partial gravity turns out to be unlivable, this is the only
 route to a Belt, and it is the route some space futurists prefer anyway."""
 resolution = """
-A rotating habitat produces Earth-normal gravity (0.9 g or more) at its living level and is
-continuously occupied by at least ten people for twelve months, confirmed by the operator and
-independent tracking."""
+A rotating habitat produces at least ninety percent of Earth's gravity at its living level
+and is continuously occupied by at least ten people for twelve months, confirmed by the
+operator and independent tracking."""
 source = "The operator's records and independent orbital tracking"
 horizon = "root"
 depends_on = ["B-crewed-spin-gravity-demonstration", "L-large-structure-assembled-in-orbit"]
@@ -130,8 +130,9 @@ routes (superconducting magnetic shields) both exist on paper. A flown demonstra
 halves the dose makes rotations of months at an outer site a matter of engineering rather than
 of accepting the risk."""
 resolution = """
-A shielding system flown beyond low Earth orbit is measured to reduce the galactic cosmic ray
-dose at the crew position by fifty percent or more compared with an unshielded reference,
+A shielding system flown beyond low Earth orbit is measured to reduce the dose from
+deep-space radiation (the galactic cosmic rays that Earth's magnetic field otherwise keeps
+out) at the crew position by fifty percent or more compared with an unshielded reference,
 reported in a peer-reviewed publication."""
 source = "The peer-reviewed flight measurement"
 horizon = "mid"

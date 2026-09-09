@@ -55,8 +55,9 @@ a shield around a crew cabin, within an ordinary project budget. This node feeds
 biology and drive as well as fusion."""
 resolution = """
 Published price lists or public procurement records show high-temperature superconducting
-tape sold in production quantities at one tenth or less of its 2026 price per kiloamp-metre,
-adjusted for inflation."""
+tape sold in production quantities at one tenth or less of its 2026 price, measured the way
+the industry prices it (per unit of current the tape carries over a metre, the kiloamp-metre)
+and adjusted for inflation."""
 source = "Vendor price lists and public procurement or agency cost reports"
 horizon = "mid"
 depends_on = []

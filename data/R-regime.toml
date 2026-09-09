@@ -15,8 +15,9 @@ administration. A program that keeps its funding and keeps flying hardware acros
 changes of president has become an institution rather than a policy, which is what a
 multi-decade build needs."""
 resolution = """
-Counting from 2026, the US crewed lunar program receives appropriations and flies crewed
-hardware in each of two successive presidential administrations after the current one."""
+Counting from 2026, the US crewed lunar program receives its yearly funding from Congress
+and flies crewed hardware in each of two successive presidential administrations after the
+current one."""
 source = "US federal appropriations records and the agency's flight record"
 horizon = "mid"
 depends_on = []

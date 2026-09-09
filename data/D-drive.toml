@@ -72,9 +72,11 @@ months. Nothing like it exists. Chemical rockets have the thrust but not the exh
 electric thrusters have the speed but push like a breath. This is the node that separates the
 Slow Expanse from the Full Expanse, and it is the project's clearest long shot."""
 resolution = """
-A propulsion system operating in space sustains, for at least one hour, an exhaust velocity
-above one hundred kilometres per second together with a thrust above one kilonewton,
-confirmed by the operator and by independent measurement of the vehicle's acceleration."""
+A propulsion system operating in space sustains, for at least one hour, an exhaust speed
+above one hundred kilometres per second (chemical rockets manage under five) together with a
+push of more than one kilonewton (roughly the weight of a hundred kilograms on Earth, which
+today's high-speed electric thrusters miss by a thousandfold), confirmed by the operator and
+by independent measurement of the vehicle's acceleration."""
 source = "The operator's test record and independent tracking of the vehicle's acceleration"
 horizon = "root"
 depends_on = ["E-fusion-plant-delivers-net-electricity"]
@@ -89,13 +91,13 @@ reactor light enough to fly, then a nozzle that turns its output into thrust. Pu
 that detonate small fuel pellets are the leading route on paper because they avoid holding a
 steady plasma."""
 breaking_point = """
-The reactor has to be light as well as working: today's fusion designs weigh hundreds of
-tonnes per megawatt and a drive needs something near one kilogram per kilowatt, a gap of
-around a thousandfold that no known approach closes. No fusion device has ever produced
-thrust. Everything past a heavy fusion plant on the ground is engineering nobody has done."""
-verify = [
-  "The weight gap: that current fusion designs run to hundreds of tonnes per megawatt and a drive needs roughly one kilogram per kilowatt, a gap near a thousandfold. Written from memory 2026-09-08; check against a published fusion-propulsion review before Phase 3.",
-]
+The reactor has to be light as well as working. Ground fusion designs come to tens or
+hundreds of tonnes for each megawatt of electricity; paper drive concepts need about a
+kilowatt for each kilogram, a gap of a hundred- to a thousandfold that no built device has
+closed, and fission-electric systems top out near a fifth of a kilowatt per kilogram. No
+fusion device has ever produced thrust. Everything past a heavy fusion plant on the ground
+is engineering nobody has done."""
+notes = "Weight-gap figures checked 2026-09-08 against a European Space Agency assessment of open magnetic fusion for propulsion and NASA fusion-rocket studies: conceptual fusion drives are projected at one to ten kilowatts per kilogram, fission-electric near 0.2, and the practical requirement is quoted as above one kilowatt per kilogram."
 
 [[node]]
 id = "D-permanent-crewed-site-beyond-the-earth-moon-system"
