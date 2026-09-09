@@ -23,6 +23,9 @@ source = "The peer-reviewed publication and the space agency's mission record"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.8, moderate = 0.82, strong = 0.85, radical = 0.92, open = 0.95 }
+estimated_on = 2026-09-08
+rationale = "The centrifuge hardware exists and the experiment is cheap next to everything else in the tree; the risk is that partial-gravity gestation fails biologically, which would resolve the node no, not that nobody tries."
 
 [[node]]
 id = "B-human-year-in-partial-gravity-without-disqualifying-harm"
@@ -44,6 +47,9 @@ horizon = "mid"
 depends_on = []
 depends_on_any = [["L-crew-lands-on-moon-in-reusable-lander", "B-crewed-spin-gravity-demonstration"]]
 status = "open"
+probability = { baseline = 0.35, moderate = 0.42, strong = 0.5, radical = 0.65, open = 0.7 }
+estimated_on = 2026-09-08
+rationale = "Given people on the Moon or a spin facility, a year-long stay is a matter of decades, and then roughly two in three that the health outcomes clear the bar; bone and eye effects in free fall are the warning."
 notes = "Edge drawn at step 7 (2026-09-08): a year in partial gravity needs either people on the Moon or a spinning facility; either route will do."
 
 [[node]]
@@ -61,6 +67,9 @@ source = "Public records of the operating agency or company, confirmed by indepe
 horizon = "root"
 depends_on = ["B-mammal-born-and-weaned-in-partial-gravity", "B-human-year-in-partial-gravity-without-disqualifying-harm"]
 status = "open"
+probability = { baseline = 0.15, moderate = 0.22, strong = 0.35, radical = 0.65, open = 0.75 }
+estimated_on = 2026-09-08
+rationale = "Given both the animal result and the human year, the remaining barriers are policy and ethics, which early settlements are likely to hold for decades; raising a child needs a settlement, not a base."
 
 [[node]]
 id = "B-crewed-spin-gravity-demonstration"
@@ -80,6 +89,9 @@ source = "The operator's mission record and independent orbital tracking"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.7, moderate = 0.75, strong = 0.8, radical = 0.9, open = 0.92 }
+estimated_on = 2026-09-08
+rationale = "Proposed since the 1950s, never flown, but private station builders now plan it and the engineering is modest; the risk is that nobody funds a month-long test when partial gravity on the Moon is available instead."
 
 [[node]]
 id = "B-earth-gravity-habitat-occupied-for-a-year"
@@ -99,6 +111,9 @@ source = "The operator's records and independent orbital tracking"
 horizon = "root"
 depends_on = ["B-crewed-spin-gravity-demonstration", "L-large-structure-assembled-in-orbit"]
 status = "open"
+probability = { baseline = 0.25, moderate = 0.32, strong = 0.45, radical = 0.7, open = 0.8 }
+estimated_on = 2026-09-08
+rationale = "Given a spin demo and hundred-metre assembly, an Earth-gravity habitat is a matter of money and motive; one in four by 2071 because both are large and the partial-gravity route may make it unnecessary."
 notes = "Edge drawn at step 7 (2026-09-08): a habitat with Earth-normal gravity is a hundred-metre-class structure, so it needs orbital assembly to have been done at that scale."
 
 [[node]]
@@ -116,6 +131,9 @@ source = "The resolving route node's own source"
 horizon = "root"
 depends_on_any = [["B-human-year-in-partial-gravity-without-disqualifying-harm", "B-earth-gravity-habitat-occupied-for-a-year"]]
 status = "open"
+probability = { baseline = 1.0, moderate = 1.0, strong = 1.0, radical = 1.0, open = 1.0 }
+estimated_on = 2026-09-08
+rationale = "Resolves whenever either route does; certainty here means the number is carried entirely by the two route nodes."
 
 [[node]]
 id = "B-shielding-halves-deep-space-radiation-dose"
@@ -138,6 +156,9 @@ source = "The peer-reviewed flight measurement"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.5, moderate = 0.55, strong = 0.65, radical = 0.8, open = 0.85 }
+estimated_on = 2026-09-08
+rationale = "Thick water walls could do it today at a mass cost; halving the dose in a flown test within forty-five years is even odds because the passive route is expensive and the magnetic route waits on cheap superconductors."
 notes = "The magnetic route depends on high-temperature superconductors at practical cost, an energy node; drawn at step 7."
 
 [[node]]
@@ -158,6 +179,9 @@ source = "The operator's published life-support accounting"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.5, moderate = 0.58, strong = 0.7, radical = 0.85, open = 0.9 }
+estimated_on = 2026-09-08
+rationale = "Done on the ground for a year at 98 percent closure; doing it off Earth needs a site with the volume for farming, which is a settlement-scale project, so even odds by 2071."
 
 [[node]]
 id = "B-radiation-resistance-treatment-for-humans"
@@ -178,6 +202,9 @@ source = "The regulator's approval record or the agency's published crew-health 
 horizon = "root"
 depends_on = []
 status = "open"
+probability = { baseline = 0.08, moderate = 0.1, strong = 0.15, radical = 0.35, open = 0.45 }
+estimated_on = 2026-09-08
+rationale = "A preventive therapy for a rare exposure faces an approval bar no current evidence meets, and the biology of chronic heavy-ion harm is not understood; a long shot that only becomes plausible over a century."
 long_shot = true
 mechanism = """
 Radioprotective drugs already exist for acute exposure (amifostine protects tissue during
