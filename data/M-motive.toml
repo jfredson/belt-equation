@@ -42,24 +42,6 @@ depends_on = []
 status = "open"
 
 [[node]]
-id = "M-space-solar-power-sold-to-a-grid"
-name = "Electricity from space-based solar power is sold to a grid under a commercial contract"
-factor = "M"
-kind = "world"
-description = """
-The point where beaming power from orbit stops being a demonstration and becomes an
-industry with customers, which would justify structures far larger than anything yet built
-in space and a workforce to build and keep them."""
-resolution = """
-A grid operator buys electricity generated in orbit and transmitted to the ground under a
-commercial power-purchase contract, with deliveries confirmed by the grid operator."""
-source = "The grid operator's public record and the contract announcement"
-horizon = "mid"
-depends_on = ["M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"]
-status = "open"
-notes = "Depends on cheap launch and orbital assembly nodes; drawn at step 7."
-
-[[node]]
 id = "M-hundred-people-working-off-earth-for-pay"
 name = "A hundred people are living and working off Earth at the same time, for pay"
 factor = "M"
@@ -73,8 +55,9 @@ On a single day, at least one hundred people are off Earth in paid roles, counti
 stations and surface sites, according to the operators' public crew records."""
 source = "Operators' public crew records, tallied"
 horizon = "mid"
-depends_on = []
+depends_on = ["L-heavy-launcher-100-per-year", "R-space-funding-holds-through-a-recession"]
 status = "open"
+notes = "Edges drawn at step 7 (2026-09-08): a hundred people off Earth at once needs launch cadence, and getting there takes long enough that funding will have to survive a downturn on the way."
 
 [[node]]
 id = "M-off-earth-product-sold-at-a-profit"
@@ -91,6 +74,6 @@ selling a physical product extracted or manufactured off Earth exceeded the full
 producing it over a financial year."""
 source = "The company's audited accounts or equivalent public filing"
 horizon = "root"
-depends_on = []
+depends_on = ["L-lunar-material-delivered-to-orbit-at-scale", "R-off-earth-resource-rights-recognised-by-major-powers"]
 status = "open"
-notes = "Depends on lunar material delivered to orbit at scale (a launch node); drawn at step 7."
+notes = "Edges drawn at step 7 (2026-09-08): the only supply route in the tree is lunar material at scale (an asteroid route would be a second option if a node is added), and selling it needs the ownership rules to exist."

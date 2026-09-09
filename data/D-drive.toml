@@ -56,9 +56,9 @@ People land on the surface of Mars and return alive to Earth, confirmed by the r
 agency or company and independent tracking of the vehicles."""
 source = "The responsible agency's or company's mission record and independent tracking"
 horizon = "root"
-depends_on = []
+depends_on = ["L-orbital-propellant-transfer-at-scale"]
 status = "open"
-notes = "Depends on orbital propellant transfer, closed-loop life support, and radiation shielding nodes; drawn at step 7."
+notes = "Edge drawn at step 7 (2026-09-08): a Mars departure on any current architecture needs refilling in orbit. Life support and shielding make it safer, not possible, so they are not hard dependencies."
 
 [[node]]
 id = "D-constant-acceleration-drive-demonstrated"
@@ -93,3 +93,27 @@ The reactor has to be light as well as working: today's fusion designs weigh hun
 tonnes per megawatt and a drive needs something near one kilogram per kilowatt, a gap of
 around a thousandfold that no known approach closes. No fusion device has ever produced
 thrust. Everything past a heavy fusion plant on the ground is engineering nobody has done."""
+verify = [
+  "The weight gap: that current fusion designs run to hundreds of tonnes per megawatt and a drive needs roughly one kilogram per kilowatt, a gap near a thousandfold. Written from memory 2026-09-08; check against a published fusion-propulsion review before Phase 3.",
+]
+
+[[node]]
+id = "D-permanent-crewed-site-beyond-the-earth-moon-system"
+name = "A site beyond the Earth-Moon system is crewed without a break for a year"
+factor = "D"
+kind = "world"
+description = """
+The Tier 3 definition needs at least one site beyond the Earth-Moon system: Mars, the
+asteroid belt, an outer moon, or a habitat out there. A crew round trip proves people can
+get there and back; a site crewed continuously for a year, with rotations, proves people
+can stay. It sits under drive because keeping a site beyond the Moon supplied is a transit
+problem before it is anything else."""
+resolution = """
+A site beyond the Earth-Moon system is occupied by people continuously for twelve months,
+with at least one crew rotation during that time, confirmed by the operator and independent
+tracking of the vehicles involved."""
+source = "The operator's records and independent tracking"
+horizon = "root"
+depends_on = ["D-crew-round-trip-to-mars", "B-closed-loop-life-support-year-off-earth"]
+status = "open"
+notes = "Added at step 7 (2026-09-08) because no node covered Tier 3's beyond-the-Moon criterion. Whether Mars alone satisfies 'beyond the Earth-Moon system', or whether the belt or an outer moon is required, is a definitions question for John; the criterion is written so that Mars counts."

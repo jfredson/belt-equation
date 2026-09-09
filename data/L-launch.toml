@@ -22,9 +22,32 @@ only flights that reached orbit. Test flights that reached orbit count; suborbit
 flights and failures do not."""
 source = "Public orbital launch logs, checked against the operator's own flight manifest"
 horizon = "leaf"
+depends_on = ["L-fully-reusable-heavy-launcher-recovers-both-stages"]
+status = "open"
+notes = "Written 2026-09-08 as the schema's worked example. Probability comes in Phase 3. Edge drawn at step 7: a hundred flights a year of a fully reusable launcher needs both stages to have been recovered at least once."
+
+[[node]]
+id = "L-fully-reusable-heavy-launcher-recovers-both-stages"
+name = "A heavy launcher recovers both of its stages intact from one orbital flight"
+factor = "L"
+kind = "world"
+description = """
+Full reusability means the booster and the ship both come back to be flown again. The
+booster has been caught at its launch tower since 2024; the ship, which comes back from
+orbital speed, had only been landed in the ocean as of July 2026, with the first tower
+catch attempt scheduled for late August 2026. The first flight to bring both stages back
+intact is the day the cost curve everything else assumes actually starts."""
+resolution = """
+On a single orbital flight, a launch vehicle's first stage and its second stage are both
+recovered intact for reuse (caught, landed, or otherwise returned undamaged), confirmed by
+the operator and independent observation."""
+source = "The operator's flight record and independent observation"
+horizon = "leaf"
 depends_on = []
 status = "open"
-notes = "Written 2026-09-08 as the schema's worked example. Probability comes in Phase 3."
+verify = [
+  "Whether the upper-stage tower catch attempted on the flight scheduled for late August 2026 succeeded; sources found on 2026-09-08 predate it. If it did, this node resolved then.",
+]
 
 [[node]]
 id = "L-orbital-propellant-transfer-at-scale"
@@ -95,8 +118,9 @@ orbit from parts delivered on at least five separate launches, with most of the 
 by robots or automated systems, confirmed by the operator and independent tracking."""
 source = "The operator's records and independent orbital tracking"
 horizon = "mid"
-depends_on = ["L-launch-price-below-200-dollars-per-kg"]
+depends_on = []
 status = "open"
+notes = "Drafted as depending on the two-hundred-dollar launch price; loosened at step 7 (2026-09-08) because a structure this size could be assembled at today's prices with enough money, as the space station was. Cheap launch makes it likely, not possible."
 
 [[node]]
 id = "L-lunar-material-delivered-to-orbit-at-scale"
@@ -115,6 +139,6 @@ In one calendar year, at least one hundred tonnes of material originating on the
 Earth orbit and used there, reported by the operator with independent confirmation."""
 source = "The operator's public accounting, confirmed by the customer or an agency"
 horizon = "root"
-depends_on = ["L-crew-lands-on-moon-in-reusable-lander"]
+depends_on = ["L-crew-lands-on-moon-in-reusable-lander", "E-fission-reactor-runs-on-lunar-surface", "R-crewed-lunar-program-outlives-two-changes-of-president"]
 status = "open"
-notes = "Depends on lunar surface power (an energy node) for any mining at scale; drawn at step 7."
+notes = "Edges drawn at step 7 (2026-09-08): mining at scale needs surface power through the lunar night, and a decade of lunar work needs the program to outlive elections."

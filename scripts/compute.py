@@ -316,6 +316,10 @@ def describe_shape(tree: dict) -> str:
         lines.append(f"Leaves: {by_horizon['leaf']} of {len(nodes)} ({share:.0%}), {verdict} the one-third rule")
     lines.append(f"Long shots: {long_shots}")
     lines.append(f"With probabilities: {with_prob} of {len(nodes)}")
+    unverified = [(n["id"], c) for n in nodes for c in (n.get("verify") or [])]
+    lines.append(f"Claims awaiting verification: {len(unverified)}")
+    for nid, claim in unverified:
+        lines.append(f"  {nid}: {claim}")
     lines.append("")
     lines.append("Scenarios: " + ", ".join(
         f"{s['key']} ({s.get('window_year', 'open')})" for s in tree["scenarios"]))

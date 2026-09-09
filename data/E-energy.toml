@@ -29,17 +29,18 @@ factor = "E"
 kind = "world"
 description = """
 A lunar night lasts two weeks, so any permanent base needs power that does not come from the
-Sun. A small fission reactor of a few tens of kilowatts is the planned answer, and the first
-surface demonstration is scheduled for around the end of the decade. It is the power source
-that mining, refining, and a permanent outpost assume."""
+Sun. A small fission reactor of a few tens of kilowatts is the planned answer; the US program
+aimed at the end of this decade and, as of 2026, plans delivery of a reactor to the launch pad
+in the early 2030s. It is the power source that mining, refining, and a permanent outpost
+assume."""
 resolution = """
 A fission reactor delivering at least forty kilowatts of electricity operates on the lunar
 surface for twelve continuous months, confirmed by the responsible agency's mission record."""
 source = "The responsible agency's mission record"
-horizon = "leaf"
+horizon = "mid"
 depends_on = []
 status = "open"
-notes = "Leaf on the current schedule (about 2030); becomes mid if that slips past 2031."
+notes = "Drafted as a leaf; moved to mid on 2026-09-08 after checking the program's schedule, which has slipped to the early 2030s."
 
 [[node]]
 id = "E-superconducting-wire-price-falls-tenfold"
@@ -76,6 +77,29 @@ A fusion power plant exports net electrical energy to a public grid over a conti
 of at least thirty days, with net export confirmed by the grid operator's metering."""
 source = "The grid operator's metering record and the plant operator's report"
 horizon = "mid"
-depends_on = ["E-superconducting-wire-price-falls-tenfold"]
+depends_on = ["E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity"]
 status = "open"
-notes = "The dependency is on the magnet route to fusion; laser and other routes do not need it. Whether to keep this as a hard dependency is for step 7."
+notes = "Drafted with a hard dependency on cheap superconducting wire; removed at step 7 (2026-09-08) because only the magnet route needs it and laser and other routes do not. The link stays in the mechanism of the fusion drive node. Now depends on a plant having started construction, which has happened."
+
+[[node]]
+id = "E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity"
+name = "Construction begins on a fusion plant built to sell electricity to a customer"
+factor = "E"
+kind = "world"
+description = """
+The step before net electricity: someone breaks ground on a plant whose purpose is to sell
+power, with a customer signed. It has happened. A company backed by a purchase agreement
+with a large technology firm began building its first plant in Washington state in July
+2025, aiming to deliver electricity in 2028. The node stays in, resolved, as the first rung
+on the fusion ladder and a resolved leaf the calibration score can count."""
+resolution = """
+A company begins site construction of a fusion power plant that has a signed agreement to
+sell electricity to a named customer, confirmed by the company's announcement and local
+permitting records."""
+source = "The company's announcement and the county's permitting record"
+horizon = "leaf"
+depends_on = []
+status = "resolved-yes"
+resolved_on = 2025-07-30
+resolved_by = "Helion's announcement of 2025-07-30 that it had secured land and begun building at Malaga, Washington, under its power purchase agreement with Microsoft; reported by World Nuclear News and BusinessWire"
+notes = "Added at step 7 (2026-09-08); the date and facts checked the same day against the company's newsroom and trade press."

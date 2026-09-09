@@ -1,53 +1,75 @@
 # What "the Belt exists" and "Belter" mean, as sets of required nodes (definitions.md).
 # requires: every listed node or lower tier must resolve. "Either route" logic lives on nodes
 # (depends_on_any in docs/node-schema.md), not here, so this file stays a plain list.
-# Node lists are empty until roadmap step 7 draws the dependency edges; the prose stays as the
-# definition the lists must satisfy.
+# Node lists drawn at roadmap step 7, 2026-09-08. The prose is the definition the lists must satisfy.
 
 [[system_tier]]
 key = "T1"
 name = "Outpost"
 definition = "Permanent crewed presence at the Moon, Mars, or a permanently crewed station, hundreds of people, fully supplied from Earth."
-requires = []
+requires = [
+  "L-crew-lands-on-moon-in-reusable-lander",
+  "E-fission-reactor-runs-on-lunar-surface",
+  "M-hundred-people-working-off-earth-for-pay",
+  "R-crewed-lunar-program-outlives-two-changes-of-president",
+]
 
 [[system_tier]]
 key = "T2"
 name = "Settlement"
 definition = "Thousands living off Earth at one or more sites, at least one child born and raised off Earth, partial local self-sufficiency in air, water, and food."
-requires = []
+requires = [
+  "T1",
+  "L-launch-price-below-200-dollars-per-kg",
+  "B-long-term-off-earth-living-by-some-route",
+  "B-closed-loop-life-support-year-off-earth",
+  "B-human-child-born-off-earth",
+]
 
 [[system_tier]]
 key = "T3"
 name = "Slow Expanse"
 definition = "Tens of thousands off Earth, including at least one site beyond the Earth-Moon system. Transit times in months. Something mined or made off Earth sold at a profit. Nuclear propulsion in routine use. This is the bar for the headline."
-requires = []
+requires = [
+  "T2",
+  "D-permanent-crewed-site-beyond-the-earth-moon-system",
+  "D-nuclear-propulsion-in-routine-use",
+  "M-off-earth-product-sold-at-a-profit",
+  "R-off-earth-resource-rights-recognised-by-major-powers",
+  "B-shielding-halves-deep-space-radiation-dose",
+  "L-lunar-material-delivered-to-orbit-at-scale",
+]
 
 [[system_tier]]
 key = "T4"
 name = "Full Expanse"
 definition = "Millions off Earth, transit times in weeks on constant-acceleration drives, a Belt population with its own political identity and economy."
-requires = []
+requires = [
+  "T3",
+  "D-constant-acceleration-drive-demonstrated",
+  "R-binding-ban-on-debris-creating-anti-satellite-tests",
+]
 
 [[access_tier]]
 key = "A0"
 name = "Contributes from Earth"
 definition = "Works in or for the off-world industry without leaving."
-requires = []
+requires = ["A-working-in-or-for-the-off-earth-industry"]
 
 [[access_tier]]
 key = "A1"
 name = "Has flown"
 definition = "At least one trip to space, suborbital or orbital, as passenger or crew."
-requires = []
+requires = ["A-first-spaceflight"]
 
 [[access_tier]]
 key = "A2"
 name = "Works off Earth on rotation"
 definition = "Months at a time living and working at an off-world site. The headline number."
-requires = ["T3"]
+requires = ["T3", "A-in-a-role-whose-holders-rotate-off-earth"]
 
 [[access_tier]]
 key = "A3"
 name = "Lives off Earth"
-definition = "Permanent residence at an off-world site. Reported beside the headline as the stretch."
-requires = ["T3"]
+definition = "Permanent residence at an off-world site. Reported beside the headline as the stretch. No node yet distinguishes it from A2; until one is added (an operator offering permanent residence is the candidate), A3 equals A2 and is reported as such."
+requires = ["A2"]

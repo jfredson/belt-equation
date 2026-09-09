@@ -42,8 +42,9 @@ that the responsible agency's own standards would count as disqualifying for a f
 source = "The peer-reviewed health report and the agency's crew-health standards"
 horizon = "mid"
 depends_on = []
+depends_on_any = [["L-crew-lands-on-moon-in-reusable-lander", "B-crewed-spin-gravity-demonstration"]]
 status = "open"
-notes = "Depends on a lunar base or a large spin facility existing, which are launch and energy nodes; drawn at step 7."
+notes = "Edge drawn at step 7 (2026-09-08): a year in partial gravity needs either people on the Moon or a spinning facility; either route will do."
 
 [[node]]
 id = "B-human-child-born-off-earth"
@@ -96,9 +97,9 @@ continuously occupied by at least ten people for twelve months, confirmed by the
 independent tracking."""
 source = "The operator's records and independent orbital tracking"
 horizon = "root"
-depends_on = ["B-crewed-spin-gravity-demonstration"]
+depends_on = ["B-crewed-spin-gravity-demonstration", "L-large-structure-assembled-in-orbit"]
 status = "open"
-notes = "Depends heavily on launch and orbital-construction nodes; drawn at step 7."
+notes = "Edge drawn at step 7 (2026-09-08): a habitat with Earth-normal gravity is a hundred-metre-class structure, so it needs orbital assembly to have been done at that scale."
 
 [[node]]
 id = "B-long-term-off-earth-living-by-some-route"
