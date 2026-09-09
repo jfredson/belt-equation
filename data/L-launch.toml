@@ -1,5 +1,8 @@
 # Nodes under the launch factor (L): that the cost of putting mass into orbit falls below the
-# threshold that makes everything else affordable. Record layout: docs/node-schema.md.
+# threshold that makes everything else affordable. Also carries the habitat-branch nodes for
+# orbital construction, materials, and lunar material supply. Record layout: docs/node-schema.md.
+# First node 2026-09-08 as the schema's example; the rest drafted the same day in the second
+# brainstorm session. No probabilities yet.
 
 [[node]]
 id = "L-heavy-launcher-100-per-year"
@@ -22,3 +25,96 @@ horizon = "leaf"
 depends_on = []
 status = "open"
 notes = "Written 2026-09-08 as the schema's worked example. Probability comes in Phase 3."
+
+[[node]]
+id = "L-orbital-propellant-transfer-at-scale"
+name = "A hundred tonnes of propellant are pumped from one spacecraft to another in orbit"
+factor = "L"
+kind = "world"
+description = """
+Everything beyond low Earth orbit on a reusable architecture depends on refilling ships in
+space, which has been done only at small scale. A hundred-tonne transfer is the size that a
+lunar landing or a Mars departure needs, and the demonstrations are scheduled within a few
+years."""
+resolution = """
+At least one hundred tonnes of propellant are transferred between two vehicles in orbit in a
+single operation, confirmed by the operator and by the customer agency's public record."""
+source = "The operator's mission record and the customer agency's milestone acceptance"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "L-crew-lands-on-moon-in-reusable-lander"
+name = "A crew lands on the Moon in a lander designed to fly again"
+factor = "L"
+kind = "world"
+description = """
+The first crewed lunar landing since 1972 is scheduled for the next few years, on a lander
+built for reuse rather than thrown away. It is the near-term marker that the cheap-launch
+architecture reaches the Moon with people, which every lunar node downstream assumes."""
+resolution = """
+People land on the lunar surface and return safely aboard a lander whose design is intended
+for more than one landing, confirmed by the responsible agency's mission record."""
+source = "The responsible agency's mission record"
+horizon = "leaf"
+depends_on = ["L-orbital-propellant-transfer-at-scale"]
+status = "open"
+
+[[node]]
+id = "L-launch-price-below-200-dollars-per-kg"
+name = "Mass to low Earth orbit is sold for less than two hundred dollars a kilogram"
+factor = "L"
+kind = "world"
+description = """
+Today's price for a full flight runs a few thousand dollars per kilogram. Two hundred, in 2026
+dollars, is roughly the point at which a tonne to orbit costs less than a mid-range car and
+building large things in space becomes a question of will rather than money. Reusable heavy
+launchers flying often are the only known route there."""
+resolution = """
+A launch provider sells, by public price list or a signed contract made public, a full
+manifest to low Earth orbit at two hundred 2026 dollars or less per kilogram of payload."""
+source = "The provider's published price list or a public contract record"
+horizon = "mid"
+depends_on = ["L-heavy-launcher-100-per-year"]
+status = "open"
+
+[[node]]
+id = "L-large-structure-assembled-in-orbit"
+name = "A structure more than a hundred metres across is assembled in orbit from separately launched parts"
+factor = "L"
+kind = "world"
+description = """
+The orbital-construction node of the habitat branch. The space station is about a hundred
+metres long and took a decade of crewed assembly flights. A spinning habitat, a large power
+station, or a shipyard needs structures at least that size assembled mostly by machines from
+parts launched cheaply. This is the step from launching things to building things."""
+resolution = """
+A single connected structure with a longest dimension over one hundred metres is assembled in
+orbit from parts delivered on at least five separate launches, with most of the joining done
+by robots or automated systems, confirmed by the operator and independent tracking."""
+source = "The operator's records and independent orbital tracking"
+horizon = "mid"
+depends_on = ["L-launch-price-below-200-dollars-per-kg"]
+status = "open"
+
+[[node]]
+id = "L-lunar-material-delivered-to-orbit-at-scale"
+name = "A hundred tonnes of material dug or made on the Moon are delivered to orbit in one year"
+factor = "L"
+kind = "world"
+description = """
+The lunar-supply and materials node of the habitat branch. Lifting mass from the Moon takes
+a twentieth of the energy of lifting it from Earth, so once mining, refining, and a way up
+(rockets burning lunar oxygen, or an electromagnetic launcher) exist, the Moon becomes the
+quarry for everything built in space. A hundred tonnes a year is the scale at which a habitat
+or a propellant depot can be fed from the Moon rather than from Earth."""
+resolution = """
+In one calendar year, at least one hundred tonnes of material originating on the Moon
+(regolith, oxygen, water, metal, or products made from them) are delivered to lunar or
+Earth orbit and used there, reported by the operator with independent confirmation."""
+source = "The operator's public accounting, confirmed by the customer or an agency"
+horizon = "root"
+depends_on = ["L-crew-lands-on-moon-in-reusable-lander"]
+status = "open"
+notes = "Depends on lunar surface power (an energy node) for any mining at scale; drawn at step 7."

@@ -1,0 +1,95 @@
+# Nodes under the drive factor (D): that propulsion puts the solar system within reach on
+# human timescales. This is the factor that separates a slow, sparse solar system from the one
+# in the show. Most drive nodes depend on energy nodes. Record layout: docs/node-schema.md.
+# Drafted 2026-09-08 in the second brainstorm session. No probabilities yet.
+
+[[node]]
+id = "D-nuclear-propulsion-changes-orbit-in-space"
+name = "A nuclear-powered engine changes a spacecraft's orbit in space for the first time"
+factor = "D"
+kind = "world"
+description = """
+Nuclear propulsion, whether a reactor heating propellant directly or a reactor driving
+electric thrusters, has been designed and ground-tested for sixty years and never flown.
+The first in-space burn that actually moves a vehicle is the step from paper to hardware,
+and it is what routine nuclear propulsion, the Tier 3 criterion, has to start from."""
+resolution = """
+A spacecraft in space changes its velocity by at least one kilometre per second using
+propulsion powered by a nuclear reactor, confirmed by the operator and by independent
+orbital tracking."""
+source = "The operator's mission record and independent orbital tracking"
+horizon = "mid"
+depends_on = []
+status = "open"
+notes = "Shares a technology base with the lunar surface reactor (an energy node); whether that is a hard dependency is for step 7."
+
+[[node]]
+id = "D-nuclear-propulsion-in-routine-use"
+name = "Nuclear propulsion is used on several missions a year"
+factor = "D"
+kind = "world"
+description = """
+The Tier 3 criterion in propulsion terms. One demonstration proves it can be done; several
+missions a year means it is the ordinary way to move heavy things around the inner solar
+system, which is what transit times of months to the Belt assume."""
+resolution = """
+In one calendar year, at least three separate missions beyond low Earth orbit use
+nuclear-powered propulsion for their main transfer, confirmed by the operators and
+independent tracking."""
+source = "Operators' mission records and independent tracking"
+horizon = "root"
+depends_on = ["D-nuclear-propulsion-changes-orbit-in-space"]
+status = "open"
+
+[[node]]
+id = "D-crew-round-trip-to-mars"
+name = "A crew lands on Mars and returns to Earth"
+factor = "D"
+kind = "world"
+description = """
+The transit-in-months milestone with people aboard: the first round trip proves that a crew
+can be carried across the inner solar system and back, which is what working rotations to an
+outer site require. It needs the launch, propellant, and life-support nodes as much as the
+drive, and it is placed under drive because the transit is the hard part it resolves."""
+resolution = """
+People land on the surface of Mars and return alive to Earth, confirmed by the responsible
+agency or company and independent tracking of the vehicles."""
+source = "The responsible agency's or company's mission record and independent tracking"
+horizon = "root"
+depends_on = []
+status = "open"
+notes = "Depends on orbital propellant transfer, closed-loop life support, and radiation shielding nodes; drawn at step 7."
+
+[[node]]
+id = "D-constant-acceleration-drive-demonstrated"
+name = "A drive that could cross the solar system in weeks is fired in space"
+factor = "D"
+kind = "world"
+description = """
+The Epstein drive in plain terms: an engine whose exhaust is fast enough and whose thrust is
+high enough that a ship can accelerate the whole way and reach the Belt in weeks rather than
+months. Nothing like it exists. Chemical rockets have the thrust but not the exhaust speed;
+electric thrusters have the speed but push like a breath. This is the node that separates the
+Slow Expanse from the Full Expanse, and it is the project's clearest long shot."""
+resolution = """
+A propulsion system operating in space sustains, for at least one hour, an exhaust velocity
+above one hundred kilometres per second together with a thrust above one kilonewton,
+confirmed by the operator and by independent measurement of the vehicle's acceleration."""
+source = "The operator's test record and independent tracking of the vehicle's acceleration"
+horizon = "root"
+depends_on = ["E-fusion-plant-delivers-net-electricity"]
+status = "open"
+long_shot = true
+mechanism = """
+A fusion reaction whose products are steered out the back directly, rather than used to boil
+water and spin a turbine, gives exhaust speeds of thousands of kilometres per second in
+principle. The path runs through fusion plants on the ground (proving the reaction can be
+sustained), then compact magnet-based reactors made cheap by superconducting wire, then a
+reactor light enough to fly, then a nozzle that turns its output into thrust. Pulsed designs
+that detonate small fuel pellets are the leading route on paper because they avoid holding a
+steady plasma."""
+breaking_point = """
+The reactor has to be light as well as working: today's fusion designs weigh hundreds of
+tonnes per megawatt and a drive needs something near one kilogram per kilowatt, a gap of
+around a thousandfold that no known approach closes. No fusion device has ever produced
+thrust. Everything past a heavy fusion plant on the ground is engineering nobody has done."""

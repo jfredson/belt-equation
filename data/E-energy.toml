@@ -1,0 +1,81 @@
+# Nodes under the energy factor (E): that cheap, abundant power exists off Earth, from fusion
+# or an equivalent. Energy and drive are kept separate on purpose (definitions.md): a working
+# power plant on the ground does not give you a rocket. Record layout: docs/node-schema.md.
+# Drafted 2026-09-08 in the second brainstorm session. No probabilities yet.
+
+[[node]]
+id = "E-megawatt-spacecraft-operates-in-orbit"
+name = "A single spacecraft generates and uses a megawatt of electricity in orbit"
+factor = "E"
+kind = "world"
+description = """
+The space station, the largest thing ever flown, makes about a tenth of a megawatt. Orbital
+data centres, large electric tugs, and any industrial process in space start at a megawatt.
+Several companies plan megawatt-class solar spacecraft within a few years, so this is the
+near-term marker that power in space is scaling."""
+resolution = """
+One spacecraft in orbit generates and consumes at least one megawatt of electrical power
+continuously for thirty days, confirmed by the operator and consistent with independent
+observation of the vehicle."""
+source = "The operator's records and independent observation"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "E-fission-reactor-runs-on-lunar-surface"
+name = "A nuclear reactor runs on the lunar surface for a year"
+factor = "E"
+kind = "world"
+description = """
+A lunar night lasts two weeks, so any permanent base needs power that does not come from the
+Sun. A small fission reactor of a few tens of kilowatts is the planned answer, and the first
+surface demonstration is scheduled for around the end of the decade. It is the power source
+that mining, refining, and a permanent outpost assume."""
+resolution = """
+A fission reactor delivering at least forty kilowatts of electricity operates on the lunar
+surface for twelve continuous months, confirmed by the responsible agency's mission record."""
+source = "The responsible agency's mission record"
+horizon = "leaf"
+depends_on = []
+status = "open"
+notes = "Leaf on the current schedule (about 2030); becomes mid if that slips past 2031."
+
+[[node]]
+id = "E-superconducting-wire-price-falls-tenfold"
+name = "High-temperature superconducting wire costs a tenth of what it does today"
+factor = "E"
+kind = "world"
+description = """
+The strong, light magnets that compact fusion, magnetic radiation shielding, and some drive
+concepts all need are made of high-temperature superconducting tape, and its price is what
+keeps those magnets rare. A tenfold fall from the 2026 price puts a fusion plant's magnets, or
+a shield around a crew cabin, within an ordinary project budget. This node feeds nodes in
+biology and drive as well as fusion."""
+resolution = """
+Published price lists or public procurement records show high-temperature superconducting
+tape sold in production quantities at one tenth or less of its 2026 price per kiloamp-metre,
+adjusted for inflation."""
+source = "Vendor price lists and public procurement or agency cost reports"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "E-fusion-plant-delivers-net-electricity"
+name = "A fusion power plant delivers net electricity to a grid"
+factor = "E"
+kind = "world"
+description = """
+The point where fusion stops being an experiment: a plant that puts more electricity onto a
+grid than it draws, for long enough to count. Several private plants are scheduled to try
+in the early 2030s. Fusion on the ground is the technology base that any fusion drive, and
+any large off-Earth power plant that cannot rely on the Sun, would be built from."""
+resolution = """
+A fusion power plant exports net electrical energy to a public grid over a continuous period
+of at least thirty days, with net export confirmed by the grid operator's metering."""
+source = "The grid operator's metering record and the plant operator's report"
+horizon = "mid"
+depends_on = ["E-superconducting-wire-price-falls-tenfold"]
+status = "open"
+notes = "The dependency is on the magnet route to fusion; laser and other routes do not need it. Whether to keep this as a hard dependency is for step 7."
