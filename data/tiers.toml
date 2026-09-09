@@ -71,5 +71,5 @@ requires = ["T3", "A-in-a-role-whose-holders-rotate-off-earth"]
 [[access_tier]]
 key = "A3"
 name = "Lives off Earth"
-definition = "Permanent residence at an off-world site. Reported beside the headline as the stretch. No node yet distinguishes it from A2; until one is added (an operator offering permanent residence is the candidate), A3 equals A2 and is reported as such."
-requires = ["A2"]
+definition = "Permanent residence at an off-world site. Reported beside the headline as the stretch. Requires A2 plus a site that accepts permanent residents; the choice to stay is a future choice point, not a world event."
+requires = ["A2", "R-off-earth-site-accepts-permanent-residents"]
