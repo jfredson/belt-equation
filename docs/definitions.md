@@ -102,7 +102,9 @@ Candidate world-event nodes already identified: a civilian survival and continge
 
 ## Where it lives publicly, and how often it is reviewed
 
-DECIDED 2026-09-08. The repo is public from the start, so the tree is inspectable by anyone from the first node. The project is public but under-promoted: the first audience is family and friends, for interesting conversation, and John wants to stay deliberate about how much and in what capacity he writes about it publicly. Launch, when it comes, is a Sentient Horizons essay with Reddit companion posts; a standalone home (its own site) is deferred until public critique has changed the tree at least once.
+DECIDED 2026-09-08. The repo is public from the start, so the tree is inspectable by anyone from the first node. The project is public but under-promoted: the first audience is family and friends, for interesting conversation, and John wants to stay deliberate about how much and in what capacity he writes about it publicly. Launch, when it comes, is a Sentient Horizons essay with Reddit companion posts.
+
+AMENDED 2026-09-08, later the same evening, by John: the first presentable version gets a dedicated website of its own rather than waiting for public critique to change the tree first. The site is the home of the tree, the numbers, and the writeups; the essay and the Reddit posts point to it. Under-promoted still holds: the site exists and is linked to family and friends without being announced more widely until John decides to. The plan is in docs/website-plan.md and its steps run alongside the roadmap.
 
 Cadence: a quarterly fifteen-minute scan for leaf nodes that resolved or moved, logged in CHANGELOG.md; a full annual review each January (every node re-estimated, the numbers re-run, the calibration score updated, a public changelog post). TimeAssembler holds the project's story; this repo holds the tree and the documents.
 
@@ -124,3 +126,4 @@ Near-term commitment: John intends to spend a significant share of his free time
 - 2026-09-08. Leverage branch added under the access factor: the capability of AI tools as a tracked multiplier on John's own ability to take part (stated by John).
 - 2026-09-08. Second founding rule, plausible all the way to the edge of the impossible: long-shot nodes must name their mechanism and their breaking point (stated by John; carried into the node schema as a review test).
 - 2026-09-08. The deadline is the scenario axis, not a node of its own; the window factor's nodes are the research results that move it (proposed by Claude when the window nodes were drafted, accepted by John with the first brainstorm draft).
+- 2026-09-08. Standalone site no longer deferred: the first presentable version gets a dedicated website, planned in docs/website-plan.md and built alongside the roadmap; under-promoted posture unchanged (stated by John, reversing the earlier deferral).
