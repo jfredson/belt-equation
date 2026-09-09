@@ -51,10 +51,22 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 18. Schedule the first annual review for January 2027, before the pipeline resumes.
 19. Fold any public or family critique into the tree before that review.
 
+## Phase 6. The website, alongside everything above
+
+Added 2026-09-08 when John reversed the deferral of a standalone site. The full plan, with what each page shows, the decisions behind the stack, and what each step waits on, is in belt-equation/docs/website-plan.md. Steps are numbered from 20 so they never collide with the roadmap's 1 to 19. In short: an Astro static site in site/ of this repo, deployed to Cloudflare Workers static assets like Sentient Horizons and Hearth and Void, fed JSON by a Python export script, with the tree visual as a committed picture and the project's story pulled from TimeAssembler at build time.
+
+20. Scaffold the site and pick the domain (waits on nothing; target 2026-09-21).
+21. The export script and the node pages (waits on step 8; target 2026-10-12).
+22. The tree visual on the site (waits on step 7; target 2026-10-19).
+23. The numbers and the methodology page (waits on steps 10 and 12; target 2026-10-26).
+24. The story page from TimeAssembler and the critique page (target 2026-11-09).
+25. Go live on the domain, to family and friends (waits on step 15; target 2026-11-16).
+26. One-command publish, so the quarterly scan ends with the site updated (ongoing).
+
 ## Later, not now
 
 - A review-and-critique method that brings in other models for fresh perspectives (raised by John 2026-09-08 after the first brainstorm draft): give the tree, or one factor of it, to models other than the one that drafted it, with a fixed brief (name a missing node, challenge a criterion, argue a probability), and fold what survives into the tree with a changelog line. Worth designing before the first annual review, so the January re-estimate has outside critique to work from even if no human reader has sent any.
-- A standalone site, after the tree has changed at least once from outside critique.
+- An interactive tree on the site (hover, click through, filter by factor), once the tree has stopped changing shape. Version one uses a committed picture.
 - Public names for the access tiers.
 - Extending the access ladder above A3, if the world moves.
 - The possible missing rung between one flight (A1) and a months-long rotation (A2).
