@@ -4,6 +4,8 @@ Written 2026-09-08. This is the working plan for the months before the SERE pipe
 
 What is already settled is in belt-equation/docs/definitions.md. Read that first. Do not reopen decided items without John saying so.
 
+Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as three grouped sessions rather than one factor per session; the compute script is written in parallel with the brainstorm instead of after it; the window refinement no longer blocks the brainstorm; the habitat branch is folded into the brainstorm sessions; a decision-comparison run is added to Phase 3; and the first essay cross-references the Calibration Problem manuscript. Step numbers were kept stable where the TimeAssembler tasks cite them.
+
 ## Ground rules for every session
 
 - Plain language in everything: node names, rationales, commit messages. Someone outside the project should understand every line.
@@ -17,27 +19,27 @@ What is already settled is in belt-equation/docs/definitions.md. Read that first
 
 1. Read belt-equation/docs/definitions.md end to end and fix anything inconsistent with the kickoff outline. Done when both documents agree.
 2. Write belt-equation/docs/node-schema.md: the record layout for one node, with a worked example. Fields: id, name, factor (W, L, E, D, B, M, R, A, or C for the Contact Clause), kind (world event or choice point), description, resolution criterion and source of truth, dependencies, which tiers it feeds, horizon class (leaf, mid, root), probability by scenario (left blank until Phase 3), rationale, status, revision log. Choose the file format for data/ here (a plain text format that reads well in a diff; one file per factor is the current preference).
-3. Refine the window placeholder from the health record. This step runs in a Cowork session with the Health folder connected, and only the resulting date (with a plus-or-minus) comes back into definitions.md. Nothing else.
+3. Refine the window placeholder from the health record. This step runs in a Cowork session with the Health folder connected, and only the resulting date (with a plus-or-minus) comes back into definitions.md. Nothing else. It does not block anything in Phase 2; its result is first needed at step 9, so do it any time before then.
 
 ## Phase 2. Tree version zero (target 2026-10-12)
 
-4. Brainstorm the node list, one factor per session, aiming for 40 to 60 nodes total with at least a third of them leaves that could resolve within five years. Seeds for each factor are in the kickoff outline under "Branch seeds" and in definitions.md under the Contact Clause and the access branch. For each node, write the resolution criterion before anything else; a node without one is not a node.
-5. Add the habitat branch explicitly (orbital construction, materials, lunar material supply, and the rotating-habitat hedge on biology).
+4. Brainstorm the node list in three sessions: window and biology; launch, energy, and drive; motive, regime, access, and the Contact Clause. Aim for 40 to 60 nodes total with at least a third of them leaves that could resolve within five years. Seeds for each factor are in the kickoff outline under "Branch seeds" and in definitions.md under the Contact Clause and the access branch. For each node, write the resolution criterion before anything else; a node without one is not a node. The habitat branch is part of these sessions, not a separate step: the rotating-habitat hedge goes in with biology, and orbital construction, materials, and lunar material supply go in with launch and energy.
+5. Write belt-equation/scripts/compute.py against the worked example from step 2, in parallel with the brainstorm: load the tree, run it many thousands of times with random outcomes while respecting dependencies, and report the probability of each system tier and each access tier under each of the four longevity scenarios, plus the Contact Clause rungs separately. Keep it to plain Python with no dependencies beyond the standard library if possible. Include a check that refuses to run if any node lacks a resolution criterion. Writing it now, while the tree is still small, takes the crunch out of Phase 3 and catches schema problems early.
 6. Mark choice points in the access branch and list the options at each one.
 7. Draw the dependency edges and check for cycles. A leaf that depends on a root is a sign the horizon classes are wrong.
 8. Review pass: read every node aloud in plain language and cut, merge, or rename anything that fails the "someone outside the project understands it" test.
 
 ## Phase 3. First probabilities and the calculation (target 2026-10-26)
 
-9. Write belt-equation/scripts/compute.py: load the tree, run it many thousands of times with random outcomes while respecting dependencies, and report the probability of each system tier and each access tier under each of the four longevity scenarios, plus the Contact Clause rungs separately. Keep it to plain Python with no dependencies beyond the standard library if possible. Include a check that refuses to run if any node lacks a resolution criterion.
-10. First-pass probabilities, one factor per session, with a one-line rationale each. John's estimates, with Claude proposing a number and a reason for him to accept or move. Record every number with its date.
-11. Run the calculation. Read the results against intuition. Where the computed number disagrees badly with gut, the tree is probably missing a dependency or a node; fix the tree, not the number.
+9. First-pass probabilities, grouped the same way as the brainstorm sessions, with a one-line rationale each. John's estimates, with Claude proposing a number and a reason for him to accept or move. Record every number with its date. The refined window date from step 3 is needed here.
+10. Run the calculation. Read the results against intuition. Where the computed number disagrees badly with gut, the tree is probably missing a dependency or a node; fix the tree, not the number.
+11. Run the decision comparison: the whole tree once per option at the six-year service fork (re-enlist or separate, and the branches under each), using the sketch access branch, and report how the A2 number moves between options. Rough numbers are fine. This is what makes version one a decision tool rather than a forecast only, which is the reason John named as the most exciting one for building the project.
 12. Write belt-equation/docs/methodology.md: how the numbers are computed, how the calibration score works (the standard measure of how well probabilities match outcomes, computed on resolved leaves each year), and how the choice-point comparison is run.
 
 ## Phase 4. First presentable version (target 2026-11-16)
 
 13. Produce one visual of the tree with current numbers, colored by factor. A static image is fine.
-14. Draft the introductory essay for Sentient Horizons: the question, the equation, the tiers, the headline numbers under each scenario, the three or four nodes that dominate the result, and an explicit invitation to name a missing node or move a probability. Voice Calibration is the final gate, per the Sentient Horizons protocols.
+14. Draft the introductory essay for Sentient Horizons: the question, the equation, the tiers, the headline numbers under each scenario, the three or four nodes that dominate the result, and an explicit invitation to name a missing node or move a probability. Include the cross-reference to the Calibration Problem manuscript that definitions.md calls for: whether a machine mind counts as a mind of another perspective is that manuscript's question, and the Contact Clause is where the two projects meet. Voice Calibration is the final gate, per the Sentient Horizons protocols.
 15. Draft the family-and-friends version: shorter, conversational, the same numbers, written to start a dinner-table argument rather than to be read by strangers.
 16. Decide, with John, when and whether to post beyond family and friends.
 
