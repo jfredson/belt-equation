@@ -77,3 +77,25 @@ source = "The treaty record or the enacted statutes"
 horizon = "root"
 depends_on = []
 status = "open"
+
+[[node]]
+id = "R-off-earth-site-accepts-permanent-residents"
+name = "An off-Earth site accepts people as permanent residents, with no return scheduled"
+factor = "R"
+kind = "world"
+description = """
+What separates living off Earth (the A3 tier) from working there on rotation (A2). Early
+settlements may be work camps by policy for decades, with every person on a return
+schedule, even after the biology allows staying. The node resolves when some site's own
+rules allow residence with no return planned and someone has actually lived that way for
+years. Choosing to stay is John's decision, not the world's, and belongs with the choice
+points once the access branch firms up."""
+resolution = """
+Under an off-Earth site's published residence terms, at least one person has lived there
+continuously for three years with no scheduled return to Earth, confirmed by the operator
+or governing body."""
+source = "The site's published residence terms and the operator's or governing body's record"
+horizon = "root"
+depends_on = ["B-long-term-off-earth-living-by-some-route"]
+status = "open"
+notes = "Added 2026-09-08 (agreed by John) so that A3 has a node distinguishing it from A2. Placed under regime because permanent residence is a rule somebody sets, not a technology."

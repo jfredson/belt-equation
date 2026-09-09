@@ -8,7 +8,7 @@ Under-promoted still holds. The site exists, family and friends get the link, an
 
 Five pages, and nothing more, are needed before family and friends can be sent the link:
 
-1. **Home.** The question in large type, the equation beneath it, one paragraph on what the project is, the headline number for A2 under each of the four scenarios, and the tree visual.
+1. **Home.** The question in large type, the equation beneath it, one paragraph on what the project is, the headline number for A2 under each of the five longevity scenarios, and the tree visual.
 2. **The tree.** One page per factor listing its nodes, and one page per node showing its name, description, resolution criterion, source, horizon, dependencies, probability by scenario with rationale and date, and status. This is the repo's data, rendered so a reader who will never open a TOML file can argue with a specific node.
 3. **How the numbers are computed.** The methodology document (roadmap step 12), rendered, with the scenario table and the Contact Clause beside it.
 4. **The story so far.** The changelog, rendered, and the project's recent progress pulled from TimeAssembler at build time. One place to see what has changed and why, without a second place to write.

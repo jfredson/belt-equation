@@ -13,7 +13,7 @@ Two kinds of node exist. A **world event** is something that happens to the worl
 TOML, one file per factor, read by Python's standard library (`tomllib`, present since Python 3.11; the Mac has 3.14). TOML is plain text, allows comments, keeps each field on its own line so a change to one number shows as a one-line diff, and supports multi-line text for descriptions and rationales. The alternative was JSON, which the standard library also reads but which has no comments and diffs badly for prose.
 
     data/
-      scenarios.toml      the four longevity scenarios and their window years
+      scenarios.toml      the five longevity scenarios and their window years
       tiers.toml          the system tiers and access tiers, each as the set of nodes it requires
       W-window.toml       nodes under the window factor
       L-launch.toml       nodes under launch
@@ -48,7 +48,7 @@ Required fields are marked. Everything else may be left out until it is known.
 | `depends_on_any` | no | List of groups, each a list of ids; at least one id in every group must resolve before this node can. This is how a node says "by either route", for example the biology node that resolves if partial-gravity health works out or if a rotating habitat with Earth-normal gravity exists. |
 | `choice_group` | choice only | Name shared by the mutually exclusive options at one choice point, such as `"six-year-fork"`. The decision comparison forces exactly one node in a group to yes per run. |
 | `current_plan` | choice only | `true` on exactly one node in each choice group: the option John currently intends to take. The headline number is computed with every choice group set to its current plan, and the decision comparison reports how much each alternative moves it. |
-| `probability` | from Phase 3 | Table with one entry per scenario key from scenarios.toml: `{ baseline = 0.6, moderate = 0.65, strong = 0.7, open = 0.8 }`. Each number is the probability that the node resolves yes before that scenario's window, **given that its dependencies resolve**. Absent until the tree is stable. Choice nodes have no probability. |
+| `probability` | from Phase 3 | Table with one entry per scenario key from scenarios.toml: `{ baseline = 0.6, moderate = 0.65, strong = 0.7, radical = 0.75, open = 0.8 }`. Each number is the probability that the node resolves yes before that scenario's window, **given that its dependencies resolve**. Absent until the tree is stable. Choice nodes have no probability. |
 | `estimated_on` | with probability | Date (YYYY-MM-DD) of the current probability. |
 | `rationale` | with probability | One line on why the number is what it is. |
 | `status` | yes | `"open"`, `"resolved-yes"`, `"resolved-no"`, or `"superseded"`. |
@@ -71,7 +71,7 @@ Required fields are marked. Everything else may be left out until it is known.
 
 **Tiers.** `tiers.toml` defines each system tier (1 to 4) and access tier (A0 to A3) as a set of required nodes and lower tiers, all of which must resolve. A run reaches a tier when its requirements are met. The headline number is how often A2 is reached; Tier 3 is the bar for "the Belt exists". "Either of these" logic does not live in the tier file; it lives on nodes, through `depends_on_any`. The rotating-habitat hedge on biology is therefore one biology node, "humans can live off Earth long term by some route", which resolves if either the partial-gravity route or the habitat route does, and the tiers require that node. It gets a name, a probability of its own, and a place in the visual, and the tier file stays a plain list.
 
-**Scenarios.** `scenarios.toml` lists the four longevity scenarios with a key, a plain name, and the window year (or none, for escape velocity). The compute script runs the whole tree once per scenario and reports each separately. How the window factor's own nodes weigh the scenarios against each other is a methodology question for step 12, not a schema question; the file leaves room for a weight per scenario and does not fill it.
+**Scenarios.** `scenarios.toml` lists the five longevity scenarios (baseline 2071, moderate 2080, strong 2095, radical 2136, and the open window) with a key, a plain name, and the window year (or none, for escape velocity). The compute script runs the whole tree once per scenario and reports each separately. How the window factor's own nodes weigh the scenarios against each other is a methodology question for step 12, not a schema question; the file leaves room for a weight per scenario and does not fill it.
 
 **Choice points.** Nodes with `kind = "choice"` are never sampled. In an ordinary run, every choice group is set to its `current_plan` option, so the headline is the forecast for the path John currently intends, not for a person who never decides anything. In the decision comparison, the script takes one choice group at a time, forces each of its options to yes in turn with the others no, runs the tree, and reports how far each alternative moves the headline from the current plan. The difference between the runs is the value of the decision.
 
@@ -140,7 +140,7 @@ An "either route" node, also for illustration only (the ids it names do not exis
 3. No dependency cycles, counting both `depends_on` and `depends_on_any`.
 4. Every node has a resolution criterion (the roadmap's rule); an empty string does not count.
 5. Before a run that reports numbers: every open world node has a probability for every scenario key. Before Phase 3 the script can still validate the tree and print its shape; it just cannot report numbers.
-6. A node's probability never falls as the window lengthens: baseline, then moderate, then strong, then open must be non-decreasing. A node that breaks this has been estimated inconsistently.
+6. A node's probability never falls as the window lengthens: baseline, moderate, strong, radical, then open must be non-decreasing, in the order scenarios.toml lists them. A node that breaks this has been estimated inconsistently.
 7. Choice nodes have a `choice_group` and no probability, and every choice group has exactly one node with `current_plan = true`.
 8. Every node with `long_shot = true` has a non-empty `mechanism` and `breaking_point`. This is the second founding rule (definitions.md, "plausible all the way to the edge of the impossible") as a check: a long shot without a named mechanism and a stated breaking point fails the same way a node without a resolution criterion does. The review pass (roadmap step 8) reads both fields aloud along with the name.
 
@@ -161,4 +161,4 @@ Recorded so the methodology document (roadmap step 12) and the annual review can
 
 - **Dependencies are hard.** A node cannot resolve unless its parents did. In reality a parent usually makes a child more likely rather than possible; full conditional tables would fix this and are far too heavy for a tree people argue about by hand.
 - **Nodes are independent given their parents.** A common cause that drags many nodes down at once, such as a general funding collapse, is only captured if the tree names it as a shared parent. That is the regime factor's job, and the brainstorm should wire its nodes as parents widely enough to carry that weight.
-- **Time enters only through the four scenarios.** There is no ordering of events within a window. If the annual review finds that "which comes first" matters, the median-year alternative under decision 3 is the path.
+- **Time enters only through the five scenarios.** There is no ordering of events within a window. If the annual review finds that "which comes first" matters, the median-year alternative under decision 3 is the path.

@@ -1,4 +1,6 @@
-# The four longevity scenarios (definitions.md, "The window"). The tree is run once per scenario.
+# The five longevity scenarios (definitions.md, "The window"). The tree is run once per scenario.
+# Order matters: the compute script requires a node's probability never to fall from one
+# scenario to the next in this order, since each window is longer than the last.
 # window_year is the deadline for that scenario. The baseline was refined from the health record on
 # 2026-09-08 (roadmap step 3); only the year and a plus-or-minus come into this file, nothing else.
 # Revisit it when the baseline blood panel is complete and at each annual review.
@@ -21,6 +23,13 @@ window_year = 2080
 key = "strong"
 name = "Strong extension"
 window_year = 2095
+
+[[scenario]]
+key = "radical"
+name = "Radical extension, a 150-year life"
+window_year = 2136
+# added 2026-09-08 (agreed by John): a named, finite rung between strong extension and the open
+# window, so the long shot has a number people can picture
 
 [[scenario]]
 key = "open"
