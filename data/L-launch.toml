@@ -1,0 +1,24 @@
+# Nodes under the launch factor (L): that the cost of putting mass into orbit falls below the
+# threshold that makes everything else affordable. Record layout: docs/node-schema.md.
+
+[[node]]
+id = "L-heavy-launcher-100-per-year"
+name = "A fully reusable heavy launcher flies 100 orbital missions in one calendar year"
+factor = "L"
+kind = "world"
+description = """
+Launch cost is set less by the rocket than by how often the same rocket flies.
+A fully reusable heavy launcher (both stages recovered and reflown) reaching
+a hundred orbital flights in a single year is the point at which mass to orbit
+stops being the constraint on everything downstream: stations, habitats, and
+lunar supply all assume it."""
+resolution = """
+In one calendar year, a launch vehicle whose first and second stages are both
+designed for recovery and reuse completes at least 100 orbital launches, counting
+only flights that reached orbit. Test flights that reached orbit count; suborbital
+flights and failures do not."""
+source = "Public orbital launch logs, checked against the operator's own flight manifest"
+horizon = "leaf"
+depends_on = []
+status = "open"
+notes = "Written 2026-09-08 as the schema's worked example. Probability comes in Phase 3."

@@ -13,13 +13,15 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 - Nothing personal about John's health goes into this repo. The access branch stays a sketch until pipeline graduation (expected May 2027).
 - No probabilities until the tree is stable (end of Phase 2). Estimating against a moving structure wastes the estimates.
 - Every change to the tree or the definitions gets a dated line in belt-equation/CHANGELOG.md.
+- Every design choice put to John comes with three things before he is asked to accept it: how confident Claude is in it, whether it is standard practice or a judgment call, and the strongest alternative with what it would cost. Ruled by John 2026-09-08 after the node-schema review, where this habit changed two of six proposals. A choice presented without them is not ready to be accepted.
 - Commit at the end of every session. From a Claude Code session on the Mac this is ordinary git; from a Cowork session the lock files git leaves behind have to be moved out of the way (see the note at the bottom).
+- When work lands on a branch and needs a pull request, merge it with the gh command-line tool from the terminal, or directly from the Claude session when that session is allowed to merge, and not from the GitHub website. Ruled by John 2026-09-08. A session that cannot merge itself gives the exact command (`gh pr merge <number> --merge`, then `git pull`) rather than a link.
 
 ## Phase 1. Definitions complete (target 2026-09-21)
 
 1. Read belt-equation/docs/definitions.md end to end and fix anything inconsistent with the kickoff outline. Done when both documents agree.
 2. Write belt-equation/docs/node-schema.md: the record layout for one node, with a worked example. Fields: id, name, factor (W, L, E, D, B, M, R, A, or C for the Contact Clause), kind (world event or choice point), description, resolution criterion and source of truth, dependencies, which tiers it feeds, horizon class (leaf, mid, root), probability by scenario (left blank until Phase 3), rationale, status, revision log. Choose the file format for data/ here (a plain text format that reads well in a diff; one file per factor is the current preference).
-3. Refine the window placeholder from the health record. This step runs in a Cowork session with the Health folder connected, and only the resulting date (with a plus-or-minus) comes back into definitions.md. Nothing else. It does not block anything in Phase 2; its result is first needed at step 9, so do it any time before then.
+3. Refine the window placeholder from the health record. DONE 2026-09-08: baseline 2071 plus or minus 8, recorded in definitions.md; revisit when the baseline blood panel is complete and at each annual review. Only the date came back into the repo.
 
 ## Phase 2. Tree version zero (target 2026-10-12)
 
