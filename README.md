@@ -25,7 +25,7 @@ The factors are a way of talking about the tree, not a literal multiplication of
 
 ## Layout
 
-- `docs/` holds the plans and definitions. Start with `docs/2026-09-08-kickoff.md` (the plan) and `docs/definitions.md` (what the terms mean, and the decisions behind them).
+- `docs/` holds the plans and definitions. Start with `docs/definitions.md` (what the terms mean, and the decisions behind them) and `docs/roadmap.md` (the work plan). `docs/2026-09-08-kickoff.md` is the original outline, kept as the record of where the project started.
 - `data/` holds the tree itself, one record per breakthrough. Empty until the first node brainstorm.
 - `scripts/` holds the code that computes the headline numbers from the tree. Empty until the tree exists.
 - `CHANGELOG.md` records every revision to the tree or the definitions, with absolute dates.
