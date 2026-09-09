@@ -38,6 +38,7 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 10. Run the calculation. Read the results against intuition. Where the computed number disagrees badly with gut, the tree is probably missing a dependency or a node; fix the tree, not the number.
 11. Run the decision comparison: the whole tree once per option at the six-year service fork (re-enlist or separate, and the branches under each), using the sketch access branch, and report how the A2 number moves between options. Rough numbers are fine. This is what makes version one a decision tool rather than a forecast only, which is the reason John named as the most exciting one for building the project.
 12. Write belt-equation/docs/methodology.md: how the numbers are computed, how the calibration score works (the standard measure of how well probabilities match outcomes, computed on resolved leaves each year), and how the choice-point comparison is run.
+27. Design and run the outside-model review protocol before anything is published (numbered 27 so the roadmap's numbers stay stable; it belongs here in Phase 3, after the first run; target 2026-11-09, before website step 24). Promoted from "Later, not now" on 2026-09-08 when John accepted the first probabilities on Claude's recommendation and asked that they be reviewed against a protocol using other frontier models. The protocol: give each factor's nodes, criteria, rationales, and numbers to at least two models other than the one that proposed them, with a fixed brief (name a missing node; challenge a criterion; argue a number up or down with a reason and a confidence level); collect the answers in a dated file under docs/reviews/; John rules on each disagreement; every change lands with a changelog line and a revision entry on the node. Done when every factor has been reviewed once and the disagreements are ruled on.
 
 ## Phase 4. First presentable version (target 2026-11-16)
 
@@ -66,7 +67,7 @@ Added 2026-09-08 when John reversed the deferral of a standalone site. The full 
 
 ## Later, not now
 
-- A review-and-critique method that brings in other models for fresh perspectives (raised by John 2026-09-08 after the first brainstorm draft): give the tree, or one factor of it, to models other than the one that drafted it, with a fixed brief (name a missing node, challenge a criterion, argue a probability), and fold what survives into the tree with a changelog line. Worth designing before the first annual review, so the January re-estimate has outside critique to work from even if no human reader has sent any.
+- The outside-model review method raised by John after the first brainstorm draft is no longer deferred: it is step 27 in Phase 3.
 - An interactive tree on the site (hover, click through, filter by factor), once the tree has stopped changing shape. Version one uses a committed picture.
 - Public names for the access tiers.
 - Extending the access ladder above A3, if the world moves.
