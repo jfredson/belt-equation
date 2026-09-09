@@ -53,6 +53,7 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 
 ## Later, not now
 
+- A review-and-critique method that brings in other models for fresh perspectives (raised by John 2026-09-08 after the first brainstorm draft): give the tree, or one factor of it, to models other than the one that drafted it, with a fixed brief (name a missing node, challenge a criterion, argue a probability), and fold what survives into the tree with a changelog line. Worth designing before the first annual review, so the January re-estimate has outside critique to work from even if no human reader has sent any.
 - A standalone site, after the tree has changed at least once from outside critique.
 - Public names for the access tiers.
 - Extending the access ladder above A3, if the world moves.
