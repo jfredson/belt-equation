@@ -1,0 +1,202 @@
+# Nodes under the access factor (A): that John personally has a pathway in, given his training,
+# health, and career. This branch is a sketch until pipeline graduation (expected May 2027) and
+# carries nothing personal beyond what definitions.md already states publicly. It holds the
+# tree's choice points (things John decides, never sampled) and the leverage branch (what AI
+# tools let one person do). Record layout: docs/node-schema.md. Drafted 2026-09-08 in the
+# third brainstorm session. No probabilities yet.
+
+# --- World events on the pathway ---
+
+[[node]]
+id = "A-pipeline-graduation"
+name = "Graduation from the survival-specialist training pipeline"
+factor = "A"
+kind = "world"
+description = """
+The gate on the whole branch. Everything downstream, military or civilian, assumes the
+qualification. Expected May 2027."""
+resolution = "Graduation from the pipeline, as recorded in the service record."
+source = "The service record"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "A-commercial-crew-survival-training-industry-exists"
+name = "Companies sell survival and emergency training to commercial spaceflight crews"
+factor = "A"
+kind = "world"
+description = """
+Government astronauts get survival training from the military and their agencies.
+Commercial crews, so far, get whatever their operator arranges. An industry that sells
+survival, egress, and contingency training to commercial crews is the civilian door that a
+military survival instructor could walk through."""
+resolution = """
+At least two companies publicly offer survival or contingency training to commercial
+spaceflight crews and each has at least two paying operator customers, by public
+announcement or contract."""
+source = "Public announcements and contract records"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "A-military-survival-instructor-hired-into-spaceflight-training"
+name = "Someone moves from military survival instruction into training spaceflight crews"
+factor = "A"
+kind = "world"
+description = """
+Proof that the path exists: a person with the same qualification takes a role training
+crews for a spaceflight operator or a training company. Once one person has done it, it is
+a career move rather than a hope."""
+resolution = """
+Public reporting or an operator's announcement names a person whose prior role was military
+survival instruction and whose new role is training spaceflight crews."""
+source = "Public reporting or the operator's announcement"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "A-orbital-seat-sold-under-one-million-dollars"
+name = "A seat to orbit is sold to a private person for under a million dollars"
+factor = "A"
+kind = "world"
+description = """
+Private orbital seats cost tens of millions today. Under a million is the point where an
+orbital flight is a serious personal purchase rather than a billionaire's, and the A1 tier
+becomes reachable by saving rather than by fortune."""
+resolution = """
+A commercial provider sells, by public price or a publicly reported contract, a seat on an
+orbital flight to a private individual for under one million 2026 dollars, and the flight
+takes place."""
+source = "The provider's public price or reported contract, and the flight record"
+horizon = "mid"
+depends_on = ["L-launch-price-below-200-dollars-per-kg"]
+status = "open"
+
+[[node]]
+id = "A-private-orbital-flight-by-someone-aged-65-or-over"
+name = "A private person aged sixty-five or older flies to orbit"
+factor = "A"
+kind = "world"
+description = """
+Whether eligibility for private orbital flight holds late in life decides how long the
+window of personal access stays open. This has already happened: a 72-year-old flew to the
+space station on the first private crewed mission there in 2022. The node stays in the tree,
+resolved, so the picture shows it and the calibration score has a resolved leaf to count."""
+resolution = """
+A person aged sixty-five or older, not a professional astronaut, completes an orbital
+flight, as recorded by the operator."""
+source = "The operator's mission record"
+horizon = "leaf"
+depends_on = []
+status = "resolved-yes"
+resolved_on = 2022-04-25
+resolved_by = "Axiom Mission 1 crew record: a 72-year-old private crew member flew to the International Space Station, April 2022"
+
+[[node]]
+id = "A-in-a-role-whose-holders-rotate-off-earth"
+name = "Holding a role whose holders go on off-Earth rotations"
+factor = "A"
+kind = "world"
+description = """
+The root of the branch and what the A2 tier requires on the personal side: being employed,
+or contracted, in a role from which people are sent off Earth for months at a time. It
+does not name the employer or the route, because the routes are what the choice points
+below compare."""
+resolution = """
+Employment or contract in a role from which at least one holder has completed an off-Earth
+rotation of a month or more, as recorded by the employer."""
+source = "The employer's record"
+horizon = "root"
+depends_on = ["A-pipeline-graduation"]
+status = "open"
+notes = "Depends on the survival-training nodes above and on the motive node for a hundred people working off Earth; drawn at step 7."
+
+# --- Choice points: John decides, the script never samples ---
+
+[[node]]
+id = "A-reenlist-at-six-years"
+name = "Re-enlist at the six-year mark"
+factor = "A"
+kind = "choice"
+choice_group = "six-year-fork"
+current_plan = true
+description = """
+One option at the first fork in the pathway: stay in service past the first contract,
+for as long as service keeps expanding capability in ways that serve the longer goal.
+Marked as the current plan because the sketch in definitions.md leans this way; John was
+explicitly hesitant, and the decision comparison exists to test it."""
+resolution = "A signed re-enlistment at the end of the first six-year term, in the service record."
+source = "The service record"
+horizon = "mid"
+depends_on = ["A-pipeline-graduation"]
+status = "open"
+
+[[node]]
+id = "A-separate-at-six-years-into-civilian-space-work"
+name = "Separate at the six-year mark into civilian space or defence work"
+factor = "A"
+kind = "choice"
+choice_group = "six-year-fork"
+description = """
+The other option at the first fork: take the survival-instructor experience into civilian
+spaceflight training, or defence work that gets closer to the goal than staying would."""
+resolution = "Separation at the end of the first six-year term followed by civilian employment in space or defence work, in the service and employment records."
+source = "The service and employment records"
+horizon = "mid"
+depends_on = ["A-pipeline-graduation"]
+status = "open"
+
+# --- The leverage branch: what AI tools let one person do ---
+
+[[node]]
+id = "A-tree-maintains-itself-with-human-approval-only"
+name = "This tree's quarterly scan is produced by an AI system with a human only approving the changes"
+factor = "A"
+kind = "world"
+description = """
+The first leverage node, and the one this project can resolve on itself: the quarterly scan
+(check every leaf against its source, propose resolutions and probability moves, draft the
+changelog line) is done end to end by an AI system, and John's only work is to approve or
+reject each change."""
+resolution = """
+Two consecutive quarterly scans are produced end to end by an AI system, with every change
+proposed by it and John's role limited to approval, as recorded in the changelog."""
+source = "This repo's changelog"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "A-technical-publication-produced-with-ai-collaborators"
+name = "A technical paper on a subject in this tree is published by one person working with AI collaborators"
+factor = "A"
+kind = "world"
+description = """
+The leverage claim in its strongest form: that a single person with these tools can carry a
+piece of research that used to need a group. The test is a real publication, on a subject
+the tree cares about, produced by John with AI collaborators and no institutional team."""
+resolution = """
+A preprint or peer-reviewed paper on a subject that is a node in this tree is published with
+John as sole human author and AI collaboration acknowledged."""
+source = "The preprint server or journal record"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "A-bachelors-degree-completed"
+name = "The bachelor's degree is completed"
+factor = "A"
+kind = "world"
+description = """
+The credential node from the candidate list. Completion is on hold until mid-2027; AI
+tooling is expected to shorten the path once it restarts, which is why it sits in the
+leverage branch."""
+resolution = "A bachelor's degree conferred, as recorded by the awarding institution."
+source = "The awarding institution's record"
+horizon = "mid"
+depends_on = []
+status = "open"

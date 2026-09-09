@@ -1,0 +1,79 @@
+# Nodes under the regime factor (R): that the political and legal conditions let a
+# multi-decade build survive elections, downturns, and wars. Regime nodes are the shared
+# parents that carry common causes (a funding collapse hits everything at once), so the edges
+# step should wire them widely. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the
+# third brainstorm session. No probabilities yet.
+
+[[node]]
+id = "R-crewed-lunar-program-outlives-two-changes-of-president"
+name = "The US crewed lunar program keeps flying across two changes of president"
+factor = "R"
+kind = "world"
+description = """
+Every large space program since Apollo has been redrawn or cancelled by a new
+administration. A program that keeps its funding and keeps flying hardware across two
+changes of president has become an institution rather than a policy, which is what a
+multi-decade build needs."""
+resolution = """
+Counting from 2026, the US crewed lunar program receives appropriations and flies crewed
+hardware in each of two successive presidential administrations after the current one."""
+source = "US federal appropriations records and the agency's flight record"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "R-space-funding-holds-through-a-recession"
+name = "Government and private space spending both hold through a recession"
+factor = "R"
+kind = "world"
+description = """
+Downturns are when long builds get cut. The test is whether, through a year of recession,
+the government human-spaceflight budget and the largest private launch company's flight
+rate both hold rather than collapse. It resolves the first time a recession arrives."""
+resolution = """
+In a calendar year that the National Bureau of Economic Research dates as containing a US
+recession, the US human-spaceflight appropriation stays within ten percent of the prior year
+in real terms and the largest US launch provider's orbital launch count does not fall by more
+than ten percent."""
+source = "NBER recession dates, federal appropriations records, public launch logs"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "R-binding-ban-on-debris-creating-anti-satellite-tests"
+name = "The major space powers are bound by a ban on debris-creating anti-satellite tests"
+factor = "R"
+kind = "world"
+description = """
+A single war in orbit, or even one more test that shatters a satellite, could make low
+orbit unusable for decades and stop everything above it. A binding agreement among the
+powers that can do it is the clearest sign that orbit is being treated as shared
+infrastructure rather than a battlefield."""
+resolution = """
+The United States, China, and Russia are all party to a legally binding agreement
+prohibiting anti-satellite tests that create orbital debris, and the agreement is in force."""
+source = "The treaty text and the depositary's record of parties"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "R-off-earth-resource-rights-recognised-by-major-powers"
+name = "The United States and China both recognise the same rules for owning what is mined off Earth"
+factor = "R"
+kind = "world"
+description = """
+Nobody will spend a decade building a mine on the Moon if another power can call the
+ore stolen. A common framework for who may extract and own off-Earth resources, whether a
+treaty or matching national laws, is what lets the motive nodes attract long money."""
+resolution = """
+A treaty in force, or national laws whose provisions mutually recognise each other, gives
+the United States and China (and at least one of the European Union, India, or Russia) the
+same rules for extracting and owning resources at off-Earth sites, as documented in the
+treaty record or the enacted statutes."""
+source = "The treaty record or the enacted statutes"
+horizon = "root"
+depends_on = []
+status = "open"

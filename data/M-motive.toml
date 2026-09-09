@@ -1,0 +1,96 @@
+# Nodes under the motive factor (M): that there is an economic reason for large numbers of
+# people to be out there. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the third
+# brainstorm session. No probabilities yet.
+
+[[node]]
+id = "M-paying-customer-for-work-done-in-orbit"
+name = "A commercial customer pays for a service performed in orbit, other than communications, imaging, or navigation"
+factor = "M"
+kind = "world"
+description = """
+Satellites already earn money by relaying signals and taking pictures. The new thing is
+paying for work done in orbit: computing in an orbital data centre, manufacturing crystals or
+fibre in free fall, testing materials. The first sizeable paying customer is the sign that
+orbit has a second economy, which is what makes megawatt spacecraft and orbital assembly
+worth building."""
+resolution = """
+A company publicly reports, by contract announcement or financial filing, at least ten
+million dollars in a single year of paid revenue from a customer for computing,
+manufacturing, or processing performed in orbit."""
+source = "The company's public contract announcement or financial filing"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
+name = "A spacecraft beams at least a kilowatt of power to a receiver on the ground"
+factor = "M"
+kind = "world"
+description = """
+Space-based solar power, if it ever pays, is a reason to build very large things in orbit
+and to have people maintaining them. Small demonstrations have transmitted watts. A kilowatt
+received on the ground is the step that makes the engineering argument real, and several
+agencies plan demonstrations within a few years."""
+resolution = """
+A spacecraft in orbit transmits power to a receiver on Earth's surface that delivers at least
+one kilowatt of usable electrical power, reported in a peer-reviewed publication or an
+agency mission record."""
+source = "The peer-reviewed publication or the agency's mission record"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "M-space-solar-power-sold-to-a-grid"
+name = "Electricity from space-based solar power is sold to a grid under a commercial contract"
+factor = "M"
+kind = "world"
+description = """
+The point where beaming power from orbit stops being a demonstration and becomes an
+industry with customers, which would justify structures far larger than anything yet built
+in space and a workforce to build and keep them."""
+resolution = """
+A grid operator buys electricity generated in orbit and transmitted to the ground under a
+commercial power-purchase contract, with deliveries confirmed by the grid operator."""
+source = "The grid operator's public record and the contract announcement"
+horizon = "mid"
+depends_on = ["M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"]
+status = "open"
+notes = "Depends on cheap launch and orbital assembly nodes; drawn at step 7."
+
+[[node]]
+id = "M-hundred-people-working-off-earth-for-pay"
+name = "A hundred people are living and working off Earth at the same time, for pay"
+factor = "M"
+kind = "world"
+description = """
+The space station holds seven. A hundred people employed off Earth at once, whatever the
+mix of stations and surface bases, means there are jobs out there rather than missions,
+which is the economic shape of Tier 1 and the precondition for anyone rotating through."""
+resolution = """
+On a single day, at least one hundred people are off Earth in paid roles, counting all
+stations and surface sites, according to the operators' public crew records."""
+source = "Operators' public crew records, tallied"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "M-off-earth-product-sold-at-a-profit"
+name = "Something mined or made off Earth is sold at a profit"
+factor = "M"
+kind = "world"
+description = """
+The Tier 3 criterion in economic terms. Propellant made from lunar ice, metal from an
+asteroid, structures built from lunar material: the first product whose sale covers its cost
+is the moment a solar-system economy exists rather than a set of subsidised outposts."""
+resolution = """
+A company reports, in audited accounts or an equivalent public filing, that revenue from
+selling a physical product extracted or manufactured off Earth exceeded the full cost of
+producing it over a financial year."""
+source = "The company's audited accounts or equivalent public filing"
+horizon = "root"
+depends_on = []
+status = "open"
+notes = "Depends on lunar material delivered to orbit at scale (a launch node); drawn at step 7."

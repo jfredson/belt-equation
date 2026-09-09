@@ -1,0 +1,96 @@
+# The Contact Clause (C): published beside the equation and never multiplied into it. No tier
+# requires a C node; the compute script reports them in their own section. Rungs and criteria
+# from definitions.md. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the third
+# brainstorm session. No probabilities yet.
+
+[[node]]
+id = "C1"
+name = "A non-human mind produces knowledge beyond us"
+factor = "C"
+kind = "world"
+description = """
+An artificial system delivers a scientific or mathematical result that humans could not have
+produced and cannot fully check by hand, verified by machine and confirmed against nature.
+Plausibly already resolving; the first probabilities session decides how close."""
+resolution = """
+A result in mathematics or the natural sciences is produced by an artificial system, is
+verified by machine checking or by experiment, is acknowledged in the peer-reviewed record as
+beyond what human researchers had been able to produce, and its full derivation is not
+checkable by a human reader without machine assistance."""
+source = "The peer-reviewed record and the verification artefact"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "C2"
+name = "Humans learn from it"
+factor = "C"
+kind = "world"
+description = """
+Beyond receiving a result: humans come to understand something conceptual they could not
+have reached, in a way that changes how human science is done."""
+resolution = """
+A concept or method that originated with an artificial system, and that the record shows
+human researchers had not reached, is adopted as a standard part of how a scientific field
+works, as evidenced by its use in textbooks or in the majority of new papers in that field."""
+source = "The field's textbooks and publication record"
+horizon = "mid"
+depends_on = ["C1"]
+status = "open"
+
+[[node]]
+id = "C3"
+name = "An intelligence not descended from us is detected"
+factor = "C"
+kind = "world"
+description = """
+A technosignature, a biosignature implying more than microbes, or an artefact. Low
+probability, fully resolvable. The instruments that would find it, a radio array on the far
+side of the Moon and a telescope at the Sun's gravitational focus, are the kind of large
+off-Earth projects the rest of the tree makes possible."""
+resolution = """
+A detection of a technosignature, a biosignature implying multicellular life, or an artefact
+of non-human origin is confirmed by at least two independent teams and accepted as such in
+the peer-reviewed record."""
+source = "The peer-reviewed record, two independent confirmations"
+horizon = "root"
+depends_on = []
+status = "open"
+long_shot = true
+mechanism = """
+Instruments improve in steps that are already planned: a far-side lunar radio array shielded
+from Earth's noise, a telescope placed where the Sun's gravity focuses light from other
+stars, and spectrographs that read the air of nearby planets. Each step widens what could be
+seen. If anything is there within reach, one of these finds it; the remaining step is the
+confirmation by a second team."""
+breaking_point = """
+Detection needs something to exist within reach and to be visible with the instruments we
+can build. Sixty years of listening have found nothing, and every model of how common such
+signals should be rests on guesses. The node cannot be made likelier by engineering alone."""
+
+[[node]]
+id = "C4"
+name = "Communion"
+factor = "C"
+kind = "world"
+description = """
+Knowledge enters human understanding whose provenance is demonstrably not human and not
+human-built. The dream in its most beautiful form, kept on the board by the founding rule."""
+resolution = """
+A body of knowledge is received and understood by humans whose origin is established, in the
+peer-reviewed record and by more than one independent line of evidence, as neither human nor
+produced by any human-built system."""
+source = "The peer-reviewed record"
+horizon = "root"
+depends_on = ["C3"]
+status = "open"
+long_shot = true
+mechanism = """
+A confirmed detection (C3) turns out to carry structure, the structure is decoded, and the
+decoded content is shown to be knowledge rather than noise, the way a message with a proof
+in it could be checked. Each of those is a recognisable step from the one before."""
+breaking_point = """
+There is no known test that establishes a piece of knowledge's provenance as non-human
+rather than the output of a human-built system, and nothing to decode has ever been
+received. Both the detection and the provenance test would have to be invented."""
