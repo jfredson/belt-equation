@@ -21,7 +21,7 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 
 1. Read belt-equation/docs/definitions.md end to end and fix anything inconsistent with the kickoff outline. Done when both documents agree.
 2. Write belt-equation/docs/node-schema.md: the record layout for one node, with a worked example. Fields: id, name, factor (W, L, E, D, B, M, R, A, or C for the Contact Clause), kind (world event or choice point), description, resolution criterion and source of truth, dependencies, which tiers it feeds, horizon class (leaf, mid, root), probability by scenario (left blank until Phase 3), rationale, status, revision log. Choose the file format for data/ here (a plain text format that reads well in a diff; one file per factor is the current preference).
-3. Refine the window placeholder from the health record. This step runs in a Cowork session with the Health folder connected, and only the resulting date (with a plus-or-minus) comes back into definitions.md. Nothing else. It does not block anything in Phase 2; its result is first needed at step 9, so do it any time before then.
+3. Refine the window placeholder from the health record. DONE 2026-09-08: baseline 2071 plus or minus 8, recorded in definitions.md; revisit when the baseline blood panel is complete and at each annual review. Only the date came back into the repo.
 
 ## Phase 2. Tree version zero (target 2026-10-12)
 

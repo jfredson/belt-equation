@@ -1,15 +1,16 @@
 # The four longevity scenarios (definitions.md, "The window"). The tree is run once per scenario.
-# window_year is the deadline for that scenario. The baseline is a provisional placeholder until
-# roadmap step 3 refines it; only the year and a plus-or-minus come into this file, nothing else.
+# window_year is the deadline for that scenario. The baseline was refined from the health record on
+# 2026-09-08 (roadmap step 3); only the year and a plus-or-minus come into this file, nothing else.
+# Revisit it when the baseline blood panel is complete and at each annual review.
 # weight is left unset on purpose: how the window factor's nodes weigh the scenarios is a
 # methodology question (roadmap step 12).
 
 [[scenario]]
 key = "baseline"
 name = "Baseline, no extension beyond current trends"
-window_year = 2070
-plus_or_minus = 5
-provisional = true
+window_year = 2071
+plus_or_minus = 8
+refined_on = 2026-09-08
 
 [[scenario]]
 key = "moderate"

@@ -9,3 +9,9 @@ __pycache__/
 node_modules/
 dist/
 *.bak
+
+# private reference material (copyrighted transcripts, personal notes)
+docs/private/
+
+# Claude Code worktrees and session files
+.claude/

@@ -41,6 +41,9 @@ Required fields are marked. Everything else may be left out until it is known.
 | `resolution` | yes | The observable event that counts as "resolved yes", stated so that two people reading it would agree whether it has happened. |
 | `source` | yes | Who or what settles it: a named public record, database, or announcement type. "Common knowledge" is not a source. |
 | `horizon` | yes | `"leaf"` (could resolve within 1 to 5 years), `"mid"` (5 to 20 years), or `"root"` (window-scale). At least a third of all nodes should be leaves. |
+| `long_shot` | no | `true` for a node that is 99 percent dreaming: something current physics, engineering, or economics does not yet allow. Long shots belong in the tree by the first founding rule; the second founding rule says how they earn their place, through the two fields below. |
+| `mechanism` | long shots | The believable sequence from the present to this node: each step named, in order, so that a reader can see how it could happen rather than only that it would be wonderful if it did. |
+| `breaking_point` | long shots | The point where current physics, engineering, or economics would have to give way, stated plainly. "We do not know how to keep a fusion plasma light enough to fly" is a breaking point; "fusion drives arrive" is a wish. |
 | `depends_on` | no | List of ids that must all resolve before this node can. Empty or absent means no dependencies. |
 | `depends_on_any` | no | List of groups, each a list of ids; at least one id in every group must resolve before this node can. This is how a node says "by either route", for example the biology node that resolves if partial-gravity health works out or if a rotating habitat with Earth-normal gravity exists. |
 | `choice_group` | choice only | Name shared by the mutually exclusive options at one choice point, such as `"six-year-fork"`. The decision comparison forces exactly one node in a group to yes per run. |
@@ -138,6 +141,7 @@ An "either route" node, also for illustration only (the ids it names do not exis
 5. Before a run that reports numbers: every open world node has a probability for every scenario key. Before Phase 3 the script can still validate the tree and print its shape; it just cannot report numbers.
 6. A node's probability never falls as the window lengthens: baseline, then moderate, then strong, then open must be non-decreasing. A node that breaks this has been estimated inconsistently.
 7. Choice nodes have a `choice_group` and no probability, and every choice group has exactly one node with `current_plan = true`.
+8. Every node with `long_shot = true` has a non-empty `mechanism` and `breaking_point`. This is the second founding rule (definitions.md, "plausible all the way to the edge of the impossible") as a check: a long shot without a named mechanism and a stated breaking point fails the same way a node without a resolution criterion does. The review pass (roadmap step 8) reads both fields aloud along with the name.
 
 ## Decisions (2026-09-08)
 
