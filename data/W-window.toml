@@ -1,0 +1,149 @@
+# Nodes under the window factor (W): that John is alive on the date in question. These nodes are
+# about longevity research in general, never about his health. They are what would make the
+# moderate, strong, and open scenarios real rather than hypothetical. Record layout:
+# docs/node-schema.md. Drafted 2026-09-08 in the first brainstorm session; no probabilities yet.
+# Dependencies on nodes in other factors are noted in `notes` and drawn at roadmap step 7.
+
+[[node]]
+id = "W-dog-rapamycin-trial-reports-longer-life"
+name = "The large dog trial of rapamycin reports that treated dogs live measurably longer"
+factor = "W"
+kind = "world"
+description = """
+The Dog Aging Project's TRIAD trial gives rapamycin, the best-studied life-extending drug in
+mice, to hundreds of pet dogs in a placebo-controlled design and follows them for years. It is
+the first lifespan trial of an aging drug in a large mammal living in ordinary conditions, and
+its result is due within a few years. A positive result is the single strongest near-term
+signal that mouse longevity results carry over to animals like us."""
+resolution = """
+The trial's primary lifespan analysis, published in a peer-reviewed journal, reports a
+statistically significant increase in lifespan for the rapamycin group over placebo."""
+source = "The Dog Aging Project's published TRIAD results"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "W-regulator-accepts-aging-as-an-indication"
+name = "A major drug regulator accepts slowing aging as something a drug can be approved for"
+factor = "W"
+kind = "world"
+description = """
+Today a drug must target a named disease. There is no approvable indication for slowing aging
+itself, which is why aging drugs are tested against single diseases and why companies avoid the
+field. A regulator formally accepting a composite endpoint (delaying the onset of several
+age-related diseases at once, or a validated measure of healthy lifespan) changes what gets
+funded and trialed."""
+resolution = """
+The US Food and Drug Administration or the European Medicines Agency publishes guidance, or
+grants a trial design, that names aging, a composite of age-related diseases, or healthy
+lifespan as an acceptable primary indication for approval."""
+source = "The regulator's own published guidance or trial-design decision"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "W-composite-aging-trial-positive-in-humans"
+name = "A randomized human trial shows one drug delays several age-related diseases at once"
+factor = "W"
+kind = "world"
+description = """
+The Targeting Aging with Metformin trial and others like it test whether one cheap drug can
+delay the arrival of heart disease, cancer, dementia, and death taken together in older adults.
+A positive result is the first proof in humans that aging can be slowed as a whole rather than
+one disease at a time."""
+resolution = """
+A randomized, placebo-controlled trial of at least a thousand older adults reports a
+statistically significant delay in a pre-registered composite of age-related diseases or
+death, published in a peer-reviewed journal."""
+source = "The trial's peer-reviewed primary publication and its pre-registration record"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "W-partial-reprogramming-reaches-human-trials"
+name = "A cell-rejuvenation treatment based on partial reprogramming is given to people in a registered trial"
+factor = "W"
+kind = "world"
+description = """
+Partial reprogramming turns back the age markers of cells by briefly switching on the genes
+used to make stem cells, without erasing what the cell is. It has restored sight and extended
+life in mice and is the most-funded route to actually reversing rather than slowing aging.
+The first human trials are the point where it becomes a medicine rather than a lab result."""
+resolution = """
+A registered clinical trial (on clinicaltrials.gov or an equivalent registry) doses at least
+one human participant with a partial-reprogramming therapy, for any indication."""
+source = "The trial registry entry and the sponsor's announcement of first dosing"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "W-first-drug-approved-to-slow-aging"
+name = "The first drug is approved whose purpose is to slow aging, not to treat one disease"
+factor = "W"
+kind = "world"
+description = """
+The point where slowing aging becomes ordinary medicine that a doctor can prescribe. This is
+what moves the baseline scenario toward the moderate one for everyone, not only trial
+participants."""
+resolution = """
+The US Food and Drug Administration or the European Medicines Agency approves a treatment
+whose labeled indication is slowing aging, extending healthy lifespan, or delaying a composite
+of age-related diseases."""
+source = "The regulator's approval record and the product label"
+horizon = "mid"
+depends_on = ["W-regulator-accepts-aging-as-an-indication"]
+status = "open"
+notes = "Almost certainly also depends on a positive composite trial; whether that is a hard dependency is for step 7."
+
+[[node]]
+id = "W-human-therapy-cuts-death-rate-in-older-adults"
+name = "A treatment is shown in a large trial to cut the death rate of older adults by at least a quarter"
+factor = "W"
+kind = "world"
+description = """
+The result that would make the moderate scenario (a window around 2080) the expected case
+rather than a hope: a therapy that reduces all-cause mortality in people over sixty-five by a
+quarter or more over the trial period. Nothing yet approved comes close; statins and blood
+pressure drugs move single causes of death by smaller amounts."""
+resolution = """
+A randomized, placebo-controlled trial in adults aged sixty-five or over, followed for at least
+five years, reports a reduction in all-cause mortality of twenty-five percent or more,
+published in a peer-reviewed journal and not later retracted."""
+source = "The trial's peer-reviewed primary publication"
+horizon = "root"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "W-verified-human-lifespan-passes-122"
+name = "Someone verifiably lives past 122, the longest human life on record"
+factor = "W"
+kind = "world"
+description = """
+Jeanne Calment's 122 years has stood since 1997 and no verified case has come within three
+years of it since, which is the strongest evidence that current medicine moves average
+lifespan but not maximum lifespan. A verified case beyond it is the first sign that the ceiling
+has moved, which is what the strong and open scenarios need."""
+resolution = """
+A person's age at death, or current age while living, exceeds 122 years and 164 days, verified
+by the Gerontology Research Group or an equivalent body with documentary evidence of birth."""
+source = "Gerontology Research Group validated supercentenarian records"
+horizon = "root"
+depends_on = []
+status = "open"
+long_shot = true
+mechanism = """
+Someone born around 1905 to 1930 who has already reached 110 benefits from late-life medicine
+that did not exist for Calment (better cardiac, infection, and fall care), and survives the
+last few years at a mortality rate that today runs near fifty percent a year. Later, a person
+who received an approved aging therapy in their sixties or seventies carries a slower rate of
+decline into their hundreds."""
+breaking_point = """
+Annual mortality past 110 appears to plateau near fifty percent, so each further year is a coin
+flip and 122 needs a run of a dozen heads; the record has not moved in almost thirty years
+despite far more people reaching 100. Passing it by more than a year or two requires that some
+intervention lower the late-life mortality rate itself, which nothing tested in humans has done."""
