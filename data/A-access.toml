@@ -1,9 +1,10 @@
 # Nodes under the access factor (A): that John personally has a pathway in, given his training,
 # health, and career. This branch is a sketch until pipeline graduation (expected May 2027) and
 # carries nothing personal beyond what definitions.md already states publicly. It holds the
-# tree's choice points (things John decides, never sampled) and the leverage branch (what AI
-# tools let one person do). Record layout: docs/node-schema.md. Drafted 2026-09-08 in the
-# third brainstorm session. No probabilities yet.
+# tree's choice points (things John decides, never sampled), the two routes those choices open,
+# and the leverage branch (what AI tools let one person do). Record layout: docs/node-schema.md.
+# Drafted 2026-09-08 in the third brainstorm session; routes and edges added at step 7 the same
+# day. No probabilities yet.
 
 # --- World events on the pathway ---
 
@@ -93,7 +94,54 @@ horizon = "leaf"
 depends_on = []
 status = "resolved-yes"
 resolved_on = 2022-04-25
-resolved_by = "Axiom Mission 1 crew record: a 72-year-old private crew member flew to the International Space Station, April 2022"
+resolved_by = "Axiom Mission 1: a 72-year-old private crew member launched 2022-04-08 and splashed down 2022-04-25, per NASA's space station blog and the operator's mission record"
+notes = "Age, launch date, and splashdown date checked 2026-09-08 against NASA's mission blog and press reporting."
+
+# --- The routes the six-year fork opens ---
+
+[[node]]
+id = "A-civilian-spaceflight-training-role-obtained"
+name = "A civilian role training spaceflight crews, entered from military survival instruction"
+factor = "A"
+kind = "world"
+description = """
+The civilian route: separate at the six-year mark and take the survival-instructor
+experience into a company that trains commercial crews. It needs the choice to have been
+made and the industry to exist."""
+resolution = "Employment in a civilian role training spaceflight crews, as recorded by the employer."
+source = "The employer's record"
+horizon = "mid"
+depends_on = ["A-separate-at-six-years-into-civilian-space-work", "A-commercial-crew-survival-training-industry-exists"]
+status = "open"
+
+[[node]]
+id = "A-military-role-with-off-earth-rotation-obtained"
+name = "A military role whose holders rotate off Earth"
+factor = "A"
+kind = "world"
+description = """
+The military route: stay in, and take an opening that only exists once there is enough
+activity off Earth for the military to send people there with a survival or operator
+requirement. It needs the choice to have been made and a workforce off Earth to exist."""
+resolution = "Assignment to a military role from which holders are sent off Earth for a month or more, as recorded in the service record."
+source = "The service record"
+horizon = "root"
+depends_on = ["A-reenlist-at-six-years", "M-hundred-people-working-off-earth-for-pay"]
+status = "open"
+
+[[node]]
+id = "A-working-in-or-for-the-off-earth-industry"
+name = "Working in or for the off-Earth industry, by either route"
+factor = "A"
+kind = "world"
+description = """
+What the A0 tier requires: a role in or for the industry, whichever route led to it. One
+node with a name so the tier file stays a plain list."""
+resolution = "Either route node it depends on has resolved yes."
+source = "The resolving route node's own source"
+horizon = "mid"
+depends_on_any = [["A-civilian-spaceflight-training-role-obtained", "A-military-role-with-off-earth-rotation-obtained"]]
+status = "open"
 
 [[node]]
 id = "A-in-a-role-whose-holders-rotate-off-earth"
@@ -102,17 +150,29 @@ factor = "A"
 kind = "world"
 description = """
 The root of the branch and what the A2 tier requires on the personal side: being employed,
-or contracted, in a role from which people are sent off Earth for months at a time. It
-does not name the employer or the route, because the routes are what the choice points
-below compare."""
+or contracted, in a role from which people are sent off Earth for months at a time. It does
+not name the employer or the route, because the routes are what the choice points compare."""
 resolution = """
 Employment or contract in a role from which at least one holder has completed an off-Earth
 rotation of a month or more, as recorded by the employer."""
 source = "The employer's record"
 horizon = "root"
-depends_on = ["A-pipeline-graduation"]
+depends_on = ["A-working-in-or-for-the-off-earth-industry", "M-hundred-people-working-off-earth-for-pay"]
 status = "open"
-notes = "Depends on the survival-training nodes above and on the motive node for a hundred people working off Earth; drawn at step 7."
+
+[[node]]
+id = "A-first-spaceflight"
+name = "A first flight to space, by purchase or by the job"
+factor = "A"
+kind = "world"
+description = """
+What the A1 tier requires. Two ways in: a seat bought once seats are cheap enough, or a
+role that sends its holders up. One node with a name so the tier file stays a plain list."""
+resolution = "A completed flight to space, as recorded by the operator."
+source = "The operator's record"
+horizon = "root"
+depends_on_any = [["A-orbital-seat-sold-under-one-million-dollars", "A-in-a-role-whose-holders-rotate-off-earth"]]
+status = "open"
 
 # --- Choice points: John decides, the script never samples ---
 
@@ -182,21 +242,7 @@ resolution = """
 A preprint or peer-reviewed paper on a subject that is a node in this tree is published with
 John as sole human author and AI collaboration acknowledged."""
 source = "The preprint server or journal record"
-horizon = "mid"
+horizon = "leaf"
 depends_on = []
 status = "open"
-
-[[node]]
-id = "A-bachelors-degree-completed"
-name = "The bachelor's degree is completed"
-factor = "A"
-kind = "world"
-description = """
-The credential node from the candidate list. Completion is on hold until mid-2027; AI
-tooling is expected to shorten the path once it restarts, which is why it sits in the
-leverage branch."""
-resolution = "A bachelor's degree conferred, as recorded by the awarding institution."
-source = "The awarding institution's record"
-horizon = "mid"
-depends_on = []
-status = "open"
+notes = "Drafted as mid; set to leaf at step 7 (2026-09-08) because a preprint could be produced within five years, and sooner is the point of the leverage claim. The degree node drafted beside it was cut at the same time: the College project tracks it, and its link to the tree was the weakest in the branch."

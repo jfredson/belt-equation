@@ -31,17 +31,22 @@ kind = "world"
 description = """
 Today a drug must target a named disease. There is no approvable indication for slowing aging
 itself, which is why aging drugs are tested against single diseases and why companies avoid the
-field. A regulator formally accepting a composite endpoint (delaying the onset of several
-age-related diseases at once, or a validated measure of healthy lifespan) changes what gets
+field. In 2015 the US regulator agreed that one trial could use a composite of age-related
+diseases as its primary endpoint, which is the precedent; what does not yet exist is guidance
+saying a drug can be approved, and labelled, for slowing aging. That is what changes what gets
 funded and trialed."""
 resolution = """
-The US Food and Drug Administration or the European Medicines Agency publishes guidance, or
-grants a trial design, that names aging, a composite of age-related diseases, or healthy
-lifespan as an acceptable primary indication for approval."""
-source = "The regulator's own published guidance or trial-design decision"
+The US Food and Drug Administration or the European Medicines Agency publishes guidance
+stating that slowing aging, extending healthy lifespan, or delaying a composite of age-related
+diseases is an indication for which a drug can be approved and labelled. Accepting such a
+composite as a trial endpoint, which the US regulator did in 2015, does not count."""
+source = "The regulator's own published guidance"
 horizon = "leaf"
 depends_on = []
 status = "open"
+verify = [
+  "That the 2015 agreement between the trial's investigators and the US regulator covered the composite endpoint only and not an approvable indication; confirmed 2026-09-08 from reputable reporting, but the regulator's own document has not been read.",
+]
 
 [[node]]
 id = "W-composite-aging-trial-positive-in-humans"
@@ -61,6 +66,9 @@ source = "The trial's peer-reviewed primary publication and its pre-registration
 horizon = "mid"
 depends_on = []
 status = "open"
+verify = [
+  "Aggregator sites in 2026 claim the Targeting Aging with Metformin trial has already reported a positive result; the trial sponsor's site and journal sources found on 2026-09-08 describe only the design (about 3,000 adults aged 65 to 79, four years, composite of heart disease, cancer, dementia, and death). Check the primary publication record before Phase 3; if it has reported positive, this node resolves yes.",
+]
 
 [[node]]
 id = "W-partial-reprogramming-reaches-human-trials"
@@ -135,6 +143,9 @@ source = "Gerontology Research Group validated supercentenarian records"
 horizon = "root"
 depends_on = []
 status = "open"
+verify = [
+  "That no verified case since 1997 has come within three years of the record (the closest known is a 119-year-old who died in 2022); the record itself, 122 years and 164 days, was confirmed 2026-09-08.",
+]
 long_shot = true
 mechanism = """
 Someone born around 1905 to 1930 who has already reached 110 benefits from late-life medicine
