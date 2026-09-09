@@ -116,4 +116,4 @@ source = "The operator's records and independent tracking"
 horizon = "root"
 depends_on = ["D-crew-round-trip-to-mars", "B-closed-loop-life-support-year-off-earth"]
 status = "open"
-notes = "Added at step 7 (2026-09-08) because no node covered Tier 3's beyond-the-Moon criterion. Whether Mars alone satisfies 'beyond the Earth-Moon system', or whether the belt or an outer moon is required, is a definitions question for John; the criterion is written so that Mars counts."
+notes = "Added at step 7 (2026-09-08) because no node covered Tier 3's beyond-the-Moon criterion. The criterion is deliberately inclusive: Mars, the asteroid belt, an outer moon, a free-flying habitat, or anywhere else beyond the Earth-Moon system all count, and any one of them resolves the node. Confirmed by John 2026-09-08 that every kind of habitation at Tier 3's level should count."

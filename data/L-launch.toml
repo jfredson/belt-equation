@@ -34,9 +34,11 @@ kind = "world"
 description = """
 Full reusability means the booster and the ship both come back to be flown again. The
 booster has been caught at its launch tower since 2024; the ship, which comes back from
-orbital speed, had only been landed in the ocean as of July 2026, with the first tower
-catch attempt scheduled for late August 2026. The first flight to bring both stages back
-intact is the day the cost curve everything else assumes actually starts."""
+orbital speed, had only been landed in the ocean as of July 2026. A first tower catch was
+planned for late August 2026, then deferred: on 2026-08-20 the company's chief executive
+said the catch would come "in a few months", and the flight itself slipped to no earlier
+than mid-September. The first flight to bring both stages back intact is the day the cost
+curve everything else assumes actually starts."""
 resolution = """
 On a single orbital flight, a launch vehicle's first stage and its second stage are both
 recovered intact for reuse (caught, landed, or otherwise returned undamaged), confirmed by
@@ -45,9 +47,7 @@ source = "The operator's flight record and independent observation"
 horizon = "leaf"
 depends_on = []
 status = "open"
-verify = [
-  "Whether the upper-stage tower catch attempted on the flight scheduled for late August 2026 succeeded; sources found on 2026-09-08 predate it. If it did, this node resolved then.",
-]
+notes = "Checked 2026-09-08: no upper-stage catch was attempted in August 2026; the attempt was deferred by a few months and the flight slipped to mid-September at the earliest. Still open. Re-check at the first quarterly scan."
 
 [[node]]
 id = "L-orbital-propellant-transfer-at-scale"
