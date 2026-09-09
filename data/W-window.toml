@@ -22,6 +22,9 @@ source = "The Dog Aging Project's published TRIAD results"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.45, moderate = 0.45, strong = 0.45, radical = 0.45, open = 0.45 }
+estimated_on = 2026-09-08
+rationale = "One trial, one readout around 2031: the mouse evidence is strong and a dog pilot showed heart benefits, but lifespan trials fail more often than they succeed, so a little under even; the same in every scenario because the window does not change when the trial reports."
 
 [[node]]
 id = "W-regulator-accepts-aging-as-an-indication"
@@ -44,6 +47,9 @@ source = "The regulator's own published guidance"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.55, moderate = 0.6, strong = 0.7, radical = 0.85, open = 0.9 }
+estimated_on = 2026-09-08
+rationale = "The 2015 composite-endpoint precedent and a growing field make guidance within forty-five years somewhat more likely than not; every added decade of trials and lobbying raises it."
 notes = "Checked 2026-09-08 against the trial's own design papers and the National Institute on Aging's page on regulator review of aging-related applications: the regulator approved the trial's composite design and the trial 'holds the potential' to lead to aging being considered an indication, which confirms that no approvable indication exists yet."
 
 [[node]]
@@ -65,6 +71,9 @@ source = "The trial's peer-reviewed primary publication and its pre-registration
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.7, moderate = 0.75, strong = 0.8, radical = 0.9, open = 0.9 }
+estimated_on = 2026-09-08
+rationale = "The metformin trial alone is perhaps two in five to report positive around 2031, but a dozen other composite trials over the following decades make at least one success likely."
 notes = "Checked twice on 2026-09-08: no primary results publication for the Targeting Aging with Metformin trial (about 3,000 adults aged 65 to 79, four years, composite of heart disease, cancer, dementia, and death) was found in journal, registry, or sponsor sources; aggregator sites claiming a positive result are unconfirmed. Stays open. Re-check at the first quarterly scan."
 
 [[node]]
@@ -76,14 +85,19 @@ description = """
 Partial reprogramming turns back the age markers of cells by briefly switching on the genes
 used to make stem cells, without erasing what the cell is. It has restored sight and extended
 life in mice and is the most-funded route to actually reversing rather than slowing aging.
-The first human trials are the point where it becomes a medicine rather than a lab result."""
+The first human trial is the point where it becomes a medicine rather than a lab result, and
+it has happened: the first participant was dosed in June 2026, in a safety trial for two
+causes of age-related vision loss."""
 resolution = """
 A registered clinical trial (on clinicaltrials.gov or an equivalent registry) doses at least
 one human participant with a partial-reprogramming therapy, for any indication."""
 source = "The trial registry entry and the sponsor's announcement of first dosing"
 horizon = "leaf"
 depends_on = []
-status = "open"
+status = "resolved-yes"
+resolved_on = 2026-06-09
+resolved_by = "Life Biosciences press release of 2026-06-09 announcing the first participant dosed in its Phase 1 trial of ER-100 (registry entry NCT07290244), with independent press coverage"
+notes = "Drafted open on 2026-09-08 and found resolved the same evening when checked under the verification rule, before any probability was estimated."
 
 [[node]]
 id = "W-first-drug-approved-to-slow-aging"
@@ -102,6 +116,9 @@ source = "The regulator's approval record and the product label"
 horizon = "mid"
 depends_on = ["W-regulator-accepts-aging-as-an-indication"]
 status = "open"
+probability = { baseline = 0.6, moderate = 0.65, strong = 0.75, radical = 0.9, open = 0.92 }
+estimated_on = 2026-09-08
+rationale = "Given a regulator has opened the door, a first approval follows within a decade or two more often than not; the gap to certainty is trials that fail on safety in the old."
 notes = "Almost certainly also depends on a positive composite trial; whether that is a hard dependency is for step 7."
 
 [[node]]
@@ -122,6 +139,9 @@ source = "The trial's peer-reviewed primary publication"
 horizon = "root"
 depends_on = []
 status = "open"
+probability = { baseline = 0.2, moderate = 0.25, strong = 0.35, radical = 0.6, open = 0.7 }
+estimated_on = 2026-09-08
+rationale = "A quarter off all deaths in the over-65s is beyond anything approved; one in five by 2071 reflects that reprogramming and combination therapies are real but unproven in humans."
 
 [[node]]
 id = "W-verified-human-lifespan-passes-122"
@@ -140,6 +160,9 @@ source = "Gerontology Research Group validated supercentenarian records"
 horizon = "root"
 depends_on = []
 status = "open"
+probability = { baseline = 0.05, moderate = 0.08, strong = 0.15, radical = 0.45, open = 0.6 }
+estimated_on = 2026-09-08
+rationale = "The record has stood since 1997 and late-life mortality has not moved; passing it needs a therapy that lowers that rate, so near-impossible by 2071 and better than a coin flip only in the 150-year scenario."
 notes = "Checked 2026-09-08: the record is 122 years and 164 days (1997); the second-longest verified life is 119 years and 107 days (2022), just over three years short, and the third is 119 years and 97 days (1999)."
 long_shot = true
 mechanism = """
