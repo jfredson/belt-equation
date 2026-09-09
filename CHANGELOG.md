@@ -4,6 +4,7 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 ## 2026-09-08
 
+- First brainstorm session (roadmap step 4, window and biology): seven window nodes and nine biology nodes added to data/, criterion first for each, two long shots with mechanism and breaking point, six leaves. The tree has 17 nodes and validates. No probabilities. Definitions amended: the deadline is the scenario axis, not a node of its own. Idea recorded under "Later, not now": a review method that brings in other models for fresh critique.
 - Roadmap step 5 done: scripts/compute.py written against the schema. Standard library only. Commands: validate (all eight schema rules), shape (counts, leaves, tiers), run (the tree played out per scenario, tiers and Contact Clause reported), compare (one choice group at a time against the current plan). Refuses to report numbers until every open world node has probabilities. Checked on the real data and on a small test tree whose results match hand arithmetic.
 - Second founding rule added to docs/definitions.md, stated by John: plausible all the way to the edge of the impossible. A long-shot node must name its mechanism and state plainly where current physics or engineering would have to give way. Carried into docs/node-schema.md as a review test: a long-shot node without both fails the same way a node without a resolution criterion does.
 - data/scenarios.toml baseline moved to the refined window, 2071 plus or minus 8, no longer provisional.

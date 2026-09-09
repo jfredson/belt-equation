@@ -1,0 +1,190 @@
+# Nodes under the biology factor (B): that humans can live, and eventually reproduce, in partial
+# gravity and deep-space radiation. Includes the rotating-habitat hedge: a spinning habitat with
+# Earth-normal gravity sidesteps the partial-gravity question. Record layout: docs/node-schema.md.
+# Drafted 2026-09-08 in the first brainstorm session; no probabilities yet. Dependencies on nodes
+# in other factors (launch, energy) are noted in `notes` and drawn at roadmap step 7.
+
+[[node]]
+id = "B-mammal-born-and-weaned-in-partial-gravity"
+name = "A mammal is conceived, born, and weaned in partial gravity"
+factor = "B"
+kind = "world"
+description = """
+Whether pregnancy and early development work in less than Earth's gravity is the biggest open
+question in off-Earth biology and has never been tested end to end. Mice have flown in a
+spinning enclosure on the space station that produces lunar or Martian gravity, so the
+experiment is within reach. A live, weaned litter is the first evidence that a settlement,
+rather than a work camp, is biologically possible."""
+resolution = """
+A peer-reviewed publication reports that a mammal was conceived, carried to term, born, and
+weaned entirely at a sustained gravity level between one-sixth and one-half of Earth's,
+whether in a centrifuge in orbit or on the Moon or Mars, with offspring surviving to weaning."""
+source = "The peer-reviewed publication and the space agency's mission record"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "B-human-year-in-partial-gravity-without-disqualifying-harm"
+name = "A person lives a full year in partial gravity and comes home without disqualifying harm"
+factor = "B"
+kind = "world"
+description = """
+The longest stays off Earth are a year or more in free fall on the space station, where bone,
+muscle, eye, and heart changes are well documented. Nobody has lived even a month in partial
+gravity. A year on the Moon (or in a spinning facility set to lunar or Martian gravity) with
+published health outcomes that would not bar a return trip is what a rotation of months,
+the A2 tier, assumes."""
+resolution = """
+A person completes twelve continuous months at a sustained gravity level between one-sixth and
+one-half of Earth's, and a peer-reviewed report of their health outcomes finds no condition
+that the responsible agency's own standards would count as disqualifying for a further mission."""
+source = "The peer-reviewed health report and the agency's crew-health standards"
+horizon = "mid"
+depends_on = []
+status = "open"
+notes = "Depends on a lunar base or a large spin facility existing, which are launch and energy nodes; drawn at step 7."
+
+[[node]]
+id = "B-human-child-born-off-earth"
+name = "A child is born off Earth and raised there through early childhood"
+factor = "B"
+kind = "world"
+description = """
+The marker that separates a settlement from a work camp, and the criterion Tier 2 uses.
+Early settlements may forbid it for years, so it resolves late even if the biology allows it."""
+resolution = """
+A child is born at a site off Earth and lives there continuously to at least age five, with
+the birth and residence publicly documented by the operating agency or company."""
+source = "Public records of the operating agency or company, confirmed by independent reporting"
+horizon = "root"
+depends_on = ["B-mammal-born-and-weaned-in-partial-gravity", "B-human-year-in-partial-gravity-without-disqualifying-harm"]
+status = "open"
+
+[[node]]
+id = "B-crewed-spin-gravity-demonstration"
+name = "A crew lives for a month in a spinning spacecraft that produces artificial gravity"
+factor = "B"
+kind = "world"
+description = """
+Artificial gravity by spinning has been proposed since the 1950s and never flown with people.
+A month-long crewed demonstration at any useful gravity level settles the practical questions
+(motion sickness, docking, structural behaviour) that keep it a paper idea, and is the first
+step on the habitat route that sidesteps the partial-gravity question entirely."""
+resolution = """
+A crewed spacecraft or station module rotates to produce at least one-sixth of Earth's gravity
+at the crew's living level for thirty continuous days with people aboard, confirmed by the
+operator and independent tracking."""
+source = "The operator's mission record and independent orbital tracking"
+horizon = "leaf"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "B-earth-gravity-habitat-occupied-for-a-year"
+name = "People live for a year in a spinning habitat with Earth-normal gravity"
+factor = "B"
+kind = "world"
+description = """
+The full version of the habitat route: a structure large enough (roughly a hundred metres or
+more in radius, spinning about three times a minute) that its occupants feel Earth's gravity
+and need no adaptation at all. If partial gravity turns out to be unlivable, this is the only
+route to a Belt, and it is the route some space futurists prefer anyway."""
+resolution = """
+A rotating habitat produces Earth-normal gravity (0.9 g or more) at its living level and is
+continuously occupied by at least ten people for twelve months, confirmed by the operator and
+independent tracking."""
+source = "The operator's records and independent orbital tracking"
+horizon = "root"
+depends_on = ["B-crewed-spin-gravity-demonstration"]
+status = "open"
+notes = "Depends heavily on launch and orbital-construction nodes; drawn at step 7."
+
+[[node]]
+id = "B-long-term-off-earth-living-by-some-route"
+name = "Humans can live off Earth long term, by partial gravity or by a spinning habitat"
+factor = "B"
+kind = "world"
+description = """
+The hedge on biology, as one node so it has a name and a number. Resolves if either route
+does: people stay healthy for a year in partial gravity, or a rotating habitat with
+Earth-normal gravity is occupied for a year. The system tiers that need long-term living
+require this node rather than either route alone."""
+resolution = "Either of the two route nodes it depends on has resolved yes."
+source = "The resolving route node's own source"
+horizon = "root"
+depends_on_any = [["B-human-year-in-partial-gravity-without-disqualifying-harm", "B-earth-gravity-habitat-occupied-for-a-year"]]
+status = "open"
+
+[[node]]
+id = "B-shielding-halves-deep-space-radiation-dose"
+name = "A shielding system flown in space cuts the deep-space radiation dose to a crew by half"
+factor = "B"
+kind = "world"
+description = """
+Beyond Earth's magnetic field, galactic cosmic rays deliver a dose that puts a multi-year
+mission near or past current career limits, and the heavy nuclei in that radiation are hard to
+stop with thin walls. Passive routes (thick water or hydrogen-rich walls, regolith) and active
+routes (superconducting magnetic shields) both exist on paper. A flown demonstration that
+halves the dose makes rotations of months at an outer site a matter of engineering rather than
+of accepting the risk."""
+resolution = """
+A shielding system flown beyond low Earth orbit is measured to reduce the galactic cosmic ray
+dose at the crew position by fifty percent or more compared with an unshielded reference,
+reported in a peer-reviewed publication."""
+source = "The peer-reviewed flight measurement"
+horizon = "mid"
+depends_on = []
+status = "open"
+notes = "The magnetic route depends on high-temperature superconductors at practical cost, an energy node; drawn at step 7."
+
+[[node]]
+id = "B-closed-loop-life-support-year-off-earth"
+name = "A crew off Earth lives for a year with most of its food, water, and air recycled on site"
+factor = "B"
+kind = "world"
+description = """
+The space station recycles most of its water and makes its oxygen from that water, but every
+calorie is shipped up. Ground experiments (a year-long sealed habitat in China) have closed
+the food loop on Earth. Doing it off Earth for a year is what partial self-sufficiency, the
+Tier 2 criterion, means in practice."""
+resolution = """
+A crew at a site off Earth completes twelve continuous months during which more than half of
+their calories are grown on site and more than ninety-five percent of water and oxygen are
+recycled, as reported by the operating agency or company."""
+source = "The operator's published life-support accounting"
+horizon = "mid"
+depends_on = []
+status = "open"
+
+[[node]]
+id = "B-radiation-resistance-treatment-for-humans"
+name = "A treatment is approved that makes people substantially more resistant to chronic space radiation"
+factor = "B"
+kind = "world"
+description = """
+The long shot on the biology side: rather than stopping the radiation, change the person.
+Some organisms shrug off doses that would kill us, and a few of the responsible genes and
+proteins are known. A drug or gene therapy that halves the long-term cancer and tissue damage
+from chronic cosmic-ray exposure would loosen the mission limits that shielding otherwise has
+to meet."""
+resolution = """
+A drug or gene therapy is approved by a major regulator, or adopted by a space agency's
+crew-health standard, with evidence that it reduces the long-term harm from chronic
+galactic-cosmic-ray-type exposure by half or more."""
+source = "The regulator's approval record or the agency's published crew-health standard"
+horizon = "root"
+depends_on = []
+status = "open"
+long_shot = true
+mechanism = """
+Radioprotective drugs already exist for acute exposure (amifostine protects tissue during
+radiotherapy). Proteins from radiation-tolerant organisms, such as the tardigrade's Dsup, have
+reduced DNA damage in human cells in the lab, and gene therapies that deliver a single protein
+are now routine medicine. The step is from lab cells to a therapy shown to cut lifetime cancer
+risk from chronic heavy-ion exposure, tested first in animals on the station or the Moon."""
+breaking_point = """
+Nobody knows whether the harm from years of heavy-ion exposure comes mostly from DNA damage,
+which such proteins address, or from other tissue and vascular effects that they do not.
+There is no human data on chronic heavy-ion exposure at all, and a preventive therapy given to
+healthy people for a rare exposure faces an approval bar that no current evidence could meet."""

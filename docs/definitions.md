@@ -52,7 +52,7 @@ The large-habitat route is a branch, not a ninth factor. Its nodes (orbital cons
 
 ## The window
 
-DECIDED 2026-09-08. The deadline is John's expected date of natural death. It is a node in the tree, not a constant, because longevity research moves it.
+DECIDED 2026-09-08. The deadline is John's expected date of natural death. It is not a constant, because longevity research moves it. In the tree it is the axis the four longevity scenarios run along rather than a node of its own: the window factor's nodes are the research results that would move it, and the whole tree is re-run once per scenario (docs/node-schema.md). Amended 2026-09-08 from "a node in the tree" when the schema settled this form; it keeps John's health out of the public tree.
 
 Baseline window: **2071, plus or minus 8 years** (age 85; range 2063 to 2079). Refined on 2026-09-08 from the health record, which stays out of this repo. The method: start from standard US life tables for a 40-year-old male (roughly 38 to 40 more years, landing around 2065), then adjust for the factors with the best evidence of moving all-cause mortality, in the direction the record supports. The result sits about six years above the population figure. The main source of remaining uncertainty is incomplete family history and a baseline blood panel still being completed; revisit the window when that panel is done, and at every annual review. Roadmap step 3 is complete.
 
@@ -123,3 +123,4 @@ Near-term commitment: John intends to spend a significant share of his free time
 - 2026-09-08. Window refined from the health record to 2071 plus or minus 8; baseline scenario moved from 2070 to 2071 (computed by Claude from John's records; John to confirm).
 - 2026-09-08. Leverage branch added under the access factor: the capability of AI tools as a tracked multiplier on John's own ability to take part (stated by John).
 - 2026-09-08. Second founding rule, plausible all the way to the edge of the impossible: long-shot nodes must name their mechanism and their breaking point (stated by John; carried into the node schema as a review test).
+- 2026-09-08. The deadline is the scenario axis, not a node of its own; the window factor's nodes are the research results that move it (proposed by Claude when the window nodes were drafted, accepted by John with the first brainstorm draft).
