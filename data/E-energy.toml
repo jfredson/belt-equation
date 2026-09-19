@@ -1,7 +1,7 @@
 # Nodes under the energy factor (E): that cheap, abundant power exists off Earth, from fusion
 # or an equivalent. Energy and drive are kept separate on purpose (definitions.md): a working
 # power plant on the ground does not give you a rocket. Record layout: docs/node-schema.md.
-# Drafted 2026-09-08 in the second brainstorm session. No probabilities yet.
+# Drafted 2026-09-08 in the second brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group two).
 
 [[node]]
 id = "E-megawatt-spacecraft-operates-in-orbit"
@@ -21,6 +21,9 @@ source = "The operator's records and independent observation"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-19
+rationale = "Several companies have megawatt-class vehicles funded for the late 2020s, and orbital computing gives the power a customer."
 
 [[node]]
 id = "E-fission-reactor-runs-on-lunar-surface"
@@ -40,6 +43,9 @@ source = "The responsible agency's mission record"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.7, moderate = 0.8, strong = 0.9, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-19
+rationale = "The schedule has already slipped to the early 2030s and reactor programs slip more than most, but two space agencies and a rival national program are all aimed at it."
 notes = "Drafted as a leaf; moved to mid on 2026-09-08 after checking the program's schedule, which has slipped to the early 2030s."
 
 [[node]]
@@ -62,6 +68,9 @@ source = "Vendor price lists and public procurement or agency cost reports"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.55, moderate = 0.65, strong = 0.8, radical = 0.9, open = 0.92 }
+estimated_on = 2026-09-19
+rationale = "Tape prices have been falling and fusion demand is scaling production, but a full tenfold in real terms needs a manufacturing shift, not just volume; the most uncertain number in this group."
 
 [[node]]
 id = "E-fusion-plant-delivers-net-electricity"
@@ -80,6 +89,9 @@ source = "The grid operator's metering record and the plant operator's report"
 horizon = "mid"
 depends_on = ["E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity"]
 status = "open"
+probability = { baseline = 0.6, moderate = 0.7, strong = 0.85, radical = 0.93, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "Several private plants target the early 2030s; first attempts usually miss, but forty-five years and several routes make a first success more likely than not."
 notes = "Drafted with a hard dependency on cheap superconducting wire; removed at step 7 (2026-09-08) because only the magnet route needs it and laser and other routes do not. The link stays in the mechanism of the fusion drive node. Now depends on a plant having started construction, which has happened."
 
 [[node]]

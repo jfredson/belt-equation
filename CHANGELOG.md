@@ -2,6 +2,12 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-09-19
+
+- First probabilities, group two (launch, energy, drive): sixteen open nodes estimated, five numbers each, proposed by Claude and accepted by John as proposed, on the same standing as group one (reviewed under the outside-model protocol, roadmap step 27, before publication). The fusion-plant construction node was already resolved and needs none. Two rationales cite the external forecaster baseline of 2026-09-19 (docs/forecasts/) as a comparison, not a prior. The most uncertain number in the group is the superconducting-tape price fall. Validator passes; 24 open nodes (motive, regime, access, Contact Clause) remain for group three.
+- External forecaster baseline filed: GPT-6 Astra, elicited 2026-09-19 without documents or lookup, seven milestones by 2070, 2080 and 2095 (docs/forecasts/2026-09-19-astra-baseline.md). A comparison row, not adopted priors; the cohort reading of the window item is not a W input and is to be re-asked for a specific person.
+- TimeAssembler roadmap brought up to the full 27 steps of docs/roadmap.md (it held 14), plus the Astra re-ask; website steps 20 and 21 started in a parallel Claude Code session.
+
 ## 2026-09-08
 
 - First probabilities, group one (window and biology): fifteen nodes estimated, five numbers each, proposed by Claude and accepted by John as proposed, on the record that he defers to the recommendations for now for want of field experience and intends to review them under an outside-model protocol. That protocol is promoted from "Later, not now" to roadmap step 27, to run before anything is published. The partial-reprogramming node found already resolved (first participant dosed 2026-06-09). Three nodes resolved in all.

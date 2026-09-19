@@ -1,7 +1,7 @@
 # Nodes under the drive factor (D): that propulsion puts the solar system within reach on
 # human timescales. This is the factor that separates a slow, sparse solar system from the one
 # in the show. Most drive nodes depend on energy nodes. Record layout: docs/node-schema.md.
-# Drafted 2026-09-08 in the second brainstorm session. No probabilities yet.
+# Drafted 2026-09-08 in the second brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group two).
 
 [[node]]
 id = "D-nuclear-propulsion-changes-orbit-in-space"
@@ -21,6 +21,9 @@ source = "The operator's mission record and independent orbital tracking"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.6, moderate = 0.72, strong = 0.85, radical = 0.93, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "Sixty years of ground tests and no flight, and the most recent flight demonstration program was cancelled in 2025; it needs a mission only nuclear can do."
 notes = "Shares a technology base with the lunar surface reactor (an energy node); whether that is a hard dependency is for step 7."
 
 [[node]]
@@ -40,6 +43,9 @@ source = "Operators' mission records and independent tracking"
 horizon = "root"
 depends_on = ["D-nuclear-propulsion-changes-orbit-in-space"]
 status = "open"
+probability = { baseline = 0.5, moderate = 0.6, strong = 0.75, radical = 0.88, open = 0.92 }
+estimated_on = 2026-09-19
+rationale = "One demonstration to routine use is the gap the space station took two decades to cross; a Mars cadence would pull it forward."
 
 [[node]]
 id = "D-crew-round-trip-to-mars"
@@ -58,6 +64,9 @@ source = "The responsible agency's or company's mission record and independent t
 horizon = "root"
 depends_on = ["L-orbital-propellant-transfer-at-scale"]
 status = "open"
+probability = { baseline = 0.55, moderate = 0.7, strong = 0.85, radical = 0.93, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "One company is building for it; the return leg and two to three years of crew health are the unproven parts, and it is likely by 2095 if the launch architecture works at all."
 notes = "Edge drawn at step 7 (2026-09-08): a Mars departure on any current architecture needs refilling in orbit. Life support and shielding make it safer, not possible, so they are not hard dependencies."
 
 [[node]]
@@ -81,6 +90,9 @@ source = "The operator's test record and independent tracking of the vehicle's a
 horizon = "root"
 depends_on = ["E-fusion-plant-delivers-net-electricity"]
 status = "open"
+probability = { baseline = 0.03, moderate = 0.06, strong = 0.15, radical = 0.35, open = 0.5 }
+estimated_on = 2026-09-19
+rationale = "A hundredfold weight gap and no thrust ever produced from fusion; a coin flip with no deadline is the founding rule at work. An outside model's 50 percent for a 90-day belt transit by 2070 is a much lower bar and does not transfer."
 long_shot = true
 mechanism = """
 A fusion reaction whose products are steered out the back directly, rather than used to boil
@@ -118,4 +130,7 @@ source = "The operator's records and independent tracking"
 horizon = "root"
 depends_on = ["D-crew-round-trip-to-mars", "B-closed-loop-life-support-year-off-earth"]
 status = "open"
+probability = { baseline = 0.4, moderate = 0.55, strong = 0.75, radical = 0.9, open = 0.93 }
+estimated_on = 2026-09-19
+rationale = "Getting there and back is proven by the dependency; staying needs a reason to keep a rotation running, which is a motive question the tree asks elsewhere."
 notes = "Added at step 7 (2026-09-08) because no node covered Tier 3's beyond-the-Moon criterion. The criterion is deliberately inclusive: Mars, the asteroid belt, an outer moon, a free-flying habitat, or anywhere else beyond the Earth-Moon system all count, and any one of them resolves the node. Confirmed by John 2026-09-08 that every kind of habitation at Tier 3's level should count."

@@ -2,7 +2,7 @@
 # threshold that makes everything else affordable. Also carries the habitat-branch nodes for
 # orbital construction, materials, and lunar material supply. Record layout: docs/node-schema.md.
 # First node 2026-09-08 as the schema's example; the rest drafted the same day in the second
-# brainstorm session. No probabilities yet.
+# brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group two).
 
 [[node]]
 id = "L-heavy-launcher-100-per-year"
@@ -24,6 +24,9 @@ source = "Public orbital launch logs, checked against the operator's own flight 
 horizon = "leaf"
 depends_on = ["L-fully-reusable-heavy-launcher-recovers-both-stages"]
 status = "open"
+probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-19
+rationale = "The partially reusable predecessor passed a hundred flights a year in 2023; full reuse plus a constellation and lunar manifest gets there within the decade, and forty-five years is a long time to miss."
 notes = "Written 2026-09-08 as the schema's worked example. Probability comes in Phase 3. Edge drawn at step 7: a hundred flights a year of a fully reusable launcher needs both stages to have been recovered at least once."
 
 [[node]]
@@ -47,6 +50,9 @@ source = "The operator's flight record and independent observation"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.95, moderate = 0.96, strong = 0.97, radical = 0.98, open = 0.98 }
+estimated_on = 2026-09-19
+rationale = "Booster catch routine since 2024 and the ship catch deferred by months, not years; the residual risk is a program cancellation, not physics."
 notes = "Checked 2026-09-08: no upper-stage catch was attempted in August 2026; the attempt was deferred by a few months and the flight slipped to mid-September at the earliest. Still open. Re-check at the first quarterly scan."
 
 [[node]]
@@ -66,6 +72,9 @@ source = "The operator's mission record and the customer agency's milestone acce
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.9, moderate = 0.93, strong = 0.95, radical = 0.97, open = 0.97 }
+estimated_on = 2026-09-19
+rationale = "Contracted, funded, and scheduled within a few years, with the lunar program depending on it; the risk is delay, not failure."
 
 [[node]]
 id = "L-crew-lands-on-moon-in-reusable-lander"
@@ -83,6 +92,9 @@ source = "The responsible agency's mission record"
 horizon = "leaf"
 depends_on = ["L-orbital-propellant-transfer-at-scale"]
 status = "open"
+probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-19
+rationale = "Two funded landers and a committed agency; a decade of slips still lands inside 2071, and the downside is cancellation after a mishap."
 
 [[node]]
 id = "L-launch-price-below-200-dollars-per-kg"
@@ -101,6 +113,9 @@ source = "The provider's published price list or a public contract record"
 horizon = "mid"
 depends_on = ["L-heavy-launcher-100-per-year"]
 status = "open"
+probability = { baseline = 0.7, moderate = 0.8, strong = 0.88, radical = 0.93, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "Flight rate is the mechanism, but a public sold price is a demand-and-competition question and a single provider can hold price above cost for decades; an outside model (Astra, 2026-09-19) put a hundred dollars at 75 percent by 2070 unconditionally."
 
 [[node]]
 id = "L-large-structure-assembled-in-orbit"
@@ -120,6 +135,9 @@ source = "The operator's records and independent orbital tracking"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.6, moderate = 0.7, strong = 0.85, radical = 0.93, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "Possible at today's prices, as the station proved, but nobody has a customer for it yet; the likelihood rides on cheap launch without depending on it."
 notes = "Drafted as depending on the two-hundred-dollar launch price; loosened at step 7 (2026-09-08) because a structure this size could be assembled at today's prices with enough money, as the space station was. Cheap launch makes it likely, not possible."
 
 [[node]]
@@ -142,4 +160,7 @@ source = "The operator's public accounting, confirmed by the customer or an agen
 horizon = "root"
 depends_on = ["L-crew-lands-on-moon-in-reusable-lander", "E-fission-reactor-runs-on-lunar-surface", "R-crewed-lunar-program-outlives-two-changes-of-president"]
 status = "open"
+probability = { baseline = 0.35, moderate = 0.5, strong = 0.7, radical = 0.85, open = 0.9 }
+estimated_on = 2026-09-19
+rationale = "Even with power, people, and political continuity, mining and launching from the Moon at scale needs a buyer in orbit; the first forty-five years are the hard ones."
 notes = "Edges drawn at step 7 (2026-09-08): mining at scale needs surface power through the lunar night, and a decade of lunar work needs the program to outlive elections."
