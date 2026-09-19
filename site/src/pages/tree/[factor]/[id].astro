@@ -1,0 +1,200 @@
+---
+import Base from '../../../layouts/Base.astro';
+import {
+  tree, factorByLetter, percent, scenarioWindow, horizonLabel, statusLabel, kindLabel,
+  recordUrl, issueUrl, inline, type Node,
+} from '../../../lib/tree';
+
+export function getStaticPaths() {
+  return tree.nodes.map((n) => ({ params: { factor: n.factor_slug, id: n.id }, props: { node: n } }));
+}
+
+const { node } = Astro.props as { node: Node };
+const factor = factorByLetter(node.factor)!;
+const tiers = node.feeds_tiers.map((k) => tree.tiers.find((t) => t.key === k)!).filter(Boolean);
+const superseder = node.superseded_by ? tree.nodes.find((n) => n.id === node.superseded_by) : null;
+const siblings = node.choice_group
+  ? tree.nodes.filter((n) => n.choice_group === node.choice_group && n.id !== node.id)
+  : [];
+const disagree = issueUrl(
+  `Disagree: ${node.name}`,
+  `Node: ${node.id} (${Astro.site}${node.path.slice(1)})\n\nWhat I would change, and why:\n\n`,
+);
+const description = node.description.length > 200 ? node.description.slice(0, 197) + '…' : node.description;
+---
+
+<Base title={`${node.name} — The Belt Equation`} description={description}>
+  <section class="hero wide">
+    <p class="eyebrow"><a href="/tree/">The tree</a> · <a href={factor.path}>{factor.name}</a> · {kindLabel[node.kind]} · {horizonLabel[node.horizon]}</p>
+    <h1>{node.name}</h1>
+    <div class="chips">
+      <span class={`chip ${node.status === 'resolved-yes' ? 'ok' : node.status === 'resolved-no' ? 'no' : ''}`}>{statusLabel[node.status]}</span>
+      {node.kind === 'choice' && <span class="chip violet">{node.current_plan ? 'Current plan' : 'Alternative to the current plan'}</span>}
+      {node.long_shot && <span class="chip accent">Long shot, kept on the board on purpose</span>}
+      {tiers.map((t) => <span class="chip">required by {t.key}, {t.name}</span>)}
+    </div>
+  </section>
+
+  <div class="record">
+    <div class="prose">
+      <p>{node.description}</p>
+
+      <h2>What counts as it having happened</h2>
+      <p>{node.resolution}</p>
+      <p class="dim"><strong>Settled by:</strong> {node.source}</p>
+
+      {node.status.startsWith('resolved') && (
+        <div class="callout">
+          <h3>{statusLabel[node.status]}{node.resolved_on ? `, ${node.resolved_on}` : ''}</h3>
+          <p>{node.resolved_by ?? 'The record that settled it is not yet noted.'}</p>
+        </div>
+      )}
+      {node.status === 'superseded' && superseder && (
+        <div class="callout">
+          <h3>Superseded</h3>
+          <p>Replaced by <a href={superseder.path}>{superseder.name}</a>.</p>
+        </div>
+      )}
+
+      <h2>Probability, by longevity scenario</h2>
+      {node.kind === 'choice' ? (
+        <p>
+          This is a choice point, something John decides rather than something that happens to the world, so it
+          is never given a probability. In an ordinary run of the tree it is set to the current plan; the
+          decision comparison forces each option in turn and reports how far the headline number moves.
+          {siblings.length > 0 && (
+            <> The other option{siblings.length > 1 ? 's' : ''} at this fork: {siblings.map((s, i) => (
+              <><a href={s.path}>{s.name}</a>{i < siblings.length - 1 ? ', ' : '.'}</>
+            ))}</>
+          )}
+        </p>
+      ) : node.probability ? (
+        <>
+          <table class="ptable">
+            <thead>
+              <tr>
+                {tree.scenarios.map((s) => (
+                  <th>{s.key}<span class="win">{scenarioWindow(s)}</span></th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {tree.scenarios.map((s) => (
+                  <td class="num">{percent(node.probability![s.key])}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 15px;">
+            Each number is the chance this resolves yes before that scenario's window closes, given that
+            everything it depends on resolves first. Estimated {node.estimated_on}.
+          </p>
+          {node.rationale && <p><strong>Why these numbers:</strong> {node.rationale}</p>}
+        </>
+      ) : (
+        <p class="dim">
+          No probability yet. First-pass numbers land factor by factor at roadmap step 9; this node's group has
+          not been estimated.
+        </p>
+      )}
+
+      {node.long_shot && (
+        <>
+          <h2>How it could happen, and where physics would have to give way</h2>
+          <p>
+            Long shots belong in the tree by the first founding rule; the second says they must be written
+            plausibly all the way to the edge of the impossible, with the mechanism named and the breaking point
+            stated plainly.
+          </p>
+          {node.mechanism && <p><strong>The mechanism:</strong> {node.mechanism}</p>}
+          {node.breaking_point && <p><strong>The breaking point:</strong> {node.breaking_point}</p>}
+        </>
+      )}
+
+      {node.revisions.length > 0 && (
+        <>
+          <h2>Revisions</h2>
+          <table class="ptable">
+            <thead><tr><th>Date</th><th>Field</th><th>From</th><th>To</th><th>Why</th></tr></thead>
+            <tbody>
+              {node.revisions.map((r) => (
+                <tr>
+                  <td class="dim">{r.date}</td>
+                  <td>{r.field}</td>
+                  <td class="dim">{typeof r.old === 'object' ? JSON.stringify(r.old) : String(r.old ?? '')}</td>
+                  <td>{typeof r.new === 'object' ? JSON.stringify(r.new) : String(r.new ?? '')}</td>
+                  <td>{r.why}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+
+      {node.notes && (
+        <>
+          <h2>Notes</h2>
+          <p set:html={inline(node.notes)} />
+        </>
+      )}
+      {node.verify.length > 0 && (
+        <div class="callout">
+          <h3>Claims awaiting verification</h3>
+          <ul>{node.verify.map((v) => <li>{v}</li>)}</ul>
+        </div>
+      )}
+
+      <hr />
+      <p class="dim" style="font-size: 14.5px;">
+        Think this node is wrong, missing a dependency, or estimated badly?
+        <a href={disagree} rel="noopener">Open an issue about it</a>, or read
+        <a href="/disagree/">how critique gets folded into the tree</a>.
+        The record itself is <a href={recordUrl(node)} rel="noopener"><code>data/{node.file}</code></a> in the public repository.
+      </p>
+    </div>
+
+    <aside class="record-aside">
+      <div class="rail">
+        <h4>The record</h4>
+        <dl>
+          <dt>Id</dt><dd><code>{node.id}</code></dd>
+          <dt>Factor</dt><dd><a href={factor.path}>{factor.letter}, {factor.name}</a></dd>
+          <dt>Kind</dt><dd>{kindLabel[node.kind]}</dd>
+          <dt>Horizon</dt><dd>{horizonLabel[node.horizon]}</dd>
+          <dt>Status</dt><dd>{statusLabel[node.status]}</dd>
+          {node.choice_group && <><dt>Fork</dt><dd>{node.choice_group}</dd></>}
+        </dl>
+      </div>
+
+      <div class="rail">
+        <h4>Depends on</h4>
+        {node.depends_on.length === 0 && node.depends_on_any.length === 0 ? (
+          <p class="dim" style="margin: 0; font-size: 14px;">Nothing. This node can resolve on its own.</p>
+        ) : (
+          <ul>
+            {node.depends_on.map((d) => <li><a href={`/tree/${d.factor_slug}/${d.id}/`}>{d.name}</a></li>)}
+            {node.depends_on_any.map((group) => (
+              <li>
+                <span class="any">At least one of</span>
+                <ul>{group.map((d) => <li><a href={`/tree/${d.factor_slug}/${d.id}/`}>{d.name}</a></li>)}</ul>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div class="rail">
+        <h4>Needed by</h4>
+        {node.needed_by.length === 0 && tiers.length === 0 ? (
+          <p class="dim" style="margin: 0; font-size: 14px;">No node or tier lists this one as a requirement.</p>
+        ) : (
+          <ul>
+            {tiers.map((t) => <li><a href="/tree/">{t.key}, {t.name}</a> <span class="dim">(tier)</span></li>)}
+            {node.needed_by.map((d) => <li><a href={`/tree/${d.factor_slug}/${d.id}/`}>{d.name}</a></li>)}
+          </ul>
+        )}
+      </div>
+    </aside>
+  </div>
+</Base>

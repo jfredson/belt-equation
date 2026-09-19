@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { REPO, issueUrl } from '../lib/tree';
+
+const missingNode = issueUrl('Missing node: ', 'Factor it belongs under:\n\nWhat would count as it having happened (the resolution criterion):\n\nWho or what would settle it (the source):\n\nWhy the tree needs it:\n');
+const moveNumber = issueUrl('Move a probability: ', 'Node id:\n\nThe number I would move, from what to what, and under which scenario:\n\nWhy:\n');
+const challenge = issueUrl('Challenge a criterion: ', 'Node id:\n\nWhat is wrong with the resolution criterion, or the source, or a dependency:\n\nWhat I would write instead:\n');
+---
+
+<Base title="Disagree with something — The Belt Equation" description="How to name a missing node, challenge a resolution criterion, or argue a probability up or down, and how critique gets folded into the tree.">
+  <section class="hero">
+    <p class="eyebrow">Disagree with something</p>
+    <h1>The point of publishing the tree is that you can argue with a specific piece of it</h1>
+    <p class="lede">
+      Three kinds of disagreement move the project: a node that is missing, a criterion that would not settle
+      the question, and a number that is too high or too low. Each one is welcome, and each one leaves a trace.
+    </p>
+  </section>
+
+  <section class="section narrow prose">
+    <h2>How to disagree</h2>
+    <p>
+      Critique goes through issues in the public repository, because issues are durable and quotable, and
+      folding one into the tree is a commit that can cite it. Every node page has a link that opens an issue
+      about that node with its id already filled in. Or start from one of these:
+    </p>
+    <div class="ctas">
+      <a class="btn" href={missingNode} rel="noopener">Name a missing node</a>
+      <a class="btn ghost" href={moveNumber} rel="noopener">Argue a number up or down</a>
+      <a class="btn ghost" href={challenge} rel="noopener">Challenge a criterion</a>
+    </div>
+    <p style="margin-top: 18px;">
+      A good disagreement says which node (the id from its page), what you would change, and why. For a
+      missing node, the most useful thing you can give is the resolution criterion: the observable event that
+      would count as it having happened, stated so that two people reading it would agree whether it has. A
+      node without one is not a node, and cannot be added.
+    </p>
+
+    <h2>What happens to it</h2>
+    <ol>
+      <li>John rules on it. Some critiques change the tree; some are answered and left as they are. Either way the issue records the ruling.</li>
+      <li>A change to the tree lands as a commit that cites the issue, with a dated line in the changelog (<a href="/story/">the story so far</a>).</li>
+      <li>A moved probability gets a revision entry on the node, with the old number, the new one, the date, and the reason, so the node's own page shows how it has moved.</li>
+      <li>Critique that arrives between reviews is folded in before the next annual review each January, when every node is re-estimated and the numbers are re-run.</li>
+    </ol>
+    <p class="dim">
+      The issue templates that shape these forms arrive at website step 24. Until then a plain issue with the
+      node id and your reasoning is exactly enough. The repository is at
+      <a href={REPO} rel="noopener">github.com/jfredson/belt-equation</a>.
+    </p>
+  </section>
+</Base>

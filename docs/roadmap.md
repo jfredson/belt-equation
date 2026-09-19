@@ -57,8 +57,8 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 
 Added 2026-09-08 when John reversed the deferral of a standalone site. The full plan, with what each page shows, the decisions behind the stack, and what each step waits on, is in belt-equation/docs/website-plan.md. Steps are numbered from 20 so they never collide with the roadmap's 1 to 19. In short: an Astro static site in site/ of this repo, deployed to Cloudflare Workers static assets like Sentient Horizons and Hearth and Void, fed JSON by a Python export script, with the tree visual as a committed picture and the project's story pulled from TimeAssembler at build time.
 
-20. Scaffold the site and pick the domain (waits on nothing; target 2026-09-21).
-21. The export script and the node pages (waits on step 8; target 2026-10-12).
+20. Scaffold the site and pick the domain (waits on nothing; target 2026-09-21). DONE 2026-09-19: Astro 5 site in site/, styles and nav copied from Sentient Horizons, wrangler configured for Workers static assets like Hearth and Void, all five pages of version one in place (home with the question, the equation, and pending headline numbers; the tree; how the numbers are computed; the story so far; disagree with something). The site builds and previews locally; the workers.dev preview deploy waits only on a Cloudflare login on the Mac (`npx wrangler login`, then `npm run deploy` from site/). Domain beltequation.com stays unattached until step 25.
+21. The export script and the node pages (waits on step 8; target 2026-10-12). DONE 2026-09-19: scripts/export.py (standard library, shares the compute script's loader and validator) writes the site's JSON from data/ and CHANGELOG.md on every build; one page per factor and one per node, sixty node pages matching the validator's sixty nodes.
 22. The tree visual on the site (waits on step 7; target 2026-10-19).
 23. The numbers and the methodology page (waits on steps 10 and 12; target 2026-10-26).
 24. The story page from TimeAssembler and the critique page (target 2026-11-09).

@@ -1,0 +1,60 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { tree, nodesOf, percent, horizonShort, statusLabel, type Factor } from '../../../lib/tree';
+
+export function getStaticPaths() {
+  return tree.factors.map((f) => ({ params: { factor: f.slug }, props: { factor: f } }));
+}
+
+const { factor } = Astro.props as { factor: Factor };
+const nodes = nodesOf(factor.letter);
+const baseline = tree.scenarios[0];
+const order = { leaf: 0, mid: 1, root: 2 } as const;
+const sorted = [...nodes].sort((a, b) => order[a.horizon] - order[b.horizon] || a.name.localeCompare(b.name));
+const isContact = factor.letter === 'C';
+---
+
+<Base title={`${factor.name} — The Belt Equation`} description={`${factor.meaning} The ${nodes.length} nodes under the ${factor.name.toLowerCase()} factor.`}>
+  <section class="hero">
+    <p class="eyebrow"><a href="/tree/">The tree</a> · {factor.letter}</p>
+    <h1>{factor.name}</h1>
+    <p class="lede">{factor.meaning}</p>
+    <p class="dim" style="font-size: 14px;">
+      {nodes.length} nodes, {factor.with_probability} with probabilities{factor.resolved ? `, ${factor.resolved} resolved` : ''}.
+      {isContact
+        ? ' These four rungs follow the same rules as every other node, but no tier requires them and the calculation never multiplies them in.'
+        : ' Listed leaves first (could resolve within five years), then mid-range, then the ones on the scale of the whole window.'}
+    </p>
+  </section>
+
+  <section class="section">
+    <ul class="nodelist">
+      {sorted.map((n) => (
+        <li>
+          <div>
+            <a class="nname" href={n.path}>{n.name}</a>
+            <span class="nid">{n.id}</span>
+          </div>
+          <div class="nprob">
+            {n.kind === 'choice'
+              ? <span>{n.current_plan ? 'current plan' : 'alternative'}<small>choice point, never given a probability</small></span>
+              : n.status === 'resolved-yes'
+                ? <span>resolved yes<small>{n.resolved_on ?? ''}</small></span>
+                : n.status === 'resolved-no'
+                  ? <span>resolved no<small>{n.resolved_on ?? ''}</small></span>
+                  : n.probability
+                    ? <span>{percent(n.probability[baseline.key])}<small>{baseline.key} scenario, estimated {n.estimated_on}</small></span>
+                    : <span class="dim">no probability yet</span>}
+          </div>
+          <div class="chips">
+            <span class="chip">{horizonShort[n.horizon]}</span>
+            <span class={`chip ${n.status === 'resolved-yes' ? 'ok' : n.status === 'resolved-no' ? 'no' : ''}`}>{statusLabel[n.status]}</span>
+            {n.kind === 'choice' && <span class="chip violet">Choice point</span>}
+            {n.long_shot && <span class="chip accent">Long shot</span>}
+            {n.feeds_tiers.map((t) => <span class="chip">feeds {t}</span>)}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

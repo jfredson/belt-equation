@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { tree, percent, scenarioWindow } from '../lib/tree';
+
+const headline = tree.tiers.find((t) => t.key === tree.headline_tier);
+const numbers = tree.numbers;
+const equationFactors = tree.factors.filter((f) => f.letter !== 'C');
+const contact = tree.factors.find((f) => f.letter === 'C');
+---
+
+<Base>
+  <section class="hero wide">
+    <p class="eyebrow">A public, long-horizon prediction project</p>
+    <h1 class="question">What is the probability that I become a Belter before I die?</h1>
+    <p class="lede">And how does that number move year over year?</p>
+
+    <p class="equation" aria-label="The equation">
+      <span class="term">P(Belter)</span><span class="op">=</span>
+      {equationFactors.map((f, i) => (
+        <>
+          <a class="term" href={f.path} title={f.name}>{f.letter}</a>
+          {i < equationFactors.length - 1 && <span class="op">×</span>}
+        </>
+      ))}
+      {contact && <a class="beside" href={contact.path}>with C beside it, never multiplied in</a>}
+    </p>
+    <ul class="terms">
+      {equationFactors.map((f) => (
+        <li><span class="letter">{f.letter}</span><span><a href={f.path}><strong>{f.name}.</strong></a> {f.meaning}</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section narrow prose">
+    <p>
+      The Belt Equation takes a question most people file under science fiction, whether a settled solar
+      system like the one in <em>The Expanse</em> arrives within a single human lifetime, and breaks it into a
+      handful of factors anyone can argue about, the way the Drake Equation did for the number of
+      civilizations in the galaxy. Under each factor sits a tree of concrete breakthroughs, each with its own
+      probability, its own test for whether it has happened, and its own revision history. The headline number
+      is computed from the tree, never chosen by hand, and the whole thing is re-estimated on a fixed schedule
+      and published so other people can disagree with specific pieces of it.
+    </p>
+    <p>
+      The "I" in the question is a real person with a real expected lifespan, which is what turns an abstract
+      forecast into something you can track your own life against. Anyone can run their own version.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="shead">
+      <h2>The headline number</h2>
+      <span>{headline ? `${headline.key}, ${headline.name.toLowerCase()}` : ''}, under each of the five longevity scenarios</span>
+    </div>
+    <div class="scenarios">
+      {tree.scenarios.map((s) => (
+        <div class="scenario">
+          <span class="sname">{s.key}</span>
+          <span class="swindow">{s.name}</span>
+          <span class="swindow dim">window: {scenarioWindow(s)}</span>
+          {numbers.available && headline
+            ? <span class="svalue">{percent(numbers.tiers[headline.key][s.key])}</span>
+            : <span class="svalue pending">not yet</span>}
+        </div>
+      ))}
+    </div>
+    <p class="dim" style="font-size: 14px; margin-top: 12px;">
+      {numbers.available
+        ? `Computed ${numbers.computed_on} from ${numbers.runs.toLocaleString()} play-throughs of the tree per scenario.`
+        : `The numbers wait on the first probabilities (roadmap step 9): ${numbers.reason}`}
+      {' '}<a href="/method/">How the numbers are computed.</a>
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="shead">
+      <h2>The tree</h2>
+      <span>{tree.counts.nodes} breakthroughs across eight factors, plus the Contact Clause</span>
+    </div>
+    <div class="fgrid">
+      {tree.factors.map((f) => (
+        <a class={`fcard ${f.letter === 'C' ? 'contact' : ''}`} href={f.path}>
+          <span class="fletter">{f.letter}</span>
+          <h3>{f.name}</h3>
+          <p>{f.meaning}</p>
+          <p class="fcount">{f.node_count} nodes · {f.with_probability} with probabilities{f.resolved ? ` · ${f.resolved} resolved` : ''}</p>
+        </a>
+      ))}
+    </div>
+    <p class="dim" style="font-size: 14px; margin-top: 14px;">
+      A picture of the whole tree, with its dependencies drawn and colored by factor, arrives at website step 22. Until then this grid is the map.
+    </p>
+  </section>
+</Base>

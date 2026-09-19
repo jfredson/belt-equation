@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { changelog, inline } from '../lib/tree';
+---
+
+<Base title="The story so far — The Belt Equation" description="Every change to the Belt Equation's tree, definitions, and headline numbers, with absolute dates, newest first.">
+  <section class="hero">
+    <p class="eyebrow">The story so far</p>
+    <h1>Every change to the tree, with its date</h1>
+    <p class="lede">{changelog.intro || 'Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.'}</p>
+    <p class="dim" style="font-size: 14px;">
+      This is the project's changelog, rendered straight from the repository. The project's day-by-day progress
+      and its roadmap, kept in TimeAssembler, join this page at website step 24.
+    </p>
+  </section>
+
+  <section class="section narrow">
+    {changelog.days.map((day) => (
+      <div class="day">
+        <h2>{day.date}</h2>
+        <ul>
+          {day.items.map((item) => <li set:html={inline(item)} />)}
+        </ul>
+      </div>
+    ))}
+  </section>
+</Base>

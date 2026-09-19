@@ -1,0 +1,4 @@
+# The site is public but under-promoted (docs/definitions.md, "Where it lives publicly").
+# Crawling is allowed; there is no sitemap until the site goes live on its domain.
+User-agent: *
+Allow: /
