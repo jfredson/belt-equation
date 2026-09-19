@@ -374,9 +374,12 @@ def shifted(p: float, w: float) -> float:
 
 
 def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
-             forced: dict[str, bool] | None = None, world_spread: float = 1.0) -> dict:
+             forced: dict[str, bool] | None = None, world_spread: float = 1.0,
+             joint: dict[str, list[str]] | None = None) -> dict:
     """Play the tree out `runs` times for one scenario. Returns yes-rates per node and per tier.
 
+    `joint` maps a name to a list of node ids; the result's "joint" gives, per name, how often
+    every one of those nodes held in the same play-through (the site's chain links use this).
     `forced` maps choice-node ids to True/False and overrides the current plan; any choice node
     not mentioned keeps its current-plan setting.
     """
@@ -385,6 +388,8 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
     forced = forced or {}
     node_yes = defaultdict(int)
     tier_yes = defaultdict(int)
+    joint = joint or {}
+    joint_yes = defaultdict(int)
 
     for _ in range(runs):
         state: dict[str, bool] = {}
@@ -411,10 +416,14 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
             state[t["key"]] = reached
             if reached:
                 tier_yes[t["key"]] += 1
+        for name, ids in joint.items():
+            if all(state.get(i, False) for i in ids):
+                joint_yes[name] += 1
 
     return {
         "nodes": {n["id"]: node_yes[n["id"]] / runs for n in order},
         "tiers": {t["key"]: tier_yes[t["key"]] / runs for t in tiers},
+        "joint": {name: joint_yes[name] / runs for name in joint},
     }
 
 

@@ -1,20 +1,153 @@
 ---
+// The home page: the number first, then the chain. Redesigned 2026-09-19 so a reader who has
+// never heard of the project can take in the first screen without knowing what a factor is.
+// Every figure comes from tree.json (scripts/export.py); the copy for the seven links is here.
 import Base from '../layouts/Base.astro';
-import { tree, percent, scenarioWindow } from '../lib/tree';
+import { tree, percent, factorByLetter } from '../lib/tree';
 
-const headline = tree.tiers.find((t) => t.key === tree.headline_tier);
 const numbers = tree.numbers;
+const headlineKey = tree.headline_tier;
+const DEFAULT_SCENARIO = 'baseline';
+
+// The seven links of the chain, in the order they are read. W (the window) is the dial, not a
+// link; C (the Contact Clause) sits beside the equation and is never multiplied in.
+const LINKS = [
+  { letter: 'L', title: 'Getting to orbit has to get cheap.', sub: 'A fully reusable heavy rocket flying often, launch under $200 a kilogram, fuel transferred in orbit.', short: 'cheap launch' },
+  { letter: 'E', title: 'There has to be power out there.', sub: 'A reactor running on the surface of the Moon. Solar gets thin past Mars.', short: 'power off Earth' },
+  { letter: 'D', title: 'Ships fast enough to make the trip routine.', sub: 'Nuclear propulsion in regular use, and a permanent crewed site somewhere past the Moon.', short: 'fast ships' },
+  { letter: 'B', title: 'Bodies that hold up.', sub: 'Living off Earth long term by some route, radiation dose halved, life support that recycles for a year.', short: 'bodies that hold up' },
+  { letter: 'M', title: 'A reason for people to go.', sub: 'Something made off Earth and sold at a profit, and a hundred people paid to work up there.', short: 'a reason to go' },
+  { letter: 'R', title: 'Governments that don’t wreck it.', sub: 'Programs that outlive elections and recessions. Resource rights the big powers recognise.', short: 'governments' },
+  { letter: 'A', title: 'A seat for me.', sub: 'A job whose holders rotate off Earth, reached through the training and choices I make now.', short: 'a seat for me' },
+];
+
+// One line per scenario for the dial. Keys match data/scenarios.toml.
+const DIAL: Record<string, { label: string; when: string; note: string }> = {
+  baseline: { label: '2071', when: 'by 2071', note: 'If I live about as long as a man my age is expected to: roughly to 2071. This is the default, and the number I hold myself to.' },
+  moderate: { label: '2080', when: 'by 2080', note: 'If medicine adds about a decade to a life like mine.' },
+  strong: { label: '2095', when: 'by 2095', note: 'If I make it to 109. Strong life extension, the kind that is being seriously worked on but has not arrived.' },
+  radical: { label: '2136', when: 'by 2136', note: 'A 150-year life. This is the long shot the whole project is built to keep in view.' },
+  open: { label: 'No limit', when: 'with no deadline', note: 'Aging solved outright. The odds stop depending on the calendar and depend only on whether the Belt ever happens.' },
+};
+
+// Everything the dial needs, serialised once for the inline script.
+const scenarios = tree.scenarios.map((s) => {
+  const d = DIAL[s.key] ?? { label: s.key, when: s.key, note: s.name };
+  const n = numbers.available
+    ? {
+        headline: numbers.tiers[headlineKey][s.key],
+        a1: numbers.tiers['A1'][s.key],
+        t3: numbers.tiers['T3'][s.key],
+        links: Object.fromEntries(LINKS.map((l) => [l.letter, numbers.chain[l.letter]?.[s.key] ?? null])),
+      }
+    : null;
+  return { key: s.key, ...d, ...n };
+});
+const current = scenarios.find((s) => s.key === DEFAULT_SCENARIO) ?? scenarios[0];
+
+function fmt(p: number | null | undefined): string {
+  if (p === null || p === undefined) return 'not yet';
+  const v = p * 100;
+  return (v < 10 ? v.toFixed(1) : Math.round(v).toString()) + '%';
+}
+function weakest(s: typeof current) {
+  if (!s.links) return null;
+  let best: { letter: string; p: number } | null = null;
+  for (const l of LINKS) {
+    const p = s.links[l.letter];
+    if (p !== null && (best === null || p < best.p)) best = { letter: l.letter, p };
+  }
+  return best;
+}
+const w = weakest(current);
+const weakestLink = w ? LINKS.find((l) => l.letter === w.letter) : null;
 const equationFactors = tree.factors.filter((f) => f.letter !== 'C');
-const contact = tree.factors.find((f) => f.letter === 'C');
+const contact = factorByLetter('C');
 ---
 
 <Base>
-  <section class="hero wide">
-    <p class="eyebrow">A public, long-horizon prediction project</p>
-    <h1 class="question">What is the probability that I become a Belter before I die?</h1>
-    <p class="lede">And how does that number move year over year?</p>
+  <section class="home-hero">
+    <div class="home-hero-main">
+      <p class="eyebrow">One man's odds of leaving Earth, tracked in public</p>
+      <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
+      <h1 class="big-claim">The chance that I live and work off Earth before I die.</h1>
+      <p class="big-sub"><span data-bind="windowLine">That is {current.when}.</span> Nobody knows how long I get, so the dial lets you change that assumption and watch the odds move.</p>
+      <div class="ctas">
+        <a class="btn" href="#chain">Why so low?</a>
+        <a class="btn ghost" href="#who">Who is asking</a>
+      </div>
+    </div>
 
-    <p class="equation" aria-label="The equation">
+    <div class="dial" id="dial">
+      <div class="dial-head">
+        <span class="dial-label">How long do I get?</span>
+        <span class="dial-hint">the W in the equation</span>
+      </div>
+      <div class="dial-row" role="group" aria-label="Choose how long I live">
+        {scenarios.map((s) => (
+          <button type="button" class={`dial-btn ${s.key === current.key ? 'on' : ''}`} data-scenario={s.key} aria-pressed={s.key === current.key ? 'true' : 'false'}>{s.label}</button>
+        ))}
+      </div>
+      <p class="dial-note" data-bind="note">{current.note}</p>
+      <div class="dial-stats">
+        <div><span class="stat" data-bind="a1">{fmt(current.a1)}</span><span class="stat-label">I fly to space at least once</span></div>
+        <div><span class="stat" data-bind="t3">{fmt(current.t3)}</span><span class="stat-label">A Belt exists at all: people living past Mars</span></div>
+        <div><span class="stat accent" data-bind="headline">{fmt(current.headline)}</span><span class="stat-label">I'm out there working when it does</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section who" id="who">
+    <div>
+      <p class="kicker">A Belter?</p>
+      <p>In the TV series <em>The Expanse</em>, Belters are the people who live and work in the asteroid belt, far from Earth. Stubborn, underestimated, at home where nobody thought people could be. I want to be one of them. This site works out, in public, how likely that is.</p>
+    </div>
+    <div>
+      <p class="kicker">Who is asking</p>
+      <p>I'm John. I'm 40, I'm training to teach survival in the Air Force, and I'd like to leave the planet before I die. This is a scoreboard on my own long shot. Every year I re-check every link below, publish what changed, and let anyone argue with a number.</p>
+    </div>
+  </section>
+
+  <section class="section chain" id="chain">
+    <div class="chain-head">
+      <div>
+        <p class="eyebrow">Why so low</p>
+        <h2 class="chain-title">Seven things all have to go right.</h2>
+        <p class="chain-lede">Each link below is a real thing that has to happen. Any broken link breaks the chain. That is the whole equation: multiply seven maybes together and you get a small number, even when no single link looks hopeless.</p>
+      </div>
+      <p class="chain-year"><span data-bind="yearLine">Odds shown {current.when}</span><br />change the dial above to see them move</p>
+    </div>
+
+    <div class="links">
+      {LINKS.map((l, i) => {
+        const f = factorByLetter(l.letter);
+        const p = current.links ? current.links[l.letter] : null;
+        const pct = p === null ? 0 : Math.max(2, Math.round(p * 100));
+        return (
+          <a class="link" href={f?.path ?? '/tree/'} data-link={l.letter}>
+            <span class="link-top"><span class="link-num">{String(i + 1).padStart(2, '0')}</span><span class="link-letter">{l.letter} · {f?.name ?? ''}</span></span>
+            <span class="link-title">{l.title}</span>
+            <span class="link-sub">{l.sub}</span>
+            <span class="link-foot">
+              <span class="link-pct" data-bind-link={l.letter}>{fmt(p)}</span>
+              <span class="bar"><span class="bar-fill" data-bar={l.letter} style={`width:${pct}%`}></span></span>
+              <span class="link-cap">chance this link holds</span>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+
+    <div class="chain-note">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"></path></svg>
+      <p>
+        <span data-bind="weakest">{weakestLink && w ? `Right now the weakest link is ${weakestLink.short}, at ${fmt(w.p)}.` : ''}</span>
+        {' '}The links lean on each other, so these are not independent dice; the honest math, with every one of the {tree.counts.nodes} smaller steps behind these seven, is on <a href="/method/">the numbers page</a>. There is also an eighth thing I track and never multiply in. It is there too.
+      </p>
+    </div>
+
+    <p class="equation-line" aria-label="The equation">
+      In the notation of the numbers page:
       <span class="term">P(Belter)</span><span class="op">=</span>
       {equationFactors.map((f, i) => (
         <>
@@ -24,71 +157,75 @@ const contact = tree.factors.find((f) => f.letter === 'C');
       ))}
       {contact && <a class="beside" href={contact.path}>with C beside it, never multiplied in</a>}
     </p>
-    <ul class="terms">
-      {equationFactors.map((f) => (
-        <li><span class="letter">{f.letter}</span><span><a href={f.path}><strong>{f.name}.</strong></a> {f.meaning}</span></li>
-      ))}
-    </ul>
   </section>
 
-  <section class="section narrow prose">
-    <p>
-      The Belt Equation takes a question most people file under science fiction, whether a settled solar
-      system like the one in <em>The Expanse</em> arrives within a single human lifetime, and breaks it into a
-      handful of factors anyone can argue about, the way the Drake Equation did for the number of
-      civilizations in the galaxy. Under each factor sits a tree of concrete breakthroughs, each with its own
-      probability, its own test for whether it has happened, and its own revision history. The headline number
-      is computed from the tree, never chosen by hand, and the whole thing is re-estimated on a fixed schedule
-      and published so other people can disagree with specific pieces of it.
-    </p>
-    <p>
-      The "I" in the question is a real person with a real expected lifespan, which is what turns an abstract
-      forecast into something you can track your own life against. Anyone can run their own version.
-    </p>
+  <section class="section moves">
+    <div class="move">
+      <p class="kicker">What would move it</p>
+      <p>Cheap launch and bodies that tolerate low gravity. Nearly everything else leans on those two. When either one moves, the number at the top moves with it.</p>
+    </div>
+    <div class="move">
+      <p class="kicker">What I can do about it</p>
+      <p>Only the last link is mine. I can choose the training I take and the jobs I chase, and the tree tells me which choices raise the odds. That is the real reason this exists.</p>
+    </div>
+    <div class="move">
+      <p class="kicker">Think I'm wrong?</p>
+      <p>Good. Every link has a page, a definition of what counts, and a number you can argue with. Changes get a line in the public changelog.</p>
+      <a class="btn ghost" href="/disagree/">Argue with a link</a>
+    </div>
   </section>
 
-  <section class="section">
-    <div class="shead">
-      <h2>The headline number</h2>
-      <span>{headline ? `${headline.key}, ${headline.name.toLowerCase()}` : ''}, under each of the five longevity scenarios</span>
-    </div>
-    <div class="scenarios">
-      {tree.scenarios.map((s) => (
-        <div class="scenario">
-          <span class="sname">{s.key}</span>
-          <span class="swindow">{s.name}</span>
-          <span class="swindow dim">window: {scenarioWindow(s)}</span>
-          {numbers.available && headline
-            ? <span class="svalue">{percent(numbers.tiers[headline.key][s.key])}</span>
-            : <span class="svalue pending">not yet</span>}
-        </div>
-      ))}
-    </div>
-    <p class="dim" style="font-size: 14px; margin-top: 12px;">
-      {numbers.available
-        ? `Computed ${numbers.computed_on} from ${numbers.runs.toLocaleString()} play-throughs of the tree per scenario.${numbers.review_status ? ' ' + numbers.review_status : ''}`
-        : `The numbers wait on the first probabilities (roadmap step 9): ${numbers.reason}`}
-      {' '}<a href="/method/">How the numbers are computed.</a>
-    </p>
-  </section>
+  <p class="dim home-meta">
+    {numbers.available
+      ? `Numbers from the run of ${numbers.computed_on}, ${numbers.runs.toLocaleString()} play-throughs of the tree per scenario.${numbers.review_status ? ' ' + numbers.review_status : ''}`
+      : `The numbers wait on the first probabilities: ${numbers.reason}`}
+    {' '}<a href="/method/">How the numbers are computed.</a> <a href="/story/">What has changed.</a>
+  </p>
 
-  <section class="section">
-    <div class="shead">
-      <h2>The tree</h2>
-      <span>{tree.counts.nodes} breakthroughs across eight factors, plus the Contact Clause</span>
-    </div>
-    <div class="fgrid">
-      {tree.factors.map((f) => (
-        <a class={`fcard ${f.letter === 'C' ? 'contact' : ''}`} href={f.path}>
-          <span class="fletter">{f.letter}</span>
-          <h3>{f.name}</h3>
-          <p>{f.meaning}</p>
-          <p class="fcount">{f.node_count} nodes · {f.with_probability} with probabilities{f.resolved ? ` · ${f.resolved} resolved` : ''}</p>
-        </a>
-      ))}
-    </div>
-    <p class="dim" style="font-size: 14px; margin-top: 14px;">
-      A picture of the whole tree, with its dependencies drawn and colored by factor, arrives at website step 22. Until then this grid is the map.
-    </p>
-  </section>
+  <script type="application/json" id="home-scenarios" set:html={JSON.stringify({ scenarios, links: LINKS.map((l) => ({ letter: l.letter, short: l.short })) })}></script>
+  <script is:inline>
+    (function () {
+      var el = document.getElementById('home-scenarios');
+      if (!el) return;
+      var data = JSON.parse(el.textContent || '{}');
+      var byKey = {};
+      (data.scenarios || []).forEach(function (s) { byKey[s.key] = s; });
+      function fmt(p) {
+        if (p === null || p === undefined) return 'not yet';
+        var v = p * 100;
+        return (v < 10 ? v.toFixed(1) : Math.round(v)) + '%';
+      }
+      function setAll(name, text) {
+        document.querySelectorAll('[data-bind="' + name + '"]').forEach(function (n) { n.textContent = text; });
+      }
+      function apply(key) {
+        var s = byKey[key];
+        if (!s) return;
+        setAll('headline', fmt(s.headline));
+        setAll('a1', fmt(s.a1));
+        setAll('t3', fmt(s.t3));
+        setAll('windowLine', 'That is ' + s.when + '.');
+        setAll('note', s.note);
+        setAll('yearLine', 'Odds shown ' + s.when);
+        var weakest = null;
+        (data.links || []).forEach(function (l) {
+          var p = s.links ? s.links[l.letter] : null;
+          var pctEl = document.querySelector('[data-bind-link="' + l.letter + '"]');
+          var bar = document.querySelector('[data-bar="' + l.letter + '"]');
+          if (pctEl) pctEl.textContent = fmt(p);
+          if (bar) bar.style.width = (p === null ? 0 : Math.max(2, Math.round(p * 100))) + '%';
+          if (p !== null && (weakest === null || p < weakest.p)) weakest = { short: l.short, p: p };
+        });
+        setAll('weakest', weakest ? 'Right now the weakest link is ' + weakest.short + ', at ' + fmt(weakest.p) + '.' : '');
+        document.querySelectorAll('.dial-btn').forEach(function (b) {
+          var on = b.getAttribute('data-scenario') === key;
+          b.classList.toggle('on', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+      document.querySelectorAll('.dial-btn').forEach(function (b) {
+        b.addEventListener('click', function () { apply(b.getAttribute('data-scenario')); });
+      });
+    })();
+  </script>
 </Base>

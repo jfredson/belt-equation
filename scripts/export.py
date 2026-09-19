@@ -239,7 +239,8 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
         }
     rng = random.Random(seed)
     keys = [s["key"] for s in tree["scenarios"]]
-    results = {k: compute.simulate(tree, k, runs, rng) for k in keys}
+    chain_nodes = chain_gates(tree)
+    results = {k: compute.simulate(tree, k, runs, rng, joint=chain_nodes) for k in keys}
     return {
         "available": True,
         "runs": runs,
@@ -248,7 +249,35 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
         "review_status": NUMBERS_REVIEW_STATUS,
         "tiers": {t["key"]: {k: results[k]["tiers"][t["key"]] for k in keys} for t in tree["tiers"]},
         "nodes": {n["id"]: {k: results[k]["nodes"][n["id"]] for k in keys} for n in tree["nodes"]},
+        "chain": {f: {k: results[k]["joint"][f] for k in keys} for f in chain_nodes},
+        "chain_nodes": chain_nodes,
     }
+
+
+def chain_gates(tree: dict) -> dict[str, list[str]]:
+    """The home page's chain: per factor, the nodes the headline tier requires, directly or
+    through the tiers it rests on (T3 under A2, T2 under T3, and so on). A link "holds" when
+    every gate node of its factor holds in the same play-through; because each gate node
+    already waits on its own dependencies, the link's rate counts those too. Factors with no
+    gate node (W, whose job is done by the scenario, and C, never multiplied in) are left out."""
+    tiers = {t["key"]: t for t in tree["tiers"]}
+    by_id = {n["id"]: n for n in tree["nodes"]}
+    seen: set[str] = set()
+    stack = [compute.HEADLINE_TIER]
+    gates: dict[str, list[str]] = {}
+    while stack:
+        key = stack.pop()
+        if key in seen:
+            continue
+        seen.add(key)
+        for r in tiers[key].get("requires", []) or []:
+            if r in tiers:
+                stack.append(r)
+            elif r in by_id:
+                gates.setdefault(by_id[r]["factor"], [])
+                if r not in gates[by_id[r]["factor"]]:
+                    gates[by_id[r]["factor"]].append(r)
+    return {f: sorted(gates[f]) for f in compute.FACTORS if f in gates}
 
 
 # ----------------------------------------------------------- the changelog

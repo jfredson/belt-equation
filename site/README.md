@@ -15,7 +15,7 @@ The public face of the tree: beltequation.com (attached at website step 25; unti
 
 | Path | What it shows |
 |---|---|
-| `/` | The question, the equation, one paragraph, the headline number under each scenario (pending until roadmap step 9 completes), and the factor grid standing in for the tree picture (website step 22). |
+| `/` | The number first: the headline probability under a year dial (the five longevity scenarios), then the chain of seven plain-English links, one per factor, each with the rate at which its gate nodes all hold (`numbers.chain` in the export), then who is asking and how to argue. Redesigned 2026-09-19 for readers who have never heard of the project; the letter equation stays as one line under the chain. |
 | `/tree/` | The factors, and the system and access tiers with what each requires. |
 | `/tree/<factor>/` | One page per factor listing its nodes, leaves first. |
 | `/tree/<factor>/<node-id>/` | One page per node: description, resolution criterion, source, horizon, dependencies, what needs it, probability by scenario with rationale and date, long-shot mechanism and breaking point, revisions, notes, and a link to open an issue about it. |

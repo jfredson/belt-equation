@@ -79,8 +79,13 @@ export type Numbers =
       runs: number;
       seed: number;
       computed_on: string;
+      review_status?: string;
       tiers: Record<string, Record<string, number>>;
       nodes: Record<string, Record<string, number>>;
+      /** Per factor letter, how often every gate node of that factor held in the same play-through. */
+      chain: Record<string, Record<string, number>>;
+      /** The gate nodes behind each chain link: what the headline tier requires, through the tiers under it. */
+      chain_nodes: Record<string, string[]>;
     };
 
 export type Tree = {
