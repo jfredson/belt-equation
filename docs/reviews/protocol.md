@@ -1,6 +1,6 @@
 # Outside-model review protocol
 
-Roadmap step 27. PROPOSED 2026-09-19, awaiting John's ruling; nothing below is in force until the decisions at the end are accepted. Promoted from "Later, not now" on 2026-09-08 when John accepted the first probabilities on Claude's recommendation and asked that they be reviewed against other frontier models before anything is published.
+Roadmap step 27. Proposed 2026-09-19 and ruled in force by John the same day, all six decisions accepted as proposed. Promoted from "Later, not now" on 2026-09-08 when John accepted the first probabilities on Claude's recommendation and asked that they be reviewed against other frontier models before anything is published.
 
 ## Purpose
 
@@ -46,7 +46,7 @@ Three packets, matching the brainstorm groups so the reviewer sees a factor's ne
 
 Every factor and the Contact Clause reviewed by two models, every item ruled, the changes landed, the tree re-run and the new headline in the changelog. Target 2026-11-09, before website step 24. Then the methodology pass, then Phase 4.
 
-## Decisions to rule on (each with confidence, whether it is standard practice, and the alternative)
+## Decisions (ruled 2026-09-19, all accepted as proposed; each with confidence, whether it is standard practice, and the alternative)
 
 1. **Reviewers see everything, and lookup is allowed.** Confidence high. Standard practice for a critique pass (a referee reads the paper). Alternative: a second cold elicitation per model, no documents, to get independent numbers. Cheaper per session, but the baseline already does that, and cold numbers cannot challenge a criterion they have not seen.
 2. **The 0.15 threshold for a number to count as disputed.** Confidence moderate; it is a judgment about signal versus noise. Not standard, there is no standard. Alternative: no threshold, file every difference. Costs John a ruling on dozens of two-point quibbles and buries the real disagreements.

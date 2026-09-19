@@ -1,6 +1,6 @@
 # The review brief
 
-Sent unchanged with every packet. Drafted 2026-09-19 with the protocol; in force once the protocol is ruled.
+Sent unchanged with every packet. Drafted 2026-09-19 with the protocol; in force from the same day.
 
 ---
 
