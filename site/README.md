@@ -36,4 +36,4 @@ Run from `site/`. Needs Node (the Mac has 26) and Python 3.11 or later for the e
     npm run preview      serve dist/ locally
     npm run deploy       build, then `wrangler deploy` to Cloudflare Workers static assets
 
-Deploying needs a Cloudflare login on this Mac (`npx wrangler login`). The Worker is named `beltequation`; its preview address is the workers.dev one wrangler prints. The custom domain is attached at website step 25, not before.
+Deploying needs a Cloudflare login on this Mac (`npx wrangler login`, which expires now and then and has to be repeated). The Worker is named `beltequation` and the preview address is https://beltequation.jfredson.workers.dev (first deployed 2026-09-19). The custom domain is attached at website step 25, not before.
