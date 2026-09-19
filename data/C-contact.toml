@@ -1,7 +1,7 @@
 # The Contact Clause (C): published beside the equation and never multiplied into it. No tier
 # requires a C node; the compute script reports them in their own section. Rungs and criteria
 # from definitions.md. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the third
-# brainstorm session. No probabilities yet.
+# brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group three).
 
 [[node]]
 id = "C1"
@@ -21,6 +21,9 @@ source = "The peer-reviewed record and the verification artefact"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.92, moderate = 0.95, strong = 0.97, radical = 0.98, open = 0.98 }
+estimated_on = 2026-09-19
+rationale = "Plausibly resolving now; the remaining doubt is whether the record will say beyond human researchers in so many words."
 
 [[node]]
 id = "C2"
@@ -38,6 +41,9 @@ source = "The field's textbooks and publication record"
 horizon = "mid"
 depends_on = ["C1"]
 status = "open"
+probability = { baseline = 0.8, moderate = 0.88, strong = 0.93, radical = 0.96, open = 0.97 }
+estimated_on = 2026-09-19
+rationale = "Adoption lags production by a decade or two, but forty-five years is long enough for one field to reorganise around one machine-born method."
 
 [[node]]
 id = "C3"
@@ -59,6 +65,9 @@ source = "The peer-reviewed record, two independent confirmations"
 horizon = "root"
 depends_on = []
 status = "open"
+probability = { baseline = 0.05, moderate = 0.07, strong = 0.1, radical = 0.18, open = 0.3 }
+estimated_on = 2026-09-19
+rationale = "Sixty years of nothing; the planned instruments widen the search by orders of magnitude but cannot make anything be there."
 long_shot = true
 mechanism = """
 Instruments improve in steps that are already planned: a far-side lunar radio array shielded
@@ -87,6 +96,9 @@ source = "The peer-reviewed record"
 horizon = "root"
 depends_on = ["C3"]
 status = "open"
+probability = { baseline = 0.1, moderate = 0.12, strong = 0.18, radical = 0.3, open = 0.4 }
+estimated_on = 2026-09-19
+rationale = "Given a detection, most detections would be a signature rather than a message, and the provenance test does not exist yet."
 long_shot = true
 mechanism = """
 A confirmed detection (C3) turns out to carry structure, the structure is decoded, and the

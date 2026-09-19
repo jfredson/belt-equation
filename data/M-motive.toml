@@ -1,6 +1,6 @@
 # Nodes under the motive factor (M): that there is an economic reason for large numbers of
 # people to be out there. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the third
-# brainstorm session. No probabilities yet.
+# brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group three).
 
 [[node]]
 id = "M-paying-customer-for-work-done-in-orbit"
@@ -21,6 +21,9 @@ source = "The company's public contract announcement or financial filing"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-19
+rationale = "Orbital-compute contracts are already announced and the bar is one company, one year."
 
 [[node]]
 id = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
@@ -40,6 +43,9 @@ source = "The peer-reviewed publication or the agency's mission record"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.75, moderate = 0.85, strong = 0.92, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-19
+rationale = "Demonstrations at watts have flown and agency kilowatt demonstrations are planned, but every one so far has slipped, and the economic case may never justify the step."
 
 [[node]]
 id = "M-hundred-people-working-off-earth-for-pay"
@@ -57,6 +63,9 @@ source = "Operators' public crew records, tallied"
 horizon = "mid"
 depends_on = ["L-heavy-launcher-100-per-year", "R-space-funding-holds-through-a-recession"]
 status = "open"
+probability = { baseline = 0.6, moderate = 0.72, strong = 0.85, radical = 0.93, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "Private stations and a lunar base get to dozens; a hundred needs a reason beyond government seats. An outside model's 30 percent (Astra, 2026-09-19) was for ten thousand self-sustaining residents, a far higher bar."
 notes = "Edges drawn at step 7 (2026-09-08): a hundred people off Earth at once needs launch cadence, and getting there takes long enough that funding will have to survive a downturn on the way."
 
 [[node]]
@@ -76,4 +85,7 @@ source = "The company's audited accounts or equivalent public filing"
 horizon = "root"
 depends_on = ["L-lunar-material-delivered-to-orbit-at-scale", "R-off-earth-resource-rights-recognised-by-major-powers"]
 status = "open"
+probability = { baseline = 0.55, moderate = 0.65, strong = 0.8, radical = 0.9, open = 0.93 }
+estimated_on = 2026-09-19
+rationale = "With supply and ownership settled, profit still needs a buyer at a price above a first-of-kind cost; propellant in orbit is the likeliest product."
 notes = "Edges drawn at step 7 (2026-09-08): the only supply route in the tree is lunar material at scale (an asteroid route would be a second option if a node is added), and selling it needs the ownership rules to exist."

@@ -2,7 +2,7 @@
 # multi-decade build survive elections, downturns, and wars. Regime nodes are the shared
 # parents that carry common causes (a funding collapse hits everything at once), so the edges
 # step should wire them widely. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the
-# third brainstorm session. No probabilities yet.
+# third brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group three).
 
 [[node]]
 id = "R-crewed-lunar-program-outlives-two-changes-of-president"
@@ -22,6 +22,9 @@ source = "US federal appropriations records and the agency's flight record"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.6, moderate = 0.6, strong = 0.6, radical = 0.6, open = 0.6 }
+estimated_on = 2026-09-19
+rationale = "Resolves yes or no by about 2037 whatever the window, so the number is flat. No program since Apollo has done it, but this one has hardware flying, contractors in most states, and a rival to point at."
 
 [[node]]
 id = "R-space-funding-holds-through-a-recession"
@@ -41,6 +44,9 @@ source = "NBER recession dates, federal appropriations records, public launch lo
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.55, moderate = 0.55, strong = 0.55, radical = 0.55, open = 0.55 }
+estimated_on = 2026-09-19
+rationale = "Resolves at the first recession, so the number is flat. The private flight rate probably holds because its customers are constellations; the ten-percent real-terms budget test is what it fails on if it fails."
 
 [[node]]
 id = "R-binding-ban-on-debris-creating-anti-satellite-tests"
@@ -59,6 +65,9 @@ source = "The treaty text and the depositary's record of parties"
 horizon = "mid"
 depends_on = []
 status = "open"
+probability = { baseline = 0.3, moderate = 0.4, strong = 0.55, radical = 0.75, open = 0.8 }
+estimated_on = 2026-09-19
+rationale = "Unilateral pledges exist, a binding three-party treaty does not; it needs either a scare in orbit or a detente, and Russia is the holdout."
 
 [[node]]
 id = "R-off-earth-resource-rights-recognised-by-major-powers"
@@ -78,6 +87,9 @@ source = "The treaty record or the enacted statutes"
 horizon = "root"
 depends_on = []
 status = "open"
+probability = { baseline = 0.45, moderate = 0.55, strong = 0.7, radical = 0.85, open = 0.9 }
+estimated_on = 2026-09-19
+rationale = "Two rival frameworks today; convergence usually follows the first real mine. An outside model's 70 percent by 2070 (Astra, 2026-09-19) was for transferable rights among major jurisdictions without requiring the United States and China to match."
 
 [[node]]
 id = "R-off-earth-site-accepts-permanent-residents"
@@ -99,4 +111,7 @@ source = "The site's published residence terms and the operator's or governing b
 horizon = "root"
 depends_on = ["B-long-term-off-earth-living-by-some-route"]
 status = "open"
+probability = { baseline = 0.5, moderate = 0.6, strong = 0.75, radical = 0.9, open = 0.93 }
+estimated_on = 2026-09-19
+rationale = "Once the biology allows it, the rule is a liability and policy question; work-camp terms could persist for decades after staying becomes safe."
 notes = "Added 2026-09-08 (agreed by John) so that A3 has a node distinguishing it from A2. Placed under regime because permanent residence is a rule somebody sets, not a technology."

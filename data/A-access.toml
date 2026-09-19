@@ -4,7 +4,7 @@
 # tree's choice points (things John decides, never sampled), the two routes those choices open,
 # and the leverage branch (what AI tools let one person do). Record layout: docs/node-schema.md.
 # Drafted 2026-09-08 in the third brainstorm session; routes and edges added at step 7 the same
-# day. No probabilities yet.
+# day. First probabilities 2026-09-19 (roadmap step 9, group three).
 
 # --- World events on the pathway ---
 
@@ -21,6 +21,9 @@ source = "The service record"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.85, moderate = 0.85, strong = 0.85, radical = 0.85, open = 0.85 }
+estimated_on = 2026-09-19
+rationale = "Resolves in 2027 whatever the window, so the number is flat. Published attrition in the pipeline is substantial; arriving from the Special Warfare pipeline already adapted to the load is the reason for a number this high. Personal, John's to move."
 
 [[node]]
 id = "A-commercial-crew-survival-training-industry-exists"
@@ -40,6 +43,9 @@ source = "Public announcements and contract records"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.5, moderate = 0.6, strong = 0.75, radical = 0.88, open = 0.92 }
+estimated_on = 2026-09-19
+rationale = "Needs several commercial operators flying crews at once; today there are two, and each trains in house."
 
 [[node]]
 id = "A-military-survival-instructor-hired-into-spaceflight-training"
@@ -57,6 +63,9 @@ source = "Public reporting or the operator's announcement"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.65, moderate = 0.75, strong = 0.85, radical = 0.92, open = 0.94 }
+estimated_on = 2026-09-19
+rationale = "One person, one announcement, and the skills overlap is obvious; the bar is low enough that it may already have happened without being reported."
 
 [[node]]
 id = "A-orbital-seat-sold-under-one-million-dollars"
@@ -75,6 +84,9 @@ source = "The provider's public price or reported contract, and the flight recor
 horizon = "mid"
 depends_on = ["L-launch-price-below-200-dollars-per-kg"]
 status = "open"
+probability = { baseline = 0.6, moderate = 0.72, strong = 0.85, radical = 0.93, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "Launch cost is a small part of a seat's price; the rest is the vehicle, training and insurance, which fall with volume but slowly."
 
 [[node]]
 id = "A-private-orbital-flight-by-someone-aged-65-or-over"
@@ -113,6 +125,9 @@ source = "The employer's record"
 horizon = "mid"
 depends_on = ["A-separate-at-six-years-into-civilian-space-work", "A-commercial-crew-survival-training-industry-exists"]
 status = "open"
+probability = { baseline = 0.5, moderate = 0.55, strong = 0.6, radical = 0.6, open = 0.6 }
+estimated_on = 2026-09-19
+rationale = "Given the door exists and John walks toward it, a coin flip that it is him who gets through; flat past 2095 because a working career is bounded by more than the window. Personal, sketch-grade until pipeline graduation."
 
 [[node]]
 id = "A-military-role-with-off-earth-rotation-obtained"
@@ -128,6 +143,9 @@ source = "The service record"
 horizon = "root"
 depends_on = ["A-reenlist-at-six-years", "M-hundred-people-working-off-earth-for-pay"]
 status = "open"
+probability = { baseline = 0.25, moderate = 0.35, strong = 0.45, radical = 0.5, open = 0.5 }
+estimated_on = 2026-09-19
+rationale = "Needs the military to send survival or operator specialists off Earth while John is still serving; the lowest personal number because it depends on a service decision, not his. Personal, sketch-grade until pipeline graduation."
 
 [[node]]
 id = "A-working-in-or-for-the-off-earth-industry"
@@ -142,6 +160,9 @@ source = "The resolving route node's own source"
 horizon = "mid"
 depends_on_any = [["A-civilian-spaceflight-training-role-obtained", "A-military-role-with-off-earth-rotation-obtained"]]
 status = "open"
+probability = { baseline = 1, moderate = 1, strong = 1, radical = 1, open = 1 }
+estimated_on = 2026-09-19
+rationale = "Resolves whenever either route does; certainty here means the number is carried entirely by the two route nodes, as with the biology hedge."
 
 [[node]]
 id = "A-in-a-role-whose-holders-rotate-off-earth"
@@ -159,6 +180,9 @@ source = "The employer's record"
 horizon = "root"
 depends_on = ["A-working-in-or-for-the-off-earth-industry", "M-hundred-people-working-off-earth-for-pay"]
 status = "open"
+probability = { baseline = 0.4, moderate = 0.5, strong = 0.65, radical = 0.75, open = 0.8 }
+estimated_on = 2026-09-19
+rationale = "Being in the industry when rotations exist is most of it; the rest is selection, age and timing, which the longer windows ease but do not remove. Personal, sketch-grade until pipeline graduation."
 
 [[node]]
 id = "A-first-spaceflight"
@@ -173,6 +197,9 @@ source = "The operator's record"
 horizon = "root"
 depends_on_any = [["A-orbital-seat-sold-under-one-million-dollars", "A-in-a-role-whose-holders-rotate-off-earth"]]
 status = "open"
+probability = { baseline = 1, moderate = 1, strong = 1, radical = 1, open = 1 }
+estimated_on = 2026-09-19
+rationale = "Resolves whenever either way in does; carried entirely by the seat-price node and the rotation-role node."
 
 # --- Choice points: John decides, the script never samples ---
 
@@ -228,6 +255,9 @@ source = "This repo's changelog"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.9, moderate = 0.92, strong = 0.94, radical = 0.95, open = 0.95 }
+estimated_on = 2026-09-19
+rationale = "Within reach of today's tools; the risk is that the scan stops being run, not that the tool cannot do it."
 
 [[node]]
 id = "A-technical-publication-produced-with-ai-collaborators"
@@ -245,4 +275,7 @@ source = "The preprint server or journal record"
 horizon = "leaf"
 depends_on = []
 status = "open"
+probability = { baseline = 0.5, moderate = 0.6, strong = 0.7, radical = 0.8, open = 0.85 }
+estimated_on = 2026-09-19
+rationale = "The tools will allow it within a few years; the number is whether John chooses to spend a season on it, and the pipeline leaves little room before 2028. Personal."
 notes = "Drafted as mid; set to leaf at step 7 (2026-09-08) because a preprint could be produced within five years, and sooner is the point of the leverage claim. The degree node drafted beside it was cut at the same time: the College project tracks it, and its link to the tree was the weakest in the branch."
