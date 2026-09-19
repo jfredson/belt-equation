@@ -66,7 +66,7 @@ const contact = tree.factors.find((f) => f.letter === 'C');
     </div>
     <p class="dim" style="font-size: 14px; margin-top: 12px;">
       {numbers.available
-        ? `Computed ${numbers.computed_on} from ${numbers.runs.toLocaleString()} play-throughs of the tree per scenario.`
+        ? `Computed ${numbers.computed_on} from ${numbers.runs.toLocaleString()} play-throughs of the tree per scenario.${numbers.review_status ? ' ' + numbers.review_status : ''}`
         : `The numbers wait on the first probabilities (roadmap step 9): ${numbers.reason}`}
       {' '}<a href="/method/">How the numbers are computed.</a>
     </p>

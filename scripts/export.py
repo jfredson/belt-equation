@@ -221,6 +221,12 @@ def export_tree(tree: dict) -> dict:
     }
 
 
+# Shown beside the headline until the outside-model review (roadmap step 27) is complete. Set to
+# an empty string when the rulings have landed, and the label disappears.
+NUMBERS_REVIEW_STATUS = ("First pass, 2026-09-19. Under review by outside models before publication "
+                         "(roadmap step 27); every number may move.")
+
+
 def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
     """The compute script's results when the tree is complete, or a plain reason when not."""
     missing = compute.missing_probabilities(tree)
@@ -239,6 +245,7 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
         "runs": runs,
         "seed": seed,
         "computed_on": dt.date.today().isoformat(),
+        "review_status": NUMBERS_REVIEW_STATUS,
         "tiers": {t["key"]: {k: results[k]["tiers"][t["key"]] for k in keys} for t in tree["tiers"]},
         "nodes": {n["id"]: {k: results[k]["nodes"][n["id"]] for k in keys} for n in tree["nodes"]},
     }
