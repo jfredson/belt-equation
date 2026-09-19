@@ -1,9 +1,15 @@
 {
   // Cloudflare Workers config: a static-assets deployment, the same pattern as
-  // hearthandvoid.com and sentient-horizons.com. Until website step 25 attaches
-  // beltequation.com, the site lives only at its workers.dev preview address.
+  // hearthandvoid.com and sentient-horizons.com. beltequation.com and www were attached
+  // as custom domains from the dashboard on 2026-09-19 (John's call, ahead of website
+  // step 25); the routes below keep the config in step with what is deployed so a
+  // deploy from a fresh machine does not drop them.
   "name": "beltequation",
   "compatibility_date": "2026-09-01",
+  "routes": [
+    { "pattern": "beltequation.com", "custom_domain": true },
+    { "pattern": "www.beltequation.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"

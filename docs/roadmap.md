@@ -62,7 +62,7 @@ Added 2026-09-08 when John reversed the deferral of a standalone site. The full 
 22. The tree visual on the site (waits on step 7; target 2026-10-19).
 23. The numbers and the methodology page (waits on steps 10 and 12; target 2026-10-26).
 24. The story page from TimeAssembler and the critique page (target 2026-11-09).
-25. Go live on the domain, to family and friends (waits on step 15; target 2026-11-16).
+25. Go live on the domain, to family and friends (waits on step 15; target 2026-11-16). DOMAIN ATTACHED EARLY, 2026-09-19: beltequation.com and www point at the site with the review-status line showing; the family-and-friends announcement (the rest of this step) still waits on steps 15 and 27.
 26. One-command publish, so the quarterly scan ends with the site updated (ongoing).
 
 ## Later, not now
