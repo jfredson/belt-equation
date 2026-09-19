@@ -23,8 +23,10 @@ requires = [
   "L-launch-price-below-200-dollars-per-kg",
   "B-long-term-off-earth-living-by-some-route",
   "B-closed-loop-life-support-year-off-earth",
-  "B-human-child-born-off-earth",
 ]
+# B-human-child-born-off-earth was a Tier 2 requirement until 2026-09-19, when John ruled it moved to
+# Tier 4 after the first run showed it capping every tier above Tier 2 (docs/runs/2026-09-19-first-run.md).
+# Tier 2's definition still names a child born off Earth; the node remains in the tree and the visual.
 
 [[system_tier]]
 key = "T3"
@@ -48,6 +50,7 @@ requires = [
   "T3",
   "D-constant-acceleration-drive-demonstrated",
   "R-binding-ban-on-debris-creating-anti-satellite-tests",
+  "B-human-child-born-off-earth",
 ]
 
 [[access_tier]]

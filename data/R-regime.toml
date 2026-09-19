@@ -6,47 +6,62 @@
 
 [[node]]
 id = "R-crewed-lunar-program-outlives-two-changes-of-president"
-name = "The US crewed lunar program keeps flying across two changes of president"
+name = "A crewed lunar program keeps flying across two changes of its government"
 factor = "R"
 kind = "world"
 description = """
 Every large space program since Apollo has been redrawn or cancelled by a new
 administration. A program that keeps its funding and keeps flying hardware across two
-changes of president has become an institution rather than a policy, which is what a
-multi-decade build needs."""
+changes of the government that pays for it has become an institution rather than a policy,
+which is what a multi-decade build needs. Any nation's or company's crewed lunar program
+counts, because Tier 1 is an outpost by anyone; the US program is the one to watch first."""
 resolution = """
-Counting from 2026, the US crewed lunar program receives its yearly funding from Congress
-and flies crewed hardware in each of two successive presidential administrations after the
-current one."""
-source = "US federal appropriations records and the agency's flight record"
+A crewed lunar program (a national program or a company's program with a national anchor
+customer) receives its yearly funding and flies crewed hardware in each of two successive
+governments after the one in office when it first flew crew. For the US program, counting
+from 2026, that means two successive presidential administrations after the current one.
+A program that is cancelled and later restarted, or a different nation's program that reaches
+the mark, resolves the node when it gets there."""
+source = "The funding nation's appropriations records and the program's flight record"
 horizon = "mid"
 depends_on = []
 status = "open"
-probability = { baseline = 0.6, moderate = 0.6, strong = 0.6, radical = 0.6, open = 0.6 }
+probability = { baseline = 0.75, moderate = 0.8, strong = 0.85, radical = 0.9, open = 0.92 }
 estimated_on = 2026-09-19
-rationale = "Resolves yes or no by about 2037 whatever the window, so the number is flat. No program since Apollo has done it, but this one has hardware flying, contractors in most states, and a rival to point at."
+rationale = "With any nation's program counting and a restart still able to resolve it, the question is whether some crewed lunar program anywhere becomes an institution over forty-five years; two rival national programs and a flying commercial lander make that likely, and the longer windows add more attempts. Proposed with the rewording, 2026-09-19."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "US program only; a single cut before two administrations had passed resolved the node no for good", new = "any nation's or company's crewed lunar program; a cancelled program can be restarted and a different program can reach the mark", why = "First run (docs/runs/2026-09-19-first-run.md): as a Tier 1 requirement and a hard dependency of lunar material at scale, a permanent no from one US budget cut foreclosed an outpost by anyone. John ruled 2026-09-19 to reword to durable, nation-agnostic form." },
+  { date = 2026-09-19, field = "probability", old = "0.60 flat across scenarios", new = "0.75 / 0.80 / 0.85 / 0.90 / 0.92", why = "Re-estimated against the reworded criterion, which can resolve later and by more programs; no longer flat because the longer windows now add attempts." },
+]
 
 [[node]]
 id = "R-space-funding-holds-through-a-recession"
-name = "Government and private space spending both hold through a recession"
+name = "Space spending recovers within three years of a recession"
 factor = "R"
 kind = "world"
 description = """
-Downturns are when long builds get cut. The test is whether, through a year of recession,
-the government human-spaceflight budget and the largest private launch company's flight
-rate both hold rather than collapse. It resolves the first time a recession arrives."""
+Downturns are when long builds get cut. The test is whether, after a recession, the
+government human-spaceflight budget and the largest private launch company's flight rate
+come back to where they were rather than being cut and left there. A dip is allowed; what
+the tree needs is that the field keeps its funding across the business cycle. The node is
+tested at every recession and resolves yes the first time the field comes through one."""
 resolution = """
-In a calendar year that the National Bureau of Economic Research dates as containing a US
-recession, the US human-spaceflight appropriation stays within ten percent of the prior year
-in real terms and the largest US launch provider's orbital launch count does not fall by more
-than ten percent."""
+Within three calendar years after the end of a US recession as dated by the National Bureau
+of Economic Research, the US human-spaceflight appropriation is back within ten percent of
+its pre-recession level in real terms and the largest US launch provider's orbital launch
+count is back within ten percent of its pre-recession count. Resolves yes at the first
+recession that passes the test; a recession that fails it leaves the node open for the next."""
 source = "NBER recession dates, federal appropriations records, public launch logs"
 horizon = "mid"
 depends_on = []
 status = "open"
-probability = { baseline = 0.55, moderate = 0.55, strong = 0.55, radical = 0.55, open = 0.55 }
+probability = { baseline = 0.8, moderate = 0.82, strong = 0.85, radical = 0.9, open = 0.9 }
 estimated_on = 2026-09-19
-rationale = "Resolves at the first recession, so the number is flat. The private flight rate probably holds because its customers are constellations; the ten-percent real-terms budget test is what it fails on if it fails."
+rationale = "The 2008 and 2020 downturns both saw space budgets and launch counts recover within three years, and the private flight rate is carried by constellation customers; the residual is a downturn deep enough to restructure the field. Rises slowly because every added recession is another chance to pass. Proposed with the rewording, 2026-09-19."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "budget and launch count must not fall more than ten percent during the recession year itself; a fail was permanent", new = "budget and launch count are back within ten percent within three years after the recession; a fail leaves the node open for the next recession", why = "First run (docs/runs/2026-09-19-first-run.md): as a hard dependency of a hundred people working off Earth, a permanent no from one bad budget year foreclosed that node in every later decade. John ruled 2026-09-19 to reword to durable form." },
+  { date = 2026-09-19, field = "probability", old = "0.55 flat across scenarios", new = "0.80 / 0.82 / 0.85 / 0.90 / 0.90", why = "Re-estimated against the reworded criterion; recovery within three years is a much easier test than no dip at all, and later recessions add chances." },
+]
 
 [[node]]
 id = "R-binding-ban-on-debris-creating-anti-satellite-tests"

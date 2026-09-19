@@ -159,6 +159,8 @@ Proposed by Claude with a confidence level and the strongest alternative for eac
 
 Recorded so the methodology document (roadmap step 12) and the annual review can revisit them.
 
+- **Correlation is one world draw.** Correlation between nodes is carried by a single per-run world draw (added to scripts/compute.py 2026-09-19 after the first run, on John's ruling): one normal number per play-through, spread 1.0 on the log-odds scale, shifts every open world node's probability together. It captures "a good world lifts everything" and nothing finer (no factor-level or pairwise correlation). The spread is a methodology parameter (roadmap step 12); `--world-spread 0` gives independent rolls, and `run` prints both.
+
 - **Dependencies are hard.** A node cannot resolve unless its parents did. In reality a parent usually makes a child more likely rather than possible; full conditional tables would fix this and are far too heavy for a tree people argue about by hand.
 - **Nodes are independent given their parents.** A common cause that drags many nodes down at once, such as a general funding collapse, is only captured if the tree names it as a shared parent. That is the regime factor's job, and the brainstorm should wire its nodes as parents widely enough to carry that weight.
 - **Time enters only through the five scenarios.** There is no ordering of events within a window. If the annual review finds that "which comes first" matters, the median-year alternative under decision 3 is the path.

@@ -6,6 +6,7 @@ Plain Python, standard library only. Run from anywhere:
     python3 scripts/compute.py validate            check the tree against docs/node-schema.md
     python3 scripts/compute.py shape               print the tree's shape (counts, tiers, leaves)
     python3 scripts/compute.py run [--runs N]      simulate the tree once per longevity scenario
+    python3 scripts/compute.py run --world-spread 0   the same with nodes rolled independently
     python3 scripts/compute.py compare [--runs N]  the decision comparison, one choice group at a time
     python3 scripts/compute.py --data DIR ...      use a different data folder (for tests)
 
@@ -17,6 +18,13 @@ choice group is set to its current-plan option. A tier is reached when everythin
 came true. The number reported for a tier is the fraction of play-throughs that reached it.
 Contact Clause nodes are reported in their own section and never feed a tier.
 
+Nodes are not rolled independently. Each play-through first draws one number for how favourable
+the world turned out (the "world draw", added 2026-09-19 after the first run): a normal draw with
+mean zero and a spread set by --world-spread, applied to every open world node's probability on
+the log-odds scale, so a good world lifts every node together and a bad one sinks them together.
+With the default spread of 1.0, one standard deviation up turns 0.50 into 0.73 and 0.20 into 0.40.
+A spread of 0 restores independent rolls. "run" prints both, so the gap between them is visible.
+
 "compare" repeats "run" for each option in each choice group, one group at a time, and reports
 how far each option moves the headline (A2) from the current plan.
 
@@ -27,6 +35,7 @@ scenario, but "validate" and "shape" work on a tree with no numbers at all.
 from __future__ import annotations
 
 import argparse
+import math
 import random
 import sys
 import tomllib
@@ -356,8 +365,16 @@ def missing_probabilities(tree: dict) -> list[str]:
     return out
 
 
+def shifted(p: float, w: float) -> float:
+    """Move a probability by w on the log-odds scale. 0 and 1 stay where they are."""
+    if p <= 0.0 or p >= 1.0:
+        return p
+    z = math.log(p / (1.0 - p)) + w
+    return 1.0 / (1.0 + math.exp(-z))
+
+
 def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
-             forced: dict[str, bool] | None = None) -> dict:
+             forced: dict[str, bool] | None = None, world_spread: float = 1.0) -> dict:
     """Play the tree out `runs` times for one scenario. Returns yes-rates per node and per tier.
 
     `forced` maps choice-node ids to True/False and overrides the current plan; any choice node
@@ -371,6 +388,7 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
 
     for _ in range(runs):
         state: dict[str, bool] = {}
+        w = rng.gauss(0.0, world_spread) if world_spread > 0 else 0.0
         for n in order:
             nid = n["id"]
             status = n["status"]
@@ -384,7 +402,7 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
                 deps_ok = all(state.get(d, False) for d in n.get("depends_on", []) or [])
                 any_ok = all(any(state.get(d, False) for d in g)
                              for g in n.get("depends_on_any", []) or [])
-                value = deps_ok and any_ok and rng.random() < n["probability"][scenario_key]
+                value = deps_ok and any_ok and rng.random() < shifted(n["probability"][scenario_key], w)
             state[nid] = value
             if value:
                 node_yes[nid] += 1
@@ -400,7 +418,7 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
     }
 
 
-def report_run(tree: dict, runs: int, seed: int) -> str:
+def report_run(tree: dict, runs: int, seed: int, world_spread: float = 1.0) -> str:
     missing = missing_probabilities(tree)
     if missing:
         raise TreeError(
@@ -409,13 +427,21 @@ def report_run(tree: dict, runs: int, seed: int) -> str:
         )
     rng = random.Random(seed)
     keys = [s["key"] for s in tree["scenarios"]]
-    results = {k: simulate(tree, k, runs, rng) for k in keys}
-    lines = [f"Runs per scenario: {runs} (seed {seed})", ""]
+    results = {k: simulate(tree, k, runs, rng, world_spread=world_spread) for k in keys}
+    lines = [f"Runs per scenario: {runs} (seed {seed}), world spread {world_spread:g}"
+             + (" (nodes rolled independently)" if world_spread <= 0 else " on the log-odds scale"), ""]
     lines.append("Tier reached, by scenario:")
     lines.append("  tier  " + "".join(f"{k:>10}" for k in keys))
     for t in tree["tiers"]:
         mark = "  <- headline" if t["key"] == HEADLINE_TIER else ""
         lines.append(f"  {t['key']:<5} " + "".join(f"{results[k]['tiers'][t['key']]:>10.3f}" for k in keys) + mark)
+    if world_spread > 0:
+        rng0 = random.Random(seed)
+        indep = {k: simulate(tree, k, runs, rng0, world_spread=0.0) for k in keys}
+        lines.append("")
+        lines.append("The same tiers with nodes rolled independently (world spread 0), for comparison:")
+        for t in tree["tiers"]:
+            lines.append(f"  {t['key']:<5} " + "".join(f"{indep[k]['tiers'][t['key']]:>10.3f}" for k in keys))
     contact = [n for n in tree["nodes"] if n["factor"] == "C"]
     if contact:
         lines.append("")
@@ -430,7 +456,7 @@ def report_run(tree: dict, runs: int, seed: int) -> str:
     return "\n".join(lines)
 
 
-def report_compare(tree: dict, runs: int, seed: int) -> str:
+def report_compare(tree: dict, runs: int, seed: int, world_spread: float = 1.0) -> str:
     missing = missing_probabilities(tree)
     if missing:
         raise TreeError("cannot compare decisions until every open world node has probabilities")
@@ -441,7 +467,7 @@ def report_compare(tree: dict, runs: int, seed: int) -> str:
     if not groups:
         return "No open choice points in the tree; nothing to compare."
     keys = [s["key"] for s in tree["scenarios"]]
-    lines = [f"Decision comparison: headline is {HEADLINE_TIER}, runs per case {runs} (seed {seed})", ""]
+    lines = [f"Decision comparison: headline is {HEADLINE_TIER}, runs per case {runs} (seed {seed}), world spread {world_spread:g}", ""]
     for g, options in groups.items():
         lines.append(f"Choice group '{g}':")
         for opt in options:
@@ -449,7 +475,7 @@ def report_compare(tree: dict, runs: int, seed: int) -> str:
             forced = {o["id"]: (o["id"] == opt["id"]) for o in options}
             row = []
             for k in keys:
-                row.append(simulate(tree, k, runs, rng, forced)["tiers"][HEADLINE_TIER])
+                row.append(simulate(tree, k, runs, rng, forced, world_spread)["tiers"][HEADLINE_TIER])
             tag = " (current plan)" if opt.get("current_plan") else ""
             lines.append(f"  {opt['name']}{tag}")
             lines.append("      " + "".join(f"{k}: {v:.3f}   " for k, v in zip(keys, row)))
@@ -467,6 +493,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--data", type=Path, default=Path(__file__).resolve().parent.parent / "data")
     parser.add_argument("--runs", type=int, default=20000)
     parser.add_argument("--seed", type=int, default=2026)
+    parser.add_argument("--world-spread", type=float, default=1.0,
+                        help="standard deviation of the per-run world draw on the log-odds scale; 0 = independent rolls")
     args = parser.parse_args(argv)
 
     try:
@@ -488,10 +516,10 @@ def main(argv: list[str] | None = None) -> int:
             print(describe_shape(tree))
             return 0
         if args.command == "run":
-            print(report_run(tree, args.runs, args.seed))
+            print(report_run(tree, args.runs, args.seed, args.world_spread))
             return 0
         if args.command == "compare":
-            print(report_compare(tree, args.runs, args.seed))
+            print(report_compare(tree, args.runs, args.seed, args.world_spread))
             return 0
     except TreeError as e:
         print(str(e))
