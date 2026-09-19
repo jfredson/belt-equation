@@ -42,7 +42,7 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 
 ## Phase 4. First presentable version (target 2026-11-16)
 
-13. Produce one visual of the tree with current numbers, colored by factor. A static image is fine.
+13. Produce one visual of the tree with current numbers, colored by factor. A static image is fine. DONE 2026-09-19: scripts/visual.py, output docs/visual/<date>-tree.svg; regenerate after any data change.
 14. Draft the introductory essay for Sentient Horizons: the question, the equation, the tiers, the headline numbers under each scenario, the three or four nodes that dominate the result, and an explicit invitation to name a missing node or move a probability. Include the cross-reference to the Calibration Problem manuscript that definitions.md calls for: whether a machine mind counts as a mind of another perspective is that manuscript's question, and the Contact Clause is where the two projects meet. Voice Calibration is the final gate, per the Sentient Horizons protocols.
 15. Draft the family-and-friends version: shorter, conversational, the same numbers, written to start a dinner-table argument rather than to be read by strangers.
 16. Decide, with John, when and whether to post beyond family and friends.
