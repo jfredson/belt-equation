@@ -100,11 +100,11 @@ const contact = factorByLetter('C');
   <section class="section who" id="who">
     <div>
       <p class="kicker">A Belter?</p>
-      <p>In the TV series <em>The Expanse</em>, Belters are the people who live and work in the asteroid belt, far from Earth. Stubborn, underestimated, at home where nobody thought people could be. I want to be one of them. This site works out, in public, how likely that is.</p>
+      <p>In the TV series <em>The Expanse</em>, Belters are the people who live and work in the asteroid belt, far from Earth. Underestimated, and at home where nobody thought people could be. I want to be one of them. This site works out, in public, how likely that is.</p>
     </div>
     <div>
       <p class="kicker">Who is asking</p>
-      <p>I'm John. I'm 40, I'm training to teach survival in the Air Force, and I'd like to leave the planet before I die. This is a scoreboard on my own long shot. Every year I re-check every link below, publish what changed, and let anyone argue with a number.</p>
+      <p>I'm John, 40, training to teach survival in the military. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the tree behind this page and let the math tell me which choices in the next few years move the number. Once a year I re-check every link and publish what changed. If you think a number is wrong, <a href="/disagree/">there's a page for that</a>.</p>
     </div>
   </section>
 
@@ -115,7 +115,14 @@ const contact = factorByLetter('C');
         <h2 class="chain-title">Seven things all have to go right.</h2>
         <p class="chain-lede">Each link below is a real thing that has to happen. Any broken link breaks the chain. That is the whole equation: multiply seven maybes together and you get a small number, even when no single link looks hopeless.</p>
       </div>
-      <p class="chain-year"><span data-bind="yearLine">Odds shown {current.when}</span><br />change the dial above to see them move</p>
+      <div class="chain-dial">
+        <p class="chain-year" data-bind="yearLine">Odds shown {current.when}</p>
+        <div class="dial-row" role="group" aria-label="Choose how long I live">
+          {scenarios.map((s) => (
+            <button type="button" class={`dial-btn ${s.key === current.key ? 'on' : ''}`} data-scenario={s.key} aria-pressed={s.key === current.key ? 'true' : 'false'}>{s.label}</button>
+          ))}
+        </div>
+      </div>
     </div>
 
     <div class="links">

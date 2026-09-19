@@ -218,7 +218,10 @@ h3 { font-size: 18px; font-weight: 600; margin: 0 0 6px; color: var(--text); }
 .chain-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 24px; }
 .chain-title { font-family: var(--sans); font-size: clamp(28px, 3.4vw, 42px); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 12px; }
 .chain-lede { margin: 0; font-size: 17px; line-height: 1.5; color: var(--muted); max-width: 720px; }
-.chain-year { margin: 0; font-family: var(--mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); text-align: right; white-space: nowrap; }
+.chain-year { margin: 0 0 8px; font-family: var(--mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); text-align: right; white-space: nowrap; }
+.chain-dial { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; }
+.chain-dial .dial-row { flex-wrap: nowrap; }
+.chain-dial .dial-btn { flex: 0 0 auto; height: 38px; font-size: 12.5px; padding: 0 12px; }
 .links { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; }
 .link { display: flex; flex-direction: column; gap: 10px; padding: 16px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); min-height: 260px; transition: border-color 0.15s ease; }
 .link:hover { border-color: var(--accent); color: inherit; }
@@ -256,6 +259,8 @@ h3 { font-size: 18px; font-weight: 600; margin: 0 0 6px; color: var(--text); }
   .home-hero { grid-template-columns: 1fr; gap: 28px; }
   .chain-head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .chain-year { text-align: left; }
+  .chain-dial { align-items: flex-start; }
+  .chain-dial .dial-row { flex-wrap: wrap; }
   .moves { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
