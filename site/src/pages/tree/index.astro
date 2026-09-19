@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import { tree } from '../../lib/tree';
+
+const systemTiers = tree.tiers.filter((t) => t.group === 'system');
+const accessTiers = tree.tiers.filter((t) => t.group === 'access');
+---
+
+<Base title="The tree — The Belt Equation" description="Every breakthrough the Belt Equation tracks, one record each, grouped by factor, with the tiers that define what 'the Belt exists' and 'Belter' mean.">
+  <section class="hero">
+    <p class="eyebrow">The tree</p>
+    <h1>{tree.counts.nodes} breakthroughs, each with a test for whether it has happened</h1>
+    <p class="lede">
+      A node is one breakthrough, event, or decision the project tracks. It has a name anyone can read, a
+      criterion that says exactly what would count as it having happened, and a place in the tree. A node
+      without a resolution criterion is not a node.
+    </p>
+    <p class="dim" style="font-size: 14px;">
+      {tree.counts.leaves} of the {tree.counts.nodes} are leaves that could resolve within five years.
+      {tree.counts.with_probability} have probabilities so far; {tree.counts.resolved} have already resolved;
+      {tree.counts.long_shots} are long shots kept on the board on purpose; {tree.counts.choice_points} are choice points, things John decides rather than things that happen to the world.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="shead"><h2>By factor</h2><span>the eight terms of the equation, and the clause beside it</span></div>
+    <div class="fgrid">
+      {tree.factors.map((f) => (
+        <a class={`fcard ${f.letter === 'C' ? 'contact' : ''}`} href={f.path}>
+          <span class="fletter">{f.letter}</span>
+          <h3>{f.name}</h3>
+          <p>{f.meaning}</p>
+          <p class="fcount">{f.node_count} nodes · {f.with_probability} with probabilities{f.resolved ? ` · ${f.resolved} resolved` : ''}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shead"><h2>What "the Belt exists" means</h2><span>the system tiers, each a set of nodes that must all resolve</span></div>
+    <div class="grid-2">
+      {systemTiers.map((t) => (
+        <div class="rail">
+          <h4>{t.key}, {t.name}</h4>
+          <p style="margin: 0 0 10px; font-size: 14.5px; color: var(--text-soft);">{t.definition}</p>
+          <ul>
+            {t.requires.map((r) => (
+              <li>{r.kind === 'tier'
+                ? <span class="dim">everything in {r.key}, {r.name}</span>
+                : <a href={`/tree/${r.factor_slug}/${r.id}/`}>{r.name}</a>}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shead"><h2>What "Belter" means</h2><span>the access tiers; {tree.headline_tier} is the headline number</span></div>
+    <div class="grid-2">
+      {accessTiers.map((t) => (
+        <div class="rail">
+          <h4>{t.key}, {t.name}{t.key === tree.headline_tier ? ' (the headline)' : ''}</h4>
+          <p style="margin: 0 0 10px; font-size: 14.5px; color: var(--text-soft);">{t.definition}</p>
+          <ul>
+            {t.requires.map((r) => (
+              <li>{r.kind === 'tier'
+                ? <span class="dim">everything in {r.key}, {r.name}</span>
+                : <a href={`/tree/${r.factor_slug}/${r.id}/`}>{r.name}</a>}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

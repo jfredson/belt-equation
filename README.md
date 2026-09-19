@@ -27,7 +27,8 @@ The factors are a way of talking about the tree, not a literal multiplication of
 
 - `docs/` holds the plans and definitions. Start with `docs/definitions.md` (what the terms mean, and the decisions behind them) and `docs/roadmap.md` (the work plan). `docs/2026-09-08-kickoff.md` is the original outline, kept as the record of where the project started.
 - `data/` holds the tree itself, one record per breakthrough. Empty until the first node brainstorm.
-- `scripts/` holds the code that computes the headline numbers from the tree. Empty until the tree exists.
+- `scripts/` holds the code that computes the headline numbers from the tree (`compute.py`) and exports it for the website (`export.py`).
+- `site/` holds the website (beltequation.com, once it goes live): an Astro static site that reads the exported tree at build time. See `site/README.md` and `docs/website-plan.md`.
 - `CHANGELOG.md` records every revision to the tree or the definitions, with absolute dates.
 
 ## Status
