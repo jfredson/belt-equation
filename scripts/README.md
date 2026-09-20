@@ -27,14 +27,18 @@ tree in between. A snapshot is never rewritten: `--snapshot` refuses to overwrit
 exists, and a second run on the same day takes a label of its own. `--snapshot-date`,
 `--snapshot-commit` and `--snapshot-note` exist for backfilling a run that already happened.
 
-Two backfilled snapshots sit in the folder, both marked `pre-review` because the outside-model
-review (roadmap step 27) has not been ruled in full:
+Two backfilled snapshots sit in the folder, both marked `pre-review` because they were taken before
+the outside-model review (roadmap step 27) was ruled in full; every snapshot from `2026-09-20-step-27`
+on is marked `reviewed`:
 
 - `2026-09-19-first-run`, the first run of the tree, replayed from the tree as it stood at
   commit `af01ac5` with nodes rolled independently, because the per-run world draw did not exist
   yet. Every tier figure it produces matches the ones written down in docs/runs/2026-09-19-first-run.md.
-- `2026-09-19-second-run`, the run after John's four rulings of the same day. These are the
-  numbers the site shows.
+- `2026-09-19-second-run`, the run after John's four rulings of the same day.
+- `2026-09-20-step-27`, the run after the outside-model review's 105 rulings landed (fifteen
+  numbers moved, nine nodes added, forty-one criteria tightened). The first snapshot marked
+  `reviewed`, the first to carry the second number (`second.a2_at_tier1`, a rotation at a
+  station or lunar base, shown beside the headline under item 95), and the numbers the site shows.
 
 ## What a step is worth, and what an entry was worth
 
