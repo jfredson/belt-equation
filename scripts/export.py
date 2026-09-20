@@ -4,7 +4,8 @@
 Plain Python, standard library only. Run from anywhere:
 
     python3 scripts/export.py                  write site/src/data/tree.json, changelog.json,
-                                               snapshots.json, ledger.json, scans.json
+                                               snapshots.json, ledger.json, scans.json, story.json,
+                                               and the tree picture at site/public/tree.svg
     python3 scripts/export.py --check          validate and print the counts, write nothing
     python3 scripts/export.py --out DIR        write the JSON somewhere else
     python3 scripts/export.py --data DIR       read a different data folder (for tests)
@@ -246,6 +247,88 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
         "a2_at_tier1": {k: results[k]["joint"][compute.SECOND_NUMBER_KEY] for k in keys},
         "a2_at_tier1_nodes": list(compute.SECOND_NUMBER_NODES),
     }
+
+
+# ------------------------------------------------------------ the story: worklog and roadmap
+
+
+STORY_TYPES = {"decision": "Decision", "progress": "Progress", "session-summary": "Session",
+               "idea": "Idea"}
+STORY_STATUS = {"done": "done", "in_progress": "in progress", "todo": "to do", "waiting": "waiting"}
+
+
+def export_story(folder: Path) -> dict:
+    """The project's own story, from TimeAssembler, as the story page shows it (website step 24).
+
+    TimeAssembler is where the project's day-by-day record lives: a worklog of decisions,
+    progress and session summaries, and the roadmap as an ordered task list. The website plan
+    (decision 5) had the export fetch both at build time with a key kept on the Mac; the build
+    moved to GitHub Actions on 2026-09-19, so instead a snapshot of each is committed under
+    data/story/ (worklog.json, roadmap.json) and refreshed by whichever session logs to
+    TimeAssembler, using its tools, until TimeAssembler has a public read-only endpoint for one
+    project's story (the alternative the plan named). The page shows the date the snapshot was
+    taken. Either file may be absent, in which case its section is left off the page."""
+    out: dict = {"worklog": None, "roadmap": None}
+    wl = folder / "worklog.json"
+    if wl.exists():
+        data = json.loads(wl.read_text())
+        entries = []
+        for e in data.get("entries", []):
+            entries.append({
+                "date": e["date"],
+                "type": e["type"],
+                "type_label": STORY_TYPES.get(e["type"], e["type"]),
+                "decided_by": e.get("decided_by"),
+                "title": e["title"],
+            })
+        days: dict[str, list] = {}
+        for e in entries:
+            days.setdefault(e["date"], []).append(e)
+        out["worklog"] = {
+            "fetched_on": data.get("fetched_on"),
+            "source": data.get("source"),
+            "count": len(entries),
+            "by_type": {t: sum(1 for e in entries if e["type"] == t) for t in STORY_TYPES},
+            "days": [{"date": d, "entries": days[d]} for d in sorted(days, reverse=True)],
+        }
+    rm = folder / "roadmap.json"
+    if rm.exists():
+        data = json.loads(rm.read_text())
+        steps = sorted(data.get("steps", []), key=lambda s: s["order"])
+        for s_ in steps:
+            s_["status_label"] = STORY_STATUS.get(s_["status"], s_["status"])
+        done = sum(1 for s_ in steps if s_["status"] == "done")
+        out["roadmap"] = {
+            "fetched_on": data.get("fetched_on"),
+            "source": data.get("source"),
+            "count": len(steps),
+            "done": done,
+            "up_next": [s_ for s_ in steps if s_["status"] != "done"][:6],
+            "steps": steps,
+        }
+    return out
+
+
+# ------------------------------------------------------------ the tree picture
+
+
+def write_tree_picture(tree: dict, numbers: dict, path: Path) -> None:
+    """The whole tree as one SVG at site/public/tree.svg (website step 22, 2026-09-20).
+
+    Drawn by scripts/visual.py from the same tree and the same run the site's numbers come from,
+    so the picture on the site can never disagree with the pages beside it. Written on every
+    export rather than committed, like the JSON; docs/visual/ keeps the dated copies that
+    roadmap step 13 asks for. Skipped, with a line saying so, when the tree has no numbers yet."""
+    if not numbers.get("available"):
+        print(f"No tree picture written to {path}: {numbers.get('reason')}")
+        return
+    import visual  # beside this file; imported here so --check never needs it
+    keys = [s["key"] for s in tree["scenarios"]]
+    results = {k: {"tiers": {t: numbers["tiers"][t][k] for t in numbers["tiers"]}} for k in keys}
+    svg = visual.render(tree, results, numbers["runs"], numbers["computed_on"])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(svg)
+    print(f"Tree picture written to {path}: {len(tree['nodes'])} nodes.")
 
 
 # ------------------------------------------------------------ the snapshots
@@ -951,6 +1034,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--attribution", type=Path, default=ROOT / "data" / "attribution")
     parser.add_argument("--scans", type=Path, default=ROOT / "data" / "scans")
     parser.add_argument("--out", type=Path, default=ROOT / "site" / "src" / "data")
+    parser.add_argument("--story", type=Path, default=ROOT / "data" / "story",
+                        help="the committed TimeAssembler snapshots the story page reads (website step 24)")
+    parser.add_argument("--svg", type=Path, default=ROOT / "site" / "public" / "tree.svg",
+                        help="where the tree picture is written (website step 22); the site serves it at /tree.svg")
     parser.add_argument("--check", action="store_true", help="validate and count, write nothing")
     args = parser.parse_args(argv)
 
@@ -982,6 +1069,7 @@ def main(argv: list[str] | None = None) -> int:
                 print("  -", p)
             return 1
         ledger = export_ledger(entries, tree, all_snapshots, load_attribution(args.attribution))
+        story = export_story(args.story)
     except (compute.TreeError, OSError) as e:
         print(f"Nothing exported: {e}")
         return 1
@@ -1007,7 +1095,9 @@ def main(argv: list[str] | None = None) -> int:
     (args.out / "snapshots.json").write_text(json.dumps(snapshots, indent=2, ensure_ascii=False) + "\n")
     (args.out / "ledger.json").write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")
     (args.out / "scans.json").write_text(json.dumps(scans, indent=2, ensure_ascii=False) + "\n")
+    (args.out / "story.json").write_text(json.dumps(story, indent=2, ensure_ascii=False) + "\n")
     print(f"Exported {summary} to {args.out}.")
+    write_tree_picture(tree, exported["numbers"], args.svg)
     if not exported["numbers"]["available"]:
         print("Headline numbers not exported: " + exported["numbers"]["reason"])
     return 0

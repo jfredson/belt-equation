@@ -5,6 +5,7 @@ import treeJson from '../data/tree.json';
 import changelogJson from '../data/changelog.json';
 import snapshotsJson from '../data/snapshots.json';
 import ledgerJson from '../data/ledger.json';
+import storyJson from '../data/story.json';
 
 export type Ref = { id: string; name: string; factor: string; factor_slug: string };
 
@@ -316,6 +317,33 @@ export type Ledger = {
 
 export const snapshots = snapshotsJson as unknown as Snapshots;
 export const ledger = ledgerJson as unknown as Ledger;
+
+// ---------------------------------------------------------------- the story: worklog and roadmap
+// Written by scripts/export.py from the TimeAssembler snapshots under data/story/ (website
+// step 24, 2026-09-20). Either half may be null when its snapshot file is absent.
+export type WorklogEntry = {
+  date: string;
+  type: 'decision' | 'progress' | 'session-summary' | 'idea' | string;
+  type_label: string;
+  decided_by: 'john' | 'mixed' | 'agent' | null;
+  title: string;
+};
+export type RoadmapStep = { order: number; status: string; status_label: string; phase: string | null; title: string };
+export type Story = {
+  worklog: {
+    fetched_on: string | null; source: string | null; count: number;
+    by_type: Record<string, number>;
+    days: { date: string; entries: WorklogEntry[] }[];
+  } | null;
+  roadmap: {
+    fetched_on: string | null; source: string | null; count: number; done: number;
+    up_next: RoadmapStep[]; steps: RoadmapStep[];
+  } | null;
+};
+export const story = storyJson as unknown as Story;
+export const decidedByLabel: Record<string, string> = {
+  john: 'John ruled', mixed: 'Claude proposed, John accepted', agent: "Claude's own call",
+};
 
 /** The scenario the year dial starts on, and the one every ranking is ordered by. */
 export const DEFAULT_SCENARIO = 'baseline';

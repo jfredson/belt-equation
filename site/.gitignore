@@ -8,6 +8,8 @@ node_modules/
 .wrangler/
 # the JSON the export script writes; rebuilt from ../data on every build
 src/data/*.json
+# the tree picture the export script draws (website step 22); rebuilt the same way
+public/tree.svg
 # logs and macOS
 npm-debug.log*
 .DS_Store

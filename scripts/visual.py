@@ -51,17 +51,14 @@ def wrap(text: str, width: int) -> list[str]:
     return lines
 
 
-def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--out", type=Path)
-    ap.add_argument("--runs", type=int, default=20000)
-    a = ap.parse_args(argv)
-    today = datetime.date.today().isoformat()
-    out = a.out or ROOT / "docs" / "visual" / f"{today}-tree.svg"
-    tree = compute.load_tree(ROOT / "data")
-    problems = compute.validate(tree)
-    if problems:
-        print("tree fails the schema; nothing drawn:\n  " + "\n  ".join(problems)); return 1
+def render(tree: dict, results: dict, runs: int, today: str) -> str:
+    """The whole tree as one SVG, as a string.
+
+    `results` maps each scenario key to a dict with a "tiers" table (tier key to rate), which is
+    what compute.simulate() returns and also what the export script already holds after its own
+    run; passing it in means the picture and the site's numbers come from the same play-throughs.
+    Split out of main() on 2026-09-20 (website step 22) so scripts/export.py can write the same
+    picture to site/public/tree.svg on every build."""
     nodes = tree["nodes"]
     keys = [s["key"] for s in tree["scenarios"]]
 
@@ -87,9 +84,7 @@ def main(argv=None) -> int:
     width = MARGIN_L * 2 + 3 * W + 2 * GAPX + 60  # room for the loop-back edges on the right
     height = max_rows + 120
 
-    # headline numbers from a fresh run
-    rng = random.Random(2026)
-    res = {k: compute.simulate(tree, k, a.runs, rng) for k in keys}
+    res = results
     head = tree["tiers"]
     a2 = next(t for t in head if t["key"] == compute.HEADLINE_TIER)
     t3 = next(t for t in head if t["key"] == "T3")
@@ -109,7 +104,7 @@ def main(argv=None) -> int:
     s.append(f'<rect x="{MARGIN_L}" y="102" width="{width - 2*MARGIN_L}" height="76" rx="6" fill="#f0efec"/>')
     s.append(f'<text x="{MARGIN_L+14}" y="126" class="t" font-size="14" font-weight="700">Headline, {a2["key"]} ({a2["name"].lower()}):  <tspan class="num" font-weight="400">{line1}</tspan></text>')
     s.append(f'<text x="{MARGIN_L+14}" y="148" class="t" font-size="14" font-weight="700">{t3["key"]} ({t3["name"]}, the bar for the Belt existing):  <tspan class="num" font-weight="400">{line2}</tspan></text>')
-    s.append(f'<text x="{MARGIN_L+14}" y="168" class="m small">Scenarios are the year the window closes: baseline 2071, moderate 2080, strong 2095, radical 2136, open = no deadline. Computed from {a.runs:,} play-throughs per scenario with the world draw at its default spread.</text>')
+    s.append(f'<text x="{MARGIN_L+14}" y="168" class="m small">Scenarios are the year the window closes: baseline 2071, moderate 2080, strong 2095, radical 2136, open = no deadline. Computed from {runs:,} play-throughs per scenario with the world draw at its default spread.</text>')
     # column headers
     for h in HORIZONS:
         s.append(f'<text x="{col_x[h]}" y="{TOP-12}" class="d" font-size="13" font-weight="700">{HLABEL[h]}</text>')
@@ -162,9 +157,28 @@ def main(argv=None) -> int:
             tail = "no number yet"
         s.append(f'<text x="{x+STRIPE+26}" y="{y+H-10}" class="d num">{escape(tail)}</text>')
     s.append('</svg>')
+    return "\n".join(s)
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--out", type=Path)
+    ap.add_argument("--runs", type=int, default=20000)
+    a = ap.parse_args(argv)
+    today = datetime.date.today().isoformat()
+    out = a.out or ROOT / "docs" / "visual" / f"{today}-tree.svg"
+    tree = compute.load_tree(ROOT / "data")
+    problems = compute.validate(tree)
+    if problems:
+        print("tree fails the schema; nothing drawn:\n  " + "\n  ".join(problems)); return 1
+    keys = [s["key"] for s in tree["scenarios"]]
+    rng = random.Random(2026)
+    results = {k: compute.simulate(tree, k, a.runs, rng) for k in keys}
+    svg = render(tree, results, a.runs, today)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text("\n".join(s))
-    print(f"wrote {out.relative_to(ROOT)}: {len(nodes)} nodes, {width}x{height}")
+    out.write_text(svg)
+    shown = out.relative_to(ROOT) if out.is_relative_to(ROOT) else out
+    print(f"wrote {shown}: {len(tree['nodes'])} nodes")
     return 0
 
 
