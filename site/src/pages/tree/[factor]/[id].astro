@@ -20,6 +20,7 @@ const disagree = issueUrl(
   `Disagree: ${node.name}`,
   `Node: ${node.id} (${Astro.site}${node.path.slice(1)})\n\nWhat I would change, and why:\n\n`,
 );
+const links = node.resolved_links ?? [];
 const description = node.description.length > 200 ? node.description.slice(0, 197) + '…' : node.description;
 ---
 
@@ -47,9 +48,9 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
         <div class="callout">
           <h3>{statusLabel[node.status]}{node.resolved_on ? `, ${node.resolved_on}` : ''}</h3>
           <p>{node.resolved_by ?? 'The record that settled it is not yet noted.'}</p>
-          {node.resolved_links.length > 0 && (
-            <p class="sources">Sources: {node.resolved_links.map((u, i) => (
-              <><a href={u} rel="noopener">{new URL(u).hostname.replace(/^www\./, '')}</a>{i < node.resolved_links.length - 1 ? ', ' : ''}</>
+          {links.length > 0 && (
+            <p class="sources">Sources: {links.map((u, i) => (
+              <><a href={u} rel="noopener">{new URL(u).hostname.replace(/^www\./, '')}</a>{i < links.length - 1 ? ', ' : ''}</>
             ))}</p>
           )}
         </div>
