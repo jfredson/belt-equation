@@ -15,3 +15,4 @@ docs/private/
 
 # Claude Code worktrees and session files
 .claude/
+_to_delete/
