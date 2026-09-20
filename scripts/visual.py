@@ -101,7 +101,7 @@ def main(argv=None) -> int:
     # title block
     s.append(f'<text x="{MARGIN_L}" y="44" class="t" font-size="26" font-weight="700">The Belt Equation: the tree, {today}</text>')
     s.append(f'<text x="{MARGIN_L}" y="68" class="d" font-size="14">{len(nodes)} breakthroughs under eight factors, plus the Contact Clause beside the equation. Each box shows the chance the node resolves before 2071 / 2095 / ever, given what it depends on. Arrows run from a dependency to the node that needs it.</text>')
-    s.append(f'<text x="{MARGIN_L}" y="86" class="d" font-size="14">First-pass numbers, under review by outside models before publication (roadmap step 27); every number may move.</text>')
+    s.append(f'<text x="{MARGIN_L}" y="86" class="d" font-size="14">Numbers reviewed by outside models (roadmap step 27, ruled 2026-09-19, landed 2026-09-20); they move at the weekly scan, the quarterly scan and the annual review.</text>')
     # headline box
     def pct(v): return f"{100*v:.1f}%" if v < 0.1 else f"{100*v:.0f}%"
     line1 = "  ·  ".join(f"{k} {pct(res[k]['tiers'][a2['key']])}" for k in keys)
