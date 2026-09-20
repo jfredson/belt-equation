@@ -143,13 +143,13 @@
     },
     {
       "order": 82,
-      "status": "todo",
+      "status": "in_progress",
       "phase": "Phase 4",
       "title": "Draft the introductory essay for Sentient Horizons, with the Calibration Problem cross-reference (roadmap step 14)"
     },
     {
       "order": 84,
-      "status": "todo",
+      "status": "done",
       "phase": "Phase 4",
       "title": "Draft the family-and-friends version, same numbers, dinner-table register (roadmap step 15)"
     },
@@ -188,6 +188,12 @@
       "status": "todo",
       "phase": "Phase 6",
       "title": "Website step 26: one-command publish so the quarterly scan ends with the site updated"
+    },
+    {
+      "order": 97,
+      "status": "todo",
+      "phase": "Phase 6",
+      "title": "Website step 39: \"run it for yourself\", a page where a reader sets their own age, lifespan scenario and path and sees the tree's number for them"
     },
     {
       "order": 100,

@@ -5,6 +5,7 @@ Plain Python, standard library only. Run from anywhere:
 
     python3 scripts/export.py                  write site/src/data/tree.json, changelog.json,
                                                snapshots.json, ledger.json, scans.json, story.json,
+                                               reader.json,
                                                and the tree picture at site/public/tree.svg
     python3 scripts/export.py --check          validate and print the counts, write nothing
     python3 scripts/export.py --out DIR        write the JSON somewhere else
@@ -28,7 +29,12 @@ What the JSON holds, beyond a copy of each record:
 - the weekly scan records in data/scans/ (the Radar, docs/scan-plan.md), newest scan first,
   each item's factor, chain link and node page resolved from the node it names. Every scan
   file is validated first, and a file that breaks the rules stops the build exactly as a
-  broken tree does.
+  broken tree does;
+- the reader grid the "Run it for yourself" page reads (website step 39): the tree played out
+  once per five-year deadline across the range a reader's shifted window can fall in, plus one
+  cell for no deadline at all. It is worked out here, in Python, so the browser never computes
+  a probability of its own (docs/website-plan.md, decision 3). It changes nothing: the stored
+  probabilities, the snapshots and the headline are all untouched by it.
 """
 
 from __future__ import annotations
@@ -247,6 +253,29 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
         "a2_at_tier1": {k: results[k]["joint"][compute.SECOND_NUMBER_KEY] for k in keys},
         "a2_at_tier1_nodes": list(compute.SECOND_NUMBER_NODES),
     }
+
+
+def export_reader(tree: dict) -> dict:
+    """The grid behind the "Run it for yourself" page (website step 39), or a plain reason why not.
+
+    One cell per five-year deadline across the range a reader's shifted window can land in, plus
+    a cell for no deadline at all. Each cell holds every tier's rate at that deadline and, per
+    route, the world's part of a reader's odds. The page reads between the two cells either side
+    of a reader's deadline and multiplies in whatever number the reader supplies for their own
+    part; it never works out a probability of its own.
+    """
+    missing = compute.missing_probabilities(tree)
+    if missing:
+        return {
+            "available": False,
+            "reason": (f"{len(missing)} open world node(s) have no probability yet, so the tree "
+                       "cannot be played out for a reader either."),
+        }
+    grid = compute.reader_grid(tree)
+    grid["available"] = True
+    grid["computed_on"] = dt.date.today().isoformat()
+    grid["review_status"] = NUMBERS_REVIEW_STATUS
+    return grid
 
 
 # ------------------------------------------------------------ the story: worklog and roadmap
@@ -1070,6 +1099,7 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         ledger = export_ledger(entries, tree, all_snapshots, load_attribution(args.attribution))
         story = export_story(args.story)
+        reader = export_reader(tree)
     except (compute.TreeError, OSError) as e:
         print(f"Nothing exported: {e}")
         return 1
@@ -1096,6 +1126,7 @@ def main(argv: list[str] | None = None) -> int:
     (args.out / "ledger.json").write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")
     (args.out / "scans.json").write_text(json.dumps(scans, indent=2, ensure_ascii=False) + "\n")
     (args.out / "story.json").write_text(json.dumps(story, indent=2, ensure_ascii=False) + "\n")
+    (args.out / "reader.json").write_text(json.dumps(reader, indent=2, ensure_ascii=False) + "\n")
     print(f"Exported {summary} to {args.out}.")
     write_tree_picture(tree, exported["numbers"], args.svg)
     if not exported["numbers"]["available"]:

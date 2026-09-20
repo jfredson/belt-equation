@@ -6,6 +6,7 @@ import changelogJson from '../data/changelog.json';
 import snapshotsJson from '../data/snapshots.json';
 import ledgerJson from '../data/ledger.json';
 import storyJson from '../data/story.json';
+import readerJson from '../data/reader.json';
 
 export type Ref = { id: string; name: string; factor: string; factor_slug: string };
 
@@ -344,6 +345,51 @@ export const story = storyJson as unknown as Story;
 export const decidedByLabel: Record<string, string> = {
   john: 'John ruled', mixed: 'Claude proposed, John accepted', agent: "Claude's own call",
 };
+
+/**
+ * The grid behind "Run it for yourself" (website step 39, docs/run-it-yourself-plan.md).
+ * One cell per five-year deadline across the range a reader's shifted window can land in, plus
+ * one for no deadline at all. Worked out by scripts/export.py, which plays the tree out once
+ * per cell; the page only reads between two cells and multiplies in the reader's own number.
+ */
+export type ReaderRoute = {
+  key: string;
+  name: string;
+  blurb: string;
+  world_nodes: string[];
+  /** What the tree is being asked, in a sentence a stranger can read. */
+  world_says: string;
+  /** What the reader is being asked for, or null when the route needs no number of theirs. */
+  personal_asks: string | null;
+  default_personal: number | null;
+};
+export type ReaderCell = {
+  /** The deadline this cell was played out at, or null for no deadline at all. */
+  year: number | null;
+  tiers: Record<string, number>;
+  routes: Record<string, number>;
+};
+export type Reader =
+  | { available: false; reason: string }
+  | {
+      available: true;
+      runs: number;
+      seed: number;
+      world_spread: number;
+      /** The year John was born: the windows are ages measured from here. */
+      birth_year: number;
+      min_birth_year: number;
+      max_birth_year: number;
+      step: number;
+      tail_half_life: number;
+      computed_on: string;
+      review_status: string;
+      scenarios: { key: string; window_year: number | null }[];
+      routes: ReaderRoute[];
+      tiers: { key: string; name: string }[];
+      cells: ReaderCell[];
+    };
+export const reader = readerJson as unknown as Reader;
 
 /** The scenario the year dial starts on, and the one every ranking is ordered by. */
 export const DEFAULT_SCENARIO = 'baseline';

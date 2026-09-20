@@ -42,6 +42,64 @@ Some nodes in the access branch are John's decisions rather than the world's: at
 
 This is standard decision analysis: a decision node is not a random variable, and the value of an option is the outcome distribution given that you take it. It is also the reason the project exists as something more than a forecast. On the first pass (2026-09-19) the two options differ by under a point, which is inside the noise of an access branch that is still a sketch. The branch is rebuilt with real detail after John graduates from the pipeline in May 2027, and the comparison is re-run then; until that point the row is reported but not read.
 
+## Running the tree for somebody else
+
+Added 2026-09-20 with the "Run it for yourself" page (website step 39; the decisions behind it,
+with their alternatives, are in docs/run-it-yourself-plan.md). Everything above is about John's
+odds. This section is about what the same tree says for a visitor, and about the one piece of
+arithmetic that needs, which is not in the sections above.
+
+The deadline is the whole difficulty. Every probability in the tree is the chance of something
+happening before one of five years: 2071, 2080, 2095, 2136, and no deadline at all. Those years
+are not arbitrary and they are not general. They are John's ages 85, 94, 109 and 150, for a man
+born in January 1986. A visitor born in 2000 who picks the baseline scenario is asking about
+their own 85th year, which is 2085, and the tree has no numbers for 2085.
+
+So the page does two things. First it shifts: a reader's five windows are John's five windows
+moved by the difference in birth years, which keeps the scenarios meaning the same thing (the
+same age, under the same assumption about medicine) rather than the same calendar year. Second
+it reads a number for each open event at the shifted year, by drawing a straight line between
+the two neighbouring windows' numbers.
+
+The line is drawn on the log-odds scale, the same scale the world draw already works on. The
+reason is that probabilities near the ends of the range do not move in even steps. An event
+going from 2 percent to 4 percent has doubled in odds, and so has one going from 50 percent to
+67 percent; on the plain scale those look like a move of two points and a move of seventeen. The
+tree's five estimates sit far more evenly spaced on the log-odds scale than on the plain one,
+which is what makes a straight line between two of them a reasonable reading rather than a
+distortion. Because no event's number is allowed to fall as the window lengthens, the reading
+never falls either.
+
+Two ends need a rule of their own:
+
+- **Before the first window.** A reader older than John has a baseline deadline earlier than
+  2071, and the tree was never estimated for a shorter wait. Nothing is read downward: the
+  number holds flat at the baseline value. This is a floor, not an answer. For a reader whose
+  deadline has already passed or is nearly here, the honest statement is that the tree cannot
+  see below its own first window, and the page says so in those words rather than printing a
+  confident figure.
+- **After the last window.** A reader much younger than John has a radical-extension deadline
+  past 2136, and the only thing beyond it is the no-deadline number. The reading moves toward
+  that number and closes half the remaining distance every 41 years, which is the gap between
+  the last two named windows. It reaches the no-deadline number only in the limit and never
+  passes it, which is right: no finite deadline can be worth more than no deadline at all.
+
+**What this is and is not.** It is a reading of five estimates, not six. Nobody sat down and
+estimated a probability for 2085; the five numbers were each estimated on their own, as five
+separate answers to five separate questions, and were never meant as points on a smooth curve.
+Drawing a line between them assumes they lie on one, and that assumption is the method's own,
+not the estimator's. The further a reader's deadline sits from one of John's five windows, the
+more of the answer is the line and the less is the estimate. Nothing here changes a stored
+probability, a committed run, or the headline: the page reads the tree and never writes to it.
+
+**A reader's own part.** The tree can say how likely the world is to offer an opportunity. It
+cannot say whether a particular person takes it, because that depends on their money, their
+health, their work and their luck, none of which is in the tree and none of which the project
+knows. So a route on that page is split in two and the halves are never added up silently: the
+world's part comes from the tree, and the reader's own part is a number the reader types, shown
+beside it and labelled as their guess. The two multiplied together is shown last and smallest,
+because it is the least reliable figure on the page.
+
 ## The calibration score
 
 A forecast that is never scored is an opinion. Every node has a resolution criterion so that it can be scored, and the score is the Brier score, the standard measure of how well a set of probabilities matched what happened: for each node that has resolved, take the probability that was on the record for it under the baseline scenario at the time it resolved, subtract one if it happened and zero if it did not, square the difference, and average across the resolved nodes. Zero is perfect; 0.25 is what you get by saying fifty percent about everything; a score above 0.25 is worse than saying nothing.

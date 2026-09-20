@@ -4,6 +4,10 @@ Written 2026-09-08 after John reversed the earlier deferral of a standalone site
 
 Under-promoted still holds. The site exists, family and friends get the link, and wider announcement is a separate decision (roadmap step 16).
 
+Steps 20 to 26 are version one. Step 39, added 2026-09-20, sits at the end of the list rather than
+in the middle of it, because the numbers 27 to 38 already belong elsewhere: 27 is the outside-model
+review in the roadmap, 28 to 33 are the ledger plan and 34 to 38 the scan plan.
+
 ## What version one shows
 
 Five pages, and nothing more, are needed before family and friends can be sent the link:
@@ -53,6 +57,8 @@ Each step names the roadmap step it waits on. Targets follow the roadmap's phase
 24. **The story page and the critique page** (waits on nothing after step 21; target 2026-11-09). Fetch the project's worklog and roadmap from TimeAssembler in the export script, render the story page with the changelog, write the GitHub issue template, and write the disagree page. Done when a change in TimeAssembler shows on the preview site after one export and build. DONE 2026-09-20, with decision 5 amended: the build runs on GitHub Actions since 2026-09-19, where no TimeAssembler key lives, so the worklog and roadmap are committed snapshots under data/story/ (see its README) refreshed by whichever session logs to TimeAssembler; the export turns them into story.json and the story page shows the roadmap (done count, up next, every step) and "From the workbench" (every entry with its type and, for decisions, who made the call) above the changelog. Three issue templates under .github/ISSUE_TEMPLATE/ match the disagree page's forms. The done-condition holds in the amended form: a change in TimeAssembler shows on the site after one snapshot refresh, export and build.
 25. **Go live** (waits on roadmap step 15, the family-and-friends version, and step 16 for anything beyond that; target 2026-11-16). Attach the domain, publish, send the link to family and friends. Done when the domain serves the site and the first outside person has read it.
 26. **One-command publish** (waits on step 25; ongoing). A single script that runs export, compute, Graphviz, the Astro build, and wrangler deploy, so the quarterly scan (roadmap step 17) ends with the site updated. Done when a quarterly scan is published with one command.
+
+39. **Run it for yourself** (waits on roadmap step 10 and website step 23, both done; target 2026-09-20). A page where a visitor puts in their own birth year, picks one of the five longevity scenarios and a route, and sees what the tree says for them: the world first (the chance of each system tier by their deadline), then their route's world part, then their own guess at their own part, then the two together. The plan, with the three decisions it turns on, is in belt-equation/docs/run-it-yourself-plan.md; the arithmetic that reads a probability at a deadline the tree was never asked about is in docs/methodology.md under "Running the tree for somebody else". The number is 39 because 27 is the outside-model review, the ledger plan holds 28 to 33 and the scan plan 34 to 38; the TimeAssembler task, which called it step 27, was renamed to match. **Done when a reader born in any year between 1940 and 2020 gets a number on the live site that matches `compute.py reader` for the same inputs.** BUILT 2026-09-20 on branch `worktree-website-step-39-run-it-yourself`: the done condition holds on the built site, checked across all 1,215 combinations of birth year, window and route, against the same grid the script reads. It is not live: the three decisions in the plan document are John's to accept or move, and the page goes up when he merges the pull request.
 
 ## Deferred, and why
 
