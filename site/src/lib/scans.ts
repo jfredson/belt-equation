@@ -82,7 +82,7 @@ export const checksFor = (nodeId: string): NodeCheck[] => scans.by_node[nodeId] 
 
 /** The badge on a card: what the scan decided, in two or three words. */
 export const verdictLabel: Record<Verdict, string> = {
-  quiet: 'Nothing found',
+  quiet: 'Nothing new',
   noted: 'No change',
   moved: 'A number moved',
   resolved: 'It happened',
@@ -100,7 +100,7 @@ export const verdictMeaning: Record<Verdict, string> = {
 
 export const scopeLabel: Record<Scan['scope'], string> = {
   weekly: 'the nodes that could resolve within five years',
-  monthly: 'every node in the tree, the first scan of the month',
+  monthly: 'every open node in the world\u2019s branches, the first scan of the month',
 };
 
 /** Counts read better as words at the low end: "none", "one", then digits. */
@@ -108,11 +108,15 @@ export function plainCount(n: number): string {
   return n === 0 ? 'none' : n === 1 ? 'one' : String(n);
 }
 
-/** The moment the scan finished, written out rather than left as a machine timestamp: the
-    record keeps universal time, while the scan's own date is John's, in California. */
+/** The moment the scan finished, in John's own time zone (the record keeps universal time,
+    and the scan's date is already a Pacific date). Formatted at build time, so the page never
+    shows a machine timestamp or a day that disagrees with the scan's date. */
 export function ranAtLabel(scan: Scan): string {
-  const m = /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})/.exec(scan.ran_at);
-  return m ? `${m[2]}:${m[3]} on ${m[1]}, universal time` : scan.ran_at;
+  const d = new Date(scan.ran_at);
+  if (Number.isNaN(d.getTime())) return scan.ran_at;
+  const time = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit' }).format(d);
+  const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+  return `${time} Pacific, ${day}`;
 }
 
 /** "6 nodes read, one moved and one resolved" — the line the home page strip and the Radar

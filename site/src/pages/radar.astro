@@ -88,7 +88,7 @@ const description = latestScan
           <p class="scan-line">{scanSummary(latestScan)}.</p>
           <p class="dim scan-meta">
             {latestScan.searches} searches across {latestScan.nodes_checked} node{latestScan.nodes_checked === 1 ? '' : 's'},
-            read against the tree as it stood at commit <code>{latestScan.commit_before}</code>. The run finished at {ranAtLabel(latestScan)}.
+            read against the tree as it stood that day (<a href={`https://github.com/jfredson/belt-equation/tree/${latestScan.commit_before}`} rel="noopener">this version</a>). The run finished {ranAtLabel(latestScan)}.
             The record is <code>data/scans/{latestScan.file}</code>.
           </p>
         </div>
