@@ -1,0 +1,128 @@
+---
+// A line chart of one number over the project's committed runs, drawn as plain SVG at build
+// time from data/snapshots/ (docs/ledger-plan.md, decision 7: no chart library; version one has
+// a handful of points per line, and the markers link to ledger entries as ordinary anchors).
+//
+// The x axis is calendar time when the runs span more than a day. When they do not — two runs on
+// the same afternoon, which is exactly what 2026-09-19 was — the points are spaced by the order
+// they were taken in and the chart says so, because a chart that crushes both runs into one
+// column would hide the very thing it is there to show.
+import type { SnapshotPoint } from '../lib/tree';
+
+interface Props {
+  /** One line per key: the scenario key, or any other name. */
+  series: Record<string, SnapshotPoint[]>;
+  /** Plain label per line, shown in the legend. */
+  labels?: Record<string, string>;
+  /** The line drawn thick; the others are drawn faint behind it. */
+  highlight?: string;
+  /** Snapshot key to link to, so a reader can click a run and land on what happened in it. */
+  markerHref?: Record<string, string>;
+  title: string;
+  caption?: string;
+  height?: number;
+}
+
+const { series, labels = {}, highlight, markerHref = {}, title, caption, height = 230 } = Astro.props;
+
+const keys = Object.keys(series).filter((k) => (series[k] ?? []).length > 0);
+const points = keys.flatMap((k) => series[k]);
+const dates = [...new Set(points.map((p) => p.date))].sort();
+const byDate = dates.length > 1;
+
+// The x axis. Runs, in the order they were taken, are the fallback ruler.
+const runKeys = [...new Set(points.map((p) => p.key))].sort();
+const day = (d: string) => Date.parse(d + 'T00:00:00Z');
+const xMin = byDate ? day(dates[0]) : 0;
+const xMax = byDate ? day(dates[dates.length - 1]) : Math.max(1, runKeys.length - 1);
+const xOf = (p: SnapshotPoint) => (byDate ? day(p.date) : runKeys.indexOf(p.key));
+
+const values = points.map((p) => p.value);
+const top = Math.max(...values, 0.001);
+const yMax = top * 1.15;
+
+const W = 720;
+const H = height;
+const PAD = { top: 16, right: 18, bottom: 34, left: 46 };
+const plotW = W - PAD.left - PAD.right;
+const plotH = H - PAD.top - PAD.bottom;
+
+const px = (p: SnapshotPoint) =>
+  PAD.left + (xMax === xMin ? plotW / 2 : ((xOf(p) - xMin) / (xMax - xMin)) * plotW);
+const py = (v: number) => PAD.top + plotH - (v / yMax) * plotH;
+
+// Four gridlines, labelled as whole percentages where that reads, one decimal where it does not.
+const ticks = [0, 0.25, 0.5, 0.75, 1].map((f) => f * yMax);
+const tickLabel = (v: number) => {
+  const pc = v * 100;
+  return (pc >= 10 ? Math.round(pc) : pc < 1 ? pc.toFixed(2) : pc.toFixed(1)) + '%';
+};
+
+const lines = keys.map((k) => {
+  const pts = [...series[k]].sort((a, b) => xOf(a) - xOf(b));
+  return {
+    key: k,
+    label: labels[k] ?? k,
+    lead: k === highlight,
+    d: pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${px(p).toFixed(1)},${py(p.value).toFixed(1)}`).join(' '),
+    marks: pts.map((p) => ({ ...p, cx: px(p), cy: py(p.value) })),
+  };
+});
+const lead = lines.find((l) => l.lead) ?? lines[0];
+const rest = lines.filter((l) => l !== lead);
+const single = lead && lead.marks.length < 2;
+---
+
+<figure class="chart">
+  <figcaption class="chart-head">
+    <span class="chart-title">{title}</span>
+    {caption && <span class="chart-note">{caption}</span>}
+  </figcaption>
+
+  {keys.length === 0 ? (
+    <p class="dim chart-empty">No runs recorded yet, so there is no history to draw.</p>
+  ) : (
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={title} class="chart-svg">
+      {ticks.map((v) => (
+        <>
+          <line class="chart-grid" x1={PAD.left} x2={W - PAD.right} y1={py(v)} y2={py(v)} />
+          <text class="chart-axis" x={PAD.left - 8} y={py(v) + 4} text-anchor="end">{tickLabel(v)}</text>
+        </>
+      ))}
+
+      {rest.map((l) => <path class="chart-line faint" d={l.d} />)}
+      {lead && <path class="chart-line lead" d={lead.d} />}
+
+      {lead && lead.marks.map((m) => {
+        const href = markerHref[m.key];
+        const dot = (
+          <>
+            <circle class="chart-dot" cx={m.cx} cy={m.cy} r={single ? 5 : 4} />
+            <title>{`${m.date}, run ${m.key}: ${(m.value * 100).toFixed(m.value < 0.1 ? 1 : 0)}%`}</title>
+          </>
+        );
+        return href ? <a href={href} class="chart-mark">{dot}</a> : <g class="chart-mark">{dot}</g>;
+      })}
+
+      {(byDate ? dates : runKeys).map((d, i) => {
+        const x = PAD.left + (xMax === xMin ? plotW / 2 : ((byDate ? day(d) : i) - xMin) / (xMax - xMin) * plotW);
+        const text = byDate ? d : (series[keys[0]].find((p) => p.key === d)?.date ?? d);
+        return <text class="chart-axis" x={x} y={H - 12} text-anchor="middle">{text}</text>;
+      })}
+    </svg>
+  )}
+
+  {keys.length > 1 && (
+    <ul class="chart-legend">
+      {lines.map((l) => (
+        <li class={l.lead ? 'on' : ''}><span class="swatch" aria-hidden="true"></span>{l.label}</li>
+      ))}
+    </ul>
+  )}
+  {single && (
+    <p class="dim chart-empty">
+      One run so far on this line, so there is a point rather than a line. It grows a segment at
+      every quarterly scan, every annual review, and every ruling that changes the tree in between.
+    </p>
+  )}
+</figure>

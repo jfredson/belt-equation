@@ -2,7 +2,8 @@
 import Base from '../../../layouts/Base.astro';
 import {
   tree, factorByLetter, percent, scenarioWindow, horizonLabel, statusLabel, kindLabel,
-  recordUrl, issueUrl, inline, type Node,
+  recordUrl, issueUrl, inline, snapshots, ledger, odds, movePoints, band, worthOf,
+  DEFAULT_SCENARIO, type Node,
 } from '../../../lib/tree';
 import { checksFor, verdictLabel } from '../../../lib/scans';
 
@@ -23,6 +24,21 @@ const disagree = issueUrl(
 );
 const links = node.resolved_links ?? [];
 const description = node.description.length > 200 ? node.description.slice(0, 197) + '…' : node.description;
+
+// What this step is worth to the headline, from the latest committed run (step 32): the headline
+// as it stands, where it would go if this settled yes tomorrow, and where it would go on a no.
+// Worked out by forcing this step and playing the whole tree out again, not written by hand.
+const worth = snapshots.latest?.worth?.nodes?.[node.id] ?? null;
+const latestRun = snapshots.latest;
+const scenarioName: Record<string, string> = {
+  baseline: 'by 2071', moderate: 'by 2080', strong: 'by 2095', radical: 'by 2136', open: 'with no deadline',
+};
+
+// Everything the ledger has to say about this step, newest first.
+const mentions = ledger.entries.filter(
+  (e) => e.nodes.includes(node.id) || e.checked_against.includes(node.id),
+);
+
 // The weekly scan's last three readings of this node (docs/scan-plan.md, step 37), above the
 // revisions: the date and the verdict in a line, the sentence it wrote when you open it.
 const checks = checksFor(node.id);
@@ -108,6 +124,86 @@ const lastChecks = checks.slice(0, 3);
         <p class="dim">
           No number yet for this one.
         </p>
+      )}
+
+      {worth && node.status === 'open' && node.kind === 'world' && (
+        <>
+          <h2>What this one is worth</h2>
+          {worth.reaches_headline ? (
+            <>
+              <p class="worth-line">
+                If this happened tomorrow and nothing else changed, the chance that I live and work
+                off Earth {scenarioName[DEFAULT_SCENARIO]} goes from
+                {' '}<strong>{odds(worth.headline[DEFAULT_SCENARIO])}</strong> to
+                {' '}<strong>{odds(worth.headline_if_yes[DEFAULT_SCENARIO])}</strong>
+                {' '}({worthOf(worth.if_yes[DEFAULT_SCENARIO], snapshots.noise?.[DEFAULT_SCENARIO])}).
+                If it turned out no, the same number goes to
+                {' '}<strong>{odds(worth.headline_if_no[DEFAULT_SCENARIO])}</strong>
+                {' '}({worthOf(worth.if_no[DEFAULT_SCENARIO], snapshots.noise?.[DEFAULT_SCENARIO])}).
+              </p>
+              <table class="ptable">
+                <thead>
+                  <tr>
+                    <th>Longevity scenario</th>
+                    {tree.scenarios.map((s) => <th>{s.key}<span class="win">{scenarioWindow(s)}</span></th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="dim">The headline as it stands</td>
+                    {tree.scenarios.map((s) => <td class="num-cell">{odds(worth.headline[s.key])}</td>)}
+                  </tr>
+                  <tr>
+                    <td>If this settled yes now</td>
+                    {tree.scenarios.map((s) => <td class="num-cell">{odds(worth.headline_if_yes[s.key])}</td>)}
+                  </tr>
+                  <tr>
+                    <td>If this settled no now</td>
+                    {tree.scenarios.map((s) => <td class="num-cell">{odds(worth.headline_if_no[s.key])}</td>)}
+                  </tr>
+                </tbody>
+              </table>
+              <p style="font-size: 15px;">
+                This is what the site says in advance, before the thing happens. When it does, the
+                ledger entry that records it quotes this figure beside what actually followed, so a
+                reader can see whether the prediction held. Worked out at the run
+                {' '}<code>{latestRun?.key}</code> by holding this step at each outcome in turn and
+                playing the whole tree out again, {latestRun?.run.runs.toLocaleString()} times per
+                scenario. That is a throw of the dice, so a move smaller than about
+                {' '}{band(snapshots.noise?.[DEFAULT_SCENARIO])} is inside the noise rather than
+                a finding.
+              </p>
+            </>
+          ) : (
+            <p class="worth-line">
+              Nothing. The headline number does not rest on this step at any remove, so however it
+              turns out, the chance that I live and work off Earth does not change. That is not a
+              judgement that it does not matter — it is what the tree says: this step feeds a tier
+              above the one the headline asks about, or sits beside the equation rather than in it.
+            </p>
+          )}
+        </>
+      )}
+
+      {mentions.length > 0 && (
+        <>
+          <h2>What the ledger says about this step</h2>
+          <ul class="watchlist">
+            {mentions.map((e) => (
+              <li>
+                <a class="wname" href={`/story/#${e.id}`}>{e.title}</a>
+                <span class="wworth">{e.date}</span>
+                <span class="wno">
+                  {ledger.kinds.find((k) => k.key === e.kind)?.label ?? e.kind}
+                  {e.checked_against.includes(node.id)
+                    ? ' · this step was read against it and did not move'
+                    : ''}
+                  {e.author === 'scan' ? ' · found by the weekly web scan' : ''}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
 
       {node.long_shot && (
