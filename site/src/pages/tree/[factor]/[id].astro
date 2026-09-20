@@ -31,7 +31,7 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
       <span class={`chip ${node.status === 'resolved-yes' ? 'ok' : node.status === 'resolved-no' ? 'no' : ''}`}>{statusLabel[node.status]}</span>
       {node.kind === 'choice' && <span class="chip violet">{node.current_plan ? 'Current plan' : 'Alternative to the current plan'}</span>}
       {node.long_shot && <span class="chip accent">Long shot, kept on the board on purpose</span>}
-      {tiers.map((t) => <span class="chip">required by {t.key}, {t.name}</span>)}
+      {tiers.map((t) => <span class="chip">needed for {t.name}</span>)}
     </div>
   </section>
 
@@ -39,7 +39,7 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
     <div class="prose">
       <p>{node.description}</p>
 
-      <h2>What counts as it having happened</h2>
+      <h2>The test: what counts as it having happened</h2>
       <p>{node.resolution}</p>
       <p class="dim"><strong>Settled by:</strong> {node.source}</p>
 
@@ -51,17 +51,17 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
       )}
       {node.status === 'superseded' && superseder && (
         <div class="callout">
-          <h3>Superseded</h3>
+          <h3>Replaced</h3>
           <p>Replaced by <a href={superseder.path}>{superseder.name}</a>.</p>
         </div>
       )}
 
-      <h2>Probability, by longevity scenario</h2>
+      <h2>The odds, by how long I live</h2>
       {node.kind === 'choice' ? (
         <p>
-          This is a choice point, something John decides rather than something that happens to the world, so it
-          is never given a probability. In an ordinary run of the tree it is set to the current plan; the
-          decision comparison forces each option in turn and reports how far the headline number moves.
+          This one is my own decision, not something that happens to the world, so it is never given a
+          probability. A normal run of the tree assumes the current plan. To compare options, the tree is run
+          once per choice and the change in the headline number is what gets reported.
           {siblings.length > 0 && (
             <> The other option{siblings.length > 1 ? 's' : ''} at this fork: {siblings.map((s, i) => (
               <><a href={s.path}>{s.name}</a>{i < siblings.length - 1 ? ', ' : '.'}</>
@@ -74,7 +74,7 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
             <thead>
               <tr>
                 {tree.scenarios.map((s) => (
-                  <th>{s.key}<span class="win">{scenarioWindow(s)}</span></th>
+                  <th>{s.key}<span class="win">{s.window_year ? `to ${scenarioWindow(s)}` : 'no deadline'}</span></th>
                 ))}
               </tr>
             </thead>
@@ -87,15 +87,15 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
             </tbody>
           </table>
           <p style="font-size: 15px;">
-            Each number is the chance this resolves yes before that scenario's window closes, given that
-            everything it depends on resolves first. Estimated {node.estimated_on}.
+            Each column is a different guess at how long I live, from current trends (baseline) to open-ended.
+            The number is the chance this happens before that deadline, assuming everything it depends on happens
+            first. As of {node.estimated_on}.
           </p>
           {node.rationale && <p><strong>Why these numbers:</strong> {node.rationale}</p>}
         </>
       ) : (
         <p class="dim">
-          No probability yet. First-pass numbers land factor by factor at roadmap step 9; this node's group has
-          not been estimated.
+          No number yet for this one.
         </p>
       )}
 
@@ -103,9 +103,9 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
         <>
           <h2>How it could happen, and where physics would have to give way</h2>
           <p>
-            Long shots belong in the tree by the first founding rule; the second says they must be written
-            plausibly all the way to the edge of the impossible, with the mechanism named and the breaking point
-            stated plainly.
+            Long shots stay in the tree on purpose, because they make the goal vivid. The rule is that each one
+            has to be written plausibly all the way to the edge of the impossible, naming how it would work and
+            exactly where it would break.
           </p>
           {node.mechanism && <p><strong>The mechanism:</strong> {node.mechanism}</p>}
           {node.breaking_point && <p><strong>The breaking point:</strong> {node.breaking_point}</p>}
@@ -140,14 +140,14 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
       )}
       {node.verify.length > 0 && (
         <div class="callout">
-          <h3>Claims awaiting verification</h3>
+          <h3>Claims still to be checked</h3>
           <ul>{node.verify.map((v) => <li>{v}</li>)}</ul>
         </div>
       )}
 
       <hr />
       <p class="dim" style="font-size: 14.5px;">
-        Think this node is wrong, missing a dependency, or estimated badly?
+        Think this is wrong, missing something it depends on, or badly estimated?
         <a href={disagree} rel="noopener">Open an issue about it</a>, or read
         <a href="/disagree/">how critique gets folded into the tree</a>.
         The record itself is <a href={recordUrl(node)} rel="noopener"><code>data/{node.file}</code></a> in the public repository.
@@ -159,9 +159,9 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
         <h4>The record</h4>
         <dl>
           <dt>Id</dt><dd><code>{node.id}</code></dd>
-          <dt>Factor</dt><dd><a href={factor.path}>{factor.letter}, {factor.name}</a></dd>
+          <dt>Link</dt><dd><a href={factor.path}>{factor.name}</a></dd>
           <dt>Kind</dt><dd>{kindLabel[node.kind]}</dd>
-          <dt>Horizon</dt><dd>{horizonLabel[node.horizon]}</dd>
+          <dt>Timing</dt><dd>{horizonLabel[node.horizon]}</dd>
           <dt>Status</dt><dd>{statusLabel[node.status]}</dd>
           {node.choice_group && <><dt>Fork</dt><dd>{node.choice_group}</dd></>}
         </dl>
@@ -170,7 +170,7 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
       <div class="rail">
         <h4>Depends on</h4>
         {node.depends_on.length === 0 && node.depends_on_any.length === 0 ? (
-          <p class="dim" style="margin: 0; font-size: 14px;">Nothing. This node can resolve on its own.</p>
+          <p class="dim" style="margin: 0; font-size: 14px;">Nothing. This can happen on its own.</p>
         ) : (
           <ul>
             {node.depends_on.map((d) => <li><a href={`/tree/${d.factor_slug}/${d.id}/`}>{d.name}</a></li>)}
@@ -187,10 +187,10 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
       <div class="rail">
         <h4>Needed by</h4>
         {node.needed_by.length === 0 && tiers.length === 0 ? (
-          <p class="dim" style="margin: 0; font-size: 14px;">No node or tier lists this one as a requirement.</p>
+          <p class="dim" style="margin: 0; font-size: 14px;">Nothing else in the tree waits on this one.</p>
         ) : (
           <ul>
-            {tiers.map((t) => <li><a href="/tree/">{t.key}, {t.name}</a> <span class="dim">(tier)</span></li>)}
+            {tiers.map((t) => <li><a href="/tree/">{t.name}</a> <span class="dim">(milestone)</span></li>)}
             {node.needed_by.map((d) => <li><a href={`/tree/${d.factor_slug}/${d.id}/`}>{d.name}</a></li>)}
           </ul>
         )}
