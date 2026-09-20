@@ -1,0 +1,77 @@
+# Weekly scan procedure
+
+The standalone instruction for the scheduled Radar scan (docs/scan-plan.md, step 36). A fresh Claude session with no memory of any earlier conversation follows this file from top to bottom. Written 2026-09-19. When this file and the plan disagree, this file wins for the scan and the disagreement is a flag for John.
+
+## 0. Orient
+
+- Get the date in John's timezone before anything else: `TZ=America/Los_Angeles date +%F`. That is the scan's `date`; every date you write is absolute (YYYY-MM-DD), never "today" or "last week".
+- The repository is already cloned if you are reading this; if not: `git clone https://github.com/jfredson/belt-equation` in the cloud workspace and `cd` into it. Never work in the linked computer's copy at ~/Code/belt-equation; John's own sessions run there.
+- Record `git rev-parse --short HEAD` as `commit_before`.
+- Read docs/node-schema.md (the record you will edit), docs/ledger-plan.md (the "Ledger entries" table, for the entry you may write), and this file. Skim data/README.md.
+- Scope: if this is the first scan of the calendar month (no file in data/scans/ dated this month), scope is `monthly` and you check every eligible node; otherwise scope is `weekly` and you check eligible leaves only.
+- Eligible: `kind = "world"`, `status = "open"`, factor in W, L, E, D, B, M, R, C. Never the A branch. Never choice nodes.
+- Load the tree with Python's `tomllib` to get the list; do not parse by hand.
+
+## 1. Read each node against the world
+
+For each eligible node, in file order:
+
+1. Compose two to four web searches from the node's `name`, `resolution` and `source`, plus every term in its `watch` list if it has one. Ask for the past week (or the past five weeks on a monthly scope for mid and root nodes). Prefer the source the node names: a launch log, an agency announcement, a journal, a regulator's register.
+2. Read the results that bear on the criterion. Read the criterion literally; the standard is "two people reading it would agree whether it has happened", so a target date, a plan, a funding round or a press claim is not the event.
+3. Give one verdict:
+   - `quiet`: nothing in the window bears on the criterion.
+   - `noted`: something relevant happened and no number moves. `found` says what and why not. If it was widely reported (major outlets, not trade press alone), you will also write a `held-steady` ledger entry in step 3.
+   - `moved`: the evidence changes the probability. Decide the new value per scenario, capped at 0.10 absolute from the current value in each scenario, in the same direction in all scenarios unless the evidence says otherwise. Sources required.
+   - `resolved`: the criterion is met on the plain reading and two independent public records agree (the operator plus an independent observer; a journal plus a registry). Sources required, both listed.
+   - `flagged`: anything you may not do (a move over the cap, a criterion that no longer fits the world, a node you think is missing, a resolve-no, anything in the A branch or in tiers, scenarios, definitions, methodology). `for_john` states the move you would have made and the evidence. Make no edit.
+
+Search economy: stop at four searches per node. If a search tool fails twice, mark the node `quiet` with `found = "search unavailable"` and move on.
+
+## 2. Edit the tree (moved and resolved only)
+
+Edit the TOML by text, keeping the file's formatting (one field per line, the existing key order). After every file edit run `python3 -c "import tomllib,sys; tomllib.load(open(sys.argv[1],'rb'))" data/X.toml` and then `python3 scripts/compute.py validate`. If validation fails, revert that file (`git checkout -- data/X.toml`), mark the node `flagged` with the error in `for_john`, and continue.
+
+For `moved`:
+- Set `probability` to the new values, `estimated_on` to the scan date, and rewrite `rationale` in one line.
+- Append to `revisions` (create the list if absent) one table per changed field, `{ date = <scan date>, field = "probability", old = "<old table as text>", new = "<new table as text>", why = "[scan YYYY-MM-DD] <one sentence with the source>" }`. Match the style of an existing `revisions` entry in data/R-regime.toml.
+
+For `resolved`:
+- Set `status = "resolved-yes"`, `resolved_on` to the date it happened in the world (from the sources), `resolved_by` to the record that settled it.
+- Append a `revisions` entry for `status` with the same `[scan YYYY-MM-DD]` prefix.
+
+Never edit any other field. Never edit a node you did not mark `moved` or `resolved`.
+
+## 3. Write the ledger entries (only if `data/ledger.toml` exists)
+
+If data/ledger.toml does not yet exist (ledger plan step 30 not landed), skip this step and say so in the commit message; the scan record still carries the verdicts. Otherwise append one `[[entry]]` per moved, resolved and widely-reported noted node, per the ledger plan's table, newest last, with these particulars:
+- `id = "YYYY-MM-DD-<slug>"` using the scan date; `date` the scan date; `occurred_on` the world date when it differs.
+- `kind` is `event` for moved, `resolution` for resolved, `held-steady` for the noted ones (with `checked_against`, no `nodes`).
+- `author = "scan"`.
+- `title` one plain sentence in the chain's vocabulary (link names, not factor letters); `body` two to five sentences; `source` the public record.
+- `snapshot` is the key of the snapshot you take in step 4 (`YYYY-MM-DD-scan`), even though you write it before running.
+
+## 4. Run, snapshot, export
+
+- If nothing moved or resolved: `python3 scripts/export.py --check` and go to step 5.
+- If something did and `python3 scripts/compute.py run --help` shows a `--snapshot` option (ledger plan step 28 landed): `python3 scripts/compute.py run --snapshot scan` and `python3 scripts/export.py --check`. If `--snapshot` is not available yet, run `python3 scripts/compute.py run` and paste the headline lines into the commit message instead.
+
+## 5. Write the scan record
+
+Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the shape given in docs/scan-plan.md under "The scan record": a `[scan]` table with `date`, `ran_at` (UTC, from `date -u +%Y-%m-%dT%H:%M:%SZ`), `scope`, `nodes_checked`, `searches`, `commit_before`, then one `[[item]]` per node checked, in the order checked, with `node`, `verdict`, `queries`, `found` (one to three sentences, plain English, absolute dates), `sources` for every verdict but quiet, `ledger` for moved and resolved when an entry was written, `for_john` for flagged. Validate it with tomllib. If the folder already has a file with today's date, suffix `-2`.
+
+## 6. Changelog and commit
+
+- Add one line under a `## YYYY-MM-DD` heading at the top of CHANGELOG.md (create the heading if today's is absent): "Weekly scan (scheduled task, YYYY-MM-DD): N nodes read, M moved, K resolved, F flagged for John; record at data/scans/YYYY-MM-DD.toml." Name each moved or resolved node and its before and after in the same line.
+- `git add -A && git commit` with the message "Weekly scan YYYY-MM-DD: N read, M moved, K resolved, F flagged" plus a body listing the moves, ending with the attribution lines this session was given.
+- `git push origin main`. If the push is refused (the git proxy says the repository is not in the session's authorised set), do not retry and do not try another route: send John the scan record's contents and the refusal message, and stop. The commit is lost with the workspace, and that is acceptable; the record reaches him in the message.
+
+## 7. Report
+
+Send John one short message, a numbered list and nothing else: first what he needs to do (each flagged item with its `for_john` line, and the push refusal if there was one), then one line per moved or resolved node with before and after, then one line with the counts. No prose, no summary of quiet nodes.
+
+## Standing rules
+
+- Commas rather than em dashes; absolute dates; plain English with any shorthand explained on first use.
+- Read, do not infer: a node moves on evidence about its criterion, not on mood about the field.
+- One scan, one commit. Never force-push, never rebase, never touch a branch other than main.
+- If anything in this file cannot be followed as written, do the parts that can, flag the rest for John in the report, and never improvise an edit outside the limits in docs/scan-plan.md.
