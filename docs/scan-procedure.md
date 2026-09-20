@@ -36,7 +36,7 @@ For `moved`:
 - Append to `revisions` (create the list if absent) one table per changed field, `{ date = <scan date>, field = "probability", old = "<old table as text>", new = "<new table as text>", why = "[scan YYYY-MM-DD] <one sentence with the source>" }`. Match the style of an existing `revisions` entry in data/R-regime.toml.
 
 For `resolved`:
-- Set `status = "resolved-yes"`, `resolved_on` to the date it happened in the world (from the sources), `resolved_by` to the record that settled it.
+- Set `status = "resolved-yes"`, `resolved_on` to the date it happened in the world (from the sources), `resolved_by` to the record that settled it, and `resolved_links` to a list of one or more URLs for that record (required; the validator refuses a resolved node without one).
 - Append a `revisions` entry for `status` with the same `[scan YYYY-MM-DD]` prefix.
 
 Never edit any other field. Never edit a node you did not mark `moved` or `resolved`.
@@ -63,7 +63,7 @@ Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the 
 
 - Add one line under a `## YYYY-MM-DD` heading at the top of CHANGELOG.md (create the heading if today's is absent): "Weekly scan (scheduled task, YYYY-MM-DD): N nodes read, M moved, K resolved, F flagged for John; record at data/scans/YYYY-MM-DD.toml." Name each moved or resolved node and its before and after in the same line.
 - `git add -A && git commit` with the message "Weekly scan YYYY-MM-DD: N read, M moved, K resolved, F flagged" plus a body listing the moves, ending with the attribution lines this session was given.
-- `git push origin main`. If the push is refused (the git proxy says the repository is not in the session's authorised set), do not retry and do not try another route: send John the scan record's contents and the refusal message, and stop. The commit is lost with the workspace, and that is acceptable; the record reaches him in the message.
+- `git push origin main`. If the push to main is refused, push the same commit once to a branch instead: `git push origin HEAD:refs/heads/claude/scan-YYYY-MM-DD` (routines always accept `claude/` branches). Report the branch name and the refusal message so John can merge it; the site does not update until he does. If that push is refused too, do not retry: put the scan record's contents in the report and stop. (Rule amended 2026-09-19 after the dress rehearsal, which lost a 44-node scan to a refused push.)
 
 ## 7. Report
 

@@ -177,6 +177,13 @@ def validate(tree: dict) -> list[str]:
         # Rule 4: a resolution criterion that is actually there.
         if not str(n.get("resolution", "")).strip():
             problems.append(f"{where}: has no resolution criterion; a node without one is not a node")
+        # Rule 9 (2026-09-19): an event marked as having happened links to the record that settled it.
+        if str(n.get("status", "")).startswith("resolved"):
+            if not str(n.get("resolved_by", "")).strip():
+                problems.append(f"{where}: is resolved but has no 'resolved_by'")
+            links = n.get("resolved_links") or []
+            if not isinstance(links, list) or not any(str(u).startswith("http") for u in links):
+                problems.append(f"{where}: is resolved but 'resolved_links' has no URL; a reader must be able to check the claim")
         # Rule 8: long shots name their mechanism and breaking point.
         if n.get("long_shot"):
             for f in ("mechanism", "breaking_point"):

@@ -54,9 +54,11 @@ Required fields are marked. Everything else may be left out until it is known.
 | `status` | yes | `"open"`, `"resolved-yes"`, `"resolved-no"`, or `"superseded"`. |
 | `resolved_on` | if resolved | Date it resolved. |
 | `resolved_by` | if resolved | The specific record that settled it (a link or citation). |
+| `resolved_links` | if resolved | List of one or more URLs to the record(s) named in `resolved_by`, so a reader can check the claim. The site shows them under the "Happened" callout. Required from 2026-09-19; the validator refuses a resolved node without at least one. |
 | `superseded_by` | if superseded | Id of the replacement node. |
 | `revisions` | no | List of `{ date, field, old, new, why }` tables, newest last, one per change to any field after the node's first commit. Probability changes always get one. |
 | `verify` | no | List of plain-language claims in this record that were written from memory and could not be checked against a source at the time. The shape command counts them; the review pass and the quarterly scan clear them by checking each and either deleting the entry or correcting the record. Added 2026-09-08 under John's rule that memory claims are verified as work proceeds or marked for a later session. |
+| `watch` | no | List of extra search terms for the weekly web scan (the Radar, docs/scan-plan.md): a project name, a mission name, a term of art, anything the criterion's plain words would miss. The scan writes its searches from the node's `name`, `resolution` and `source` and adds every term listed here. Leave it out unless the plain reading really does miss something. Checked by the export script (`scripts/export.py`) rather than the compute script, because the scan is a website-side concern; the rule is that if the field is there it holds at least one line of text. Added 2026-09-19 with the Radar. |
 | `notes` | no | Anything else worth keeping with the node. |
 
 ### What is not in the record

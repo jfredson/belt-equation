@@ -107,6 +107,13 @@ depends_on = []
 status = "resolved-yes"
 resolved_on = 2022-04-25
 resolved_by = "Axiom Mission 1: a 72-year-old private crew member launched 2022-04-08 and splashed down 2022-04-25, per NASA's space station blog and the operator's mission record"
+resolved_links = [
+  "https://www.nasa.gov/blogs/spacestation/2022/04/25/axiom-mission-1-crew-safely-splashes-down-near-florida/",
+  "https://www.axiomspace.com/mission-blog/ax1-crew-returns-safely",
+]
+revisions = [
+  { date = 2026-09-19, field = "resolved_links", old = "", new = "https://www.nasa.gov/blogs/spacestation/2022/04/25/axiom-mission-1-crew-safely-splashes-down-near-florida/; https://www.axiomspace.com/mission-blog/ax1-crew-returns-safely", why = "Every event marked as having happened now links to the record that settled it, so a reader can check the claim (site rule added 2026-09-19)." },
+]
 notes = "Age, launch date, and splashdown date checked 2026-09-08 against NASA's mission blog and press reporting."
 
 # --- The routes the six-year fork opens ---

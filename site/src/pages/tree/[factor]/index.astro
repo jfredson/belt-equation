@@ -2,8 +2,8 @@
 import Base from '../../../layouts/Base.astro';
 import HistoryChart from '../../../components/HistoryChart.astro';
 import {
-  tree, nodesOf, percent, horizonShort, statusLabel, snapshots, ledger, odds, movePoints, band,
-  worthOf, DEFAULT_SCENARIO, type Factor,
+  tree, nodesOf, percent, horizonShort, statusLabel, tierByKey, snapshots, ledger, odds, movePoints,
+  band, worthOf, DEFAULT_SCENARIO, type Factor,
 } from '../../../lib/tree';
 
 export function getStaticPaths() {
@@ -38,18 +38,22 @@ const headlineNow = worth?.headline?.[DEFAULT_SCENARIO] ?? null;
 
 // Anything in the ledger that touched a step under this factor.
 const ledgerHere = ledger.entries.filter((e) => e.factors.some((f) => f.letter === factor.letter));
+
+const linkIndex = tree.factors.filter((f) => f.letter !== 'C').findIndex((f) => f.letter === factor.letter);
+const rank = isContact ? 'Beside the chain' : `Link ${linkIndex + 1} of ${tree.factors.length - 1}`;
+const tierName = (k: string) => tierByKey(k)?.name ?? k;
 ---
 
-<Base title={`${factor.name} — The Belt Equation`} description={`${factor.meaning} The ${nodes.length} nodes under the ${factor.name.toLowerCase()} factor.`}>
+<Base title={`${factor.name} — The Belt Equation`} description={`${factor.meaning} The ${nodes.length} events behind the ${factor.name.toLowerCase()} link.`}>
   <section class="hero">
-    <p class="eyebrow"><a href="/tree/">The tree</a> · {factor.letter}</p>
+    <p class="eyebrow"><a href="/tree/">The tree</a> · {rank}</p>
     <h1>{factor.name}</h1>
     <p class="lede">{factor.meaning}</p>
     <p class="dim" style="font-size: 14px;">
-      {nodes.length} nodes, {factor.with_probability} with probabilities{factor.resolved ? `, ${factor.resolved} resolved` : ''}.
+      {nodes.length} events, {factor.with_probability} with a number{factor.resolved ? `, ${factor.resolved} already happened` : ''}.
       {isContact
-        ? ' These four rungs follow the same rules as every other node, but no tier requires them and the calculation never multiplies them in.'
-        : ' Listed leaves first (could resolve within five years), then mid-range, then the ones on the scale of the whole window.'}
+        ? ' These four follow the same rules as every other event, but no milestone needs them and the headline number never multiplies them in.'
+        : ' Listed by how soon they could be decided: the ones that could go either way by 2031 first, then the ones that take a decade or two, then the ones that play out over the whole window.'}
     </p>
   </section>
 
@@ -151,21 +155,21 @@ const ledgerHere = ledger.entries.filter((e) => e.factors.some((f) => f.letter =
           </div>
           <div class="nprob">
             {n.kind === 'choice'
-              ? <span>{n.current_plan ? 'current plan' : 'alternative'}<small>choice point, never given a probability</small></span>
+              ? <span>{n.current_plan ? 'current plan' : 'alternative'}<small>my own decision, never given a probability</small></span>
               : n.status === 'resolved-yes'
-                ? <span>resolved yes<small>{n.resolved_on ?? ''}</small></span>
+                ? <span>happened<small>{n.resolved_on ?? ''}</small></span>
                 : n.status === 'resolved-no'
-                  ? <span>resolved no<small>{n.resolved_on ?? ''}</small></span>
+                  ? <span>did not happen<small>{n.resolved_on ?? ''}</small></span>
                   : n.probability
-                    ? <span>{percent(n.probability[baseline.key])}<small>{baseline.key} scenario, estimated {n.estimated_on}</small></span>
-                    : <span class="dim">no probability yet</span>}
+                    ? <span>{percent(n.probability[baseline.key])}<small>{baseline.key} scenario, as of {n.estimated_on}</small></span>
+                    : <span class="dim">no number yet</span>}
           </div>
           <div class="chips">
             <span class="chip">{horizonShort[n.horizon]}</span>
             <span class={`chip ${n.status === 'resolved-yes' ? 'ok' : n.status === 'resolved-no' ? 'no' : ''}`}>{statusLabel[n.status]}</span>
-            {n.kind === 'choice' && <span class="chip violet">Choice point</span>}
+            {n.kind === 'choice' && <span class="chip violet">My decision</span>}
             {n.long_shot && <span class="chip accent">Long shot</span>}
-            {n.feeds_tiers.map((t) => <span class="chip">feeds {t}</span>)}
+            {n.feeds_tiers.map((t) => <span class="chip">needed for {tierName(t)}</span>)}
           </div>
         </li>
       ))}

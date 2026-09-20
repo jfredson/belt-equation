@@ -37,11 +37,13 @@ One file per scan, appended to the folder and never edited. The export script va
     [[item]]
     node = "L-fully-reusable-heavy-launcher-recovers-both-stages"
     verdict = "quiet"              # see the five verdicts
-    queries = ["...", "..."]
+    queries = ["...", "..."]       # at least one, except as noted below
     found = "One to three sentences on what the past week held, read against the criterion."
     sources = ["https://..."]      # required for every verdict but quiet
     ledger = "2026-09-27-ship-caught"   # the ledger entry id, for moved and resolved
     for_john = "..."               # required for flagged: the move it would have made and why
+
+Every item names at least one search it ran, with one exception: a node that resolves only when one of the nodes it depends on resolves has nothing of its own to look for, so it may leave `queries` empty as long as its verdict is `quiet` and `found` says why no search was run. Every other verdict still needs a search.
 
 Five verdicts. `quiet`: nothing found that bears on the criterion. `noted`: something relevant happened and no number moved; `found` says why not. When the thing was widely reported, the scanner also writes a `held-steady` ledger entry that names the criterion it was read against. `moved`: the probability changed within the cap; a revision on the node and an `event` ledger entry. `resolved`: the criterion was met; `resolved_on`, `resolved_by` on the node and a `resolution` entry. `flagged`: something the scanner may not do on its own; a `for_john` line and no edit.
 
@@ -59,7 +61,7 @@ Five verdicts. `quiet`: nothing found that bears on the criterion. `noted`: some
 
 Per the ground rule of 2026-09-08. The first two were ruled by John on 2026-09-19; the rest were proposed by Claude and stand unless struck.
 
-1. **A Cowork scheduled task, cloning the repository in the cloud and pushing to main.** Ruled. Alternatives: a GitHub Action with a search API and a model API (two keys, a small monthly bill, and a script to maintain), or Claude Code on the Mac under launchd (the Mac must be awake on Sunday evenings, and the scan would share a working tree with whatever else is going on). The scheduled task needs the repository authorised for the cloud environment's git proxy, which is John's action (step 35); until then the scan delivers its record in the chat and stops before pushing.
+1. **A Cowork scheduled task, cloning the repository in the cloud and pushing to main.** Ruled. Alternatives: a GitHub Action with a search API and a model API (two keys, a small monthly bill, and a script to maintain), or Claude Code on the Mac under launchd (the Mac must be awake on Sunday evenings, and the scan would share a working tree with whatever else is going on). The task is a Claude Code routine (claude.ai/code/routines) with the repository attached; pushing needs the Claude GitHub App installed on the repository, John's action (step 35). A refused push to main falls back to a `claude/scan-YYYY-MM-DD` branch for John to merge. Dress rehearsal 2026-09-19: 44 nodes read, 84 searches, nothing moved, one flagged (C1), push refused for want of the app.
 
 2. **Weekly, Sunday 18:00 Pacific, leaves every week and the whole tree on the first scan of the month.** Ruled weekly; the leaf/monthly split is Claude's. Alternatives: daily (more noise, and a scan that finds nothing forty times in a row teaches nothing), fortnightly (slower to catch a resolution), or every node every week (about a hundred and fifty searches a run for numbers that are mostly about 2050).
 
@@ -77,13 +79,13 @@ Per the ground rule of 2026-09-08. The first two were ruled by John on 2026-09-1
 
 ## Steps
 
-34. **Scan record schema and export** (waits on nothing). `data/scans/` per the record above; a validator in `export.py` (id uniqueness, verdict set, sources present, ledger ids resolve, node ids exist); `site/src/data/scans.json` written on every build, newest scan first, with each item's factor and chain link resolved from the node. Done when a hand-written test scan file exports and a malformed one is refused.
+34. **Scan record schema and export** (done 2026-09-19). `data/scans/` per the record above; a validator in `export.py` (id uniqueness, verdict set, sources present, ledger ids resolve, node ids exist); `site/src/data/scans.json` written on every build, newest scan first, with each item's factor and chain link resolved from the node. Done when a hand-written test scan file exports and a malformed one is refused. Two things the record above did not settle, decided while building: a scan record may carry `test = true`, which marks a hand-made file that stands in for a real week and which the site labels everywhere it appears (the validator also let such a file name a ledger entry that was never written; that exemption is gone, see below), and a ledger id is checked for shape always but only resolved against `data/ledger.toml` once that file exists, since the ledger lands with ledger plan step 30. The hand-made test record dated 2026-09-19 has been replaced by the first real scan of the same date, so no fixture is left in `data/scans/` and a record marked `test = true` no longer gets any exemption from the rules; the `test` mark itself stays, so a future fixture is still labelled as one on the site.
 
 35. **Deploy on push, and repository access for the scanner** (waits on nothing; John). Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as repository secrets so `.github/workflows/deploy.yml` can run, and authorise `jfredson/belt-equation` for the cloud environment's git proxy so the scheduled task can push. Done when a push to main deploys beltequation.com without a hand on the keyboard, and a scan's push is accepted.
 
 36. **The scan procedure and the scheduled task** (done 2026-09-19). `docs/scan-procedure.md` is the standalone instruction a fresh session follows; the scheduled task's prompt only says to clone the repository and follow that file, so the procedure can change without touching the task. The task is created and fires Sundays at 18:00 Pacific. Until steps 28 to 30 land, a scan that moves a number still logs the revision and the scan file but skips the ledger entry and the snapshot, saying so in its commit message; the first scan after those land backfills the entries.
 
-37. **The Radar page, the home strip, and the node page's last checks** (waits on 34). Done when the latest scan renders with its counts, a `moved` card links to its ledger entry, and every node page shows its last check.
+37. **The Radar page, the home strip, and the node page's last checks** (done 2026-09-19). Done when the latest scan renders with its counts, a `moved` card links to its ledger entry, and every node page shows its last check. The page is `/radar/`, in the site's navigation as "This week's reading". One thing could not be finished as written: a `moved` card cannot link to its ledger entry yet, because the ledger does not exist until ledger plan step 30. The card names the entry and says it is not written yet, and the link appears on its own once the entry is there.
 
 38. **First audit** (two scans after step 35 lands; target 2026-10-11). John reads every scanner entry and scan item to date, corrects what he disagrees with by revision, and rules on the cap and the load split. Done when the changelog records the audit and any change to this plan.
 
