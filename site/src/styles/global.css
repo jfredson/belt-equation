@@ -374,3 +374,92 @@ a.dim:hover { color: var(--accent); }
   .space-bg { height: 560px; }
   .container { padding: 0 16px; }
 }
+
+/* ---- the ledger: history charts, entries, movers (docs/ledger-plan.md, steps 31 and 32) ----
+   Everything here is built from the site's existing tokens: the amber accent, the panel
+   background, the chip and table shapes already used on the node pages. No new palette. */
+.narrow-wide { max-width: 900px; }
+
+.chart { margin: 0 0 8px; padding: 0; }
+.chart-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; }
+.chart-title { font-family: var(--sans); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.chart-note { font-size: 13.5px; line-height: 1.5; color: var(--muted); flex: 1 1 320px; text-align: right; }
+.chart-svg { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.chart-grid { stroke: var(--line); stroke-width: 1; }
+.chart-axis { font-family: var(--sans); font-size: 11px; fill: var(--muted); }
+.chart-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.chart-line.faint { stroke: var(--line-strong); stroke-width: 1.5; }
+.chart-line.lead { stroke: var(--accent); stroke-width: 2.5; }
+.chart-dot { fill: var(--accent); stroke: var(--panel); stroke-width: 2; }
+.chart-mark { cursor: pointer; }
+.chart-mark:hover .chart-dot { fill: var(--text); }
+.chart-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 10px 0 0; padding: 0; font-family: var(--sans); font-size: 12px; color: var(--muted); }
+.chart-legend li { display: flex; align-items: center; gap: 6px; }
+.chart-legend .swatch { width: 14px; height: 2px; background: var(--line-strong); border-radius: 2px; }
+.chart-legend li.on { color: var(--text); }
+.chart-legend li.on .swatch { background: var(--accent); height: 3px; }
+.chart-empty { font-size: 13.5px; margin: 10px 0 0; }
+
+.ledger-dial { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+.ledger-dial .dial-label { font-family: var(--sans); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.ledger-dial .dial-row { flex-wrap: wrap; }
+.ledger-dial .dial-btn { flex: 0 0 auto; height: 34px; font-size: 12.5px; padding: 0 12px; }
+.ledger-dial-note { font-family: var(--sans); font-size: 12.5px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.filter { font-family: var(--sans); font-size: 12px; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--line); background: var(--chip-bg); color: var(--muted); cursor: pointer; }
+.filter:hover { border-color: var(--accent); color: var(--text); }
+.filter.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.filter-count { font-family: var(--sans); font-size: 12px; margin: 6px 0 16px; }
+
+.entries { display: grid; gap: 10px; }
+.entry { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.entry[open] { border-color: var(--line-strong); }
+.entry summary { list-style: none; cursor: pointer; padding: 16px 18px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 18px; align-items: start; }
+.entry summary::-webkit-details-marker { display: none; }
+.entry summary:hover .entry-title { color: var(--accent); }
+.entry-meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.entry-date { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.entry-title { font-size: 17px; line-height: 1.35; color: var(--text); }
+.entry-delta { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 14px; white-space: nowrap; color: var(--muted); align-self: center; }
+.entry-delta.tone-up { color: var(--ok); }
+.entry-delta.tone-down { color: var(--no); }
+.entry-body { padding: 0 18px 18px; font-size: 15.5px; line-height: 1.65; color: var(--text-soft); border-top: 1px solid var(--line); margin-top: 2px; padding-top: 14px; }
+.entry-body p { margin: 0 0 1em; }
+.entry-body .callout { margin: 0 0 1em; }
+.entry-body .ptable { margin-bottom: 1.2em; }
+.entry-warn { border-left: 3px solid var(--accent-2); padding-left: 12px; color: var(--text); }
+.chip.kind { color: var(--text-soft); border-color: var(--line-strong); }
+.chip.kind-resolution { color: var(--ok); border-color: var(--ok); }
+.chip.kind-structure { color: var(--accent-2); border-color: var(--accent-2); }
+.chip.kind-held-steady { color: var(--muted); border-style: dashed; }
+.chip.kind-event { color: var(--accent); border-color: var(--accent); }
+
+.movers-year { font-family: var(--sans); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 26px 0 6px; }
+.ptable .num-cell { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px; white-space: nowrap; color: var(--text-soft); }
+.run-note { display: block; font-size: 12.5px; line-height: 1.5; color: var(--muted); margin-top: 5px; font-family: var(--serif); }
+
+/* ---- "since the last run", on the home page chain ---- */
+.link-move, .headline-move { font-family: var(--sans); font-size: 12px; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+.link-move.tone-up, .headline-move.tone-up { color: var(--ok); }
+.link-move.tone-down, .headline-move.tone-down { color: var(--no); }
+.headline-move { font-size: 14px; margin: -8px 0 16px; }
+.headline-move a { color: inherit; }
+
+/* ---- what would move this: watch lists and worth lines (step 32) ---- */
+.watchlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.watchlist li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 18px; align-items: baseline; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.watchlist .wname { font-size: 15.5px; color: var(--text); }
+.watchlist .wname:hover { color: var(--accent); }
+.watchlist .wworth { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 14px; color: var(--ok); white-space: nowrap; text-align: right; }
+.watchlist .wno { grid-column: 1 / -1; font-family: var(--sans); font-size: 12px; color: var(--muted); }
+.worth-line { font-size: 16px; line-height: 1.6; }
+.worth-line strong { color: var(--text); }
+
+@media (max-width: 720px) {
+  .chart-note { text-align: left; }
+  .entry summary { grid-template-columns: 1fr; }
+  .entry-delta { align-self: start; }
+  .watchlist li { grid-template-columns: 1fr; }
+  .watchlist .wworth { text-align: left; }
+}

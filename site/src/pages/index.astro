@@ -3,7 +3,7 @@
 // never heard of the project can take in the first screen without knowing what a factor is.
 // Every figure comes from tree.json (scripts/export.py); the copy for the seven links is here.
 import Base from '../layouts/Base.astro';
-import { tree, percent, factorByLetter } from '../lib/tree';
+import { tree, percent, factorByLetter, snapshots, ledger, direction, movePoints } from '../lib/tree';
 
 const numbers = tree.numbers;
 const headlineKey = tree.headline_tier;
@@ -30,6 +30,16 @@ const DIAL: Record<string, { label: string; when: string; note: string }> = {
   open: { label: 'No limit', when: 'with no deadline', note: 'Aging solved outright. The odds stop depending on the calendar and depend only on whether the Belt ever happens.' },
 };
 
+// How far the headline and each link moved between the last two runs of the tree, from the
+// committed snapshots (docs/ledger-plan.md, step 31). A run in which the tree itself changed is
+// not a like-for-like comparison with the one before it, and the line under the number says so.
+const move = snapshots.change;
+const movedRun = move ? ledger.runs.find((r) => r.key === move.to) : undefined;
+const structuralMove = move
+  ? ledger.entries.some((e) => e.snapshot === move.to && e.kind === 'structure')
+  : false;
+const movedEntries = movedRun ? movedRun.entries.length : 0;
+
 // Everything the dial needs, serialised once for the inline script.
 const scenarios = tree.scenarios.map((s) => {
   const d = DIAL[s.key] ?? { label: s.key, when: s.key, note: s.name };
@@ -39,6 +49,10 @@ const scenarios = tree.scenarios.map((s) => {
         a1: numbers.tiers['A1'][s.key],
         t3: numbers.tiers['T3'][s.key],
         links: Object.fromEntries(LINKS.map((l) => [l.letter, numbers.chain[l.letter]?.[s.key] ?? null])),
+        headlineMove: move ? move.tiers[headlineKey]?.[s.key] ?? null : null,
+        moves: move
+          ? Object.fromEntries(LINKS.map((l) => [l.letter, move.chain[l.letter]?.[s.key] ?? null]))
+          : null,
       }
     : null;
   return { key: s.key, ...d, ...n };
@@ -72,6 +86,18 @@ const contact = factorByLetter('C');
       <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
       <h1 class="big-claim">The chance that I live and work off Earth before I die.</h1>
       <p class="big-sub"><span data-bind="windowLine">That is {current.when}.</span> Nobody knows how long I get, so the dial lets you change that assumption and watch the odds move.</p>
+      {move && (
+        <p class={`headline-move tone-${direction(current.headlineMove).tone}`} data-bind-class="headlineMove">
+          <span aria-hidden="true" data-bind="headlineArrow">{direction(current.headlineMove).arrow}</span>
+          <span>
+            <span data-bind="headlineMove">{movePoints(current.headlineMove)}</span> since the last run of the tree, on {move.to_date}.
+            {structuralMove
+              ? ' The tree itself changed between those two runs, so they are not measuring quite the same thing.'
+              : ''}
+            {' '}<a href="/story/">See what changed{movedEntries ? ` — ${movedEntries} entr${movedEntries === 1 ? 'y' : 'ies'}` : ''}</a>.
+          </span>
+        </p>
+      )}
       <div class="ctas">
         <a class="btn" href="#chain">Why so low?</a>
         <a class="btn ghost" href="#who">Who is asking</a>
@@ -139,6 +165,13 @@ const contact = factorByLetter('C');
               <span class="link-pct" data-bind-link={l.letter}>{fmt(p)}</span>
               <span class="bar"><span class="bar-fill" data-bar={l.letter} style={`width:${pct}%`}></span></span>
               <span class="link-cap">chance this link holds</span>
+              {move && (
+                <span class={`link-move tone-${direction(current.moves ? current.moves[l.letter] : null).tone}`} data-move-class={l.letter}>
+                  <span aria-hidden="true" data-move-arrow={l.letter}>{direction(current.moves ? current.moves[l.letter] : null).arrow}</span>
+                  <span data-move={l.letter}>{movePoints(current.moves ? current.moves[l.letter] : null)}</span>
+                  <span>since the last run</span>
+                </span>
+              )}
             </span>
           </a>
         );
@@ -205,6 +238,22 @@ const contact = factorByLetter('C');
       function setAll(name, text) {
         document.querySelectorAll('[data-bind="' + name + '"]').forEach(function (n) { n.textContent = text; });
       }
+      function points(d) {
+        if (d === null || d === undefined) return 'not known';
+        var p = d * 100;
+        if (Math.abs(p) < 0.05) return 'unchanged';
+        return (p > 0 ? '+' : '\u2212') + Math.abs(p).toFixed(1) + ' points';
+      }
+      function arrow(d) {
+        if (d === null || d === undefined) return '\u00b7';
+        var p = d * 100;
+        return p > 0.05 ? '\u25b2' : p < -0.05 ? '\u25bc' : '\u2014';
+      }
+      function tone(d) {
+        if (d === null || d === undefined) return 'flat';
+        var p = d * 100;
+        return p > 0.05 ? 'up' : p < -0.05 ? 'down' : 'flat';
+      }
       function apply(key) {
         var s = byKey[key];
         if (!s) return;
@@ -221,9 +270,21 @@ const contact = factorByLetter('C');
           var bar = document.querySelector('[data-bar="' + l.letter + '"]');
           if (pctEl) pctEl.textContent = fmt(p);
           if (bar) bar.style.width = (p === null ? 0 : Math.max(2, Math.round(p * 100))) + '%';
+          var moved = s.moves ? s.moves[l.letter] : null;
+          var moveEl = document.querySelector('[data-move="' + l.letter + '"]');
+          var arrowEl = document.querySelector('[data-move-arrow="' + l.letter + '"]');
+          var wrapEl = document.querySelector('[data-move-class="' + l.letter + '"]');
+          if (moveEl) moveEl.textContent = points(moved);
+          if (arrowEl) arrowEl.textContent = arrow(moved);
+          if (wrapEl) wrapEl.className = 'link-move tone-' + tone(moved);
           if (p !== null && (weakest === null || p < weakest.p)) weakest = { short: l.short, p: p };
         });
         setAll('weakest', weakest ? 'In this time frame the weakest link is ' + weakest.short + ', at ' + fmt(weakest.p) + '.' : '');
+        setAll('headlineMove', points(s.headlineMove));
+        setAll('headlineArrow', arrow(s.headlineMove));
+        document.querySelectorAll('[data-bind-class="headlineMove"]').forEach(function (n) {
+          n.className = 'headline-move tone-' + tone(s.headlineMove);
+        });
         document.querySelectorAll('.dial-btn').forEach(function (b) {
           var on = b.getAttribute('data-scenario') === key;
           b.classList.toggle('on', on);

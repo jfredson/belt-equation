@@ -3,6 +3,8 @@
 // not committed; run `npm run export` (or any build) to create them.
 import treeJson from '../data/tree.json';
 import changelogJson from '../data/changelog.json';
+import snapshotsJson from '../data/snapshots.json';
+import ledgerJson from '../data/ledger.json';
 
 export type Ref = { id: string; name: string; factor: string; factor_slug: string };
 
@@ -173,3 +175,201 @@ export function inline(text: string): string {
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" rel="noopener">$1</a>');
 }
+
+// ---------------------------------------------------------------- the ledger and the runs
+// Written by scripts/export.py from data/ledger.toml, data/snapshots/ and data/attribution/
+// (docs/ledger-plan.md, steps 28 to 32). The same rule holds here as everywhere else on the
+// site: the words on an entry are written by hand, and every number beside them is computed.
+
+
+/** One number per longevity scenario, keyed as scenarios.toml keys them. */
+export type ByScenario = Record<string, number>;
+
+/** One point on a history chart: a run, the day it was taken, and the number it produced. */
+export type SnapshotPoint = { key: string; date: string; value: number };
+
+export type SnapshotSummary = {
+  key: string;
+  date: string;
+  label: string | null;
+  note: string | null;
+  review_status: string;
+  headline_tier: string;
+  run: { runs: number; seed: number; world_spread: number; commit: string | null; taken_on: string };
+  tiers: Record<string, ByScenario>;
+  chain: Record<string, ByScenario>;
+  chain_nodes: Record<string, string[]>;
+  contact: Record<string, ByScenario>;
+  decisions: Record<string, { options: { id: string; name: string; current_plan: boolean; headline: ByScenario }[] }>;
+};
+
+/** What one step of the tree would be worth to the headline if it settled now. */
+export type Worth = {
+  reaches_headline: boolean;
+  headline: ByScenario;
+  headline_if_yes: ByScenario;
+  headline_if_no: ByScenario;
+  if_yes: ByScenario;
+  if_no: ByScenario;
+};
+
+export type Snapshot = SnapshotSummary & {
+  nodes: Record<string, ByScenario>;
+  worth: { headline: ByScenario; reaches_headline: string[]; nodes: Record<string, Worth> } | null;
+};
+
+export type Snapshots = {
+  count: number;
+  headline_tier: string;
+  latest_key: string | null;
+  /** How far a figure from the latest run can move for no reason but the dice. */
+  noise: ByScenario | null;
+  snapshots: SnapshotSummary[];
+  latest: Snapshot | null;
+  series: {
+    tiers: Record<string, Record<string, SnapshotPoint[]>>;
+    chain: Record<string, Record<string, SnapshotPoint[]>>;
+  };
+  change: {
+    from: string; from_date: string; to: string; to_date: string;
+    tiers: Record<string, ByScenario>;
+    chain: Record<string, ByScenario>;
+  } | null;
+};
+
+export type LedgerKind = 'event' | 'resolution' | 'revision' | 'structure' | 'decision' | 'held-steady';
+
+export type LedgerNodeChange = {
+  id: string;
+  name: string;
+  factor: string;
+  factor_slug: string;
+  path: string;
+  status: Node['status'];
+  before: ByScenario | null;
+  after: ByScenario | null;
+};
+
+export type LedgerEntry = {
+  id: string;
+  date: string;
+  occurred_on: string | null;
+  kind: LedgerKind;
+  title: string;
+  body: string;
+  source: string | null;
+  /** Absent means John wrote it; "scan" means the weekly web scan did. */
+  author: string | null;
+  nodes: string[];
+  checked_against: string[];
+  node_changes: LedgerNodeChange[];
+  factors: { letter: string; name: string; slug: string }[];
+  links: string[];
+  snapshot: string;
+  snapshot_date: string | null;
+  previous_snapshot: string | null;
+  headline_before: ByScenario | null;
+  headline_after: ByScenario | null;
+  headline_change: ByScenario | null;
+  contribution: ByScenario | null;
+  /** Where the headline would have landed with this entry undone and the rest of its run left alone. */
+  headline_without: ByScenario | null;
+  separable: boolean;
+  not_separable_why: string | null;
+  attributed: boolean;
+  watch: { node: string; name: string; path: string | null; predicted: ByScenario | null; predicted_at: string | null } | null;
+  run_note: string | null;
+  corrects: string | null;
+};
+
+export type Ledger = {
+  count: number;
+  headline_tier: string;
+  kinds: { key: LedgerKind; label: string; meaning: string }[];
+  entries: LedgerEntry[];
+  totals: { by_kind: Record<string, number>; by_author: Record<string, number> };
+  movers: {
+    year: string;
+    rows: {
+      id: string; title: string; kind: LedgerKind; date: string; author: string | null;
+      links: string[]; contribution: ByScenario | null; sort_by: number;
+      moved_nothing: boolean; not_separable_why: string | null;
+    }[];
+  }[];
+  runs: {
+    key: string; date: string; label: string | null; note: string | null; review_status: string | null;
+    previous: string | null; runs: number | null; noise: ByScenario | null;
+    total_move: ByScenario | null; attributed: ByScenario | null;
+    remainder: ByScenario | null; unseparated: string[]; entries: string[];
+  }[];
+};
+
+export const snapshots = snapshotsJson as unknown as Snapshots;
+export const ledger = ledgerJson as unknown as Ledger;
+
+/** The scenario the year dial starts on, and the one every ranking is ordered by. */
+export const DEFAULT_SCENARIO = 'baseline';
+
+/** 0.0087 -> "0.9%", 0.14 -> "14%". The home page's rounding, used everywhere numbers are shown. */
+export function odds(p: number | null | undefined): string {
+  if (p === null || p === undefined) return 'not yet';
+  const v = p * 100;
+  return (v < 10 ? v.toFixed(1) : Math.round(v).toString()) + '%';
+}
+
+/** A change in the headline, in percentage points, with its sign: "+0.9 points", "unchanged". */
+export function movePoints(delta: number | null | undefined, places = 1): string {
+  if (delta === null || delta === undefined) return 'not known';
+  const points = delta * 100;
+  if (Math.abs(points) < 0.05) return 'unchanged';
+  return `${points > 0 ? '+' : '−'}${Math.abs(points).toFixed(places)} points`;
+}
+
+/** What a step is worth, for a watch list. A figure inside the run's own noise is reported as
+ *  too small to tell rather than rounded to "unchanged", which would claim more than is known. */
+export function worthOf(delta: number | null | undefined, noise: number | null | undefined): string {
+  if (delta === null || delta === undefined) return 'not yet worked out';
+  if (Math.abs(delta) <= (noise ?? 0)) return 'too small to tell apart from chance';
+  return movePoints(delta);
+}
+
+/** The noise band, in percentage points. Always a size, never "unchanged": it is how big a
+ *  figure has to be before it is worth reading, so rounding it away would defeat the point. */
+export function band(v: number | null | undefined): string {
+  if (v === null || v === undefined) return 'a tenth of a point';
+  const points = v * 100;
+  return `${points < 0.01 ? points.toFixed(3) : points.toFixed(2)} points`;
+}
+
+/** Up, down, or level: the arrow beside a number, and the word for people who cannot see it. */
+export function direction(delta: number | null | undefined): { arrow: string; word: string; tone: string } {
+  if (delta === null || delta === undefined) return { arrow: '·', word: 'no earlier run to compare with', tone: 'flat' };
+  const points = delta * 100;
+  if (points > 0.05) return { arrow: '▲', word: 'up', tone: 'up' };
+  if (points < -0.05) return { arrow: '▼', word: 'down', tone: 'down' };
+  return { arrow: '—', word: 'steady', tone: 'flat' };
+}
+
+export const ledgerKindLabel: Record<LedgerKind, string> = Object.fromEntries(
+  ledger.kinds.map((k) => [k.key, k.label]),
+) as Record<LedgerKind, string>;
+
+/** Who wrote an entry, in words. Nothing recorded means John wrote it himself. */
+export function authorLabel(author: string | null): string {
+  if (!author) return 'Written by John';
+  if (author === 'scan') return 'Written by the weekly web scan';
+  return `Written by ${author}`;
+}
+
+export const entryPath = (id: string): string => `/story/#${id}`;
+
+/** The plain name of a chain link, by factor letter: what the home page calls it. */
+export const linkShort: Record<string, string> = {
+  L: 'cheap launch',
+  E: 'power off Earth',
+  D: 'fast ships',
+  B: 'bodies that hold up',
+  M: 'a reason to go',
+  R: 'governments',
+  A: 'a seat for me',
+};

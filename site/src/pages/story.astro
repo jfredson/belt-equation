@@ -1,20 +1,352 @@
 ---
+// The story so far, rebuilt around the ledger (docs/ledger-plan.md, step 31 and decision 6).
+// A changelog says what was edited. This page says what moved the number, by how much, and what
+// was widely reported and moved nothing at all. The raw changelog stays, rendered below as the
+// full record. Every figure on this page comes from the committed runs in data/snapshots/ and
+// the attribution in data/attribution/; nothing is typed by hand into an entry.
 import Base from '../layouts/Base.astro';
-import { changelog, inline } from '../lib/tree';
+import HistoryChart from '../components/HistoryChart.astro';
+import {
+  changelog, inline, tree, ledger, snapshots, odds, movePoints, direction, band,
+  authorLabel, linkShort, factorByLetter, DEFAULT_SCENARIO,
+} from '../lib/tree';
+
+const headlineTier = ledger.headline_tier;
+const scenarios = tree.scenarios;
+const scenarioLabel: Record<string, string> = {
+  baseline: '2071', moderate: '2080', strong: '2095', radical: '2136', open: 'No limit',
+};
+const scenarioWhen: Record<string, string> = {
+  baseline: 'by 2071', moderate: 'by 2080', strong: 'by 2095', radical: 'by 2136', open: 'with no deadline',
+};
+
+const entries = ledger.entries;
+const kindsPresent = ledger.kinds.filter((k) => (ledger.totals.by_kind[k.key] ?? 0) > 0);
+const linksPresent = [...new Set(entries.flatMap((e) => e.links))].sort();
+
+// A run that carries a structural entry is not a like-for-like comparison with the one before it.
+const structuralRuns = new Set(entries.filter((e) => e.kind === 'structure').map((e) => e.snapshot));
+
+const headlineSeries = snapshots.series.tiers[headlineTier] ?? {};
+const markerHref = Object.fromEntries(
+  snapshots.snapshots.map((s) => {
+    const first = entries.find((e) => e.snapshot === s.key);
+    return [s.key, first ? `#${first.id}` : '#runs'];
+  }),
+);
+
+// Everything the scenario buttons need, handed to one small script at the bottom.
+const dialData = {
+  scenarios: scenarios.map((s) => ({ key: s.key, label: scenarioLabel[s.key] ?? s.key, when: scenarioWhen[s.key] ?? s.key })),
+  entries: entries.map((e) => ({
+    id: e.id,
+    before: e.headline_before,
+    after: e.headline_after,
+    change: e.headline_change,
+    contribution: e.contribution,
+    without: e.headline_without,
+    nodes: e.node_changes.map((n) => ({ id: n.id, before: n.before, after: n.after })),
+    watch: e.watch?.predicted ?? null,
+  })),
+  movers: ledger.movers,
+  runs: ledger.runs,
+};
+
+const latest = snapshots.latest;
+// How far a figure can move between two runs for no reason but the dice, from the run itself.
+const noisyRun = ledger.runs.find((r) => r.noise && r.runs);
+const totalEntries = ledger.count;
+const authors = ledger.totals.by_author;
 ---
 
-<Base title="The story so far — The Belt Equation" description="Every change to the Belt Equation's tree, definitions, and headline numbers, with absolute dates, newest first.">
+<Base
+  title="The story so far — The Belt Equation"
+  description="What moved the odds of leaving Earth, by how much, and what was widely reported and moved nothing. Every figure computed from the project's committed runs."
+>
   <section class="hero">
     <p class="eyebrow">The story so far</p>
-    <h1>Every change to the tree, with its date</h1>
-    <p class="lede">{changelog.intro || 'Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.'}</p>
+    <h1>What moved the number, and by how much</h1>
+    <p class="lede">
+      Every time something happens that touches the tree, the tree is played out again and the
+      headline number moves. This page is the record of those moves: what happened, which link of
+      the chain it touched, and how far the number went.
+    </p>
     <p class="dim" style="font-size: 14px;">
-      This is the project's changelog, rendered straight from the repository. The project's day-by-day progress
-      and its roadmap, kept in TimeAssembler, join this page at website step 24.
+      {totalEntries} entr{totalEntries === 1 ? 'y' : 'ies'} so far, across {ledger.runs.length} run{ledger.runs.length === 1 ? '' : 's'} of the tree.
+      Nothing on an entry is typed in by hand except the words: every figure is worked out from the
+      runs saved in the public repository, so an entry cannot claim a change the tree did not
+      produce. Entries are added and never edited; a mistake is corrected by a later entry that
+      says so. The project's full changelog, down to the commit, is at the bottom of this page.
     </p>
   </section>
 
-  <section class="section narrow">
+  <section class="section narrow-wide">
+    <div class="ledger-dial">
+      <span class="dial-label">How long do I get?</span>
+      <div class="dial-row" role="group" aria-label="Choose how long I live">
+        {scenarios.map((s) => (
+          <button type="button" class={`dial-btn ${s.key === DEFAULT_SCENARIO ? 'on' : ''}`} data-scenario={s.key}
+                  aria-pressed={s.key === DEFAULT_SCENARIO ? 'true' : 'false'}>{scenarioLabel[s.key] ?? s.key}</button>
+        ))}
+      </div>
+      <span class="dim ledger-dial-note">
+        Every number on this page is shown <span data-bind="when">{scenarioWhen[DEFAULT_SCENARIO]}</span>.
+      </span>
+    </div>
+
+    <HistoryChart
+      series={headlineSeries}
+      labels={Object.fromEntries(scenarios.map((s) => [s.key, `${s.name.split(',')[0]} (${scenarioLabel[s.key] ?? s.key})`]))}
+      highlight={DEFAULT_SCENARIO}
+      markerHref={markerHref}
+      title={`The chance I live and work off Earth, run by run`}
+      caption={
+        snapshots.snapshots.length > 1 && new Set(snapshots.snapshots.map((s) => s.date)).size === 1
+          ? 'Both runs so far were made on the same day, so they are spaced by the order they were taken in rather than by the calendar. All five longevity scenarios are drawn; the 2071 line is the thick one. Click a point to jump to what happened in that run.'
+          : 'All five longevity scenarios are drawn; the 2071 line is the thick one. Click a point to jump to what happened in that run.'
+      }
+    />
+  </section>
+
+  <section class="section narrow-wide" id="entries">
+    <div class="shead">
+      <h2>Every entry</h2>
+      <span>newest first</span>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter the entries">
+      <button type="button" class="filter on" data-filter-kind="all">All kinds</button>
+      {kindsPresent.map((k) => (
+        <button type="button" class="filter" data-filter-kind={k.key} title={k.meaning}>{k.label}</button>
+      ))}
+    </div>
+    {linksPresent.length > 0 && (
+      <div class="filters" role="group" aria-label="Filter by link of the chain">
+        <button type="button" class="filter on" data-filter-link="all">All links</button>
+        {linksPresent.map((l) => (
+          <button type="button" class="filter" data-filter-link={l}>{linkShort[l] ?? factorByLetter(l)?.name ?? l}</button>
+        ))}
+      </div>
+    )}
+    <p class="dim filter-count" data-bind="count"></p>
+
+    <div class="entries">
+      {entries.map((e) => {
+        const kind = ledger.kinds.find((k) => k.key === e.kind);
+        return (
+          <details class="entry" id={e.id} data-kind={e.kind} data-links={e.links.join(' ')}>
+            <summary>
+              <span class="entry-meta">
+                <span class="entry-date">{e.date}</span>
+                <span class={`chip kind kind-${e.kind}`}>{kind?.label ?? e.kind}</span>
+                {e.links.map((l) => <span class="chip">{linkShort[l] ?? l}</span>)}
+                {e.author && <span class="chip violet">{e.author === 'scan' ? 'found by the weekly scan' : e.author}</span>}
+              </span>
+              <span class="entry-title">{e.title}</span>
+              <span class={`entry-delta tone-${direction(e.headline_change?.[DEFAULT_SCENARIO]).tone}`} data-delta={e.id}>
+                {e.headline_before === null
+                  ? 'the first run of the tree'
+                  : `${odds(e.headline_before?.[DEFAULT_SCENARIO])} → ${odds(e.headline_after?.[DEFAULT_SCENARIO])}`}
+              </span>
+            </summary>
+
+            <div class="entry-body">
+              <p>{e.body}</p>
+
+              {e.kind === 'structure' && (
+                <p class="entry-warn">
+                  This changed the tree itself, not the world. Numbers from before it and after it
+                  are not measuring quite the same thing, and the site says so wherever the two sit
+                  together.
+                </p>
+              )}
+
+              {e.occurred_on && e.occurred_on !== e.date && (
+                <p class="dim"><strong>It happened on:</strong> {e.occurred_on}. Written into this record on {e.date}.</p>
+              )}
+              {e.source && <p class="dim"><strong>Settled by:</strong> {e.source}</p>}
+              <p class="dim">{authorLabel(e.author)}. It landed in the run <code>{e.snapshot}</code>.</p>
+
+              {e.node_changes.length > 0 && (
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th>{e.kind === 'held-steady' ? 'Read against this step' : 'Step of the tree'}</th>
+                      <th>Before</th><th>After</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {e.node_changes.map((n) => (
+                      <tr data-node-row={`${e.id}|${n.id}`}>
+                        <td><a href={n.path}>{n.name}</a></td>
+                        <td class="dim" data-node-before={`${e.id}|${n.id}`}>{odds(n.before?.[DEFAULT_SCENARIO])}</td>
+                        <td data-node-after={`${e.id}|${n.id}`}>{odds(n.after?.[DEFAULT_SCENARIO])}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+
+              <div class="callout">
+                <h3>What this one was worth</h3>
+                {e.headline_before === null ? (
+                  <p>
+                    This entry belongs to the first run of the tree, so there is no earlier run to
+                    read it against. Its number is where the story starts rather than a move.
+                  </p>
+                ) : e.kind === 'held-steady' ? (
+                  <p>
+                    Nothing, and that is the point of the entry. Something widely reported happened,
+                    it was read against criteria the tree had already written down, and none of them
+                    counted. The number did not move.
+                  </p>
+                ) : e.separable && e.contribution ? (
+                  <p>
+                    With this entry undone and the rest of that run left alone, the headline lands at
+                    {' '}<span data-without={e.id}>{odds(e.headline_without?.[DEFAULT_SCENARIO])}</span>
+                    {' '}instead of <span data-with={e.id}>{odds(e.headline_after?.[DEFAULT_SCENARIO])}</span>.
+                    So this one change is worth
+                    {' '}<span data-contrib={e.id}>{movePoints(e.contribution[DEFAULT_SCENARIO])}</span>,
+                    which is the whole of what it did to the number.
+                  </p>
+                ) : e.attributed ? (
+                  <p>{e.not_separable_why}</p>
+                ) : (
+                  <p class="dim">
+                    Not yet worked out. The run this entry landed in has not had its attribution
+                    computed and committed.
+                  </p>
+                )}
+              </div>
+
+              {e.watch && (
+                <div class="callout">
+                  <h3>This was on the watch list</h3>
+                  <p>
+                    Before it happened, the site said in advance what it would be worth:
+                    {' '}<span data-watch={e.id}>{movePoints(e.watch.predicted?.[DEFAULT_SCENARIO])}</span> on
+                    the headline, recorded at the run <code>{e.watch.predicted_at}</code>.
+                    {e.watch.path && <> The step it belongs to is <a href={e.watch.path}>{e.watch.name}</a>.</>}
+                  </p>
+                </div>
+              )}
+
+              {e.corrects && (
+                <p class="dim">This entry corrects an earlier one: <a href={`#${e.corrects}`}>{e.corrects}</a>.</p>
+              )}
+              {e.run_note && (
+                <p class="dim">The note written at the time: <code>{e.run_note}</code> in the public repository.</p>
+              )}
+            </div>
+          </details>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="section narrow-wide" id="movers">
+    <div class="shead">
+      <h2>The biggest movers</h2>
+      <span>and the things that moved nothing</span>
+    </div>
+    <p class="dim" style="font-size: 14.5px;">
+      Ranked by how far the headline would fall if that one entry were undone. The entries at the
+      bottom are the ones that matter most for reading the news honestly: something widely reported
+      happened, it was read against the criteria the tree had already written down, and none of them
+      counted. An entry whose share cannot be separated from the rest of its run says so instead of
+      guessing at a number.
+    </p>
+    {noisyRun && (
+      <p class="dim" style="font-size: 14px;">
+        These figures are not exact to the last decimal. The tree is played out
+        {' '}{noisyRun.runs!.toLocaleString()} times per scenario, and every run is a throw of the
+        dice: a figure smaller than about
+        {' '}{band(noisyRun.noise![DEFAULT_SCENARIO])} under the scenario
+        shown is inside that noise, and a second run would be as likely to put it the other way.
+        The ranking is worth reading; a gap of a hundredth of a point is not.
+      </p>
+    )}
+    {ledger.movers.map((year) => (
+      <>
+        <h3 class="movers-year">{year.year}</h3>
+        <table class="ptable movers">
+          <thead>
+            <tr><th>What happened</th><th>Kind</th><th>Worth to the headline</th></tr>
+          </thead>
+          <tbody>
+            {year.rows.map((r) => (
+              <tr>
+                <td><a href={`#${r.id}`}>{r.title}</a></td>
+                <td class="dim">{ledger.kinds.find((k) => k.key === r.kind)?.label ?? r.kind}</td>
+                <td class="num-cell" data-mover={r.id}>
+                  {r.moved_nothing
+                    ? 'moved nothing, on purpose'
+                    : r.contribution
+                      ? movePoints(r.contribution[DEFAULT_SCENARIO])
+                      : 'cannot be separated'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    ))}
+  </section>
+
+  <section class="section narrow-wide" id="runs">
+    <div class="shead">
+      <h2>Run by run</h2>
+      <span>what each play-through of the tree moved in total</span>
+    </div>
+    <p class="dim" style="font-size: 14.5px;">
+      Contributions do not add up to a run's whole move, and the difference is shown rather than
+      hidden. Changes made in the same run interact with each other, and some changes — a
+      requirement moved between tiers, a change to how the tree is played out — cannot be undone
+      one at a time. What is left over is the honest remainder.
+    </p>
+    <table class="ptable">
+      <thead>
+        <tr><th>Run</th><th>The whole run moved</th><th>Pinned on entries</th><th>Left over</th></tr>
+      </thead>
+      <tbody>
+        {ledger.runs.map((r) => (
+          <tr>
+            <td>
+              <code>{r.key}</code>
+              {structuralRuns.has(r.key) && <span class="chip" style="margin-left: 8px;">the tree itself changed</span>}
+              {r.note && <span class="run-note">{r.note}</span>}
+            </td>
+            <td class="num-cell" data-run-total={r.key}>{r.total_move ? movePoints(r.total_move[DEFAULT_SCENARIO]) : 'the first run'}</td>
+            <td class="num-cell" data-run-attributed={r.key}>{r.attributed ? movePoints(r.attributed[DEFAULT_SCENARIO]) : '—'}</td>
+            <td class="num-cell" data-run-remainder={r.key}>{r.remainder ? movePoints(r.remainder[DEFAULT_SCENARIO]) : '—'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    {latest && latest.review_status === 'pre-review' && (
+      <p class="dim" style="font-size: 14px;">
+        Every run so far is marked as a first pass: the outside-model review of every number
+        (roadmap step 27) has not been ruled in full, and each of these figures may still move.
+      </p>
+    )}
+    <p class="dim" style="font-size: 14px;">
+      Written by John: {authors['john'] ?? 0}.
+      {authors['scan'] ? ` Found by the weekly web scan: ${authors['scan']}.` : ''}
+      {' '}Each run is saved whole in the public repository, under <code>data/snapshots/</code>, so
+      any figure on this page can be checked against the run that produced it.
+    </p>
+  </section>
+
+  <section class="section narrow-wide" id="changelog">
+    <div class="shead">
+      <h2>The full changelog</h2>
+      <span>every change, down to the commit</span>
+    </div>
+    <p class="dim" style="font-size: 14.5px;">
+      {changelog.intro || 'Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.'}
+      {' '}The ledger above is the part of this that moved a number, or that notably failed to.
+      The project's day-by-day progress and its roadmap join this page at website step 24.
+    </p>
     {changelog.days.map((day) => (
       <div class="day">
         <h2>{day.date}</h2>
@@ -24,4 +356,135 @@ import { changelog, inline } from '../lib/tree';
       </div>
     ))}
   </section>
+
+  <script type="application/json" id="ledger-data" set:html={JSON.stringify(dialData)}></script>
+  <script is:inline>
+    (function () {
+      var el = document.getElementById('ledger-data');
+      if (!el) return;
+      var data = JSON.parse(el.textContent || '{}');
+      var scenario = 'baseline';
+
+      function odds(p) {
+        if (p === null || p === undefined) return 'not yet';
+        var v = p * 100;
+        return (v < 10 ? v.toFixed(1) : Math.round(v)) + '%';
+      }
+      function points(d) {
+        if (d === null || d === undefined) return 'not known';
+        var p = d * 100;
+        if (Math.abs(p) < 0.05) return 'unchanged';
+        return (p > 0 ? '+' : '−') + Math.abs(p).toFixed(1) + ' points';
+      }
+      function tone(d) {
+        if (d === null || d === undefined) return 'flat';
+        var p = d * 100;
+        return p > 0.05 ? 'up' : p < -0.05 ? 'down' : 'flat';
+      }
+      function pick(table) { return table ? table[scenario] : null; }
+      function setText(sel, text) {
+        var n = document.querySelector(sel);
+        if (n) n.textContent = text;
+      }
+
+      function apply(key) {
+        scenario = key;
+        var when = (data.scenarios.find(function (s) { return s.key === key; }) || {}).when || key;
+        document.querySelectorAll('[data-bind="when"]').forEach(function (n) { n.textContent = when; });
+
+        (data.entries || []).forEach(function (e) {
+          var badge = document.querySelector('[data-delta="' + e.id + '"]');
+          if (badge) {
+            badge.textContent = e.before === null || e.before === undefined
+              ? 'the first run of the tree'
+              : odds(pick(e.before)) + ' → ' + odds(pick(e.after));
+            badge.className = 'entry-delta tone-' + tone(pick(e.change));
+          }
+          setText('[data-contrib="' + e.id + '"]', points(pick(e.contribution)));
+          setText('[data-without="' + e.id + '"]', odds(pick(e.without)));
+          setText('[data-with="' + e.id + '"]', odds(pick(e.after)));
+          if (e.watch) setText('[data-watch="' + e.id + '"]', points(pick(e.watch)));
+          (e.nodes || []).forEach(function (n) {
+            setText('[data-node-before="' + e.id + '|' + n.id + '"]', odds(pick(n.before)));
+            setText('[data-node-after="' + e.id + '|' + n.id + '"]', odds(pick(n.after)));
+          });
+        });
+
+        (data.movers || []).forEach(function (year) {
+          year.rows.forEach(function (r) {
+            var cell = document.querySelector('[data-mover="' + r.id + '"]');
+            if (!cell) return;
+            cell.textContent = r.moved_nothing
+              ? 'moved nothing, on purpose'
+              : r.contribution ? points(pick(r.contribution)) : 'cannot be separated';
+          });
+        });
+
+        (data.runs || []).forEach(function (r) {
+          setText('[data-run-total="' + r.key + '"]', r.total_move ? points(pick(r.total_move)) : 'the first run');
+          setText('[data-run-attributed="' + r.key + '"]', r.attributed ? points(pick(r.attributed)) : '—');
+          setText('[data-run-remainder="' + r.key + '"]', r.remainder ? points(pick(r.remainder)) : '—');
+        });
+
+        document.querySelectorAll('.dial-btn').forEach(function (b) {
+          var on = b.getAttribute('data-scenario') === key;
+          b.classList.toggle('on', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+
+      document.querySelectorAll('.dial-btn').forEach(function (b) {
+        b.addEventListener('click', function () { apply(b.getAttribute('data-scenario')); });
+      });
+
+      // Filters: by kind, and by link of the chain.
+      var kind = 'all';
+      var link = 'all';
+      function refilter() {
+        var shown = 0;
+        document.querySelectorAll('.entry').forEach(function (card) {
+          var links = (card.getAttribute('data-links') || '').split(' ').filter(Boolean);
+          var ok = (kind === 'all' || card.getAttribute('data-kind') === kind)
+            && (link === 'all' || links.indexOf(link) !== -1);
+          card.hidden = !ok;
+          if (ok) shown++;
+        });
+        var count = document.querySelector('[data-bind="count"]');
+        if (count) {
+          var all = document.querySelectorAll('.entry').length;
+          count.textContent = shown === all
+            ? 'Showing all ' + all + ' entries.'
+            : 'Showing ' + shown + ' of ' + all + ' entries.';
+        }
+      }
+      document.querySelectorAll('[data-filter-kind]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          kind = b.getAttribute('data-filter-kind');
+          document.querySelectorAll('[data-filter-kind]').forEach(function (o) {
+            o.classList.toggle('on', o === b);
+          });
+          refilter();
+        });
+      });
+      document.querySelectorAll('[data-filter-link]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          link = b.getAttribute('data-filter-link');
+          document.querySelectorAll('[data-filter-link]').forEach(function (o) {
+            o.classList.toggle('on', o === b);
+          });
+          refilter();
+        });
+      });
+      refilter();
+
+      // A link straight to an entry opens it.
+      function openHash() {
+        if (!location.hash) return;
+        var card = document.querySelector(location.hash);
+        if (card && card.tagName === 'DETAILS') card.open = true;
+      }
+      window.addEventListener('hashchange', openHash);
+      openHash();
+    })();
+  </script>
 </Base>
