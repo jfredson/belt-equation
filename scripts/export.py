@@ -56,7 +56,7 @@ FACTORS = [
     {"letter": "A", "slug": "access", "name": "Access",
      "meaning": "That I personally have a pathway in, given my training, health, and career."},
     {"letter": "C", "slug": "contact", "name": "Contact Clause",
-     "meaning": "The dream underneath the project, published beside the equation and never multiplied into it."},
+     "meaning": "That we meet a mind that is not ours, whether a machine that has outgrown us or something of non-human origin. The dream underneath the project, published beside the equation and never multiplied into it."},
 ]
 SLUG_BY_LETTER = {f["letter"]: f["slug"] for f in FACTORS}
 
