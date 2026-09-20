@@ -7,6 +7,7 @@ Plain Python, standard library only. Run from anywhere:
     python3 scripts/compute.py shape               print the tree's shape (counts, tiers, leaves)
     python3 scripts/compute.py run [--runs N]      simulate the tree once per longevity scenario
     python3 scripts/compute.py run --world-spread 0   the same with nodes rolled independently
+    python3 scripts/compute.py run --snapshot [LABEL]  the same, and write the run to data/snapshots/
     python3 scripts/compute.py compare [--runs N]  the decision comparison, one choice group at a time
     python3 scripts/compute.py --data DIR ...      use a different data folder (for tests)
 
@@ -28,6 +29,11 @@ A spread of 0 restores independent rolls. "run" prints both, so the gap between 
 "compare" repeats "run" for each option in each choice group, one group at a time, and reports
 how far each option moves the headline (A2) from the current plan.
 
+"run --snapshot" writes the whole run to data/snapshots/YYYY-MM-DD[-label].json and commits
+nothing: the parameters, every tier's rate per scenario, every node's rate, the chain's gate
+rates, the Contact Clause rungs and the decision comparison. Snapshots are the ledger's memory
+(docs/ledger-plan.md); the history charts on the website are drawn from nothing else.
+
 The script refuses to report numbers until every open world node has a probability for every
 scenario, but "validate" and "shape" work on a tree with no numbers at all.
 """
@@ -35,6 +41,8 @@ scenario, but "validate" and "shape" work on a tree with no numbers at all.
 from __future__ import annotations
 
 import argparse
+import datetime as dt
+import json
 import math
 import random
 import sys
@@ -42,12 +50,20 @@ import tomllib
 from collections import defaultdict
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent.parent
+
 FACTORS = ["W", "L", "E", "D", "B", "M", "R", "A", "C"]
 KINDS = {"world", "choice"}
 HORIZONS = {"leaf", "mid", "root"}
 STATUSES = {"open", "resolved-yes", "resolved-no", "superseded"}
 REQUIRED = ["id", "name", "factor", "kind", "description", "resolution", "source", "horizon", "status"]
 HEADLINE_TIER = "A2"
+
+# Written onto every snapshot and kept there. Until the outside-model review (roadmap step 27)
+# has been ruled in full, every number the tree produces is a first pass and the site says so.
+# Change this to "reviewed" when the last of step 27's rulings lands: snapshots taken before
+# then keep the label they were written with, which is the point of writing it into the file.
+REVIEW_STATUS = "pre-review"
 
 
 class TreeError(Exception):
@@ -492,6 +508,192 @@ def report_compare(tree: dict, runs: int, seed: int, world_spread: float = 1.0) 
     return "\n".join(lines).rstrip()
 
 
+# ---------------------------------------------------------------- snapshots
+#
+# A snapshot is the complete output of one run, written to data/snapshots/ and committed.
+# It is the ledger's memory: the history charts on the site are drawn from nothing else, so
+# the history a reader sees is exactly the history in the repository (docs/ledger-plan.md,
+# decision 2). One is taken at every quarterly scan, every annual review, and whenever a
+# ruling changes the tree in between.
+
+
+def plain(value):
+    """Make a TOML value JSON-safe: dates become ISO strings, tables and lists recurse."""
+    if isinstance(value, (dt.date, dt.datetime)):
+        return value.isoformat()
+    if isinstance(value, dict):
+        return {k: plain(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [plain(v) for v in value]
+    return value
+
+
+def git_commit() -> str | None:
+    """The short commit this ran from, read out of .git without running git."""
+    try:
+        dot_git = ROOT / ".git"
+        if dot_git.is_file():  # a worktree: .git is a one-line pointer to the real folder
+            gitdir = Path(dot_git.read_text().split(":", 1)[1].strip())
+            common = gitdir.parent.parent if gitdir.parent.name == "worktrees" else gitdir
+        else:
+            gitdir = common = dot_git
+        ref = (gitdir / "HEAD").read_text().strip()
+        if not ref.startswith("ref: "):
+            return ref[:7]
+        ref_name = ref[5:]
+        ref_path = common / ref_name
+        if ref_path.exists():
+            return ref_path.read_text().strip()[:7]
+        packed = common / "packed-refs"
+        if packed.exists():
+            for line in packed.read_text().splitlines():
+                if line.endswith(" " + ref_name):
+                    return line.split()[0][:7]
+    except (OSError, IndexError):
+        pass
+    return None
+
+
+def chain_gates(tree: dict) -> dict[str, list[str]]:
+    """The home page's chain: per factor, the nodes the headline tier requires, directly or
+    through the tiers it rests on (T3 under A2, T2 under T3, and so on). A link "holds" when
+    every gate node of its factor holds in the same play-through; because each gate node
+    already waits on its own dependencies, the link's rate counts those too. Factors with no
+    gate node (W, whose job is done by the scenario, and C, never multiplied in) are left out.
+    Moved here from export.py on 2026-09-19 (ledger step 28) so a snapshot can record it too."""
+    tiers = {t["key"]: t for t in tree["tiers"]}
+    by_id = {n["id"]: n for n in tree["nodes"]}
+    seen: set[str] = set()
+    stack = [HEADLINE_TIER]
+    gates: dict[str, list[str]] = {}
+    while stack:
+        key = stack.pop()
+        if key in seen:
+            continue
+        seen.add(key)
+        for r in tiers[key].get("requires", []) or []:
+            if r in tiers:
+                stack.append(r)
+            elif r in by_id:
+                gates.setdefault(by_id[r]["factor"], [])
+                if r not in gates[by_id[r]["factor"]]:
+                    gates[by_id[r]["factor"]].append(r)
+    return {f: sorted(gates[f]) for f in FACTORS if f in gates}
+
+
+def decision_comparison(tree: dict, runs: int, seed: int, world_spread: float) -> dict:
+    """The decision comparison as data rather than a printed table: for every open choice
+    group, each option's headline number per scenario, and which option is the current plan."""
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for n in tree["nodes"]:
+        if n["kind"] == "choice" and n["status"] == "open":
+            groups[n["choice_group"]].append(n)
+    keys = [s["key"] for s in tree["scenarios"]]
+    out: dict[str, dict] = {}
+    for group, options in groups.items():
+        rows = []
+        for opt in options:
+            rng = random.Random(seed)
+            forced = {o["id"]: (o["id"] == opt["id"]) for o in options}
+            headline = {}
+            for k in keys:
+                headline[k] = simulate(tree, k, runs, rng, forced, world_spread)["tiers"][HEADLINE_TIER]
+            rows.append({
+                "id": opt["id"],
+                "name": opt["name"],
+                "current_plan": bool(opt.get("current_plan")),
+                "headline": headline,
+            })
+        out[group] = {"options": rows}
+    return out
+
+
+def take_snapshot(tree: dict, runs: int, seed: int, world_spread: float, date: str,
+                  label: str | None = None, note: str | None = None,
+                  review_status: str = REVIEW_STATUS, commit: str | None = None) -> dict:
+    """Run the whole tree and return one snapshot: every number a later run can be read against.
+
+    `date` is the date the snapshot is recorded under (the run's own date for an ordinary run,
+    the date the numbers were produced for a backfill). `label` tells two snapshots on the same
+    date apart; the key is the file name without its extension, date first so the folder sorts."""
+    missing = missing_probabilities(tree)
+    if missing:
+        raise TreeError(
+            "cannot take a snapshot: these open world nodes have no probability for every scenario:\n  "
+            + "\n  ".join(missing)
+        )
+    keys = [s["key"] for s in tree["scenarios"]]
+    gates = chain_gates(tree)
+    rng = random.Random(seed)
+    results = {k: simulate(tree, k, runs, rng, world_spread=world_spread, joint=gates) for k in keys}
+
+    def per_scenario(pick):
+        return {k: pick(results[k]) for k in keys}
+
+    return {
+        "key": f"{date}-{label}" if label else date,
+        "date": date,
+        "label": label,
+        "note": note,
+        "review_status": review_status,
+        "headline_tier": HEADLINE_TIER,
+        "run": {
+            "runs": runs,
+            "seed": seed,
+            "world_spread": world_spread,
+            "commit": commit if commit is not None else git_commit(),
+            "taken_on": dt.date.today().isoformat(),
+        },
+        "scenarios": [plain(s) for s in tree["scenarios"]],
+        "tiers": {t["key"]: per_scenario(lambda r, key=t["key"]: r["tiers"][key]) for t in tree["tiers"]},
+        "nodes": {n["id"]: per_scenario(lambda r, nid=n["id"]: r["nodes"][nid]) for n in tree["nodes"]},
+        "chain": {f: per_scenario(lambda r, f=f: r["joint"][f]) for f in gates},
+        "chain_nodes": gates,
+        "contact": {n["id"]: per_scenario(lambda r, nid=n["id"]: r["nodes"][nid])
+                    for n in tree["nodes"] if n["factor"] == "C"},
+        "decisions": decision_comparison(tree, runs, seed, world_spread),
+    }
+
+
+def write_snapshot(snapshot: dict, folder: Path) -> Path:
+    """Write a snapshot to data/snapshots/<key>.json. It refuses to overwrite one that exists:
+    a snapshot records a run that happened, and a second run gets a label of its own."""
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / f"{snapshot['key']}.json"
+    if path.exists():
+        raise TreeError(
+            f"{path.name} already exists. A snapshot records a run that happened and is never "
+            "rewritten; give this one a label of its own (--snapshot LABEL)."
+        )
+    path.write_text(json.dumps(snapshot, indent=2, ensure_ascii=False) + "\n")
+    return path
+
+
+def load_snapshots(folder: Path) -> list[dict]:
+    """Every snapshot in the folder, oldest first, with any malformed one named plainly."""
+    if not folder.exists():
+        return []
+    out: list[dict] = []
+    problems: list[str] = []
+    for path in sorted(folder.glob("*.json")):
+        try:
+            snap = json.loads(path.read_text())
+        except json.JSONDecodeError as e:
+            problems.append(f"{path.name}: cannot be read as JSON: {e}")
+            continue
+        missing = [f for f in ("key", "date", "run", "tiers", "nodes") if f not in snap]
+        if missing:
+            problems.append(f"{path.name}: missing the field(s) a snapshot must carry: {', '.join(missing)}")
+            continue
+        if snap["key"] != path.stem:
+            problems.append(f"{path.name}: its key '{snap['key']}' is not its file name")
+            continue
+        out.append(snap)
+    if problems:
+        raise TreeError("\n".join(problems))
+    return sorted(out, key=lambda s: (s["date"], s["key"]))
+
+
 # ------------------------------------------------------------------ main
 
 
@@ -504,6 +706,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--world-spread", type=float, default=1.0,
                         help="standard deviation of the per-run world draw on the log-odds scale; 0 = independent rolls")
+    parser.add_argument("--snapshot", nargs="?", const="", default=None, metavar="LABEL",
+                        help="with 'run': write the whole run to data/snapshots/, under an optional label")
+    parser.add_argument("--snapshot-date", default=None, metavar="YYYY-MM-DD",
+                        help="the date the snapshot is recorded under (default today; for backfilling a past run)")
+    parser.add_argument("--snapshot-note", default=None,
+                        help="one plain sentence kept with the snapshot saying what run it was")
+    parser.add_argument("--snapshot-commit", default=None, metavar="SHORT-SHA",
+                        help="the commit the numbers came from (default: the commit this ran from; "
+                             "set it when backfilling a run that happened at an older commit)")
+    parser.add_argument("--snapshots", type=Path, default=ROOT / "data" / "snapshots",
+                        help="the snapshot folder (for tests)")
     args = parser.parse_args(argv)
 
     try:
@@ -526,6 +739,15 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "run":
             print(report_run(tree, args.runs, args.seed, args.world_spread))
+            if args.snapshot is not None:
+                snapshot = take_snapshot(
+                    tree, args.runs, args.seed, args.world_spread,
+                    date=args.snapshot_date or dt.date.today().isoformat(),
+                    label=args.snapshot or None, note=args.snapshot_note,
+                    commit=args.snapshot_commit,
+                )
+                path = write_snapshot(snapshot, args.snapshots)
+                print(f"\nSnapshot {snapshot['key']} written to {path}, marked {snapshot['review_status']}.")
             return 0
         if args.command == "compare":
             print(report_compare(tree, args.runs, args.seed, args.world_spread))

@@ -3,7 +3,7 @@
 
 Plain Python, standard library only. Run from anywhere:
 
-    python3 scripts/export.py                  write site/src/data/tree.json and changelog.json
+    python3 scripts/export.py                  write site/src/data/tree.json, changelog.json, snapshots.json
     python3 scripts/export.py --check          validate and print the counts, write nothing
     python3 scripts/export.py --out DIR        write the JSON somewhere else
     python3 scripts/export.py --data DIR       read a different data folder (for tests)
@@ -17,7 +17,9 @@ What the JSON holds, beyond a copy of each record:
   that require it directly (tier membership lives only in tiers.toml; this is the derived view);
 - the changelog, split into dated days and their bullet lines;
 - the headline numbers when the tree is complete enough for compute.py to run, and a plain
-  reason when it is not (website step 23 puts them on the page).
+  reason when it is not (website step 23 puts them on the page);
+- the committed run snapshots in data/snapshots/, as the series the history charts are drawn
+  from and the difference between the last two runs (ledger step 28).
 """
 
 from __future__ import annotations
@@ -73,41 +75,11 @@ def one_paragraph(text) -> str:
     return " ".join(str(text).split())
 
 
-def plain(value):
-    """Make a TOML value JSON-safe: dates become ISO strings, tables and lists recurse."""
-    if isinstance(value, (dt.date, dt.datetime)):
-        return value.isoformat()
-    if isinstance(value, dict):
-        return {k: plain(v) for k, v in value.items()}
-    if isinstance(value, list):
-        return [plain(v) for v in value]
-    return value
-
-
-def git_commit() -> str | None:
-    """The short commit the export ran from, read from .git without running git."""
-    try:
-        dot_git = ROOT / ".git"
-        if dot_git.is_file():  # a worktree: .git is a one-line pointer to the real folder
-            gitdir = Path(dot_git.read_text().split(":", 1)[1].strip())
-            common = gitdir.parent.parent if gitdir.parent.name == "worktrees" else gitdir
-        else:
-            gitdir = common = dot_git
-        ref = (gitdir / "HEAD").read_text().strip()
-        if not ref.startswith("ref: "):
-            return ref[:7]
-        ref_name = ref[5:]
-        ref_path = common / ref_name
-        if ref_path.exists():
-            return ref_path.read_text().strip()[:7]
-        packed = common / "packed-refs"
-        if packed.exists():
-            for line in packed.read_text().splitlines():
-                if line.endswith(" " + ref_name):
-                    return line.split()[0][:7]
-    except (OSError, IndexError):
-        pass
-    return None
+# Three helpers moved into compute.py on 2026-09-19 (ledger step 28) so that the snapshot
+# writer and this export share one copy of each rather than two that can drift.
+plain = compute.plain
+git_commit = compute.git_commit
+chain_gates = compute.chain_gates
 
 
 # --------------------------------------------------------------- the tree
@@ -254,30 +226,65 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
     }
 
 
-def chain_gates(tree: dict) -> dict[str, list[str]]:
-    """The home page's chain: per factor, the nodes the headline tier requires, directly or
-    through the tiers it rests on (T3 under A2, T2 under T3, and so on). A link "holds" when
-    every gate node of its factor holds in the same play-through; because each gate node
-    already waits on its own dependencies, the link's rate counts those too. Factors with no
-    gate node (W, whose job is done by the scenario, and C, never multiplied in) are left out."""
-    tiers = {t["key"]: t for t in tree["tiers"]}
-    by_id = {n["id"]: n for n in tree["nodes"]}
-    seen: set[str] = set()
-    stack = [compute.HEADLINE_TIER]
-    gates: dict[str, list[str]] = {}
-    while stack:
-        key = stack.pop()
-        if key in seen:
-            continue
-        seen.add(key)
-        for r in tiers[key].get("requires", []) or []:
-            if r in tiers:
-                stack.append(r)
-            elif r in by_id:
-                gates.setdefault(by_id[r]["factor"], [])
-                if r not in gates[by_id[r]["factor"]]:
-                    gates[by_id[r]["factor"]].append(r)
-    return {f: sorted(gates[f]) for f in compute.FACTORS if f in gates}
+# ------------------------------------------------------------ the snapshots
+
+
+def export_snapshots(folder: Path) -> dict:
+    """The committed runs in data/snapshots/, turned into what the pages need.
+
+    Each snapshot is the complete output of one run (scripts/compute.py, ledger step 28). The
+    site never recomputes history: the chart on the ledger page, the gate-rate chart on each
+    factor page and the "since the last run" arrows on the home page all read this and nothing
+    else. The per-node table of every past run stays in the repository rather than the site's
+    JSON, which would grow without limit; only the latest run carries its full node table."""
+    snapshots = compute.load_snapshots(folder)
+    summaries = []
+    for s in snapshots:
+        summaries.append({k: s.get(k) for k in (
+            "key", "date", "label", "note", "review_status", "headline_tier",
+            "run", "tiers", "chain", "chain_nodes", "contact", "decisions",
+        )})
+
+    def series(pick) -> dict:
+        """One point per snapshot, oldest first, for whatever `pick` reads off a snapshot."""
+        out: dict[str, list[dict]] = {}
+        for s in snapshots:
+            for scenario, value in (pick(s) or {}).items():
+                out.setdefault(scenario, []).append({"key": s["key"], "date": s["date"], "value": value})
+        return out
+
+    tier_keys = sorted({k for s in snapshots for k in s.get("tiers", {})})
+    chain_keys = sorted({k for s in snapshots for k in s.get("chain", {})})
+    latest = snapshots[-1] if snapshots else None
+    previous = snapshots[-2] if len(snapshots) > 1 else None
+
+    def difference(field: str, key: str) -> dict:
+        """How far one number moved between the last two runs, per scenario."""
+        now = (latest or {}).get(field, {}).get(key, {})
+        before = (previous or {}).get(field, {}).get(key, {})
+        return {s: round(now[s] - before[s], 6) for s in now if s in before}
+
+    change = None
+    if latest and previous:
+        change = {
+            "from": previous["key"], "from_date": previous["date"],
+            "to": latest["key"], "to_date": latest["date"],
+            "tiers": {k: difference("tiers", k) for k in tier_keys},
+            "chain": {k: difference("chain", k) for k in chain_keys},
+        }
+
+    return {
+        "count": len(snapshots),
+        "headline_tier": compute.HEADLINE_TIER,
+        "latest_key": latest["key"] if latest else None,
+        "snapshots": summaries,
+        "latest": latest,
+        "series": {
+            "tiers": {k: series(lambda s, k=k: s.get("tiers", {}).get(k)) for k in tier_keys},
+            "chain": {k: series(lambda s, k=k: s.get("chain", {}).get(k)) for k in chain_keys},
+        },
+        "change": change,
+    }
 
 
 # ----------------------------------------------------------- the changelog
@@ -313,6 +320,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--data", type=Path, default=ROOT / "data")
     parser.add_argument("--changelog", type=Path, default=ROOT / "CHANGELOG.md")
+    parser.add_argument("--snapshots", type=Path, default=ROOT / "data" / "snapshots")
     parser.add_argument("--out", type=Path, default=ROOT / "site" / "src" / "data")
     parser.add_argument("--check", action="store_true", help="validate and count, write nothing")
     args = parser.parse_args(argv)
@@ -327,6 +335,7 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         exported = export_tree(tree)
         changelog = export_changelog(args.changelog)
+        snapshots = export_snapshots(args.snapshots)
     except (compute.TreeError, OSError) as e:
         print(f"Nothing exported: {e}")
         return 1
@@ -334,7 +343,7 @@ def main(argv: list[str] | None = None) -> int:
     c = exported["counts"]
     summary = (f"{c['nodes']} nodes ({c['with_probability']} with probabilities, {c['resolved']} resolved), "
                f"{len(exported['tiers'])} tiers, {len(exported['scenarios'])} scenarios, "
-               f"{len(changelog['days'])} changelog day(s)")
+               f"{len(changelog['days'])} changelog day(s), {snapshots['count']} snapshot(s)")
     if args.check:
         print(f"The tree validates. Export would write: {summary}.")
         return 0
@@ -342,6 +351,7 @@ def main(argv: list[str] | None = None) -> int:
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / "tree.json").write_text(json.dumps(exported, indent=2, ensure_ascii=False) + "\n")
     (args.out / "changelog.json").write_text(json.dumps(changelog, indent=2, ensure_ascii=False) + "\n")
+    (args.out / "snapshots.json").write_text(json.dumps(snapshots, indent=2, ensure_ascii=False) + "\n")
     print(f"Exported {summary} to {args.out}.")
     if not exported["numbers"]["available"]:
         print("Headline numbers not exported: " + exported["numbers"]["reason"])

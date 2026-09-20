@@ -1,0 +1,664 @@
+{
+  "key": "2026-09-19-second-run",
+  "date": "2026-09-19",
+  "label": "second-run",
+  "note": "The run after John's four rulings of 2026-09-19: the two regime gates reworded and re-estimated, the child-born-off-Earth requirement moved from Tier 2 to Tier 4, and the per-run world draw added at spread 1.0. These are the numbers the site shows. Backfilled on 2026-09-19 at ledger step 28 from the tree as it stands.",
+  "review_status": "pre-review",
+  "headline_tier": "A2",
+  "run": {
+    "runs": 20000,
+    "seed": 2026,
+    "world_spread": 1.0,
+    "commit": "37c870f",
+    "taken_on": "2026-09-19"
+  },
+  "scenarios": [
+    {
+      "key": "baseline",
+      "name": "Baseline, no extension beyond current trends",
+      "window_year": 2071,
+      "plus_or_minus": 8,
+      "refined_on": "2026-09-08"
+    },
+    {
+      "key": "moderate",
+      "name": "Moderate extension",
+      "window_year": 2080
+    },
+    {
+      "key": "strong",
+      "name": "Strong extension",
+      "window_year": 2095
+    },
+    {
+      "key": "radical",
+      "name": "Radical extension, a 150-year life",
+      "window_year": 2136
+    },
+    {
+      "key": "open",
+      "name": "Escape velocity, window open"
+    }
+  ],
+  "tiers": {
+    "T1": {
+      "baseline": 0.22385,
+      "moderate": 0.3145,
+      "strong": 0.4331,
+      "radical": 0.58005,
+      "open": 0.61245
+    },
+    "T2": {
+      "baseline": 0.0943,
+      "moderate": 0.15005,
+      "strong": 0.2479,
+      "radical": 0.42265,
+      "open": 0.49175
+    },
+    "T3": {
+      "baseline": 0.01565,
+      "moderate": 0.0364,
+      "strong": 0.0892,
+      "radical": 0.2288,
+      "open": 0.3032
+    },
+    "T4": {
+      "baseline": 0.0011,
+      "moderate": 0.00515,
+      "strong": 0.0187,
+      "radical": 0.0808,
+      "open": 0.13305
+    },
+    "A0": {
+      "baseline": 0.1553,
+      "moderate": 0.23635,
+      "strong": 0.3232,
+      "radical": 0.4013,
+      "open": 0.4078
+    },
+    "A1": {
+      "baseline": 0.39155,
+      "moderate": 0.5242,
+      "strong": 0.6637,
+      "radical": 0.78775,
+      "open": 0.8229
+    },
+    "A2": {
+      "baseline": 0.0087,
+      "moderate": 0.0222,
+      "strong": 0.05615,
+      "radical": 0.13995,
+      "open": 0.1801
+    },
+    "A3": {
+      "baseline": 0.00795,
+      "moderate": 0.01915,
+      "strong": 0.0515,
+      "radical": 0.13325,
+      "open": 0.174
+    }
+  },
+  "nodes": {
+    "A-pipeline-graduation": {
+      "baseline": 0.816,
+      "moderate": 0.8133,
+      "strong": 0.8087,
+      "radical": 0.81555,
+      "open": 0.81055
+    },
+    "A-commercial-crew-survival-training-industry-exists": {
+      "baseline": 0.49895,
+      "moderate": 0.5811,
+      "strong": 0.71205,
+      "radical": 0.8453,
+      "open": 0.88525
+    },
+    "A-military-survival-instructor-hired-into-spaceflight-training": {
+      "baseline": 0.6284,
+      "moderate": 0.717,
+      "strong": 0.8071,
+      "radical": 0.8906,
+      "open": 0.91555
+    },
+    "A-orbital-seat-sold-under-one-million-dollars": {
+      "baseline": 0.36225,
+      "moderate": 0.48425,
+      "strong": 0.6272,
+      "radical": 0.7563,
+      "open": 0.7993
+    },
+    "A-private-orbital-flight-by-someone-aged-65-or-over": {
+      "baseline": 1.0,
+      "moderate": 1.0,
+      "strong": 1.0,
+      "radical": 1.0,
+      "open": 1.0
+    },
+    "A-civilian-spaceflight-training-role-obtained": {
+      "baseline": 0.0,
+      "moderate": 0.0,
+      "strong": 0.0,
+      "radical": 0.0,
+      "open": 0.0
+    },
+    "A-military-role-with-off-earth-rotation-obtained": {
+      "baseline": 0.1553,
+      "moderate": 0.23635,
+      "strong": 0.3232,
+      "radical": 0.4013,
+      "open": 0.4078
+    },
+    "A-working-in-or-for-the-off-earth-industry": {
+      "baseline": 0.1553,
+      "moderate": 0.23635,
+      "strong": 0.3232,
+      "radical": 0.4013,
+      "open": 0.4078
+    },
+    "A-in-a-role-whose-holders-rotate-off-earth": {
+      "baseline": 0.09645,
+      "moderate": 0.1602,
+      "strong": 0.2449,
+      "radical": 0.32645,
+      "open": 0.3455
+    },
+    "A-first-spaceflight": {
+      "baseline": 0.39155,
+      "moderate": 0.5242,
+      "strong": 0.6637,
+      "radical": 0.78775,
+      "open": 0.8229
+    },
+    "A-reenlist-at-six-years": {
+      "baseline": 1.0,
+      "moderate": 1.0,
+      "strong": 1.0,
+      "radical": 1.0,
+      "open": 1.0
+    },
+    "A-separate-at-six-years-into-civilian-space-work": {
+      "baseline": 0.0,
+      "moderate": 0.0,
+      "strong": 0.0,
+      "radical": 0.0,
+      "open": 0.0
+    },
+    "A-tree-maintains-itself-with-human-approval-only": {
+      "baseline": 0.86445,
+      "moderate": 0.8909,
+      "strong": 0.916,
+      "radical": 0.93215,
+      "open": 0.9241
+    },
+    "A-technical-publication-produced-with-ai-collaborators": {
+      "baseline": 0.5042,
+      "moderate": 0.5846,
+      "strong": 0.66925,
+      "radical": 0.76295,
+      "open": 0.81225
+    },
+    "B-mammal-born-and-weaned-in-partial-gravity": {
+      "baseline": 0.76395,
+      "moderate": 0.7855,
+      "strong": 0.80825,
+      "radical": 0.89035,
+      "open": 0.926
+    },
+    "B-human-year-in-partial-gravity-without-disqualifying-harm": {
+      "baseline": 0.35285,
+      "moderate": 0.4201,
+      "strong": 0.4865,
+      "radical": 0.62375,
+      "open": 0.66005
+    },
+    "B-human-child-born-off-earth": {
+      "baseline": 0.0881,
+      "moderate": 0.1266,
+      "strong": 0.204,
+      "radical": 0.4089,
+      "open": 0.4823
+    },
+    "B-crewed-spin-gravity-demonstration": {
+      "baseline": 0.6704,
+      "moderate": 0.71675,
+      "strong": 0.75795,
+      "radical": 0.8661,
+      "open": 0.89115
+    },
+    "B-earth-gravity-habitat-occupied-for-a-year": {
+      "baseline": 0.1625,
+      "moderate": 0.22165,
+      "strong": 0.33285,
+      "radical": 0.56245,
+      "open": 0.65905
+    },
+    "B-long-term-off-earth-living-by-some-route": {
+      "baseline": 0.4243,
+      "moderate": 0.50795,
+      "strong": 0.6102,
+      "radical": 0.7858,
+      "open": 0.83985
+    },
+    "B-shielding-halves-deep-space-radiation-dose": {
+      "baseline": 0.4982,
+      "moderate": 0.54395,
+      "strong": 0.6233,
+      "radical": 0.7665,
+      "open": 0.81205
+    },
+    "B-closed-loop-life-support-year-off-earth": {
+      "baseline": 0.4992,
+      "moderate": 0.5651,
+      "strong": 0.66505,
+      "radical": 0.8146,
+      "open": 0.8664
+    },
+    "B-radiation-resistance-treatment-for-humans": {
+      "baseline": 0.10615,
+      "moderate": 0.13405,
+      "strong": 0.18725,
+      "radical": 0.3764,
+      "open": 0.45425
+    },
+    "C1": {
+      "baseline": 0.8921,
+      "moderate": 0.9255,
+      "strong": 0.9544,
+      "radical": 0.9706,
+      "open": 0.9696
+    },
+    "C2": {
+      "baseline": 0.69325,
+      "moderate": 0.79015,
+      "strong": 0.8613,
+      "radical": 0.91885,
+      "open": 0.9288
+    },
+    "C3": {
+      "baseline": 0.0697,
+      "moderate": 0.09695,
+      "strong": 0.1332,
+      "radical": 0.2201,
+      "open": 0.326
+    },
+    "C4": {
+      "baseline": 0.0169,
+      "moderate": 0.02485,
+      "strong": 0.04545,
+      "radical": 0.10205,
+      "open": 0.1707
+    },
+    "D-nuclear-propulsion-changes-orbit-in-space": {
+      "baseline": 0.583,
+      "moderate": 0.6835,
+      "strong": 0.8119,
+      "radical": 0.9009,
+      "open": 0.92875
+    },
+    "D-nuclear-propulsion-in-routine-use": {
+      "baseline": 0.3346,
+      "moderate": 0.43565,
+      "strong": 0.6047,
+      "radical": 0.77695,
+      "open": 0.8297
+    },
+    "D-crew-round-trip-to-mars": {
+      "baseline": 0.4955,
+      "moderate": 0.6218,
+      "strong": 0.7585,
+      "radical": 0.86985,
+      "open": 0.88685
+    },
+    "D-constant-acceleration-drive-demonstrated": {
+      "baseline": 0.03255,
+      "moderate": 0.06965,
+      "strong": 0.16445,
+      "radical": 0.3496,
+      "open": 0.47795
+    },
+    "D-permanent-crewed-site-beyond-the-earth-moon-system": {
+      "baseline": 0.1674,
+      "moderate": 0.2616,
+      "strong": 0.41925,
+      "radical": 0.64885,
+      "open": 0.71965
+    },
+    "E-megawatt-spacecraft-operates-in-orbit": {
+      "baseline": 0.81635,
+      "moderate": 0.8693,
+      "strong": 0.9037,
+      "radical": 0.92845,
+      "open": 0.93765
+    },
+    "E-fission-reactor-runs-on-lunar-surface": {
+      "baseline": 0.6648,
+      "moderate": 0.75605,
+      "strong": 0.86625,
+      "radical": 0.92815,
+      "open": 0.94135
+    },
+    "E-superconducting-wire-price-falls-tenfold": {
+      "baseline": 0.53925,
+      "moderate": 0.62505,
+      "strong": 0.75765,
+      "radical": 0.86485,
+      "open": 0.8894
+    },
+    "E-fusion-plant-delivers-net-electricity": {
+      "baseline": 0.58325,
+      "moderate": 0.66555,
+      "strong": 0.81175,
+      "radical": 0.9012,
+      "open": 0.9254
+    },
+    "E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity": {
+      "baseline": 1.0,
+      "moderate": 1.0,
+      "strong": 1.0,
+      "radical": 1.0,
+      "open": 1.0
+    },
+    "L-heavy-launcher-100-per-year": {
+      "baseline": 0.7631,
+      "moderate": 0.8169,
+      "strong": 0.86335,
+      "radical": 0.90505,
+      "open": 0.91185
+    },
+    "L-fully-reusable-heavy-launcher-recovers-both-stages": {
+      "baseline": 0.92925,
+      "moderate": 0.9379,
+      "strong": 0.95305,
+      "radical": 0.9716,
+      "open": 0.968
+    },
+    "L-orbital-propellant-transfer-at-scale": {
+      "baseline": 0.8682,
+      "moderate": 0.90315,
+      "strong": 0.92555,
+      "radical": 0.95795,
+      "open": 0.95325
+    },
+    "L-crew-lands-on-moon-in-reusable-lander": {
+      "baseline": 0.7203,
+      "moderate": 0.7924,
+      "strong": 0.84165,
+      "radical": 0.8924,
+      "open": 0.9001
+    },
+    "L-launch-price-below-200-dollars-per-kg": {
+      "baseline": 0.5443,
+      "moderate": 0.6442,
+      "strong": 0.7394,
+      "radical": 0.82525,
+      "open": 0.85235
+    },
+    "L-large-structure-assembled-in-orbit": {
+      "baseline": 0.588,
+      "moderate": 0.66755,
+      "strong": 0.8072,
+      "radical": 0.90025,
+      "open": 0.9282
+    },
+    "L-lunar-material-delivered-to-orbit-at-scale": {
+      "baseline": 0.198,
+      "moderate": 0.30575,
+      "strong": 0.46215,
+      "radical": 0.62725,
+      "open": 0.6901
+    },
+    "M-paying-customer-for-work-done-in-orbit": {
+      "baseline": 0.8153,
+      "moderate": 0.8681,
+      "strong": 0.89865,
+      "radical": 0.9267,
+      "open": 0.94215
+    },
+    "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale": {
+      "baseline": 0.71445,
+      "moderate": 0.81665,
+      "strong": 0.89165,
+      "radical": 0.92395,
+      "open": 0.9408
+    },
+    "M-hundred-people-working-off-earth-for-pay": {
+      "baseline": 0.40185,
+      "moderate": 0.49085,
+      "strong": 0.6059,
+      "radical": 0.73405,
+      "open": 0.7502
+    },
+    "M-off-earth-product-sold-at-a-profit": {
+      "baseline": 0.09795,
+      "moderate": 0.17,
+      "strong": 0.30815,
+      "radical": 0.4949,
+      "open": 0.57845
+    },
+    "R-crewed-lunar-program-outlives-two-changes-of-president": {
+      "baseline": 0.7108,
+      "moderate": 0.761,
+      "strong": 0.80725,
+      "radical": 0.8714,
+      "open": 0.88885
+    },
+    "R-space-funding-holds-through-a-recession": {
+      "baseline": 0.76775,
+      "moderate": 0.7791,
+      "strong": 0.812,
+      "radical": 0.8675,
+      "open": 0.86665
+    },
+    "R-binding-ban-on-debris-creating-anti-satellite-tests": {
+      "baseline": 0.32815,
+      "moderate": 0.4194,
+      "strong": 0.539,
+      "radical": 0.7107,
+      "open": 0.7616
+    },
+    "R-off-earth-resource-rights-recognised-by-major-powers": {
+      "baseline": 0.4622,
+      "moderate": 0.54515,
+      "strong": 0.66755,
+      "radical": 0.8119,
+      "open": 0.8648
+    },
+    "R-off-earth-site-accepts-permanent-residents": {
+      "baseline": 0.26285,
+      "moderate": 0.34885,
+      "strong": 0.47735,
+      "radical": 0.7024,
+      "open": 0.7753
+    },
+    "W-dog-rapamycin-trial-reports-longer-life": {
+      "baseline": 0.46325,
+      "moderate": 0.4602,
+      "strong": 0.4562,
+      "radical": 0.4595,
+      "open": 0.4588
+    },
+    "W-regulator-accepts-aging-as-an-indication": {
+      "baseline": 0.54225,
+      "moderate": 0.58255,
+      "strong": 0.66505,
+      "radical": 0.81355,
+      "open": 0.8626
+    },
+    "W-composite-aging-trial-positive-in-humans": {
+      "baseline": 0.6723,
+      "moderate": 0.7166,
+      "strong": 0.75785,
+      "radical": 0.8653,
+      "open": 0.86805
+    },
+    "W-partial-reprogramming-reaches-human-trials": {
+      "baseline": 1.0,
+      "moderate": 1.0,
+      "strong": 1.0,
+      "radical": 1.0,
+      "open": 1.0
+    },
+    "W-first-drug-approved-to-slow-aging": {
+      "baseline": 0.3537,
+      "moderate": 0.4055,
+      "strong": 0.50365,
+      "radical": 0.72,
+      "open": 0.7811
+    },
+    "W-human-therapy-cuts-death-rate-in-older-adults": {
+      "baseline": 0.23505,
+      "moderate": 0.29175,
+      "strong": 0.37345,
+      "radical": 0.58745,
+      "open": 0.66285
+    },
+    "W-verified-human-lifespan-passes-122": {
+      "baseline": 0.07265,
+      "moderate": 0.10885,
+      "strong": 0.1798,
+      "radical": 0.4597,
+      "open": 0.58375
+    }
+  },
+  "chain": {
+    "L": {
+      "baseline": 0.14405,
+      "moderate": 0.24145,
+      "strong": 0.3843,
+      "radical": 0.54965,
+      "open": 0.61595
+    },
+    "E": {
+      "baseline": 0.6648,
+      "moderate": 0.75605,
+      "strong": 0.86625,
+      "radical": 0.92815,
+      "open": 0.94135
+    },
+    "D": {
+      "baseline": 0.0937,
+      "moderate": 0.16365,
+      "strong": 0.30655,
+      "radical": 0.5414,
+      "open": 0.62435
+    },
+    "B": {
+      "baseline": 0.17825,
+      "moderate": 0.2337,
+      "strong": 0.33345,
+      "radical": 0.54955,
+      "open": 0.6405
+    },
+    "M": {
+      "baseline": 0.0678,
+      "moderate": 0.1251,
+      "strong": 0.23465,
+      "radical": 0.4089,
+      "open": 0.47805
+    },
+    "R": {
+      "baseline": 0.364,
+      "moderate": 0.44815,
+      "strong": 0.5653,
+      "radical": 0.7225,
+      "open": 0.77935
+    },
+    "A": {
+      "baseline": 0.09645,
+      "moderate": 0.1602,
+      "strong": 0.2449,
+      "radical": 0.32645,
+      "open": 0.3455
+    }
+  },
+  "chain_nodes": {
+    "L": [
+      "L-crew-lands-on-moon-in-reusable-lander",
+      "L-launch-price-below-200-dollars-per-kg",
+      "L-lunar-material-delivered-to-orbit-at-scale"
+    ],
+    "E": [
+      "E-fission-reactor-runs-on-lunar-surface"
+    ],
+    "D": [
+      "D-nuclear-propulsion-in-routine-use",
+      "D-permanent-crewed-site-beyond-the-earth-moon-system"
+    ],
+    "B": [
+      "B-closed-loop-life-support-year-off-earth",
+      "B-long-term-off-earth-living-by-some-route",
+      "B-shielding-halves-deep-space-radiation-dose"
+    ],
+    "M": [
+      "M-hundred-people-working-off-earth-for-pay",
+      "M-off-earth-product-sold-at-a-profit"
+    ],
+    "R": [
+      "R-crewed-lunar-program-outlives-two-changes-of-president",
+      "R-off-earth-resource-rights-recognised-by-major-powers"
+    ],
+    "A": [
+      "A-in-a-role-whose-holders-rotate-off-earth"
+    ]
+  },
+  "contact": {
+    "C1": {
+      "baseline": 0.8921,
+      "moderate": 0.9255,
+      "strong": 0.9544,
+      "radical": 0.9706,
+      "open": 0.9696
+    },
+    "C2": {
+      "baseline": 0.69325,
+      "moderate": 0.79015,
+      "strong": 0.8613,
+      "radical": 0.91885,
+      "open": 0.9288
+    },
+    "C3": {
+      "baseline": 0.0697,
+      "moderate": 0.09695,
+      "strong": 0.1332,
+      "radical": 0.2201,
+      "open": 0.326
+    },
+    "C4": {
+      "baseline": 0.0169,
+      "moderate": 0.02485,
+      "strong": 0.04545,
+      "radical": 0.10205,
+      "open": 0.1707
+    }
+  },
+  "decisions": {
+    "six-year-fork": {
+      "options": [
+        {
+          "id": "A-reenlist-at-six-years",
+          "name": "Re-enlist at the six-year mark",
+          "current_plan": true,
+          "headline": {
+            "baseline": 0.0087,
+            "moderate": 0.0222,
+            "strong": 0.05615,
+            "radical": 0.13995,
+            "open": 0.1801
+          }
+        },
+        {
+          "id": "A-separate-at-six-years-into-civilian-space-work",
+          "name": "Separate at the six-year mark into civilian space or defence work",
+          "current_plan": false,
+          "headline": {
+            "baseline": 0.0096,
+            "moderate": 0.0235,
+            "strong": 0.0626,
+            "radical": 0.14855,
+            "open": 0.19615
+          }
+        }
+      ]
+    }
+  }
+}
