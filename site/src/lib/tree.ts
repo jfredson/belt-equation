@@ -64,6 +64,7 @@ export type Node = {
   rationale: string | null;
   resolved_on: string | null;
   resolved_by: string | null;
+  resolved_links: string[];
   superseded_by: string | null;
   revisions: Revision[];
   verify: string[];

@@ -165,6 +165,7 @@ def export_tree(tree: dict) -> dict:
             "rationale": one_paragraph(n.get("rationale")) or None,
             "resolved_on": plain(n.get("resolved_on")),
             "resolved_by": one_paragraph(n.get("resolved_by")) or None,
+            "resolved_links": [str(u) for u in (n.get("resolved_links", []) or [])],
             "superseded_by": n.get("superseded_by"),
             "revisions": plain(n.get("revisions", []) or []),
             "verify": list(n.get("verify", []) or []),

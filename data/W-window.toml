@@ -97,6 +97,14 @@ depends_on = []
 status = "resolved-yes"
 resolved_on = 2026-06-09
 resolved_by = "Life Biosciences press release of 2026-06-09 announcing the first participant dosed in its Phase 1 trial of ER-100 (registry entry NCT07290244), with independent press coverage"
+resolved_links = [
+  "https://www.lifebiosciences.com/life-biosciences-announces-first-patient-dosed-in-phase-1-trial-of-er-100-for-optic-neuropathies/",
+  "https://www.globenewswire.com/news-release/2026/06/09/3308634/0/en/life-biosciences-announces-first-patient-dosed-in-phase-1-trial-of-er-100-for-optic-neuropathies.html",
+  "https://clinicaltrials.gov/study/NCT07290244",
+]
+revisions = [
+  { date = 2026-09-19, field = "resolved_links", old = "", new = "https://www.lifebiosciences.com/life-biosciences-announces-first-patient-dosed-in-phase-1-trial-of-er-100-for-optic-neuropathies/; https://www.globenewswire.com/news-release/2026/06/09/3308634/0/en/life-biosciences-announces-first-patient-dosed-in-phase-1-trial-of-er-100-for-optic-neuropathies.html; https://clinicaltrials.gov/study/NCT07290244", why = "Every event marked as having happened now links to the record that settled it, so a reader can check the claim (site rule added 2026-09-19)." },
+]
 notes = "Drafted open on 2026-09-08 and found resolved the same evening when checked under the verification rule, before any probability was estimated."
 
 [[node]]

@@ -115,4 +115,11 @@ depends_on = []
 status = "resolved-yes"
 resolved_on = 2025-07-30
 resolved_by = "Helion's announcement of 2025-07-30 that it had secured land and begun building at Malaga, Washington, under its power purchase agreement with Microsoft; reported by World Nuclear News and BusinessWire"
+resolved_links = [
+  "https://www.helionenergy.com/newsroom/helion-secures-land-and-begins-building-site-of-worlds-first-fusion-power-plant",
+  "https://www.world-nuclear-news.org/articles/helion-begins-work-on-fusion-power-plant",
+]
+revisions = [
+  { date = 2026-09-19, field = "resolved_links", old = "", new = "https://www.helionenergy.com/newsroom/helion-secures-land-and-begins-building-site-of-worlds-first-fusion-power-plant; https://www.world-nuclear-news.org/articles/helion-begins-work-on-fusion-power-plant", why = "Every event marked as having happened now links to the record that settled it, so a reader can check the claim (site rule added 2026-09-19)." },
+]
 notes = "Added at step 7 (2026-09-08); the date and facts checked the same day against the company's newsroom and trade press."

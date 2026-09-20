@@ -385,3 +385,4 @@ a.dim:hover { color: var(--accent); }
 .rail-def { margin: 0 0 10px; font-size: 14.5px; color: var(--text-soft); }
 .rail-req { margin: 0 0 2px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 @media (max-width: 720px) { .tally { grid-template-columns: 1fr 1fr; } }
+.callout .sources { margin: 8px 0 0; font-family: var(--sans); font-size: 13px; color: var(--muted); }
