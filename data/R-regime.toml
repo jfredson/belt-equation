@@ -18,10 +18,10 @@ counts, because Tier 1 is an outpost by anyone; the US program is the one to wat
 resolution = """
 A crewed lunar program (a national program or a company's program with a national anchor
 customer) receives its yearly funding and flies crewed hardware in each of two successive
-governments after the one in office when it first flew crew. For the US program, counting
-from 2026, that means two successive presidential administrations after the current one.
-A program that is cancelled and later restarted, or a different nation's program that reaches
-the mark, resolves the node when it gets there."""
+governments after the one in office when it first flew crew, a change of government meaning
+a change in the head of government, or for a company program a change in the head of its
+anchor customer's government. A program that is cancelled and later restarted, or a
+different nation's program that reaches the mark, resolves the node when it gets there."""
 source = "The funding nation's appropriations records and the program's flight record"
 horizon = "mid"
 depends_on = []
@@ -32,35 +32,44 @@ rationale = "With any nation's program counting and a restart still able to reso
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "US program only; a single cut before two administrations had passed resolved the node no for good", new = "any nation's or company's crewed lunar program; a cancelled program can be restarted and a different program can reach the mark", why = "First run (docs/runs/2026-09-19-first-run.md): as a Tier 1 requirement and a hard dependency of lunar material at scale, a permanent no from one US budget cut foreclosed an outpost by anyone. John ruled 2026-09-19 to reword to durable, nation-agnostic form." },
   { date = 2026-09-19, field = "probability", old = "0.60 flat across scenarios", new = "0.75 / 0.80 / 0.85 / 0.90 / 0.92", why = "Re-estimated against the reworded criterion, which can resolve later and by more programs; no longer flat because the longer windows now add attempts." },
+  { date = 2026-09-19, field = "resolution", old = "'for the US program, counting from 2026, that means two successive presidential administrations after the current one'; 'change of government' undefined", new = "the counting-from-2026 sentence dropped; a change of government means a change in the head of government, or for a company program in its anchor customer's government", why = "Step 27 outside-model review, item 84 (docs/reviews/2026-09-19-rulings.md): the 2026 sentence assumed crew first flew in 2026 and could contradict the general clause if the first crewed flight slips, and non-democracies needed a definition. Ruled by John 2026-09-19." },
 ]
 
 [[node]]
 id = "R-space-funding-holds-through-a-recession"
-name = "Space spending recovers within three years of a recession"
+name = "Space spending recovers within three years of the next recession"
 factor = "R"
 kind = "world"
 description = """
-Downturns are when long builds get cut. The test is whether, after a recession, the
-government human-spaceflight budget and the largest private launch company's flight rate
-come back to where they were rather than being cut and left there. A dip is allowed; what
-the tree needs is that the field keeps its funding across the business cycle. The node is
-tested at every recession and resolves yes the first time the field comes through one."""
+Downturns are when long builds get cut. The test is whether, after the next US recession,
+the government's exploration and space-operations budget and the largest private launch
+company's flight rate come back to where they were rather than being cut and left there. A
+dip is allowed; what the tree needs is that the field keeps its funding across the business
+cycle. The node looks forward: the 2008 and 2020 downturns are the reason the number is
+high, not the event it waits for. It is tested at every recession that ends after
+2026-09-19 and resolves yes the first time the field comes through one."""
 resolution = """
-Within three calendar years after the end of a US recession as dated by the National Bureau
-of Economic Research, the US human-spaceflight appropriation is back within ten percent of
-its pre-recession level in real terms and the largest US launch provider's orbital launch
-count is back within ten percent of its pre-recession count. Resolves yes at the first
-recession that passes the test; a recession that fails it leaves the node open for the next."""
-source = "NBER recession dates, federal appropriations records, public launch logs"
+Within three calendar years after the end of the first US recession that ends after
+2026-09-19, as dated by the National Bureau of Economic Research, or of any later recession
+if that one fails the test: the sum of NASA's Exploration and Space Operations appropriations
+for a fiscal year equals or exceeds the highest annual total of that sum in the three fiscal
+years before the recession began, in nominal dollars, and the yearly orbital launch count of
+the US provider that flew the most orbital launches in the last full calendar year before the
+recession began equals or exceeds that provider's highest annual count in the three calendar
+years before the recession began. Resolves yes at the first recession that passes both
+tests; a recession that fails leaves the node open for the next."""
+source = "NBER recession dates, the enacted NASA appropriations for the Exploration and Space Operations accounts, and public orbital launch logs"
 horizon = "mid"
 depends_on = []
 status = "open"
 probability = { baseline = 0.8, moderate = 0.82, strong = 0.85, radical = 0.9, open = 0.9 }
 estimated_on = 2026-09-19
-rationale = "The 2008 and 2020 downturns both saw space budgets and launch counts recover within three years, and the private flight rate is carried by constellation customers; the residual is a downturn deep enough to restructure the field. Rises slowly because every added recession is another chance to pass. Proposed with the rewording, 2026-09-19."
+rationale = "The 2008 and 2020 downturns both saw space budgets and launch counts recover within three years, and the private flight rate is carried by constellation customers; the residual is a downturn deep enough to restructure the field. Rises slowly because every added recession is another chance to pass. Numbers stand under the forward-looking reword of 2026-09-19, which already priced a future recession."
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "budget and launch count must not fall more than ten percent during the recession year itself; a fail was permanent", new = "budget and launch count are back within ten percent within three years after the recession; a fail leaves the node open for the next recession", why = "First run (docs/runs/2026-09-19-first-run.md): as a hard dependency of a hundred people working off Earth, a permanent no from one bad budget year foreclosed that node in every later decade. John ruled 2026-09-19 to reword to durable form." },
   { date = 2026-09-19, field = "probability", old = "0.55 flat across scenarios", new = "0.80 / 0.82 / 0.85 / 0.90 / 0.90", why = "Re-estimated against the reworded criterion; recovery within three years is a much easier test than no dip at all, and later recessions add chances." },
+  { date = 2026-09-19, field = "resolution", old = "any US recession, no start date, so the 2020 recession counted; 'within ten percent of its pre-recession level in real terms', basket and provider unspecified", new = "the first US recession that ends after 2026-09-19 (structural: the criterion changed after estimation); recovery means equalling or exceeding the highest annual total of the three pre-recession years, in nominal dollars; the basket is NASA's Exploration and Space Operations accounts; the provider is the US provider with the most orbital launches in the last pre-recession year", why = "Step 27 outside-model review, items 23, 88 and 89 (docs/reviews/2026-09-19-rulings.md): on the plain reading the node had already resolved on the 2020 recession (budget about 102 percent of 2019 on Astra's basket; launches 13 in 2019 and 31 in 2021, which the 'within ten percent' band perversely failed); John chose option (b), reword to the next recession with the floor and the fixed basket, keep it open, numbers stand, logged as structure, so the node keeps guarding the hundred-workers node against the next downturn. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "name", old = "Space spending recovers within three years of a recession", new = "Space spending recovers within three years of the next recession", why = "Step 27 outside-model review, item 89: the name now says the node looks forward. Ruled by John 2026-09-19." },
 ]
 
 [[node]]
@@ -96,8 +105,8 @@ treaty or matching national laws, is what lets the motive nodes attract long mon
 resolution = """
 A treaty in force, or national laws whose provisions mutually recognise each other, gives
 the United States and China (and at least one of the European Union, India, or Russia) the
-same rules for extracting and owning resources at off-Earth sites, as documented in the
-treaty record or the enacted statutes."""
+same rules on ownership of extracted material, its transfer, and the settlement of disputes
+at off-Earth sites, as documented in the treaty record or the enacted statutes."""
 source = "The treaty record or the enacted statutes"
 horizon = "root"
 depends_on = []
@@ -105,28 +114,88 @@ status = "open"
 probability = { baseline = 0.45, moderate = 0.55, strong = 0.7, radical = 0.85, open = 0.9 }
 estimated_on = 2026-09-19
 rationale = "Two rival frameworks today; convergence usually follows the first real mine. An outside model's 70 percent by 2070 (Astra, 2026-09-19) was for transferable rights among major jurisdictions without requiring the United States and China to match."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'the same rules for extracting and owning resources', rights unlisted", new = "the same rules on ownership of extracted material, its transfer, and the settlement of disputes", why = "Step 27 outside-model review, item 85 (docs/reviews/2026-09-19-rulings.md): 'same rules' could mean identical statutes or merely compatible rights; naming the three rights is a cheap clarification still measurable from statute text. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "R-off-earth-site-accepts-permanent-residents"
-name = "An off-Earth site accepts people as permanent residents, with no return scheduled"
+name = "An off-Earth site accepts people as permanent residents"
 factor = "R"
 kind = "world"
 description = """
 What separates living off Earth (the A3 tier) from working there on rotation (A2). Early
 settlements may be work camps by policy for decades, with every person on a return
-schedule, even after the biology allows staying. The node resolves when some site's own
-rules allow residence with no return planned and someone has actually lived that way for
-years. Choosing to stay is John's decision, not the world's, and belongs with the choice
-points once the access branch firms up."""
+schedule, even after the biology allows staying. The node resolves when some site publishes
+a resident status that lets a person stay indefinitely by choice, and someone has actually
+lived there under it for years. Choosing to stay is John's decision, not the world's, and
+belongs with the choice points once the access branch firms up."""
 resolution = """
-Under an off-Earth site's published residence terms, at least one person has lived there
-continuously for three years with no scheduled return to Earth, confirmed by the operator
-or governing body."""
+Under a published resident status at an off-Earth site that permits voluntary indefinite
+residence, at least one person has lived there continuously for three years holding that
+status, without a mandatory rotation date and not because departure was delayed or
+impossible, confirmed by the operator or governing body."""
 source = "The site's published residence terms and the operator's or governing body's record"
 horizon = "root"
 depends_on = ["B-long-term-off-earth-living-by-some-route"]
 status = "open"
-probability = { baseline = 0.5, moderate = 0.6, strong = 0.75, radical = 0.9, open = 0.93 }
+probability = { baseline = 0.6, moderate = 0.7, strong = 0.82, radical = 0.92, open = 0.95 }
 estimated_on = 2026-09-19
-rationale = "Once the biology allows it, the rule is a liability and policy question; work-camp terms could persist for decades after staying becomes safe."
+rationale = "Once the biology allows it, the rule is a liability and policy question, and one permissive site anywhere resolves it; work-camp terms at every operator at once are less likely to persist for decades than the first estimate assumed."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'with no scheduled return to Earth', which proves a negative and could describe stranded crew", new = "a published resident status that permits voluntary indefinite residence, held by at least one person living there continuously for three years", why = "Step 27 outside-model review, items 24 and 86 (docs/reviews/2026-09-19-rulings.md): a positive status test in place of a negative, with 'voluntary' ruling out the stranded case; the name loses 'with no return scheduled' to match. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.50 / 0.60 / 0.75 / 0.90 / 0.93", new = "0.60 / 0.70 / 0.82 / 0.92 / 0.95", why = "Step 27 outside-model review, item 87 (docs/reviews/2026-09-19-rulings.md): the first rationale was a claim about every operator at once, and one permissive site resolves the node; moved partway. Gates A3 only. Ruled by John 2026-09-19." },
+]
 notes = "Added 2026-09-08 (agreed by John) so that A3 has a node distinguishing it from A2. Placed under regime because permanent residence is a rule somebody sets, not a technology."
+
+[[node]]
+id = "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations"
+name = "The United States and China recognise each other's keep-out zones around off-Earth installations"
+factor = "R"
+kind = "world"
+description = """
+Nobody will run a mine or a plant on the Moon if a rival can land next to it. The Artemis
+Accords already describe "safety zones" around surface operations, recognised by one bloc;
+China's programme has its own partners and its own rules. Mutual, formal recognition by the
+two powers that will actually be there of each other's right to keep others out of a zone
+around an installation is the piece of law a product sold at a profit from out there stands
+on, and it is distinct from who owns what is dug up."""
+resolution = """
+The United States and China are each party to an instrument (a treaty, a bilateral or
+multilateral agreement, or matching enacted laws that name each other) under which each
+formally recognises the other's right to declare and enforce keep-out or safety zones around
+its off-Earth surface installations, as documented in the treaty record or the enacted text."""
+source = "The treaty record or the enacted statutes"
+horizon = "mid"
+depends_on = []
+status = "open"
+probability = { baseline = 0.5, moderate = 0.6, strong = 0.72, radical = 0.85, open = 0.9 }
+estimated_on = 2026-09-20
+rationale = "One bloc already practises safety zones and the other will need them the day it has an installation to protect, so the incentive runs both ways; what holds it at even odds by 2071 is that formal mutual recognition between these two powers on anything has been rare for a decade, and a tacit arrangement would not resolve the node. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, item 19 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a dependency of M-off-earth-product-sold-at-a-profit (see item 80). Distinct from R-off-earth-resource-rights-recognised-by-major-powers, which is about ownership of extracted material."
+
+[[node]]
+id = "R-space-traffic-management-authority-among-major-powers"
+name = "A space traffic authority among the major powers can enforce rules on manoeuvres and launch windows"
+factor = "R"
+kind = "world"
+description = """
+Air traffic has controllers with authority; space traffic has voluntary conjunction
+warnings and a great deal of goodwill. Tens of thousands of people in transit, thousands of
+vehicles and a Belt worth of shipping need an authority among the powers that fly, with
+real enforcement over who manoeuvres where and who launches when. It is distinct from a ban
+on debris-creating weapons tests and is the regime the Slow Expanse assumes without saying."""
+resolution = """
+A body established by agreement among at least the United States and China, and at least
+one of the European Union, India, or Russia, holds and has exercised authority over
+spacecraft manoeuvres and launch windows, with a published enforcement record (a refused
+launch window, a directed manoeuvre, or a sanction under the agreement), as documented in
+the agreement's text and the body's own published record."""
+source = "The agreement's text and the body's published enforcement record"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.35, moderate = 0.45, strong = 0.6, radical = 0.78, open = 0.85 }
+estimated_on = 2026-09-20
+rationale = "Coordination bodies without teeth exist and traffic in low orbit is already forcing the question, but an authority with enforcement over the major powers' own launches is a cession of sovereignty that took aviation a world war to reach; a little over one in three by 2071 and likely only with the longer windows. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, item 20 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; required by Tier 3 (data/tiers.toml), with the Tier 4 alternative to be revisited at the methodology pass alongside item 100 (the anti-satellite treaty under Tier 4)."

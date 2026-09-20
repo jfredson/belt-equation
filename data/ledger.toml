@@ -157,3 +157,359 @@ no criterion: it changed how the tree is played out, which is why numbers either
 not a like-for-like comparison."""
 snapshot = "2026-09-19-second-run"
 run_note = "docs/runs/2026-09-19-first-run.md"
+
+# --- The outside-model review landed (roadmap step 27, ruled 2026-09-19, landed 2026-09-20) ------
+# Two outside models (Gemini Pro Extended Thinking and GPT-6 Astra) read every node in three
+# packets, with Grok in Fast mode as a tiebreak on two launch and drive numbers; John ruled on all
+# 105 items on 2026-09-19 (docs/reviews/2026-09-19-rulings.md). The landing is one run: fifteen
+# probabilities moved by the reviews, nine nodes added (seven of them new requirements on the
+# chain), forty-one criteria tightened, two nodes reworded after estimation, and one edge fixed.
+# Every entry below landed in the same snapshot. The structural entries break comparability with
+# the runs before them, and the site says so wherever the two sit together. The nine new nodes'
+# first probabilities and the three re-estimates the rulings left open were proposed by Claude
+# and accepted by John as proposed on 2026-09-20.
+
+[[entry]]
+id = "2026-09-20-launch-price-below-200-dollars-marked-down"
+date = 2026-09-20
+kind = "revision"
+title = "The odds that mass to orbit sells below two hundred dollars a kilogram, given a hundred flights a year, came down after two of three reviewers said cadence proves nothing about price"
+body = """
+Gemini argued the number up, on the ground that a hundred flights a year is oversupply and no
+monopoly premium holds for forty-five years; Astra argued it down, because flight count says
+nothing about utilisation, refurbishment, vehicle life or competition, and a sold price is a
+commercial choice. Grok, run in Fast mode as the tiebreak the protocol allows, sided with
+Astra. John moved the number partway toward the two-of-three side, discounting the Fast-mode
+vote, and fixed the description's arithmetic: a tonne at two hundred dollars a kilogram is two
+hundred thousand dollars, not the price of a car. The criterion now names its inflation index
+and what a price means. This is a settlement-tier requirement, so it moves the headline."""
+nodes = ["L-launch-price-below-200-dollars-per-kg"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-routine-nuclear-propulsion-marked-down"
+date = 2026-09-20
+kind = "revision"
+title = "Nuclear propulsion becoming routine, given one demonstration, came down: a demonstration creates no demand by itself"
+body = """
+The reviewers pulled opposite ways by about the same amount. Gemini said the first flight is
+the barrier and routine use is adoption; Astra said that given the demonstration, the question
+is whether operators keep choosing nuclear and fund enough missions for three transfers in one
+year, and that the station analogy gives no adoption rate. Grok, the Fast-mode tiebreak, sided
+with Astra, and John moved the number partway toward that side. The criterion now says
+reactor-powered, so a radioisotope-electric probe cannot count, and defines the main transfer.
+A Slow-Expanse requirement, so it moves the headline."""
+nodes = ["D-nuclear-propulsion-in-routine-use"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-death-rate-therapy-long-windows-raised"
+date = 2026-09-20
+kind = "revision"
+title = "A therapy cutting the death rate of older adults by a quarter was raised in the long windows, where both reviewers said it was too low"
+body = """
+Both outside models agreed with the tree to 2095 and argued only the long windows: with no
+deadline, the question is whether it ever happens, and 0.70 was low for that. Astra also
+showed that the criterion as written could be met by a trial in a single high-risk disease
+group, and that a blood-pressure trial in the over-80s already cut all-cause mortality by a
+fifth over under two years. John tightened the criterion to a statistically significant result
+in a population not restricted to one disease, and raised the number, priced for that wording.
+The window's steps set the dial rather than a link in the chain, so the headline is unmoved."""
+nodes = ["W-human-therapy-cuts-death-rate-in-older-adults"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-lifespan-record-falling-raised-and-no-longer-a-long-shot"
+date = 2026-09-20
+kind = "revision"
+title = "The record human lifespan being passed went from a long shot to better than even by 2095, because the demographers say it needs no breakthrough"
+body = """
+The first estimate reasoned from a fifty percent yearly death rate past 110 and concluded that
+passing 122 needs a therapy. Astra cited Pearce and Raftery (2021), who use the same plateau and
+get a greater than 99 percent chance the record falls by 2100 with no rejuvenation at all,
+because the number of people reaching 110 grows fast each decade and the record needs one run
+of twelve heads among thousands of tries; the abstract was fetched and says exactly that. John
+raised the number well short of the paper, since the record has stood twenty-nine years and
+some analyses find mortality still rising past 110, and dropped the long-shot flag. The node is
+now a demographic milestone, the first sign that maximum lifespan is moving, whatever moves it.
+It feeds no tier."""
+nodes = ["W-verified-human-lifespan-passes-122"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-closed-loop-life-support-marked-down"
+date = 2026-09-20
+kind = "revision"
+title = "A year off Earth on mostly home-grown food, water and air came down: shipping food is cheap and farming is a settlement-scale project"
+body = """
+Gemini's argument was about incentives: as long as food can be shipped, nobody builds a farm,
+and a farm is what the criterion needs. John moved the number partway. The criterion now
+requires the operator's accounting to state the calorie, water and oxygen figures separately
+and to include starting stocks and resupply, so a percentage cannot hide an imported larder.
+The node also gained a new requirement, a staple crop harvested off Earth, entered separately
+below. A settlement-tier requirement, so it moves the headline."""
+nodes = ["B-closed-loop-life-support-year-off-earth"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-earth-gravity-habitat-raised"
+date = 2026-09-20
+kind = "revision"
+title = "A year in a spinning habitat at Earth gravity was raised: given the spin test and hundred-metre assembly, ten people for a year is a deployment, not a breakthrough"
+body = """
+Astra pointed out that the first estimate carried the difficulty of the prerequisites into the
+conditional a second time. What survives the criticism is the motive discount: the
+partial-gravity route may make the habitat unnecessary. John raised the number partway and
+tightened the criterion to a bounded range of gravity at the level where the crew live, with
+no occupant medically evacuated during the year, so that the habitat route proves the same
+minimum of health the partial-gravity route does. The node reaches the settlement tier through
+the either-route hedge."""
+nodes = ["B-earth-gravity-habitat-occupied-for-a-year"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-year-in-partial-gravity-raised"
+date = 2026-09-20
+kind = "revision"
+title = "A person living a year in partial gravity and coming home fit was raised: the bar is one person, at any gravity in the range, with repeated attempts"
+body = """
+Astra read the criterion for what it asks, one person, any gravity from one-sixth to one-half,
+under the agency's own standards, and called it a permissive bar with selection of the most
+favourable gravity. The first rationale's discount was mostly about timing rather than
+difficulty. John raised the number partway and added that the health outcomes are judged after
+return to Earth and without a medical waiver, which the node's own name had promised. It
+reaches the settlement tier through the hedge and moves the headline."""
+nodes = ["B-human-year-in-partial-gravity-without-disqualifying-harm"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-lunar-material-at-scale-raised"
+date = 2026-09-20
+kind = "revision"
+title = "A hundred tonnes of lunar material a year, given power, people and political continuity, was raised: at that point it is cadence, not a breakthrough"
+body = """
+Gemini's was the strongest number argument in the set: the first estimate was written as if
+the dependencies were still uncertain. John raised the number partway, and the first tonne of
+lunar propellant fired became a new requirement under this node (entered below), so the
+first-tonne difficulty is priced there and not twice. The criterion now counts net mass of
+lunar origin, once, excluding Earth-supplied content, received and used by a customer in
+orbit. A Slow-Expanse requirement, so it moves the headline."""
+nodes = ["L-lunar-material-delivered-to-orbit-at-scale"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-crew-round-trip-to-mars-marked-down"
+date = 2026-09-20
+kind = "revision"
+title = "A crew landing on Mars and coming home came down: refilling in orbit is one link of a long chain"
+body = """
+The first rationale leaned on one company's plans and granted the whole mission once
+propellant transfer was proven. Astra listed what remains after that: crew-scale landing,
+surface systems, ascent, return propulsion, multi-year reliability, and a programme willing to
+accept the risk. John moved the number partway. This node is the only requirement under a
+site beyond the Moon, itself a Slow-Expanse requirement, so it moves the headline."""
+nodes = ["D-crew-round-trip-to-mars"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-hundred-people-working-off-earth-marked-down"
+date = 2026-09-20
+kind = "revision"
+title = "A hundred people working off Earth at once came down, and the test became a year of months rather than a single day"
+body = """
+Astra made two points. A crew-change overlap at two stations plus a tourist flight could hit a
+hundred for one day, so the single-day test was too easy; and given launch cadence the
+capacity exists but the demand does not, because orbital computing, manufacturing and mining
+need few workers in space. John reworded the criterion to a hundred paid people, not counting
+passengers, on at least one day in each of twelve consecutive months, and moved the number
+partway, priced for that wording. This is an outpost-tier requirement, under every tier, so it
+moves the headline more than most single numbers."""
+nodes = ["M-hundred-people-working-off-earth-for-pay"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-off-earth-product-at-a-profit-raised-with-two-new-gates"
+date = 2026-09-20
+kind = "revision"
+title = "Something made off Earth being sold at a profit was raised, given its requirements, while two new requirements were put under it"
+body = """
+Astra argued that with lunar delivery at scale and resource rules in place, the remaining
+test is one company, one product, one profitable year, and a government buyer can settle it.
+Gemini did not dispute the number but put two new gates under the node, mutually recognised
+keep-out zones and a commercial insurance policy on a lunar asset, which pull the
+unconditional chance down while the conditional goes up; both can be right at once. John
+raised the number partway and accepted both gates (entered below). The criterion was narrowed
+to products made mostly from off-Earth material, so orbital fibre drawn from Earth glass no
+longer counts, and 'full cost' now means what the company's accounts attribute to the product,
+with any subsidy or anchor contract disclosed. A Slow-Expanse requirement."""
+nodes = ["M-off-earth-product-sold-at-a-profit"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-kilowatt-power-beaming-marked-down"
+date = 2026-09-20
+kind = "revision"
+title = "A kilowatt beamed from orbit to the ground came down: the one demonstration so far was milliwatts, and the business case may never justify the aperture"
+body = """
+Gemini's cut was the largest single one proposed: a received kilowatt needs an aperture nobody
+will fund, and ground solar plus storage kills the case. Astra left the number alone. The 2023
+orbital demonstration was checked and did beam power, at milliwatt scale, and the mission ended
+in 2024. John moved the number partway. The criterion now requires a kilowatt of net
+electrical output at the ground receiver, sustained ten minutes, with calibrated measurements,
+so a momentary peak during a pass cannot count. The node feeds no tier."""
+nodes = ["M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-permanent-residents-raised"
+date = 2026-09-20
+kind = "revision"
+title = "An off-Earth site accepting permanent residents was raised: one permissive site anywhere resolves it"
+body = """
+The first rationale said work-camp terms could persist for decades after staying becomes safe,
+which is a claim about every operator at once; Astra pointed out that the test is one site and
+one person. John raised the number partway. Both reviewers wanted the criterion to stop proving
+a negative, so it now resolves on a published resident status permitting voluntary indefinite
+residence, held by one person for three years, which also rules out stranded crew. The node
+gates living off Earth, the stretch beside the headline, and not the headline itself."""
+nodes = ["R-off-earth-site-accepts-permanent-residents"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-detection-of-another-intelligence-marked-down"
+date = 2026-09-20
+kind = "revision"
+title = "The third rung of the Contact Clause, another intelligence detected, came down: the search rests on technosignatures and sixty years of silence"
+body = """
+Gemini argued that biosignatures cannot show complexity, so the rung rests on technology
+being seen, and that sixty years of listening have found nothing. John moved the number
+partway; the founding rule keeps the rung on the board, not its number. The criterion gained
+one clause, that an artefact must not have been made by any human or human-built system,
+closing the gap an AI-made object would have opened. The Contact Clause sits beside the
+equation and is never multiplied in."""
+nodes = ["C3"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-communion-marked-down-and-made-a-decoding-test"
+date = 2026-09-20
+kind = "revision"
+title = "The fourth rung, Communion, came down and became a checkable test: a decoded signal applied to a new result"
+body = """
+Given a detection, Gemini argued, it is overwhelmingly likely to be incidental rather than a
+message, and decoding may be impossible; the first estimate had assumed a message. John moved
+the number partway. Both reviewers wanted the criterion to stop asking whether knowledge was
+'understood', and it now resolves when a verified non-human signal, placed beyond human reach
+by two independent physical observations, is decoded into information that researchers apply
+to produce a novel peer-reviewed result, with the decoding reproduced. Beside the equation,
+never multiplied in."""
+nodes = ["C4"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-first-contact-rung-reworded-to-a-machine-originated-idea"
+date = 2026-09-20
+kind = "structure"
+title = "The first rung of the Contact Clause was rewritten to ask for a machine-originated idea, because as written it had already been met by a brute-force proof in 2016"
+body = """
+Astra showed that the criterion as written, a machine-produced, machine-verified result beyond
+what humans had produced and not checkable by hand, was met by the 2016 satisfiability proof of
+the Boolean Pythagorean triples problem, two hundred terabytes that no reader can check. That
+is a search program's work, not a mind's, and the node's name and description meant a mind. John
+chose to reword rather than resolve: the result's key construction or proof idea must have been
+generated by a learning- or search-based AI system and not specified by its operators,
+acknowledged as such in the record. The criterion changed after it was estimated, which is why
+this is a structural entry. Re-estimated 2026-09-20 slightly upward, because machine-found
+constructions from 2023 to 2025 appear to meet the new wording; they are listed on the node for
+the next scan to read against the criterion, and nothing is resolved here. The second rung's
+number was re-checked with the new first rung and stands."""
+nodes = ["C1"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-recession-test-made-forward-looking"
+date = 2026-09-20
+kind = "structure"
+title = "The test for space spending recovering after a recession was rewritten to wait for the next recession, because on its own words it had already passed in 2020"
+body = """
+Astra read the criterion against the record: the 2020 recession ended in April 2020, the
+relevant budget was about two percent above its 2019 level by fiscal 2021, and the largest
+provider flew thirteen orbital launches in 2019 and thirty-one in 2021, which the 'within ten
+percent' band perversely failed for growing too much. The node's own rationale conceded the
+event while pricing it at 0.80. John chose to keep the node as a guard on the next downturn
+rather than resolve it on the last one: it now waits for the first US recession that ends after
+2026-09-19, recovery means equalling the best of the three prior years in nominal dollars, the
+budget basket is NASA's Exploration and Space Operations accounts, and the provider is the one
+that flew the most in the last pre-recession year. The numbers stand, since they already priced
+a future recession. The criterion changed after estimation, so this is structural."""
+nodes = ["R-space-funding-holds-through-a-recession"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-child-born-off-earth-reaches-the-habitat-route"
+date = 2026-09-20
+kind = "structure"
+title = "A child born off Earth no longer needs the partial-gravity milestones if the child lives in an Earth-gravity habitat"
+body = """
+The node required both the mammal experiment and the human year in partial gravity even for
+a child raised in a spinning habitat at Earth gravity, so the tree's own biology hedge did not
+reach it. Astra caught it. John rewired the node so that either the two partial-gravity
+milestones or the year-long Earth-gravity habitat opens the way. A top-tier requirement only
+since 2026-09-19, so the headline is untouched; Astra's request for a health clause through age
+five was declined because a child's medical outcomes are not public records."""
+nodes = ["B-human-child-born-off-earth"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-nine-steps-added-seven-of-them-on-the-chain"
+date = 2026-09-20
+kind = "structure"
+title = "Nine steps were added to the tree, seven of them new requirements on the chain, which is most of why the headline fell in this run"
+body = """
+Gemini proposed nine missing steps and John accepted all nine. On the chain: a staple crop
+harvested off Earth (under the year of recycled food, water and air); ten tonnes of cryogenic
+propellant kept six months in orbit and then burned (under the hundred-tonne transfer); a tonne
+of propellant made off Earth and fired (under lunar material at scale); a commercial insurance
+policy on a private lunar asset, and the United States and China recognising each other's
+keep-out zones (both under a product sold at a profit); a major operation under anaesthesia
+performed off Earth (a settlement-tier requirement); and a space traffic authority with
+enforcement among the major powers (a Slow-Expanse requirement). Beside the chain: a regulator
+accepting a biological measure of aging as a trial endpoint (under the first approved aging
+drug), and a megawatt of heat rejected for thirty days in vacuum, which gates nothing. Each new
+step's first probability was proposed by Claude and accepted by John on 2026-09-20. Adding a
+requirement can only lower the tiers that need it, so the runs on either side of this entry are
+not measuring the same tree; Astra's proposals for a child raised to eighteen, a food-share
+rung and a hundred-tonne lunar production rung were declined as covered."""
+nodes = ["B-closed-loop-life-support-year-off-earth", "L-orbital-propellant-transfer-at-scale", "L-lunar-material-delivered-to-orbit-at-scale", "M-off-earth-product-sold-at-a-profit", "W-first-drug-approved-to-slow-aging"]
+snapshot = "2026-09-20-step-27"
+
+[[entry]]
+id = "2026-09-20-forty-one-criteria-tightened"
+date = 2026-09-20
+kind = "structure"
+title = "Forty-one steps had their criteria tightened so that two readers would agree when each has happened, with no number moved for that alone"
+body = """
+Astra's pass over almost every step, and Gemini's over ten, found the same kind of slack
+throughout: undefined words ('heavy', 'most of the joining', 'main transfer', 'beyond the
+Earth-Moon system'), references with no fixed baseline (the superconducting tape price), tests
+an ordinary object could pass (an unshielded reference that a plain hull satisfies), and
+subjective words ('understood by humans'). John accepted or accepted with change on every one
+of these rows, declining only where a fix would have made a step unmeasurable or turned a leaf
+into a research programme. Two steps were renamed to say what they measure (the
+constant-acceleration drive is now an engine with both high thrust and high exhaust speed; the
+first nuclear burn now names its kilometre per second) and one description corrected on the
+record (SNAP-10A ran a reactor-powered ion thruster in 1965). Where a criterion got harder or
+easier enough to matter, the number moved in its own entry above; these rewordings alone moved
+nothing, but a criterion changed after estimation breaks like-for-like comparison, which is why
+this is a structural entry."""
+nodes = [
+  "W-composite-aging-trial-positive-in-humans", "W-first-drug-approved-to-slow-aging", "W-dog-rapamycin-trial-reports-longer-life", "W-regulator-accepts-aging-as-an-indication",
+  "B-crewed-spin-gravity-demonstration", "B-mammal-born-and-weaned-in-partial-gravity", "B-radiation-resistance-treatment-for-humans", "B-shielding-halves-deep-space-radiation-dose",
+  "L-crew-lands-on-moon-in-reusable-lander", "L-fully-reusable-heavy-launcher-recovers-both-stages", "L-heavy-launcher-100-per-year", "L-large-structure-assembled-in-orbit",
+  "E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity", "E-fission-reactor-runs-on-lunar-surface", "E-fusion-plant-delivers-net-electricity", "E-megawatt-spacecraft-operates-in-orbit", "E-superconducting-wire-price-falls-tenfold",
+  "D-constant-acceleration-drive-demonstrated", "D-nuclear-propulsion-changes-orbit-in-space", "D-permanent-crewed-site-beyond-the-earth-moon-system",
+  "M-paying-customer-for-work-done-in-orbit",
+  "R-crewed-lunar-program-outlives-two-changes-of-president", "R-off-earth-resource-rights-recognised-by-major-powers",
+  "C2",
+]
+snapshot = "2026-09-20-step-27"

@@ -1,0 +1,477 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1620" height="2314" viewBox="0 0 1620 2314" font-family="Helvetica, Arial, sans-serif">
+<style>.t{fill:#0b0b0b}.d{fill:#52514e}.m{fill:#8a8983}.small{font-size:11px}.num{font-size:12px;font-variant-numeric:tabular-nums}</style>
+<rect width="1620" height="2314" fill="#fcfcfb"/>
+<text x="40" y="44" class="t" font-size="26" font-weight="700">The Belt Equation: the tree, 2026-09-20</text>
+<text x="40" y="68" class="d" font-size="14">69 breakthroughs under eight factors, plus the Contact Clause beside the equation. Each box shows the chance the node resolves before 2071 / 2095 / ever, given what it depends on. Arrows run from a dependency to the node that needs it.</text>
+<text x="40" y="86" class="d" font-size="14">Numbers reviewed by outside models (roadmap step 27, ruled 2026-09-19, landed 2026-09-20); they move at the weekly scan, the quarterly scan and the annual review.</text>
+<rect x="40" y="102" width="1540" height="76" rx="6" fill="#f0efec"/>
+<text x="54" y="126" class="t" font-size="14" font-weight="700">Headline, A2 (works off earth on rotation):  <tspan class="num" font-weight="400">baseline 0.4%  ·  moderate 1.1%  ·  strong 3.5%  ·  radical 11%  ·  open 14%</tspan></text>
+<text x="54" y="148" class="t" font-size="14" font-weight="700">T3 (Slow Expanse, the bar for the Belt existing):  <tspan class="num" font-weight="400">baseline 0.6%  ·  moderate 1.7%  ·  strong 5.0%  ·  radical 16%  ·  open 23%</tspan></text>
+<text x="54" y="168" class="m small">Scenarios are the year the window closes: baseline 2071, moderate 2080, strong 2095, radical 2136, open = no deadline. Computed from 20,000 play-throughs per scenario with the world draw at its default spread.</text>
+<text x="40" y="198" class="d" font-size="13" font-weight="700">Leaves: could resolve within five years</text>
+<text x="580" y="198" class="d" font-size="13" font-weight="700">Mid: a decade or two</text>
+<text x="1120" y="198" class="d" font-size="13" font-weight="700">Roots: the far end</text>
+<rect x="40" y="2274" width="14" height="14" rx="2" fill="#2a78d6"/>
+<text x="60" y="2286" class="d" font-size="12">W: Window</text>
+<rect x="142" y="2274" width="14" height="14" rx="2" fill="#eb6834"/>
+<text x="162" y="2286" class="d" font-size="12">L: Launch</text>
+<rect x="244" y="2274" width="14" height="14" rx="2" fill="#1baf7a"/>
+<text x="264" y="2286" class="d" font-size="12">E: Energy</text>
+<rect x="346" y="2274" width="14" height="14" rx="2" fill="#eda100"/>
+<text x="366" y="2286" class="d" font-size="12">D: Drive</text>
+<rect x="440" y="2274" width="14" height="14" rx="2" fill="#e87ba4"/>
+<text x="460" y="2286" class="d" font-size="12">B: Biology</text>
+<rect x="550" y="2274" width="14" height="14" rx="2" fill="#008300"/>
+<text x="570" y="2286" class="d" font-size="12">M: Motive</text>
+<rect x="652" y="2274" width="14" height="14" rx="2" fill="#4a3aa7"/>
+<text x="672" y="2286" class="d" font-size="12">R: Regime</text>
+<rect x="754" y="2274" width="14" height="14" rx="2" fill="#e34948"/>
+<text x="774" y="2286" class="d" font-size="12">A: Access</text>
+<rect x="856" y="2274" width="14" height="14" rx="2" fill="#6f6e69"/>
+<text x="876" y="2286" class="d" font-size="12">C: Contact Clause</text>
+<text x="1032" y="2286" class="m" font-size="12">Dashed outline: a choice John makes, never rolled.  Filled: already resolved.</text>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b5b4ae"/></marker></defs>
+<path d="M980,407.0 C1020,407.0 1020,1707.0 980,1707.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,2011.0 C1020,2011.0 1020,1783.0 980,1783.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1755.0 C510.0,1755.0 510.0,1783.0 580,1783.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1935.0 C1050.0,1935.0 1050.0,1465.0 1120,1465.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1299.0 C1050.0,1299.0 1050.0,1465.0 1120,1465.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1783.0 C1020,1783.0 1020,1859.0 980,1859.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,1465.0 C1560,1465.0 1560,1859.0 980,1859.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1859.0 C1050.0,1859.0 1050.0,1541.0 1120,1541.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1299.0 C1050.0,1299.0 1050.0,1541.0 1120,1541.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1707.0 C1050.0,1707.0 1050.0,1617.0 1120,1617.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,1541.0 C1560,1541.0 1560,1617.0 1520,1617.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1679.0 C510.0,1679.0 510.0,1935.0 580,1935.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1679.0 C510.0,1679.0 510.0,2011.0 580,2011.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,787.0 C510.0,787.0 510.0,981.0 580,981.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1271.0 C510.0,1271.0 510.0,981.0 580,981.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1195.0 C780.0,1195.0 780.0,815.0 1120,815.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,891.0 C1560,891.0 1560,815.0 1520,815.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,981.0 C1050.0,981.0 1050.0,815.0 1120,815.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,891.0 C1560,891.0 1560,815.0 1520,815.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1271.0 C780.0,1271.0 780.0,891.0 1120,891.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,483.0 C1050.0,483.0 1050.0,891.0 1120,891.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,981.0 C1050.0,981.0 1050.0,967.0 1120,967.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,891.0 C1560,891.0 1560,967.0 1520,967.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1347.0 C510.0,1347.0 510.0,1133.0 580,1133.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,2149.0 C510.0,2149.0 510.0,2101.0 580,2101.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,1707.0 C1560,1707.0 1560,1783.0 1520,1783.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,891.0 C1050.0,891.0 1050.0,497.0 1120,497.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,711.0 C780.0,711.0 780.0,573.0 1120,573.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,801.0 C1050.0,801.0 1050.0,649.0 1120,649.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,573.0 C1560,573.0 1560,725.0 1520,725.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1133.0 C1050.0,1133.0 1050.0,725.0 1120,725.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1029.0 C510.0,1029.0 510.0,801.0 580,801.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,635.0 C480,635.0 480,559.0 440,559.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,863.0 C480,863.0 480,711.0 440,711.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,711.0 C480,711.0 480,787.0 440,787.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,559.0 C510.0,559.0 510.0,407.0 580,407.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,787.0 C780.0,787.0 780.0,407.0 1120,407.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,649.0 C1050.0,649.0 1050.0,407.0 1120,407.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1389.0 C1050.0,1389.0 1050.0,407.0 1120,407.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,559.0 C1050.0,559.0 1050.0,407.0 1120,407.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,559.0 C510.0,559.0 510.0,1299.0 580,1299.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1465.0 C1020,1465.0 1020,1299.0 980,1299.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,407.0 C1560,407.0 1560,1133.0 1520,1133.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,1223.0 C1560,1223.0 1560,1133.0 1520,1133.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M980,1617.0 C1050.0,1617.0 1050.0,1133.0 1120,1133.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,1589.0 C780.0,1589.0 780.0,1133.0 1120,1133.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M1520,967.0 C1560,967.0 1560,1299.0 1520,1299.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,317.0 C510.0,317.0 510.0,317.0 580,317.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M440,469.0 C510.0,469.0 510.0,317.0 580,317.0" fill="none" stroke="#c9c8c2" stroke-width="1.2" marker-end="url(#ar)"/>
+<rect x="40" y="1648" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="40" y="1648" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="56" y="1664" class="m small" font-weight="700">A</text>
+<text x="74" y="1664" class="t" font-size="12.5">Graduation from the survival-specialist training pipeline</text>
+<text x="74" y="1700" class="d num">2071 0.85   ·   2095 0.85   ·   ever 0.85</text>
+<rect x="40" y="1724" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="40" y="1724" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="56" y="1740" class="m small" font-weight="700">A</text>
+<text x="74" y="1740" class="t" font-size="12.5">Companies sell survival and emergency training to</text>
+<text x="74" y="1755" class="t" font-size="12.5">commercial spaceflight crews</text>
+<text x="74" y="1776" class="d num">2071 0.50   ·   2095 0.75   ·   ever 0.92</text>
+<rect x="40" y="1800" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="40" y="1800" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="56" y="1816" class="m small" font-weight="700">A</text>
+<text x="74" y="1816" class="t" font-size="12.5">Someone moves from military survival instruction into</text>
+<text x="74" y="1831" class="t" font-size="12.5">training spaceflight crews</text>
+<text x="74" y="1852" class="d num">2071 0.65   ·   2095 0.85   ·   ever 0.94</text>
+<rect x="580" y="1676" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="580" y="1676" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="596" y="1692" class="m small" font-weight="700">A</text>
+<text x="614" y="1692" class="t" font-size="12.5">A seat to orbit is sold to a private person for under a</text>
+<text x="614" y="1707" class="t" font-size="12.5">million dollars</text>
+<text x="614" y="1728" class="d num">2071 0.60   ·   2095 0.85   ·   ever 0.95</text>
+<rect x="40" y="1876" width="400" height="62" rx="5" fill="#e34948" fill-opacity="0.18" stroke="#e34948" stroke-width="1.5"/>
+<rect x="40" y="1876" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="56" y="1892" class="m small" font-weight="700">A</text>
+<text x="74" y="1892" class="t" font-size="12.5">A private person aged sixty-five or older flies to orbit</text>
+<text x="74" y="1928" class="d num">resolved 2022-04-25</text>
+<rect x="580" y="1752" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="580" y="1752" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="596" y="1768" class="m small" font-weight="700">A</text>
+<text x="614" y="1768" class="t" font-size="12.5">A civilian role training spaceflight crews, entered from</text>
+<text x="614" y="1783" class="t" font-size="12.5">military survival instruction</text>
+<text x="614" y="1804" class="d num">2071 0.50   ·   2095 0.60   ·   ever 0.60</text>
+<rect x="1120" y="1434" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="1120" y="1434" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="1136" y="1450" class="m small" font-weight="700">A</text>
+<text x="1154" y="1450" class="t" font-size="12.5">A military role whose holders rotate off Earth</text>
+<text x="1154" y="1486" class="d num">2071 0.25   ·   2095 0.45   ·   ever 0.50</text>
+<rect x="580" y="1828" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="580" y="1828" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="596" y="1844" class="m small" font-weight="700">A</text>
+<text x="614" y="1844" class="t" font-size="12.5">Working in or for the off-Earth industry, by either route</text>
+<text x="614" y="1880" class="d num">2071 1.00   ·   2095 1.00   ·   ever 1.00</text>
+<rect x="1120" y="1510" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="1120" y="1510" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="1136" y="1526" class="m small" font-weight="700">A</text>
+<text x="1154" y="1526" class="t" font-size="12.5">Holding a role whose holders go on off-Earth rotations</text>
+<text x="1154" y="1562" class="d num">2071 0.40   ·   2095 0.65   ·   ever 0.80</text>
+<rect x="1120" y="1586" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="1120" y="1586" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="1136" y="1602" class="m small" font-weight="700">A</text>
+<text x="1154" y="1602" class="t" font-size="12.5">A first flight to space, by purchase or by the job</text>
+<text x="1154" y="1638" class="d num">2071 1.00   ·   2095 1.00   ·   ever 1.00</text>
+<rect x="580" y="1904" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5" stroke-dasharray="5,3"/>
+<rect x="580" y="1904" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="596" y="1920" class="m small" font-weight="700">A</text>
+<text x="614" y="1920" class="t" font-size="12.5">Re-enlist at the six-year mark</text>
+<text x="614" y="1956" class="d num">choice point, current plan</text>
+<rect x="580" y="1980" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5" stroke-dasharray="5,3"/>
+<rect x="580" y="1980" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="596" y="1996" class="m small" font-weight="700">A</text>
+<text x="614" y="1996" class="t" font-size="12.5">Separate at the six-year mark into civilian space or</text>
+<text x="614" y="2011" class="t" font-size="12.5">defence work</text>
+<text x="614" y="2032" class="d num">choice point</text>
+<rect x="40" y="1952" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="40" y="1952" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="56" y="1968" class="m small" font-weight="700">A</text>
+<text x="74" y="1968" class="t" font-size="12.5">This tree's quarterly scan is produced by an AI system</text>
+<text x="74" y="1983" class="t" font-size="12.5">with a human only approving the changes</text>
+<text x="74" y="2004" class="d num">2071 0.90   ·   2095 0.94   ·   ever 0.95</text>
+<rect x="40" y="2028" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e34948" stroke-width="1.5"/>
+<rect x="40" y="2028" width="8" height="62" rx="3" fill="#e34948"/>
+<text x="56" y="2044" class="m small" font-weight="700">A</text>
+<text x="74" y="2044" class="t" font-size="12.5">A technical paper on a subject in this tree is published</text>
+<text x="74" y="2059" class="t" font-size="12.5">by one person working with AI collaborators</text>
+<text x="74" y="2080" class="d num">2071 0.50   ·   2095 0.70   ·   ever 0.85</text>
+<rect x="40" y="1164" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="40" y="1164" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="56" y="1180" class="m small" font-weight="700">B</text>
+<text x="74" y="1180" class="t" font-size="12.5">A mammal is conceived, born, and weaned in partial gravity</text>
+<text x="74" y="1216" class="d num">2071 0.80   ·   2095 0.85   ·   ever 0.95</text>
+<rect x="580" y="950" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="580" y="950" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="596" y="966" class="m small" font-weight="700">B</text>
+<text x="614" y="966" class="t" font-size="12.5">A person lives a full year in partial gravity and comes</text>
+<text x="614" y="981" class="t" font-size="12.5">home without disqualifying harm</text>
+<text x="614" y="1002" class="d num">2071 0.45   ·   2095 0.62   ·   ever 0.85</text>
+<rect x="1120" y="784" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="1120" y="784" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="1136" y="800" class="m small" font-weight="700">B</text>
+<text x="1154" y="800" class="t" font-size="12.5">A child is born off Earth and raised there through early</text>
+<text x="1154" y="815" class="t" font-size="12.5">childhood</text>
+<text x="1154" y="836" class="d num">2071 0.15   ·   2095 0.35   ·   ever 0.75</text>
+<rect x="40" y="1240" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="40" y="1240" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="56" y="1256" class="m small" font-weight="700">B</text>
+<text x="74" y="1256" class="t" font-size="12.5">A crew lives for a month in a spinning spacecraft that</text>
+<text x="74" y="1271" class="t" font-size="12.5">produces artificial gravity</text>
+<text x="74" y="1292" class="d num">2071 0.70   ·   2095 0.80   ·   ever 0.92</text>
+<rect x="1120" y="860" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="1120" y="860" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="1136" y="876" class="m small" font-weight="700">B</text>
+<text x="1154" y="876" class="t" font-size="12.5">People live for a year in a spinning habitat with</text>
+<text x="1154" y="891" class="t" font-size="12.5">Earth-normal gravity</text>
+<text x="1154" y="912" class="d num">2071 0.35   ·   2095 0.55   ·   ever 0.85</text>
+<rect x="1120" y="936" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="1120" y="936" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="1136" y="952" class="m small" font-weight="700">B</text>
+<text x="1154" y="952" class="t" font-size="12.5">Humans can live off Earth long term, by partial gravity or</text>
+<text x="1154" y="967" class="t" font-size="12.5">by a spinning habitat</text>
+<text x="1154" y="988" class="d num">2071 1.00   ·   2095 1.00   ·   ever 1.00</text>
+<rect x="580" y="1026" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="580" y="1026" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="596" y="1042" class="m small" font-weight="700">B</text>
+<text x="614" y="1042" class="t" font-size="12.5">A shielding system flown in space cuts the deep-space</text>
+<text x="614" y="1057" class="t" font-size="12.5">radiation dose to a crew by half</text>
+<text x="614" y="1078" class="d num">2071 0.50   ·   2095 0.65   ·   ever 0.85</text>
+<rect x="580" y="1102" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="580" y="1102" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="596" y="1118" class="m small" font-weight="700">B</text>
+<text x="614" y="1118" class="t" font-size="12.5">A crew off Earth lives for a year with most of its food,</text>
+<text x="614" y="1133" class="t" font-size="12.5">water, and air recycled on site</text>
+<text x="614" y="1154" class="d num">2071 0.35   ·   2095 0.60   ·   ever 0.92</text>
+<rect x="1120" y="1012" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="1120" y="1012" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="1136" y="1028" class="m small" font-weight="700">B</text>
+<text x="1154" y="1028" class="t" font-size="12.5">A treatment is approved that makes people substantially</text>
+<text x="1154" y="1043" class="t" font-size="12.5">more resistant to chronic space radiation</text>
+<text x="1154" y="1064" class="d num">2071 0.08   ·   2095 0.15   ·   ever 0.45   ·   long shot</text>
+<rect x="40" y="1316" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="40" y="1316" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="56" y="1332" class="m small" font-weight="700">B</text>
+<text x="74" y="1332" class="t" font-size="12.5">A staple crop is grown from seed to harvest off Earth</text>
+<text x="74" y="1368" class="d num">2071 0.75   ·   2095 0.90   ·   ever 0.96</text>
+<rect x="580" y="1178" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#e87ba4" stroke-width="1.5"/>
+<rect x="580" y="1178" width="8" height="62" rx="3" fill="#e87ba4"/>
+<text x="596" y="1194" class="m small" font-weight="700">B</text>
+<text x="614" y="1194" class="t" font-size="12.5">A major operation under anaesthesia is performed off Earth</text>
+<text x="614" y="1209" class="t" font-size="12.5">and the patient survives</text>
+<text x="614" y="1230" class="d num">2071 0.45   ·   2095 0.70   ·   ever 0.92</text>
+<rect x="40" y="2118" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#6f6e69" stroke-width="1.5"/>
+<rect x="40" y="2118" width="8" height="62" rx="3" fill="#6f6e69"/>
+<text x="56" y="2134" class="m small" font-weight="700">C</text>
+<text x="74" y="2134" class="t" font-size="12.5">A non-human mind produces knowledge beyond us</text>
+<text x="74" y="2170" class="d num">2071 0.95   ·   2095 0.97   ·   ever 0.98</text>
+<rect x="580" y="2070" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#6f6e69" stroke-width="1.5"/>
+<rect x="580" y="2070" width="8" height="62" rx="3" fill="#6f6e69"/>
+<text x="596" y="2086" class="m small" font-weight="700">C</text>
+<text x="614" y="2086" class="t" font-size="12.5">Humans learn from it</text>
+<text x="614" y="2122" class="d num">2071 0.80   ·   2095 0.93   ·   ever 0.97</text>
+<rect x="1120" y="1676" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#6f6e69" stroke-width="1.5"/>
+<rect x="1120" y="1676" width="8" height="62" rx="3" fill="#6f6e69"/>
+<text x="1136" y="1692" class="m small" font-weight="700">C</text>
+<text x="1154" y="1692" class="t" font-size="12.5">An intelligence not descended from us is detected</text>
+<text x="1154" y="1728" class="d num">2071 0.02   ·   2095 0.05   ·   ever 0.20   ·   long shot</text>
+<rect x="1120" y="1752" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#6f6e69" stroke-width="1.5"/>
+<rect x="1120" y="1752" width="8" height="62" rx="3" fill="#6f6e69"/>
+<text x="1136" y="1768" class="m small" font-weight="700">C</text>
+<text x="1154" y="1768" class="t" font-size="12.5">Communion</text>
+<text x="1154" y="1804" class="d num">2071 0.04   ·   2095 0.08   ·   ever 0.25   ·   long shot</text>
+<rect x="580" y="860" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eda100" stroke-width="1.5"/>
+<rect x="580" y="860" width="8" height="62" rx="3" fill="#eda100"/>
+<text x="596" y="876" class="m small" font-weight="700">D</text>
+<text x="614" y="876" class="t" font-size="12.5">A nuclear-powered engine produces a kilometre per second</text>
+<text x="614" y="891" class="t" font-size="12.5">of velocity change in space</text>
+<text x="614" y="912" class="d num">2071 0.60   ·   2095 0.85   ·   ever 0.95</text>
+<rect x="1120" y="466" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eda100" stroke-width="1.5"/>
+<rect x="1120" y="466" width="8" height="62" rx="3" fill="#eda100"/>
+<text x="1136" y="482" class="m small" font-weight="700">D</text>
+<text x="1154" y="482" class="t" font-size="12.5">Nuclear propulsion is used on several missions a year</text>
+<text x="1154" y="518" class="d num">2071 0.40   ·   2095 0.68   ·   ever 0.90</text>
+<rect x="1120" y="542" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eda100" stroke-width="1.5"/>
+<rect x="1120" y="542" width="8" height="62" rx="3" fill="#eda100"/>
+<text x="1136" y="558" class="m small" font-weight="700">D</text>
+<text x="1154" y="558" class="t" font-size="12.5">A crew lands on Mars and returns to Earth</text>
+<text x="1154" y="594" class="d num">2071 0.45   ·   2095 0.78   ·   ever 0.93</text>
+<rect x="1120" y="618" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eda100" stroke-width="1.5"/>
+<rect x="1120" y="618" width="8" height="62" rx="3" fill="#eda100"/>
+<text x="1136" y="634" class="m small" font-weight="700">D</text>
+<text x="1154" y="634" class="t" font-size="12.5">An engine with both high thrust and high exhaust speed</text>
+<text x="1154" y="649" class="t" font-size="12.5">fires in space</text>
+<text x="1154" y="670" class="d num">2071 0.03   ·   2095 0.15   ·   ever 0.50   ·   long shot</text>
+<rect x="1120" y="694" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eda100" stroke-width="1.5"/>
+<rect x="1120" y="694" width="8" height="62" rx="3" fill="#eda100"/>
+<text x="1136" y="710" class="m small" font-weight="700">D</text>
+<text x="1154" y="710" class="t" font-size="12.5">A site beyond the Earth-Moon system is crewed without a</text>
+<text x="1154" y="725" class="t" font-size="12.5">break for a year</text>
+<text x="1154" y="746" class="d num">2071 0.40   ·   2095 0.75   ·   ever 0.93</text>
+<rect x="40" y="922" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#1baf7a" stroke-width="1.5"/>
+<rect x="40" y="922" width="8" height="62" rx="3" fill="#1baf7a"/>
+<text x="56" y="938" class="m small" font-weight="700">E</text>
+<text x="74" y="938" class="t" font-size="12.5">A single spacecraft generates and uses a megawatt of</text>
+<text x="74" y="953" class="t" font-size="12.5">electricity in orbit</text>
+<text x="74" y="974" class="d num">2071 0.85   ·   2095 0.93   ·   ever 0.96</text>
+<rect x="580" y="618" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#1baf7a" stroke-width="1.5"/>
+<rect x="580" y="618" width="8" height="62" rx="3" fill="#1baf7a"/>
+<text x="596" y="634" class="m small" font-weight="700">E</text>
+<text x="614" y="634" class="t" font-size="12.5">A nuclear reactor runs on the lunar surface for a year</text>
+<text x="614" y="670" class="d num">2071 0.70   ·   2095 0.90   ·   ever 0.96</text>
+<rect x="580" y="694" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#1baf7a" stroke-width="1.5"/>
+<rect x="580" y="694" width="8" height="62" rx="3" fill="#1baf7a"/>
+<text x="596" y="710" class="m small" font-weight="700">E</text>
+<text x="614" y="710" class="t" font-size="12.5">High-temperature superconducting wire costs a tenth of</text>
+<text x="614" y="725" class="t" font-size="12.5">what it does today</text>
+<text x="614" y="746" class="d num">2071 0.55   ·   2095 0.80   ·   ever 0.92</text>
+<rect x="580" y="770" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#1baf7a" stroke-width="1.5"/>
+<rect x="580" y="770" width="8" height="62" rx="3" fill="#1baf7a"/>
+<text x="596" y="786" class="m small" font-weight="700">E</text>
+<text x="614" y="786" class="t" font-size="12.5">A fusion power plant delivers net electricity to a grid</text>
+<text x="614" y="822" class="d num">2071 0.60   ·   2095 0.85   ·   ever 0.95</text>
+<rect x="40" y="998" width="400" height="62" rx="5" fill="#1baf7a" fill-opacity="0.18" stroke="#1baf7a" stroke-width="1.5"/>
+<rect x="40" y="998" width="8" height="62" rx="3" fill="#1baf7a"/>
+<text x="56" y="1014" class="m small" font-weight="700">E</text>
+<text x="74" y="1014" class="t" font-size="12.5">Construction begins on a fusion plant built to sell</text>
+<text x="74" y="1029" class="t" font-size="12.5">electricity to a customer</text>
+<text x="74" y="1050" class="d num">resolved 2025-07-30</text>
+<rect x="40" y="1074" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#1baf7a" stroke-width="1.5"/>
+<rect x="40" y="1074" width="8" height="62" rx="3" fill="#1baf7a"/>
+<text x="56" y="1090" class="m small" font-weight="700">E</text>
+<text x="74" y="1090" class="t" font-size="12.5">A radiator system sheds a megawatt of waste heat in vacuum</text>
+<text x="74" y="1105" class="t" font-size="12.5">for thirty days</text>
+<text x="74" y="1126" class="d num">2071 0.80   ·   2095 0.90   ·   ever 0.95</text>
+<rect x="40" y="528" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="40" y="528" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="56" y="544" class="m small" font-weight="700">L</text>
+<text x="74" y="544" class="t" font-size="12.5">A fully reusable heavy launcher flies 100 orbital missions</text>
+<text x="74" y="559" class="t" font-size="12.5">in one calendar year</text>
+<text x="74" y="580" class="d num">2071 0.85   ·   2095 0.93   ·   ever 0.96</text>
+<rect x="40" y="604" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="40" y="604" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="56" y="620" class="m small" font-weight="700">L</text>
+<text x="74" y="620" class="t" font-size="12.5">A heavy launcher recovers both of its stages intact from</text>
+<text x="74" y="635" class="t" font-size="12.5">one orbital flight</text>
+<text x="74" y="656" class="d num">2071 0.95   ·   2095 0.97   ·   ever 0.98</text>
+<rect x="40" y="680" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="40" y="680" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="56" y="696" class="m small" font-weight="700">L</text>
+<text x="74" y="696" class="t" font-size="12.5">A hundred tonnes of propellant are pumped from one</text>
+<text x="74" y="711" class="t" font-size="12.5">spacecraft to another in orbit</text>
+<text x="74" y="732" class="d num">2071 0.90   ·   2095 0.95   ·   ever 0.97</text>
+<rect x="40" y="756" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="40" y="756" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="56" y="772" class="m small" font-weight="700">L</text>
+<text x="74" y="772" class="t" font-size="12.5">A crew lands on the Moon in a lander designed to fly again</text>
+<text x="74" y="808" class="d num">2071 0.85   ·   2095 0.93   ·   ever 0.96</text>
+<rect x="580" y="376" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="580" y="376" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="596" y="392" class="m small" font-weight="700">L</text>
+<text x="614" y="392" class="t" font-size="12.5">Mass to low Earth orbit is sold for less than two hundred</text>
+<text x="614" y="407" class="t" font-size="12.5">dollars a kilogram</text>
+<text x="614" y="428" class="d num">2071 0.60   ·   2095 0.83   ·   ever 0.94</text>
+<rect x="580" y="452" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="580" y="452" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="596" y="468" class="m small" font-weight="700">L</text>
+<text x="614" y="468" class="t" font-size="12.5">A structure more than a hundred metres across is assembled</text>
+<text x="614" y="483" class="t" font-size="12.5">in orbit from separately launched parts</text>
+<text x="614" y="504" class="d num">2071 0.60   ·   2095 0.85   ·   ever 0.95</text>
+<rect x="1120" y="376" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="1120" y="376" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="1136" y="392" class="m small" font-weight="700">L</text>
+<text x="1154" y="392" class="t" font-size="12.5">A hundred tonnes of material dug or made on the Moon are</text>
+<text x="1154" y="407" class="t" font-size="12.5">delivered to orbit in one year</text>
+<text x="1154" y="428" class="d num">2071 0.55   ·   2095 0.85   ·   ever 0.94</text>
+<rect x="40" y="832" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="40" y="832" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="56" y="848" class="m small" font-weight="700">L</text>
+<text x="74" y="848" class="t" font-size="12.5">Ten tonnes of cryogenic propellant are kept in orbit for</text>
+<text x="74" y="863" class="t" font-size="12.5">six months and then burned</text>
+<text x="74" y="884" class="d num">2071 0.80   ·   2095 0.90   ·   ever 0.96</text>
+<rect x="580" y="528" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#eb6834" stroke-width="1.5"/>
+<rect x="580" y="528" width="8" height="62" rx="3" fill="#eb6834"/>
+<text x="596" y="544" class="m small" font-weight="700">L</text>
+<text x="614" y="544" class="t" font-size="12.5">A tonne of propellant made from off-Earth material is</text>
+<text x="614" y="559" class="t" font-size="12.5">fired in a rocket engine</text>
+<text x="614" y="580" class="d num">2071 0.50   ·   2095 0.78   ·   ever 0.93</text>
+<rect x="40" y="1406" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#008300" stroke-width="1.5"/>
+<rect x="40" y="1406" width="8" height="62" rx="3" fill="#008300"/>
+<text x="56" y="1422" class="m small" font-weight="700">M</text>
+<text x="74" y="1422" class="t" font-size="12.5">A commercial customer pays for a service performed in</text>
+<text x="74" y="1437" class="t" font-size="12.5">orbit, other than communications, imaging, or navigation</text>
+<text x="74" y="1458" class="d num">2071 0.85   ·   2095 0.93   ·   ever 0.96</text>
+<rect x="40" y="1482" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#008300" stroke-width="1.5"/>
+<rect x="40" y="1482" width="8" height="62" rx="3" fill="#008300"/>
+<text x="56" y="1498" class="m small" font-weight="700">M</text>
+<text x="74" y="1498" class="t" font-size="12.5">A spacecraft beams at least a kilowatt of power to a</text>
+<text x="74" y="1513" class="t" font-size="12.5">receiver on the ground</text>
+<text x="74" y="1534" class="d num">2071 0.45   ·   2095 0.65   ·   ever 0.82</text>
+<rect x="580" y="1268" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#008300" stroke-width="1.5"/>
+<rect x="580" y="1268" width="8" height="62" rx="3" fill="#008300"/>
+<text x="596" y="1284" class="m small" font-weight="700">M</text>
+<text x="614" y="1284" class="t" font-size="12.5">A hundred people are living and working off Earth at the</text>
+<text x="614" y="1299" class="t" font-size="12.5">same time, for pay</text>
+<text x="614" y="1320" class="d num">2071 0.50   ·   2095 0.78   ·   ever 0.93</text>
+<rect x="1120" y="1102" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#008300" stroke-width="1.5"/>
+<rect x="1120" y="1102" width="8" height="62" rx="3" fill="#008300"/>
+<text x="1136" y="1118" class="m small" font-weight="700">M</text>
+<text x="1154" y="1118" class="t" font-size="12.5">Something mined or made off Earth is sold at a profit</text>
+<text x="1154" y="1154" class="d num">2071 0.65   ·   2095 0.85   ·   ever 0.95</text>
+<rect x="40" y="1558" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#008300" stroke-width="1.5"/>
+<rect x="40" y="1558" width="8" height="62" rx="3" fill="#008300"/>
+<text x="56" y="1574" class="m small" font-weight="700">M</text>
+<text x="74" y="1574" class="t" font-size="12.5">A commercial syndicate insures a privately owned lunar</text>
+<text x="74" y="1589" class="t" font-size="12.5">asset for a million-dollar premium</text>
+<text x="74" y="1610" class="d num">2071 0.70   ·   2095 0.86   ·   ever 0.94</text>
+<rect x="580" y="1358" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#4a3aa7" stroke-width="1.5"/>
+<rect x="580" y="1358" width="8" height="62" rx="3" fill="#4a3aa7"/>
+<text x="596" y="1374" class="m small" font-weight="700">R</text>
+<text x="614" y="1374" class="t" font-size="12.5">A crewed lunar program keeps flying across two changes of</text>
+<text x="614" y="1389" class="t" font-size="12.5">its government</text>
+<text x="614" y="1410" class="d num">2071 0.75   ·   2095 0.85   ·   ever 0.92</text>
+<rect x="580" y="1434" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#4a3aa7" stroke-width="1.5"/>
+<rect x="580" y="1434" width="8" height="62" rx="3" fill="#4a3aa7"/>
+<text x="596" y="1450" class="m small" font-weight="700">R</text>
+<text x="614" y="1450" class="t" font-size="12.5">Space spending recovers within three years of the next</text>
+<text x="614" y="1465" class="t" font-size="12.5">recession</text>
+<text x="614" y="1486" class="d num">2071 0.80   ·   2095 0.85   ·   ever 0.90</text>
+<rect x="580" y="1510" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#4a3aa7" stroke-width="1.5"/>
+<rect x="580" y="1510" width="8" height="62" rx="3" fill="#4a3aa7"/>
+<text x="596" y="1526" class="m small" font-weight="700">R</text>
+<text x="614" y="1526" class="t" font-size="12.5">The major space powers are bound by a ban on</text>
+<text x="614" y="1541" class="t" font-size="12.5">debris-creating anti-satellite tests</text>
+<text x="614" y="1562" class="d num">2071 0.30   ·   2095 0.55   ·   ever 0.80</text>
+<rect x="1120" y="1192" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#4a3aa7" stroke-width="1.5"/>
+<rect x="1120" y="1192" width="8" height="62" rx="3" fill="#4a3aa7"/>
+<text x="1136" y="1208" class="m small" font-weight="700">R</text>
+<text x="1154" y="1208" class="t" font-size="12.5">The United States and China both recognise the same rules</text>
+<text x="1154" y="1223" class="t" font-size="12.5">for owning what is mined off Earth</text>
+<text x="1154" y="1244" class="d num">2071 0.45   ·   2095 0.70   ·   ever 0.90</text>
+<rect x="1120" y="1268" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#4a3aa7" stroke-width="1.5"/>
+<rect x="1120" y="1268" width="8" height="62" rx="3" fill="#4a3aa7"/>
+<text x="1136" y="1284" class="m small" font-weight="700">R</text>
+<text x="1154" y="1284" class="t" font-size="12.5">An off-Earth site accepts people as permanent residents</text>
+<text x="1154" y="1320" class="d num">2071 0.60   ·   2095 0.82   ·   ever 0.95</text>
+<rect x="580" y="1586" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#4a3aa7" stroke-width="1.5"/>
+<rect x="580" y="1586" width="8" height="62" rx="3" fill="#4a3aa7"/>
+<text x="596" y="1602" class="m small" font-weight="700">R</text>
+<text x="614" y="1602" class="t" font-size="12.5">The United States and China recognise each other's</text>
+<text x="614" y="1617" class="t" font-size="12.5">keep-out zones around off-Earth installations</text>
+<text x="614" y="1638" class="d num">2071 0.50   ·   2095 0.72   ·   ever 0.90</text>
+<rect x="1120" y="1344" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#4a3aa7" stroke-width="1.5"/>
+<rect x="1120" y="1344" width="8" height="62" rx="3" fill="#4a3aa7"/>
+<text x="1136" y="1360" class="m small" font-weight="700">R</text>
+<text x="1154" y="1360" class="t" font-size="12.5">A space traffic authority among the major powers can</text>
+<text x="1154" y="1375" class="t" font-size="12.5">enforce rules on manoeuvres and launch windows</text>
+<text x="1154" y="1396" class="d num">2071 0.35   ·   2095 0.60   ·   ever 0.85</text>
+<rect x="40" y="210" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="40" y="210" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="56" y="226" class="m small" font-weight="700">W</text>
+<text x="74" y="226" class="t" font-size="12.5">The large dog trial of rapamycin reports that treated dogs</text>
+<text x="74" y="241" class="t" font-size="12.5">live measurably longer</text>
+<text x="74" y="262" class="d num">2071 0.45   ·   2095 0.45   ·   ever 0.45</text>
+<rect x="40" y="286" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="40" y="286" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="56" y="302" class="m small" font-weight="700">W</text>
+<text x="74" y="302" class="t" font-size="12.5">A major drug regulator accepts slowing aging as something</text>
+<text x="74" y="317" class="t" font-size="12.5">a drug can be approved for</text>
+<text x="74" y="338" class="d num">2071 0.55   ·   2095 0.70   ·   ever 0.90</text>
+<rect x="580" y="210" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="580" y="210" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="596" y="226" class="m small" font-weight="700">W</text>
+<text x="614" y="226" class="t" font-size="12.5">A randomized human trial shows one drug delays several</text>
+<text x="614" y="241" class="t" font-size="12.5">age-related diseases at once</text>
+<text x="614" y="262" class="d num">2071 0.70   ·   2095 0.80   ·   ever 0.90</text>
+<rect x="40" y="362" width="400" height="62" rx="5" fill="#2a78d6" fill-opacity="0.18" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="40" y="362" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="56" y="378" class="m small" font-weight="700">W</text>
+<text x="74" y="378" class="t" font-size="12.5">A cell-rejuvenation treatment based on partial</text>
+<text x="74" y="393" class="t" font-size="12.5">reprogramming is given to people in a registered trial</text>
+<text x="74" y="414" class="d num">resolved 2026-06-09</text>
+<rect x="580" y="286" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="580" y="286" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="596" y="302" class="m small" font-weight="700">W</text>
+<text x="614" y="302" class="t" font-size="12.5">The first drug is approved whose purpose is to slow aging,</text>
+<text x="614" y="317" class="t" font-size="12.5">not to treat one disease</text>
+<text x="614" y="338" class="d num">2071 0.60   ·   2095 0.75   ·   ever 0.92</text>
+<rect x="1120" y="210" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="1120" y="210" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="1136" y="226" class="m small" font-weight="700">W</text>
+<text x="1154" y="226" class="t" font-size="12.5">A treatment is shown in a large trial to cut the death</text>
+<text x="1154" y="241" class="t" font-size="12.5">rate of older adults by at least a quarter</text>
+<text x="1154" y="262" class="d num">2071 0.25   ·   2095 0.45   ·   ever 0.92</text>
+<rect x="1120" y="286" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="1120" y="286" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="1136" y="302" class="m small" font-weight="700">W</text>
+<text x="1154" y="302" class="t" font-size="12.5">Someone verifiably lives past 122, the longest human life</text>
+<text x="1154" y="317" class="t" font-size="12.5">on record</text>
+<text x="1154" y="338" class="d num">2071 0.30   ·   2095 0.60   ·   ever 0.92</text>
+<rect x="40" y="438" width="400" height="62" rx="5" fill="#ffffff" fill-opacity="1" stroke="#2a78d6" stroke-width="1.5"/>
+<rect x="40" y="438" width="8" height="62" rx="3" fill="#2a78d6"/>
+<text x="56" y="454" class="m small" font-weight="700">W</text>
+<text x="74" y="454" class="t" font-size="12.5">A drug regulator accepts a biological measure of aging as</text>
+<text x="74" y="469" class="t" font-size="12.5">a trial's primary endpoint</text>
+<text x="74" y="490" class="d num">2071 0.55   ·   2095 0.70   ·   ever 0.90</text>
+</svg>

@@ -23,7 +23,10 @@ requires = [
   "L-launch-price-below-200-dollars-per-kg",
   "B-long-term-off-earth-living-by-some-route",
   "B-closed-loop-life-support-year-off-earth",
+  "B-major-operation-under-anaesthesia-performed-off-earth",
 ]
+# B-major-operation-under-anaesthesia-performed-off-earth added 2026-09-20 under step 27, item 2
+# (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): a settlement cannot evacuate every appendix.
 # B-human-child-born-off-earth was a Tier 2 requirement until 2026-09-19, when John ruled it moved to
 # Tier 4 after the first run showed it capping every tier above Tier 2 (docs/runs/2026-09-19-first-run.md).
 # Tier 2's definition still names a child born off Earth; the node remains in the tree and the visual.
@@ -40,7 +43,11 @@ requires = [
   "R-off-earth-resource-rights-recognised-by-major-powers",
   "B-shielding-halves-deep-space-radiation-dose",
   "L-lunar-material-delivered-to-orbit-at-scale",
+  "R-space-traffic-management-authority-among-major-powers",
 ]
+# R-space-traffic-management-authority-among-major-powers added 2026-09-20 under step 27, item 20
+# (ruled 2026-09-19): a real gate on tens of thousands in transit. Whether it belongs under Tier 4
+# instead is revisited at the methodology pass with item 100 (the anti-satellite treaty under Tier 4).
 
 [[system_tier]]
 key = "T4"

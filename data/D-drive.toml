@@ -5,26 +5,33 @@
 
 [[node]]
 id = "D-nuclear-propulsion-changes-orbit-in-space"
-name = "A nuclear-powered engine changes a spacecraft's orbit in space for the first time"
+name = "A nuclear-powered engine produces a kilometre per second of velocity change in space"
 factor = "D"
 kind = "world"
 description = """
 Nuclear propulsion, whether a reactor heating propellant directly or a reactor driving
-electric thrusters, has been designed and ground-tested for sixty years and never flown.
-The first in-space burn that actually moves a vehicle is the step from paper to hardware,
-and it is what routine nuclear propulsion, the Tier 3 criterion, has to start from."""
+electric thrusters, has been designed and ground-tested for sixty years, and no
+nuclear-powered system has ever produced a meaningful orbit change: SNAP-10A's reactor ran an
+ion thruster briefly in orbit in 1965, without moving the vehicle to speak of. The first
+in-space burn that substantially moves a vehicle is the step from paper to hardware, and it is
+what routine nuclear propulsion, the Tier 3 criterion, has to start from."""
 resolution = """
-A spacecraft in space changes its velocity by at least one kilometre per second using
-propulsion powered by a nuclear reactor, confirmed by the operator and by independent
-orbital tracking."""
+A spacecraft in space accumulates a velocity change of at least one kilometre per second from
+its propulsion itself, excluding gravitational effects, using propulsion powered by a nuclear
+reactor, confirmed by the operator and by independent orbital tracking."""
 source = "The operator's mission record and independent orbital tracking"
 horizon = "mid"
 depends_on = []
 status = "open"
 probability = { baseline = 0.6, moderate = 0.72, strong = 0.85, radical = 0.93, open = 0.95 }
 estimated_on = 2026-09-19
-rationale = "Sixty years of ground tests and no flight, and the most recent flight demonstration program was cancelled in 2025; it needs a mission only nuclear can do."
-notes = "Shares a technology base with the lunar surface reactor (an energy node); whether that is a hard dependency is for step 7."
+rationale = "Sixty years of ground tests and no meaningful flight, and the most recent flight demonstration program was cancelled in 2025; it needs a mission only nuclear can do."
+revisions = [
+  { date = 2026-09-19, field = "name", old = "A nuclear-powered engine changes a spacecraft's orbit in space for the first time", new = "A nuclear-powered engine produces a kilometre per second of velocity change in space", why = "Step 27 outside-model review, item 72 (docs/reviews/2026-09-19-rulings.md): the name says 'first time' and the description said 'never flown', but SNAP-10A powered an ion thruster in orbit in 1965 (NASA's own assessment, fetched); the name now says what the criterion measures. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "resolution", old = "'changes its velocity by at least one kilometre per second'", new = "cumulative velocity change of at least one kilometre per second from the propulsion itself, excluding gravitational effects", why = "Step 27 outside-model review, item 72: the bar is the same, stated so that a gravity assist cannot be counted. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "'never flown'", new = "no nuclear-powered system has produced a meaningful orbit change; SNAP-10A ran an ion thruster briefly in 1965", why = "Step 27 outside-model review, item 72: factual correction, verified against NASA's space-nuclear-systems assessment on 2026-09-19. Ruled by John 2026-09-19." },
+]
+notes = "Shares a technology base with the lunar surface reactor (an energy node); whether that is a hard dependency is for step 7. SNAP-10A (1965): reactor-powered ion thruster ran briefly during a 43-day mission and produced no meaningful orbit change; the node stays open."
 
 [[node]]
 id = "D-nuclear-propulsion-in-routine-use"
@@ -37,15 +44,20 @@ missions a year means it is the ordinary way to move heavy things around the inn
 system, which is what transit times of months to the Belt assume."""
 resolution = """
 In one calendar year, at least three separate missions beyond low Earth orbit use
-nuclear-powered propulsion for their main transfer, confirmed by the operators and
+reactor-powered propulsion for their main transfer, meaning the burns that supply most of
+the mission's velocity change beyond low Earth orbit, confirmed by the operators and
 independent tracking."""
 source = "Operators' mission records and independent tracking"
 horizon = "root"
 depends_on = ["D-nuclear-propulsion-changes-orbit-in-space"]
 status = "open"
-probability = { baseline = 0.5, moderate = 0.6, strong = 0.75, radical = 0.88, open = 0.92 }
+probability = { baseline = 0.4, moderate = 0.52, strong = 0.68, radical = 0.85, open = 0.9 }
 estimated_on = 2026-09-19
-rationale = "One demonstration to routine use is the gap the space station took two decades to cross; a Mars cadence would pull it forward."
+rationale = "One demonstration to routine use is the gap the space station took two decades to cross, and a demonstration creates no demand by itself: operators have to keep choosing nuclear and fund enough missions for three transfers in one year. The transit mathematics of a Mars or Belt cadence is what would pull it forward. Two of three outside reviewers said lower than the first estimate (Astra and Grok against Gemini, 2026-09-19); moved partway toward them."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'nuclear-powered propulsion for their main transfer', main transfer undefined", new = "reactor-powered, with main transfer meaning the burns supplying most of the mission's velocity change beyond low Earth orbit", why = "Step 27 outside-model review, item 73 (docs/reviews/2026-09-19-rulings.md): 'nuclear-powered' without 'reactor' would have let a radioisotope-electric probe count; a three-consecutive-years clause was declined as a stronger event than the name promises. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.50 / 0.60 / 0.75 / 0.88 / 0.92", new = "0.40 / 0.52 / 0.68 / 0.85 / 0.90", why = "Step 27 outside-model review, items 18, 74 and 104 (docs/reviews/2026-09-19-rulings.md): Gemini argued up (the first flight is the barrier, routine use is adoption), Astra argued down (a demonstration creates no demand), and Grok in Fast mode broke the tie toward Astra; moved partway, discounting Fast mode. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "D-crew-round-trip-to-mars"
@@ -64,35 +76,41 @@ source = "The responsible agency's or company's mission record and independent t
 horizon = "root"
 depends_on = ["L-orbital-propellant-transfer-at-scale"]
 status = "open"
-probability = { baseline = 0.55, moderate = 0.7, strong = 0.85, radical = 0.93, open = 0.95 }
+probability = { baseline = 0.45, moderate = 0.6, strong = 0.78, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-19
-rationale = "One company is building for it; the return leg and two to three years of crew health are the unproven parts, and it is likely by 2095 if the launch architecture works at all."
-notes = "Edge drawn at step 7 (2026-09-08): a Mars departure on any current architecture needs refilling in orbit. Life support and shielding make it safer, not possible, so they are not hard dependencies."
+rationale = "One company is building for it, and refilling in orbit is one link of a long chain: crew-scale landing, surface systems, ascent, return propulsion, multi-year reliability and a programme willing to accept the risk all remain. Under even odds by 2071; likely by 2095 if the launch architecture works at all."
+revisions = [
+  { date = 2026-09-19, field = "probability", old = "0.55 / 0.70 / 0.85 / 0.93 / 0.95", new = "0.45 / 0.60 / 0.78 / 0.90 / 0.93", why = "Step 27 outside-model review, item 71 (docs/reviews/2026-09-19-rulings.md): the first rationale leaned on one company's plans and the only dependency granted is the propellant transfer; moved partway toward the reviewer. Ruled by John 2026-09-19." },
+]
+notes = "Edge drawn at step 7 (2026-09-08): a Mars departure on any current architecture needs refilling in orbit. Life support and shielding make it safer, not possible, so they are not hard dependencies. Step 27, item 76 (2026-09-19, declined): this node stays the only dependency of the beyond-the-Moon site node, standing in for 'a crew has gone beyond the Moon and returned'; it would be widened rather than removed if another destination came first."
 
 [[node]]
 id = "D-constant-acceleration-drive-demonstrated"
-name = "A drive that could cross the solar system in weeks is fired in space"
+name = "An engine with both high thrust and high exhaust speed fires in space"
 factor = "D"
 kind = "world"
 description = """
 The Epstein drive in plain terms: an engine whose exhaust is fast enough and whose thrust is
-high enough that a ship can accelerate the whole way and reach the Belt in weeks rather than
-months. Nothing like it exists. Chemical rockets have the thrust but not the exhaust speed;
-electric thrusters have the speed but push like a breath. This is the node that separates the
-Slow Expanse from the Full Expanse, and it is the project's clearest long shot."""
+high enough that, scaled up, a ship could accelerate the whole way and reach the Belt in weeks
+rather than months. Nothing like it exists. Chemical rockets have the thrust but not the
+exhaust speed; electric thrusters have the speed but push like a breath. The node measures
+the engine physics (both at once, from fusion, for an hour), not a transit: a kilonewton at a
+hundred kilometres a second is fifty megawatts of exhaust power, which nothing has approached,
+and a ship that crosses in weeks needs that engine many times over. This is the node that
+separates the Slow Expanse from the Full Expanse, and it is the project's clearest long shot."""
 resolution = """
-A propulsion system operating in space sustains, for at least one hour, an exhaust speed
-above one hundred kilometres per second (chemical rockets manage under five) together with a
-push of more than one kilonewton (roughly the weight of a hundred kilograms on Earth, which
-today's high-speed electric thrusters miss by a thousandfold), confirmed by the operator and
-by independent measurement of the vehicle's acceleration."""
+A fusion-powered propulsion system operating in space sustains, for at least one hour, an
+exhaust speed above one hundred kilometres per second (chemical rockets manage under five)
+together with a push of more than one kilonewton (roughly the weight of a hundred kilograms on
+Earth, which today's high-speed electric thrusters miss by a thousandfold), confirmed by the
+operator and by independent measurement of the vehicle's acceleration."""
 source = "The operator's test record and independent tracking of the vehicle's acceleration"
 horizon = "root"
 depends_on = ["E-fusion-plant-delivers-net-electricity"]
 status = "open"
 probability = { baseline = 0.03, moderate = 0.06, strong = 0.15, radical = 0.35, open = 0.5 }
-estimated_on = 2026-09-19
-rationale = "A hundredfold weight gap and no thrust ever produced from fusion; a coin flip with no deadline is the founding rule at work. An outside model's 50 percent for a 90-day belt transit by 2070 is a much lower bar and does not transfer."
+estimated_on = 2026-09-20
+rationale = "Re-estimated 2026-09-20 against the renamed node: the fusion-powered clause makes the criterion harder than it read (a non-fusion engine no longer counts) and dropping the transit promise makes it easier than the old name implied, and the first number was already priced for a fusion engine, so the two changes cancel and the numbers stand. A hundredfold weight gap and no thrust ever produced from fusion; a coin flip with no deadline is the founding rule at work. Proposed by Claude 2026-09-20, accepted by John."
 long_shot = true
 mechanism = """
 A fusion reaction whose products are steered out the back directly, rather than used to boil
@@ -109,7 +127,12 @@ kilowatt for each kilogram, a gap of a hundred- to a thousandfold that no built 
 closed, and fission-electric systems top out near a fifth of a kilowatt per kilogram. No
 fusion device has ever produced thrust. Everything past a heavy fusion plant on the ground
 is engineering nobody has done."""
-notes = "Weight-gap figures checked 2026-09-08 against a European Space Agency assessment of open magnetic fusion for propulsion and NASA fusion-rocket studies: conceptual fusion drives are projected at one to ten kilowatts per kilogram, fission-electric near 0.2, and the practical requirement is quoted as above one kilowatt per kilogram."
+revisions = [
+  { date = 2026-09-19, field = "name", old = "A drive that could cross the solar system in weeks is fired in space", new = "An engine with both high thrust and high exhaust speed fires in space", why = "Step 27 outside-model review, item 68 (docs/reviews/2026-09-19-rulings.md): the criterion is an engine-physics milestone and the old name promised a transit (a kilonewton on a thousand-tonne ship is 3.6 metres a second in the hour); renamed to what it measures, with the transit test not adopted. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "resolution", old = "any propulsion system meeting the thrust and exhaust-speed thresholds", new = "a fusion-powered propulsion system meeting the same thresholds", why = "Step 27 outside-model review, item 70 (docs/reviews/2026-09-19-rulings.md): the criterion did not require fusion while the node depends on a fusion plant, so a non-fusion drive that met the thresholds would have been blocked by a dependency it did not need; the edge is kept and the criterion now matches it. Ruled by John 2026-09-19." },
+  { date = 2026-09-20, field = "probability", old = "0.03 / 0.06 / 0.15 / 0.35 / 0.50", new = "0.03 / 0.06 / 0.15 / 0.35 / 0.50 (re-estimated, unchanged)", why = "Step 27 outside-model review, item 69 (docs/reviews/2026-09-19-rulings.md), held for re-estimation with the renamed node: the fusion-powered clause narrows the criterion and dropping the transit promise widens it, and the first number was already priced for a fusion engine; the re-estimate lands on the same numbers. Proposed 2026-09-20, accepted by John." },
+]
+notes = "Weight-gap figures checked 2026-09-08 against a European Space Agency assessment of open magnetic fusion for propulsion and NASA fusion-rocket studies: conceptual fusion drives are projected at one to ten kilowatts per kilogram, fission-electric near 0.2, and the practical requirement is quoted as above one kilowatt per kilogram. Step 27, item 68 (2026-09-19): Astra's arithmetic, one kilonewton at a hundred kilometres a second is fifty megawatts of exhaust power, recorded in the description."
 
 [[node]]
 id = "D-permanent-crewed-site-beyond-the-earth-moon-system"
@@ -123,8 +146,9 @@ get there and back; a site crewed continuously for a year, with rotations, prove
 can stay. It sits under drive because keeping a site beyond the Moon supplied is a transit
 problem before it is anything else."""
 resolution = """
-A site beyond the Earth-Moon system is occupied by people continuously for twelve months,
-with at least one crew rotation during that time, confirmed by the operator and independent
+A site farther from Earth than the Moon's orbit, excluding the Earth-Moon Lagrange points, is
+occupied by people continuously for twelve months, with at least one arrival of new occupants
+before any departure leaves the site empty, confirmed by the operator and independent
 tracking of the vehicles involved."""
 source = "The operator's records and independent tracking"
 horizon = "root"
@@ -133,4 +157,7 @@ status = "open"
 probability = { baseline = 0.4, moderate = 0.55, strong = 0.75, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-19
 rationale = "Getting there and back is proven by the dependency; staying needs a reason to keep a rotation running, which is a motive question the tree asks elsewhere."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'beyond the Earth-Moon system' undefined; 'at least one crew rotation' could be read as a crew leaving with nobody arriving", new = "farther from Earth than the Moon's orbit, excluding the Earth-Moon Lagrange points; at least one arrival of new occupants before any departure leaves the site empty", why = "Step 27 outside-model review, item 75 (docs/reviews/2026-09-19-rulings.md): the boundary and the rotation are now defined; the name already says what the criterion tests. Ruled by John 2026-09-19." },
+]
 notes = "Added at step 7 (2026-09-08) because no node covered Tier 3's beyond-the-Moon criterion. The criterion is deliberately inclusive: Mars, the asteroid belt, an outer moon, a free-flying habitat, or anywhere else beyond the Earth-Moon system all count, and any one of them resolves the node. Confirmed by John 2026-09-08 that every kind of habitation at Tier 3's level should count."

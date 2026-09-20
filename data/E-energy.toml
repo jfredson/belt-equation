@@ -14,9 +14,11 @@ data centres, large electric tugs, and any industrial process in space start at 
 Several companies plan megawatt-class solar spacecraft within a few years, so this is the
 near-term marker that power in space is scaling."""
 resolution = """
-One spacecraft in orbit generates and consumes at least one megawatt of electrical power
-continuously for thirty days, confirmed by the operator and consistent with independent
-observation of the vehicle."""
+One spacecraft in orbit generates and delivers to its own working loads at least one megawatt
+of electrical power, averaged over each orbit, for thirty days, with onboard storage allowed
+to carry the loads through eclipse and with preloaded energy and artificial dump loads not
+counted, confirmed by the operator and consistent with independent observation of the
+vehicle."""
 source = "The operator's records and independent observation"
 horizon = "leaf"
 depends_on = []
@@ -24,6 +26,10 @@ status = "open"
 probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
 estimated_on = 2026-09-19
 rationale = "Several companies have megawatt-class vehicles funded for the late 2020s, and orbital computing gives the power a customer."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'generates and consumes at least one megawatt ... continuously for thirty days'", new = "averaging at least one megawatt per orbit, delivered to the spacecraft's working loads, over thirty days; storage across eclipses allowed, preloaded energy and dump loads excluded", why = "Step 27 outside-model review, item 66 (docs/reviews/2026-09-19-rulings.md): a solar spacecraft in low orbit spends a third of every orbit in shadow, so 'continuously' excluded the very vehicles the description says are funded. Ruled by John 2026-09-19." },
+]
+notes = "Step 27, item 12 (2026-09-19): E-megawatt-heat-rejected-for-thirty-days-in-vacuum is a sibling that resolves first, not a dependency; a megawatt spacecraft that runs thirty days has by construction rejected the heat."
 
 [[node]]
 id = "E-fission-reactor-runs-on-lunar-surface"
@@ -32,13 +38,14 @@ factor = "E"
 kind = "world"
 description = """
 A lunar night lasts two weeks, so any permanent base needs power that does not come from the
-Sun. A small fission reactor of a few tens of kilowatts is the planned answer; the US program
-aimed at the end of this decade and, as of 2026, plans delivery of a reactor to the launch pad
-in the early 2030s. It is the power source that mining, refining, and a permanent outpost
-assume."""
+Sun. A small fission reactor of a few tens of kilowatts is the planned answer; on 2026-01-13
+the US space agency and energy department announced a 2030 target for a reactor on the lunar
+surface, a target rather than a flight. It is the power source that mining, refining, and a
+permanent outpost assume."""
 resolution = """
-A fission reactor delivering at least forty kilowatts of electricity operates on the lunar
-surface for twelve continuous months, confirmed by the responsible agency's mission record."""
+A fission reactor on the lunar surface makes at least forty kilowatts of net electrical output
+available to external loads for at least ninety percent of a twelve-month period, confirmed
+by the responsible agency's mission record."""
 source = "The responsible agency's mission record"
 horizon = "mid"
 depends_on = []
@@ -46,7 +53,11 @@ status = "open"
 probability = { baseline = 0.7, moderate = 0.8, strong = 0.9, radical = 0.95, open = 0.96 }
 estimated_on = 2026-09-19
 rationale = "The schedule has already slipped to the early 2030s and reactor programs slip more than most, but two space agencies and a rival national program are all aimed at it."
-notes = "Drafted as a leaf; moved to mid on 2026-09-08 after checking the program's schedule, which has slipped to the early 2030s."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'delivering at least forty kilowatts ... operates ... for twelve continuous months'", new = "at least forty kilowatts of net electrical output available to loads for at least ninety percent of a twelve-month period", why = "Step 27 outside-model review, item 64 (docs/reviews/2026-09-19-rulings.md): 'twelve continuous months' would have failed on a single maintenance outage, and net output to loads was unspecified. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "'aimed at the end of this decade ... plans delivery of a reactor to the launch pad in the early 2030s'", new = "the 2030 target announced 2026-01-13, dated", why = "Step 27 outside-model review, item 64: the description needed a dated update; the release of 2026-01-13 was fetched and checked. Ruled by John 2026-09-19." },
+]
+notes = "Drafted as a leaf; moved to mid on 2026-09-08 after checking the program's schedule, which has slipped to the early 2030s. NASA release of 2026-01-13 setting a 2030 surface-reactor target fetched 2026-09-19."
 
 [[node]]
 id = "E-superconducting-wire-price-falls-tenfold"
@@ -61,9 +72,14 @@ a shield around a crew cabin, within an ordinary project budget. This node feeds
 biology and drive as well as fusion."""
 resolution = """
 Published price lists or public procurement records show high-temperature superconducting
-tape sold in production quantities at one tenth or less of its 2026 price, measured the way
-the industry prices it (per unit of current the tape carries over a metre, the kiloamp-metre)
-and adjusted for inflation."""
+tape sold in production quantities at fifteen 2026 dollars or less per kiloamp-metre (one
+tenth of the frozen 2026 reference below), measured the way the industry prices it (per unit
+of current the tape carries over a metre, the kiloamp-metre) at the industry's standard
+rating condition, 77 kelvin in self-field, and adjusted for inflation by the US consumer
+price index. Reference, frozen 2026-09-19: about one hundred and fifty dollars per
+kiloamp-metre at 77 kelvin, self-field, for rare-earth barium copper oxide (REBCO) coated
+conductor, twelve millimetres wide on a metal substrate, in a production-quantity order of
+kilometres of tape."""
 source = "Vendor price lists and public procurement or agency cost reports"
 horizon = "mid"
 depends_on = []
@@ -71,6 +87,13 @@ status = "open"
 probability = { baseline = 0.55, moderate = 0.65, strong = 0.8, radical = 0.9, open = 0.92 }
 estimated_on = 2026-09-19
 rationale = "Tape prices have been falling and fusion demand is scaling production, but a full tenfold in real terms needs a manufacturing shift, not just volume; the most uncertain number in this group."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'one tenth or less of its 2026 price', reference unstated", new = "a stated dollar figure per kiloamp-metre with the reference price, tape specification, order size and rating condition (77 kelvin, self-field) frozen in the record", why = "Step 27 outside-model review, items 14 and 67 (docs/reviews/2026-09-19-rulings.md): tape is priced severalfold differently between conditions, so the reference must be frozen before the decline is judged; every figure in the reference is marked verify until sourced. Ruled by John 2026-09-19." },
+]
+verify = [
+  "The 2026 reference price of about $150 per kiloamp-metre at 77 K, self-field, for production-quantity REBCO tape was written from memory on 2026-09-20 and needs a vendor price list or procurement record with a date.",
+  "The tape specification in the reference (REBCO coated conductor, 12 mm wide, metal substrate, production order of kilometres) needs the same source; if the sourced figure differs, the resolution's fifteen-dollar threshold moves with it to one tenth of the sourced reference.",
+]
 
 [[node]]
 id = "E-fusion-plant-delivers-net-electricity"
@@ -84,7 +107,9 @@ in the early 2030s. Fusion on the ground is the technology base that any fusion 
 any large off-Earth power plant that cannot rely on the Sun, would be built from."""
 resolution = """
 A fusion power plant exports net electrical energy to a public grid over a continuous period
-of at least thirty days, with net export confirmed by the grid operator's metering."""
+of at least thirty days, net of all electricity drawn by the site from any source and of any
+change in stored energy over the period, with the generation attributed to fusion by the
+plant operator and net export confirmed by the grid operator's metering."""
 source = "The grid operator's metering record and the plant operator's report"
 horizon = "mid"
 depends_on = ["E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity"]
@@ -92,6 +117,9 @@ status = "open"
 probability = { baseline = 0.6, moderate = 0.7, strong = 0.85, radical = 0.93, open = 0.95 }
 estimated_on = 2026-09-19
 rationale = "Several private plants target the early 2030s; first attempts usually miss, but forty-five years and several routes make a first success more likely than not."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "net export at the grid meter only", new = "net of all electricity drawn by the site from any source and of any change in stored energy over the period, with the generation attributed to fusion by the plant operator", why = "Step 27 outside-model review, item 65 (docs/reviews/2026-09-19-rulings.md): a site with auxiliaries on a separate feed, or one draining a battery over the month, or a hybrid site, could otherwise have met the meter test. Ruled by John 2026-09-19." },
+]
 notes = "Drafted with a hard dependency on cheap superconducting wire; removed at step 7 (2026-09-08) because only the magnet route needs it and laser and other routes do not. The link stays in the mechanism of the fusion drive node. Now depends on a plant having started construction, which has happened."
 
 [[node]]
@@ -102,9 +130,11 @@ kind = "world"
 description = """
 The step before net electricity: someone breaks ground on a plant whose purpose is to sell
 power, with a customer signed. It has happened. A company backed by a purchase agreement
-with a large technology firm began building its first plant in Washington state in July
-2025, aiming to deliver electricity in 2028. The node stays in, resolved, as the first rung
-on the fusion ladder and a resolved leaf the calibration score can count."""
+with a large technology firm began site work on its first plant in Washington state in July
+2025, aiming to deliver electricity in 2028, with further permitting still to come at the
+time; the county's conditional-use decision followed in October 2025. The node stays in,
+resolved, as the first rung on the fusion ladder and a resolved leaf the calibration score
+can count."""
 resolution = """
 A company begins site construction of a fusion power plant that has a signed agreement to
 sell electricity to a named customer, confirmed by the company's announcement and local
@@ -114,12 +144,41 @@ horizon = "leaf"
 depends_on = []
 status = "resolved-yes"
 resolved_on = 2025-07-30
-resolved_by = "Helion's announcement of 2025-07-30 that it had secured land and begun building at Malaga, Washington, under its power purchase agreement with Microsoft; reported by World Nuclear News and BusinessWire"
+resolved_by = "Helion's announcement of 2025-07-30 that it had secured land and begun building at Malaga, Washington, under its power purchase agreement with Microsoft; reported by World Nuclear News and BusinessWire. The county's conditional-use decision of 2025-10-14 is the permitting record."
 resolved_links = [
   "https://www.helionenergy.com/newsroom/helion-secures-land-and-begins-building-site-of-worlds-first-fusion-power-plant",
   "https://www.world-nuclear-news.org/articles/helion-begins-work-on-fusion-power-plant",
+  "https://co.chelan.wa.us/community-development/pages/hearing-examiner?year=2025",
 ]
 revisions = [
   { date = 2026-09-19, field = "resolved_links", old = "", new = "https://www.helionenergy.com/newsroom/helion-secures-land-and-begins-building-site-of-worlds-first-fusion-power-plant; https://www.world-nuclear-news.org/articles/helion-begins-work-on-fusion-power-plant", why = "Every event marked as having happened now links to the record that settled it, so a reader can check the claim (site rule added 2026-09-19)." },
+  { date = 2026-09-19, field = "resolved_links", old = "the announcement and trade press only", new = "the Chelan County hearing-examiner index for 2025 added, for the conditional-use decision of 2025-10-14", why = "Step 27 outside-model review, item 63 (docs/reviews/2026-09-19-rulings.md): the criterion's confirmation is two-part (announcement and permitting record) and only the announcement was linked; resolved_on stays 2025-07-30 on the announcement, the permit date is recorded and marked verify until the county link is opened. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "'began building its first plant'", new = "'began site work', with the later permit noted", why = "Step 27 outside-model review, item 63 (docs/reviews/2026-09-19-rulings.md): the announcement establishes site work with further permitting still to come. Ruled by John 2026-09-19. The description's sentence about the calibration score is item 102, deferred to the methodology pass, and is left as it was." },
 ]
+verify = ["The Chelan County conditional-use decision dated 2025-10-14 for the Helion site (cited by GPT-6 Astra, 2026-09-19) has not been opened; the hearing-examiner index link is to be checked and, if the decision has its own page, replaced with it."]
 notes = "Added at step 7 (2026-09-08); the date and facts checked the same day against the company's newsroom and trade press."
+
+[[node]]
+id = "E-megawatt-heat-rejected-for-thirty-days-in-vacuum"
+name = "A radiator system sheds a megawatt of waste heat in vacuum for thirty days"
+factor = "E"
+kind = "world"
+description = """
+In vacuum there is no air to carry heat away; everything a spacecraft does not radiate, it
+keeps. Every megawatt-class spacecraft, reactor, or drive is limited by the size and mass of
+the radiators that shed its waste heat, and no radiator flown to date handles more than a
+fraction of a megawatt. A radiator that rejects a full megawatt for a month in space is the
+binding constraint on megawatt spacecraft, tested on its own."""
+resolution = """
+A radiator system in space rejects at least one megawatt of thermal power, averaged over
+thirty continuous days, as measured and reported by the operator from the system's own
+coolant temperatures and flow, whether the heat comes from a reactor, a power converter, or
+a test heat source."""
+source = "The operator's flight test record"
+horizon = "leaf"
+depends_on = []
+status = "open"
+probability = { baseline = 0.8, moderate = 0.85, strong = 0.9, radical = 0.94, open = 0.95 }
+estimated_on = 2026-09-20
+rationale = "Deployable radiators at the hundred-kilowatt scale fly on the space station and megawatt-class vehicles are funded for the late 2020s, so the first megawatt radiator is a decade's engineering rather than a breakthrough; priced a little under the megawatt-spacecraft node because a spacecraft that runs thirty days resolves this by construction while a radiator test can also fly earlier and alone. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, item 12 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a sibling of E-megawatt-spacecraft-operates-in-orbit that resolves first, not a dependency, and it gates nothing."

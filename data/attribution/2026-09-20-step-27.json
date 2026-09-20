@@ -1,0 +1,567 @@
+{
+  "snapshot": "2026-09-20-step-27",
+  "previous_snapshot": "2026-09-19-second-run",
+  "tree_matches_snapshot": true,
+  "runs": 20000,
+  "noise": {
+    "baseline": 0.00087,
+    "moderate": 0.001458,
+    "strong": 0.002617,
+    "radical": 0.004372,
+    "open": 0.004973
+  },
+  "headline": {
+    "baseline": 0.0038,
+    "moderate": 0.01075,
+    "strong": 0.0355,
+    "radical": 0.107,
+    "open": 0.14455
+  },
+  "headline_recorded": {
+    "baseline": 0.0038,
+    "moderate": 0.01075,
+    "strong": 0.0355,
+    "radical": 0.107,
+    "open": 0.14455
+  },
+  "total_move": {
+    "baseline": -0.0049,
+    "moderate": -0.01145,
+    "strong": -0.02065,
+    "radical": -0.03295,
+    "open": -0.03555
+  },
+  "attributed": {
+    "baseline": -0.00295,
+    "moderate": -0.0044,
+    "strong": 0.0093,
+    "radical": 0.0521,
+    "open": 0.025
+  },
+  "remainder": {
+    "baseline": -0.00195,
+    "moderate": -0.00705,
+    "strong": -0.02995,
+    "radical": -0.08505,
+    "open": -0.06055
+  },
+  "unseparated": [
+    "2026-09-20-child-born-off-earth-reaches-the-habitat-route",
+    "2026-09-20-nine-steps-added-seven-of-them-on-the-chain",
+    "2026-09-20-forty-one-criteria-tightened"
+  ],
+  "entries": [
+    {
+      "id": "2026-09-20-launch-price-below-200-dollars-marked-down",
+      "separable": true,
+      "nodes": [
+        "L-launch-price-below-200-dollars-per-kg"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.00445,
+        "moderate": 0.0116,
+        "strong": 0.0343,
+        "radical": 0.1036,
+        "open": 0.1464
+      },
+      "contribution": {
+        "baseline": -0.00065,
+        "moderate": -0.00085,
+        "strong": 0.0012,
+        "radical": 0.0034,
+        "open": -0.00185
+      }
+    },
+    {
+      "id": "2026-09-20-routine-nuclear-propulsion-marked-down",
+      "separable": true,
+      "nodes": [
+        "D-nuclear-propulsion-in-routine-use"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.00405,
+        "moderate": 0.011,
+        "strong": 0.03645,
+        "radical": 0.108,
+        "open": 0.146
+      },
+      "contribution": {
+        "baseline": -0.00025,
+        "moderate": -0.00025,
+        "strong": -0.00095,
+        "radical": -0.001,
+        "open": -0.00145
+      }
+    },
+    {
+      "id": "2026-09-20-death-rate-therapy-long-windows-raised",
+      "separable": true,
+      "nodes": [
+        "W-human-therapy-cuts-death-rate-in-older-adults"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "contribution": {
+        "baseline": 0.0,
+        "moderate": 0.0,
+        "strong": 0.0,
+        "radical": 0.0,
+        "open": 0.0
+      }
+    },
+    {
+      "id": "2026-09-20-lifespan-record-falling-raised-and-no-longer-a-long-shot",
+      "separable": true,
+      "nodes": [
+        "W-verified-human-lifespan-passes-122"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "contribution": {
+        "baseline": 0.0,
+        "moderate": 0.0,
+        "strong": 0.0,
+        "radical": 0.0,
+        "open": 0.0
+      }
+    },
+    {
+      "id": "2026-09-20-closed-loop-life-support-marked-down",
+      "separable": true,
+      "nodes": [
+        "B-closed-loop-life-support-year-off-earth"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0041,
+        "moderate": 0.01145,
+        "strong": 0.0373,
+        "radical": 0.1072,
+        "open": 0.14455
+      },
+      "contribution": {
+        "baseline": -0.0003,
+        "moderate": -0.0007,
+        "strong": -0.0018,
+        "radical": -0.0002,
+        "open": 0.0
+      }
+    },
+    {
+      "id": "2026-09-20-earth-gravity-habitat-raised",
+      "separable": true,
+      "nodes": [
+        "B-earth-gravity-habitat-occupied-for-a-year"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0044,
+        "moderate": 0.01075,
+        "strong": 0.0353,
+        "radical": 0.10305,
+        "open": 0.14445
+      },
+      "contribution": {
+        "baseline": -0.0006,
+        "moderate": 0.0,
+        "strong": 0.0002,
+        "radical": 0.00395,
+        "open": 0.0001
+      }
+    },
+    {
+      "id": "2026-09-20-year-in-partial-gravity-raised",
+      "separable": true,
+      "nodes": [
+        "B-human-year-in-partial-gravity-without-disqualifying-harm"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0042,
+        "moderate": 0.0113,
+        "strong": 0.0344,
+        "radical": 0.1014,
+        "open": 0.1455
+      },
+      "contribution": {
+        "baseline": -0.0004,
+        "moderate": -0.00055,
+        "strong": 0.0011,
+        "radical": 0.0056,
+        "open": -0.00095
+      }
+    },
+    {
+      "id": "2026-09-20-lunar-material-at-scale-raised",
+      "separable": true,
+      "nodes": [
+        "L-lunar-material-delivered-to-orbit-at-scale"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0041,
+        "moderate": 0.01005,
+        "strong": 0.03335,
+        "radical": 0.0999,
+        "open": 0.14285
+      },
+      "contribution": {
+        "baseline": -0.0003,
+        "moderate": 0.0007,
+        "strong": 0.00215,
+        "radical": 0.0071,
+        "open": 0.0017
+      }
+    },
+    {
+      "id": "2026-09-20-crew-round-trip-to-mars-marked-down",
+      "separable": true,
+      "nodes": [
+        "D-crew-round-trip-to-mars"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0037,
+        "moderate": 0.01235,
+        "strong": 0.0365,
+        "radical": 0.1032,
+        "open": 0.14925
+      },
+      "contribution": {
+        "baseline": 0.0001,
+        "moderate": -0.0016,
+        "strong": -0.001,
+        "radical": 0.0038,
+        "open": -0.0047
+      }
+    },
+    {
+      "id": "2026-09-20-hundred-people-working-off-earth-marked-down",
+      "separable": true,
+      "nodes": [
+        "M-hundred-people-working-off-earth-for-pay"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.00385,
+        "moderate": 0.0113,
+        "strong": 0.035,
+        "radical": 0.10405,
+        "open": 0.14625
+      },
+      "contribution": {
+        "baseline": -5e-05,
+        "moderate": -0.00055,
+        "strong": 0.0005,
+        "radical": 0.00295,
+        "open": -0.0017
+      }
+    },
+    {
+      "id": "2026-09-20-off-earth-product-at-a-profit-raised-with-two-new-gates",
+      "separable": true,
+      "nodes": [
+        "M-off-earth-product-sold-at-a-profit"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.00375,
+        "moderate": 0.0105,
+        "strong": 0.035,
+        "radical": 0.10585,
+        "open": 0.143
+      },
+      "contribution": {
+        "baseline": 5e-05,
+        "moderate": 0.00025,
+        "strong": 0.0005,
+        "radical": 0.00115,
+        "open": 0.00155
+      }
+    },
+    {
+      "id": "2026-09-20-kilowatt-power-beaming-marked-down",
+      "separable": true,
+      "nodes": [
+        "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "contribution": {
+        "baseline": 0.0,
+        "moderate": 0.0,
+        "strong": 0.0,
+        "radical": 0.0,
+        "open": 0.0
+      }
+    },
+    {
+      "id": "2026-09-20-permanent-residents-raised",
+      "separable": true,
+      "nodes": [
+        "R-off-earth-site-accepts-permanent-residents"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "contribution": {
+        "baseline": 0.0,
+        "moderate": 0.0,
+        "strong": 0.0,
+        "radical": 0.0,
+        "open": 0.0
+      }
+    },
+    {
+      "id": "2026-09-20-detection-of-another-intelligence-marked-down",
+      "separable": true,
+      "nodes": [
+        "C3"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0041,
+        "moderate": 0.01045,
+        "strong": 0.0345,
+        "radical": 0.10305,
+        "open": 0.14185
+      },
+      "contribution": {
+        "baseline": -0.0003,
+        "moderate": 0.0003,
+        "strong": 0.001,
+        "radical": 0.00395,
+        "open": 0.0027
+      }
+    },
+    {
+      "id": "2026-09-20-communion-marked-down-and-made-a-decoding-test",
+      "separable": true,
+      "nodes": [
+        "C4"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "contribution": {
+        "baseline": 0.0,
+        "moderate": 0.0,
+        "strong": 0.0,
+        "radical": 0.0,
+        "open": 0.0
+      }
+    },
+    {
+      "id": "2026-09-20-first-contact-rung-reworded-to-a-machine-originated-idea",
+      "separable": true,
+      "nodes": [
+        "C1"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.00365,
+        "moderate": 0.012,
+        "strong": 0.03555,
+        "radical": 0.10685,
+        "open": 0.145
+      },
+      "contribution": {
+        "baseline": 0.00015,
+        "moderate": -0.00125,
+        "strong": -5e-05,
+        "radical": 0.00015,
+        "open": -0.00045
+      }
+    },
+    {
+      "id": "2026-09-20-recession-test-made-forward-looking",
+      "separable": true,
+      "nodes": [
+        "R-space-funding-holds-through-a-recession"
+      ],
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "headline_without": {
+        "baseline": 0.0042,
+        "moderate": 0.01065,
+        "strong": 0.02905,
+        "radical": 0.08575,
+        "open": 0.1145
+      },
+      "contribution": {
+        "baseline": -0.0004,
+        "moderate": 0.0001,
+        "strong": 0.00645,
+        "radical": 0.02125,
+        "open": 0.03005
+      }
+    },
+    {
+      "id": "2026-09-20-child-born-off-earth-reaches-the-habitat-route",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "why": "This entry cannot be undone from the record: B-human-child-born-off-earth: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo."
+    },
+    {
+      "id": "2026-09-20-nine-steps-added-seven-of-them-on-the-chain",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "why": "This entry cannot be undone from the record: L-orbital-propellant-transfer-at-scale: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; W-first-drug-approved-to-slow-aging: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo."
+    },
+    {
+      "id": "2026-09-20-forty-one-criteria-tightened",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0038,
+        "moderate": 0.01075,
+        "strong": 0.0355,
+        "radical": 0.107,
+        "open": 0.14455
+      },
+      "why": "This entry cannot be undone from the record: W-composite-aging-trial-positive-in-humans: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; W-first-drug-approved-to-slow-aging: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; W-dog-rapamycin-trial-reports-longer-life: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; W-regulator-accepts-aging-as-an-indication: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; B-crewed-spin-gravity-demonstration: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; B-mammal-born-and-weaned-in-partial-gravity: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; B-radiation-resistance-treatment-for-humans: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; B-shielding-halves-deep-space-radiation-dose: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; L-crew-lands-on-moon-in-reusable-lander: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; L-fully-reusable-heavy-launcher-recovers-both-stages: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; L-heavy-launcher-100-per-year: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; L-large-structure-assembled-in-orbit: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; E-fission-reactor-runs-on-lunar-surface: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; E-fusion-plant-delivers-net-electricity: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; E-megawatt-spacecraft-operates-in-orbit: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; E-superconducting-wire-price-falls-tenfold: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; D-nuclear-propulsion-changes-orbit-in-space: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; D-permanent-crewed-site-beyond-the-earth-moon-system: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; M-paying-customer-for-work-done-in-orbit: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo; R-off-earth-resource-rights-recognised-by-major-powers: this entry names it, but no probability revision or resolution of its date is on the node's record, so there is nothing to undo."
+    }
+  ]
+}

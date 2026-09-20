@@ -14,16 +14,20 @@ fibre in free fall, testing materials. The first sizeable paying customer is the
 orbit has a second economy, which is what makes megawatt spacecraft and orbital assembly
 worth building."""
 resolution = """
-A company publicly reports, by contract announcement or financial filing, at least ten
-million dollars in a single year of paid revenue from a customer for computing,
+A company publicly reports, by financial filing or audited statement, at least ten million
+2026 dollars of revenue earned in a single financial year (revenue earned, not contract
+value) from a non-governmental customer not affiliated with the provider, for computing,
 manufacturing, or processing performed in orbit."""
-source = "The company's public contract announcement or financial filing"
+source = "The company's financial filing or audited statement"
 horizon = "leaf"
 depends_on = []
 status = "open"
 probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
 estimated_on = 2026-09-19
-rationale = "Orbital-compute contracts are already announced and the bar is one company, one year."
+rationale = "Orbital-compute contracts are already announced and the bar is one company, one year; the earned-revenue and private-customer clauses cost a little time, not the outcome."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'by contract announcement or financial filing', any customer, nominal dollars", new = "revenue earned, not contract value, in 2026 dollars, from a non-governmental customer not affiliated with the provider, by financial filing or audited statement", why = "Step 27 outside-model review, items 22 and 82 (docs/reviews/2026-09-19-rulings.md): a grant or test contract cannot resolve an economic milestone, and a contract award is not earned revenue. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
@@ -37,15 +41,20 @@ received on the ground is the step that makes the engineering argument real, and
 agencies plan demonstrations within a few years."""
 resolution = """
 A spacecraft in orbit transmits power to a receiver on Earth's surface that delivers at least
-one kilowatt of usable electrical power, reported in a peer-reviewed publication or an
-agency mission record."""
+one kilowatt of net electrical output attributable to the transmission, sustained for ten
+continuous minutes, with calibrated measurements, reported in a peer-reviewed publication or
+an agency mission record."""
 source = "The peer-reviewed publication or the agency's mission record"
 horizon = "leaf"
 depends_on = []
 status = "open"
-probability = { baseline = 0.75, moderate = 0.85, strong = 0.92, radical = 0.95, open = 0.96 }
+probability = { baseline = 0.45, moderate = 0.55, strong = 0.65, radical = 0.78, open = 0.82 }
 estimated_on = 2026-09-19
-rationale = "Demonstrations at watts have flown and agency kilowatt demonstrations are planned, but every one so far has slipped, and the economic case may never justify the step."
+rationale = "The only orbital demonstration so far (2023) beamed milliwatts, agency kilowatt demonstrations have slipped repeatedly, a received kilowatt needs an aperture nobody has funded, and ground solar with storage undercuts the business case; a little under even by 2071."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'delivers at least one kilowatt', no duration", new = "at least one kilowatt of net electrical output attributable to the transmission at the ground receiver, sustained ten continuous minutes, with calibrated measurements", why = "Step 27 outside-model review, item 83 (docs/reviews/2026-09-19-rulings.md): a momentary peak during a pass could otherwise have counted. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.75 / 0.85 / 0.92 / 0.95 / 0.96", new = "0.45 / 0.55 / 0.65 / 0.78 / 0.82", why = "Step 27 outside-model review, item 26 (docs/reviews/2026-09-19-rulings.md): the first estimate assumed agency demonstrations that keep slipping, and the 2023 flight was milliwatts (verified); Gemini argued a large cut and Astra left the number alone, so moved partway. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "M-hundred-people-working-off-earth-for-pay"
@@ -57,15 +66,20 @@ The space station holds seven. A hundred people employed off Earth at once, what
 mix of stations and surface bases, means there are jobs out there rather than missions,
 which is the economic shape of Tier 1 and the precondition for anyone rotating through."""
 resolution = """
-On a single day, at least one hundred people are off Earth in paid roles, counting all
-stations and surface sites, according to the operators' public crew records."""
+At least one hundred people are off Earth in paid roles, not counting passengers, on at
+least one day in each of twelve consecutive months, counting all stations and surface sites,
+according to the operators' public crew records."""
 source = "Operators' public crew records, tallied"
 horizon = "mid"
 depends_on = ["L-heavy-launcher-100-per-year", "R-space-funding-holds-through-a-recession"]
 status = "open"
-probability = { baseline = 0.6, moderate = 0.72, strong = 0.85, radical = 0.93, open = 0.95 }
+probability = { baseline = 0.5, moderate = 0.62, strong = 0.78, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-19
-rationale = "Private stations and a lunar base get to dozens; a hundred needs a reason beyond government seats. An outside model's 30 percent (Astra, 2026-09-19) was for ten thousand self-sustaining residents, a far higher bar."
+rationale = "Private stations and a lunar base get to dozens; a hundred, every month for a year, needs a reason beyond government seats, and orbital computing, manufacturing and mining need few workers in space. Even odds by 2071. An outside model's 30 percent (Astra, 2026-09-19) was for ten thousand self-sustaining residents, a far higher bar."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'on a single day, at least one hundred people are off Earth in paid roles'", new = "at least one hundred people off Earth in paid roles on at least one day in each of twelve consecutive months, not counting passengers", why = "Step 27 outside-model review, item 77 (docs/reviews/2026-09-19-rulings.md): a crew-change overlap at two stations plus a tourist flight could have hit a hundred for one day; a full year at a hundred every day would have turned the node into the tier. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.60 / 0.72 / 0.85 / 0.93 / 0.95", new = "0.50 / 0.62 / 0.78 / 0.90 / 0.93", why = "Step 27 outside-model review, item 78 (docs/reviews/2026-09-19-rulings.md): capacity exists given launch cadence but demand for a hundred people does not, and item 77 makes the event somewhat harder; priced for the item 77 wording. Ruled by John 2026-09-19." },
+]
 notes = "Edges drawn at step 7 (2026-09-08): a hundred people off Earth at once needs launch cadence, and getting there takes long enough that funding will have to survive a downturn on the way."
 
 [[node]]
@@ -75,17 +89,51 @@ factor = "M"
 kind = "world"
 description = """
 The Tier 3 criterion in economic terms. Propellant made from lunar ice, metal from an
-asteroid, structures built from lunar material: the first product whose sale covers its cost
-is the moment a solar-system economy exists rather than a set of subsidised outposts."""
+asteroid, structures built from lunar material: the first product that pays for itself. The
+node measures whether a supplier made money on something made from off-Earth material;
+whether it did so on a government anchor contract is disclosed, not excluded."""
 resolution = """
 A company reports, in audited accounts or an equivalent public filing, that revenue from
-selling a physical product extracted or manufactured off Earth exceeded the full cost of
-producing it over a financial year."""
+selling a physical product extracted or manufactured off Earth, from material mostly, by
+mass, extracted off Earth, exceeded the full cost of producing it over a financial year, full
+cost meaning all costs the company attributes to the product in its accounts, including
+capital and transport, with any government subsidy or anchor contract disclosed."""
 source = "The company's audited accounts or equivalent public filing"
 horizon = "root"
-depends_on = ["L-lunar-material-delivered-to-orbit-at-scale", "R-off-earth-resource-rights-recognised-by-major-powers"]
+depends_on = ["L-lunar-material-delivered-to-orbit-at-scale", "R-off-earth-resource-rights-recognised-by-major-powers", "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations", "M-commercial-insurance-written-on-a-private-lunar-asset"]
 status = "open"
-probability = { baseline = 0.55, moderate = 0.65, strong = 0.8, radical = 0.9, open = 0.93 }
+probability = { baseline = 0.65, moderate = 0.75, strong = 0.85, radical = 0.92, open = 0.95 }
 estimated_on = 2026-09-19
-rationale = "With supply and ownership settled, profit still needs a buyer at a price above a first-of-kind cost; propellant in orbit is the likeliest product."
-notes = "Edges drawn at step 7 (2026-09-08): the only supply route in the tree is lunar material at scale (an asteroid route would be a second option if a node is added), and selling it needs the ownership rules to exist."
+rationale = "Given lunar delivery at scale, resource rules, mutually recognised keep-out zones and an insurable asset, the remaining test is one company, one product, one profitable year, and a government buyer's anchor contract can settle it; propellant in orbit is the likeliest product."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'a physical product extracted or manufactured off Earth', 'full cost' undefined", new = "from material mostly, by mass, extracted off Earth; full cost meaning all costs the company attributes to the product in its accounts, including capital and transport, with any government subsidy or anchor contract disclosed", why = "Step 27 outside-model review, items 79 and 81 (docs/reviews/2026-09-19-rulings.md): as written, fibre drawn in orbit from Earth glass would have counted with neither dependency, so the criterion was narrowed to match the edges; supplier profitability with support disclosed is the honest reading of 'full cost'. Both edges kept. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "'the moment a solar-system economy exists rather than a set of subsidised outposts'", new = "'the first product that pays for itself'", why = "Step 27 outside-model review, item 79: the node measures a supplier's profit, not an independent economy. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "depends_on", old = "lunar material at scale and the resource-rights node", new = "the same two plus R-us-and-china-recognise-keep-out-zones-around-off-earth-installations and M-commercial-insurance-written-on-a-private-lunar-asset", why = "Step 27 outside-model review, items 19 and 21 (docs/reviews/2026-09-19-rulings.md): mutually recognised keep-out zones and an insurable lunar asset are what let capital price the risk of a product made out there; both land as gates under item 80. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.55 / 0.65 / 0.80 / 0.90 / 0.93", new = "0.65 / 0.75 / 0.85 / 0.92 / 0.95", why = "Step 27 outside-model review, item 80 (docs/reviews/2026-09-19-rulings.md): with the supply and the rules given, one profitable year of lunar propellant to an agency buyer is not a stretch; the two new gates pull the unconditional chance down while the conditional goes up. Ruled by John 2026-09-19." },
+]
+notes = "Edges drawn at step 7 (2026-09-08): the only supply route in the tree is lunar material at scale (an asteroid route would be a second option if a node is added), and selling it needs the ownership rules to exist. Two more gates added 2026-09-19 under step 27, items 19 and 21."
+
+[[node]]
+id = "M-commercial-insurance-written-on-a-private-lunar-asset"
+name = "A commercial syndicate insures a privately owned lunar asset for a million-dollar premium"
+factor = "M"
+kind = "world"
+description = """
+Insurance is how capital prices risk. Satellites in orbit are insured every day; nothing on
+the Moon is, because no underwriter can price a lander, a plant, or a mine there. The first
+commercial policy on a privately owned lunar asset, with a real premium, is the sign that the
+risk of owning things on the Moon has become a number, which is what a product sold at a
+profit from out there needs behind it."""
+resolution = """
+A commercial insurance syndicate or underwriter writes damage and liability cover on a
+privately owned asset on the lunar surface or in lunar orbit, at an annual premium of one
+million dollars or more (in 2026 dollars by the US consumer price index), confirmed by the
+insurer's or the insured's public statement or filing."""
+source = "The insurer's or the insured's public statement or financial filing"
+horizon = "leaf"
+depends_on = []
+status = "open"
+probability = { baseline = 0.7, moderate = 0.78, strong = 0.86, radical = 0.92, open = 0.94 }
+estimated_on = 2026-09-20
+rationale = "The satellite insurance market already writes launch and in-orbit cover on commercial landers, and a lunar asset worth insuring at a million a year needs only a commercial lunar operation of any size, which the outpost tier assumes; the residual is that operators self-insure or governments carry the risk for decades. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, item 21 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a dependency of M-off-earth-product-sold-at-a-profit."

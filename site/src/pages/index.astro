@@ -51,6 +51,7 @@ const scenarios = tree.scenarios.map((s) => {
         headline: numbers.tiers[headlineKey][s.key],
         a1: numbers.tiers['A1'][s.key],
         t3: numbers.tiers['T3'][s.key],
+        a2t1: numbers.a2_at_tier1 ? numbers.a2_at_tier1[s.key] : null,
         links: Object.fromEntries(LINKS.map((l) => [l.letter, numbers.chain[l.letter]?.[s.key] ?? null])),
         headlineMove: move ? move.tiers[headlineKey]?.[s.key] ?? null : null,
         moves: move
@@ -94,8 +95,9 @@ const contact = factorByLetter('C');
     <div class="home-hero-main">
       <p class="eyebrow">One man's odds of leaving Earth, tracked in public</p>
       <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
-      <h1 class="big-claim">The chance that I live and work off Earth before I die.</h1>
+      <h1 class="big-claim">The chance that I become a Belter before I die: working rotations off Earth, in a Belt that exists.</h1>
       <p class="big-sub"><span data-bind="windowLine">That is {current.when}.</span> Nobody knows how long I get, so the dial lets you change that assumption and watch the odds move.</p>
+      <p class="second-number">A Belter works out past Mars, in a Belt with its own economy. The nearer thing, a rotation at a station or a lunar base with no Belt yet, comes out at <strong data-bind="a2t1">{fmt(current.a2t1)}</strong>. That number is reported here beside the headline, not in its place.</p>
       {move && (
         <p class={`headline-move tone-${direction(current.headlineMove).tone}`} data-bind-class="headlineMove">
           <span aria-hidden="true" data-bind="headlineArrow">{direction(current.headlineMove).arrow}</span>
@@ -137,6 +139,7 @@ const contact = factorByLetter('C');
       <p class="dial-note" data-bind="note">{current.note}</p>
       <div class="dial-stats">
         <div><span class="stat" data-bind="a1">{fmt(current.a1)}</span><span class="stat-label">I fly to space at least once</span></div>
+        <div><span class="stat" data-bind="a2t1">{fmt(current.a2t1)}</span><span class="stat-label">I work a rotation at a station or lunar base, Belt or no Belt</span></div>
         <div><span class="stat" data-bind="t3">{fmt(current.t3)}</span><span class="stat-label">A Belt exists at all: people living past Mars</span></div>
         <div><span class="stat accent" data-bind="headline">{fmt(current.headline)}</span><span class="stat-label">I'm out there working when it does</span></div>
       </div>
@@ -280,6 +283,7 @@ const contact = factorByLetter('C');
         setAll('headline', fmt(s.headline));
         setAll('a1', fmt(s.a1));
         setAll('t3', fmt(s.t3));
+        setAll('a2t1', fmt(s.a2t1));
         setAll('windowLine', 'That is ' + s.when + '.');
         setAll('note', s.note);
         setAll('yearLine', 'Odds shown ' + s.when);

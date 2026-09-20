@@ -93,6 +93,9 @@ export type Numbers =
       chain: Record<string, Record<string, number>>;
       /** The gate nodes behind each chain link: what the headline tier requires, through the tiers under it. */
       chain_nodes: Record<string, string[]>;
+      /** The second number beside the headline (step 27, item 95): A2 at Tier 1, a rotation at a station or lunar base. */
+      a2_at_tier1?: Record<string, number>;
+      a2_at_tier1_nodes?: string[];
     };
 
 export type Tree = {
@@ -204,6 +207,8 @@ export type SnapshotSummary = {
   tiers: Record<string, ByScenario>;
   chain: Record<string, ByScenario>;
   chain_nodes: Record<string, string[]>;
+  /** Numbers reported beside the headline, keyed by name; `a2_at_tier1` from 2026-09-20. Absent on older runs. */
+  second?: Record<string, ByScenario>;
   contact: Record<string, ByScenario>;
   decisions: Record<string, { options: { id: string; name: string; current_plan: boolean; headline: ByScenario }[] }>;
 };
