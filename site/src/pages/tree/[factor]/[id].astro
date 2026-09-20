@@ -4,6 +4,7 @@ import {
   tree, factorByLetter, percent, scenarioWindow, horizonLabel, statusLabel, kindLabel,
   recordUrl, issueUrl, inline, type Node,
 } from '../../../lib/tree';
+import { checksFor, verdictLabel } from '../../../lib/scans';
 
 export function getStaticPaths() {
   return tree.nodes.map((n) => ({ params: { factor: n.factor_slug, id: n.id }, props: { node: n } }));
@@ -22,6 +23,10 @@ const disagree = issueUrl(
 );
 const links = node.resolved_links ?? [];
 const description = node.description.length > 200 ? node.description.slice(0, 197) + '…' : node.description;
+// The weekly scan's last three readings of this node (docs/scan-plan.md, step 37), above the
+// revisions: the date and the verdict in a line, the sentence it wrote when you open it.
+const checks = checksFor(node.id);
+const lastChecks = checks.slice(0, 3);
 ---
 
 <Base title={`${node.name} — The Belt Equation`} description={description}>
@@ -116,6 +121,46 @@ const description = node.description.length > 200 ? node.description.slice(0, 19
           {node.mechanism && <p><strong>The mechanism:</strong> {node.mechanism}</p>}
           {node.breaking_point && <p><strong>The breaking point:</strong> {node.breaking_point}</p>}
         </>
+      )}
+
+      {lastChecks.length > 0 && (
+        <>
+          <h2>The last {lastChecks.length === 1 ? 'check' : `${lastChecks.length} checks`}</h2>
+          <p style="font-size: 15px;">
+            Once a week the tree is read against the news, node by node, against the test above. Open a line to
+            see what that week held. Every check ever made on this node is on <a href="/radar/">the Radar page</a>.
+          </p>
+          <ul class="checks">
+            {lastChecks.map((c) => (
+              <li>
+                <details>
+                  <summary>
+                    <span class="check-date">{c.date}</span>
+                    <span class={`badge v-${c.verdict}`}>{verdictLabel[c.verdict]}</span>
+                    {c.test && <span class="badge v-test">Test record</span>}
+                  </summary>
+                  <div class="check-body">
+                    <p>{c.found}</p>
+                    {c.for_john && <p><strong>For John:</strong> {c.for_john}</p>}
+                    {c.sources.length > 0 && (
+                      <p class="dim">
+                        {c.sources.map((s, i) => (
+                          <a href={s} rel="noopener nofollow">source {c.sources.length > 1 ? i + 1 : ''}</a>
+                        ))}
+                      </p>
+                    )}
+                  </div>
+                </details>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {node.watch.length > 0 && (
+        <p class="dim" style="font-size: 14.5px;">
+          <strong>Extra search terms the weekly scan uses for this node:</strong> {node.watch.join(', ')}.
+        </p>
       )}
 
       {node.revisions.length > 0 && (

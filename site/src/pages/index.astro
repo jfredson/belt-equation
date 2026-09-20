@@ -4,22 +4,25 @@
 // Every figure comes from tree.json (scripts/export.py); the copy for the seven links is here.
 import Base from '../layouts/Base.astro';
 import { tree, percent, factorByLetter } from '../lib/tree';
+import { latestScan, scanSummary } from '../lib/scans';
 
 const numbers = tree.numbers;
 const headlineKey = tree.headline_tier;
 const DEFAULT_SCENARIO = 'baseline';
 
 // The seven links of the chain, in the order they are read. W (the window) is the dial, not a
-// link; C (the Contact Clause) sits beside the equation and is never multiplied in.
+// link; C (the Contact Clause) sits beside the equation and is never multiplied in. The short
+// name of each link comes from the factor table in scripts/export.py, so that the home page,
+// the Radar page and the scan records all call a link the same thing.
 const LINKS = [
-  { letter: 'L', title: 'Getting to orbit has to get cheap.', sub: 'A fully reusable heavy rocket flying often, launch under $200 a kilogram, fuel transferred in orbit.', short: 'cheap launch' },
-  { letter: 'E', title: 'There has to be power out there.', sub: 'A reactor running on the surface of the Moon. Solar gets thin past Mars.', short: 'power off Earth' },
-  { letter: 'D', title: 'Ships fast enough to make the trip routine.', sub: 'Nuclear propulsion in regular use, and a permanent crewed site somewhere past the Moon.', short: 'fast ships' },
-  { letter: 'B', title: 'Bodies that hold up.', sub: 'Living off Earth long term by some route, radiation dose halved, life support that recycles for a year.', short: 'bodies that hold up' },
-  { letter: 'M', title: 'A reason for people to go.', sub: 'Something made off Earth and sold at a profit, and a hundred people paid to work up there.', short: 'a reason to go' },
-  { letter: 'R', title: 'Governments that don’t wreck it.', sub: 'Programs that outlive elections and recessions. Resource rights the big powers recognise.', short: 'governments' },
-  { letter: 'A', title: 'A seat for me.', sub: 'A job whose holders rotate off Earth, reached through the training and choices I make now.', short: 'a seat for me' },
-];
+  { letter: 'L', title: 'Getting to orbit has to get cheap.', sub: 'A fully reusable heavy rocket flying often, launch under $200 a kilogram, fuel transferred in orbit.' },
+  { letter: 'E', title: 'There has to be power out there.', sub: 'A reactor running on the surface of the Moon. Solar gets thin past Mars.' },
+  { letter: 'D', title: 'Ships fast enough to make the trip routine.', sub: 'Nuclear propulsion in regular use, and a permanent crewed site somewhere past the Moon.' },
+  { letter: 'B', title: 'Bodies that hold up.', sub: 'Living off Earth long term by some route, radiation dose halved, life support that recycles for a year.' },
+  { letter: 'M', title: 'A reason for people to go.', sub: 'Something made off Earth and sold at a profit, and a hundred people paid to work up there.' },
+  { letter: 'R', title: 'Governments that don’t wreck it.', sub: 'Programs that outlive elections and recessions. Resource rights the big powers recognise.' },
+  { letter: 'A', title: 'A seat for me.', sub: 'A job whose holders rotate off Earth, reached through the training and choices I make now.' },
+].map((l) => ({ ...l, short: factorByLetter(l.letter)?.chain_link ?? l.letter }));
 
 // One line per scenario for the dial. Keys match data/scenarios.toml.
 const DIAL: Record<string, { label: string; when: string; note: string }> = {
@@ -61,6 +64,13 @@ function weakest(s: typeof current) {
 }
 const w = weakest(current);
 const weakestLink = w ? LINKS.find((l) => l.letter === w.letter) : null;
+
+// The strip under the headline (docs/scan-plan.md, step 37): one line saying when the tree was
+// last read against the news and what came of it. It is how a first-time visitor learns that
+// the number is watched rather than posted once and left. When exactly one node moved or
+// resolved, the line names it; otherwise the Radar page has the detail.
+const movers = latestScan ? latestScan.items.filter((i) => i.verdict === 'moved' || i.verdict === 'resolved') : [];
+const loneMover = movers.length === 1 ? movers[0] : null;
 const equationFactors = tree.factors.filter((f) => f.letter !== 'C');
 const contact = factorByLetter('C');
 ---
@@ -72,6 +82,16 @@ const contact = factorByLetter('C');
       <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
       <h1 class="big-claim">The chance that I live and work off Earth before I die.</h1>
       <p class="big-sub"><span data-bind="windowLine">That is {current.when}.</span> Nobody knows how long I get, so the dial lets you change that assumption and watch the odds move.</p>
+      {latestScan && (
+        <p class="scan-strip">
+          <span class="strip-dot" aria-hidden="true"></span>
+          <span>
+            Last checked {latestScan.date}: {scanSummary(latestScan)}{loneMover ? <>: <a href={loneMover.path}>{loneMover.node_name}</a></> : ''}.
+            {' '}<a href="/radar/">See the week's reading</a>.
+            {latestScan.test && <span class="strip-test">This one is a hand-made test record; no real scan has run yet.</span>}
+          </span>
+        </p>
+      )}
       <div class="ctas">
         <a class="btn" href="#chain">Why so low?</a>
         <a class="btn ghost" href="#who">Who is asking</a>

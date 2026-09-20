@@ -17,6 +17,8 @@ export type Scenario = {
 export type Factor = {
   letter: string;
   slug: string;
+  /** The plain-English name the home page gives this factor: "cheap launch", "fast ships". */
+  chain_link: string;
   name: string;
   meaning: string;
   path: string;
@@ -68,6 +70,8 @@ export type Node = {
   superseded_by: string | null;
   revisions: Revision[];
   verify: string[];
+  /** Extra search terms the weekly scan adds to the ones it writes from this record. */
+  watch: string[];
   notes: string | null;
   file: string;
   path: string;
