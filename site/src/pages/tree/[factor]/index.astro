@@ -2,8 +2,8 @@
 import Base from '../../../layouts/Base.astro';
 import HistoryChart from '../../../components/HistoryChart.astro';
 import {
-  tree, nodesOf, percent, horizonShort, statusLabel, snapshots, ledger, movePoints,
-  DEFAULT_SCENARIO, type Factor,
+  tree, nodesOf, percent, horizonShort, statusLabel, snapshots, ledger, odds, movePoints, band,
+  worthOf, DEFAULT_SCENARIO, type Factor,
 } from '../../../lib/tree';
 
 export function getStaticPaths() {
@@ -23,6 +23,18 @@ const linkSeries = snapshots.series.chain[factor.letter];
 const isLink = Boolean(linkSeries);
 const linkMove = snapshots.change ? snapshots.change.chain[factor.letter] ?? null : null;
 const gateNodes = (snapshots.latest?.chain_nodes ?? {})[factor.letter] ?? [];
+
+// What would move this link (step 32). For every open step under this factor, what the headline
+// would be if it settled yes now, and what it would be if it settled no. Worked out by forcing
+// the step and playing the whole tree out again, so these are not guesses written beside a name.
+const worth = snapshots.latest?.worth ?? null;
+const openWorld = nodes.filter((n) => n.kind === 'world' && n.status === 'open');
+const watchRows = openWorld
+  .map((n) => ({ node: n, worth: worth?.nodes?.[n.id] ?? null }))
+  .filter((r) => r.worth?.reaches_headline)
+  .sort((a, b) => (b.worth!.if_yes[DEFAULT_SCENARIO] ?? 0) - (a.worth!.if_yes[DEFAULT_SCENARIO] ?? 0));
+const unreached = openWorld.filter((n) => worth?.nodes?.[n.id] && !worth.nodes[n.id].reaches_headline);
+const headlineNow = worth?.headline?.[DEFAULT_SCENARIO] ?? null;
 
 // Anything in the ledger that touched a step under this factor.
 const ledgerHere = ledger.entries.filter((e) => e.factors.some((f) => f.letter === factor.letter));
@@ -53,6 +65,59 @@ const ledgerHere = ledger.entries.filter((e) => e.factors.some((f) => f.letter =
       />
     </section>
   )}
+
+  <section class="section">
+    <div class="shead">
+      <h2>What would move this</h2>
+      <span>ranked by what a yes is worth to the headline, by 2071</span>
+    </div>
+    {watchRows.length > 0 ? (
+      <>
+        <p class="dim" style="font-size: 14.5px; margin-top: 0;">
+          The headline stands at {odds(headlineNow)} by 2071. If one of these settled tomorrow and
+          nothing else changed, the whole tree is played out again and the headline lands where the
+          figure says. This is the site saying in advance what a milestone is worth, before it
+          happens: when one of them lands, the entry that records it quotes what was predicted here.
+          {snapshots.noise && (
+            <> These come from playing the tree out {snapshots.latest?.run.runs.toLocaleString()} times
+            per scenario, which is a throw of the dice: anything smaller than about
+            {' '}{band(snapshots.noise[DEFAULT_SCENARIO])} is inside the
+            noise, so read the order rather than the last decimal.</>
+          )}
+        </p>
+        <ul class="watchlist">
+          {watchRows.map(({ node, worth: w }) => (
+            <li>
+              <a class="wname" href={node.path}>{node.name}</a>
+              <span class="wworth">{worthOf(w!.if_yes[DEFAULT_SCENARIO], snapshots.noise?.[DEFAULT_SCENARIO])} if yes</span>
+              <span class="wno">
+                {odds(headlineNow)} today · {odds(w!.headline_if_yes[DEFAULT_SCENARIO])} if it happened ·
+                {' '}{odds(w!.headline_if_no[DEFAULT_SCENARIO])} if it turned out no
+                {' '}({worthOf(w!.if_no[DEFAULT_SCENARIO], snapshots.noise?.[DEFAULT_SCENARIO])})
+              </span>
+            </li>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <p class="dim" style="font-size: 15px; margin-top: 0;">
+        {isContact
+          ? 'Nothing here moves the headline, by design. The Contact Clause sits beside the equation and is never multiplied into it, so however these four rungs turn out, the number at the top of the site does not change.'
+          : factor.letter === 'W'
+            ? 'Nothing here moves the headline directly. How long I live is the dial rather than a link in the chain: it is the question the five scenarios ask, so these steps change which scenario looks plausible rather than the number under any one of them.'
+            : 'No open step under this factor is one the headline rests on, so nothing here would move it.'}
+      </p>
+    )}
+    {unreached.length > 0 && watchRows.length > 0 && (
+      <p class="dim" style="font-size: 13.5px;">
+        {unreached.length} other open step{unreached.length === 1 ? '' : 's'} under this factor
+        {unreached.length === 1 ? ' is' : ' are'} worth nothing to the headline, because the headline
+        does not rest on {unreached.length === 1 ? 'it' : 'them'} at any remove — {unreached.map((n, i) => (
+          <>{i > 0 ? ', ' : ''}<a href={n.path}>{n.name}</a></>
+        ))}. Most belong to the tiers above the one the headline asks about.
+      </p>
+    )}
+  </section>
 
   {ledgerHere.length > 0 && (
     <section class="section">
