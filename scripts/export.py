@@ -50,7 +50,7 @@ import compute  # noqa: E402  (the loader and validator, shared on purpose)
 # the dial and the Contact Clause is never multiplied in; they carry a plain name anyway, so
 # that a scan item on one of their nodes has something readable to be grouped under.
 FACTORS = [
-    {"letter": "W", "slug": "window", "chain_link": "how long I get", "name": "Window",
+    {"letter": "W", "slug": "window", "chain_link": "time window", "name": "Window",
      "meaning": "That I am alive on the date in question."},
     {"letter": "L", "slug": "launch", "chain_link": "cheap launch", "name": "Launch",
      "meaning": "That the cost of putting mass into orbit falls below the threshold that makes everything else affordable."},

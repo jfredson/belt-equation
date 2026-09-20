@@ -121,7 +121,7 @@ const description = latestScan
       {groups.map((g) => (
         <div class="link-group">
           <div class="link-head">
-            <h3>{g.link}</h3>
+            <h3><span class="dim">Category: </span>{g.link}</h3>
             <span class="dim"><a href={g.path}>{g.letter}, {g.name}</a> · {g.items.length} node{g.items.length === 1 ? '' : 's'} read</span>
           </div>
           <div class="scan-cards">
