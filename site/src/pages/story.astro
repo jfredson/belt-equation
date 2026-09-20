@@ -102,8 +102,8 @@ const authors = ledger.totals.by_author;
       title={`The chance I live and work off Earth, run by run`}
       caption={
         snapshots.snapshots.length > 1 && new Set(snapshots.snapshots.map((s) => s.date)).size === 1
-          ? 'Both runs so far were made on the same day, so they are spaced by the order they were taken in rather than by the calendar. All five longevity scenarios are drawn; the 2071 line is the thick one. Click a point to jump to what happened in that run.'
-          : 'All five longevity scenarios are drawn; the 2071 line is the thick one. Click a point to jump to what happened in that run.'
+          ? 'Both runs so far were made on the same day, so they are spaced by the order they were taken in rather than by the calendar. All five longevity scenarios are drawn; the thick line is the one the dial above is set to. Click a point to jump to what happened in that run.'
+          : 'All five longevity scenarios are drawn; the thick line is the one the dial above is set to. Click a point to jump to what happened in that run.'
       }
     />
   </section>
@@ -330,7 +330,7 @@ const authors = ledger.totals.by_author;
       </p>
     )}
     <p class="dim" style="font-size: 14px;">
-      Written by John: {authors['john'] ?? 0}.
+      Written by me: {authors['john'] ?? 0}.
       {authors['scan'] ? ` Found by the weekly web scan: ${authors['scan']}.` : ''}
       {' '}Each run is saved whole in the public repository, under <code>data/snapshots/</code>, so
       any figure on this page can be checked against the run that produced it.
@@ -430,6 +430,18 @@ const authors = ledger.totals.by_author;
           var on = b.getAttribute('data-scenario') === key;
           b.classList.toggle('on', on);
           b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+
+        // The history chart: the chosen scenario's line comes forward, the others fall back.
+        document.querySelectorAll('.chart [data-series]').forEach(function (el) {
+          var on = el.getAttribute('data-series') === key;
+          if (el.classList.contains('chart-line') || el.classList.contains('chart-marks')) {
+            el.classList.toggle('lead', on);
+            el.classList.toggle('faint', !on);
+            if (on && el.parentNode) el.parentNode.appendChild(el);
+          } else {
+            el.classList.toggle('on', on);
+          }
         });
       }
 

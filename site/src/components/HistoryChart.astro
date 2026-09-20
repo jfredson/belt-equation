@@ -90,19 +90,26 @@ const single = lead && lead.marks.length < 2;
         </>
       ))}
 
-      {rest.map((l) => <path class="chart-line faint" d={l.d} />)}
-      {lead && <path class="chart-line lead" d={lead.d} />}
+      {/* Every line is drawn with its series key on it, the highlighted one last so it sits on
+          top. A page with a scenario dial can move the highlight by swapping the `lead` and
+          `faint` classes on [data-series] elements; the markers travel with their line. */}
+      {rest.map((l) => <path class="chart-line faint" data-series={l.key} d={l.d} />)}
+      {lead && <path class="chart-line lead" data-series={lead.key} d={lead.d} />}
 
-      {lead && lead.marks.map((m) => {
-        const href = markerHref[m.key];
-        const dot = (
-          <>
-            <circle class="chart-dot" cx={m.cx} cy={m.cy} r={single ? 5 : 4} />
-            <title>{`${m.date}, run ${m.key}: ${(m.value * 100).toFixed(m.value < 0.1 ? 1 : 0)}%`}</title>
-          </>
-        );
-        return href ? <a href={href} class="chart-mark">{dot}</a> : <g class="chart-mark">{dot}</g>;
-      })}
+      {lines.map((l) => (
+        <g class={`chart-marks ${l.lead ? 'lead' : 'faint'}`} data-series={l.key}>
+          {l.marks.map((m) => {
+            const href = markerHref[m.key];
+            const dot = (
+              <>
+                <circle class="chart-dot" cx={m.cx} cy={m.cy} r={l.marks.length < 2 ? 5 : 4} />
+                <title>{`${m.date}, run ${m.key}: ${(m.value * 100).toFixed(m.value < 0.1 ? 1 : 0)}%`}</title>
+              </>
+            );
+            return href ? <a href={href} class="chart-mark">{dot}</a> : <g class="chart-mark">{dot}</g>;
+          })}
+        </g>
+      ))}
 
       {(byDate ? dates : runKeys).map((d, i) => {
         const x = PAD.left + (xMax === xMin ? plotW / 2 : ((byDate ? day(d) : i) - xMin) / (xMax - xMin) * plotW);
@@ -115,7 +122,7 @@ const single = lead && lead.marks.length < 2;
   {keys.length > 1 && (
     <ul class="chart-legend">
       {lines.map((l) => (
-        <li class={l.lead ? 'on' : ''}><span class="swatch" aria-hidden="true"></span>{l.label}</li>
+        <li class={l.lead ? 'on' : ''} data-series={l.key}><span class="swatch" aria-hidden="true"></span>{l.label}</li>
       ))}
     </ul>
   )}

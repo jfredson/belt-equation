@@ -478,6 +478,7 @@ a.dim:hover { color: var(--accent); }
 .chart-line.faint { stroke: var(--line-strong); stroke-width: 1.5; }
 .chart-line.lead { stroke: var(--accent); stroke-width: 2.5; }
 .chart-dot { fill: var(--accent); stroke: var(--panel); stroke-width: 2; }
+.chart-marks.faint { display: none; }
 .chart-mark { cursor: pointer; }
 .chart-mark:hover .chart-dot { fill: var(--text); }
 .chart-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 10px 0 0; padding: 0; font-family: var(--sans); font-size: 12px; color: var(--muted); }

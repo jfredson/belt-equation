@@ -47,7 +47,7 @@ const description = latestScan
     </p>
     <p class="dim" style="font-size: 14px;">
       The scan may change a number by a small amount with a public source behind it, and may mark a node as
-      having happened when two independent records agree. Anything beyond that, it leaves for John and says so.
+      having happened when two independent records agree. Anything beyond that, it leaves for me and says so.
       Each record is a file in the repository, written once and never edited; the site refuses to build if one
       of them does not add up.
     </p>
@@ -101,7 +101,7 @@ const description = latestScan
 
       {waiting.length > 0 && (
         <div class="waiting">
-          <h3>Waiting on John</h3>
+          <h3>Waiting on me</h3>
           <p class="dim">
             {plainCount(waiting.length)} thing{waiting.length === 1 ? '' : 's'} the scan found and was not allowed to act on by
             itself. Each stays on this list until a later scan checks that node again, or a ledger entry picks it up.
@@ -133,7 +133,7 @@ const description = latestScan
                 </div>
                 <p class="card-found">{item.found}</p>
                 {item.for_john && (
-                  <p class="card-john"><strong>For John:</strong> {item.for_john}</p>
+                  <p class="card-john"><strong>For me:</strong> {item.for_john}</p>
                 )}
                 <div class="card-foot">
                   {item.ledger && (

@@ -86,7 +86,7 @@ export const verdictLabel: Record<Verdict, string> = {
   noted: 'No change',
   moved: 'A number moved',
   resolved: 'It happened',
-  flagged: 'Waiting on John',
+  flagged: 'Waiting on me',
 };
 
 /** The same five, in a sentence, for the key on the Radar page and the node pages. */
@@ -95,7 +95,7 @@ export const verdictMeaning: Record<Verdict, string> = {
   noted: 'Something relevant happened and it did not meet the test, so no number changed.',
   moved: 'The evidence changed the odds, within the limit a scan is allowed to move them.',
   resolved: 'The test was met and two independent public records agreed.',
-  flagged: 'Something the scan is not allowed to do on its own, written up for John to rule on.',
+  flagged: 'Something the scan is not allowed to do on its own, written up for me to rule on.',
 };
 
 export const scopeLabel: Record<Scan['scope'], string> = {
@@ -126,7 +126,7 @@ export function scanSummary(scan: Scan): string {
   const parts: string[] = [];
   if (scan.counts.moved) parts.push(`${plainCount(scan.counts.moved)} moved`);
   if (scan.counts.resolved) parts.push(`${plainCount(scan.counts.resolved)} resolved`);
-  if (scan.counts.flagged) parts.push(`${plainCount(scan.counts.flagged)} left for John`);
+  if (scan.counts.flagged) parts.push(`${plainCount(scan.counts.flagged)} left for me`);
   if (parts.length === 0) return `${read}, nothing moved`;
   const joined = parts.length === 1 ? parts[0] : parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1];
   return `${read}, ${joined}`;

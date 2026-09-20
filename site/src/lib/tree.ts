@@ -361,7 +361,7 @@ export const ledgerKindLabel: Record<LedgerKind, string> = Object.fromEntries(
 
 /** Who wrote an entry, in words. Nothing recorded means John wrote it himself. */
 export function authorLabel(author: string | null): string {
-  if (!author) return 'Written by John';
+  if (!author) return 'Written by me';
   if (author === 'scan') return 'Written by the weekly web scan';
   return `Written by ${author}`;
 }
