@@ -69,6 +69,23 @@ entries are reported as ones that cannot be separated, with the reason in plain 
 leftover carries them. Version one goes no further than that, on purpose (docs/ledger-plan.md,
 decision 3 and "Deferred, and why").
 
+## The ledger
+
+`data/ledger.toml` is the record of what moved the needle: one entry per thing that happened,
+appended and never edited, with six kinds so that a reader can tell the world moving from John
+changing his mind. The record layout is in docs/ledger-plan.md and the file's own header.
+
+The export script checks it on every build and refuses to write anything when a rule is broken.
+The rule that matters most is the cross-check: every step an entry says it changed must carry, on
+its own record, a revision or a resolution dated between the previous run and the entry. That is
+what stops the story and the tree drifting apart, which was the real risk in keeping the story in a
+file of its own.
+
+An entry carries words, not numbers. Everything numeric beside it on the site — each step's rate
+before and after, where the headline stood on either side, and the entry's own contribution — is
+filled in by the export from the committed runs. An entry therefore cannot claim a change the tree
+did not produce.
+
 `export.py` turns the same tree, plus CHANGELOG.md, into the JSON the website reads (site/src/data/). Written 2026-09-19 (website step 21). It imports the loader and validator from `compute.py`, so it refuses to write anything for a tree that fails the schema, and the site can never show one.
 
     python3 scripts/export.py                  write site/src/data/tree.json, changelog.json, snapshots.json

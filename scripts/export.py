@@ -3,7 +3,7 @@
 
 Plain Python, standard library only. Run from anywhere:
 
-    python3 scripts/export.py                  write site/src/data/tree.json, changelog.json, snapshots.json
+    python3 scripts/export.py                  write the site's JSON from data/ and CHANGELOG.md
     python3 scripts/export.py --check          validate and print the counts, write nothing
     python3 scripts/export.py --out DIR        write the JSON somewhere else
     python3 scripts/export.py --data DIR       read a different data folder (for tests)
@@ -19,7 +19,9 @@ What the JSON holds, beyond a copy of each record:
 - the headline numbers when the tree is complete enough for compute.py to run, and a plain
   reason when it is not (website step 23 puts them on the page);
 - the committed run snapshots in data/snapshots/, as the series the history charts are drawn
-  from and the difference between the last two runs (ledger step 28).
+  from and the difference between the last two runs (ledger step 28);
+- the ledger in data/ledger.toml, checked against its own rules and against the node records,
+  with every figure on an entry filled in from the runs rather than read off the entry (step 30).
 """
 
 from __future__ import annotations
@@ -229,15 +231,14 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
 # ------------------------------------------------------------ the snapshots
 
 
-def export_snapshots(folder: Path) -> dict:
-    """The committed runs in data/snapshots/, turned into what the pages need.
+def export_snapshots(snapshots: list[dict]) -> dict:
+    """The committed runs from data/snapshots/, turned into what the pages need.
 
     Each snapshot is the complete output of one run (scripts/compute.py, ledger step 28). The
     site never recomputes history: the chart on the ledger page, the gate-rate chart on each
     factor page and the "since the last run" arrows on the home page all read this and nothing
     else. The per-node table of every past run stays in the repository rather than the site's
     JSON, which would grow without limit; only the latest run carries its full node table."""
-    snapshots = compute.load_snapshots(folder)
     summaries = []
     for s in snapshots:
         summaries.append({k: s.get(k) for k in (
@@ -273,10 +274,19 @@ def export_snapshots(folder: Path) -> dict:
             "chain": {k: difference("chain", k) for k in chain_keys},
         }
 
+    # How far a figure from the latest run can move for no reason but the dice. The watch lists
+    # and the worth lines are differences between runs of the same size, so this is the band below
+    # which one of their figures is not worth reading.
+    noise = None
+    if latest:
+        noise = compute.run_noise(latest.get("tiers", {}).get(compute.HEADLINE_TIER, {}),
+                                  latest.get("run", {}).get("runs") or 1)
+
     return {
         "count": len(snapshots),
         "headline_tier": compute.HEADLINE_TIER,
         "latest_key": latest["key"] if latest else None,
+        "noise": noise,
         "snapshots": summaries,
         "latest": latest,
         "series": {
@@ -285,6 +295,327 @@ def export_snapshots(folder: Path) -> dict:
         },
         "change": change,
     }
+
+
+# ---------------------------------------------------------------- the ledger
+
+
+# The six kinds an entry can have, with the plain meaning the site shows beside the filter.
+# The table this comes from, and the reasoning for six rather than two, are in
+# docs/ledger-plan.md ("The two rules that keep it honest", and decision 5).
+LEDGER_KINDS = [
+    {"key": "event", "label": "Something happened",
+     "meaning": "Something happened in the world and a link of the chain moved because of it. "
+                "It cites a public record."},
+    {"key": "resolution", "label": "Settled",
+     "meaning": "A step the tree was waiting on is now settled, one way or the other. These are "
+                "what the project's own forecasting record is later scored against."},
+    {"key": "revision", "label": "Changed my mind",
+     "meaning": "A number or the reasoning behind it changed with no new event: an outside "
+                "review, a reconsideration, or a correction."},
+    {"key": "structure", "label": "The tree itself changed",
+     "meaning": "The tree changed shape, or the way it is played out changed: a step added, cut "
+                "or rewired, a requirement moved, a criterion reworded. Numbers either side of "
+                "one of these are not a like-for-like comparison, and the site says so."},
+    {"key": "decision", "label": "A choice made",
+     "meaning": "John took or changed a choice of his own, or the plan at a fork changed."},
+    {"key": "held-steady", "label": "Widely reported, moved nothing",
+     "meaning": "Something widely reported happened and no number moved. It names the steps it "
+                "was read against and says why none of them counted."},
+]
+KIND_KEYS = {k["key"] for k in LEDGER_KINDS}
+
+# Which fields each kind must carry, beyond the ones every entry carries (id, date, kind, title,
+# body, snapshot). `nodes` is not required of a structural entry: moving a tier requirement or
+# changing how the tree is played out touches no node's record, and three of the four structural
+# entries of 2026-09-19 are of exactly that sort.
+REQUIRED_OF_EVERY = ["id", "date", "kind", "title", "body", "snapshot"]
+NEEDS_SOURCE = {"event", "resolution", "held-steady"}
+NEEDS_OCCURRED_ON = {"event", "resolution"}
+NEEDS_NODES = {"event", "resolution", "revision", "decision"}
+
+
+def validate_ledger(entries: list[dict], tree: dict, snapshots: list[dict]) -> list[str]:
+    """Every way this ledger breaks its own rules, in plain language. Empty means it is sound.
+
+    The rule that matters most is the last one: every node an entry names must carry, on its own
+    record, a revision or a resolution dated in the stretch between the previous run and this
+    entry. That is what stops the ledger and the node records drifting apart, and it was the real
+    risk of keeping the story in a file of its own (docs/ledger-plan.md, decision 1)."""
+    problems: list[str] = []
+    node_ids = {n["id"] for n in tree["nodes"]}
+    snapshot_dates = {s["key"]: s["date"] for s in snapshots}
+    seen_ids: set[str] = set()
+    last_date = ""
+    last_snapshot_date = ""
+
+    for i, e in enumerate(entries):
+        eid = plain(e.get("id")) or f"(the entry in position {i + 1}, which has no id)"
+        where = f"ledger entry {eid}"
+        for f in REQUIRED_OF_EVERY:
+            if f not in e or e[f] in ("", None):
+                problems.append(f"{where}: missing the required field '{f}'")
+        kind = e.get("kind")
+        if kind not in KIND_KEYS:
+            problems.append(f"{where}: kind must be one of {', '.join(sorted(KIND_KEYS))}")
+        if "id" in e:
+            if eid in seen_ids:
+                problems.append(f"{where}: this id is used by more than one entry")
+            seen_ids.add(eid)
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}-[a-z0-9-]+", eid):
+                problems.append(f"{where}: an id is a date and a short dash-separated slug, "
+                                "like 2026-09-27-the-ship-came-back")
+        date = plain(e.get("date"))
+        if date and eid.startswith("2") and not eid.startswith(str(date)):
+            problems.append(f"{where}: its id begins with a different date from its 'date' field ({date})")
+        if date and date < last_date:
+            problems.append(f"{where}: entries are appended newest last, and this one is dated "
+                            f"{date}, before the entry above it ({last_date})")
+        last_date = date or last_date
+
+        if kind in NEEDS_SOURCE and not str(e.get("source", "")).strip():
+            problems.append(f"{where}: a '{kind}' entry has to name the public record that settles "
+                            "what happened")
+        if kind in NEEDS_OCCURRED_ON and not plain(e.get("occurred_on")):
+            problems.append(f"{where}: a '{kind}' entry has to say when the thing happened in the "
+                            "world, in its 'occurred_on' field")
+        nodes = list(e.get("nodes", []) or [])
+        checked = list(e.get("checked_against", []) or [])
+        if kind in NEEDS_NODES and not nodes:
+            problems.append(f"{where}: a '{kind}' entry has to list the steps of the tree it changed")
+        if kind == "held-steady":
+            if nodes:
+                problems.append(f"{where}: a 'held-steady' entry changed nothing, so it lists the "
+                                "steps it was read against in 'checked_against', not in 'nodes'")
+            if not checked:
+                problems.append(f"{where}: a 'held-steady' entry has to name the steps whose "
+                                "criteria the event was read against")
+        elif checked:
+            problems.append(f"{where}: 'checked_against' belongs only on a 'held-steady' entry")
+        for nid in nodes + checked:
+            if nid not in node_ids:
+                problems.append(f"{where}: names '{nid}', which is not a step in the tree")
+        if e.get("watch_ref") and e["watch_ref"] not in node_ids:
+            problems.append(f"{where}: its watch_ref names '{e['watch_ref']}', which is not a step "
+                            "in the tree")
+        if e.get("corrects"):
+            if plain(e["corrects"]) not in seen_ids:
+                problems.append(f"{where}: it corrects '{plain(e['corrects'])}', which is not an "
+                                "earlier entry in this file")
+        if e.get("author") is not None and not str(e["author"]).strip():
+            problems.append(f"{where}: 'author' is either left out, meaning John wrote it, or says "
+                            "who did; it cannot be empty")
+
+        snap = plain(e.get("snapshot"))
+        if snap and snap not in snapshot_dates:
+            problems.append(f"{where}: it says it landed in the run '{snap}', and there is no such "
+                            "run in data/snapshots/")
+            continue
+        if not snap:
+            continue
+        if snapshot_dates[snap] < last_snapshot_date:
+            problems.append(f"{where}: it landed in the run '{snap}', which is older than the run "
+                            "the entry above it landed in")
+        last_snapshot_date = snapshot_dates[snap]
+
+        # The cross-check: what the entry says it changed must be on the node's own record.
+        before = compute.previous_snapshot(snapshots, snap)
+        since = before["date"] if before else None
+        until = date or snapshot_dates[snap]
+        by_id = {n["id"]: n for n in tree["nodes"]}
+        for nid in nodes:
+            if nid not in by_id:
+                continue
+            node = by_id[nid]
+            dates = [plain(r.get("date")) for r in (node.get("revisions", []) or [])]
+            if node.get("resolved_on"):
+                dates.append(plain(node["resolved_on"]))
+            if not any(d and (since is None or d >= since) and d <= until for d in dates):
+                problems.append(
+                    f"{where}: it says it changed '{nid}', but that step's own record carries no "
+                    f"revision and no resolution dated between the previous run and {until}. Either "
+                    "the node record is missing the change or the entry names the wrong step."
+                )
+    return problems
+
+
+def load_attribution(folder: Path) -> dict:
+    """The stored answer to "how much of each run's move came from which entry", per run.
+
+    Attribution is worked out by the compute script (`attribute <run> --write`) and committed
+    beside the run it belongs to, for the same reason the run itself is: so the site never
+    recomputes its own history at build time, and a page renders in a second rather than in
+    minutes of playing the tree out (docs/ledger-plan.md, decision 2)."""
+    if not folder.exists():
+        return {}
+    out = {}
+    for path in sorted(folder.glob("*.json")):
+        out[path.stem] = json.loads(path.read_text())
+    return out
+
+
+def export_ledger(entries: list[dict], tree: dict, snapshots: list[dict], attribution: dict) -> dict:
+    """The ledger with every figure filled in from the runs and the node records.
+
+    Nothing here is read off an entry: an entry says what happened in words and names the steps it
+    touched, and the numbers beside it — each step's rate before and after, the headline on either
+    side, and the entry's own contribution — come from the committed runs."""
+    by_id = {n["id"]: n for n in tree["nodes"]}
+    snapshot_by_key = {s["key"]: s for s in snapshots}
+    gates = compute.chain_gates(tree)
+    factor_name = {f["letter"]: f for f in FACTORS}
+
+    def rates(snapshot: dict | None, nid: str):
+        return (snapshot or {}).get("nodes", {}).get(nid)
+
+    out_entries = []
+    for e in entries:
+        snap = snapshot_by_key.get(plain(e.get("snapshot")))
+        before = compute.previous_snapshot(snapshots, snap["key"]) if snap else None
+        nodes = list(e.get("nodes", []) or [])
+        checked = list(e.get("checked_against", []) or [])
+        touched = nodes or checked
+        letters = sorted({by_id[n]["factor"] for n in touched if n in by_id})
+
+        node_changes = []
+        for nid in touched:
+            n = by_id.get(nid)
+            if not n:
+                continue
+            node_changes.append({
+                "id": nid,
+                "name": n["name"],
+                "factor": n["factor"],
+                "factor_slug": SLUG_BY_LETTER[n["factor"]],
+                "path": f"/tree/{SLUG_BY_LETTER[n['factor']]}/{nid}/",
+                "status": n["status"],
+                "before": rates(before, nid),
+                "after": rates(snap, nid),
+            })
+
+        headline_tier = compute.HEADLINE_TIER
+        after = (snap or {}).get("tiers", {}).get(headline_tier)
+        was = (before or {}).get("tiers", {}).get(headline_tier)
+        change = {k: round(after[k] - was[k], 6) for k in after} if (after and was) else None
+
+        stored = attribution.get(snap["key"], {}) if snap else {}
+        mine = next((r for r in stored.get("entries", []) if r["id"] == plain(e["id"])), None)
+
+        watch = None
+        if e.get("watch_ref"):
+            worth = ((before or {}).get("worth") or {}).get("nodes", {}).get(e["watch_ref"])
+            watch = {
+                "node": e["watch_ref"],
+                "name": by_id[e["watch_ref"]]["name"] if e["watch_ref"] in by_id else e["watch_ref"],
+                "path": (f"/tree/{SLUG_BY_LETTER[by_id[e['watch_ref']]['factor']]}/{e['watch_ref']}/"
+                         if e["watch_ref"] in by_id else None),
+                "predicted": (worth or {}).get("if_yes"),
+                "predicted_at": before["key"] if before else None,
+            }
+
+        out_entries.append({
+            "id": plain(e["id"]),
+            "date": plain(e.get("date")),
+            "occurred_on": plain(e.get("occurred_on")),
+            "kind": e.get("kind"),
+            "title": one_paragraph(e.get("title")),
+            "body": one_paragraph(e.get("body")),
+            "source": one_paragraph(e.get("source")) or None,
+            "author": e.get("author"),
+            "nodes": nodes,
+            "checked_against": checked,
+            "node_changes": node_changes,
+            "factors": [{"letter": l, "name": factor_name[l]["name"], "slug": factor_name[l]["slug"]}
+                        for l in letters],
+            "links": [l for l in letters if l in gates],
+            "snapshot": plain(e.get("snapshot")),
+            "snapshot_date": snap["date"] if snap else None,
+            "previous_snapshot": before["key"] if before else None,
+            "headline_before": was,
+            "headline_after": after,
+            "headline_change": change,
+            "contribution": mine.get("contribution") if mine and mine.get("separable") else None,
+            "headline_without": mine.get("headline_without") if mine and mine.get("separable") else None,
+            "separable": bool(mine and mine.get("separable")),
+            "not_separable_why": None if not mine or mine.get("separable") else mine.get("why"),
+            "attributed": mine is not None,
+            "watch": watch,
+            "run_note": e.get("run_note"),
+            "corrects": plain(e.get("corrects")),
+        })
+
+    newest_first = list(reversed(out_entries))
+    by_kind: dict[str, int] = defaultdict(int)
+    by_author: dict[str, int] = defaultdict(int)
+    for e in out_entries:
+        by_kind[e["kind"]] += 1
+        by_author[e["author"] or "john"] += 1
+
+    return {
+        "count": len(out_entries),
+        "headline_tier": compute.HEADLINE_TIER,
+        "kinds": LEDGER_KINDS,
+        "entries": newest_first,
+        "totals": {"by_kind": dict(by_kind), "by_author": dict(by_author)},
+        "movers": ledger_movers(newest_first),
+        "runs": ledger_runs(newest_first, snapshots, attribution),
+    }
+
+
+def ledger_movers(entries: list[dict]) -> list[dict]:
+    """The year's biggest movers, and beside them the ones that changed nothing.
+
+    Ranked under the headline's default scenario, which is the first one scenarios.toml lists.
+    An entry whose contribution could not be worked out separately is listed with the reason
+    rather than left out, and one that was written precisely because nothing moved is listed as
+    what it is (docs/ledger-plan.md, "Movers")."""
+    years: dict[str, list[dict]] = defaultdict(list)
+    for e in entries:
+        years[(e["date"] or "")[:4]].append(e)
+    out = []
+    for year in sorted(years, reverse=True):
+        rows = []
+        for e in years[year]:
+            first = next(iter(e["contribution"]), None) if e["contribution"] else None
+            rows.append({
+                "id": e["id"], "title": e["title"], "kind": e["kind"], "date": e["date"],
+                "author": e["author"], "links": e["links"],
+                "contribution": e["contribution"],
+                "sort_by": abs(e["contribution"][first]) if first else -1.0,
+                "moved_nothing": e["kind"] == "held-steady",
+                "not_separable_why": e["not_separable_why"],
+            })
+        rows.sort(key=lambda r: (-r["sort_by"], r["id"]))
+        out.append({"year": year, "rows": rows})
+    return out
+
+
+def ledger_runs(entries: list[dict], snapshots: list[dict], attribution: dict) -> list[dict]:
+    """One row per run that the ledger has entries for: what the run moved in total, how much of
+    that was pinned on particular entries, and what was left over. The leftover is reported rather
+    than hidden: changes made in the same run interact, and some cannot be undone one at a time."""
+    out = []
+    for snapshot in reversed(snapshots):
+        mine = [e for e in entries if e["snapshot"] == snapshot["key"]]
+        if not mine:
+            continue
+        stored = attribution.get(snapshot["key"], {})
+        out.append({
+            "key": snapshot["key"],
+            "date": snapshot["date"],
+            "label": snapshot.get("label"),
+            "note": snapshot.get("note"),
+            "review_status": snapshot.get("review_status"),
+            "previous": stored.get("previous_snapshot"),
+            "runs": stored.get("runs"),
+            "noise": stored.get("noise"),
+            "total_move": stored.get("total_move"),
+            "attributed": stored.get("attributed"),
+            "remainder": stored.get("remainder"),
+            "unseparated": stored.get("unseparated", []),
+            "entries": [e["id"] for e in mine],
+        })
+    return out
 
 
 # ----------------------------------------------------------- the changelog
@@ -321,6 +652,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--data", type=Path, default=ROOT / "data")
     parser.add_argument("--changelog", type=Path, default=ROOT / "CHANGELOG.md")
     parser.add_argument("--snapshots", type=Path, default=ROOT / "data" / "snapshots")
+    parser.add_argument("--ledger", type=Path, default=ROOT / "data" / "ledger.toml")
+    parser.add_argument("--attribution", type=Path, default=ROOT / "data" / "attribution")
     parser.add_argument("--out", type=Path, default=ROOT / "site" / "src" / "data")
     parser.add_argument("--check", action="store_true", help="validate and count, write nothing")
     args = parser.parse_args(argv)
@@ -335,7 +668,17 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         exported = export_tree(tree)
         changelog = export_changelog(args.changelog)
-        snapshots = export_snapshots(args.snapshots)
+        all_snapshots = compute.load_snapshots(args.snapshots)
+        snapshots = export_snapshots(all_snapshots)
+        entries = compute.load_ledger(args.ledger)
+        broken = validate_ledger(entries, tree, all_snapshots)
+        if broken:
+            print(f"Nothing exported: the ledger in {args.ledger} breaks its own rules "
+                  f"in {len(broken)} place(s):")
+            for p in broken:
+                print("  -", p)
+            return 1
+        ledger = export_ledger(entries, tree, all_snapshots, load_attribution(args.attribution))
     except (compute.TreeError, OSError) as e:
         print(f"Nothing exported: {e}")
         return 1
@@ -343,7 +686,8 @@ def main(argv: list[str] | None = None) -> int:
     c = exported["counts"]
     summary = (f"{c['nodes']} nodes ({c['with_probability']} with probabilities, {c['resolved']} resolved), "
                f"{len(exported['tiers'])} tiers, {len(exported['scenarios'])} scenarios, "
-               f"{len(changelog['days'])} changelog day(s), {snapshots['count']} snapshot(s)")
+               f"{len(changelog['days'])} changelog day(s), {snapshots['count']} snapshot(s), "
+               f"{ledger['count']} ledger entr{'y' if ledger['count'] == 1 else 'ies'}")
     if args.check:
         print(f"The tree validates. Export would write: {summary}.")
         return 0
@@ -352,6 +696,7 @@ def main(argv: list[str] | None = None) -> int:
     (args.out / "tree.json").write_text(json.dumps(exported, indent=2, ensure_ascii=False) + "\n")
     (args.out / "changelog.json").write_text(json.dumps(changelog, indent=2, ensure_ascii=False) + "\n")
     (args.out / "snapshots.json").write_text(json.dumps(snapshots, indent=2, ensure_ascii=False) + "\n")
+    (args.out / "ledger.json").write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")
     print(f"Exported {summary} to {args.out}.")
     if not exported["numbers"]["available"]:
         print("Headline numbers not exported: " + exported["numbers"]["reason"])

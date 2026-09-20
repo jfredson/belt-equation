@@ -1,0 +1,159 @@
+# The ledger: what moved the needle, and how the headline number moved with it.
+#
+# One [[entry]] per thing that happened, newest last, never edited once written. A mistake in an
+# entry is fixed by a later entry that says so and points back at it with `corrects`. The record
+# layout, the six kinds, and the reasoning behind both are in docs/ledger-plan.md, written and
+# ruled by John on 2026-09-19. The export script (scripts/export.py) checks every rule below and
+# refuses to build the site when one is broken.
+#
+# Nothing in here is typed as a number. The narrative is written by hand; every figure an entry
+# carries — what each node's rate was before and after, where the headline stood on either side,
+# and how much of the run's move came from this one entry — is worked out by the scripts from the
+# committed run snapshots in data/snapshots/ and from the node records themselves. An entry
+# therefore cannot claim a change the tree did not produce.
+#
+# Where the ledger starts. It starts at the first run of the tree, 2026-09-19. The sixty first
+# probabilities that made that run possible are not entries: there was no headline before them
+# for anything to move from, and no earlier run to read them against. The changelog holds them,
+# as it holds everything. The ledger holds what moved the number afterwards.
+
+# --- Already true when the first run was made (roadmap step 10, 2026-09-19) ---------------------
+# Three nodes were found already resolved while the tree was being built, each checked against a
+# public record on the day it was written. They are entered here as resolutions rather than
+# events, with the date the thing happened in the world kept separately from the date this entry
+# was written, because they are what the calibration score will later be scored against.
+
+[[entry]]
+id = "2026-09-19-a-person-aged-over-65-flew-to-orbit"
+date = 2026-09-19
+occurred_on = 2022-04-25
+kind = "resolution"
+title = "A private passenger in his seventies flew to the space station and came home, which settles that a seat is not closed off by age"
+body = """
+The first fully private crewed mission to the space station carried a seventy-two-year-old
+who was not a professional astronaut; he launched on 2022-04-08 and splashed down on
+2022-04-25. That is the whole of what the node asked for. It matters to the last link of the
+chain, the one about a seat for me: if private orbital flight stopped being offered to people
+in their sixties and seventies, the window of personal access would close long before the
+window of life does. It does not close. The node stays in the tree, resolved, so that the
+picture shows it and the calibration score has a settled case to count."""
+source = "Axiom Mission 1: NASA's space station blog and the operator's own mission record, checked on 2026-09-08"
+nodes = ["A-private-orbital-flight-by-someone-aged-65-or-over"]
+snapshot = "2026-09-19-first-run"
+
+[[entry]]
+id = "2026-09-19-building-began-on-a-fusion-plant-with-a-customer"
+date = 2026-09-19
+occurred_on = 2025-07-30
+kind = "resolution"
+title = "A company broke ground on a fusion power plant that already has a signed customer for its electricity"
+body = """
+The node asked for site construction to begin on a fusion plant with an agreement to sell
+power to a named buyer. On 2025-07-30 a company announced it had secured land and started
+building in Washington state, under a power purchase agreement with a large technology firm,
+aiming to deliver electricity in 2028. This is the first rung on the fusion ladder rather
+than the last: it settles that someone is building for a paying customer, not that the plant
+works. The links above it — net electricity, and a reactor running off Earth — are untouched
+and still open."""
+source = "The company's announcement of 2025-07-30 and the county's permitting record, reported by World Nuclear News and BusinessWire; checked on 2026-09-08"
+nodes = ["E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity"]
+snapshot = "2026-09-19-first-run"
+
+[[entry]]
+id = "2026-09-19-first-person-dosed-with-a-cell-rejuvenation-treatment"
+date = 2026-09-19
+occurred_on = 2026-06-09
+kind = "resolution"
+title = "The first person was given a cell-rejuvenation treatment in a registered trial, which moves the treatment out of the laboratory"
+body = """
+Partial reprogramming briefly switches on the genes used to make stem cells, turning back a
+cell's age markers without erasing what the cell is. It is the most-funded route to reversing
+rather than slowing aging, and until this it had only been done in animals. On 2026-06-09 a
+registered safety trial dosed its first participant, for two causes of age-related vision
+loss. The node asked for exactly that and no more: one dosed participant in a registered
+trial, for any condition. It says nothing yet about whether the treatment works, and it feeds
+the window the whole question hangs on rather than any link of the chain."""
+source = "Life Biosciences' announcement of 2026-06-09 of first dosing in its Phase 1 trial of ER-100, registry entry NCT07290244, with independent press coverage; checked on 2026-09-08"
+nodes = ["W-partial-reprogramming-reaches-human-trials"]
+snapshot = "2026-09-19-first-run"
+
+# --- John's four rulings on the first run (2026-09-19) ------------------------------------------
+# The first run put the headline at nought point nought percent by 2071 and the Belt itself at two
+# in a thousand by 2095. Read against ordinary judgement, three of its results failed: two regime
+# nodes were written so that a single bad year foreclosed an outpost for ever, and the requirement
+# for a child born off Earth capped every tier above a settlement. John ruled on four fixes the
+# same day and the tree was run again. All four are structural: they change what the tree is or
+# how it is played out rather than reporting news, so numbers either side of them are not a
+# like-for-like comparison, and the site says so wherever the two runs sit together.
+
+[[entry]]
+id = "2026-09-19-lunar-program-gate-reworded-to-cover-any-nation"
+date = 2026-09-19
+kind = "structure"
+title = "The test for a lunar programme surviving a change of government was rewritten to count any nation's programme, not one country's"
+body = """
+As first written, the node resolved no for good if a single administration in one country cut
+its crewed lunar programme, and it was a hard requirement for an outpost and for lunar
+material at scale. That made one budget decision in the 2030s foreclose an outpost for ever,
+by anybody, including operators and nations that had nothing to do with the cut. It was a
+good signal and a bad gate. John ruled it reworded on 2026-09-19 to a durable, nation-agnostic
+form: any nation's or company's crewed lunar programme, and a cancelled programme can be
+restarted or replaced. The probability was re-estimated against the new criterion and is no
+longer flat across the scenarios, because longer windows now bring more attempts."""
+nodes = ["R-crewed-lunar-program-outlives-two-changes-of-president"]
+snapshot = "2026-09-19-second-run"
+run_note = "docs/runs/2026-09-19-first-run.md"
+
+[[entry]]
+id = "2026-09-19-recession-gate-reworded-to-allow-recovery"
+date = 2026-09-19
+kind = "structure"
+title = "The test for space spending surviving a recession was rewritten to ask whether funding comes back, not whether it never dips"
+body = """
+The node asked that budgets and flight rates not fall during a recession year at all, and a
+failure was permanent. Since it was a hard requirement for a hundred people working off Earth
+for pay, one bad budget year in the 2020s closed off that node in every later decade. John
+ruled it reworded on 2026-09-19 to ask instead whether spending and flight rates are back
+within a tenth of where they were within three years of a recession, and to leave the node
+open for the next recession if they are not. A dip is allowed; what the tree needs is that
+the field keeps its funding across the business cycle. The probability was re-estimated
+against the easier and more meaningful test."""
+nodes = ["R-space-funding-holds-through-a-recession"]
+snapshot = "2026-09-19-second-run"
+run_note = "docs/runs/2026-09-19-first-run.md"
+
+[[entry]]
+id = "2026-09-19-child-born-off-earth-moved-to-the-top-tier"
+date = 2026-09-19
+kind = "structure"
+title = "The requirement for a child born off Earth moved from the settlement tier to the top tier, so it no longer caps the headline"
+body = """
+A child born and raised off Earth is the least likely thing in the tree, and it sat as a
+requirement of the settlement tier, which every tier above it rests on. That made it the cap
+on the headline: the odds of working off Earth on rotation could never exceed the odds that
+somebody had by then raised a child there. A rotation workforce of tens of thousands could
+plainly exist at a site where no child has yet been born. John ruled on 2026-09-19 that the
+requirement moves to the top tier, where it belongs. The settlement tier's written definition
+still names a child born off Earth, and the node stays in the tree with its own number; what
+changed is which tier waits on it."""
+snapshot = "2026-09-19-second-run"
+run_note = "docs/runs/2026-09-19-first-run.md"
+
+[[entry]]
+id = "2026-09-19-the-world-draw-added-to-the-calculation"
+date = 2026-09-19
+kind = "structure"
+title = "The calculation stopped treating every breakthrough as an independent roll of the dice, and now draws one number per play-through for how favourable the world turned out"
+body = """
+The first run multiplied a long chain of requirements together as though each were independent,
+when most of them share their causes: cheap launch, sustained funding, and a working off-Earth
+economy lift or sink many of them together. That is why every link stood between a third and
+nine tenths by 2095 while the whole chain came out at two in a thousand. John ruled on
+2026-09-19 that each play-through now begins by drawing one number for how favourable the world
+turned out, which shifts every open node's probability together, up in a good world and down in
+a bad one. The spread is set at one, and the calculation still prints the independent-roll
+result beside it so the size of the assumption stays visible. This changed no probability and
+no criterion: it changed how the tree is played out, which is why numbers either side of it are
+not a like-for-like comparison."""
+snapshot = "2026-09-19-second-run"
+run_note = "docs/runs/2026-09-19-first-run.md"
