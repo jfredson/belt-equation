@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import { tree, nodesOf, scenarioWindow, percent } from '../lib/tree';
+// The methodology document itself (docs/methodology.md, roadmap step 12), rendered below the
+// plain-language walk-through so there is one source for it (website step 23, 2026-09-20).
+import { Content as Methodology } from '../../../docs/methodology.md';
 
 const contact = nodesOf('C');
 const runs = tree.numbers.runs ?? 20000;
@@ -47,8 +50,9 @@ const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
       a forecast.
     </p>
     <p class="dim">
-      A fuller write-up, including the yearly calibration score (a standard measure of how well past
-      probabilities matched what actually happened), is still to come. Until then the code is the reference:
+      The full write-up, including the world draw and the yearly calibration score (a standard measure of how
+      well past probabilities matched what actually happened), is <a href="#document">further down this page</a>,
+      rendered from the repository's own methodology document. The code is the reference behind it:
       <a href="https://github.com/jfredson/belt-equation/blob/main/scripts/compute.py" rel="noopener"><code>scripts/compute.py</code></a>.
     </p>
 
@@ -86,5 +90,11 @@ const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
         <li><a href={n.path}>{n.name}</a></li>
       ))}
     </ul>
+  </section>
+
+  <section class="section narrow prose document" id="document">
+    <div class="shead"><h2>The methodology document</h2><span>docs/methodology.md in the repository, rendered as is</span></div>
+    <p class="section-note">Everything above is the short version. This is the document the project keeps and argues from, with the dates it was written and changed; the numbers page and the code are meant to be read against it.</p>
+    <Methodology />
   </section>
 </Base>

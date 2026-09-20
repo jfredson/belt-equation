@@ -8,8 +8,11 @@ import Base from '../layouts/Base.astro';
 import HistoryChart from '../components/HistoryChart.astro';
 import {
   changelog, inline, tree, ledger, snapshots, odds, movePoints, direction, band,
-  authorLabel, linkShort, factorByLetter, DEFAULT_SCENARIO,
+  authorLabel, linkShort, factorByLetter, DEFAULT_SCENARIO, story, decidedByLabel,
 } from '../lib/tree';
+
+const roadmap = story.roadmap;
+const worklog = story.worklog;
 
 const headlineTier = ledger.headline_tier;
 const scenarios = tree.scenarios;
@@ -337,6 +340,64 @@ const authors = ledger.totals.by_author;
     </p>
   </section>
 
+  {roadmap && (
+    <section class="section narrow-wide" id="roadmap">
+      <div class="shead">
+        <h2>The roadmap</h2>
+        <span>{roadmap.done} of {roadmap.count} steps done, as of {roadmap.fetched_on}</span>
+      </div>
+      <p class="dim" style="font-size: 14.5px;">
+        The plan the project is working through, in order, from the project's own task list. The steps that
+        remain are the honest answer to "what is this site still missing".
+      </p>
+      <div class="roadmap-bar" role="img" aria-label={`${roadmap.done} of ${roadmap.count} roadmap steps done`}>
+        <span style={`width: ${Math.round((100 * roadmap.done) / Math.max(1, roadmap.count))}%`}></span>
+      </div>
+      <h3 class="roadmap-h">Up next</h3>
+      <ol class="roadmap up-next">
+        {roadmap.up_next.map((st) => (
+          <li class={`step-${st.status}`}><span class="rstatus">{st.status_label}</span> {st.title}</li>
+        ))}
+      </ol>
+      <details class="roadmap-all">
+        <summary>Every step, done and not</summary>
+        <ol class="roadmap">
+          {roadmap.steps.map((st) => (
+            <li class={`step-${st.status}`}><span class="rstatus">{st.status_label}</span> {st.title}</li>
+          ))}
+        </ol>
+      </details>
+    </section>
+  )}
+
+  {worklog && (
+    <section class="section narrow-wide" id="workbench">
+      <div class="shead">
+        <h2>From the workbench</h2>
+        <span>{worklog.count} entries, as of {worklog.fetched_on}</span>
+      </div>
+      <p class="dim" style="font-size: 14.5px;">
+        The day-by-day record: what was decided and by whom, what got built, and what each working session
+        came to. The ledger above is the part of this that moved a number; this is everything else. Decisions
+        are marked with who made them, because a call Claude made alone is not the same as one John ruled on.
+      </p>
+      {worklog.days.map((day) => (
+        <div class="day">
+          <h2>{day.date}</h2>
+          <ul class="workbench">
+            {day.entries.map((e) => (
+              <li>
+                <span class={`wtype wtype-${e.type}`}>{e.type_label}</span>
+                <span class="wtitle">{e.title}</span>
+                {e.type === 'decision' && e.decided_by && <span class="wby">{decidedByLabel[e.decided_by] ?? e.decided_by}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )}
+
   <section class="section narrow-wide" id="changelog">
     <div class="shead">
       <h2>The full changelog</h2>
@@ -344,8 +405,8 @@ const authors = ledger.totals.by_author;
     </div>
     <p class="dim" style="font-size: 14.5px;">
       {changelog.intro || 'Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.'}
-      {' '}The ledger above is the part of this that moved a number, or that notably failed to.
-      The project's day-by-day progress and its roadmap join this page at website step 24.
+      {' '}The ledger above is the part of this that moved a number, or that notably failed to; the roadmap and
+      the workbench above it are the plan and the day-by-day record.
     </p>
     {changelog.days.map((day) => (
       <div class="day">

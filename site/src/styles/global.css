@@ -192,6 +192,34 @@ a.dim:hover { color: var(--accent); }
 .callout p { margin: 6px 0 0; }
 .kicker { font-size: 13px; font-family: var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 26px 0 10px; }
 
+/* ---- the story page's roadmap and workbench (website step 24, 2026-09-20) ---- */
+.roadmap-bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; margin: 8px 0 20px; }
+.roadmap-bar span { display: block; height: 100%; background: var(--accent); }
+.roadmap-h { font-family: var(--sans); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.roadmap { list-style: none; padding: 0; margin: 0 0 16px; }
+.roadmap li { display: flex; gap: 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.45; }
+.roadmap li:first-child { border-top: 0; }
+.rstatus { flex: 0 0 auto; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); min-width: 84px; }
+.step-done { color: var(--muted); }
+.step-done .rstatus { color: var(--accent); }
+.step-in_progress .rstatus { color: var(--text); font-weight: 600; }
+.roadmap-all summary { cursor: pointer; font-size: 14.5px; color: var(--text-soft); padding: 6px 0; }
+.workbench { list-style: none; padding: 0; margin: 0; }
+.workbench li { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.45; }
+.workbench li:first-child { border-top: 0; }
+.wtype { flex: 0 0 auto; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); min-width: 72px; }
+.wtype-decision { color: var(--accent); }
+.wtitle { flex: 1 1 320px; }
+.wby { flex: 0 0 auto; font-size: 12.5px; color: var(--muted); font-style: italic; }
+
+/* ---- the methodology document rendered on the method page (website step 23, 2026-09-20) ---- */
+.document > h1 { display: none; } /* the document's own title repeats the page's */
+.document h2 { margin-top: 2.2em; }
+
+/* ---- the tree picture on the tree page (website step 22, 2026-09-20) ---- */
+.picture { display: block; border: 1px solid var(--line); border-radius: var(--radius); background: #fcfcfb; overflow: hidden; }
+.picture img { display: block; width: 100%; height: auto; }
+
 /* ---- home: the number first, then the chain (2026-09-19) ---- */
 .home-hero { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: start; padding: 64px 0 40px; }
 .home-hero .eyebrow { margin-bottom: 18px; }

@@ -1,0 +1,223 @@
+{
+  "project": "Belt Equation",
+  "source": "TimeAssembler roadmap, read with its tools on 2026-09-20 (Pacific)",
+  "fetched_on": "2026-09-20",
+  "steps": [
+    {
+      "order": 10,
+      "status": "done",
+      "phase": null,
+      "title": "Reconcile definitions.md with the kickoff outline (roadmap step 1)"
+    },
+    {
+      "order": 20,
+      "status": "done",
+      "phase": null,
+      "title": "Write the node schema and pick the data file format (roadmap step 2)"
+    },
+    {
+      "order": 25,
+      "status": "done",
+      "phase": "Phase 2",
+      "title": "Write the compute script against the schema (roadmap step 5, in parallel with the brainstorm)"
+    },
+    {
+      "order": 30,
+      "status": "done",
+      "phase": null,
+      "title": "Brainstorm nodes: window and biology factors (roadmap step 4, first of several)"
+    },
+    {
+      "order": 40,
+      "status": "done",
+      "phase": null,
+      "title": "Brainstorm nodes: launch, energy, and drive factors (roadmap step 4, continued)"
+    },
+    {
+      "order": 45,
+      "status": "done",
+      "phase": "Phase 6",
+      "title": "Website step 20: scaffold the Astro site in site/ and deploy a preview (domain beltequation.com already registered)"
+    },
+    {
+      "order": 50,
+      "status": "done",
+      "phase": null,
+      "title": "Brainstorm nodes: motive, regime, access, and the Contact Clause (roadmap step 4, continued)"
+    },
+    {
+      "order": 55,
+      "status": "done",
+      "phase": "Phase 2",
+      "title": "Draw the dependency edges and fill the tier requirement lists (roadmap step 7)"
+    },
+    {
+      "order": 58,
+      "status": "done",
+      "phase": "Phase 2",
+      "title": "Review pass: read every node aloud in plain language; cut, merge, or rename what fails (roadmap step 8)"
+    },
+    {
+      "order": 60,
+      "status": "done",
+      "phase": null,
+      "title": "Refine the window placeholder from the health record (roadmap step 3)"
+    },
+    {
+      "order": 62,
+      "status": "done",
+      "phase": "Phase 3",
+      "title": "First probabilities, group one: window and biology (roadmap step 9, first of three)"
+    },
+    {
+      "order": 63,
+      "status": "done",
+      "phase": "Phase 3",
+      "title": "First probabilities, group two: launch, energy, and drive (roadmap step 9, second of three)"
+    },
+    {
+      "order": 64,
+      "status": "done",
+      "phase": "Phase 3",
+      "title": "First probabilities, group three: motive, regime, access, and the Contact Clause (roadmap step 9, third of three)"
+    },
+    {
+      "order": 65,
+      "status": "done",
+      "phase": "Phase 6",
+      "title": "Website step 21: the export script and the node pages (waits on the review pass, roadmap step 8)"
+    },
+    {
+      "order": 66,
+      "status": "done",
+      "phase": "Phase 3",
+      "title": "Run the calculation and read the results against intuition (roadmap step 10)"
+    },
+    {
+      "order": 67,
+      "status": "done",
+      "phase": "Phase 6",
+      "title": "Website step 22: the tree visual on the site (waits on step 7, done)"
+    },
+    {
+      "order": 68,
+      "status": "done",
+      "phase": "Phase 3",
+      "title": "Write docs/methodology.md: how numbers are computed, the calibration score, the choice-point comparison (roadmap step 12)"
+    },
+    {
+      "order": 70,
+      "status": "done",
+      "phase": "Phase 3",
+      "title": "Run the decision comparison: the tree once per option at the six-year fork (roadmap step 11, Phase 3)"
+    },
+    {
+      "order": 72,
+      "status": "done",
+      "phase": "Phase 6",
+      "title": "Website step 23: the numbers and the methodology page (waits on steps 10 and 12)"
+    },
+    {
+      "order": 75,
+      "status": "done",
+      "phase": "Phase 3",
+      "title": "Design and run the outside-model review of the numbers before publishing (roadmap step 27)"
+    },
+    {
+      "order": 76,
+      "status": "todo",
+      "phase": "Phase 3",
+      "title": "Re-ask the Astra window item as a specific healthy person born January 1986 and log it beside the cohort figure"
+    },
+    {
+      "order": 78,
+      "status": "done",
+      "phase": "Phase 6",
+      "title": "Website step 24: the story page from TimeAssembler and the critique page"
+    },
+    {
+      "order": 80,
+      "status": "done",
+      "phase": "Phase 4",
+      "title": "Produce one visual of the tree with current numbers, colored by factor (roadmap step 13)"
+    },
+    {
+      "order": 82,
+      "status": "todo",
+      "phase": "Phase 4",
+      "title": "Draft the introductory essay for Sentient Horizons, with the Calibration Problem cross-reference (roadmap step 14)"
+    },
+    {
+      "order": 84,
+      "status": "todo",
+      "phase": "Phase 4",
+      "title": "Draft the family-and-friends version, same numbers, dinner-table register (roadmap step 15)"
+    },
+    {
+      "order": 86,
+      "status": "todo",
+      "phase": "Phase 4",
+      "title": "Decide when and whether to post beyond family and friends (roadmap step 16)"
+    },
+    {
+      "order": 88,
+      "status": "todo",
+      "phase": "Phase 5",
+      "title": "Set the quarterly leaf scan as a recurring task (roadmap step 17)"
+    },
+    {
+      "order": 90,
+      "status": "todo",
+      "phase": "Phase 5",
+      "title": "Schedule the first annual review for January 2027, before the pipeline resumes (roadmap step 18)"
+    },
+    {
+      "order": 92,
+      "status": "todo",
+      "phase": "Phase 5",
+      "title": "Fold public or family critique into the tree before the annual review (roadmap step 19)"
+    },
+    {
+      "order": 94,
+      "status": "in_progress",
+      "phase": "Phase 6",
+      "title": "Website step 25: go live on beltequation.com to family and friends (waits on step 15)"
+    },
+    {
+      "order": 96,
+      "status": "todo",
+      "phase": "Phase 6",
+      "title": "Website step 26: one-command publish so the quarterly scan ends with the site updated"
+    },
+    {
+      "order": 100,
+      "status": "done",
+      "phase": null,
+      "title": "Merge pull request 14 (the Radar: scan records validated, exported, and on the site; scan plan steps 34 and 37)"
+    },
+    {
+      "order": 105,
+      "status": "done",
+      "phase": null,
+      "title": "Merge pull request 15 (the ledger: run snapshots, what each step is worth, the ledger file, and the pages that show them; ledger plan steps 28 to 32)"
+    },
+    {
+      "order": 110,
+      "status": "done",
+      "phase": null,
+      "title": "Scan plan step 35 (John's action): add the two Cloudflare repository secrets and authorise the repository for the cloud environment's git proxy"
+    },
+    {
+      "order": 120,
+      "status": "todo",
+      "phase": null,
+      "title": "Scan plan step 38: first audit of the weekly scan, two scans in (target 2026-10-11)"
+    },
+    {
+      "order": 130,
+      "status": "todo",
+      "phase": null,
+      "title": "Ledger plan step 33: the feeds, the badge image, and the quarterly scan rewritten as a procedure"
+    }
+  ]
+}
