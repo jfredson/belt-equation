@@ -5,12 +5,12 @@
 const path = Astro.url.pathname;
 const primary = [
   { href: '/tree/', label: 'The tree' },
-  { href: '/radar/', label: 'This week\u2019s reading' },
-  { href: '/method/', label: 'How the numbers are computed' },
-  { href: '/story/', label: 'The story so far' },
+  { href: '/radar/', label: 'Radar' },
+  { href: '/method/', label: 'Method' },
+  { href: '/story/', label: 'Story' },
 ];
 const secondary = [
-  { href: '/disagree/', label: 'Disagree with something' },
+  { href: '/disagree/', label: 'Disagree' },
 ];
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
