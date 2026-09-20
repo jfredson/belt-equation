@@ -66,6 +66,7 @@ export type Node = {
   rationale: string | null;
   resolved_on: string | null;
   resolved_by: string | null;
+  resolved_links: string[];
   superseded_by: string | null;
   revisions: Revision[];
   verify: string[];
@@ -133,22 +134,22 @@ export function percent(p: number): string {
 }
 
 export const horizonLabel: Record<Node['horizon'], string> = {
-  leaf: 'Leaf: could resolve within 1 to 5 years',
-  mid: 'Mid: 5 to 20 years',
-  root: 'Root: on the scale of the whole window',
+  leaf: 'Could be decided within 1 to 5 years',
+  mid: 'Could be decided within 5 to 20 years',
+  root: 'Plays out over the whole window',
 };
-export const horizonShort: Record<Node['horizon'], string> = { leaf: 'Leaf', mid: 'Mid', root: 'Root' };
+export const horizonShort: Record<Node['horizon'], string> = { leaf: 'By 2031', mid: 'Within 20 years', root: 'Whole window' };
 
 export const statusLabel: Record<Node['status'], string> = {
-  open: 'Open',
-  'resolved-yes': 'Resolved: yes',
-  'resolved-no': 'Resolved: no',
-  superseded: 'Superseded',
+  open: 'Not yet',
+  'resolved-yes': 'Happened',
+  'resolved-no': 'Did not happen',
+  superseded: 'Replaced',
 };
 
 export const kindLabel: Record<Node['kind'], string> = {
-  world: 'World event',
-  choice: 'Choice point',
+  world: 'Happens to the world',
+  choice: 'My own decision',
 };
 
 export function scenarioWindow(s: Scenario): string {

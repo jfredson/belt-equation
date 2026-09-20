@@ -36,7 +36,7 @@ For `moved`:
 - Append to `revisions` (create the list if absent) one table per changed field, `{ date = <scan date>, field = "probability", old = "<old table as text>", new = "<new table as text>", why = "[scan YYYY-MM-DD] <one sentence with the source>" }`. Match the style of an existing `revisions` entry in data/R-regime.toml.
 
 For `resolved`:
-- Set `status = "resolved-yes"`, `resolved_on` to the date it happened in the world (from the sources), `resolved_by` to the record that settled it.
+- Set `status = "resolved-yes"`, `resolved_on` to the date it happened in the world (from the sources), `resolved_by` to the record that settled it, and `resolved_links` to a list of one or more URLs for that record (required; the validator refuses a resolved node without one).
 - Append a `revisions` entry for `status` with the same `[scan YYYY-MM-DD]` prefix.
 
 Never edit any other field. Never edit a node you did not mark `moved` or `resolved`.

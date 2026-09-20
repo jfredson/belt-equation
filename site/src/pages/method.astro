@@ -1,8 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
-import { tree, nodesOf, scenarioWindow } from '../lib/tree';
+import { tree, nodesOf, scenarioWindow, percent } from '../lib/tree';
 
 const contact = nodesOf('C');
+const runs = tree.numbers.runs ?? 20000;
+const headlineTier = tree.tiers.find((t) => t.key === tree.headline_tier);
+const headlineP = tree.numbers.available ? tree.numbers.tiers[tree.headline_tier]['baseline'] : null;
+const exampleHits = headlineP !== null ? Math.round(headlineP * runs) : 700;
+const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
 ---
 
 <Base title="How the numbers are computed — The Belt Equation" description="How the Belt Equation's headline number is computed from the tree: play-throughs in dependency order, five longevity scenarios, tiers, and the Contact Clause beside it.">
@@ -10,45 +15,49 @@ const contact = nodesOf('C');
     <p class="eyebrow">Method</p>
     <h1>How the numbers are computed</h1>
     <p class="lede">
-      The equation is a way of talking about the tree, not a literal multiplication of independent numbers.
-      The actual computation plays the tree out many thousands of times and counts how often each end state is reached.
+      The seven-link chain on the home page is a way of talking about the tree. The real computation plays
+      the whole tree out {runs.toLocaleString()} times, like rolling dice for every event in order, and counts
+      how often the ending I care about is reached.
     </p>
   </section>
 
   <section class="section narrow prose">
-    <h2>How a run works</h2>
+    <h2>One play-through</h2>
     <p>
-      For each longevity scenario, the tree is played out many thousands of times. Nodes are visited in
-      dependency order. A world event whose dependencies all came true comes true with its probability for that
-      scenario, and otherwise stays false. Nodes already resolved in the real world are fixed at their outcome.
-      Choice points are never sampled: each fork is set to the option John currently plans to take. A tier is
-      reached when everything it requires came true, and the number reported for a tier is the fraction of
-      play-throughs that reached it.
+      Every event in the tree has a written test for whether it happened, a probability, and a list of other
+      events it depends on. A play-through walks the events in order, earliest dependencies first. If everything
+      an event depends on has happened, the event happens with its own probability, like a weighted coin flip;
+      otherwise it can't. Events that have already happened in the real world are fixed. My own decisions are
+      never flipped: each fork is set to what I currently plan to do. A milestone such as "the Belt exists" or
+      "I work off Earth on rotation" is reached when everything on its list happened.
     </p>
     <p>
-      Every probability on a node is conditional: it is the chance the node resolves yes before the scenario's
-      window closes, <em>given that its dependencies resolve</em>. That is the number a person can actually
-      estimate ("if we have cheap launch, how likely is orbital manufacturing at scale by 2070?"), and it is
-      what the dependency order makes honest.
+      Do that {runs.toLocaleString()} times per scenario and count. Under current trends, "{headlineTier?.name.toLowerCase()}"
+      is reached in {exampleHits.toLocaleString()} of {runs.toLocaleString()} play-throughs, so the headline number is {examplePct}.
     </p>
     <p>
-      The decision comparison repeats the run once per option at each choice point, with the other options
-      forced off, and reports how far each option moves the headline number from the current plan. The
-      difference between the runs is the value of the decision, and it is what makes the project a decision
-      tool rather than a forecast only.
+      Every probability in the tree is a conditional one: the chance the event happens before the deadline,
+      <em>assuming the things it depends on have happened</em>. That is a question a person can actually answer
+      ("if launch is cheap, how likely is factory-scale manufacturing in orbit by 2070?"), and walking the tree
+      in dependency order is what keeps the chain honest.
+    </p>
+    <p>
+      To weigh a decision, the tree is run again once per option at that fork, and the change in the headline
+      number is the value of choosing one way over another. That is what makes this a decision tool and not only
+      a forecast.
     </p>
     <p class="dim">
-      The full methodology document, including the calibration score (the standard measure of how well
-      probabilities match outcomes, computed on resolved leaves each year), is roadmap step 12 and is rendered
-      here at website step 23. Until then, the compute script itself is the reference:
+      A fuller write-up, including the yearly calibration score (a standard measure of how well past
+      probabilities matched what actually happened), is still to come. Until then the code is the reference:
       <a href="https://github.com/jfredson/belt-equation/blob/main/scripts/compute.py" rel="noopener"><code>scripts/compute.py</code></a>.
     </p>
 
-    <h2>The five longevity scenarios</h2>
+    <h2>Five guesses at the deadline</h2>
     <p>
-      The deadline is John's expected date of natural death, and it is not a constant, because longevity
-      research moves it. So the whole tree is run once per scenario, and a node's probability may never fall as
-      the window lengthens.
+      The deadline is how long I live, and that is not a fixed number, because longevity research keeps moving
+      it. So the whole tree is run once per scenario, from current trends to an open-ended window, and no event's
+      probability is allowed to fall as the window gets longer. The year dial on the home page switches between
+      them.
     </p>
     <table class="ptable">
       <thead><tr><th>Key</th><th>Scenario</th><th>Window closes</th></tr></thead>
@@ -57,7 +66,7 @@ const contact = nodesOf('C');
           <tr>
             <td><code>{s.key}</code></td>
             <td>{s.name}</td>
-            <td>{scenarioWindow(s)}{s.refined_on ? <span class="dim"> (refined {s.refined_on})</span> : null}</td>
+            <td>{scenarioWindow(s)}{s.refined_on ? <span class="dim"> (updated {s.refined_on})</span> : null}</td>
           </tr>
         ))}
       </tbody>
@@ -65,16 +74,16 @@ const contact = nodesOf('C');
 
     <h2>The Contact Clause, beside the equation</h2>
     <p>
-      Underneath the whole project is a dream with no practical place in the product: communing with a vastly
-      superior intelligence of a different perspective. Drake's equation was about contact with other minds;
-      the Belt Equation is about becoming the kind of people who could be out there to make it. The Contact
-      Clause reconnects them. It is a term C, published beside the equation and never multiplied into it,
-      because nothing about the Belt depends on it. Each rung follows the same rule as every node: it is in
-      only because it has a resolution criterion.
+      Underneath the whole project is a dream with no practical place in the math: meeting a mind that is not
+      ours, whether a machine that has outgrown us or something of non-human origin. Drake's equation was about
+      contact with other minds; the Belt Equation is about becoming the kind of people who could be out there
+      to make it. The Contact Clause reconnects them. It is published beside the equation and never multiplied
+      into it, because nothing about the Belt depends on it. Its four rungs follow the same rule as every other
+      event: each is in only because it has a written test.
     </p>
     <ul>
       {contact.map((n) => (
-        <li><a href={n.path}><strong>{n.id}.</strong> {n.name}</a></li>
+        <li><a href={n.path}>{n.name}</a></li>
       ))}
     </ul>
   </section>

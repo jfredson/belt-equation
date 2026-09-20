@@ -67,7 +67,7 @@ FACTORS = [
     {"letter": "A", "slug": "access", "chain_link": "a seat for me", "name": "Access",
      "meaning": "That I personally have a pathway in, given my training, health, and career."},
     {"letter": "C", "slug": "contact", "chain_link": "the Contact Clause", "name": "Contact Clause",
-     "meaning": "The dream underneath the project, published beside the equation and never multiplied into it."},
+     "meaning": "That we meet a mind that is not ours, whether a machine that has outgrown us or something of non-human origin. The dream underneath the project, published beside the equation and never multiplied into it."},
 ]
 CHAIN_LINK_BY_LETTER = {f["letter"]: f["chain_link"] for f in FACTORS}
 SLUG_BY_LETTER = {f["letter"]: f["slug"] for f in FACTORS}
@@ -177,6 +177,7 @@ def export_tree(tree: dict) -> dict:
             "rationale": one_paragraph(n.get("rationale")) or None,
             "resolved_on": plain(n.get("resolved_on")),
             "resolved_by": one_paragraph(n.get("resolved_by")) or None,
+            "resolved_links": [str(u) for u in (n.get("resolved_links", []) or [])],
             "superseded_by": n.get("superseded_by"),
             "revisions": plain(n.get("revisions", []) or []),
             "verify": list(n.get("verify", []) or []),
