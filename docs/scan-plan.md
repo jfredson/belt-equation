@@ -37,11 +37,13 @@ One file per scan, appended to the folder and never edited. The export script va
     [[item]]
     node = "L-fully-reusable-heavy-launcher-recovers-both-stages"
     verdict = "quiet"              # see the five verdicts
-    queries = ["...", "..."]
+    queries = ["...", "..."]       # at least one, except as noted below
     found = "One to three sentences on what the past week held, read against the criterion."
     sources = ["https://..."]      # required for every verdict but quiet
     ledger = "2026-09-27-ship-caught"   # the ledger entry id, for moved and resolved
     for_john = "..."               # required for flagged: the move it would have made and why
+
+Every item names at least one search it ran, with one exception: a node that resolves only when one of the nodes it depends on resolves has nothing of its own to look for, so it may leave `queries` empty as long as its verdict is `quiet` and `found` says why no search was run. Every other verdict still needs a search.
 
 Five verdicts. `quiet`: nothing found that bears on the criterion. `noted`: something relevant happened and no number moved; `found` says why not. When the thing was widely reported, the scanner also writes a `held-steady` ledger entry that names the criterion it was read against. `moved`: the probability changed within the cap; a revision on the node and an `event` ledger entry. `resolved`: the criterion was met; `resolved_on`, `resolved_by` on the node and a `resolution` entry. `flagged`: something the scanner may not do on its own; a `for_john` line and no edit.
 
@@ -77,7 +79,7 @@ Per the ground rule of 2026-09-08. The first two were ruled by John on 2026-09-1
 
 ## Steps
 
-34. **Scan record schema and export** (done 2026-09-19). `data/scans/` per the record above; a validator in `export.py` (id uniqueness, verdict set, sources present, ledger ids resolve, node ids exist); `site/src/data/scans.json` written on every build, newest scan first, with each item's factor and chain link resolved from the node. Done when a hand-written test scan file exports and a malformed one is refused. Two things the record above did not settle, decided while building: a scan record may carry `test = true`, which marks a hand-made file that stands in for a real week (the site labels it everywhere it appears, and the validator lets it name a ledger entry that was never written), and a ledger id is checked for shape always but only resolved against `data/ledger.toml` once that file exists, since the ledger lands with ledger plan step 30. A hand-made test record dated 2026-09-19 is in `data/scans/`; delete it once a real scan has run.
+34. **Scan record schema and export** (done 2026-09-19). `data/scans/` per the record above; a validator in `export.py` (id uniqueness, verdict set, sources present, ledger ids resolve, node ids exist); `site/src/data/scans.json` written on every build, newest scan first, with each item's factor and chain link resolved from the node. Done when a hand-written test scan file exports and a malformed one is refused. Two things the record above did not settle, decided while building: a scan record may carry `test = true`, which marks a hand-made file that stands in for a real week and which the site labels everywhere it appears (the validator also let such a file name a ledger entry that was never written; that exemption is gone, see below), and a ledger id is checked for shape always but only resolved against `data/ledger.toml` once that file exists, since the ledger lands with ledger plan step 30. The hand-made test record dated 2026-09-19 has been replaced by the first real scan of the same date, so no fixture is left in `data/scans/` and a record marked `test = true` no longer gets any exemption from the rules; the `test` mark itself stays, so a future fixture is still labelled as one on the site.
 
 35. **Deploy on push, and repository access for the scanner** (waits on nothing; John). Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as repository secrets so `.github/workflows/deploy.yml` can run, and authorise `jfredson/belt-equation` for the cloud environment's git proxy so the scheduled task can push. Done when a push to main deploys beltequation.com without a hand on the keyboard, and a scan's push is accepted.
 

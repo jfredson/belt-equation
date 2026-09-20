@@ -401,11 +401,11 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
     Returns the problems (which stop the build) and the notes (which are printed and do not).
     The rules: the file name is the scan's own date; the [scan] table carries its six fields
     and a scope of weekly or monthly; every item names a node that exists in the tree, once
-    per scan; every verdict is one of the five; every verdict but `quiet` cites a source;
+    per scan; every verdict is one of the five; every item names at least one search it ran,
+    unless it is `quiet` and `found` says why no search was run; every verdict but `quiet`
+    cites a source;
     a `flagged` item says what it would have done; and a ledger entry named by an item both
-    reads like a ledger id and, once the ledger exists, is in it. A scan marked `test = true`
-    is a fixture rather than a week of real work: its ledger references are allowed to point
-    at entries that were never written, and that is reported as a note."""
+    reads like a ledger id and, once the ledger exists, is in it."""
     problems: list[str] = []
     notes: list[str] = []
     for raw in scans:
@@ -414,7 +414,6 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
         if not isinstance(scan, dict):
             problems.append(f"{where}: no [scan] table, so the record says nothing about when it ran")
             continue
-        is_test = bool(scan.get("test"))
         for field in SCAN_FIELDS:
             if scan.get(field) in (None, ""):
                 problems.append(f"{where}: the [scan] table is missing '{field}'")
@@ -454,8 +453,18 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
                 problems.append(f"{iwhere}: 'found' says in plain English what the past week held, "
                                 "and is required on every verdict")
             queries = item.get("queries")
-            if not isinstance(queries, list) or not queries or any(not str(q).strip() for q in queries):
-                problems.append(f"{iwhere}: 'queries' lists the searches that were run, at least one")
+            # Some nodes have nothing of their own to search for: they resolve only when one of
+            # the nodes they depend on resolves, and those were checked as their own items in the
+            # same scan. Such an item may leave 'queries' empty, but only when the verdict is
+            # 'quiet' and 'found' says why no search was run. Every other verdict names a search.
+            no_search_allowed = verdict == "quiet" and bool(one_paragraph(item.get("found")))
+            if not isinstance(queries, list) or any(not str(q).strip() for q in queries):
+                problems.append(f"{iwhere}: 'queries' lists the searches that were run, "
+                                "each one a line of text")
+            elif not queries and not no_search_allowed:
+                problems.append(f"{iwhere}: 'queries' lists the searches that were run, at least one. "
+                                "Only a 'quiet' item may leave it empty, and then 'found' has to say "
+                                "why no search was run")
             sources = item.get("sources") or []
             if not isinstance(sources, list) or any(not str(s).strip() for s in sources):
                 problems.append(f"{iwhere}: 'sources' must be a list of public records")
@@ -480,11 +489,8 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
                 notes.append(f"{iwhere}: names the ledger entry '{led}'. The ledger "
                              "(data/ledger.toml) does not exist yet, so it cannot be checked.")
             elif led not in ledger_ids:
-                message = f"{iwhere}: names the ledger entry '{led}', which is not in data/ledger.toml"
-                if is_test:
-                    notes.append(message + ". Allowed because this scan is marked a test.")
-                else:
-                    problems.append(message)
+                problems.append(f"{iwhere}: names the ledger entry '{led}', "
+                                "which is not in data/ledger.toml")
     return problems, notes
 
 
