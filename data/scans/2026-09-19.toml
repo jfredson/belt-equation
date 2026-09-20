@@ -1,0 +1,106 @@
+# A made-up scan record, written by hand on 2026-09-19 so that the Radar page, the home
+# page strip and the node pages have something to render before the first real scan runs
+# (docs/scan-plan.md, steps 34 and 37). Nothing in it happened. Every finding below is
+# placeholder text, every source is an example address that goes nowhere, and no node in
+# data/ was edited on the strength of it.
+#
+# `test = true` in the [scan] table is what says so. The export script (scripts/export.py)
+# carries the mark into site/src/data/scans.json, the site labels every surface that shows
+# this scan as a test, and the validator lets a test record name a ledger entry that was
+# never written. Delete this file once a real scan has run.
+
+[scan]
+date = 2026-09-19
+ran_at = 2026-09-19T20:15:00Z
+scope = "weekly"
+nodes_checked = 6
+searches = 17
+commit_before = "07a6cf1"
+test = true
+
+[[item]]
+node = "L-fully-reusable-heavy-launcher-recovers-both-stages"
+verdict = "quiet"
+queries = [
+    "fully reusable launcher both stages recovered",
+    "booster and upper stage recovered same flight",
+]
+found = """
+Test record, not a real finding. This is what a quiet week looks like: the searches ran,
+nothing in the past week bore on the criterion, and the node was left exactly as it was."""
+
+[[item]]
+node = "L-heavy-launcher-100-per-year"
+verdict = "noted"
+queries = [
+    "orbital launch count year to date",
+    "reusable heavy launcher flight rate 2026",
+]
+found = """
+Test record, not a real finding. This is what a noted week looks like: something relevant
+turned up and the criterion still was not touched, so no number moved and the reason why
+is written here rather than left to the reader to guess."""
+sources = ["https://example.com/belt-equation-test-scan/launch-log"]
+
+[[item]]
+node = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
+verdict = "moved"
+queries = [
+    "power beamed from orbit to ground demonstration",
+    "space solar power kilowatt receiver test",
+    "microwave power transmission satellite trial",
+]
+found = """
+Test record, not a real finding. This is what a week that moves a number looks like: the
+evidence bears on the criterion, the probability changes by no more than the cap of 0.10
+in each scenario, and the node keeps a revision saying the scan made the change. No node
+was actually edited for this file, so nothing in data/ matches this item."""
+sources = ["https://example.com/belt-equation-test-scan/power-beaming"]
+ledger = "2026-09-19-test-power-beamed"
+
+[[item]]
+node = "B-mammal-born-and-weaned-in-partial-gravity"
+verdict = "resolved"
+queries = [
+    "mammal born in partial gravity weaned",
+    "rodent pups reared spin gravity station",
+]
+found = """
+Test record, not a real finding. This is what a resolution looks like: the criterion is met
+on the plain reading and two independent public records agree, which is why two sources are
+listed. A real resolution also sets the node's status, the date it happened and the record
+that settled it; this one changed nothing, and the node is still open."""
+sources = [
+    "https://example.com/belt-equation-test-scan/partial-gravity-study",
+    "https://example.com/belt-equation-test-scan/independent-report",
+]
+ledger = "2026-09-19-test-mammal-born"
+
+[[item]]
+node = "E-megawatt-spacecraft-operates-in-orbit"
+verdict = "flagged"
+queries = [
+    "megawatt class power spacecraft orbit",
+    "high power satellite bus demonstration",
+]
+found = """
+Test record, not a real finding. This is what an item the scan may not act on looks like:
+the move it wanted to make is larger than the cap it is allowed, so it made no edit at all
+and wrote the case for John instead."""
+sources = ["https://example.com/belt-equation-test-scan/power-spacecraft"]
+for_john = """
+Test record, not a real request. A real flagged item would say here what it would have done
+and what the evidence was, for example: the reading argues for a rise of 0.15 in every
+scenario, which is more than the 0.10 a scan may move on its own, so John rules on it."""
+
+[[item]]
+node = "C1"
+verdict = "quiet"
+queries = [
+    "biosignature confirmed independent teams",
+    "life detection claim replicated",
+]
+found = """
+Test record, not a real finding. The Contact Clause is watched like everything else even
+though it is never multiplied into the headline number, which is why this item is grouped
+under its own heading rather than under one of the seven links."""
