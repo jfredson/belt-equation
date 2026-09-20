@@ -45,3 +45,24 @@ Kickoff prompt:
 ## Order of merges and what the first scan needs
 
 The scheduled task fires Sunday 2026-09-20 at 18:00 Pacific, before any of this is merged. That run reads the tree as it is and follows the procedure's fallbacks: it writes the scan record, edits nodes if anything moved, skips the ledger entry and snapshot, and if the push is refused it delivers the record in chat and stops. That is fine; treat it as the dress rehearsal. The scan on 2026-09-27 is the first that should land end to end.
+
+## Track 4, Claude Code (added 2026-09-19, late evening): land the step 27 rulings
+
+Waits on Track 1 (the ledger) being merged, because the landing ends with ledger entries and a snapshot. Branch `step-27-landing`.
+
+Kickoff prompt:
+
+    Read belt-equation/docs/reviews/2026-09-19-rulings.md (every row ruled by John on
+    2026-09-19; the tally at the end lists every change) and belt-equation/docs/reviews/protocol.md.
+    Land every accepted ruling in data/: probability changes as revisions on the nodes with
+    estimated_on 2026-09-19 and why citing the item number; criterion rewordings as revisions;
+    the nine new nodes per docs/node-schema.md with first probabilities proposed in your PR
+    description for John to accept (do not invent them silently; propose with a one-line
+    rationale each, and hold the run until he answers); the two structural rewords (items 89, 90)
+    with the re-estimates owed (69, 90, 92) proposed the same way; the item 95 site change
+    (headline stays A2 at Tier 3; export.py adds numbers.a2_at_tier1, the home page shows it
+    beside the headline with the wording from item 95). Then ledger entries for every change
+    (kind revision or structure, author absent, per docs/ledger-plan.md), a run with a snapshot
+    (`compute.py run --snapshot step-27`), the review-status line removed from the site, a
+    changelog line with the new headline numbers, and one PR. Do not touch docs/reviews/; the
+    rulings file is the record. Work on branch step-27-landing in a worktree from ~/Code.
