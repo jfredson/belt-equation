@@ -16,10 +16,12 @@ a hundred orbital flights in a single year is the point at which mass to orbit
 stops being the constraint on everything downstream: stations, habitats, and
 lunar supply all assume it."""
 resolution = """
-In one calendar year, a launch vehicle whose first and second stages are both
-designed for recovery and reuse completes at least 100 orbital launches, counting
-only flights that reached orbit. Test flights that reached orbit count; suborbital
-flights and failures do not."""
+In one calendar year, a launch vehicle rated for at least fifty tonnes to low Earth orbit,
+whose first and second stages are both designed for recovery and reuse, completes at least
+100 orbital launches, counting only flights that reached orbit, with both stages recovered on
+at least half of the qualifying flights and at least one flight reusing a previously flown
+first and second stage. Test flights that reached orbit count; suborbital flights and
+failures do not."""
 source = "Public orbital launch logs, checked against the operator's own flight manifest"
 horizon = "leaf"
 depends_on = ["L-fully-reusable-heavy-launcher-recovers-both-stages"]
@@ -27,6 +29,9 @@ status = "open"
 probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
 estimated_on = 2026-09-19
 rationale = "The partially reusable predecessor passed a hundred flights a year in 2023; full reuse plus a constellation and lunar manifest gets there within the decade, and forty-five years is a long time to miss."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'heavy' undefined; a vehicle designed for reuse but flown expendable would have counted", new = "rated for at least fifty tonnes to low Earth orbit, both stages recovered on at least half of the qualifying flights, and at least one flight reusing a previously flown first and second stage", why = "Step 27 outside-model review, item 56 (docs/reviews/2026-09-19-rulings.md): the node's point is flight rate driven by reuse, and as written a hundred expendable flights of a reusable design counted. Ruled by John 2026-09-19." },
+]
 notes = "Written 2026-09-08 as the schema's worked example. Probability comes in Phase 3. Edge drawn at step 7: a hundred flights a year of a fully reusable launcher needs both stages to have been recovered at least once."
 
 [[node]]
@@ -43,16 +48,21 @@ said the catch would come "in a few months", and the flight itself slipped to no
 than mid-September. The first flight to bring both stages back intact is the day the cost
 curve everything else assumes actually starts."""
 resolution = """
-On a single orbital flight, a launch vehicle's first stage and its second stage are both
-recovered intact for reuse (caught, landed, or otherwise returned undamaged), confirmed by
-the operator and independent observation."""
-source = "The operator's flight record and independent observation"
+On a single flight that reached orbit, a launch vehicle rated for at least fifty tonnes to
+low Earth orbit has both its first stage and its second stage physically retrieved (caught or
+landed) and confirmed by the operator as capable of a second flight without structural
+rebuild, confirmed by independent observation of the recoveries. A stage that lands intact
+and then sinks, or is retrieved but written off, does not count."""
+source = "The operator's flight record and post-flight statement, and independent observation"
 horizon = "leaf"
 depends_on = []
 status = "open"
 probability = { baseline = 0.95, moderate = 0.96, strong = 0.97, radical = 0.98, open = 0.98 }
 estimated_on = 2026-09-19
 rationale = "Booster catch routine since 2024 and the ship catch deferred by months, not years; the residual risk is a program cancellation, not physics."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'recovered intact ... returned undamaged', with 'heavy' undefined and no requirement that the flight reached orbit", new = "physically retrieved and confirmed capable of a second flight without structural rebuild, on a launcher rated for at least fifty tonnes to low Earth orbit, on a flight that reached orbit", why = "Step 27 outside-model review, items 15 and 55 (docs/reviews/2026-09-19-rulings.md): 'undamaged' was unverifiable and a ship that lands intact and then sinks would have counted; a payload floor defines heavy here and on the hundred-flights node. A reflight requirement was declined as a later milestone the hundred-flights node tests. Ruled by John 2026-09-19." },
+]
 notes = "Checked 2026-09-08: no upper-stage catch was attempted in August 2026; the attempt was deferred by a few months and the flight slipped to mid-September at the earliest. Still open. Re-check at the first quarterly scan."
 
 [[node]]
@@ -66,15 +76,21 @@ space, which has been done only at small scale. A hundred-tonne transfer is the 
 lunar landing or a Mars departure needs, and the demonstrations are scheduled within a few
 years."""
 resolution = """
-At least one hundred tonnes of propellant are transferred between two vehicles in orbit in a
-single operation, confirmed by the operator and by the customer agency's public record."""
-source = "The operator's mission record and the customer agency's milestone acceptance"
+At least one hundred tonnes of propellant, counted as net propellant received by the
+receiving vehicle, are transferred between two vehicles in orbit over one docked period,
+confirmed by the operator and by an independent party (a customer agency's public record or
+an independent audit of the mass accounting)."""
+source = "The operator's mission record and the independent confirmation (a customer agency's milestone acceptance or an independent audit)"
 horizon = "leaf"
-depends_on = []
+depends_on = ["L-cryogenic-propellant-stored-in-orbit-six-months-and-used"]
 status = "open"
 probability = { baseline = 0.9, moderate = 0.93, strong = 0.95, radical = 0.97, open = 0.97 }
 estimated_on = 2026-09-19
 rationale = "Contracted, funded, and scheduled within a few years, with the lunar program depending on it; the risk is delay, not failure."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'in a single operation', confirmed by the customer agency's record", new = "net propellant received, over one docked period, confirmed by the operator and an independent party (a customer agency or an independent audit)", why = "Step 27 outside-model review, item 62 (docs/reviews/2026-09-19-rulings.md): 'a single operation' was undefined and a commercial transfer with no agency customer could not have counted. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "depends_on", old = "none", new = "L-cryogenic-propellant-stored-in-orbit-six-months-and-used", why = "Step 27 outside-model review, items 10 and 52 (docs/reviews/2026-09-19-rulings.md): long-duration storage is the unproven half of orbital refilling, and the storage leaf gates the transfer node. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "L-crew-lands-on-moon-in-reusable-lander"
@@ -86,8 +102,9 @@ The first crewed lunar landing since 1972 is scheduled for the next few years, o
 built for reuse rather than thrown away. It is the near-term marker that the cheap-launch
 architecture reaches the Moon with people, which every lunar node downstream assumes."""
 resolution = """
-People land on the lunar surface and return safely aboard a lander whose design is intended
-for more than one landing, confirmed by the responsible agency's mission record."""
+People land on the lunar surface and return safely to lunar orbit aboard a lander whose
+design is intended for more than one landing, confirmed by the responsible agency's mission
+record."""
 source = "The responsible agency's mission record"
 horizon = "leaf"
 depends_on = ["L-orbital-propellant-transfer-at-scale"]
@@ -95,6 +112,9 @@ status = "open"
 probability = { baseline = 0.85, moderate = 0.9, strong = 0.93, radical = 0.95, open = 0.96 }
 estimated_on = 2026-09-19
 rationale = "Two funded landers and a committed agency; a decade of slips still lands inside 2071, and the downside is cancellation after a mishap."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'return safely aboard a lander', destination unstated", new = "'return safely to lunar orbit aboard' the lander", why = "Step 27 outside-model review, item 54 (docs/reviews/2026-09-19-rulings.md): crews come back to Earth in a separate capsule, so the lander's return means to lunar orbit. A two-cycle reuse test was declined as a later, different event. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "L-launch-price-below-200-dollars-per-kg"
@@ -103,19 +123,27 @@ factor = "L"
 kind = "world"
 description = """
 Today's price for a full flight runs a few thousand dollars per kilogram. Two hundred, in 2026
-dollars, is roughly the point at which a tonne to orbit costs less than a mid-range car and
-building large things in space becomes a question of will rather than money. Reusable heavy
-launchers flying often are the only known route there."""
+dollars, is roughly the point at which a tonne to orbit costs two hundred thousand dollars,
+the price of a house rather than of a satellite programme, and building large things in space
+becomes a question of will rather than money. Reusable heavy launchers flying often are the
+only known route there."""
 resolution = """
 A launch provider sells, by public price list or a signed contract made public, a full
-manifest to low Earth orbit at two hundred 2026 dollars or less per kilogram of payload."""
+manifest to low Earth orbit at two hundred dollars or less per kilogram, in 2026 dollars by
+the US consumer price index, price meaning the full launch-service charge divided by the
+contracted payload mass to low Earth orbit."""
 source = "The provider's published price list or a public contract record"
 horizon = "mid"
 depends_on = ["L-heavy-launcher-100-per-year"]
 status = "open"
-probability = { baseline = 0.7, moderate = 0.8, strong = 0.88, radical = 0.93, open = 0.95 }
+probability = { baseline = 0.6, moderate = 0.72, strong = 0.83, radical = 0.91, open = 0.94 }
 estimated_on = 2026-09-19
-rationale = "Flight rate is the mechanism, but a public sold price is a demand-and-competition question and a single provider can hold price above cost for decades; an outside model (Astra, 2026-09-19) put a hundred dollars at 75 percent by 2070 unconditionally."
+rationale = "Flight rate is the mechanism, but a public sold price is a demand-and-competition question: a hundred flights a year says nothing about utilisation, refurbishment cost or competition, and a single provider can hold price above cost for years. Two of three outside reviewers said lower than the first estimate (Astra and Grok against Gemini, 2026-09-19); moved partway toward them. The earlier comparison to Astra's unconditional hundred-dollar figure is dropped as a different question."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'two hundred 2026 dollars or less per kilogram of payload', index and price definition unstated", new = "in 2026 dollars by the US consumer price index, price meaning the full launch-service charge divided by contracted payload mass to low Earth orbit; price list or contract kept", why = "Step 27 outside-model review, item 58 (docs/reviews/2026-09-19-rulings.md): naming the index and the price definition costs nothing; a completed-sale requirement was declined as adding little. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "'a tonne to orbit costs less than a mid-range car'", new = "a tonne to orbit costs two hundred thousand dollars", why = "Step 27 outside-model review, item 58: the arithmetic was wrong (a tonne at $200/kg is $200,000). Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.70 / 0.80 / 0.88 / 0.93 / 0.95", new = "0.60 / 0.72 / 0.83 / 0.91 / 0.94", why = "Step 27 outside-model review, items 17, 59 and 103 (docs/reviews/2026-09-19-rulings.md): Gemini argued up (oversupply forces price down), Astra argued down (cadence proves nothing about cost), and Grok in Fast mode broke the tie toward Astra; moved partway, discounting Fast mode. Rationale's arithmetic fixed. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "L-large-structure-assembled-in-orbit"
@@ -128,16 +156,20 @@ metres long and took a decade of crewed assembly flights. A spinning habitat, a 
 station, or a shipyard needs structures at least that size assembled mostly by machines from
 parts launched cheaply. This is the step from launching things to building things."""
 resolution = """
-A single connected structure with a longest dimension over one hundred metres is assembled in
-orbit from parts delivered on at least five separate launches, with most of the joining done
-by robots or automated systems, confirmed by the operator and independent tracking."""
-source = "The operator's records and independent orbital tracking"
+A single connected structure with a longest dimension over one hundred metres, assembled
+after 2026, is assembled in orbit from parts delivered on at least five separate launches,
+with more than half of the structural joins, by the operator's published count, made without
+a spacewalk, confirmed by the operator's assembly records and independent tracking."""
+source = "The operator's assembly records, including its published count of structural joins, and independent orbital tracking"
 horizon = "mid"
 depends_on = []
 status = "open"
 probability = { baseline = 0.6, moderate = 0.7, strong = 0.85, radical = 0.93, open = 0.95 }
 estimated_on = 2026-09-19
 rationale = "Possible at today's prices, as the station proved, but nobody has a customer for it yet; the likelihood rides on cheap launch without depending on it."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'most of the joining done by robots or automated systems', on any structure", new = "more than half of the structural joins, by the operator's published count, made without a spacewalk, on a structure assembled after 2026", why = "Step 27 outside-model review, items 13 and 57 (docs/reviews/2026-09-19-rulings.md): the space station is already 109 metres across and its modules were berthed by a crew-operated arm, so 'most of the joining' could have been argued for a structure that exists; 'entirely by robots' was declined because one spacewalk to fix a jammed latch should not fail the node. Ruled by John 2026-09-19." },
+]
 notes = "Drafted as depending on the two-hundred-dollar launch price; loosened at step 7 (2026-09-08) because a structure this size could be assembled at today's prices with enough money, as the space station was. Cheap launch makes it likely, not possible."
 
 [[node]]
@@ -152,15 +184,70 @@ a twentieth of the energy of lifting it from Earth, so once mining, refining, an
 quarry for everything built in space. A hundred tonnes a year is the scale at which a habitat
 or a propellant depot can be fed from the Moon rather than from Earth."""
 resolution = """
-In one calendar year, at least one hundred tonnes of material originating on the Moon
-(loose surface rock and dust, oxygen, water, metal, or products made from them) are
-delivered to lunar or Earth orbit and used there, reported by the operator with independent
+In one calendar year, at least one hundred tonnes of net mass of lunar origin (loose surface
+rock and dust, oxygen, water, metal, or products made from them, excluding any Earth-supplied
+content and counting the same material once) are delivered to lunar or Earth orbit and
+received and used by a customer there, reported by the operator with independent
 confirmation."""
 source = "The operator's public accounting, confirmed by the customer or an agency"
 horizon = "root"
-depends_on = ["L-crew-lands-on-moon-in-reusable-lander", "E-fission-reactor-runs-on-lunar-surface", "R-crewed-lunar-program-outlives-two-changes-of-president"]
+depends_on = ["L-crew-lands-on-moon-in-reusable-lander", "E-fission-reactor-runs-on-lunar-surface", "R-crewed-lunar-program-outlives-two-changes-of-president", "L-propellant-produced-off-earth-and-fired-in-a-thruster"]
 status = "open"
-probability = { baseline = 0.35, moderate = 0.5, strong = 0.7, radical = 0.85, open = 0.9 }
+probability = { baseline = 0.55, moderate = 0.7, strong = 0.85, radical = 0.92, open = 0.94 }
 estimated_on = 2026-09-19
-rationale = "Even with power, people, and political continuity, mining and launching from the Moon at scale needs a buyer in orbit; the first forty-five years are the hard ones."
-notes = "Edges drawn at step 7 (2026-09-08): mining at scale needs surface power through the lunar night, and a decade of lunar work needs the program to outlive elections."
+rationale = "Given power, people, political continuity and a first tonne of lunar propellant already fired, a hundred tonnes a year is cadence rather than a breakthrough; what keeps it under two in three by 2071 is a buyer in orbit. The first estimate was written as if the dependencies were still uncertain, and with the propellant leaf now a dependency the conditional rises again rather than counting that difficulty twice."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "'material originating on the Moon ... delivered ... and used there'", new = "net mass of lunar origin, excluding any Earth-supplied content, counted once, received and used by a customer in orbit", why = "Step 27 outside-model review, item 60 (docs/reviews/2026-09-19-rulings.md): a tank of lunar oxygen with Earth-made hardware, or the same material shuttled twice, would otherwise have counted; independent confirmation was already required. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "depends_on", old = "the crewed lander, the lunar reactor and the durable lunar programme", new = "the same three plus L-propellant-produced-off-earth-and-fired-in-a-thruster", why = "Step 27 outside-model review, items 11 and 53 (docs/reviews/2026-09-19-rulings.md): the tree jumped from a reactor to a hundred tonnes a year; a first tonne of lunar propellant fired is the rung between. Astra's hundred-tonnes-produced node was declined as covered by this node's own hundred tonnes. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.35 / 0.50 / 0.70 / 0.85 / 0.90", new = "0.55 / 0.70 / 0.85 / 0.92 / 0.94", why = "Step 27 outside-model review, item 16 (docs/reviews/2026-09-19-rulings.md): given power, transport and political continuity, a hundred tonnes is cadence, not a breakthrough, and the new propellant leaf takes the first-tonne difficulty out of this conditional (the double-counting note from item 53 applied). Ruled by John 2026-09-19." },
+]
+notes = "Edges drawn at step 7 (2026-09-08): mining at scale needs surface power through the lunar night, and a decade of lunar work needs the program to outlive elections. Step 27, item 61 (2026-09-19, declined): the reactor edge stays because every current lunar programme plans one and a two-week night on batteries at scale is not demonstrated; solar with storage is a studied alternative, logged here for revisit if a night-survival solar node is ever added. The programme edge is already nation-agnostic; the people edge stays because a hundred tonnes a year needs maintenance crews."
+
+[[node]]
+id = "L-cryogenic-propellant-stored-in-orbit-six-months-and-used"
+name = "Ten tonnes of cryogenic propellant are kept in orbit for six months and then burned"
+factor = "L"
+kind = "world"
+description = """
+Refilling ships in space has two halves: pumping propellant across, and keeping it cold for
+long enough to be there when the ship needs it. Liquid oxygen and methane boil away in
+sunlight, and nobody has kept tonnes of them in orbit for months. Storage proven by use, a
+depot's worth kept for half a year and then actually burned, is the unproven half of every
+architecture that sends people beyond low Earth orbit on refilled ships."""
+resolution = """
+At least ten tonnes of cryogenic propellant (liquid oxygen, methane, or hydrogen) are held in
+orbit aboard one vehicle or depot for at least six months with less than five percent of the
+starting mass lost to boil-off, measured and reported by the operator, and the stored
+propellant is subsequently used in an engine burn, confirmed by the operator and independent
+tracking of the burn."""
+source = "The operator's mission record and independent tracking"
+horizon = "leaf"
+depends_on = []
+status = "open"
+probability = { baseline = 0.8, moderate = 0.85, strong = 0.9, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-20
+rationale = "Zero-boil-off hardware has been ground-tested for years and long-duration storage flights are on the manifest of the lunar programme, so the first six-month demonstration is a matter of a decade or so; the residual is that architectures move to fast tanker cadence instead of long storage and nobody bothers to prove six months. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, items 10 and 52 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): Gemini's leaf with Astra's 'and subsequently used in a burn' added, so the node is storage proven by use; Astra's hundred-tonne scale stays with L-orbital-propellant-transfer-at-scale, which this node gates."
+
+[[node]]
+id = "L-propellant-produced-off-earth-and-fired-in-a-thruster"
+name = "A tonne of propellant made from off-Earth material is fired in a rocket engine"
+factor = "L"
+kind = "world"
+description = """
+The first product of lunar or asteroid material will be propellant: oxygen from the rock,
+oxygen and hydrogen from ice. A tonne of it, made off Earth and actually fired, is the step
+between a reactor on the surface and a hundred tonnes a year delivered to orbit, and it is
+where the chemistry, the mining, and the storage all have to work at once for the first time."""
+resolution = """
+At least one tonne of usable chemical propellant (oxidiser, fuel, or both) is produced from
+material extracted off Earth, at a site off Earth, and is fired in a rocket thruster or engine,
+confirmed by the operating agency or company with independent confirmation of the firing."""
+source = "The operating agency's or company's record, with independent confirmation"
+horizon = "mid"
+depends_on = []
+status = "open"
+probability = { baseline = 0.5, moderate = 0.62, strong = 0.78, radical = 0.9, open = 0.93 }
+estimated_on = 2026-09-20
+rationale = "Oxygen has been made from simulated regolith in the lab and a small demonstrator has flown to Mars; a tonne made and fired on the Moon needs a surface plant and a customer for the first product, which is a lunar outpost's second decade. Even odds by 2071. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, items 11 and 53 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a dependency of L-lunar-material-delivered-to-orbit-at-scale, whose conditional was raised at the same time so that the first-tonne difficulty is priced here and not twice (the double-counting note from item 53)."

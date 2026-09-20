@@ -210,10 +210,9 @@ def export_tree(tree: dict) -> dict:
     }
 
 
-# Shown beside the headline until the outside-model review (roadmap step 27) is complete. Set to
-# an empty string when the rulings have landed, and the label disappears.
-NUMBERS_REVIEW_STATUS = ("First pass, 2026-09-19. Under review by outside models before publication "
-                         "(roadmap step 27); every number may move.")
+# Was shown beside the headline until the outside-model review (roadmap step 27) was complete.
+# Empty since 2026-09-20, when the rulings landed, so the label no longer appears.
+NUMBERS_REVIEW_STATUS = ""
 
 
 def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
@@ -229,7 +228,9 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
     rng = random.Random(seed)
     keys = [s["key"] for s in tree["scenarios"]]
     chain_nodes = chain_gates(tree)
-    results = {k: compute.simulate(tree, k, runs, rng, joint=chain_nodes) for k in keys}
+    joint = dict(chain_nodes)
+    joint.update(compute.second_number_joint())
+    results = {k: compute.simulate(tree, k, runs, rng, joint=joint) for k in keys}
     return {
         "available": True,
         "runs": runs,
@@ -240,6 +241,10 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
         "nodes": {n["id"]: {k: results[k]["nodes"][n["id"]] for k in keys} for n in tree["nodes"]},
         "chain": {f: {k: results[k]["joint"][f] for k in keys} for f in chain_nodes},
         "chain_nodes": chain_nodes,
+        # The second number beside the headline (step 27, item 95): A2 at Tier 1, a rotation at a
+        # station or lunar base, with the nodes it is computed from so the page can say so.
+        "a2_at_tier1": {k: results[k]["joint"][compute.SECOND_NUMBER_KEY] for k in keys},
+        "a2_at_tier1_nodes": list(compute.SECOND_NUMBER_NODES),
     }
 
 
@@ -258,7 +263,7 @@ def export_snapshots(snapshots: list[dict]) -> dict:
     for s in snapshots:
         summaries.append({k: s.get(k) for k in (
             "key", "date", "label", "note", "review_status", "headline_tier",
-            "run", "tiers", "chain", "chain_nodes", "contact", "decisions",
+            "run", "tiers", "chain", "chain_nodes", "second", "contact", "decisions",
         )})
 
     def series(pick) -> dict:

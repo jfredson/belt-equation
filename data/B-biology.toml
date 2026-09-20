@@ -18,14 +18,19 @@ rather than a work camp, is biologically possible."""
 resolution = """
 A peer-reviewed publication reports that a mammal was conceived, carried to term, born, and
 weaned entirely at a sustained gravity level between one-sixth and one-half of Earth's,
-whether in a centrifuge in orbit or on the Moon or Mars, with offspring surviving to weaning."""
+whether in a centrifuge in orbit or on the Moon or Mars, with offspring surviving to weaning,
+in an experiment run with a control group."""
 source = "The peer-reviewed publication and the space agency's mission record"
 horizon = "leaf"
 depends_on = []
 status = "open"
 probability = { baseline = 0.8, moderate = 0.82, strong = 0.85, radical = 0.92, open = 0.95 }
 estimated_on = 2026-09-08
-rationale = "The centrifuge hardware exists and the experiment is cheap next to everything else in the tree; the risk is that partial-gravity gestation fails biologically, which would resolve the node no, not that nobody tries."
+rationale = "The centrifuge hardware exists and the experiment is cheap next to everything else in the tree; the risk is that partial-gravity gestation fails biologically, not that nobody tries. A failed attempt leaves the node open: another species, gravity level, or method can still resolve it."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "no control group required", new = "with a control group; any gravity in the range still counts", why = "Step 27 outside-model review, item 49 (docs/reviews/2026-09-19-rulings.md): a control group is standard and costs nothing; replication at a specific destination gravity was declined as a research programme rather than a leaf. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "rationale", old = "said a biological failure would resolve the node no", new = "a failed attempt leaves the node open", why = "Step 27 outside-model review, item 49: the rationale overstated the criterion, which names no single experiment. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "B-human-year-in-partial-gravity-without-disqualifying-harm"
@@ -40,16 +45,21 @@ published health outcomes that would not bar a return trip is what a rotation of
 the A2 tier, assumes."""
 resolution = """
 A person completes twelve continuous months at a sustained gravity level between one-sixth and
-one-half of Earth's, and a peer-reviewed report of their health outcomes finds no condition
-that the responsible agency's own standards would count as disqualifying for a further mission."""
+one-half of Earth's, and a peer-reviewed report of their health outcomes after return to Earth
+finds no condition that the responsible agency's own standards would count as disqualifying
+for a further mission without a medical waiver."""
 source = "The peer-reviewed health report and the agency's crew-health standards"
 horizon = "mid"
 depends_on = []
 depends_on_any = [["L-crew-lands-on-moon-in-reusable-lander", "B-crewed-spin-gravity-demonstration"]]
 status = "open"
-probability = { baseline = 0.35, moderate = 0.42, strong = 0.5, radical = 0.65, open = 0.7 }
-estimated_on = 2026-09-08
-rationale = "Given people on the Moon or a spin facility, a year-long stay is a matter of decades, and then roughly two in three that the health outcomes clear the bar; bone and eye effects in free fall are the warning."
+probability = { baseline = 0.45, moderate = 0.52, strong = 0.62, radical = 0.78, open = 0.85 }
+estimated_on = 2026-09-19
+rationale = "Given people on the Moon or a spin facility, the bar is one person at any gravity in the range under the agency's own standards, with repeated attempts and the most favourable gravity available; the first estimate's discount was mostly timing, not difficulty. Bone and eye effects in free fall are the warning, and the return-and-no-waiver clause keeps the bar honest."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "health outcomes judged at any time, with no mention of return or waivers", new = "outcomes after return to Earth, and fit for a further mission without a medical waiver", why = "Step 27 outside-model review, item 46 (docs/reviews/2026-09-19-rulings.md): the node's name says the person comes home, and agency standards can be waived. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.35 / 0.42 / 0.50 / 0.65 / 0.70", new = "0.45 / 0.52 / 0.62 / 0.78 / 0.85", why = "Step 27 outside-model review, item 47 (docs/reviews/2026-09-19-rulings.md): the conditional bar (one person, any gravity in the range, agency standards, repeated attempts) is permissive and the first rationale's discount was timing rather than difficulty; moved partway, with item 46 tightening the bar back somewhat. Ruled by John 2026-09-19." },
+]
 notes = "Edge drawn at step 7 (2026-09-08): a year in partial gravity needs either people on the Moon or a spinning facility; either route will do."
 
 [[node]]
@@ -65,11 +75,16 @@ A child is born at a site off Earth and lives there continuously to at least age
 the birth and residence publicly documented by the operating agency or company."""
 source = "Public records of the operating agency or company, confirmed by independent reporting"
 horizon = "root"
-depends_on = ["B-mammal-born-and-weaned-in-partial-gravity", "B-human-year-in-partial-gravity-without-disqualifying-harm"]
+depends_on = []
+depends_on_any = [["B-mammal-born-and-weaned-in-partial-gravity", "B-earth-gravity-habitat-occupied-for-a-year"], ["B-human-year-in-partial-gravity-without-disqualifying-harm", "B-earth-gravity-habitat-occupied-for-a-year"]]
 status = "open"
 probability = { baseline = 0.15, moderate = 0.22, strong = 0.35, radical = 0.65, open = 0.75 }
 estimated_on = 2026-09-08
-rationale = "Given both the animal result and the human year, the remaining barriers are policy and ethics, which early settlements are likely to hold for decades; raising a child needs a settlement, not a base."
+rationale = "Given either the animal result and the human year in partial gravity, or a year-long Earth-gravity habitat, the remaining barriers are policy and ethics, which early settlements are likely to hold for decades; raising a child needs a settlement, not a base."
+revisions = [
+  { date = 2026-09-19, field = "depends_on", old = "depends_on: the mammal node and the human partial-gravity year, both required", new = "depends_on_any: [the mammal node and the human partial-gravity year] or [B-earth-gravity-habitat-occupied-for-a-year]", why = "Step 27 outside-model review, item 44 (docs/reviews/2026-09-19-rulings.md): the node required both partial-gravity milestones even for a child living in an Earth-gravity habitat, so the tree's own hedge did not reach it; the prerequisites now match the route. Written as two either-groups, which is the same logic in the schema's form. Ruled by John 2026-09-19. Item 45's health clause was declined: a child's medical outcomes are not public records." },
+]
+notes = "Moved from Tier 2 to Tier 4 on 2026-09-19 (first run ruling). Route fix 2026-09-19 under step 27, item 44."
 
 [[node]]
 id = "B-crewed-spin-gravity-demonstration"
@@ -83,15 +98,20 @@ A month-long crewed demonstration at any useful gravity level settles the practi
 step on the habitat route that sidesteps the partial-gravity question entirely."""
 resolution = """
 A crewed spacecraft or station module rotates to produce at least one-sixth of Earth's gravity
-at the crew's living level for thirty continuous days with people aboard, confirmed by the
+at the crew's living level for thirty continuous days, with the crew living in the rotating
+section throughout, at a reported rotation rate of 6 revolutions per minute or less, with the
+crew's health over the month reported by the operator, and the rotation confirmed by the
 operator and independent tracking."""
-source = "The operator's mission record and independent orbital tracking"
+source = "The operator's mission record, including its crew-health report, and independent orbital tracking"
 horizon = "leaf"
 depends_on = []
 status = "open"
 probability = { baseline = 0.7, moderate = 0.75, strong = 0.8, radical = 0.9, open = 0.92 }
 estimated_on = 2026-09-08
 rationale = "Proposed since the 1950s, never flown, but private station builders now plan it and the engineering is modest; the risk is that nobody funds a month-long test when partial gravity on the Moon is available instead."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "people aboard, any rotation rate, no health report", new = "the crew living in the rotating section throughout, at a reported rotation rate of 6 revolutions per minute or less, with crew health reported by the operator", why = "Step 27 outside-model review, items 6 and 41 (docs/reviews/2026-09-19-rulings.md): the demonstration has to prove people can live there, not only that the structure spins, and a station with a spinning module the crew visits would otherwise have counted; 6 rpm is the upper end of what the adaptation literature treats as tolerable. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "B-earth-gravity-habitat-occupied-for-a-year"
@@ -101,20 +121,27 @@ kind = "world"
 description = """
 The full version of the habitat route: a structure large enough (roughly a hundred metres or
 more in radius, spinning about three times a minute) that its occupants feel Earth's gravity
-and need no adaptation at all. If partial gravity turns out to be unlivable, this is the only
-route to a Belt, and it is the route some space futurists prefer anyway."""
+and need far less adaptation than partial gravity asks of them. If partial gravity turns out
+to be unlivable, this is the only route to a Belt, and it is the route some space futurists
+prefer anyway."""
 resolution = """
-A rotating habitat produces at least ninety percent of Earth's gravity at its living level
-and is continuously occupied by at least ten people for twelve months, confirmed by the
-operator and independent tracking."""
+A rotating habitat produces between 0.9 and 1.1 of Earth's gravity at the level where the
+crew live and is continuously occupied by at least ten people for twelve months, with no
+occupant medically evacuated during the year, confirmed by the operator and independent
+tracking."""
 source = "The operator's records and independent orbital tracking"
 horizon = "root"
 depends_on = ["B-crewed-spin-gravity-demonstration", "L-large-structure-assembled-in-orbit"]
 status = "open"
-probability = { baseline = 0.25, moderate = 0.32, strong = 0.45, radical = 0.7, open = 0.8 }
-estimated_on = 2026-09-08
-rationale = "Given a spin demo and hundred-metre assembly, an Earth-gravity habitat is a matter of money and motive; one in four by 2071 because both are large and the partial-gravity route may make it unnecessary."
-notes = "Edge drawn at step 7 (2026-09-08): a habitat with Earth-normal gravity is a hundred-metre-class structure, so it needs orbital assembly to have been done at that scale."
+probability = { baseline = 0.35, moderate = 0.42, strong = 0.55, radical = 0.78, open = 0.85 }
+estimated_on = 2026-09-19
+rationale = "Given a spin demo and hundred-metre assembly, an Earth-gravity habitat for ten people is a deployment milestone rather than a breakthrough; what holds it near one in three by 2071 is motive, since the partial-gravity route may make it unnecessary, not difficulty, which the dependencies already carry."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "at least ninety percent of Earth's gravity, occupancy only", new = "0.9 to 1.1 of Earth's gravity at the level where the crew live, with no occupant medically evacuated during the year", why = "Step 27 outside-model review, item 42 (docs/reviews/2026-09-19-rulings.md): the one-sided bound let a 1.5 g habitat count, and the habitat route needed a health test so that the either-route hedge (item 48) means the same thing by either route. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "need no adaptation at all", new = "need far less adaptation than partial gravity", why = "Step 27 outside-model review, item 42: rotation and head movements still cause motion effects at Earth-normal gravity. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.25 / 0.32 / 0.45 / 0.70 / 0.80", new = "0.35 / 0.42 / 0.55 / 0.78 / 0.85", why = "Step 27 outside-model review, item 43 (docs/reviews/2026-09-19-rulings.md): the first estimate carried the prerequisites' difficulty into the conditional a second time; the motive discount survives, the difficulty discount does not. Ruled by John 2026-09-19." },
+]
+notes = "Edge drawn at step 7 (2026-09-08): a habitat with Earth-normal gravity is a hundred-metre-class structure, so it needs orbital assembly to have been done at that scale. Step 27, item 48 (2026-09-19): the health clause added here is what makes B-long-term-off-earth-living-by-some-route mean the same minimum by either route; the hedge node itself is unchanged."
 
 [[node]]
 id = "B-long-term-off-earth-living-by-some-route"
@@ -148,17 +175,21 @@ routes (superconducting magnetic shields) both exist on paper. A flown demonstra
 halves the dose makes rotations of months at an outer site a matter of engineering rather than
 of accepting the risk."""
 resolution = """
-A shielding system flown beyond low Earth orbit is measured to reduce the dose from
-deep-space radiation (the galactic cosmic rays that Earth's magnetic field otherwise keeps
-out) at the crew position by fifty percent or more compared with an unshielded reference,
-reported in a peer-reviewed publication."""
-source = "The peer-reviewed flight measurement"
+A shielding system flown beyond low Earth orbit is measured to reduce the dose equivalent
+from deep-space radiation (the galactic cosmic rays that Earth's magnetic field otherwise
+keeps out), including secondary particles, at a crew position inside an occupiable volume,
+by fifty percent or more compared with the interior dose of a current pressure vessel (a
+space-station or Orion-class hull), reported in a peer-reviewed publication."""
+source = "The peer-reviewed flight measurement; the publication's measurement protocol (matched conditions, reference geometry, uncertainty, shield mass and coverage) is what settles whether the comparison is fair"
 horizon = "mid"
 depends_on = []
 status = "open"
 probability = { baseline = 0.5, moderate = 0.55, strong = 0.65, radical = 0.8, open = 0.85 }
 estimated_on = 2026-09-08
 rationale = "Thick water walls could do it today at a mass cost; halving the dose in a flown test within forty-five years is even odds because the passive route is expensive and the magnetic route waits on cheap superconductors."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "dose at the crew position compared with an undefined unshielded reference", new = "dose equivalent, including secondary particles, at a crew position inside an occupiable volume, compared with the interior of a current pressure vessel", why = "Step 27 outside-model review, items 5 and 51 (docs/reviews/2026-09-19-rulings.md): an ordinary hull's mass could otherwise satisfy the node, a thick shield around a dosimeter is not a crew cabin, and thin shields can raise the secondary-particle dose; the measurement protocol goes in the source note. Ruled by John 2026-09-19." },
+]
 notes = "The magnetic route depends on high-temperature superconductors at practical cost, an energy node; drawn at step 7."
 
 [[node]]
@@ -174,14 +205,21 @@ Tier 2 criterion, means in practice."""
 resolution = """
 A crew at a site off Earth completes twelve continuous months during which more than half of
 their calories are grown on site and more than ninety-five percent of water and oxygen are
-recycled, as reported by the operating agency or company."""
+recycled, as reported in the operating agency's or company's published accounting, which
+states the calorie, water, and oxygen figures separately and includes starting stocks,
+resupply, and emergency inputs."""
 source = "The operator's published life-support accounting"
 horizon = "mid"
-depends_on = []
+depends_on = ["B-staple-crop-grown-from-seed-to-harvest-off-earth"]
 status = "open"
-probability = { baseline = 0.5, moderate = 0.58, strong = 0.7, radical = 0.85, open = 0.9 }
-estimated_on = 2026-09-08
-rationale = "Done on the ground for a year at 98 percent closure; doing it off Earth needs a site with the volume for farming, which is a settlement-scale project, so even odds by 2071."
+probability = { baseline = 0.35, moderate = 0.45, strong = 0.6, radical = 0.85, open = 0.92 }
+estimated_on = 2026-09-19
+rationale = "Done on the ground for a year at 98 percent closure; off Earth, shipping food is cheap and farming is a settlement-scale project that needs volume and a reason, so a third by 2071 even given a staple crop harvested there; the long windows are where a settlement has to grow its own."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "percentages as reported by the operator, with no requirement to separate the figures or count starting stocks", new = "the operator's published accounting must state the calorie, water and oxygen figures separately and include starting stocks, resupply and emergency inputs", why = "Step 27 outside-model review, item 40 (docs/reviews/2026-09-19-rulings.md): percentages can hide imported stocks and accounting conventions; an independent audit was dropped as something that does not exist. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "depends_on", old = "none", new = "B-staple-crop-grown-from-seed-to-harvest-off-earth", why = "Step 27 outside-model review, item 3 (docs/reviews/2026-09-19-rulings.md): calories have never been grown off Earth, and a staple crop from seed to harvest is a cheap leaf this node needs. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.50 / 0.58 / 0.70 / 0.85 / 0.90", new = "0.35 / 0.45 / 0.60 / 0.85 / 0.92", why = "Step 27 outside-model review, item 7 (docs/reviews/2026-09-19-rulings.md): shipping food is cheap and farming is a settlement-scale project; moved partway toward the reviewer. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "B-radiation-resistance-treatment-for-humans"
@@ -196,8 +234,9 @@ from chronic cosmic-ray exposure would loosen the mission limits that shielding 
 to meet."""
 resolution = """
 A drug or gene therapy is approved by a major regulator, or adopted by a space agency's
-crew-health standard, with evidence that it reduces the long-term harm from chronic
-galactic-cosmic-ray-type exposure by half or more."""
+crew-health standard, with evidence, to the standard that body applies, that it reduces the
+lifetime cancer risk, or an equivalent long-term harm measure named in the approval, from
+chronic galactic-cosmic-ray-type exposure by half or more."""
 source = "The regulator's approval record or the agency's published crew-health standard"
 horizon = "root"
 depends_on = []
@@ -205,6 +244,9 @@ status = "open"
 probability = { baseline = 0.08, moderate = 0.1, strong = 0.15, radical = 0.35, open = 0.45 }
 estimated_on = 2026-09-08
 rationale = "A preventive therapy for a rare exposure faces an approval bar no current evidence meets, and the biology of chronic heavy-ion harm is not understood; a long shot that only becomes plausible over a century."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "reduces the long-term harm by half or more, outcome unnamed", new = "reduces the lifetime cancer risk, or an equivalent long-term harm measure named in the approval, by half or more; the evidence standard stays with the approving body", why = "Step 27 outside-model review, item 50 (docs/reviews/2026-09-19-rulings.md): the outcome behind the fifty percent claim was undefined; the evidence standard is rightly delegated to the regulator or agency for a long shot. Ruled by John 2026-09-19." },
+]
 long_shot = true
 mechanism = """
 Radioprotective drugs already exist for acute exposure (amifostine protects tissue during
@@ -217,3 +259,55 @@ Nobody knows whether the harm from years of heavy-ion exposure comes mostly from
 which such proteins address, or from other tissue and vascular effects that they do not.
 There is no human data on chronic heavy-ion exposure at all, and a preventive therapy given to
 healthy people for a rare exposure faces an approval bar that no current evidence could meet."""
+
+[[node]]
+id = "B-staple-crop-grown-from-seed-to-harvest-off-earth"
+name = "A staple crop is grown from seed to harvest off Earth"
+factor = "B"
+kind = "world"
+description = """
+Leafy greens have been grown and eaten on the space station; calories have not. Wheat, potato,
+or rice grown from seed to a harvest worth eating, off Earth, is the first evidence that a
+site can feed itself rather than garnish shipped food, and it is a cheap, near-term step that
+the year of recycled food, water, and air under the settlement tier needs. Small numbers of
+seeds have completed a life cycle in orbit; a harvest is the next thing."""
+resolution = """
+At a site off Earth (a station, the Moon, Mars, or a spacecraft), a staple crop (wheat, rice,
+potato, or another crop grown for its calories) is grown from seed or tuber to a harvest of at
+least one kilogram of edible dry grain or tuber, reported by the operating agency or company
+or in a peer-reviewed publication. A few plants brought to seed for a life-cycle experiment do
+not count; the harvest does."""
+source = "The operating agency's or company's report, or the peer-reviewed publication"
+horizon = "leaf"
+depends_on = []
+status = "open"
+probability = { baseline = 0.75, moderate = 0.82, strong = 0.9, radical = 0.95, open = 0.96 }
+estimated_on = 2026-09-20
+rationale = "Rice and wheat have completed life cycles in orbit at experiment scale and every lunar and Mars base plan includes a greenhouse, so a kilogram harvest within forty-five years is likely; the residual is that nobody bothers while shipping food stays cheap. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+verify = ["Rice completed a full seed-to-seed life cycle aboard China's Tiangong station in 2022 (about 120 days), as reported by the Chinese Academy of Sciences; written from memory, to be checked and linked at the next scan."]
+notes = "Added 2026-09-20 under step 27, item 3 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a hard dependency of B-closed-loop-life-support-year-off-earth. Astra's twenty-percent-of-calories node (item 39) was declined as covered by the closed-loop node, with this leaf filling the earlier-rung slot. The one-kilogram floor is there so that a life-cycle experiment with a few plants does not resolve a node about calories."
+
+[[node]]
+id = "B-major-operation-under-anaesthesia-performed-off-earth"
+name = "A major operation under anaesthesia is performed off Earth and the patient survives"
+factor = "B"
+kind = "world"
+description = """
+A settlement of thousands cannot evacuate every appendix. Nobody has been operated on off
+Earth; medical care there stops at what a crew member with training can do with a kit, and
+serious cases come home. The first major operation under general or regional anaesthesia,
+performed off Earth with the patient surviving, is the point at which people can be sick out
+there the way people are sick anywhere, which a settlement, the Tier 2 bar, assumes."""
+resolution = """
+A surgical operation that opens a body cavity or otherwise requires general or regional
+anaesthesia is performed on a person at a site off Earth, and the patient survives to
+discharge or to return to Earth, confirmed by the operating agency or company or in a
+peer-reviewed report. Minor procedures under local anaesthetic do not count."""
+source = "The operating agency's or company's record, or the peer-reviewed case report"
+horizon = "mid"
+depends_on = []
+status = "open"
+probability = { baseline = 0.45, moderate = 0.55, strong = 0.7, radical = 0.88, open = 0.92 }
+estimated_on = 2026-09-20
+rationale = "Surgery happens when someone needs it and cannot be sent home, which takes a population in the hundreds at sites more than a few days from Earth; that is a Tier 1 world, so under even odds by 2071 and likely once a settlement exists. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, item 2 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a Tier 2 requirement (data/tiers.toml). No hard dependency is drawn: an emergency can force the first operation at an outpost before any other node resolves."

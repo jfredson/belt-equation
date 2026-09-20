@@ -70,9 +70,23 @@ HEADLINE_TIER = "A2"
 
 # Written onto every snapshot and kept there. Until the outside-model review (roadmap step 27)
 # has been ruled in full, every number the tree produces is a first pass and the site says so.
-# Change this to "reviewed" when the last of step 27's rulings lands: snapshots taken before
-# then keep the label they were written with, which is the point of writing it into the file.
-REVIEW_STATUS = "pre-review"
+# Changed to "reviewed" on 2026-09-20 when the last of step 27's rulings landed: snapshots taken
+# before then keep the label they were written with, which is the point of writing it into the file.
+REVIEW_STATUS = "reviewed"
+
+# The second number shown beside the headline (step 27, item 95, ruled 2026-09-19): A2 at Tier 1,
+# a rotation at a station or lunar base in a world that has an outpost but not yet a Belt. The
+# headline stays A2 at Tier 3, because a Belter means working rotations in a Belt that exists;
+# this is the plain-wording event a visitor may picture, reported beside it and never in its
+# place. Written as a joint over the outpost tier and the rotation-role node, so a play-through
+# counts when both held; the tier key is in the play-through's state like any node.
+SECOND_NUMBER_KEY = "a2_at_tier1"
+SECOND_NUMBER_NODES = ["T1", "A-in-a-role-whose-holders-rotate-off-earth"]
+
+
+def second_number_joint() -> dict[str, list[str]]:
+    """The joint the second number is computed from, in the form simulate() takes."""
+    return {SECOND_NUMBER_KEY: list(SECOND_NUMBER_NODES)}
 
 
 class TreeError(Exception):
@@ -1065,7 +1079,9 @@ def take_snapshot(tree: dict, runs: int, seed: int, world_spread: float, date: s
     keys = [s["key"] for s in tree["scenarios"]]
     gates = chain_gates(tree)
     rng = random.Random(seed)
-    results = {k: simulate(tree, k, runs, rng, world_spread=world_spread, joint=gates) for k in keys}
+    joint = dict(gates)
+    joint.update(second_number_joint())
+    results = {k: simulate(tree, k, runs, rng, world_spread=world_spread, joint=joint) for k in keys}
 
     def per_scenario(pick):
         return {k: pick(results[k]) for k in keys}
@@ -1089,6 +1105,7 @@ def take_snapshot(tree: dict, runs: int, seed: int, world_spread: float, date: s
         "nodes": {n["id"]: per_scenario(lambda r, nid=n["id"]: r["nodes"][nid]) for n in tree["nodes"]},
         "chain": {f: per_scenario(lambda r, f=f: r["joint"][f]) for f in gates},
         "chain_nodes": gates,
+        "second": {SECOND_NUMBER_KEY: per_scenario(lambda r: r["joint"][SECOND_NUMBER_KEY])},
         "contact": {n["id"]: per_scenario(lambda r, nid=n["id"]: r["nodes"][nid])
                     for n in tree["nodes"] if n["factor"] == "C"},
         "decisions": decision_comparison(tree, runs, seed, world_spread),

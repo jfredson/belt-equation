@@ -16,15 +16,21 @@ the first lifespan trial of an aging drug in a large mammal living in ordinary c
 its result is due within a few years. A positive result is the single strongest near-term
 signal that mouse longevity results carry over to animals like us."""
 resolution = """
-The trial's primary lifespan analysis, published in a peer-reviewed journal, reports a
-statistically significant increase in lifespan for the rapamycin group over placebo."""
-source = "The Dog Aging Project's published TRIAD results"
+The primary lifespan analysis of the TRIAD trial, or of an equivalent placebo-controlled
+lifespan trial of rapamycin in hundreds of companion dogs, published in a peer-reviewed
+journal, reports a statistically significant increase in lifespan for the rapamycin group
+over placebo."""
+source = "The Dog Aging Project's published TRIAD results, or the equivalent trial's primary publication"
 horizon = "leaf"
 depends_on = []
 status = "open"
 probability = { baseline = 0.45, moderate = 0.45, strong = 0.45, radical = 0.45, open = 0.45 }
 estimated_on = 2026-09-08
-rationale = "One trial, one readout around 2031: the mouse evidence is strong and a dog pilot showed heart benefits, but lifespan trials fail more often than they succeed, so a little under even; the same in every scenario because the window does not change when the trial reports."
+rationale = "One trial, one readout around 2031: the mouse evidence is strong and a dog pilot showed heart benefits, but lifespan trials fail more often than they succeed, so a little under even; the same in every scenario because the window does not change when the trial reports. Held at 0.45 on 2026-09-19 (step 27, item 9): the funding lapse that worried one reviewer is over, and the criterion now names a class of trial rather than one project."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "the TRIAD trial's primary lifespan analysis only", new = "the TRIAD trial or an equivalent placebo-controlled lifespan trial in hundreds of companion dogs", why = "Step 27 outside-model review, item 4 (docs/reviews/2026-09-19-rulings.md): the node is about the result, not the project, so one project's funding cannot doom it. Ruled by John 2026-09-19." },
+]
+notes = "Step 27, item 31 (2026-09-19), recorded as a note with no node change: a positive dog trial is evidence, not a prerequisite, for human success, so this node has no dependents; with item 4 the node names a class of trial, so a single failed readout no longer resolves it no. The same caution applies to the new dependency under item 1 (the biological-measure endpoint node)."
 
 [[node]]
 id = "W-regulator-accepts-aging-as-an-indication"
@@ -39,17 +45,22 @@ diseases as its primary endpoint, which is the precedent; what does not yet exis
 saying a drug can be approved, and labelled, for slowing aging. That is what changes what gets
 funded and trialed."""
 resolution = """
-The US Food and Drug Administration or the European Medicines Agency publishes guidance
-stating that slowing aging, extending healthy lifespan, or delaying a composite of age-related
-diseases is an indication for which a drug can be approved and labelled. Accepting such a
-composite as a trial endpoint, which the US regulator did in 2015, does not count."""
-source = "The regulator's own published guidance"
+The US Food and Drug Administration or the European Medicines Agency establishes that slowing
+aging, extending healthy lifespan, or delaying a composite of age-related diseases is an
+indication for which a drug can be approved and labelled, by any of: final published guidance
+saying so; a published regulatory decision that establishes an approval pathway for it; or an
+actual approval whose label names that indication. Accepting such a composite as a trial
+endpoint, which the US regulator did in 2015, does not count."""
+source = "The regulator's own published guidance, pathway decision, or approval record"
 horizon = "leaf"
 depends_on = []
 status = "open"
 probability = { baseline = 0.55, moderate = 0.6, strong = 0.7, radical = 0.85, open = 0.9 }
 estimated_on = 2026-09-08
 rationale = "The 2015 composite-endpoint precedent and a growing field make guidance within forty-five years somewhat more likely than not; every added decade of trials and lobbying raises it."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "the regulator must publish guidance naming the indication", new = "any of final guidance, a published pathway decision, or an approval whose label names the indication", why = "Step 27 outside-model review, item 35 (docs/reviews/2026-09-19-rulings.md): requiring a particular guidance document measured administrative form, and a first approval without prior guidance would have resolved this node's child while it stayed open. Ruled by John 2026-09-19." },
+]
 notes = "Checked 2026-09-08 against the trial's own design papers and the National Institute on Aging's page on regulator review of aging-related applications: the regulator approved the trial's composite design and the trial 'holds the potential' to lead to aging being considered an indication, which confirms that no approvable indication exists yet."
 
 [[node]]
@@ -63,10 +74,11 @@ delay the arrival of heart disease, cancer, dementia, and death taken together i
 A positive result is the first proof in humans that aging can be slowed as a whole rather than
 one disease at a time."""
 resolution = """
-A randomized, placebo-controlled trial of at least a thousand older adults reports a
-statistically significant delay in a combined measure, fixed before the trial began, of
-several age-related diseases or death (a pre-registered composite endpoint), published in
-a peer-reviewed journal."""
+A randomized, placebo-controlled trial of at least a thousand adults aged sixty-five or over
+reports a statistically significant delay in its primary combined measure, fixed before the
+trial began, of several age-related diseases or death (a pre-registered composite endpoint),
+where the composite spans at least two organ systems (for example heart disease, cancer,
+dementia), published in a peer-reviewed journal."""
 source = "The trial's peer-reviewed primary publication and its pre-registration record"
 horizon = "mid"
 depends_on = []
@@ -74,6 +86,9 @@ status = "open"
 probability = { baseline = 0.7, moderate = 0.75, strong = 0.8, radical = 0.9, open = 0.9 }
 estimated_on = 2026-09-08
 rationale = "The metformin trial alone is perhaps two in five to report positive around 2031, but a dozen other composite trials over the following decades make at least one success likely."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "any pre-registered composite of several age-related diseases or death, in older adults", new = "the pre-registered primary composite must span at least two organ systems, in adults aged sixty-five or over", why = "Step 27 outside-model review, item 30 (docs/reviews/2026-09-19-rulings.md): a purely cardiovascular composite could improve because one disease improved; the metformin trial, the node's own example, still qualifies. Ruled by John 2026-09-19." },
+]
 notes = "Checked twice on 2026-09-08: no primary results publication for the Targeting Aging with Metformin trial (about 3,000 adults aged 65 to 79, four years, composite of heart disease, cancer, dementia, and death) was found in journal, registry, or sponsor sources; aggregator sites claiming a positive result are unconfirmed. Stays open. Re-check at the first quarterly scan."
 
 [[node]]
@@ -113,20 +128,24 @@ name = "The first drug is approved whose purpose is to slow aging, not to treat 
 factor = "W"
 kind = "world"
 description = """
-The point where slowing aging becomes ordinary medicine that a doctor can prescribe. This is
-what moves the baseline scenario toward the moderate one for everyone, not only trial
-participants."""
+The point at which slowing aging becomes prescribable medicine: a treatment a doctor can
+give for aging itself rather than for one disease. How far it moves the window is a question
+for the scenario weights, not for this node."""
 resolution = """
 The US Food and Drug Administration or the European Medicines Agency approves a treatment
 whose labeled indication is slowing aging, extending healthy lifespan, or delaying a composite
 of age-related diseases."""
 source = "The regulator's approval record and the product label"
 horizon = "mid"
-depends_on = ["W-regulator-accepts-aging-as-an-indication"]
+depends_on = ["W-regulator-accepts-aging-as-an-indication", "W-regulator-accepts-a-biological-measure-of-aging-as-a-trial-endpoint"]
 status = "open"
 probability = { baseline = 0.6, moderate = 0.65, strong = 0.75, radical = 0.9, open = 0.92 }
 estimated_on = 2026-09-08
 rationale = "Given a regulator has opened the door, a first approval follows within a decade or two more often than not; the gap to certainty is trials that fail on safety in the old."
+revisions = [
+  { date = 2026-09-19, field = "description", old = "said the approval is what moves the baseline scenario toward the moderate one for everyone", new = "the point at which slowing aging becomes prescribable medicine; how far it moves the window is a question for the scenario weights", why = "Step 27 outside-model review, item 32 (docs/reviews/2026-09-19-rulings.md): an approved label does not establish broad access or a lifespan gain. Description only; no criterion or number change. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "depends_on", old = "W-regulator-accepts-aging-as-an-indication", new = "W-regulator-accepts-aging-as-an-indication, W-regulator-accepts-a-biological-measure-of-aging-as-a-trial-endpoint", why = "Step 27 outside-model review, item 1 (docs/reviews/2026-09-19-rulings.md): a regulator accepting a biological measure of aging as a primary endpoint is the rung that shortens trials from decades to years, and gates this node beside the indication node. Ruled by John 2026-09-19." },
+]
 notes = "Almost certainly also depends on a positive composite trial; whether that is a hard dependency is for step 7."
 
 [[node]]
@@ -137,19 +156,27 @@ kind = "world"
 description = """
 The result that would make the moderate scenario (a window around 2080) the expected case
 rather than a hope: a therapy that reduces all-cause mortality in people over sixty-five by a
-quarter or more over the trial period. Nothing yet approved comes close; statins and blood
-pressure drugs move single causes of death by smaller amounts."""
+quarter or more over the trial period. Nothing approved has shown this over five years in the
+general older population; statins and blood pressure drugs move deaths by smaller amounts or
+over shorter follow-up (a blood-pressure trial in the over-80s cut all-cause mortality by a
+fifth over a median of under two years)."""
 resolution = """
-A randomized, placebo-controlled trial in adults aged sixty-five or over, followed for at least
-five years, reports that deaths from any cause fell by twenty-five percent or more in the
-treated group, published in a peer-reviewed journal and not later retracted."""
+A randomized, placebo-controlled trial in adults aged sixty-five or over, not restricted to
+people with one named disease, followed for at least five years, reports a statistically
+significant fall of twenty-five percent or more in deaths from any cause in the treated group,
+published in a peer-reviewed journal and not later retracted."""
 source = "The trial's peer-reviewed primary publication"
 horizon = "root"
 depends_on = []
 status = "open"
-probability = { baseline = 0.2, moderate = 0.25, strong = 0.35, radical = 0.6, open = 0.7 }
-estimated_on = 2026-09-08
-rationale = "A quarter off all deaths in the over-65s is beyond anything approved; one in five by 2071 reflects that reprogramming and combination therapies are real but unproven in humans."
+probability = { baseline = 0.25, moderate = 0.3, strong = 0.45, radical = 0.75, open = 0.92 }
+estimated_on = 2026-09-19
+rationale = "A quarter off all deaths in the general over-65 population over five years is beyond anything approved; one in four by 2071 reflects that reprogramming and combination therapies are real but unproven in humans, and the no-deadline column is a does-it-ever-happen question, which both outside reviewers put far higher than the first estimate."
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "no requirement that the result be statistically significant, and no restriction on who is enrolled", new = "statistically significant, in a population not restricted to people with one named disease", why = "Step 27 outside-model review, item 33 (docs/reviews/2026-09-19-rulings.md): as written a trial in a single high-risk disease group would have counted. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "nothing yet approved comes close", new = "nothing approved has shown this over five years in the general older population, with the HYVET result noted", why = "Step 27 outside-model review, item 33: HYVET cut all-cause mortality 21 percent in people over 80 over a median of 1.8 years, so the earlier sentence overstated. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.20 / 0.25 / 0.35 / 0.60 / 0.70", new = "0.25 / 0.30 / 0.45 / 0.75 / 0.92", why = "Step 27 outside-model review, items 8 and 34 (docs/reviews/2026-09-19-rulings.md): both reviewers said the long windows were too low; priced for the item 33 wording. Ruled by John 2026-09-19." },
+]
 
 [[node]]
 id = "W-verified-human-lifespan-passes-122"
@@ -158,29 +185,65 @@ factor = "W"
 kind = "world"
 description = """
 Jeanne Calment's 122 years has stood since 1997 and no verified case has come within three
-years of it since, which is the strongest evidence that current medicine moves average
-lifespan but not maximum lifespan. A verified case beyond it is the first sign that the ceiling
-has moved, which is what the strong and open scenarios need."""
+years of it since. A verified case beyond it is a demographic milestone: the first sign that
+maximum human lifespan is moving, whatever moves it. Demographers expect the record to fall
+this century on numbers alone, because far more people now reach 110 each decade and each of
+them gets the same run of coin flips; a therapy that lowers late-life mortality would bring
+it sooner and take it further. The node marks the ceiling moving, not what moved it."""
 resolution = """
 A person's age at death, or current age while living, exceeds 122 years and 164 days, verified
-by the Gerontology Research Group or an equivalent body with documentary evidence of birth."""
+by the Gerontology Research Group or an equivalent body with continuous documentary evidence
+of identity from birth."""
 source = "Gerontology Research Group validated supercentenarian records"
 horizon = "root"
 depends_on = []
 status = "open"
-probability = { baseline = 0.05, moderate = 0.08, strong = 0.15, radical = 0.45, open = 0.6 }
-estimated_on = 2026-09-08
-rationale = "The record has stood since 1997 and late-life mortality has not moved; passing it needs a therapy that lowers that rate, so near-impossible by 2071 and better than a coin flip only in the 150-year scenario."
-notes = "Checked 2026-09-08: the record is 122 years and 164 days (1997); the second-longest verified life is 119 years and 107 days (2022), just over three years short, and the third is 119 years and 97 days (1999)."
-long_shot = true
+probability = { baseline = 0.3, moderate = 0.4, strong = 0.6, radical = 0.85, open = 0.92 }
+estimated_on = 2026-09-19
+rationale = "The record needs one run of a dozen coin flips past 110 among a fast-growing number of people who get there; demographers put the record falling by 2100 as near-certain on numbers alone, but it has stood twenty-nine years, the next-best case is three years short, and some analyses find mortality still rising past 110, so well short of that. Feeds no tier."
+notes = "Checked 2026-09-08: the record is 122 years and 164 days (1997); the second-longest verified life is 119 years and 107 days (2022), just over three years short, and the third is 119 years and 97 days (1999). Step 27, item 37 (2026-09-19): Pearce and Raftery (Demographic Research, 2021) give a greater than 99 percent probability that the record is broken by 2100 with no rejuvenation breakthrough; abstract fetched 2026-09-19."
 mechanism = """
 Someone born around 1905 to 1930 who has already reached 110 benefits from late-life medicine
 that did not exist for Calment (better cardiac, infection, and fall care), and survives the
-last few years at a mortality rate that today runs near fifty percent a year. Later, a person
-who received an approved aging therapy in their sixties or seventies carries a slower rate of
-decline into their hundreds."""
+last few years at a mortality rate that today runs near fifty percent a year, one of thousands
+who get the same chance each decade. Later, a person who received an approved aging therapy in
+their sixties or seventies carries a slower rate of decline into their hundreds."""
 breaking_point = """
-Annual mortality past 110 appears to plateau near fifty percent, so each further year is a coin
-flip and 122 needs a run of a dozen heads; the record has not moved in almost thirty years
-despite far more people reaching 100. Passing it by more than a year or two requires that some
-intervention lower the late-life mortality rate itself, which nothing tested in humans has done."""
+Nothing in physics or biology has to give way for the record to fall: annual mortality past
+110 runs near fifty percent, so 122 needs a run of a dozen heads, and the number of people
+flipping grows every decade. What would have to change for the record to move by more than a
+year or two at a time is the late-life mortality rate itself, which nothing tested in humans
+has lowered."""
+revisions = [
+  { date = 2026-09-19, field = "resolution", old = "documentary evidence of birth", new = "continuous documentary evidence of identity from birth", why = "Step 27 outside-model review, item 36 (docs/reviews/2026-09-19-rulings.md): identity continuity, not only a birth record, is what the validating bodies test. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "description", old = "passing the record was presented as proof that a therapy had raised the biological ceiling", new = "the node is the first sign that maximum lifespan is moving, whatever moves it; description, rationale and breaking point rewritten", why = "Step 27 outside-model review, item 36: a record break does not show that medicine raised a biological ceiling. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "long_shot", old = "true", new = "dropped", why = "Step 27 outside-model review, item 37 (docs/reviews/2026-09-19-rulings.md): on the demographics the record falling needs no breakthrough, so the node is not 99 percent dreaming. Ruled by John 2026-09-19." },
+  { date = 2026-09-19, field = "probability", old = "0.05 / 0.08 / 0.15 / 0.45 / 0.60", new = "0.30 / 0.40 / 0.60 / 0.85 / 0.92", why = "Step 27 outside-model review, item 37: the first rationale reasoned from a fifty percent mortality plateau alone and missed that the number of people reaching 110 is growing fast (Pearce and Raftery 2021, verified); moved partway toward the reviewer. Ruled by John 2026-09-19." },
+]
+
+[[node]]
+id = "W-regulator-accepts-a-biological-measure-of-aging-as-a-trial-endpoint"
+name = "A drug regulator accepts a biological measure of aging as a trial's primary endpoint"
+factor = "W"
+kind = "world"
+description = """
+Trials of aging drugs today have to wait for disease or death, which takes decades and is why
+nobody runs them. A regulator accepting a biological measure of aging (an epigenetic clock,
+say, a blood test that reads how old a person's cells behave) as the primary endpoint of a
+pivotal trial would shorten those trials from decades to years. It is a separate rung between
+the 2015 composite-endpoint precedent and an approvable indication, and it is what would make
+a first approved aging drug arrive inside a working lifetime rather than after one."""
+resolution = """
+The US Food and Drug Administration or the European Medicines Agency accepts, in published
+guidance, a qualified-biomarker decision, or the published design of a pivotal trial it has
+agreed to, a biological measure of aging (an epigenetic, proteomic, or equivalent molecular
+clock) as the primary endpoint on which a drug may be approved, in place of a clinical
+outcome such as disease onset or death."""
+source = "The regulator's published guidance, biomarker qualification record, or the agreed trial design on the public registry"
+horizon = "leaf"
+depends_on = []
+status = "open"
+probability = { baseline = 0.55, moderate = 0.6, strong = 0.7, radical = 0.85, open = 0.9 }
+estimated_on = 2026-09-20
+rationale = "Biomarker qualification programs exist and aging clocks are improving fast, but no clock is yet validated as a surrogate for outcomes and regulators are slow to accept surrogates that have not predicted a hard endpoint in a trial; priced at the indication node's level because the two rungs rise and fall together. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
+notes = "Added 2026-09-20 under step 27, item 1 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; gates W-first-drug-approved-to-slow-aging beside the indication node. The caution from item 31 applies: this is a rung toward approval, not a prerequisite for the death-rate trial or the lifespan record."
