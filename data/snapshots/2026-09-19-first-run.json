@@ -2,7 +2,7 @@
   "key": "2026-09-19-first-run",
   "date": "2026-09-19",
   "label": "first-run",
-  "note": "Roadmap step 10, the first run of the tree (docs/runs/2026-09-19-first-run.md), before John's four rulings of the same day. Nodes were rolled independently because the per-run world draw did not exist yet. Backfilled on 2026-09-19 at ledger step 28 by replaying the tree as it stood at commit af01ac5; every tier figure matches the run note.",
+  "note": "Roadmap step 10, the first run of the tree (docs/runs/2026-09-19-first-run.md), before John's four rulings of the same day. Nodes were rolled independently because the per-run world draw did not exist yet. Backfilled on 2026-09-19 at ledger step 28 by replaying the tree as it stood at commit af01ac5; every tier figure matches the run note. The table of what each step is worth was added at ledger step 29 the same day.",
   "review_status": "pre-review",
   "headline_tier": "A2",
   "run": {
@@ -660,6 +660,2142 @@
           }
         }
       ]
+    }
+  },
+  "worth": {
+    "headline": {
+      "baseline": 0.0,
+      "moderate": 0.0,
+      "strong": 0.0007,
+      "radical": 0.01155,
+      "open": 0.0222
+    },
+    "reaches_headline": [
+      "A-civilian-spaceflight-training-role-obtained",
+      "A-commercial-crew-survival-training-industry-exists",
+      "A-in-a-role-whose-holders-rotate-off-earth",
+      "A-military-role-with-off-earth-rotation-obtained",
+      "A-pipeline-graduation",
+      "A-reenlist-at-six-years",
+      "A-separate-at-six-years-into-civilian-space-work",
+      "A-working-in-or-for-the-off-earth-industry",
+      "B-closed-loop-life-support-year-off-earth",
+      "B-crewed-spin-gravity-demonstration",
+      "B-earth-gravity-habitat-occupied-for-a-year",
+      "B-human-child-born-off-earth",
+      "B-human-year-in-partial-gravity-without-disqualifying-harm",
+      "B-long-term-off-earth-living-by-some-route",
+      "B-mammal-born-and-weaned-in-partial-gravity",
+      "B-shielding-halves-deep-space-radiation-dose",
+      "D-crew-round-trip-to-mars",
+      "D-nuclear-propulsion-changes-orbit-in-space",
+      "D-nuclear-propulsion-in-routine-use",
+      "D-permanent-crewed-site-beyond-the-earth-moon-system",
+      "E-fission-reactor-runs-on-lunar-surface",
+      "L-crew-lands-on-moon-in-reusable-lander",
+      "L-fully-reusable-heavy-launcher-recovers-both-stages",
+      "L-heavy-launcher-100-per-year",
+      "L-large-structure-assembled-in-orbit",
+      "L-launch-price-below-200-dollars-per-kg",
+      "L-lunar-material-delivered-to-orbit-at-scale",
+      "L-orbital-propellant-transfer-at-scale",
+      "M-hundred-people-working-off-earth-for-pay",
+      "M-off-earth-product-sold-at-a-profit",
+      "R-crewed-lunar-program-outlives-two-changes-of-president",
+      "R-off-earth-resource-rights-recognised-by-major-powers",
+      "R-space-funding-holds-through-a-recession"
+    ],
+    "nodes": {
+      "A-pipeline-graduation": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "A-commercial-crew-survival-training-industry-exists": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "A-military-survival-instructor-hired-into-spaceflight-training": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "A-orbital-seat-sold-under-one-million-dollars": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "A-civilian-spaceflight-training-role-obtained": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.0017,
+          "radical": 0.0203,
+          "open": 0.04485
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.001,
+          "radical": 0.00875,
+          "open": 0.02265
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "A-military-role-with-off-earth-rotation-obtained": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.0017,
+          "radical": 0.0203,
+          "open": 0.04485
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.001,
+          "radical": 0.00875,
+          "open": 0.02265
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "A-working-in-or-for-the-off-earth-industry": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.0012,
+          "radical": 0.0185,
+          "open": 0.04355
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.0005,
+          "radical": 0.00695,
+          "open": 0.02135
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "A-in-a-role-whose-holders-rotate-off-earth": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 5e-05,
+          "moderate": 0.0001,
+          "strong": 0.0025,
+          "radical": 0.02675,
+          "open": 0.0552
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 5e-05,
+          "moderate": 0.0001,
+          "strong": 0.0018,
+          "radical": 0.0152,
+          "open": 0.033
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "A-first-spaceflight": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "A-tree-maintains-itself-with-human-approval-only": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "A-technical-publication-produced-with-ai-collaborators": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "B-mammal-born-and-weaned-in-partial-gravity": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00095,
+          "radical": 0.0117,
+          "open": 0.02425
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00025,
+          "radical": 0.00015,
+          "open": 0.00205
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "B-human-year-in-partial-gravity-without-disqualifying-harm": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0014,
+          "radical": 0.01575,
+          "open": 0.03345
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0007,
+          "radical": 0.0042,
+          "open": 0.01125
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "B-human-child-born-off-earth": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0029,
+          "radical": 0.02305,
+          "open": 0.03935
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0022,
+          "radical": 0.0115,
+          "open": 0.01715
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "B-crewed-spin-gravity-demonstration": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.0118,
+          "open": 0.0212
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0004,
+          "radical": 0.0089,
+          "open": 0.0233
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.00025,
+          "open": -0.001
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": -0.0003,
+          "radical": -0.00265,
+          "open": 0.0011
+        }
+      },
+      "B-earth-gravity-habitat-occupied-for-a-year": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.00105,
+          "radical": 0.01095,
+          "open": 0.0238
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01075,
+          "open": 0.02235
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.00035,
+          "radical": -0.0006,
+          "open": 0.0016
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": -0.0008,
+          "open": 0.00015
+        }
+      },
+      "B-long-term-off-earth-living-by-some-route": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.00065,
+          "radical": 0.0106,
+          "open": 0.02295
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": -5e-05,
+          "radical": -0.00095,
+          "open": 0.00075
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "B-shielding-halves-deep-space-radiation-dose": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.00085,
+          "radical": 0.01345,
+          "open": 0.02595
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.00015,
+          "radical": 0.0019,
+          "open": 0.00375
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "B-closed-loop-life-support-year-off-earth": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0011,
+          "radical": 0.01165,
+          "open": 0.0256
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0004,
+          "radical": 0.0001,
+          "open": 0.0034
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "B-radiation-resistance-treatment-for-humans": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "C1": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "C2": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "C3": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "C4": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "D-nuclear-propulsion-changes-orbit-in-space": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00105,
+          "radical": 0.01025,
+          "open": 0.0227
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00035,
+          "radical": -0.0013,
+          "open": 0.0005
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "D-nuclear-propulsion-in-routine-use": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00095,
+          "radical": 0.01445,
+          "open": 0.025
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00025,
+          "radical": 0.0029,
+          "open": 0.0028
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "D-crew-round-trip-to-mars": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0009,
+          "radical": 0.01155,
+          "open": 0.0236
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0002,
+          "radical": 0.0,
+          "open": 0.0014
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "D-constant-acceleration-drive-demonstrated": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "D-permanent-crewed-site-beyond-the-earth-moon-system": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0009,
+          "radical": 0.0135,
+          "open": 0.0255
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0002,
+          "radical": 0.00195,
+          "open": 0.0033
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "E-megawatt-spacecraft-operates-in-orbit": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "E-fission-reactor-runs-on-lunar-surface": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01085,
+          "open": 0.02235
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": -0.0007,
+          "open": 0.00015
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "E-superconducting-wire-price-falls-tenfold": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "E-fusion-plant-delivers-net-electricity": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "L-heavy-launcher-100-per-year": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0011,
+          "radical": 0.0121,
+          "open": 0.0241
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0004,
+          "radical": 0.00055,
+          "open": 0.0019
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "L-fully-reusable-heavy-launcher-recovers-both-stages": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00085,
+          "radical": 0.011,
+          "open": 0.02375
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00015,
+          "radical": -0.00055,
+          "open": 0.00155
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "L-orbital-propellant-transfer-at-scale": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0006,
+          "radical": 0.0111,
+          "open": 0.02265
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": -0.0001,
+          "radical": -0.00045,
+          "open": 0.00045
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "L-crew-lands-on-moon-in-reusable-lander": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00065,
+          "radical": 0.01135,
+          "open": 0.02375
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -5e-05,
+          "radical": -0.0002,
+          "open": 0.00155
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "L-launch-price-below-200-dollars-per-kg": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00115,
+          "radical": 0.01155,
+          "open": 0.02425
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00045,
+          "radical": 0.0,
+          "open": 0.00205
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "L-large-structure-assembled-in-orbit": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00055,
+          "radical": 0.01045,
+          "open": 0.02245
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0006,
+          "radical": 0.0093,
+          "open": 0.0221
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.00015,
+          "radical": -0.0011,
+          "open": 0.00025
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0001,
+          "radical": -0.00225,
+          "open": -0.0001
+        }
+      },
+      "L-lunar-material-delivered-to-orbit-at-scale": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.0122,
+          "open": 0.0268
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.00065,
+          "open": 0.0046
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "M-paying-customer-for-work-done-in-orbit": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "M-hundred-people-working-off-earth-for-pay": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.00145,
+          "radical": 0.02135,
+          "open": 0.04355
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0001,
+          "strong": 0.00075,
+          "radical": 0.0098,
+          "open": 0.02135
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "M-off-earth-product-sold-at-a-profit": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.00075,
+          "radical": 0.01275,
+          "open": 0.0239
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 5e-05,
+          "radical": 0.0012,
+          "open": 0.0017
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "R-crewed-lunar-program-outlives-two-changes-of-president": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0009,
+          "radical": 0.01575,
+          "open": 0.03715
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0002,
+          "radical": 0.0042,
+          "open": 0.01495
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "R-space-funding-holds-through-a-recession": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0011,
+          "radical": 0.0168,
+          "open": 0.0401
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0004,
+          "radical": 0.00525,
+          "open": 0.0179
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "R-binding-ban-on-debris-creating-anti-satellite-tests": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "R-off-earth-resource-rights-recognised-by-major-powers": {
+        "reaches_headline": true,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.001,
+          "radical": 0.0132,
+          "open": 0.02405
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 5e-05,
+          "strong": 0.0003,
+          "radical": 0.00165,
+          "open": 0.00185
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": -0.0007,
+          "radical": -0.01155,
+          "open": -0.0222
+        }
+      },
+      "R-off-earth-site-accepts-permanent-residents": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "W-dog-rapamycin-trial-reports-longer-life": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "W-regulator-accepts-aging-as-an-indication": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "W-composite-aging-trial-positive-in-humans": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "W-first-drug-approved-to-slow-aging": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "W-human-therapy-cuts-death-rate-in-older-adults": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      },
+      "W-verified-human-lifespan-passes-122": {
+        "reaches_headline": false,
+        "headline": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "headline_if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0007,
+          "radical": 0.01155,
+          "open": 0.0222
+        },
+        "if_yes": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        },
+        "if_no": {
+          "baseline": 0.0,
+          "moderate": 0.0,
+          "strong": 0.0,
+          "radical": 0.0,
+          "open": 0.0
+        }
+      }
     }
   }
 }
