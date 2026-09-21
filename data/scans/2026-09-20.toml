@@ -1,0 +1,109 @@
+[scan]
+date = 2026-09-20
+ran_at = "2026-09-21T01:07:05Z"
+scope = "weekly"
+nodes_checked = 17
+searches = 24
+commit_before = "3a8d3b0"
+
+[[item]]
+node = "B-mammal-born-and-weaned-in-partial-gravity"
+verdict = "quiet"
+queries = ["mammal born weaned partial gravity space experiment September 2026"]
+found = "No report of a full gestation-to-weaning cycle at partial gravity appeared in the window; the NASA-JAXA Joint Partial-gravity Rodent Research centrifuge study on the space station remains the closest ongoing effort but has not published results."
+
+[[item]]
+node = "B-crewed-spin-gravity-demonstration"
+verdict = "quiet"
+queries = ["crewed spin gravity demonstration spacecraft rotating module September 2026"]
+found = "No crewed spin-gravity flight occurred in the window; Vast's crewed artificial-gravity demonstration (Vast-2) remains planned for no earlier than 2027, unchanged since the 2026-09-19 scan."
+
+[[item]]
+node = "B-staple-crop-grown-from-seed-to-harvest-off-earth"
+verdict = "quiet"
+queries = ["staple crop grown harvest off Earth space station Moon September 2026"]
+found = "The only harvest news found, University of Texas chickpeas grown in simulated lunar regolith, is ground-based work from March 2026 that predates the window and does not meet the off-Earth-site requirement; nothing grown off Earth was reported."
+
+[[item]]
+node = "C1"
+verdict = "quiet"
+queries = ["AI mathematics proof beyond human peer-reviewed acknowledged September 2026", "OpenAI Navier-Stokes proof peer review priority dispute update", "Navier-Stokes OpenAI proof status September 19 20 2026"]
+found = "OpenAI's disputed Navier-Stokes manuscript, announced 2026-09-08, remains unresolved in the window: the Clay Mathematics Institute still lists the problem as unsolved and has not certified the claimed counterexample, and the priority dispute with mathematicians Tristan Buckmaster and Levent Alpoge continues unsettled. Nothing changed since the 2026-09-19 scan first noted this."
+
+[[item]]
+node = "E-megawatt-spacecraft-operates-in-orbit"
+verdict = "quiet"
+queries = ["spacecraft megawatt power orbit September 2026 news"]
+found = "No operator reported a spacecraft generating and using a megawatt of power in orbit in the window; the nearest project, NASA's Space Reactor-1 Freedom at just over 20 kilowatts, remains years from that scale and targets a December 2028 launch."
+
+[[item]]
+node = "E-megawatt-heat-rejected-for-thirty-days-in-vacuum"
+verdict = "quiet"
+queries = ["megawatt radiator heat rejection vacuum spacecraft test 2026"]
+found = "Nothing in the window reports a megawatt-scale radiator tested in vacuum for thirty days; NASA's modular assembled radiator work (MARVL) remains a design study addressing deployable area, not a flight test."
+
+[[item]]
+node = "L-heavy-launcher-100-per-year"
+verdict = "quiet"
+queries = ["Starship flight 14 launch date update September 2026"]
+found = "No orbital Starship flight has occurred; Flight 14, its first attempted orbital flight, remains targeted for 2026-09-28 after slipping from 2026-09-22. This is the same delay already reported in the 2026-09-19 scan; nothing new in the window."
+
+[[item]]
+node = "L-fully-reusable-heavy-launcher-recovers-both-stages"
+verdict = "quiet"
+queries = ["Starship booster catch ship recovery September 2026"]
+found = "Confirmed again in the window: Flight 14 on 2026-09-28 will not attempt a tower catch of either stage, splashing both down in the Gulf of Mexico instead, with the first ship-catch attempt pushed to the undated Flight 15. This matches the 2026-09-19 scan's finding; nothing changed."
+
+[[item]]
+node = "L-orbital-propellant-transfer-at-scale"
+verdict = "quiet"
+queries = ["Starship propellant transfer demonstration 2026 update schedule"]
+found = "The dedicated Starship-to-Starship propellant transfer demonstration remains scheduled for the fourth quarter of 2026 with no firm date; nothing new appeared in the window."
+
+[[item]]
+node = "L-crew-lands-on-moon-in-reusable-lander"
+verdict = "quiet"
+queries = ["Artemis III crewed lunar landing schedule news September 2026"]
+found = "No new lunar-landing news appeared in the window; Artemis III remains a redefined 2027 test mission, with the first crewed landing still planned for Artemis IV around 2028."
+
+[[item]]
+node = "L-cryogenic-propellant-stored-in-orbit-six-months-and-used"
+verdict = "quiet"
+queries = ["cryogenic propellant depot stored orbit six months boil-off 2026"]
+found = "No operator reported ten tonnes of cryogenic propellant held in orbit for six months and then burned; boil-off mitigation research and depot concepts remain at the design and short-duration-test stage."
+
+[[item]]
+node = "M-paying-customer-for-work-done-in-orbit"
+verdict = "quiet"
+queries = ["Varda Space Industries revenue customer orbital manufacturing September 2026"]
+found = "No new disclosure of 10 million dollars or more in a single year of orbital-work revenue appeared in the window; Varda's United Therapeutics partnership, its largest customer relationship, was signed in May 2026, before the window, and no revenue figure has been disclosed."
+
+[[item]]
+node = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
+verdict = "quiet"
+queries = ["space-based solar power beaming kilowatt demonstration ground receiver 2026", "JAXA OHISAMA satellite launch date power beaming demonstration Yokohama", "OHISAMA space solar power JAXA September 2026 kilowatt result", "\"OHISAMA\" launch September 2026"]
+found = "No kilowatt-scale orbit-to-ground power beam occurred in the window. One low-quality aggregator site claimed JAXA's OHISAMA had already demonstrated a transmission, but mid-September 2026 reporting confirms OHISAMA has not launched: it is slated to fly on Space One's KAIROS 5 rocket, whose first three flights all failed, most recently in March 2026. The uncorroborated claim is disregarded."
+
+[[item]]
+node = "M-commercial-insurance-written-on-a-private-lunar-asset"
+verdict = "quiet"
+queries = ["commercial insurance lunar asset premium million dollar 2026"]
+found = "No insurer or insured reported a lunar-asset policy in the window; industry coverage describes lunar programmes as a segment of the space insurance market where commercial cover still cannot be structured."
+
+[[item]]
+node = "W-dog-rapamycin-trial-reports-longer-life"
+verdict = "quiet"
+queries = ["Dog Aging Project TRIAD rapamycin trial results September 2026"]
+found = "The TRIAD trial remains in progress, with over 180 of a target 580 dogs enrolled and the first few having completed the three-year study period; no primary lifespan analysis has published, and the trial is slated to conclude in November 2029."
+
+[[item]]
+node = "W-regulator-accepts-aging-as-an-indication"
+verdict = "quiet"
+queries = ["FDA EMA aging indication guidance drug approval September 2026"]
+found = "No FDA or EMA guidance, pathway decision, or approval accepting aging or a composite of age-related diseases as an indication appeared in the window; only unrelated age-related-disease approvals, such as a wet macular degeneration drug in July 2026, were found."
+
+[[item]]
+node = "W-regulator-accepts-a-biological-measure-of-aging-as-a-trial-endpoint"
+verdict = "quiet"
+queries = ["FDA biomarker aging clock trial endpoint qualification 2026", "\"proteomic aging clocks\" phase 2a clinical trial Nature Biotechnology 2026 FDA endpoint"]
+found = "No FDA or EMA guidance or qualification accepting a biological aging clock as a primary trial endpoint appeared in the window. A 2026-09-07 Nature Biotechnology paper on six proteomic aging clocks in a rentosertib trial, which predates the window, treats them as exploratory measures and explicitly states none holds FDA Context-of-Use qualification."
