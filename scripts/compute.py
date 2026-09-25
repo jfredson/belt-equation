@@ -20,7 +20,8 @@ true comes true with its probability for that scenario; otherwise it stays false
 resolved in the real world are fixed at their outcome. Choice points are never sampled: each
 choice group is set to its current-plan option. A tier is reached when everything it requires
 came true. The number reported for a tier is the fraction of play-throughs that reached it.
-Contact Clause nodes are reported in their own section and never feed a tier.
+Contact Clause nodes are reported in their own section, as sibling branches (C4 under C3, C5
+under C2), and never feed a tier. They roll their own dice, so no rung can move a tier's rate.
 
 Nodes are not rolled independently. Each play-through first draws one number for how favourable
 the world turned out (the "world draw", added 2026-09-19 after the first run): a normal draw with
@@ -303,7 +304,44 @@ def validate(tree: dict) -> list[str]:
             problems.append(
                 f"choice group '{g}': exactly one option must have current_plan = true (found {len(plans)})"
             )
+
+    # Rule 10: the Contact Clause is never multiplied in. No tier requires a rung, and nothing outside
+    # the clause depends on one, so no rung can reach a tier at any remove. Added 2026-09-25 with C5.
+    contact_ids = {n.get("id") for n in nodes if n.get("factor") == "C"}
+    for t in tiers:
+        for r in sorted(set(t.get("requires", []) or []) & contact_ids):
+            problems.append(f"tiers.toml tier {t.get('key')}: requires Contact Clause rung {r}, "
+                            "which is published beside the equation and never multiplied into it")
+    for n in nodes:
+        if n.get("factor") == "C":
+            continue
+        parents = set(n.get("depends_on", []) or []) | {r for g in (n.get("depends_on_any", []) or []) for r in g}
+        for r in sorted(parents & contact_ids):
+            problems.append(f"{n['_file']} node {n.get('id')}: depends on Contact Clause rung {r}, "
+                            "which is published beside the equation and never multiplied into it")
     return problems
+
+
+def contact_branches(tree: dict) -> list[dict]:
+    """The Contact Clause as its branches: each top rung with the rungs beneath it, trunk first.
+
+    A top rung is one no other rung depends on. Since 2026-09-25 there are two, siblings of each
+    other: C4, communion with something not made by us, above C3; and C5, communion with a machine
+    mind, above C2 and C1. Worked out from the rungs' own dependencies rather than written down,
+    so a rung added later lands on its branch without anyone editing this."""
+    rungs = {n["id"]: n for n in tree["nodes"] if n["factor"] == "C"}
+    parents = {nid: [d for d in (n.get("depends_on", []) or []) if d in rungs] for nid, n in rungs.items()}
+    below = {d for ds in parents.values() for d in ds}
+
+    def chain(nid: str) -> list[str]:
+        """The rungs from the bottom of the branch up to this one."""
+        out: list[str] = []
+        for p in sorted(parents[nid]):
+            out += [x for x in chain(p) if x not in out]
+        return out + [nid]
+
+    return [{"top": top, "name": rungs[top]["name"], "rungs": chain(top)}
+            for top in sorted(rungs) if top not in below]
 
 
 def topological_order(nodes: list[dict]) -> list[dict]:
@@ -452,6 +490,12 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
     order = topological_order(tree["nodes"])
     tiers = tier_order(tree["tiers"])
     forced = forced or {}
+    # The Contact Clause rungs roll their own dice (2026-09-25, when C5 was added). Nothing in the
+    # equation depends on a rung (validate() refuses a tree where anything does), so with the rungs
+    # on a stream of their own, adding, cutting or re-estimating a rung leaves every tier rate
+    # exactly where it was, to the last digit. The stream is seeded from the main one's state
+    # without drawing from it, so a run is still fixed by its seed alone.
+    contact_rng = random.Random(f"contact:{rng.getstate()!r}")
     node_yes = defaultdict(int)
     tier_yes = defaultdict(int)
     joint = joint or {}
@@ -473,7 +517,8 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
                 deps_ok = all(state.get(d, False) for d in n.get("depends_on", []) or [])
                 any_ok = all(any(state.get(d, False) for d in g)
                              for g in n.get("depends_on_any", []) or [])
-                value = deps_ok and any_ok and rng.random() < shifted(n["probability"][scenario_key], w)
+                dice = contact_rng if n["factor"] == "C" else rng
+                value = deps_ok and any_ok and dice.random() < shifted(n["probability"][scenario_key], w)
                 if nid in forced:
                     value = forced[nid]
             state[nid] = value
@@ -853,13 +898,19 @@ def report_run(tree: dict, runs: int, seed: int, world_spread: float = 1.0) -> s
         lines.append("The same tiers with nodes rolled independently (world spread 0), for comparison:")
         for t in tree["tiers"]:
             lines.append(f"  {t['key']:<5} " + "".join(f"{indep[k]['tiers'][t['key']]:>10.3f}" for k in keys))
-    contact = [n for n in tree["nodes"] if n["factor"] == "C"]
-    if contact:
+    branches = contact_branches(tree)
+    if branches:
+        by_id = {n["id"]: n for n in tree["nodes"]}
         lines.append("")
-        lines.append("Contact Clause, beside the equation and never multiplied into it:")
-        for n in contact:
-            lines.append(f"  {n['id']:<6} " + "".join(f"{results[k]['nodes'][n['id']]:>10.3f}" for k in keys)
-                         + f"  {n['name']}")
+        lines.append("Contact Clause, beside the equation and never multiplied into it. "
+                     f"{len(branches)} sibling branch{'es' if len(branches) != 1 else ''}, each rung "
+                     "under the one it depends on:")
+        for b in branches:
+            lines.append(f"  Branch ending in {b['top']}:")
+            for depth, nid in enumerate(b["rungs"]):
+                label = f"{'  ' * depth}{nid}"
+                lines.append(f"    {label:<10} " + "".join(f"{results[k]['nodes'][nid]:>10.3f}" for k in keys)
+                             + f"  {by_id[nid]['name']}")
     lines.append("")
     lines.append("Every node, by scenario:")
     for n in topological_order(tree["nodes"]):
@@ -1454,6 +1505,7 @@ def take_snapshot(tree: dict, runs: int, seed: int, world_spread: float, date: s
         "second": {SECOND_NUMBER_KEY: per_scenario(lambda r: r["joint"][SECOND_NUMBER_KEY])},
         "contact": {n["id"]: per_scenario(lambda r, nid=n["id"]: r["nodes"][nid])
                     for n in tree["nodes"] if n["factor"] == "C"},
+        "contact_branches": contact_branches(tree),
         "decisions": decision_comparison(tree, runs, seed, world_spread),
         "worth": node_worth(tree, runs, seed, world_spread) if with_worth else None,
     }

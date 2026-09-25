@@ -117,6 +117,8 @@ export type Tree = {
     long_shots: number;
     choice_points: number;
   };
+  /** The Contact Clause as sibling branches, each rung with its depth under the one it depends on (2026-09-25). */
+  contact_branches: { top: string; name: string; rungs: { id: string; name: string; depth: number }[] }[];
   numbers: Numbers;
 };
 
