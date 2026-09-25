@@ -64,6 +64,7 @@ Added 2026-09-08 when John reversed the deferral of a standalone site. The full 
 24. The story page from TimeAssembler and the critique page (target 2026-11-09).
 25. Go live on the domain, to family and friends (waits on step 15; target 2026-11-16). DOMAIN ATTACHED EARLY, 2026-09-19: beltequation.com and www point at the site with the review-status line showing (off since 2026-09-20, when step 27 landed); the family-and-friends announcement (the rest of this step) still waits on step 15.
 26. One-command publish, so the quarterly scan ends with the site updated (ongoing).
+39. Run it for yourself: a page where a visitor puts in their own birth year, picks one of the five longevity scenarios and a route, and sees what the tree says for them rather than for John (target 2026-09-20). The plan and its three decisions are in belt-equation/docs/run-it-yourself-plan.md; the arithmetic is a new section of docs/methodology.md, "Running the tree for somebody else". Numbered 39 because 27 is the outside-model review above, 28 to 33 are the ledger plan and 34 to 38 the scan plan; the TimeAssembler task that called it "website step 27" was renamed. BUILT 2026-09-20 and waiting on John: the page is complete and its done condition holds on the built site, but the three decisions are his to accept or move, and it goes live when he merges the pull request. Nothing about the tree, the headline, the snapshots, the ledger or the Radar changed.
 
 ## Later, not now
 

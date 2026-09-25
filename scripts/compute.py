@@ -11,6 +11,7 @@ Plain Python, standard library only. Run from anywhere:
     python3 scripts/compute.py compare [--runs N]  the decision comparison, one choice group at a time
     python3 scripts/compute.py worth               what each open world node would be worth to the headline
     python3 scripts/compute.py attribute ENTRY     how much of a run's move came from one ledger entry
+    python3 scripts/compute.py reader --birth YEAR what the tree says for a reader born that year
     python3 scripts/compute.py --data DIR ...      use a different data folder (for tests)
 
 What "run" does: for each scenario, it plays the tree out many thousands of times. In each
@@ -42,6 +43,14 @@ tree out twice more per node, which takes several minutes; "--no-worth" leaves i
 go, and where would it go if it turned out no? "attribute" asks the question backwards, of one
 ledger entry: how much lower would the headline be if this one change had not been made?
 
+"reader" answers the same question for somebody who is not John (website step 39). The tree's
+numbers are estimated at John's five windows, which are his ages 85, 94, 109 and 150 and no
+deadline at all. A reader born in another year gets the same ages at different years, so every
+open node's number is read between the two neighbouring windows on the log-odds scale and the
+tree is played out at that deadline. It changes nothing: no stored probability, snapshot or
+headline moves. The reasoning and its limits are in docs/methodology.md under "Running the
+tree for somebody else", and the website reads a precomputed grid of these cells.
+
 The script refuses to report numbers until every open world node has a probability for every
 scenario, but "validate" and "shape" work on a tree with no numbers at all.
 """
@@ -67,6 +76,9 @@ HORIZONS = {"leaf", "mid", "root"}
 STATUSES = {"open", "resolved-yes", "resolved-no", "superseded"}
 REQUIRED = ["id", "name", "factor", "kind", "description", "resolution", "source", "horizon", "status"]
 HEADLINE_TIER = "A2"
+# Play-throughs per scenario when nothing says otherwise. The reader grid (website step 39)
+# uses fewer, because it plays the tree out once per deadline year on every build of the site.
+DEFAULT_RUNS = 20000
 
 # Written onto every snapshot and kept there. Until the outside-model review (roadmap step 27)
 # has been ruled in full, every number the tree produces is a first pass and the site says so.
@@ -481,6 +493,340 @@ def simulate(tree: dict, scenario_key: str, runs: int, rng: random.Random,
         "tiers": {t["key"]: tier_yes[t["key"]] / runs for t in tiers},
         "joint": {name: joint_yes[name] / runs for name in joint},
     }
+
+
+# ------------------------------------------- running the tree for somebody other than John
+
+# Website step 39, "Run it for yourself" (docs/run-it-yourself-plan.md, written 2026-09-20).
+# The tree's probabilities are estimated at five deadlines, John's own: 2071, 2080, 2095, 2136
+# and no deadline at all. Those are the ages 85, 94, 109 and 150 for a person born in January
+# 1986. A reader born in another year has the same five windows shifted by the difference in
+# birth years, and the tree has no numbers at those years. The functions below read a number
+# out of the tree for a deadline it was never asked about, and play the tree out at that
+# deadline. They estimate nothing new: they are a reading of the five points already estimated,
+# and the reasoning and its limits are in docs/methodology.md under "Running the tree for
+# somebody else". Nothing here writes to the tree, to a snapshot or to the headline.
+
+READER_BIRTH_YEAR = 1986           # the year John was born; the windows are ages from here
+READER_MIN_BIRTH_YEAR = 1940       # the bounds the page offers, and what the grid is sized for
+READER_MAX_BIRTH_YEAR = 2020
+READER_GRID_STEP = 5               # the grid holds every fifth year across the range below
+READER_RUNS = 5000                 # play-throughs per grid cell; coarser than a run of the tree
+READER_OPEN = "open"               # the window with no deadline at all
+
+# Beyond the last named window (2136) the tree has only the no-deadline number to move toward.
+# Each further span of this many years closes half the distance left to it, so the curve
+# approaches the no-deadline number and never passes it. The span is 41 years because that is
+# the gap between the last two named windows, 2095 and 2136; taking the tree's own last step
+# is less arbitrary than picking a round number.
+READER_TAIL_HALF_LIFE = 41
+
+# The three routes a reader can pick, each a list of world nodes that already exist in the tree,
+# plus at most one number the reader supplies. Nothing from John's own path is in any of them:
+# the pipeline, the six-year fork and the survival-instructor route are his, and a stranger's
+# odds must not run through them. Decision 2 of docs/run-it-yourself-plan.md explains each
+# choice of nodes and what it leaves out.
+READER_ROUTES = [
+    {
+        "key": "seat",
+        "name": "Buy a seat",
+        "blurb": "Save up and fly as a paying passenger.",
+        "world_nodes": ["A-orbital-seat-sold-under-one-million-dollars"],
+        "world_says": "A seat to orbit is sold to a private person for under a million dollars.",
+        "personal_asks": "Your own chance of affording that seat, and passing the medical, "
+                         "once seats sell at that price.",
+        "default_personal": 0.10,
+    },
+    {
+        "key": "rotation",
+        "name": "Work a rotation",
+        "blurb": "Hold a job whose holders are sent off Earth for months at a time.",
+        "world_nodes": [
+            "A-commercial-crew-survival-training-industry-exists",
+            "M-hundred-people-working-off-earth-for-pay",
+        ],
+        "world_says": "There is an industry selling services to spaceflight crews, and a "
+                      "hundred people are paid to work off Earth at the same time.",
+        "personal_asks": "Your own chance of getting one of those jobs, once the industry and "
+                         "the jobs exist.",
+        "default_personal": 0.10,
+    },
+    {
+        "key": "earth",
+        "name": "Contribute from Earth",
+        "blurb": "Work in or for the off-world industry without leaving the ground.",
+        "world_nodes": ["A-commercial-crew-survival-training-industry-exists"],
+        "world_says": "There is an industry selling services to spaceflight crews.",
+        "personal_asks": None,
+        "default_personal": None,
+    },
+]
+
+
+def reader_route(key: str) -> dict:
+    for r in READER_ROUTES:
+        if r["key"] == key:
+            return r
+    raise TreeError(f"no such route: {key}. The routes are: "
+                    + ", ".join(r["key"] for r in READER_ROUTES))
+
+
+def scenario_years(tree: dict) -> list[tuple[str, int]]:
+    """The named windows that have a year, in order. The no-deadline window is not one."""
+    return [(s["key"], s["window_year"]) for s in tree["scenarios"] if s.get("window_year")]
+
+
+def reader_deadline(tree: dict, scenario_key: str, birth_year: int) -> int | None:
+    """The year a reader's window closes under one of John's five longevity scenarios.
+
+    John's windows are ages: 2071 is his 85th year, 2080 his 94th, 2095 his 109th and 2136 his
+    150th. A reader born in another year gets the same ages, which is the same window shifted
+    by the difference in birth years. The no-deadline window has no year and returns None.
+    """
+    for key, year in scenario_years(tree):
+        if key == scenario_key:
+            return year + (birth_year - READER_BIRTH_YEAR)
+    if scenario_key == READER_OPEN:
+        return None
+    raise TreeError(f"no such longevity scenario: {scenario_key}")
+
+
+def deadline_probability(prob: dict[str, float], years: list[tuple[str, int]],
+                         open_key: str, year: int | None) -> float:
+    """One node's probability at a deadline the tree was never asked about.
+
+    Read on the log-odds scale, the same scale the world draw already works on, because a
+    number moving from 0.02 to 0.04 and one moving from 0.50 to 0.67 are the same size of move
+    there, and the tree's five points sit far more evenly on that scale than on the plain one.
+    Three cases:
+
+      * no deadline at all: the no-deadline number, unchanged.
+      * at or below the first window (2071 for John): the first window's number, unchanged. The
+        tree was never estimated for a shorter wait, so nothing is read downward from it. This
+        is a floor, and it is why the page says plainly that a deadline near or in the past is
+        the lowest the tree can see rather than a real answer for that year.
+      * in between, and beyond the last window: a straight line between the two neighbouring
+        windows' numbers, and past the last window a half-closing approach to the no-deadline
+        number (READER_TAIL_HALF_LIFE), which reaches it only in the limit and never passes it.
+
+    A node whose two neighbouring numbers are equal is returned unchanged, which also leaves
+    the nodes fixed at 0 or 1 exactly where they are.
+    """
+    if year is None:
+        return prob[open_key]
+    first_key, first_year = years[0]
+    if year <= first_year:
+        return prob[first_key]
+    for (lo_key, lo_year), (hi_key, hi_year) in zip(years, years[1:]):
+        if year <= hi_year:
+            frac = (year - lo_year) / (hi_year - lo_year)
+            return _between(prob[lo_key], prob[hi_key], frac)
+    last_key, last_year = years[-1]
+    frac = 1.0 - 2.0 ** (-(year - last_year) / READER_TAIL_HALF_LIFE)
+    return _between(prob[last_key], prob[open_key], frac)
+
+
+def _between(p_lo: float, p_hi: float, frac: float) -> float:
+    """Move `frac` of the way from one probability to another on the log-odds scale."""
+    if p_lo == p_hi:
+        return p_lo
+    eps = 1e-9
+    a = min(max(p_lo, eps), 1.0 - eps)
+    b = min(max(p_hi, eps), 1.0 - eps)
+    z_a = math.log(a / (1.0 - a))
+    z_b = math.log(b / (1.0 - b))
+    return 1.0 / (1.0 + math.exp(-(z_a + frac * (z_b - z_a))))
+
+
+READER_SCENARIO_KEY = "_reader"
+
+
+def tree_at_deadline(tree: dict, year: int | None) -> dict:
+    """A copy of the tree carrying one extra window: the reader's deadline.
+
+    Only the probability tables are new. Every node keeps its name, status, dependencies and
+    everything else, so a node already resolved stays resolved and a choice point is still
+    never rolled. Nothing is written back to the tree on disk.
+    """
+    years = scenario_years(tree)
+    if not years:
+        raise TreeError("the tree has no window with a year, so no deadline can be read from it")
+    nodes = []
+    for n in tree["nodes"]:
+        prob = n.get("probability")
+        if n["kind"] != "world" or n["status"] != "open" or not prob:
+            nodes.append(n)
+            continue
+        copy = dict(n)
+        copy["probability"] = dict(prob)
+        copy["probability"][READER_SCENARIO_KEY] = deadline_probability(
+            prob, years, READER_OPEN, year)
+        nodes.append(copy)
+    reader_tree = dict(tree)
+    reader_tree["nodes"] = nodes
+    return reader_tree
+
+
+def reader_grid_years(min_birth: int = READER_MIN_BIRTH_YEAR,
+                      max_birth: int = READER_MAX_BIRTH_YEAR,
+                      step: int = READER_GRID_STEP) -> list[int]:
+    """Every deadline year the grid holds: enough to cover the birth years the page offers.
+
+    The earliest deadline anybody in range can have is the first window shifted back by the
+    oldest reader, and the latest is the last window shifted forward by the youngest, so the
+    grid is sized from the tree rather than from a guess. Both ends are rounded outward to the
+    step, so every reader's deadline falls between two grid years and none falls off the end.
+    """
+    first = 2071 + (min_birth - READER_BIRTH_YEAR)
+    last = 2136 + (max_birth - READER_BIRTH_YEAR)
+    lo = (first // step) * step
+    hi = -(-last // step) * step
+    return list(range(lo, hi + 1, step))
+
+
+def reader_cell(tree: dict, year: int | None, runs: int = READER_RUNS, seed: int = 2026,
+                world_spread: float = 1.0) -> dict:
+    """Play the whole tree out at one deadline. One cell of the grid the website reads.
+
+    The rates reported are every tier (is there an outpost, a settlement, a Belt, a full
+    Expanse by this year) and, for each route, how often every one of its world nodes came true
+    in the same play-through. The route figure is the world's part of a reader's odds and
+    nothing else: the reader's own chance of taking the opportunity is a number they supply and
+    the page multiplies in separately, so the two are never mistaken for each other.
+    """
+    reader_tree = tree_at_deadline(tree, year)
+    joint = {f"route:{r['key']}": list(r["world_nodes"]) for r in READER_ROUTES}
+    rng = random.Random(seed)
+    result = simulate(reader_tree, READER_SCENARIO_KEY, runs, rng,
+                      world_spread=world_spread, joint=joint)
+    return {
+        "year": year,
+        "tiers": {t["key"]: result["tiers"][t["key"]] for t in tree["tiers"]},
+        "routes": {r["key"]: result["joint"][f"route:{r['key']}"] for r in READER_ROUTES},
+    }
+
+
+def reader_grid(tree: dict, runs: int = READER_RUNS, seed: int = 2026,
+                world_spread: float = 1.0) -> dict:
+    """The whole grid the website reads: one cell per five-year deadline, plus no deadline.
+
+    Every number on the "Run it for yourself" page comes from here, so Python stays the only
+    place a number is worked out (docs/website-plan.md, decision 3). The page reads in a
+    straight line between the two grid years either side of a reader's deadline, which is a
+    second and much smaller reading on top of the one deadline_probability() already made.
+    """
+    missing = missing_probabilities(tree)
+    if missing:
+        raise TreeError(
+            "cannot build the reader grid: these open world nodes have no probability for "
+            "every scenario:\n  " + "\n  ".join(missing))
+    years = reader_grid_years()
+    cells = [reader_cell(tree, y, runs, seed, world_spread) for y in years]
+    cells.append(reader_cell(tree, None, runs, seed, world_spread))
+    return {
+        "runs": runs,
+        "seed": seed,
+        "world_spread": world_spread,
+        "birth_year": READER_BIRTH_YEAR,
+        "min_birth_year": READER_MIN_BIRTH_YEAR,
+        "max_birth_year": READER_MAX_BIRTH_YEAR,
+        "step": READER_GRID_STEP,
+        "tail_half_life": READER_TAIL_HALF_LIFE,
+        "scenarios": [{"key": k, "window_year": y} for k, y in scenario_years(tree)]
+                     + [{"key": READER_OPEN, "window_year": None}],
+        "routes": [{k: r[k] for k in ("key", "name", "blurb", "world_nodes", "world_says",
+                                      "personal_asks", "default_personal")}
+                   for r in READER_ROUTES],
+        "tiers": [{"key": t["key"], "name": t["name"]} for t in tree["tiers"]],
+        "cells": cells,
+    }
+
+
+def grid_read(tree: dict, year: int | None, runs: int = READER_RUNS, seed: int = 2026,
+              world_spread: float = 1.0) -> dict:
+    """The figures the website shows: read between the two grid cells either side of a deadline.
+
+    The page cannot play the tree out, so it reads in a straight line between the two nearest
+    cells of the grid the export wrote. This does the same arithmetic here, so that `reader` can
+    print the figure a visitor actually sees beside the one the tree gives at that exact year.
+    Only the two cells that bracket the deadline are played out, not the whole grid.
+    """
+    years = reader_grid_years()
+    if year is None:
+        return reader_cell(tree, None, runs, seed, world_spread)
+    if year <= years[0]:
+        return reader_cell(tree, years[0], runs, seed, world_spread)
+    if year >= years[-1]:
+        return reader_cell(tree, years[-1], runs, seed, world_spread)
+    lo = max(y for y in years if y <= year)
+    if lo == year:
+        return reader_cell(tree, year, runs, seed, world_spread)
+    hi = lo + READER_GRID_STEP
+    a = reader_cell(tree, lo, runs, seed, world_spread)
+    b = reader_cell(tree, hi, runs, seed, world_spread)
+    frac = (year - lo) / (hi - lo)
+    mix = lambda x, y: x + frac * (y - x)  # noqa: E731
+    return {
+        "year": year,
+        "between": (lo, hi),
+        "tiers": {k: mix(a["tiers"][k], b["tiers"][k]) for k in a["tiers"]},
+        "routes": {k: mix(a["routes"][k], b["routes"][k]) for k in a["routes"]},
+    }
+
+
+def report_reader(tree: dict, birth_year: int, scenario_key: str, route_key: str | None,
+                  personal: float | None, runs: int, seed: int, world_spread: float) -> str:
+    """One cell, printed, so a figure on the page can be checked by hand against the tree.
+
+    Two columns, because they are two different questions and the page answers only one of
+    them. "The website" is what a visitor sees: the grid read between its two nearest
+    five-year steps. "This year exactly" is the tree played out at the reader's own deadline,
+    with no reading between steps at all. When the deadline lands on a five-year step the two
+    are the same number. Otherwise the gap between them is what the grid's coarseness costs,
+    and printing it is the only way to see it.
+    """
+    deadline = reader_deadline(tree, scenario_key, birth_year)
+    shown = grid_read(tree, deadline, runs, seed, world_spread)
+    exact = reader_cell(tree, deadline, runs, seed, world_spread)
+    if deadline is None:
+        when = "no deadline at all"
+    else:
+        when = f"{deadline}, when you would be {deadline - birth_year}"
+    lines = [f"Born {birth_year}, window \"{scenario_key}\": {when}.",
+             f"{runs} play-throughs (seed {seed}), world spread {world_spread:g}."]
+    between = shown.get("between")
+    if between:
+        lines.append(f"The website reads between its {between[0]} and {between[1]} steps; the "
+                     "second column plays the tree out at the year itself.")
+    else:
+        lines.append("The deadline lands on one of the website's own five-year steps, so the two "
+                     "columns are the same run.")
+    lines += ["", f"{'':<24}{'the website':>13}{'this year exactly':>19}",
+              "What the world looks like by then:"]
+    names = {t["key"]: t["name"] for t in tree["tiers"]}
+    for key in ("T1", "T2", "T3", "T4"):
+        if key in shown["tiers"]:
+            lines.append(f"  {key} {names[key]:<19}{shown['tiers'][key]:>13.4f}"
+                         f"{exact['tiers'][key]:>19.4f}")
+    lines.append("")
+    lines.append("The world's part of each route:")
+    for r in READER_ROUTES:
+        lines.append(f"  {r['name']:<22}{shown['routes'][r['key']]:>13.4f}"
+                     f"{exact['routes'][r['key']]:>19.4f}")
+    if route_key:
+        r = reader_route(route_key)
+        lines.append("")
+        lines.append(f"Route \"{r['name']}\": {r['world_says']}")
+        lines.append(f"  the world's part, from the tree{shown['routes'][route_key]:>8.4f}"
+                     f"{exact['routes'][route_key]:>19.4f}")
+        if r["personal_asks"] is None:
+            lines.append("  this route asks for no number of your own.")
+        else:
+            own = r["default_personal"] if personal is None else personal
+            lines.append(f"  your own part, your own guess {own:>9.4f}")
+            lines.append(f"  the two together              {shown['routes'][route_key] * own:>9.4f}"
+                         f"{exact['routes'][route_key] * own:>18.4f}")
+    return "\n".join(lines)
 
 
 def report_run(tree: dict, runs: int, seed: int, world_spread: float = 1.0) -> str:
@@ -1161,11 +1507,14 @@ def load_snapshots(folder: Path) -> list[dict]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", nargs="?", default="validate",
-                        choices=["validate", "shape", "run", "compare", "worth", "attribute"])
+                        choices=["validate", "shape", "run", "compare", "worth", "attribute",
+                                 "reader"])
     parser.add_argument("target", nargs="?", default=None,
                         help="with 'attribute': the ledger entry id, or a snapshot key for the whole run")
     parser.add_argument("--data", type=Path, default=Path(__file__).resolve().parent.parent / "data")
-    parser.add_argument("--runs", type=int, default=20000)
+    parser.add_argument("--runs", type=int, default=None,
+                        help=f"play-throughs per scenario; {DEFAULT_RUNS} for every command but "
+                             f"'reader', which defaults to the reader grid's own {READER_RUNS}")
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--world-spread", type=float, default=1.0,
                         help="standard deviation of the per-run world draw on the log-odds scale; 0 = independent rolls")
@@ -1189,7 +1538,24 @@ def main(argv: list[str] | None = None) -> int:
                              "what the website reads rather than working it out on every build")
     parser.add_argument("--no-worth", dest="with_worth", action="store_false",
                         help="leave the node worth table out of a snapshot; it is the slow part")
+    parser.add_argument("--birth", type=int, default=None, metavar="YEAR",
+                        help="with 'reader': the year the reader was born "
+                             f"({READER_MIN_BIRTH_YEAR} to {READER_MAX_BIRTH_YEAR})")
+    parser.add_argument("--scenario", default="baseline", metavar="KEY",
+                        help="with 'reader': which of the five longevity scenarios to shift "
+                             "onto the reader (baseline, moderate, strong, radical, open)")
+    parser.add_argument("--route", default=None, metavar="KEY",
+                        help="with 'reader': seat, rotation or earth; leave it out to see all three")
+    parser.add_argument("--personal", type=float, default=None, metavar="P",
+                        help="with 'reader' and '--route': the reader's own chance of taking the "
+                             "opportunity if the world provides it (default 0.1)")
     args = parser.parse_args(argv)
+    # The reader grid is played out fewer times per cell than a run of the tree, because it has
+    # thirty-one cells and runs on every build of the website. Asking for a cell by hand should
+    # print the same calculation the page's figures came out of, so 'reader' takes the grid's
+    # number of play-throughs unless --runs says otherwise.
+    runs = args.runs if args.runs is not None else (
+        READER_RUNS if args.command == "reader" else DEFAULT_RUNS)
 
     try:
         tree = load_tree(args.data)
@@ -1210,10 +1576,10 @@ def main(argv: list[str] | None = None) -> int:
             print(describe_shape(tree))
             return 0
         if args.command == "run":
-            print(report_run(tree, args.runs, args.seed, args.world_spread))
+            print(report_run(tree, runs, args.seed, args.world_spread))
             if args.snapshot is not None:
                 snapshot = take_snapshot(
-                    tree, args.runs, args.seed, args.world_spread,
+                    tree, runs, args.seed, args.world_spread,
                     date=args.snapshot_date or dt.date.today().isoformat(),
                     label=args.snapshot or None, note=args.snapshot_note,
                     commit=args.snapshot_commit, with_worth=args.with_worth,
@@ -1222,10 +1588,30 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"\nSnapshot {snapshot['key']} written to {path}, marked {snapshot['review_status']}.")
             return 0
         if args.command == "compare":
-            print(report_compare(tree, args.runs, args.seed, args.world_spread))
+            print(report_compare(tree, runs, args.seed, args.world_spread))
+            return 0
+        if args.command == "reader":
+            # One cell of the grid the "Run it for yourself" page reads (website step 39),
+            # printed so a figure on the page can be checked by hand. The default number of
+            # play-throughs is the grid's, not the 20,000 a full run uses, so that what is
+            # printed here is the same calculation the page's figures came out of.
+            if args.birth is None:
+                print("reader needs the year the reader was born, for example "
+                      "--birth 2000 --scenario baseline --route seat.")
+                return 1
+            if not READER_MIN_BIRTH_YEAR <= args.birth <= READER_MAX_BIRTH_YEAR:
+                print(f"reader takes a birth year between {READER_MIN_BIRTH_YEAR} and "
+                      f"{READER_MAX_BIRTH_YEAR}: outside that range the shifted windows fall "
+                      "off the grid the website is given.")
+                return 1
+            if args.personal is not None and not 0.0 <= args.personal <= 1.0:
+                print("--personal is a probability between 0 and 1.")
+                return 1
+            print(report_reader(tree, args.birth, args.scenario, args.route,
+                                args.personal, runs, args.seed, args.world_spread))
             return 0
         if args.command == "worth":
-            print(report_worth(tree, args.runs, args.seed, args.world_spread))
+            print(report_worth(tree, runs, args.seed, args.world_spread))
             return 0
         if args.command == "attribute":
             if not args.target:
@@ -1234,7 +1620,7 @@ def main(argv: list[str] | None = None) -> int:
                 return 1
             text, result = report_attribution(
                 tree, load_ledger(args.ledger), load_snapshots(args.snapshots),
-                args.target, args.runs, args.seed, args.world_spread)
+                args.target, runs, args.seed, args.world_spread)
             print(text)
             if args.write:
                 path = write_attribution(result, args.attribution)

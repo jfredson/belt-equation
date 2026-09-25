@@ -1,0 +1,364 @@
+---
+// "Run it for yourself" (website step 39, docs/run-it-yourself-plan.md, 2026-09-20).
+// A visitor puts in a birth year, picks one of the five longevity scenarios and a route, and
+// sees what the tree says for them: the world first, their own part second, the two together
+// last. Every figure comes from site/src/data/reader.json, which scripts/export.py writes by
+// playing the tree out once per five-year deadline. The script below does arithmetic on those
+// figures and nothing else: no probability is worked out in the browser, which is the rule
+// website-plan decision 3 sets. The page reads the tree and never writes to it.
+import Base from '../../layouts/Base.astro';
+import { reader, tree, percent } from '../../lib/tree';
+
+// The five windows, worded as the home page's dial words them, so a visitor who has used the
+// dial meets the same five choices here. The dial says what the year means for John; here the
+// note says what the assumption is, because the year is the reader's own.
+const WINDOWS: Record<string, { label: string; note: string }> = {
+  baseline: { label: '85', note: 'You live about as long as someone your age is expected to. No help from medicine beyond what is already coming.' },
+  moderate: { label: '94', note: 'Medicine adds about a decade to a life like yours.' },
+  strong: { label: '109', note: 'Strong life extension: the kind being seriously worked on, which has not arrived.' },
+  radical: { label: '150', note: 'A 150-year life. The long shot the whole project is built to keep in view.' },
+  open: { label: 'No limit', note: 'Aging solved outright. The odds stop depending on the calendar and depend only on whether it ever happens at all.' },
+};
+
+const SYSTEM_TIERS = ['T1', 'T2', 'T3', 'T4'];
+const tierName = (key: string) => tree.tiers.find((t) => t.key === key)?.name ?? key;
+const tierDefinition = (key: string) => tree.tiers.find((t) => t.key === key)?.definition ?? '';
+
+const DEFAULT_BIRTH = '';
+const DEFAULT_WINDOW = 'baseline';
+const DEFAULT_ROUTE = 'seat';
+---
+
+<Base
+  title="Run it for yourself — The Belt Equation"
+  description="Put in your own birth year, pick how long you expect to live and a route off Earth, and see what the Belt Equation's tree says for you rather than for its author."
+>
+  <section class="hero">
+    <p class="eyebrow">Run it for yourself</p>
+    <h1>The same tree, your deadline.</h1>
+    <p class="lede">
+      Every number on this site is worked out against one person's lifetime. Put in the year you were born and
+      the tree answers the same questions for yours: how likely each stage of a human solar system is to exist
+      before your time runs out, and what that leaves for you.
+    </p>
+  </section>
+
+  {!reader.available ? (
+    <section class="section narrow prose">
+      <p>This page waits on the tree's numbers. {reader.reason}</p>
+    </section>
+  ) : (
+    <section class="section narrow">
+      <div class="runner" id="runner">
+        <div class="run-inputs">
+          <div class="run-field">
+            <label class="dial-label" for="birth">What year were you born?</label>
+            <input
+              class="run-birth"
+              id="birth"
+              type="number"
+              inputmode="numeric"
+              min={reader.min_birth_year}
+              max={reader.max_birth_year}
+              step="1"
+              placeholder="1986"
+              value={DEFAULT_BIRTH}
+              aria-describedby="birth-help"
+            />
+            <p class="run-help" id="birth-help">
+              Any year from {reader.min_birth_year} to {reader.max_birth_year}.
+            </p>
+          </div>
+
+          <div class="run-field">
+            <span class="dial-label" id="window-label">How long do you expect to get?</span>
+            <div class="dial-row" role="group" aria-labelledby="window-label">
+              {reader.scenarios.map((s) => (
+                <button
+                  type="button"
+                  class={`dial-btn ${s.key === DEFAULT_WINDOW ? 'on' : ''}`}
+                  data-window={s.key}
+                  aria-pressed={s.key === DEFAULT_WINDOW ? 'true' : 'false'}
+                >
+                  {WINDOWS[s.key]?.label ?? s.key}
+                </button>
+              ))}
+            </div>
+            <p class="run-help" data-bind="windowNote">{WINDOWS[DEFAULT_WINDOW].note}</p>
+          </div>
+
+          <div class="run-field">
+            <span class="dial-label" id="route-label">How would you get out there?</span>
+            <div class="dial-row" role="group" aria-labelledby="route-label">
+              {reader.routes.map((r) => (
+                <button
+                  type="button"
+                  class={`dial-btn ${r.key === DEFAULT_ROUTE ? 'on' : ''}`}
+                  data-route={r.key}
+                  aria-pressed={r.key === DEFAULT_ROUTE ? 'true' : 'false'}
+                >
+                  {r.name}
+                </button>
+              ))}
+            </div>
+            <p class="run-help" data-bind="routeNote">{reader.routes[0].blurb}</p>
+          </div>
+        </div>
+
+        <p class="run-explain">
+          Here is what this page is doing. The tree's probabilities were estimated against five deadlines, which
+          are its author's own ages: 85, 94, 109, 150, and no deadline at all. Your five deadlines are the same
+          ages at different years, so each event's probability is read between the two nearest of his, and the
+          whole tree is played out at your year. It is a reading of estimates that already exist, not a new set
+          of estimates, and it is worth knowing where that reading is thin:
+          <a href="/method/#running-the-tree-for-somebody-else">how this is done, and what it cannot tell you</a>.
+          Nothing you type here is sent anywhere or stored; it never leaves the page.
+        </p>
+
+        <div class="run-out" data-bind-show="results" hidden>
+          <p class="run-deadline" data-bind="deadline"></p>
+          <p class="run-warn" data-bind-show="past" hidden>
+            That year has already gone. The tree was never estimated for a deadline earlier than its author's
+            own first window, so what follows is the lowest it can see rather than an answer about that year.
+          </p>
+
+          <div class="run-block">
+            <h2 class="run-h">First, the world</h2>
+            <p class="run-sub">
+              How likely each stage of a human solar system is to exist by then. This part has nothing to do with
+              you: it is the same tree, asked about your year.
+            </p>
+            <ul class="run-tiers">
+              {SYSTEM_TIERS.map((key) => (
+                <li>
+                  <span class="stat" data-tier={key}>—</span>
+                  <span class="stat-label"><strong>{tierName(key)}.</strong> {tierDefinition(key)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="run-block">
+            <h2 class="run-h">Then, your route</h2>
+            <p class="run-sub" data-bind="routeSays"></p>
+            <div class="run-parts">
+              <div class="run-part">
+                <span class="run-part-tag">The world's part, from the tree</span>
+                <span class="stat" data-bind="world">—</span>
+                <span class="stat-label" data-bind="worldSays"></span>
+              </div>
+              <div class="run-part run-part-yours" data-bind-show="personal" hidden>
+                <span class="run-part-tag">Your part, your own guess</span>
+                <span class="run-yours">
+                  <input
+                    class="run-personal"
+                    id="personal"
+                    type="number"
+                    inputmode="decimal"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value="10"
+                    aria-label="Your own chance, as a percentage"
+                  />
+                  <span class="run-pc">%</span>
+                </span>
+                <span class="stat-label" data-bind="personalAsks"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="run-block run-combined" data-bind-show="combined" hidden>
+            <p class="run-combined-label">The two together, for you</p>
+            <p class="run-combined-value" data-bind="combined">—</p>
+            <p class="run-combined-note">
+              This is the smallest and least reliable figure on the page, because most of it is a number you
+              typed. The tree does not know your money, your health, your work or your luck, so it does not
+              pretend to. Change the guess and watch what it is worth.
+            </p>
+          </div>
+
+          <p class="dim run-meta">
+            From the run of {reader.computed_on}, {reader.runs.toLocaleString()} play-throughs of the tree per
+            deadline, read between five-year steps. Check any figure here by hand:
+            <code class="mono" data-bind="command"></code>.
+            <span class="sep">|</span><a href="/method/#running-the-tree-for-somebody-else">How this is done</a>
+            <span class="sep">|</span><a href="/">John's own numbers</a>
+          </p>
+        </div>
+
+        <p class="run-empty" data-bind-show="empty">Put in the year you were born to see the numbers.</p>
+      </div>
+    </section>
+  )}
+
+  {reader.available && (
+    <>
+      <script type="application/json" id="reader-grid" set:html={JSON.stringify(reader)}></script>
+      <script
+        type="application/json"
+        id="reader-notes"
+        set:html={JSON.stringify({
+          windows: Object.fromEntries(reader.scenarios.map((s) => [s.key, WINDOWS[s.key]?.note ?? s.key])),
+          thisYear: new Date().getFullYear(),
+        })}
+      ></script>
+    </>
+  )}
+  <script is:inline>
+    (function () {
+      var el = document.getElementById('reader-grid');
+      if (!el) return;
+      var grid = JSON.parse(el.textContent || '{}');
+      var cells = {};
+      var years = [];
+      (grid.cells || []).forEach(function (c) {
+        if (c.year === null) cells.open = c;
+        else { cells[c.year] = c; years.push(c.year); }
+      });
+      years.sort(function (a, b) { return a - b; });
+      var routes = {};
+      (grid.routes || []).forEach(function (r) { routes[r.key] = r; });
+      var windowNotes = {};
+      document.querySelectorAll('[data-window]').forEach(function (b) {
+        windowNotes[b.getAttribute('data-window')] = b;
+      });
+
+      var state = {
+        birth: null,
+        window: 'baseline',
+        route: (grid.routes && grid.routes[0] && grid.routes[0].key) || 'seat',
+        personal: 0.1,
+      };
+
+      var NOTES = JSON.parse(document.getElementById('reader-notes').textContent);
+
+      function deadlineFor(key, birth) {
+        if (key === 'open') return null;
+        var s = (grid.scenarios || []).filter(function (x) { return x.key === key; })[0];
+        if (!s || s.window_year === null || s.window_year === undefined) return null;
+        return s.window_year + (birth - grid.birth_year);
+      }
+
+      // Read between the two grid years either side of the deadline. Everything the page shows
+      // comes out of this: the grid was worked out in Python, and the browser only reads
+      // between two of its numbers.
+      function cellAt(year) {
+        if (year === null) return cells.open;
+        if (year <= years[0]) return cells[years[0]];
+        if (year >= years[years.length - 1]) return cells[years[years.length - 1]];
+        var lo = years[0];
+        for (var i = 0; i < years.length; i++) { if (years[i] <= year) lo = years[i]; }
+        if (lo === year) return cells[year];
+        var hi = lo + grid.step;
+        var f = (year - lo) / (hi - lo);
+        var a = cells[lo], b = cells[hi];
+        var out = { year: year, tiers: {}, routes: {} };
+        Object.keys(a.tiers).forEach(function (k) { out.tiers[k] = a.tiers[k] + f * (b.tiers[k] - a.tiers[k]); });
+        Object.keys(a.routes).forEach(function (k) { out.routes[k] = a.routes[k] + f * (b.routes[k] - a.routes[k]); });
+        return out;
+      }
+
+      function fmt(p) {
+        if (p === null || p === undefined) return '—';
+        var v = p * 100;
+        if (v > 0 && v < 0.1) return 'under 0.1%';
+        return (v < 10 ? v.toFixed(1) : Math.round(v)) + '%';
+      }
+      function setAll(name, text) {
+        document.querySelectorAll('[data-bind="' + name + '"]').forEach(function (n) { n.textContent = text; });
+      }
+      function show(name, on) {
+        document.querySelectorAll('[data-bind-show="' + name + '"]').forEach(function (n) { n.hidden = !on; });
+      }
+
+      function render() {
+        var route = routes[state.route] || {};
+        setAll('windowNote', NOTES.windows[state.window] || '');
+        setAll('routeNote', route.blurb || '');
+        setAll('routeSays', route.world_says || '');
+        setAll('worldSays', route.world_says || '');
+        setAll('personalAsks', route.personal_asks || '');
+        var asksPersonal = !!route.personal_asks;
+        show('personal', asksPersonal);
+        show('combined', asksPersonal);
+
+        var birth = state.birth;
+        var ok = birth !== null && birth >= grid.min_birth_year && birth <= grid.max_birth_year;
+        show('results', ok);
+        show('empty', !ok);
+        if (!ok) return;
+
+        var year = deadlineFor(state.window, birth);
+        var cell = cellAt(year);
+        if (year === null) {
+          setAll('deadline', 'With no deadline at all, the question stops being about your lifetime and becomes whether it ever happens.');
+          show('past', false);
+        } else {
+          var age = year - birth;
+          setAll('deadline', 'That is ' + year + ', when you would be ' + age + '.');
+          show('past', year < NOTES.thisYear);
+        }
+
+        ['T1', 'T2', 'T3', 'T4'].forEach(function (k) {
+          var n = document.querySelector('[data-tier="' + k + '"]');
+          if (n) n.textContent = fmt(cell.tiers[k]);
+        });
+
+        var world = cell.routes[state.route];
+        setAll('world', fmt(world));
+        // Cleared rather than left alone when the route asks for no number of the reader's own,
+        // so that no stale figure sits in the page waiting to be read by anything.
+        setAll('combined', asksPersonal ? fmt(world * state.personal) : '—');
+        setAll('command',
+          'python3 scripts/compute.py reader --birth ' + birth + ' --scenario ' + state.window +
+          ' --route ' + state.route + (asksPersonal ? ' --personal ' + state.personal : ''));
+      }
+
+      var birthInput = document.getElementById('birth');
+      birthInput.addEventListener('input', function () {
+        var v = parseInt(birthInput.value, 10);
+        state.birth = isNaN(v) ? null : v;
+        render();
+      });
+      document.querySelectorAll('[data-window]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          state.window = b.getAttribute('data-window');
+          document.querySelectorAll('[data-window]').forEach(function (o) {
+            var on = o === b;
+            o.classList.toggle('on', on);
+            o.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          render();
+        });
+      });
+      document.querySelectorAll('[data-route]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          state.route = b.getAttribute('data-route');
+          var r = routes[state.route];
+          if (r && r.default_personal !== null && r.default_personal !== undefined) {
+            state.personal = r.default_personal;
+            var p = document.getElementById('personal');
+            if (p) p.value = Math.round(r.default_personal * 100);
+          }
+          document.querySelectorAll('[data-route]').forEach(function (o) {
+            var on = o === b;
+            o.classList.toggle('on', on);
+            o.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          render();
+        });
+      });
+      var personalInput = document.getElementById('personal');
+      if (personalInput) {
+        personalInput.addEventListener('input', function () {
+          var v = parseFloat(personalInput.value);
+          if (isNaN(v)) return;
+          state.personal = Math.min(Math.max(v, 0), 100) / 100;
+          render();
+        });
+      }
+      render();
+    })();
+  </script>
+</Base>

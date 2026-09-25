@@ -9,6 +9,7 @@
     python3 scripts/compute.py compare [--runs N]  the decision comparison, one choice group at a time
     python3 scripts/compute.py worth               what each open step would be worth to the headline
     python3 scripts/compute.py attribute ENTRY     how much of a run's move came from one ledger entry
+    python3 scripts/compute.py reader --birth YEAR what the tree says for a reader born that year
 
 `validate` and `shape` work on a tree with no probabilities. `run` and `compare` refuse until every open world node has a probability for every scenario, which is Phase 3. The rules the script enforces are listed in docs/node-schema.md under "Rules the compute script enforces".
 
@@ -89,6 +90,46 @@ An entry carries words, not numbers. Everything numeric beside it on the site â€
 before and after, where the headline stood on either side, and the entry's own contribution â€” is
 filled in by the export from the committed runs. An entry therefore cannot claim a change the tree
 did not produce.
+
+## Running the tree for somebody other than John
+
+`compute.py reader` answers the site's question for a visitor (website step 39,
+docs/run-it-yourself-plan.md). The tree's probabilities are estimated at five deadlines, which
+are John's own ages: 85, 94, 109, 150 and no deadline at all. A reader born in another year has
+the same ages at different years, so each open step's number is read between the two neighbouring
+windows on the log-odds scale and the whole tree is played out at that deadline. The reasoning
+and its limits are in docs/methodology.md under "Running the tree for somebody else". It reads
+the tree and never writes to it: no stored probability, snapshot or headline moves.
+
+    python3 scripts/compute.py reader --birth 2000 --scenario baseline --route seat --personal 0.1
+
+That prints one cell in two columns. "The website" is what a visitor sees, read between the two
+nearest five-year steps of the grid; "this year exactly" is the tree played out at the reader's
+own deadline with no reading between steps. The two are the same run when the deadline lands on a
+five-year step, and the gap between them otherwise is what the grid's coarseness costs. The routes
+are `seat` (buy one), `rotation` (hold a job whose holders go off Earth) and `earth` (work in or
+for the industry without leaving, which asks for no number of the reader's own).
+
+`export.py` writes the whole grid to `site/src/data/reader.json` on every build: one cell per
+five-year deadline across the range a shifted window can land in, plus one for no deadline at all,
+each the tree played out `READER_RUNS` times. The page reads between two cells and multiplies in
+the reader's own guess, so no probability is ever worked out in the browser. The grid adds about
+eleven seconds to a build; raising `READER_RUNS` is the one knob if its figures ever look too
+coarse.
+
+## Tests
+
+    python3 scripts/test_reader.py
+
+Standard library, no dependencies. Thirteen checks on the reader grid. The one that matters plays
+the tree out at John's own five windows with the committed snapshot's own dice and requires every
+system tier's rate to come out exactly equal to the snapshot's: at those years the reading hands
+back the stored numbers untouched, so the dice fall the same way and anything but an exact match
+means the reading has changed what the tree says. The others cover the reading itself (a named
+window returns its own number, nothing falls as the deadline moves out, the floor below the first
+window, the approach to the no-deadline number beyond the last), that every birth year the page
+offers lands inside the grid, that no route runs through John's own path, and that playing the
+tree out for a reader leaves the tree it was given alone.
 
 `export.py` turns the same tree, plus CHANGELOG.md, the run snapshots, the ledger and the weekly scan records in data/scans/, into the JSON the website reads (site/src/data/). Written 2026-09-19 (website step 21; the scans added the same day, scan plan step 34). It imports the loader and validator from `compute.py`, so it refuses to write anything for a tree that fails the schema, and the site can never show one.
 

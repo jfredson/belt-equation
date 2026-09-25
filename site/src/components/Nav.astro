@@ -1,9 +1,10 @@
 ---
-// Site navigation: the five pages of version one (docs/website-plan.md), plus the
-// public repo. Copied from Sentient Horizons' nav pattern: collapses to a menu on
-// small screens, and a light/dark toggle that remembers the choice.
+// Site navigation: the five pages of version one (docs/website-plan.md), the reader's own
+// run (website step 39), plus the public repo. Copied from Sentient Horizons' nav pattern:
+// collapses to a menu on small screens, and a light/dark toggle that remembers the choice.
 const path = Astro.url.pathname;
 const primary = [
+  { href: '/run/', label: 'Your odds' },
   { href: '/tree/', label: 'The tree' },
   { href: '/radar/', label: 'Radar' },
   { href: '/method/', label: 'Method' },
