@@ -49,8 +49,8 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 
 ## Phase 5. Tracking begins (from 2026-11-16 onward)
 
-17. Set the quarterly scan as a recurring task (fifteen minutes: which leaf nodes resolved or moved, log them).
-18. Schedule the first annual review for January 2027, before the pipeline resumes.
+17. Set the quarterly scan as a recurring task (fifteen minutes: which leaf nodes resolved or moved, log them). DONE 2026-09-25: a recurring task in TimeAssembler, first due 2027-04-04, then the first Sundays of July and October. The scan's last step is one command, which checks the tree, takes the snapshot, rebuilds the site, shows the headline before and after, and commits and pushes main so the deploy action puts it live (website step 26): `python3 scripts/publish.py --snapshot quarterly --push`. To read the changes before they go out, run it without `--push` first, then `python3 scripts/publish.py --push` (the snapshot is already written by then). The label is `quarterly`, not `scan`, because the weekly scan runs on the same first Sundays and takes `scan` when something moves.
+18. Schedule the first annual review for January 2027, before the pipeline resumes. DONE 2026-09-25: a recurring task in TimeAssembler, due 2027-01-03. The review's last step is the same one command, with its own label: `python3 scripts/publish.py --snapshot annual-review --push`.
 19. Fold any public or family critique into the tree before that review.
 
 ## Phase 6. The website, alongside everything above
@@ -63,7 +63,7 @@ Added 2026-09-08 when John reversed the deferral of a standalone site. The full 
 23. The numbers and the methodology page (waits on steps 10 and 12; target 2026-10-26).
 24. The story page from TimeAssembler and the critique page (target 2026-11-09).
 25. Go live on the domain, to family and friends (waits on step 15; target 2026-11-16). DOMAIN ATTACHED EARLY, 2026-09-19: beltequation.com and www point at the site with the review-status line showing (off since 2026-09-20, when step 27 landed); the family-and-friends announcement (the rest of this step) still waits on step 15.
-26. One-command publish, so the quarterly scan ends with the site updated (ongoing).
+26. One-command publish, so the quarterly scan ends with the site updated (ongoing). BUILT 2026-09-25: `python3 scripts/publish.py` (see scripts/README.md, "Publishing: one command"). Done when a quarterly scan is published with it; the first chance is 2027-04-04.
 39. Run it for yourself: a page where a visitor puts in their own birth year, picks one of the five longevity scenarios and a route, and sees what the tree says for them rather than for John (target 2026-09-20). The plan and its three decisions are in belt-equation/docs/run-it-yourself-plan.md; the arithmetic is a new section of docs/methodology.md, "Running the tree for somebody else". Numbered 39 because 27 is the outside-model review above, 28 to 33 are the ledger plan and 34 to 38 the scan plan; the TimeAssembler task that called it "website step 27" was renamed. BUILT 2026-09-20 and waiting on John: the page is complete and its done condition holds on the built site, but the three decisions are his to accept or move, and it goes live when he merges the pull request. Nothing about the tree, the headline, the snapshots, the ledger or the Radar changed.
 
 ## Later, not now
