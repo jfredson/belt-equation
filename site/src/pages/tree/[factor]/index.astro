@@ -3,7 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import HistoryChart from '../../../components/HistoryChart.astro';
 import {
   tree, nodesOf, percent, horizonShort, statusLabel, tierByKey, snapshots, ledger, odds, movePoints,
-  band, worthOf, DEFAULT_SCENARIO, type Factor,
+  band, worthOf, countWord, DEFAULT_SCENARIO, type Factor,
 } from '../../../lib/tree';
 
 export function getStaticPaths() {
@@ -42,6 +42,9 @@ const ledgerHere = ledger.entries.filter((e) => e.factors.some((f) => f.letter =
 const linkIndex = tree.factors.filter((f) => f.letter !== 'C').findIndex((f) => f.letter === factor.letter);
 const rank = isContact ? 'Beside the chain' : `Link ${linkIndex + 1} of ${tree.factors.length - 1}`;
 const tierName = (k: string) => tierByKey(k)?.name ?? k;
+// The Contact Clause's sibling branches (2026-09-25): C4 above C3, C5 above C2 and C1.
+const branches = isContact ? tree.contact_branches : [];
+const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
 ---
 
 <Base title={`${factor.name} — The Belt Equation`} description={`${factor.meaning} The ${nodes.length} events behind the ${factor.name.toLowerCase()} link.`}>
@@ -52,7 +55,7 @@ const tierName = (k: string) => tierByKey(k)?.name ?? k;
     <p class="dim" style="font-size: 14px;">
       {nodes.length} events, {factor.with_probability} with a number{factor.resolved ? `, ${factor.resolved} already happened` : ''}.
       {isContact
-        ? ' These four follow the same rules as every other event, but no milestone needs them and the headline number never multiplies them in.'
+        ? ` These ${countWord(nodes.length)} follow the same rules as every other event, but no milestone needs them and the headline number never multiplies them in.`
         : ' Listed by how soon they could be decided: the ones that could go either way by 2031 first, then the ones that take a decade or two, then the ones that play out over the whole window.'}
     </p>
   </section>
@@ -106,7 +109,7 @@ const tierName = (k: string) => tierByKey(k)?.name ?? k;
     ) : (
       <p class="dim" style="font-size: 15px; margin-top: 0;">
         {isContact
-          ? 'Nothing here moves the headline, by design. The Contact Clause sits beside the equation and is never multiplied into it, so however these four rungs turn out, the number at the top of the site does not change.'
+          ? `Nothing here moves the headline, by design. The Contact Clause sits beside the equation and is never multiplied into it, so however these ${countWord(nodes.length)} rungs turn out, the number at the top of the site does not change.`
           : factor.letter === 'W'
             ? 'Nothing here moves the headline directly. How long I live is the dial rather than a link in the chain: it is the question the five scenarios ask, so these steps change which scenario looks plausible rather than the number under any one of them.'
             : 'No open step under this factor is one the headline rests on, so nothing here would move it.'}
@@ -138,6 +141,44 @@ const tierName = (k: string) => tierByKey(k)?.name ?? k;
           </li>
         ))}
       </ul>
+    </section>
+  )}
+
+  {branches.length > 0 && (
+    <section class="section">
+      <div class="shead">
+        <h2>{branches.length === 2 ? 'Two branches' : `${branches.length} branches`}, side by side</h2>
+        <span>each rung under the one it depends on</span>
+      </div>
+      <p class="dim" style="font-size: 14.5px; margin-top: 0;">
+        The dream has two forms, and each has its own ladder ending in communion: one with something
+        not made by us, and one with a mind we built. Neither is multiplied into the headline. The
+        number beside each rung is its chance by 2071 if the rung under it happens.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+        {branches.map((b) => (
+          <ul class="nodelist" style="margin: 0;">
+            {b.rungs.map((r) => {
+              const n = nodeById(r.id);
+              return (
+                <li style={`padding-left: ${r.depth * 18}px;`}>
+                  <div>
+                    <a class="nname" href={n.path}>{n.name}</a>
+                    <span class="nid">{n.id}</span>
+                  </div>
+                  <div class="nprob">
+                    {n.status === 'resolved-yes'
+                      ? <span>happened<small>{n.resolved_on ?? ''}</small></span>
+                      : n.probability
+                        ? <span>{percent(n.probability[baseline.key])}<small>{baseline.key} scenario</small></span>
+                        : <span class="dim">no number yet</span>}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        ))}
+      </div>
     </section>
   )}
 

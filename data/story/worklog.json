@@ -1,16 +1,34 @@
 {
   "project": "Belt Equation",
-  "source": "TimeAssembler worklog, read by scripts/publish.py on 2026-09-25 (Pacific)",
+  "source": "TimeAssembler worklog, read with its tools on 2026-09-25 (Pacific)",
   "fetched_on": "2026-09-25",
   "entries": [
     {
-      "date": "2026-09-25",
+      "date": "2026-09-26",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Contact Clause null rule and rung C5 landed, pull request 22 waiting on John (2026-09-25)"
+    },
+    {
+      "date": "2026-09-26",
+      "type": "decision",
+      "decided_by": "agent",
+      "title": "Contact Clause rungs roll their own random numbers, so no rung can ever move a tier rate (2026-09-25)"
+    },
+    {
+      "date": "2026-09-26",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Website step 26 built: one-command publish, pull request 21 waiting on John's merge (2026-09-25)"
+    },
+    {
+      "date": "2026-09-26",
       "type": "decision",
       "decided_by": "mixed",
       "title": "Methodology pass ruled 2026-09-25: items 96 to 101 accepted as recommended except item 100 (ban leaves Tier 4, traffic authority stays in Tier 3); this pass counts as the review, changes land now"
     },
     {
-      "date": "2026-09-25",
+      "date": "2026-09-26",
       "type": "session-summary",
       "decided_by": null,
       "title": "Methodology pass: item 102 fixed, items 96 to 101 proposed (pull request 20)"
@@ -58,25 +76,25 @@
       "title": "Step 27 landing: nine new nodes' first probabilities and three re-estimates accepted as proposed (2026-09-20)"
     },
     {
-      "date": "2026-09-19",
+      "date": "2026-09-20",
       "type": "decision",
       "decided_by": "agent",
       "title": "The test mark stays on the site but gets no exemption from the scan rules"
     },
     {
-      "date": "2026-09-19",
+      "date": "2026-09-20",
       "type": "session-summary",
       "decided_by": null,
       "title": "Radar branch merged with the first real scan; pull request 14 ready"
     },
     {
-      "date": "2026-09-19",
+      "date": "2026-09-20",
       "type": "session-summary",
       "decided_by": null,
       "title": "Ledger steps 28 to 32 built and opened as pull request 15: the site now records what moves the number, and by how much"
     },
     {
-      "date": "2026-09-19",
+      "date": "2026-09-20",
       "type": "session-summary",
       "decided_by": null,
       "title": "Radar steps 34 and 37 built: scan records validated, exported, and shown on the site (pull request 14)"
@@ -142,181 +160,181 @@
       "title": "First probabilities, group two (launch, energy, drive) accepted as proposed (2026-09-19)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "session-summary",
       "decided_by": null,
       "title": "Evening session 2026-09-08: from a six-task roadmap to a stable 60-node tree with first probabilities"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "mixed",
       "title": "First probabilities for window and biology accepted as proposed, pending an outside-model review protocol (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Roadmap step 8 done: review pass complete, Phase 2 finished, the tree is stable at 60 nodes (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "mixed",
       "title": "Fifth scenario (a 150-year life), a residence node for A3, and the percentile held back (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Roadmap step 7 done: dependency edges drawn, tiers filled, first verification pass (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Health rule amended: a general statement of fitness, career demands, and deliberate health investment may appear in the project (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Ground rule: memory claims are verified by a quick web check as work proceeds, or marked unverified on the record (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Third brainstorm session done; the brainstorm is complete at 54 nodes (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Second brainstorm session done: launch, energy and drive nodes accepted (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Domain chosen and registered: beltequation.com (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "mixed",
       "title": "Website plan accepted: all nine design decisions stand (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Website plan written: five pages, the data flow, nine decisions, steps 20 to 26 (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Standalone site no longer deferred: the first version gets a dedicated website, built alongside the roadmap (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "First brainstorm session done: window and biology nodes accepted (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "idea",
       "decided_by": null,
       "title": "Idea: a review-and-critique method that brings in other models for fresh perspectives"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Parallel work while Claude Code held the repo: research pack, explainer draft, inspiration note (2026-09-08, late)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Roadmap step 5 done: the compute script, written against the schema and tested (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Second founding rule: plausible all the way to the edge of the impossible (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Standard practice: merge pull requests with the gh command-line tool, not the GitHub website (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Founding rule: plausible all the way to the edge of the impossible"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Window refined to 2071 ± 8, leverage branch added, scene transcript filed privately (2026-09-08, late evening)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "mixed",
       "title": "Node schema and data format decided, with two amendments (roadmap step 2, 2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Ground rule: every design choice comes with a confidence level, standard-or-judgment call, and the strongest alternative (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Roadmap step 2 drafted: node schema, TOML data format, first real node (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "progress",
       "decided_by": null,
       "title": "Roadmap step 1 done: kickoff outline reconciled with the definitions (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "session-summary",
       "decided_by": null,
       "title": "Roadmap review session (2026-09-08): plan tightened, tasks reordered, one task added"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "mixed",
       "title": "Roadmap review: six changes to the work plan approved (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "session-summary",
       "decided_by": null,
       "title": "Origin session: from a Reddit thread on AI and math to a new project (2026-09-08)"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "john",
       "title": "Founding rule: the tree keeps long shots on the board on purpose; and the project's real purpose is choosing decisions"
     },
     {
-      "date": "2026-09-08",
+      "date": "2026-09-09",
       "type": "decision",
       "decided_by": "mixed",
       "title": "Founding definitions of The Belt Equation settled (2026-09-08)"

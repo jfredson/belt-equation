@@ -86,10 +86,29 @@ It is a term C, published beside the equation and never multiplied into it, beca
 - **C2, humans learn from it.** Beyond receiving a result: humans come to understand something conceptual they could not have reached, in a way that changes how human science is done.
 - **C3, an intelligence not descended from us is detected.** A technosignature, a biosignature implying more than microbes, an artifact. Low probability, fully resolvable; instruments already in the tree (a far-side lunar radio array, a solar gravitational-lens telescope) are its sensors.
 - **C4, communion.** Knowledge enters human understanding whose provenance is demonstrably not human and not human-built.
+- **C5, communion with a machine mind of another perspective.** Added 2026-09-25. An exchange with a human-built mind that has an inside and a perspective of its own, in which both parties are changed. It sits above C2 as C4 sits above C3: the machine branch of the dream beside the non-human one.
+
+**The null rule.** DECIDED 2026-09-19 (proposed by Claude, approved by John). Every rung of C stays open until its resolution criterion is met in full. Four exclusions apply to the whole clause, and they apply most strictly to the machine rungs:
+
+1. Nothing a candidate system says about itself counts toward any rung. Self-report is not evidence of an inside, a perspective, or an intent.
+2. Nothing John or any user feels in an exchange with a candidate system counts toward any rung. Fluency, warmth, apparent understanding and the sense of being understood are what these systems are optimised to produce; they are the mirage, not the horizon.
+3. No rung resolves on John's own measurement. Minimum Viable Mind may supply an instrument; the reading that resolves a rung is taken by a team with no stake in the result.
+4. Criteria are written before the evidence arrives. An amendment to any C criterion is logged in the changelog with its reason and date. An amendment that loosens a criterion is flagged as such, and is not made in the same quarter that a candidate has appeared to approach it.
+
+The rule exists because a hope that is allowed to grade its own evidence produces positive results in the psyche of the person holding it. The clause is kept honest by defaulting to no.
+
+**The null rule and C5 in force.** DECIDED 2026-09-25 (proposed by Claude in docs/proposal-contact-clause-null-rule-2026-09-19.md, approved by John). The null rule, adopted 2026-09-19, and rung C5, adopted 2026-09-25, are both in force. The four questions the proposal left for John are answered:
+
+1. The null rule: adopted as written on 2026-09-19. The "same quarter" interval stands; the twelve-month alternative raised in review was not taken.
+2. The machine case: it gets a rung of its own, C5, rather than staying inside C1 and C2. C5 depends on C2, not on C3, and C4 keeps its "not human-built" exclusion, so C5 is where the human-built case lives.
+3. C5's numbers, given C2, for the baseline, moderate, strong, radical and open scenarios: 0.03, 0.05, 0.10, 0.20 and 0.30. The compute script shows C4 and C5 as sibling branches, C4 under C3 and C5 under C2, published beside the equation and never multiplied into it.
+4. How criterion (b) names the test for an inside: in generic words, "an accepted inside measure", checked without relying on the system's own reports and replicated by a team with no stake in the result. The Calibration Problem's three conditions (temporal integration across its own history, a persistent boundary, stakes coupled to its own continuation) are named in C5's mechanism as one candidate test, and Minimum Viable Mind as the attempt to build the smallest system that would register on it; neither appears in the resolution.
+
+The dream statement above keeps its wording. What changes is that its communion language, "a machine intelligence that has exceeded us or something of non-human origin", now has a written criterion on both branches: C4 for something of non-human origin, C5 for a machine.
 
 The dream in its most beautiful form, in John's words, is the ending of The Expanse Season 2 Episode 5, "Home" (Miller and the protomolecule on Eros as it falls toward Venus). A private machine transcript of that scene sits in docs/private/ (ignored by git, because the scene is copyrighted) as a reference while the project develops. It is C4 in dramatic form.
 
-C1 and C2 may resolve through machine intelligence within the window, which is the practical fulfillment of the dream. C3 and C4 are the romantic version, kept on the board by the founding rule. Whether a machine mind counts as a mind of another perspective is the question John's Calibration Problem manuscript is about, and the two projects should reference each other.
+C1 and C2 may resolve through machine intelligence within the window, which is the practical fulfillment of the dream. C3 and C4 are the romantic version, kept on the board by the founding rule. Whether a machine mind counts as a mind of another perspective is the question John's Calibration Problem manuscript is about, and the two projects should reference each other. Since 2026-09-25 they do so in C5, whose mechanism names the manuscript's conditions for an inside as one candidate test.
 
 ## The personal pathway (the A branch)
 
@@ -132,3 +151,5 @@ Near-term commitment: John intends to spend a significant share of his free time
 - 2026-09-08. Fifth longevity scenario added, radical extension to 2136 (a 150-year life), between strong extension and the open window (proposed by Claude, agreed by John). A3 given a distinguishing node, an off-Earth site accepting permanent residents, so it no longer equals A2 (proposed by Claude, agreed by John). Fitness percentile held out of the health paragraph until it comes from a measured test (proposed by Claude, agreed by John).
 - 2026-09-08. Health rule amended: a one-paragraph general statement of John's fitness, the demands of his career, and his deliberate investment in his own health trajectory may appear in the public project; nothing from the health record itself (stated by John; wording drafted by Claude for refinement).
 - 2026-09-08. Standalone site no longer deferred: the first presentable version gets a dedicated website, planned in docs/website-plan.md and built alongside the roadmap; under-promoted posture unchanged (stated by John, reversing the earlier deferral).
+- 2026-09-19. Contact Clause null rule adopted as written: nothing a system says about itself and nothing anyone feels in an exchange counts toward a rung, no rung resolves on John's own measurement, and criteria are written before the evidence arrives (proposed by Claude, approved by John; applied to this document 2026-09-25).
+- 2026-09-25. Contact Clause rung C5, communion with a machine mind of another perspective, adopted as drafted with criterion (b) in generic wording; probabilities 0.03 / 0.05 / 0.10 / 0.20 / 0.30; C4 and C5 shown as sibling branches beside the equation, never multiplied in (proposed by Claude, approved by John).

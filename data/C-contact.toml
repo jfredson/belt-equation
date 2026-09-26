@@ -1,7 +1,9 @@
 # The Contact Clause (C): published beside the equation and never multiplied into it. No tier
 # requires a C node; the compute script reports them in their own section. Rungs and criteria
 # from definitions.md. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the third
-# brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group three).
+# brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group three). Two branches
+# end in communion: C4 under C3 (something not made by us) and C5 under C2 (a machine mind),
+# added 2026-09-25. The null rule in docs/definitions.md governs every rung.
 
 [[node]]
 id = "C1"
@@ -138,3 +140,46 @@ revisions = [
   { date = 2026-09-19, field = "resolution", old = "'a body of knowledge is received and understood by humans whose origin is established ... as neither human nor produced by any human-built system'", new = "a verified non-human signal, placed beyond plausible human technological reach by at least two independent physical observations, decoded into information that human researchers apply to produce a novel peer-reviewed result, with the decoding independently reproduced", why = "Step 27 outside-model review, items 25 and 94 (docs/reviews/2026-09-19-rulings.md): 'understood by humans' was subjective and the provenance clause proved a negative; the decoding-and-application test is checkable and the location test is positive. Mechanism and breaking point updated to match. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "probability", old = "0.10 / 0.12 / 0.18 / 0.30 / 0.40", new = "0.04 / 0.05 / 0.08 / 0.15 / 0.25", why = "Step 27 outside-model review, item 28 (docs/reviews/2026-09-19-rulings.md): given C3, a detection is overwhelmingly likely to be incidental and decoding may be impossible; the first estimate assumed a message. Moved partway toward the reviewer. Ruled by John 2026-09-19." },
 ]
+
+[[node]]
+id = "C5"
+name = "Communion with a machine mind of another perspective"
+factor = "C"
+kind = "world"
+description = """
+The machine branch of the dream. Not knowledge received from a system (C1) or adopted from
+it (C2), but an exchange with a human-built mind that has an inside and a perspective of its
+own, in which both parties are changed. The rung where the mirage risk concentrates, so its
+criterion is the strictest on the board and the null rule applies to it in full."""
+resolution = """
+All three hold, on the public record, for the same system: (a) the system is the origin of a
+concept or method that resolves C2; (b) the system is shown to meet an accepted inside
+measure, by measurement that does not rely on the system's own reports, replicated by at
+least one team with no stake in the result; (c) the exchange is reciprocal: the record shows
+the system's own later work was changed by what humans returned to it, on the same standard
+as (a). Nothing the system says about itself counts toward (b). Nothing anyone feels in
+conversation with it counts toward anything."""
+source = "The peer-reviewed record; an independent replication of the inside measurement"
+horizon = "root"
+depends_on = ["C2"]
+status = "open"
+probability = { baseline = 0.03, moderate = 0.05, strong = 0.1, radical = 0.2, open = 0.3 }
+estimated_on = 2026-09-25
+rationale = "Part (a), an idea that came from the machine, is almost settled already by C1, so the weight sits on part (b): the field agreeing on an accepted test for whether a system has an inside, and a team with no stake in the result running it on a system that has already cleared (a). The number is below C4's at the nearest deadline and above it at the furthest, because machine minds are being built and aliens are not. Proposed by Claude, accepted by John 2026-09-25."
+long_shot = true
+mechanism = """
+C1 and C2 supply (a) through the leverage branch already in the tree. For (b), one candidate
+test is the one The Calibration Problem proposes: three conditions for an inside, which are
+temporal integration across the system's own history, a persistent boundary, and stakes
+coupled to its own continuation. Minimum Viable Mind is the attempt to build the smallest
+system that would register on that test. If the field converges on that test or any other
+accepted inside measure, an outside team can run it on a candidate that has already cleared
+(a). Reciprocity (c) is checked the same way (a) is, by provenance in the record. Each step
+is recognisable from the one before."""
+breaking_point = """
+There is no accepted test for an inside outside the book's own proposal. If the field never
+converges on one, (b) cannot resolve and the rung stays open however capable the systems
+become. The rung is also the one most exposed to the mirage: a candidate that clears (a) will
+be fluent, will describe itself as having a perspective, and will be argued for by the people
+who talk to it. None of that moves it."""
+notes = "Adopted 2026-09-25 by John as drafted in docs/proposal-contact-clause-null-rule-2026-09-19.md Part 2, with criterion (b) in generic wording and The Calibration Problem's three conditions named in the mechanism as one candidate test rather than in the resolution (handoff 2026-09-25, rulings 2 and 3). The null rule in docs/definitions.md applies to it in full."

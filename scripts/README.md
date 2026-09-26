@@ -120,6 +120,7 @@ coarse.
 ## Tests
 
     python3 scripts/test_reader.py
+    python3 scripts/test_contact.py
 
 Standard library, no dependencies. Thirteen checks on the reader grid. The one that matters plays
 the tree out at John's own five windows with the committed snapshot's own dice and requires every
@@ -141,6 +142,7 @@ out the same. The one exception is the decorative stars behind each page, which 
 at random on every build, so the pages are compared with them taken out. It also checks that
 nothing else in the tree changed, that no commit was made without `--push`, and that `--dry-run`
 writes nothing at all.
+`test_contact.py` (2026-09-25, with rung C5) checks that the Contact Clause is never multiplied in. It plays the tree out from the same seed with C5 in and with C5 taken out, and with C5 held at certain and at impossible, and requires the headline, every tier, every chain link and every node outside the clause to come out exactly equal each time. It also checks that the validator refuses a tier or an outside node that depends on a rung, and that C4 and C5 sit on sibling branches. Changing the Contact Clause rungs back to the equation's own dice makes the first check fail, which is how it was confirmed to test what it says.
 
 `export.py` turns the same tree, plus CHANGELOG.md, the run snapshots, the ledger and the weekly scan records in data/scans/, into the JSON the website reads (site/src/data/). Written 2026-09-19 (website step 21; the scans added the same day, scan plan step 34). It imports the loader and validator from `compute.py`, so it refuses to write anything for a tree that fails the schema, and the site can never show one.
 
@@ -188,3 +190,4 @@ Which label: the weekly scan takes `scan` when something moved (docs/scan-proced
 quarterly scan takes `quarterly` and the annual review `annual-review` (docs/roadmap.md, steps 17 and
 18). They differ because the quarterly scan and the weekly scan fall on the same first Sundays, and a
 snapshot is never overwritten.
+How a run works: for each scenario, the tree is played out many thousands of times. Nodes are visited in dependency order; a world node whose dependencies all came true comes true with its probability for that scenario, and otherwise stays false. Nodes already resolved in the real world are fixed. Choice points are set to their current-plan option. A tier is reached when everything it requires came true, and the number reported for a tier is the fraction of play-throughs that reached it. Contact Clause nodes are reported separately, as sibling branches (C4 under C3, C5 under C2, since 2026-09-25), and never feed a tier: the validator refuses a tier that requires a rung or a node outside the clause that depends on one, and the rungs roll their own dice, seeded from the run's seed, so adding or re-estimating a rung leaves every tier rate exactly where it was.

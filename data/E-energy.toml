@@ -133,8 +133,9 @@ power, with a customer signed. It has happened. A company backed by a purchase a
 with a large technology firm began site work on its first plant in Washington state in July
 2025, aiming to deliver electricity in 2028, with further permitting still to come at the
 time; the county's conditional-use decision followed in October 2025. The node stays in,
-resolved, as the first rung on the fusion ladder and a resolved leaf the calibration score
-can count."""
+resolved, as the first rung on the fusion ladder. It was added in September 2026, after it
+had already happened, so no forecast was ever on the record for it and the calibration score
+leaves it out."""
 resolution = """
 A company begins site construction of a fusion power plant that has a signed agreement to
 sell electricity to a named customer, confirmed by the company's announcement and local
@@ -154,6 +155,7 @@ revisions = [
   { date = 2026-09-19, field = "resolved_links", old = "", new = "https://www.helionenergy.com/newsroom/helion-secures-land-and-begins-building-site-of-worlds-first-fusion-power-plant; https://www.world-nuclear-news.org/articles/helion-begins-work-on-fusion-power-plant", why = "Every event marked as having happened now links to the record that settled it, so a reader can check the claim (site rule added 2026-09-19)." },
   { date = 2026-09-19, field = "resolved_links", old = "the announcement and trade press only", new = "the Chelan County hearing-examiner index for 2025 added, for the conditional-use decision of 2025-10-14", why = "Step 27 outside-model review, item 63 (docs/reviews/2026-09-19-rulings.md): the criterion's confirmation is two-part (announcement and permitting record) and only the announcement was linked; resolved_on stays 2025-07-30 on the announcement, the permit date is recorded and marked verify until the county link is opened. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "description", old = "'began building its first plant'", new = "'began site work', with the later permit noted", why = "Step 27 outside-model review, item 63 (docs/reviews/2026-09-19-rulings.md): the announcement establishes site work with further permitting still to come. Ruled by John 2026-09-19. The description's sentence about the calibration score is item 102, deferred to the methodology pass, and is left as it was." },
+  { date = 2026-09-25, field = "description", old = "'The node stays in, resolved, as the first rung on the fusion ladder and a resolved leaf the calibration score can count.'", new = "'The node stays in, resolved, as the first rung on the fusion ladder. It was added in September 2026, after it had already happened, so no forecast was ever on the record for it and the calibration score leaves it out.'", why = "Step 27 outside-model review, item 102 (docs/reviews/2026-09-19-rulings.md), landed at the methodology pass (docs/methodology-pass-2026-09-25.md) as directed in its session brief (docs/handoff-2026-09-25.md, Session B): the old sentence contradicted the scoring rule in docs/methodology.md, which leaves out any node that resolved before a probability was recorded for it. Text only; no number, status or criterion changed." },
 ]
 verify = ["The Chelan County conditional-use decision dated 2025-10-14 for the Helion site (cited by GPT-6 Astra, 2026-09-19) has not been opened; the hearing-examiner index link is to be checked and, if the decision has its own page, replaced with it."]
 notes = "Added at step 7 (2026-09-08); the date and facts checked the same day against the company's newsroom and trade press."

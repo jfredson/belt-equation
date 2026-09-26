@@ -1,6 +1,6 @@
 {
   "project": "Belt Equation",
-  "source": "TimeAssembler roadmap, read by scripts/publish.py on 2026-09-25 (Pacific)",
+  "source": "TimeAssembler roadmap, read with its tools on 2026-09-25 (Pacific); steps without a roadmap position (the 2027 annual review, the Q2 2027 leaf scan, the Reddit post) are left out",
   "fetched_on": "2026-09-25",
   "steps": [
     {
@@ -73,13 +73,13 @@
       "order": 63,
       "status": "done",
       "phase": "Phase 3",
-      "title": "First probabilities, group two: launch, energy, and drive (roadmap step 9, second of three) (Phase 3)"
+      "title": "First probabilities, group two: launch, energy, and drive (roadmap step 9, second of three)"
     },
     {
       "order": 64,
       "status": "done",
       "phase": "Phase 3",
-      "title": "First probabilities, group three: motive, regime, access, and the Contact Clause (roadmap step 9, third of three) (Phase 3)"
+      "title": "First probabilities, group three: motive, regime, access, and the Contact Clause (roadmap step 9, third of three)"
     },
     {
       "order": 65,
@@ -91,19 +91,19 @@
       "order": 66,
       "status": "done",
       "phase": "Phase 3",
-      "title": "Run the calculation and read the results against intuition (roadmap step 10) (Phase 3)"
+      "title": "Run the calculation and read the results against intuition (roadmap step 10)"
     },
     {
       "order": 67,
       "status": "done",
       "phase": "Phase 6",
-      "title": "Website step 22: the tree visual on the site (waits on step 7, done) (Phase 6)"
+      "title": "Website step 22: the tree visual on the site (waits on step 7, done)"
     },
     {
       "order": 68,
       "status": "done",
       "phase": "Phase 3",
-      "title": "Write docs/methodology.md: how numbers are computed, the calibration score, the choice-point comparison (roadmap step 12) (Phase 3)"
+      "title": "Write docs/methodology.md: how numbers are computed, the calibration score, the choice-point comparison (roadmap step 12)"
     },
     {
       "order": 70,
@@ -115,7 +115,7 @@
       "order": 72,
       "status": "done",
       "phase": "Phase 6",
-      "title": "Website step 23: the numbers and the methodology page (waits on steps 10 and 12) (Phase 6)"
+      "title": "Website step 23: the numbers and the methodology page (waits on steps 10 and 12)"
     },
     {
       "order": 75,
@@ -139,67 +139,73 @@
       "order": 78,
       "status": "done",
       "phase": "Phase 6",
-      "title": "Website step 24: the story page from TimeAssembler and the critique page (Phase 6)"
+      "title": "Website step 24: the story page from TimeAssembler and the critique page"
     },
     {
       "order": 80,
       "status": "done",
       "phase": "Phase 4",
-      "title": "Produce one visual of the tree with current numbers, colored by factor (roadmap step 13) (Phase 4)"
+      "title": "Produce one visual of the tree with current numbers, colored by factor (roadmap step 13)"
     },
     {
       "order": 82,
       "status": "in_progress",
       "phase": "Phase 4",
-      "title": "Draft the introductory essay for Sentient Horizons, with the Calibration Problem cross-reference (roadmap step 14) (Phase 4)"
+      "title": "Draft the introductory essay for Sentient Horizons, with the Calibration Problem cross-reference (roadmap step 14)"
     },
     {
       "order": 84,
       "status": "done",
       "phase": "Phase 4",
-      "title": "Draft the family-and-friends version, same numbers, dinner-table register (roadmap step 15) (Phase 4)"
+      "title": "Draft the family-and-friends version, same numbers, dinner-table register (roadmap step 15)"
     },
     {
       "order": 86,
       "status": "done",
       "phase": "Phase 4",
-      "title": "Decide when and whether to post beyond family and friends (roadmap step 16) (Phase 4)"
+      "title": "Decide when and whether to post beyond family and friends (roadmap step 16)"
     },
     {
       "order": 88,
       "status": "done",
       "phase": "Phase 5",
-      "title": "Set the quarterly leaf scan as a recurring task (roadmap step 17) (Phase 5)"
+      "title": "Set the quarterly leaf scan as a recurring task (roadmap step 17)"
     },
     {
       "order": 90,
       "status": "done",
       "phase": "Phase 5",
-      "title": "Schedule the first annual review for January 2027, before the pipeline resumes (roadmap step 18) (Phase 5)"
+      "title": "Schedule the first annual review for January 2027, before the pipeline resumes (roadmap step 18)"
     },
     {
       "order": 92,
       "status": "todo",
       "phase": "Phase 5",
-      "title": "Fold public or family critique into the tree before the annual review (roadmap step 19) (Phase 5)"
+      "title": "Fold public or family critique into the tree before the annual review (roadmap step 19)"
     },
     {
       "order": 94,
       "status": "in_progress",
       "phase": "Phase 6",
-      "title": "Website step 25: go live on beltequation.com to family and friends (waits on step 15) (Phase 6)"
+      "title": "Website step 25: go live on beltequation.com to family and friends (waits on step 15)"
     },
     {
       "order": 96,
       "status": "in_progress",
       "phase": "Phase 6",
-      "title": "Website step 26: one-command publish so the quarterly scan ends with the site updated (Phase 6)"
+      "title": "Website step 26: one-command publish so the quarterly scan ends with the site updated"
     },
     {
       "order": 97,
       "status": "done",
       "phase": "Phase 6",
       "title": "Website step 39: \"run it for yourself\", a page where a reader sets their own age, lifespan scenario and path and sees the tree's number for them"
+    },
+    {
+      "order": 98,
+      "status": "todo",
+      "phase": null,
+      "title": "Merge pull request 22: Contact Clause null rule and rung C5 in force (2026-09-25)"
     },
     {
       "order": 100,
