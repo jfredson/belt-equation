@@ -26,7 +26,8 @@ different nation's program that reaches the mark, resolves the node when it gets
 source = "The funding nation's appropriations records and the program's flight record"
 horizon = "mid"
 depends_on = []
-status = "open"
+status = "superseded"
+superseded_by = "R-crewed-lunar-program-outlives-two-changes-of-backer"
 probability = { baseline = 0.75, moderate = 0.8, strong = 0.85, radical = 0.9, open = 0.92 }
 estimated_on = 2026-09-19
 rationale = "With any nation's program counting and a restart still able to resolve it, the question is whether some crewed lunar program anywhere becomes an institution over forty-five years; two rival national programs and a flying commercial lander make that likely, and the longer windows add more attempts. Proposed with the rewording, 2026-09-19."
@@ -35,7 +36,40 @@ revisions = [
   { date = 2026-09-19, field = "probability", old = "0.60 flat across scenarios", new = "0.75 / 0.80 / 0.85 / 0.90 / 0.92", why = "Re-estimated against the reworded criterion, which can resolve later and by more programs; no longer flat because the longer windows now add attempts." },
   { date = 2026-09-19, field = "resolution", old = "'for the US program, counting from 2026, that means two successive presidential administrations after the current one'; 'change of government' undefined", new = "the counting-from-2026 sentence dropped; a change of government means a change in the head of government, or for a company program in its anchor customer's government", why = "Step 27 outside-model review, item 84 (docs/reviews/2026-09-19-rulings.md): the 2026 sentence assumed crew first flew in 2026 and could contradict the general clause if the first crewed flight slips, and non-democracies needed a definition. Ruled by John 2026-09-19." },
   { date = 2026-09-25, field = "description", old = "'counts, because Tier 1 is an outpost by anyone'", new = "'counts, because lunar material at scale can come from anyone's program ... It gates the Slow Expanse through lunar material at scale.'", why = "Methodology pass item 97 (docs/methodology-pass-2026-09-25.md), ruled by John 2026-09-25: Tier 1 is now tested by the hundred-workers node alone, so this node no longer feeds Tier 1 directly; it still gates Tier 3 through L-lunar-material-delivered-to-orbit-at-scale. Text only; no number changed." },
+  { date = 2026-09-25, field = "status", old = "open", new = "superseded by R-crewed-lunar-program-outlives-two-changes-of-backer", why = "Candidate 3 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: the criterion widens to a program, government or commercial, that outlives two changes of its principal backer. This node's numbers were published, so it is retired and replaced rather than renamed (docs/methodology.md, 'What is fixed and what moves'); lunar material at scale now depends on the replacement." },
 ]
+
+[[node]]
+id = "R-crewed-lunar-program-outlives-two-changes-of-backer"
+name = "A crewed lunar program, government or commercial, keeps flying across two changes of its principal backer"
+factor = "R"
+kind = "world"
+description = """
+Every large space program since Apollo has been redrawn or cancelled when the people paying
+for it changed: a new administration for a government program, a new owner or lead funder
+for a company's. A program that keeps its money and keeps flying crewed hardware across two
+such changes has become an institution rather than one backer's project, which is what a
+multi-decade build on the Moon needs. Any nation's or company's crewed lunar program counts,
+because lunar material at scale can come from anyone's program; the US program is the one to
+watch first. It gates the Slow Expanse through lunar material at scale."""
+resolution = """
+A crewed lunar program, government or commercial, receives its funding and flies crewed
+hardware under each of two successive principal backers after the one backing it when it
+first flew crew. The principal backer is whoever supplies the largest share of the program's
+money: for a government program, or a company program whose largest customer is a
+government, a change of backer is a change in that government's head of government; for a
+company program funded mainly by private money, it is a change in which private party
+supplies the largest share (a new controlling owner or a new lead funder). A program that is
+cancelled and later restarted, or a different program that reaches the mark, resolves the
+node when it gets there."""
+source = "The funding government's budget records or the company's public filings, and the program's flight record"
+horizon = "mid"
+depends_on = []
+status = "open"
+probability = { baseline = 0.78, moderate = 0.82, strong = 0.87, radical = 0.91, open = 0.93 }
+estimated_on = 2026-09-25
+rationale = "Re-estimated 2026-09-25 against the widened criterion, proposed by Claude and not yet ruled by John. The government route carries almost all of it, as it did at 0.75 by 2071: two rival national programs and forty-five years make it likely some crewed lunar program becomes an institution. The commercial route adds a little, since a company program whose owner or lead funder changes twice and keeps flying crew also counts now, but a founder-funded program can fly for decades without a change of backer, so it adds attempts rather than certainty."
+notes = "Added 2026-09-25 as the replacement for R-crewed-lunar-program-outlives-two-changes-of-president under candidate 3 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. What lunar material at scale takes from this step is a lunar program that lasts, and a commercial program that outlives its backers supplies that as well as a government one. The old node carried published numbers, so under docs/methodology.md it is retired and replaced rather than renamed in place; its record is kept."
 
 [[node]]
 id = "R-space-funding-holds-through-a-recession"
