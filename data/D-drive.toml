@@ -14,7 +14,8 @@ electric thrusters, has been designed and ground-tested for sixty years, and no
 nuclear-powered system has ever produced a meaningful orbit change: SNAP-10A's reactor ran an
 ion thruster briefly in orbit in 1965, without moving the vehicle to speak of. The first
 in-space burn that substantially moves a vehicle is the step from paper to hardware, and it is
-what routine nuclear propulsion, the Tier 3 criterion, has to start from."""
+what routine nuclear propulsion, one route to the fast transit Tier 3 requires, has to
+start from."""
 resolution = """
 A spacecraft in space accumulates a velocity change of at least one kilometre per second from
 its propulsion itself, excluding gravitational effects, using propulsion powered by a nuclear
@@ -30,6 +31,7 @@ revisions = [
   { date = 2026-09-19, field = "name", old = "A nuclear-powered engine changes a spacecraft's orbit in space for the first time", new = "A nuclear-powered engine produces a kilometre per second of velocity change in space", why = "Step 27 outside-model review, item 72 (docs/reviews/2026-09-19-rulings.md): the name says 'first time' and the description said 'never flown', but SNAP-10A powered an ion thruster in orbit in 1965 (NASA's own assessment, fetched); the name now says what the criterion measures. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "resolution", old = "'changes its velocity by at least one kilometre per second'", new = "cumulative velocity change of at least one kilometre per second from the propulsion itself, excluding gravitational effects", why = "Step 27 outside-model review, item 72: the bar is the same, stated so that a gravity assist cannot be counted. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "description", old = "'never flown'", new = "no nuclear-powered system has produced a meaningful orbit change; SNAP-10A ran an ion thruster briefly in 1965", why = "Step 27 outside-model review, item 72: factual correction, verified against NASA's space-nuclear-systems assessment on 2026-09-19. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "description", old = "'routine nuclear propulsion, the Tier 3 criterion'", new = "'routine nuclear propulsion, one route to the fast transit Tier 3 requires'", why = "Candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: Tier 3 now requires D-fast-transit-in-routine-use, with routine nuclear propulsion as one route. Text only." },
 ]
 notes = "Shares a technology base with the lunar surface reactor (an energy node); whether that is a hard dependency is for step 7. SNAP-10A (1965): reactor-powered ion thruster ran briefly during a 43-day mission and produced no meaningful orbit change; the node stays open."
 
@@ -39,9 +41,11 @@ name = "Nuclear propulsion is used on several missions a year"
 factor = "D"
 kind = "world"
 description = """
-The Tier 3 criterion in propulsion terms. One demonstration proves it can be done; several
-missions a year means it is the ordinary way to move heavy things around the inner solar
-system, which is what transit times of months to the Belt assume."""
+One demonstration proves nuclear propulsion can be done; several missions a year means it is
+the ordinary way to move heavy things around the inner solar system, which is what transit
+times of months to the Belt assume. Until 2026-09-25 this was the Tier 3 criterion itself;
+it is now one of two routes to fast transit in routine use (D-fast-transit-in-routine-use), beside high-power
+solar-electric propulsion."""
 resolution = """
 In one calendar year, at least three separate missions beyond low Earth orbit use
 reactor-powered propulsion for their main transfer, meaning the burns that supply most of
@@ -57,7 +61,63 @@ rationale = "One demonstration to routine use is the gap the space station took 
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "'nuclear-powered propulsion for their main transfer', main transfer undefined", new = "reactor-powered, with main transfer meaning the burns supplying most of the mission's velocity change beyond low Earth orbit", why = "Step 27 outside-model review, item 73 (docs/reviews/2026-09-19-rulings.md): 'nuclear-powered' without 'reactor' would have let a radioisotope-electric probe count; a three-consecutive-years clause was declined as a stronger event than the name promises. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "probability", old = "0.50 / 0.60 / 0.75 / 0.88 / 0.92", new = "0.40 / 0.52 / 0.68 / 0.85 / 0.90", why = "Step 27 outside-model review, items 18, 74 and 104 (docs/reviews/2026-09-19-rulings.md): Gemini argued up (the first flight is the barrier, routine use is adoption), Astra argued down (a demonstration creates no demand), and Grok in Fast mode broke the tie toward Astra; moved partway, discounting Fast mode. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "description", old = "'The Tier 3 criterion in propulsion terms.'", new = "one of two routes to fast transit in routine use, which is now the Tier 3 requirement", why = "Candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25, the pass counting as the review a tier change needs: what the Belt tier takes from this step is transit fast enough that people go out there to work, and high-power solar-electric propulsion could supply it too. Tier 3 now requires D-fast-transit-in-routine-use, with this step as one route. Text only; criterion and numbers unchanged." },
 ]
+
+[[node]]
+id = "D-fast-transit-in-routine-use"
+name = "Three missions in one year reach the asteroid belt within twelve months of leaving Earth"
+factor = "D"
+kind = "world"
+description = """
+The Tier 3 criterion in propulsion terms: transit fast enough that people go out there to
+work. A Slow Expanse needs ships that reach the Belt in months rather than years, often enough
+that going is routine. Nuclear propulsion is one way to get there and high-power solar-electric
+propulsion is another; chemical rockets with refilling in orbit take well over a year to the
+Belt on the usual path. This is the function step, written so that any propulsion counts (the
+function-over-route rule, docs/methodology.md), with the two propulsion routes under it."""
+resolution = """
+In one calendar year, at least three separate missions, crewed or cargo, each arrive at a
+destination in the main asteroid belt or farther from the Sun (rendezvous with, orbit or land
+on a body at least 2.1 astronomical units from the Sun, or on a moon of such a body; a
+flyby does not count) within twelve months of leaving Earth orbit, by any propulsion,
+confirmed by the operators and independent tracking of the vehicles."""
+source = "Operators' mission records and independent tracking"
+horizon = "root"
+depends_on_any = [["D-nuclear-propulsion-in-routine-use", "D-high-power-solar-electric-propulsion-in-routine-use"]]
+status = "open"
+probability = { baseline = 0.5, moderate = 0.62, strong = 0.76, radical = 0.87, open = 0.91 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given that some fast propulsion is already in routine use somewhere in the inner solar system, the question is whether anyone sends three ships a year to the Belt on it; that needs a reason to go, which the Belt tier's other steps (an outer site, a product sold) are about. Even odds by 2071. One thing it can cost: a world whose outer site is Mars and whose fast ships go only there does not meet this step."
+notes = "Added 2026-09-25 under candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25, with the pass counting as the review a tier change needs. Replaces D-nuclear-propulsion-in-routine-use in Tier 3's requirements (data/tiers.toml); the tier's definition now reads 'transit fast enough that people go out there to work'. The criterion's numbers (under twelve months to the Belt, three missions a year, crewed or cargo) were set in the handoff; the 2.1-astronomical-unit edge of the Belt and the flyby exclusion are Claude's drafting."
+
+[[node]]
+id = "D-high-power-solar-electric-propulsion-in-routine-use"
+name = "Megawatt solar-electric propulsion is used on several missions a year"
+factor = "D"
+kind = "world"
+description = """
+Electric thrusters push gently but use a tenth of the propellant of a chemical rocket, and
+fed by large enough solar arrays they can keep pushing for months. Missions today run on
+kilowatts to tens of kilowatts; at a megawatt of thruster power, a solar-electric ship could
+carry a useful payload to the asteroid belt in about a year without a reactor. Megawatt solar
+spacecraft are already being built for orbital computing, which is where the arrays could
+come from. This is the solar route to fast transit, beside nuclear propulsion."""
+resolution = """
+In one calendar year, at least three separate missions beyond low Earth orbit use
+solar-electric propulsion with at least one megawatt of electrical power delivered to the
+thrusters for their main transfer, meaning the burns that supply most of the mission's
+velocity change beyond low Earth orbit, confirmed by the operators and independent
+tracking."""
+source = "Operators' mission records and independent tracking"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.4, moderate = 0.52, strong = 0.68, radical = 0.82, open = 0.87 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The parts exist: electric thrusters are flown every day, and megawatt solar spacecraft are funded for the late 2020s. What is missing is thrusters clustered to a megawatt and a customer who needs three heavy transfers a year beyond low Earth orbit, such as cargo tugs to the Moon or beyond. Set level with routine nuclear propulsion's own number: solar-electric is further along and needs no reactor politics, but weakens with distance from the Sun."
+verify = ["That a megawatt of solar-electric thruster power can carry a useful payload from Earth to the main asteroid belt in about a year is Claude's rough estimate from memory, written 2026-09-25; it needs checking against published mission studies, and the megawatt threshold moves if they show a different figure."]
+notes = "Added 2026-09-25 as a route under D-fast-transit-in-routine-use (candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). Written to match D-nuclear-propulsion-in-routine-use (three missions beyond low Earth orbit in a year, main transfer defined the same way) so the two routes are like for like. E-megawatt-spacecraft-operates-in-orbit is a sibling rather than a dependency: a megawatt solar-electric ship running for a month resolves that step by construction."
 
 [[node]]
 id = "D-crew-round-trip-to-mars"
@@ -75,14 +135,44 @@ agency or company and independent tracking of the vehicles."""
 source = "The responsible agency's or company's mission record and independent tracking"
 horizon = "root"
 depends_on = ["L-orbital-propellant-transfer-at-scale"]
-status = "open"
+status = "superseded"
+superseded_by = "D-crew-round-trip-beyond-the-earth-moon-system"
 probability = { baseline = 0.45, moderate = 0.6, strong = 0.78, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-19
 rationale = "One company is building for it, and refilling in orbit is one link of a long chain: crew-scale landing, surface systems, ascent, return propulsion, multi-year reliability and a programme willing to accept the risk all remain. Under even odds by 2071; likely by 2095 if the launch architecture works at all."
 revisions = [
   { date = 2026-09-19, field = "probability", old = "0.55 / 0.70 / 0.85 / 0.93 / 0.95", new = "0.45 / 0.60 / 0.78 / 0.90 / 0.93", why = "Step 27 outside-model review, item 71 (docs/reviews/2026-09-19-rulings.md): the first rationale leaned on one company's plans and the only dependency granted is the propellant transfer; moved partway toward the reviewer. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "status", old = "open", new = "superseded by D-crew-round-trip-beyond-the-earth-moon-system", why = "Candidate 5 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: what the beyond-the-Moon site takes from this step is a crew that has gone beyond the Earth-Moon system and come back, and Mars is the likeliest instance rather than the requirement. This node's numbers were published, so it is retired and replaced rather than renamed (docs/methodology.md, 'What is fixed and what moves')." },
 ]
 notes = "Edge drawn at step 7 (2026-09-08): a Mars departure on any current architecture needs refilling in orbit. Life support and shielding make it safer, not possible, so they are not hard dependencies. Step 27, item 76 (2026-09-19, declined): this node stays the only dependency of the beyond-the-Moon site node, standing in for 'a crew has gone beyond the Moon and returned'; it would be widened rather than removed if another destination came first."
+
+[[node]]
+id = "D-crew-round-trip-beyond-the-earth-moon-system"
+name = "A crew travels beyond the Earth-Moon system and returns to Earth"
+factor = "D"
+kind = "world"
+description = """
+The transit-in-months milestone with people aboard: the first round trip beyond the Moon's
+neighbourhood proves that a crew can be carried across interplanetary space and back, which
+is what working rotations to an outer site require. A crew landing on Mars and coming home is
+the likeliest way it happens, and the one most programs are aimed at; a crewed trip to a
+near-Earth asteroid, to one of Mars's moons, or around Mars without landing would count
+equally. It needs the launch, propellant and life-support steps as much as the drive, and it
+sits under drive because the transit is the hard part it resolves."""
+resolution = """
+People travel to a point at least five million kilometres from Earth (about thirteen times
+the Moon's distance, well outside the region where Earth's gravity dominates, so that a trip
+around the Moon or to a point near the Earth-Moon system does not count) and return alive to
+Earth, confirmed by the responsible agency or company and independent tracking of the
+vehicles. A crewed landing on Mars and return meets this by construction."""
+source = "The responsible agency's or company's mission record and independent tracking"
+horizon = "root"
+depends_on = ["L-orbital-propellant-transfer-at-scale"]
+status = "open"
+probability = { baseline = 0.52, moderate = 0.66, strong = 0.82, radical = 0.92, open = 0.94 }
+estimated_on = 2026-09-25
+rationale = "Re-estimated 2026-09-25 against the widened criterion, proposed by Claude and not yet ruled by John. Mars carries most of it, and the Mars-landing numbers (0.45 by 2071) are the floor. A crewed flight around Mars without landing, or to a near-Earth asteroid or Mars's moons, needs no landing or ascent from a planet and is a smaller step, so it adds real chance; but no program is funded for any of them and a crewed asteroid mission was cancelled once already, so they raise the number by several points rather than dominate it."
+notes = "Added 2026-09-25 as the replacement for D-crew-round-trip-to-mars under candidate 5 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. Step 27, item 76 (2026-09-19) had already said the Mars node stood in for 'a crew has gone beyond the Moon and returned' and would be widened rather than removed if another destination came first; this is that widening. The five-million-kilometre boundary is Claude's: the Moon's orbit alone would not do, because a crewed flight around the far side of the Moon passes slightly beyond the Moon's orbital distance (Apollo 13 reached about 400,000 kilometres from Earth in 1970). The link to orbital refilling is kept; a single-launch crewed asteroid trip might not need it, which the next review can test."
 
 [[node]]
 id = "D-constant-acceleration-drive-demonstrated"
@@ -106,11 +196,11 @@ Earth, which today's high-speed electric thrusters miss by a thousandfold), conf
 operator and by independent measurement of the vehicle's acceleration."""
 source = "The operator's test record and independent tracking of the vehicle's acceleration"
 horizon = "root"
-depends_on = ["E-fusion-plant-delivers-net-electricity"]
+depends_on = ["E-compact-power-source-at-fast-drive-scale"]
 status = "open"
-probability = { baseline = 0.03, moderate = 0.06, strong = 0.15, radical = 0.35, open = 0.5 }
-estimated_on = 2026-09-20
-rationale = "Re-estimated 2026-09-20 against the renamed node: the fusion-powered clause makes the criterion harder than it read (a non-fusion engine no longer counts) and dropping the transit promise makes it easier than the old name implied, and the first number was already priced for a fusion engine, so the two changes cancel and the numbers stand. A hundredfold weight gap and no thrust ever produced from fusion; a coin flip with no deadline is the founding rule at work. Proposed by Claude 2026-09-20, accepted by John."
+probability = { baseline = 0.38, moderate = 0.5, strong = 0.75, radical = 0.88, open = 0.91 }
+estimated_on = 2026-09-25
+rationale = "Re-estimated 2026-09-25 by Claude with the new dependency, not yet ruled by John: the step now waits on a hundred-megawatt power source at one kilogram per kilowatt, which carries the weight gap this number used to price. Given that source, the remaining steps are a fusion burn in a flying reactor and a nozzle that turns it into thrust; a source that light is far likelier to be fusion than fission, so the fusion clause costs little here. The numbers are set so that the chance through the fusion-plant route alone stays where it was (0.08 times 0.38 is about the old 0.03 by 2071), and the fission route adds to it. Earlier reasoning, 2026-09-20: re-estimated against the renamed node: the fusion-powered clause makes the criterion harder than it read (a non-fusion engine no longer counts) and dropping the transit promise makes it easier than the old name implied, and the first number was already priced for a fusion engine, so the two changes cancel and the numbers stand. A hundredfold weight gap and no thrust ever produced from fusion; a coin flip with no deadline is the founding rule at work. Proposed by Claude 2026-09-20, accepted by John."
 long_shot = true
 mechanism = """
 A fusion reaction whose products are steered out the back directly, rather than used to boil
@@ -131,8 +221,10 @@ revisions = [
   { date = 2026-09-19, field = "name", old = "A drive that could cross the solar system in weeks is fired in space", new = "An engine with both high thrust and high exhaust speed fires in space", why = "Step 27 outside-model review, item 68 (docs/reviews/2026-09-19-rulings.md): the criterion is an engine-physics milestone and the old name promised a transit (a kilonewton on a thousand-tonne ship is 3.6 metres a second in the hour); renamed to what it measures, with the transit test not adopted. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "resolution", old = "any propulsion system meeting the thrust and exhaust-speed thresholds", new = "a fusion-powered propulsion system meeting the same thresholds", why = "Step 27 outside-model review, item 70 (docs/reviews/2026-09-19-rulings.md): the criterion did not require fusion while the node depends on a fusion plant, so a non-fusion drive that met the thresholds would have been blocked by a dependency it did not need; the edge is kept and the criterion now matches it. Ruled by John 2026-09-19." },
   { date = 2026-09-20, field = "probability", old = "0.03 / 0.06 / 0.15 / 0.35 / 0.50", new = "0.03 / 0.06 / 0.15 / 0.35 / 0.50 (re-estimated, unchanged)", why = "Step 27 outside-model review, item 69 (docs/reviews/2026-09-19-rulings.md), held for re-estimation with the renamed node: the fusion-powered clause narrows the criterion and dropping the transit promise widens it, and the first number was already priced for a fusion engine; the re-estimate lands on the same numbers. Proposed 2026-09-20, accepted by John." },
+  { date = 2026-09-25, field = "depends_on", old = "E-fusion-plant-delivers-net-electricity", new = "E-compact-power-source-at-fast-drive-scale", why = "Candidate 4 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: what the drive takes from the energy factor is a compact power source of the right class, and a grid fusion plant is one route to it; a direct fusion drive need not follow a grid plant, and fission-electric at very high power is a separate path. The grid plant is now one of two routes under the function step." },
+  { date = 2026-09-25, field = "probability", old = "0.03 / 0.06 / 0.15 / 0.35 / 0.50", new = "0.38 / 0.50 / 0.75 / 0.88 / 0.91", why = "Re-estimated by Claude with the new dependency, not yet ruled by John: the conditional now starts from a flight-weight hundred-megawatt source, so the weight gap priced into the old number moved to the function step; set so the fusion-plant route alone gives about the old overall chance and the fission route adds to it." },
 ]
-notes = "Weight-gap figures checked 2026-09-08 against a European Space Agency assessment of open magnetic fusion for propulsion and NASA fusion-rocket studies: conceptual fusion drives are projected at one to ten kilowatts per kilogram, fission-electric near 0.2, and the practical requirement is quoted as above one kilowatt per kilogram. Step 27, item 68 (2026-09-19): Astra's arithmetic, one kilonewton at a hundred kilometres a second is fifty megawatts of exhaust power, recorded in the description."
+notes = "Weight-gap figures checked 2026-09-08 against a European Space Agency assessment of open magnetic fusion for propulsion and NASA fusion-rocket studies: conceptual fusion drives are projected at one to ten kilowatts per kilogram, fission-electric near 0.2, and the practical requirement is quoted as above one kilowatt per kilogram. Step 27, item 68 (2026-09-19): Astra's arithmetic, one kilonewton at a hundred kilometres a second is fifty megawatts of exhaust power, recorded in the description. Function-over-route pass, 2026-09-25 (candidate 4): the criterion still says fusion-powered, as ruled at step 27 item 70 to match the old fusion-plant link; with a fission-electric route now under the power step, whether the criterion should admit any power source is left for John."
 
 [[node]]
 id = "D-permanent-crewed-site-beyond-the-earth-moon-system"
@@ -152,12 +244,13 @@ before any departure leaves the site empty, confirmed by the operator and indepe
 tracking of the vehicles involved."""
 source = "The operator's records and independent tracking"
 horizon = "root"
-depends_on = ["D-crew-round-trip-to-mars", "B-closed-loop-life-support-year-off-earth"]
+depends_on = ["D-crew-round-trip-beyond-the-earth-moon-system", "B-closed-loop-life-support-year-off-earth"]
 status = "open"
 probability = { baseline = 0.4, moderate = 0.55, strong = 0.75, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-19
 rationale = "Getting there and back is proven by the dependency; staying needs a reason to keep a rotation running, which is a motive question the tree asks elsewhere."
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "'beyond the Earth-Moon system' undefined; 'at least one crew rotation' could be read as a crew leaving with nobody arriving", new = "farther from Earth than the Moon's orbit, excluding the Earth-Moon Lagrange points; at least one arrival of new occupants before any departure leaves the site empty", why = "Step 27 outside-model review, item 75 (docs/reviews/2026-09-19-rulings.md): the boundary and the rotation are now defined; the name already says what the criterion tests. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "depends_on", old = "D-crew-round-trip-to-mars", new = "D-crew-round-trip-beyond-the-earth-moon-system", why = "Candidate 5 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: the crew round trip this site needs is any round trip beyond the Earth-Moon system, of which Mars is the likeliest; the Mars step was retired in favour of the widened one. Numbers unchanged." },
 ]
 notes = "Added at step 7 (2026-09-08) because no node covered Tier 3's beyond-the-Moon criterion. The criterion is deliberately inclusive: Mars, the asteroid belt, an outer moon, a free-flying habitat, or anywhere else beyond the Earth-Moon system all count, and any one of them resolves the node. Confirmed by John 2026-09-08 that every kind of habitation at Tier 3's level should count."

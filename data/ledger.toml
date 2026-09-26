@@ -583,3 +583,148 @@ into its place, which would have raised the headline; John declined that, so the
 requirement of the Belt as ruled on 2026-09-19. Only the top tier moved, slightly up."""
 snapshot = "2026-09-25-methodology-pass"
 run_note = "docs/runs/2026-09-25-methodology-pass.md"
+
+# 2026-09-25: the function-over-route pass. After the essay question "why does it have to be a
+# nuclear reactor?", Claude proposed a rule (a link names the function a child needs, not one route
+# to it) and a sweep of every link in the tree (docs/proposal-function-over-route-2026-09-25.md).
+# John approved it in full on 2026-09-25 (docs/handoff-function-over-route-2026-09-25.md), counting
+# the pass as the review a tier change needs, on the methodology-pass precedent. One entry per
+# candidate that changed; candidate 2 was checked and left, candidate 8 and the access branch were
+# not candidates. All landed in one snapshot, which breaks like-for-like comparison with the run
+# before it. The snapshot label sorts after 'methodology-pass' so the two same-day runs keep their
+# order.
+
+[[entry]]
+id = "2026-09-25-lunar-material-waits-on-power-not-on-a-reactor"
+date = 2026-09-25
+kind = "structure"
+title = "Lunar material at scale now waits on power through the lunar night from any source, not on a nuclear reactor"
+body = """
+Asked while the introduction essay was being drafted: why does it have to be a nuclear
+reactor? It does not. Mining on the Moon needs electricity through the two-week night, and
+a reactor is one way to get it. Solar panels on a polar ridge that is almost always in
+sunlight, with storage for the short dark spells, is another; power sent down from orbit is a
+third. The tree had the Belt waiting on the reactor alone, which counts one route as if it
+were the only one and always biases the number low. Under candidate 1 of the function-over-route
+proposal (docs/proposal-function-over-route-2026-09-25.md), approved by John on 2026-09-25,
+lunar material at scale now depends on a new step, a hundred kilowatts at one lunar site
+through a year from any source, with the reactor, polar solar with storage and power from
+orbit as its three routes. The two new routes and the new step carry first estimates from
+Claude that John has not yet ruled on. The reactor itself is unchanged and still tracked."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-a-commercial-lunar-program-can-carry-the-lunar-gate"
+date = 2026-09-25
+kind = "structure"
+title = "A commercial lunar program that outlives its backers now counts, as well as a government one"
+body = """
+Lunar material at scale needs a crewed lunar program that lasts long enough to become an
+institution. The step it waited on asked for a program that survives two changes of
+government, which quietly assumed the program would be a government's. A company program
+whose owner or lead funder changes twice and keeps flying crew supplies the same thing. Under
+candidate 3 of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md),
+approved by John on 2026-09-25, the step now reads: a crewed lunar program, government or
+commercial, keeps flying across two changes of its principal backer. Because the old step had
+published numbers, it is retired and replaced rather than renamed, and lunar material at scale
+points at the new one. Claude re-estimated it a few points up, 0.75 to 0.78 by 2071, since the
+government route still carries almost all of it; John has not yet ruled on the new numbers."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-fast-drive-waits-on-a-light-power-source-not-a-grid-plant"
+date = 2026-09-25
+kind = "structure"
+title = "The fast drive now waits on a light hundred-megawatt power source from any route, not on a fusion plant selling to a grid"
+body = """
+The engine that would cross to the Belt in weeks was waiting on a fusion plant putting net
+electricity onto a grid. What the drive needs from that plant is a power source large and light
+enough to fly, and a grid plant is only one way toward it: a fusion drive could be developed
+without one, and a very large fission-electric system is a separate path. Under candidate 4 of
+the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved by
+John on 2026-09-25, the drive now depends on a new step: a hundred megawatts of electricity from a
+source that weighs no more than a hundred tonnes, one kilogram for each kilowatt, the figure the
+drive's own record gives as the practical requirement. The grid fusion plant and a new
+fission-electric route sit under it. Because the new step carries the weight gap, the drive's own
+conditional was re-estimated up so the fusion route alone gives about the same chance as before.
+The new numbers are Claude's first estimates, not yet ruled by John. This touches only the top
+tier, not the headline."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-any-crewed-round-trip-beyond-the-moon-counts-not-only-mars"
+date = 2026-09-25
+kind = "structure"
+title = "A crew going beyond the Earth-Moon system and coming home now counts, whether or not it lands on Mars"
+body = """
+A crewed site beyond the Earth-Moon system, which the Belt tier requires, waited on a crew
+landing on Mars and returning. What the site needs from that step is proof that people can be
+carried across interplanetary space and back, and a crewed flight to a near-Earth asteroid, to
+Mars's moons, or around Mars without landing would supply it too. Under candidate 5 of the
+function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved by John
+on 2026-09-25, the step now reads: a crew travels beyond the Earth-Moon system, at least five
+million kilometres from Earth, and returns. Mars is named as the likeliest way it happens, not
+the requirement. The Mars step had published numbers, so it is retired and replaced rather than
+renamed. Claude re-estimated the widened step a few points up (0.45 to 0.52 by 2071); John has
+not yet ruled on the new numbers."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-belt-tier-needs-fast-transit-not-nuclear-propulsion"
+date = 2026-09-25
+kind = "structure"
+title = "The Belt tier now needs transit fast enough that people go out there to work, by any propulsion, instead of nuclear propulsion"
+body = """
+The Belt tier listed nuclear propulsion in routine use among the things it cannot exist
+without. What a Slow Expanse needs is ships that reach the Belt in months, often enough that
+going is routine; nuclear propulsion is one way to get there, and high-power solar-electric
+propulsion is another. Under candidate 6 of the function-over-route proposal
+(docs/proposal-function-over-route-2026-09-25.md), approved by John on 2026-09-25 and counted as
+the review a tier change needs, the tier's words now read "transit fast enough that people go out
+there to work", and its test is a new step: three missions in one year, crewed or cargo, reaching
+the asteroid belt within twelve months of leaving Earth, by any propulsion. Routine nuclear
+propulsion and a new step for megawatt solar-electric propulsion in routine use sit under it as
+routes. The new numbers are Claude's first estimates, not yet ruled by John. The step names the
+Belt, so a world whose fast ships go only to Mars does not meet it."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-a-product-made-off-earth-can-come-from-an-asteroid"
+date = 2026-09-25
+kind = "structure"
+title = "A product made off Earth can now be made from asteroid material as well as lunar material"
+body = """
+The first profitable off-Earth product waited on a hundred tonnes a year of lunar material
+reaching orbit. What the product needs is off-Earth material at scale, and an asteroid could
+supply it as well as the Moon; this is the link the introduction essay says gates the Belt.
+Under candidate 7 of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md),
+approved by John on 2026-09-25, the product step now depends on a new either-route step, a
+hundred tonnes a year from the Moon or from an asteroid, with a new asteroid route beside the
+lunar one. The asteroid route carries a first estimate from Claude, not yet ruled by John. The
+Belt tier itself still lists lunar material at scale by name, so this change lifts the product
+step without moving the headline; whether the tier should list the either-route step instead is
+a question for John."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-food-made-on-site-counts-however-it-is-made"
+date = 2026-09-25
+kind = "structure"
+title = "The year of life support off Earth now counts food made on site from raw materials however it is made, not only food grown as crops"
+body = """
+The settlement tier needs a crew to live off Earth for a year with most of its food produced
+where it lives. The step asked for calories grown on site, which assumes crops. Food cultured
+or fermented from water, air, carbon dioxide and waste would do the same job. Under candidate 9
+of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved
+by John on 2026-09-25 with the lighter of the two handlings, the step's criterion now reads
+"most of its food produced on site from raw inputs", with raw inputs defined as things that are
+not themselves food. The staple crop harvested off Earth stays its parent as the likeliest
+route, and a cultured-food route would be added if one appears. No number changed."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"

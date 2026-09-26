@@ -191,7 +191,7 @@ received and used by a customer there, reported by the operator with independent
 confirmation."""
 source = "The operator's public accounting, confirmed by the customer or an agency"
 horizon = "root"
-depends_on = ["L-crew-lands-on-moon-in-reusable-lander", "E-fission-reactor-runs-on-lunar-surface", "R-crewed-lunar-program-outlives-two-changes-of-president", "L-propellant-produced-off-earth-and-fired-in-a-thruster"]
+depends_on = ["L-crew-lands-on-moon-in-reusable-lander", "E-power-through-the-lunar-night-at-a-surface-site", "R-crewed-lunar-program-outlives-two-changes-of-backer", "L-propellant-produced-off-earth-and-fired-in-a-thruster"]
 status = "open"
 probability = { baseline = 0.55, moderate = 0.7, strong = 0.85, radical = 0.92, open = 0.94 }
 estimated_on = 2026-09-19
@@ -200,8 +200,56 @@ revisions = [
   { date = 2026-09-19, field = "resolution", old = "'material originating on the Moon ... delivered ... and used there'", new = "net mass of lunar origin, excluding any Earth-supplied content, counted once, received and used by a customer in orbit", why = "Step 27 outside-model review, item 60 (docs/reviews/2026-09-19-rulings.md): a tank of lunar oxygen with Earth-made hardware, or the same material shuttled twice, would otherwise have counted; independent confirmation was already required. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "depends_on", old = "the crewed lander, the lunar reactor and the durable lunar programme", new = "the same three plus L-propellant-produced-off-earth-and-fired-in-a-thruster", why = "Step 27 outside-model review, items 11 and 53 (docs/reviews/2026-09-19-rulings.md): the tree jumped from a reactor to a hundred tonnes a year; a first tonne of lunar propellant fired is the rung between. Astra's hundred-tonnes-produced node was declined as covered by this node's own hundred tonnes. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "probability", old = "0.35 / 0.50 / 0.70 / 0.85 / 0.90", new = "0.55 / 0.70 / 0.85 / 0.92 / 0.94", why = "Step 27 outside-model review, item 16 (docs/reviews/2026-09-19-rulings.md): given power, transport and political continuity, a hundred tonnes is cadence, not a breakthrough, and the new propellant leaf takes the first-tonne difficulty out of this conditional (the double-counting note from item 53 applied). Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "depends_on", old = "E-fission-reactor-runs-on-lunar-surface", new = "E-power-through-the-lunar-night-at-a-surface-site", why = "Candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: what mining at scale takes from the reactor is power through the lunar night, and solar with storage at a polar site or power sent down from orbit would serve as well. The reactor is now one of three routes under the function step. The numbers stand: they were set given power, and the step from a forty-kilowatt demonstration to a hundred kilowatts at one site is priced on the function step." },
+  { date = 2026-09-25, field = "depends_on", old = "R-crewed-lunar-program-outlives-two-changes-of-president", new = "R-crewed-lunar-program-outlives-two-changes-of-backer", why = "Candidate 3 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: the lunar-program step widened to a program, government or commercial, that keeps flying across two changes of its principal backer, and the old step was retired in its favour. Numbers unchanged." },
 ]
-notes = "Edges drawn at step 7 (2026-09-08): mining at scale needs surface power through the lunar night, and a decade of lunar work needs the program to outlive elections. Step 27, item 61 (2026-09-19, declined): the reactor edge stays because every current lunar programme plans one and a two-week night on batteries at scale is not demonstrated; solar with storage is a studied alternative, logged here for revisit if a night-survival solar node is ever added. The programme edge is already nation-agnostic; the people edge stays because a hundred tonnes a year needs maintenance crews."
+notes = "Edges drawn at step 7 (2026-09-08): mining at scale needs surface power through the lunar night, and a decade of lunar work needs the program to outlive elections. Step 27, item 61 (2026-09-19, declined): the reactor edge stayed because every current lunar programme plans one and a two-week night on batteries at scale is not demonstrated; solar with storage was logged here for revisit. Revisited 2026-09-25 under the function-over-route rule: the edge now points at E-power-through-the-lunar-night-at-a-surface-site, with the reactor, polar solar with storage, and power from orbit as its routes. The programme edge is nation-agnostic, and since 2026-09-25 counts a commercial programme too; the people edge stays because a hundred tonnes a year needs maintenance crews."
+
+[[node]]
+id = "L-off-earth-material-delivered-at-scale"
+name = "A hundred tonnes a year of material from the Moon or an asteroid are delivered to orbit"
+factor = "L"
+kind = "world"
+description = """
+The either-route step for off-Earth material at scale. A product mined or made off Earth needs
+a supply of off-Earth material in orbit, and it does not matter which body the material comes
+from. Resolves if either route does: a hundred tonnes a year from the Moon, or a hundred tonnes
+a year from an asteroid. Written under the function-over-route rule (docs/methodology.md)."""
+resolution = "Either of the two route nodes it depends on has resolved yes."
+source = "The resolving route node's own source"
+horizon = "root"
+depends_on_any = [["L-lunar-material-delivered-to-orbit-at-scale", "L-asteroid-material-delivered-to-orbit-at-scale"]]
+status = "open"
+probability = { baseline = 1.0, moderate = 1.0, strong = 1.0, radical = 1.0, open = 1.0 }
+estimated_on = 2026-09-25
+rationale = "Resolves whenever either route does; certainty here means the number is carried entirely by the two route nodes."
+notes = "Added 2026-09-25 under candidate 7 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. M-off-earth-product-sold-at-a-profit depends on this step instead of the lunar route alone. Tier 3 still lists the lunar route itself among its requirements, so the asteroid route can lift the product step but not the Belt tier; whether Tier 3 should list this step instead was not part of the ruling."
+
+[[node]]
+id = "L-asteroid-material-delivered-to-orbit-at-scale"
+name = "A hundred tonnes of material from an asteroid are delivered to orbit around Earth or the Moon in one year"
+factor = "L"
+kind = "world"
+description = """
+The second route to off-Earth material at scale. Some near-Earth asteroids take less energy to
+reach and return from than the Moon's surface, and some are rich in water or metal. Two
+agencies have returned grams from asteroids; a company that brings back a hundred tonnes a year
+has made asteroids a supply rather than a sample. It is the route The Expanse's Belt is named
+for, and the one that does not depend on a lunar program lasting."""
+resolution = """
+In one calendar year, at least one hundred tonnes of net mass of asteroid origin (rock, water,
+metal, or products made from them, excluding any Earth-supplied content and counting the same
+material once) are delivered to an orbit around Earth or the Moon, or to another stable
+location in the Earth-Moon system, and received and used by a customer there, reported by the
+operator with independent confirmation."""
+source = "The operator's public accounting, confirmed by the customer or an agency"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.08, moderate = 0.13, strong = 0.25, radical = 0.45, open = 0.55 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The first asteroid-mining companies of the 2010s folded without a customer, the total ever returned from asteroids is well under a kilogram, and every trip takes years; a hundred tonnes a year needs an industry nobody is yet building. Low by 2071, rising in the long windows where a Belt economy would make it ordinary."
+notes = "Added 2026-09-25 as a route under L-off-earth-material-delivered-at-scale (candidate 7 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). The counting rules (net mass, Earth-supplied content excluded, counted once, received and used by a customer) are copied from the lunar route so that the two are like for like. No hard dependency is drawn: slow solar-electric tugs could do it without the fast-transit or refilling steps."
 
 [[node]]
 id = "L-cryogenic-propellant-stored-in-orbit-six-months-and-used"

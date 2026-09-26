@@ -40,8 +40,9 @@ description = """
 A lunar night lasts two weeks, so any permanent base needs power that does not come from the
 Sun. A small fission reactor of a few tens of kilowatts is the planned answer; on 2026-01-13
 the US space agency and energy department announced a 2030 target for a reactor on the lunar
-surface, a target rather than a flight. It is the power source that mining, refining, and a
-permanent outpost assume."""
+surface, a target rather than a flight. It is the planned power source for mining, refining,
+and a permanent outpost, and since 2026-09-25 one of three routes to the power they need
+(E-power-through-the-lunar-night-at-a-surface-site)."""
 resolution = """
 A fission reactor on the lunar surface makes at least forty kilowatts of net electrical output
 available to external loads for at least ninety percent of a twelve-month period, confirmed
@@ -56,8 +57,87 @@ rationale = "The schedule has already slipped to the early 2030s and reactor pro
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "'delivering at least forty kilowatts ... operates ... for twelve continuous months'", new = "at least forty kilowatts of net electrical output available to loads for at least ninety percent of a twelve-month period", why = "Step 27 outside-model review, item 64 (docs/reviews/2026-09-19-rulings.md): 'twelve continuous months' would have failed on a single maintenance outage, and net output to loads was unspecified. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "description", old = "'aimed at the end of this decade ... plans delivery of a reactor to the launch pad in the early 2030s'", new = "the 2030 target announced 2026-01-13, dated", why = "Step 27 outside-model review, item 64: the description needed a dated update; the release of 2026-01-13 was fetched and checked. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "description", old = "'It is the power source that mining, refining, and a permanent outpost assume.'", new = "the planned power source, and since 2026-09-25 one of three routes to power through the lunar night", why = "Candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: lunar material at scale now depends on the function step E-power-through-the-lunar-night-at-a-surface-site, with this reactor as one route under it. Text only; the reactor's criterion and numbers are unchanged." },
 ]
 notes = "Drafted as a leaf; moved to mid on 2026-09-08 after checking the program's schedule, which has slipped to the early 2030s. NASA release of 2026-01-13 setting a 2030 surface-reactor target fetched 2026-09-19."
+
+[[node]]
+id = "E-power-through-the-lunar-night-at-a-surface-site"
+name = "A site on the Moon has a hundred kilowatts of electricity through the lunar night, for a year, from any source"
+factor = "E"
+kind = "world"
+description = """
+A lunar night lasts two weeks, and mining, refining and a permanent base all need power that
+keeps running through it. What they need is the power, not any one way of making it: a
+fission reactor, solar panels on a polar ridge that is almost always in sunlight with storage
+for the short dark spells, or power sent down from orbit would all serve. This is the function
+step that lunar material at scale depends on, written so that any route counts (the
+function-over-route rule, docs/methodology.md). A hundred kilowatts is a few times the first
+planned reactor, the scale at which a site does industrial work rather than only keeping a
+small crew alive."""
+resolution = """
+At a single lunar surface site, at least one hundred kilowatts of net electrical power is
+available to the site's loads for at least ninety percent of a twelve-month period, from any
+source or mix of sources, confirmed by the operator's record."""
+source = "The site operator's published record (an agency mission record or a company's operating report)"
+horizon = "mid"
+depends_on_any = [["E-fission-reactor-runs-on-lunar-surface", "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year", "E-power-delivered-from-orbit-to-the-lunar-surface-for-a-year"]]
+status = "open"
+probability = { baseline = 0.9, moderate = 0.93, strong = 0.95, radical = 0.97, open = 0.98 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given that one route has already run a forty-kilowatt system through a whole year, the hard part is done; a hundred kilowatts at one site is two or three such units or one larger one, which a programme building toward mining will want anyway. The residual is a site that never needs more than its first unit. This step up was hidden before: lunar material at scale depended on a forty-kilowatt reactor and was estimated given power, so nothing priced the move to industrial scale."
+notes = "Added 2026-09-25 under candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. Threshold form: each of the three routes is a year-long demonstration at forty kilowatts, and this step is the scale-up at one site by whichever route or mix. The demonstration of power beamed to Earth's ground (M-power-beamed-from-orbit-to-ground-at-kilowatt-scale) is a cousin of the orbital route, not a dependency."
+
+[[node]]
+id = "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year"
+name = "Solar panels with storage keep a lunar polar site powered through a whole year"
+factor = "E"
+kind = "world"
+description = """
+Near the Moon's poles, a few ridges and crater rims are in sunlight most of the time, because
+the Sun circles low along the horizon there. Tall solar masts on such a ridge, with batteries
+or fuel cells for the short dark spells, can keep a site powered without a reactor. The US
+space agency has funded tall-mast solar designs for this purpose, and it is the route most
+likely to arrive first if the lunar reactor keeps slipping."""
+resolution = """
+A solar power system with energy storage, at a lunar site within ten degrees of latitude of
+either pole, makes at least forty kilowatts of net electrical output available to external
+loads for at least ninety percent of a twelve-month period, with no nuclear source
+contributing, confirmed by the responsible agency's or company's mission record."""
+source = "The responsible agency's or company's mission record"
+horizon = "mid"
+depends_on = []
+status = "open"
+probability = { baseline = 0.55, moderate = 0.68, strong = 0.82, radical = 0.9, open = 0.93 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The panels, masts and storage are ordinary engineering and every south-pole base plan starts on solar, but forty kilowatts held through a full year of dark spells and dust has not been attempted, and a programme that gets its reactor may never build a solar plant this size. Set below the reactor because the reactor is the planned answer."
+verify = ["The US space agency's tall-mast solar programme for the lunar south pole (Vertical Solar Array Technology, with awards around 2022 to 2024) was written from memory on 2026-09-25; its award records need checking and linking."]
+notes = "Added 2026-09-25 as a route under E-power-through-the-lunar-night-at-a-surface-site (candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). The forty-kilowatt threshold and the ninety-percent-of-a-year test match the reactor route, so the routes are like for like. Solar with storage was the alternative logged against the reactor link at step 27, item 61 (2026-09-19)."
+
+[[node]]
+id = "E-power-delivered-from-orbit-to-the-lunar-surface-for-a-year"
+name = "Power sent down from orbit keeps a site on the Moon running for a year"
+factor = "E"
+kind = "world"
+description = """
+A spacecraft in orbit around the Moon, or parked where it sees the Sun all the time, can
+collect sunlight and send the energy down to the surface as microwaves or laser light, or
+reflect sunlight straight onto panels at the site. It avoids both the reactor and the polar
+ridge, and it would let a site sit anywhere on the Moon. It is the least developed of the
+three routes: nothing has yet sent useful power from orbit to any surface."""
+resolution = """
+Energy sent from one or more spacecraft in space to a lunar surface site, as microwaves,
+laser light or reflected sunlight, is converted at the site into at least forty kilowatts of
+net electrical output available to external loads for at least ninety percent of a
+twelve-month period, confirmed by the responsible agency's or company's mission record."""
+source = "The responsible agency's or company's mission record"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.08, moderate = 0.12, strong = 0.22, radical = 0.38, open = 0.48 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The physics is ordinary, but the only orbital power-beaming flight so far delivered milliwatts, a kilowatt to Earth's ground is still under even odds by 2071, and a surface site has two cheaper routes; this one wins only where a site must sit far from the poles and a reactor is ruled out."
+notes = "Added 2026-09-25 as a route under E-power-through-the-lunar-night-at-a-surface-site (candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). A cousin of M-power-beamed-from-orbit-to-ground-at-kilowatt-scale, not a dependency: a lunar system could be built without an Earth demonstration first."
 
 [[node]]
 id = "E-superconducting-wire-price-falls-tenfold"
@@ -121,6 +201,81 @@ revisions = [
   { date = 2026-09-19, field = "resolution", old = "net export at the grid meter only", new = "net of all electricity drawn by the site from any source and of any change in stored energy over the period, with the generation attributed to fusion by the plant operator", why = "Step 27 outside-model review, item 65 (docs/reviews/2026-09-19-rulings.md): a site with auxiliaries on a separate feed, or one draining a battery over the month, or a hybrid site, could otherwise have met the meter test. Ruled by John 2026-09-19." },
 ]
 notes = "Drafted with a hard dependency on cheap superconducting wire; removed at step 7 (2026-09-08) because only the magnet route needs it and laser and other routes do not. The link stays in the mechanism of the fusion drive node. Now depends on a plant having started construction, which has happened."
+
+[[node]]
+id = "E-compact-power-source-at-fast-drive-scale"
+name = "A power source makes a hundred megawatts of electricity while weighing no more than a hundred tonnes"
+factor = "E"
+kind = "world"
+description = """
+A drive that could cross to the Belt in weeks needs tens of megawatts of exhaust power, and it
+has to carry the source of that power with it. What such a drive takes from the energy factor
+is not a fusion plant on the ground but a power source that is both large and light, whatever
+it runs on. The bar chosen here is a hundred megawatts of electricity at no more than one
+kilogram for each kilowatt, so no more than a hundred tonnes in all: that is the figure agency
+fusion-rocket studies give as the practical requirement for a fast drive, a hundred megawatts
+covers the fifty megawatts of exhaust power the fast-drive step asks for after conversion
+losses, and a hundred tonnes is a handful of flights of a fully reusable heavy launcher. A
+grid fusion plant and a very large fission-electric system are the two routes toward it. This
+is the function step the fast-drive step depends on (the function-over-route rule,
+docs/methodology.md)."""
+resolution = """
+A single power system produces at least one hundred megawatts of net electrical output for at
+least one continuous hour, on the ground or in space, and its complete mass as it would fly
+(power source, power conversion, the radiators it would need to shed its waste heat in
+vacuum, and any crew shielding it requires) is no more than one hundred tonnes, that is, no
+more than one kilogram per kilowatt of output. The output is confirmed by the developer's test
+record and the flight mass by a space agency's or an independent technical review of the
+design that was tested."""
+source = "The developer's test record and a space agency's or independent technical review"
+horizon = "root"
+depends_on_any = [["E-fusion-plant-delivers-net-electricity", "E-fission-electric-space-power-system-reaches-a-hundred-megawatts"]]
+status = "open"
+probability = { baseline = 0.08, moderate = 0.12, strong = 0.2, radical = 0.4, open = 0.55 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given a working grid fusion plant or a hundred-megawatt fission-electric system, this is the weight gap the fast-drive step's breaking point names: ground fusion designs run to tens or hundreds of tonnes per megawatt and flight fission-electric systems near five kilograms per kilowatt, so closing it by a hundred- to a thousandfold is the long shot. The numbers carry most of what the fast-drive step used to price for weight, which is why that step's own conditional rose on the same day."
+long_shot = true
+mechanism = """
+Grid fusion plants prove the reaction can be held and sold. Compact magnet designs, made
+cheap by high-temperature superconducting tape, shrink the reactor; fuels that release their
+energy as charged particles let the power be taken off directly rather than through a heavy
+turbine, and let most of the waste heat leave as useful exhaust rather than through
+radiators. On the fission side, reactors running hotter, with lighter power conversion and
+high-temperature radiators, raise the output per kilogram step by step from today's designs.
+Either path ends at a source a spacecraft can carry."""
+breaking_point = """
+The source has to be light as well as working. No fusion device has produced net electricity
+at all, ground fusion designs weigh a hundred to a thousand times too much per kilowatt, and
+flight fission-electric designs top out near a fifth of a kilowatt per kilogram, five times
+short of the bar. Radiator mass alone sets a floor that current materials may not get under
+at a hundred megawatts."""
+notes = "Added 2026-09-25 under candidate 4 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. Threshold chosen by Claude: 100 MWe at 1 kg/kW. The one-kilowatt-per-kilogram figure is the practical requirement recorded on D-constant-acceleration-drive-demonstrated (checked 2026-09-08 against a European Space Agency assessment and NASA fusion-rocket studies); the strongest alternative was 2 kg/kW, which a very advanced fission-electric system might reach and which would make the fission route real, but the fast-drive step's own sourced figure is 1 kg/kW, so the bar follows it."
+
+[[node]]
+id = "E-fission-electric-space-power-system-reaches-a-hundred-megawatts"
+name = "A fission-electric power system built for spaceflight makes a hundred megawatts of electricity"
+factor = "E"
+kind = "world"
+description = """
+A reactor driving a generator, with radiators to shed the heat, is the one way to make
+electricity in deep space that has been built and ground-tested for decades, at up to a few
+hundred kilowatts. Scaled up a few hundredfold, it could power large electric thrusters or,
+if made light enough, a fast drive without waiting on fusion. This is the fission route
+toward a compact power source at fast-drive scale."""
+resolution = """
+A fission reactor power system designed for spaceflight, including its power conversion and
+the radiators it would use in vacuum, produces at least one hundred megawatts of net
+electrical output for at least one continuous hour, in a ground test or in space, confirmed by
+the developer's test record and the responsible agency's report. A land-based power station
+not designed to fly does not count."""
+source = "The developer's test record and the responsible agency's report"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.04, moderate = 0.07, strong = 0.14, radical = 0.28, open = 0.38 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The largest space reactor systems ever designed aimed at a megawatt or less and none has flown at that power; a hundred megawatts built to fly needs a mission that cannot be done any other way and decades of funding, which no program has yet found. Low by 2071, rising with the long windows as fast transit to the outer system becomes worth paying for."
+notes = "Added 2026-09-25 as a route under E-compact-power-source-at-fast-drive-scale (candidate 4 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). It sets no weight limit: the function step above it carries the one-kilogram-per-kilowatt bar. Not marked a long shot because it is a scaling problem on known physics."
 
 [[node]]
 id = "E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity"

@@ -38,11 +38,11 @@ requires = [
 [[system_tier]]
 key = "T3"
 name = "Slow Expanse"
-definition = "Tens of thousands off Earth, including at least one site beyond the Earth-Moon system. Transit times in months. Something mined or made off Earth sold at a profit. Nuclear propulsion in routine use. This is the bar for the headline."
+definition = "Tens of thousands off Earth, including at least one site beyond the Earth-Moon system. Transit times in months. Something mined or made off Earth sold at a profit. Transit fast enough that people go out there to work. This is the bar for the headline."
 requires = [
   "T2",
   "D-permanent-crewed-site-beyond-the-earth-moon-system",
-  "D-nuclear-propulsion-in-routine-use",
+  "D-fast-transit-in-routine-use",
   "M-off-earth-product-sold-at-a-profit",
   "R-off-earth-resource-rights-recognised-by-major-powers",
   "B-shielding-halves-deep-space-radiation-dose",
@@ -53,6 +53,11 @@ requires = [
 # (ruled 2026-09-19): a real gate on tens of thousands in transit. Moving it to Tier 4 in place of the
 # anti-satellite ban was considered at the methodology pass (item 100 part b,
 # docs/methodology-pass-2026-09-25.md) and declined by John 2026-09-25; it stays here.
+# D-fast-transit-in-routine-use replaced D-nuclear-propulsion-in-routine-use on 2026-09-25 under candidate 6 of
+# docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25, the pass counting as
+# the review a tier change needs: the tier needs transit fast enough that people go out there to
+# work, and nuclear propulsion is one route to it (high-power solar-electric is the other). The
+# definition's words changed with it, from "Nuclear propulsion in routine use".
 
 [[system_tier]]
 key = "T4"
