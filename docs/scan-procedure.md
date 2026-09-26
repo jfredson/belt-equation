@@ -84,3 +84,9 @@ Send John one short message, a numbered list and nothing else: first what he nee
 - Read, do not infer: a node moves on evidence about its criterion, not on mood about the field.
 - One scan, one commit, made by the publish command in step 6. Never force-push, never rebase, never touch a branch other than main (and the one fallback branch in step 6).
 - If anything in this file cannot be followed as written, do the parts that can, flag the rest for John in the report, and never improvise an edit outside the limits in docs/scan-plan.md.
+
+## 8. Book log line (only if something moved or resolved)
+
+Added 2026-09-25. If this scan moved a probability or resolved a step, write one line for John's private book log, docs/private/book/book-log.md: under "What I got wrong" when the move shows an earlier number or wording was off, or under "Moments" when it is simply a thing that happened worth remembering. Shape: `- YYYY-MM-DD. <one plain sentence>. [scan] (source: data/scans/YYYY-MM-DD.toml)`. If nothing moved or resolved, skip this step.
+
+docs/private/ is ignored by git, so a cloud session's clone does not have the file. In that case do not create it: add the line as the last item of the step 7 report, headed "For the book log", and John pastes it in. On the Mac, where the file exists, append the line under the right heading.
