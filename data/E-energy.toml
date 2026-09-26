@@ -203,6 +203,81 @@ revisions = [
 notes = "Drafted with a hard dependency on cheap superconducting wire; removed at step 7 (2026-09-08) because only the magnet route needs it and laser and other routes do not. The link stays in the mechanism of the fusion drive node. Now depends on a plant having started construction, which has happened."
 
 [[node]]
+id = "E-compact-power-source-at-fast-drive-scale"
+name = "A power source makes a hundred megawatts of electricity while weighing no more than a hundred tonnes"
+factor = "E"
+kind = "world"
+description = """
+A drive that could cross to the Belt in weeks needs tens of megawatts of exhaust power, and it
+has to carry the source of that power with it. What such a drive takes from the energy factor
+is not a fusion plant on the ground but a power source that is both large and light, whatever
+it runs on. The bar chosen here is a hundred megawatts of electricity at no more than one
+kilogram for each kilowatt, so no more than a hundred tonnes in all: that is the figure agency
+fusion-rocket studies give as the practical requirement for a fast drive, a hundred megawatts
+covers the fifty megawatts of exhaust power the fast-drive step asks for after conversion
+losses, and a hundred tonnes is a handful of flights of a fully reusable heavy launcher. A
+grid fusion plant and a very large fission-electric system are the two routes toward it. This
+is the function step the fast-drive step depends on (the function-over-route rule,
+docs/methodology.md)."""
+resolution = """
+A single power system produces at least one hundred megawatts of net electrical output for at
+least one continuous hour, on the ground or in space, and its complete mass as it would fly
+(power source, power conversion, the radiators it would need to shed its waste heat in
+vacuum, and any crew shielding it requires) is no more than one hundred tonnes, that is, no
+more than one kilogram per kilowatt of output. The output is confirmed by the developer's test
+record and the flight mass by a space agency's or an independent technical review of the
+design that was tested."""
+source = "The developer's test record and a space agency's or independent technical review"
+horizon = "root"
+depends_on_any = [["E-fusion-plant-delivers-net-electricity", "E-fission-electric-space-power-system-reaches-a-hundred-megawatts"]]
+status = "open"
+probability = { baseline = 0.08, moderate = 0.12, strong = 0.2, radical = 0.4, open = 0.55 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given a working grid fusion plant or a hundred-megawatt fission-electric system, this is the weight gap the fast-drive step's breaking point names: ground fusion designs run to tens or hundreds of tonnes per megawatt and flight fission-electric systems near five kilograms per kilowatt, so closing it by a hundred- to a thousandfold is the long shot. The numbers carry most of what the fast-drive step used to price for weight, which is why that step's own conditional rose on the same day."
+long_shot = true
+mechanism = """
+Grid fusion plants prove the reaction can be held and sold. Compact magnet designs, made
+cheap by high-temperature superconducting tape, shrink the reactor; fuels that release their
+energy as charged particles let the power be taken off directly rather than through a heavy
+turbine, and let most of the waste heat leave as useful exhaust rather than through
+radiators. On the fission side, reactors running hotter, with lighter power conversion and
+high-temperature radiators, raise the output per kilogram step by step from today's designs.
+Either path ends at a source a spacecraft can carry."""
+breaking_point = """
+The source has to be light as well as working. No fusion device has produced net electricity
+at all, ground fusion designs weigh a hundred to a thousand times too much per kilowatt, and
+flight fission-electric designs top out near a fifth of a kilowatt per kilogram, five times
+short of the bar. Radiator mass alone sets a floor that current materials may not get under
+at a hundred megawatts."""
+notes = "Added 2026-09-25 under candidate 4 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. Threshold chosen by Claude: 100 MWe at 1 kg/kW. The one-kilowatt-per-kilogram figure is the practical requirement recorded on D-constant-acceleration-drive-demonstrated (checked 2026-09-08 against a European Space Agency assessment and NASA fusion-rocket studies); the strongest alternative was 2 kg/kW, which a very advanced fission-electric system might reach and which would make the fission route real, but the fast-drive step's own sourced figure is 1 kg/kW, so the bar follows it."
+
+[[node]]
+id = "E-fission-electric-space-power-system-reaches-a-hundred-megawatts"
+name = "A fission-electric power system built for spaceflight makes a hundred megawatts of electricity"
+factor = "E"
+kind = "world"
+description = """
+A reactor driving a generator, with radiators to shed the heat, is the one way to make
+electricity in deep space that has been built and ground-tested for decades, at up to a few
+hundred kilowatts. Scaled up a few hundredfold, it could power large electric thrusters or,
+if made light enough, a fast drive without waiting on fusion. This is the fission route
+toward a compact power source at fast-drive scale."""
+resolution = """
+A fission reactor power system designed for spaceflight, including its power conversion and
+the radiators it would use in vacuum, produces at least one hundred megawatts of net
+electrical output for at least one continuous hour, in a ground test or in space, confirmed by
+the developer's test record and the responsible agency's report. A land-based power station
+not designed to fly does not count."""
+source = "The developer's test record and the responsible agency's report"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.04, moderate = 0.07, strong = 0.14, radical = 0.28, open = 0.38 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The largest space reactor systems ever designed aimed at a megawatt or less and none has flown at that power; a hundred megawatts built to fly needs a mission that cannot be done any other way and decades of funding, which no program has yet found. Low by 2071, rising with the long windows as fast transit to the outer system becomes worth paying for."
+notes = "Added 2026-09-25 as a route under E-compact-power-source-at-fast-drive-scale (candidate 4 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). It sets no weight limit: the function step above it carries the one-kilogram-per-kilowatt bar. Not marked a long shot because it is a scaling problem on known physics."
+
+[[node]]
 id = "E-construction-begins-on-a-fusion-plant-meant-to-sell-electricity"
 name = "Construction begins on a fusion plant built to sell electricity to a customer"
 factor = "E"

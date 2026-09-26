@@ -632,3 +632,24 @@ points at the new one. Claude re-estimated it a few points up, 0.75 to 0.78 by 2
 government route still carries almost all of it; John has not yet ruled on the new numbers."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-fast-drive-waits-on-a-light-power-source-not-a-grid-plant"
+date = 2026-09-25
+kind = "structure"
+title = "The fast drive now waits on a light hundred-megawatt power source from any route, not on a fusion plant selling to a grid"
+body = """
+The engine that would cross to the Belt in weeks was waiting on a fusion plant putting net
+electricity onto a grid. What the drive needs from that plant is a power source large and light
+enough to fly, and a grid plant is only one way toward it: a fusion drive could be developed
+without one, and a very large fission-electric system is a separate path. Under candidate 4 of
+the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved by
+John on 2026-09-25, the drive now depends on a new step: a hundred megawatts of electricity from a
+source that weighs no more than a hundred tonnes, one kilogram for each kilowatt, the figure the
+drive's own record gives as the practical requirement. The grid fusion plant and a new
+fission-electric route sit under it. Because the new step carries the weight gap, the drive's own
+conditional was re-estimated up so the fusion route alone gives about the same chance as before.
+The new numbers are Claude's first estimates, not yet ruled by John. This touches only the top
+tier, not the headline."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"
