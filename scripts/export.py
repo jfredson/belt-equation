@@ -294,6 +294,28 @@ STORY_TYPES = {"decision": "Decision", "progress": "Progress", "session-summary"
 STORY_STATUS = {"done": "done", "in_progress": "in progress", "todo": "to do", "waiting": "waiting"}
 
 
+def story_exclusions(folder: Path) -> list[str]:
+    """The worklog ids in data/story/exclude.toml, each whole or an eight-character prefix.
+
+    The list is read by the publish command before it writes worklog.json and again here before
+    the story page is built, so an entry on it reaches neither. A malformed list stops the build
+    rather than letting an entry through."""
+    path = folder / "exclude.toml"
+    if not path.exists():
+        return []
+    ids = []
+    for i, row in enumerate(tomllib.loads(path.read_text()).get("exclude", []), 1):
+        wid = str(row.get("id", "")).strip().lower()
+        if len(wid) < 8 or not row.get("why"):
+            raise SystemExit(f"{path}: entry {i} needs an id of at least eight characters and a why")
+        ids.append(wid)
+    return ids
+
+
+def story_excluded(entry_id: str | None, ids: list[str]) -> bool:
+    return bool(entry_id) and any(str(entry_id).lower().startswith(x) for x in ids)
+
+
 def export_story(folder: Path) -> dict:
     """The project's own story, from TimeAssembler, as the story page shows it (website step 24).
 
@@ -310,7 +332,10 @@ def export_story(folder: Path) -> dict:
     if wl.exists():
         data = json.loads(wl.read_text())
         entries = []
+        withheld = story_exclusions(folder)
         for e in data.get("entries", []):
+            if story_excluded(e.get("id"), withheld):
+                continue
             entries.append({
                 "date": e["date"],
                 "type": e["type"],

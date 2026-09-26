@@ -193,7 +193,7 @@ def pacific_date(stamp: str) -> str:
     return dt.datetime.fromisoformat(stamp).astimezone(ZoneInfo(TZ)).date().isoformat()
 
 
-def story_from_timeassembler(base: str, key: str, date: str) -> tuple[dict, dict]:
+def story_from_timeassembler(base: str, key: str, date: str, root: Path = ROOT) -> tuple[dict, dict]:
     """The worklog and roadmap snapshots, in the shape data/story/README.md describes."""
     projects = fetch(base, key, "/api/v1/projects")
     projects = projects if isinstance(projects, list) else projects.get("projects", [])
@@ -205,12 +205,20 @@ def story_from_timeassembler(base: str, key: str, date: str) -> tuple[dict, dict
     if len(entries) >= WORKLOG_LIMIT:
         raise PublishError(f"the worklog returned {len(entries)} entries, the most one request "
                            "asks for; raise WORKLOG_LIMIT in scripts/publish.py so none are dropped")
+    # Entries listed in data/story/exclude.toml are dropped here and again by the export, which
+    # holds the one reader of that list. Imported here, without writing compiled files, so a dry
+    # run or a run with --no-story leaves nothing new in the repository.
+    sys.dont_write_bytecode = True
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import export
+    withheld = export.story_exclusions(root / "data" / "story")
     worklog = {
         "project": PROJECT,
         "source": f"TimeAssembler worklog, read by scripts/publish.py on {date} (Pacific)",
         "fetched_on": date,
-        "entries": [{"date": pacific_date(e["createdAt"]), "type": e["type"],
-                     "decided_by": e.get("decidedBy"), "title": e["title"]} for e in entries],
+        "entries": [{"id": e["id"], "date": pacific_date(e["createdAt"]), "type": e["type"],
+                     "decided_by": e.get("decidedBy"), "title": e["title"]}
+                    for e in entries if not export.story_excluded(e["id"], withheld)],
     }
     roadmap_raw = fetch(base, key, f"/api/v1/projects/{pid}/roadmap")
     # Recurring tasks (the quarterly scan, the annual review) have no place in the order, so
@@ -233,7 +241,7 @@ def refresh_story(root: Path, date: str, skip: bool) -> list[str]:
     if not creds:
         return [f"left as it is: no TimeAssembler key here (looked in the environment and {CREDENTIALS})"]
     try:
-        worklog, roadmap = story_from_timeassembler(*creds, date)
+        worklog, roadmap = story_from_timeassembler(*creds, date, root)
     except (urllib.error.URLError, TimeoutError, KeyError, ValueError) as e:
         raise PublishError(f"reading the story from TimeAssembler failed: {e}. Run again with "
                            "--no-story to publish without refreshing it.")
