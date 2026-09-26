@@ -48,22 +48,31 @@ If data/ledger.toml does not yet exist (ledger plan step 30 not landed), skip th
 - `kind` is `event` for moved, `resolution` for resolved, `held-steady` for the noted ones (with `checked_against`, no `nodes`).
 - `author = "scan"`.
 - `title` one plain sentence in the chain's vocabulary (link names, not factor letters); `body` two to five sentences; `source` the public record.
-- `snapshot` is the key of the snapshot you take in step 4 (`YYYY-MM-DD-scan`), even though you write it before running.
+- `snapshot` is the key of the snapshot the publish command takes in step 6 (`YYYY-MM-DD-scan`), even though you write it before running.
 
-## 4. Run, snapshot, export
-
-- If nothing moved or resolved: `python3 scripts/export.py --check` and go to step 5.
-- If something did and `python3 scripts/compute.py run --help` shows a `--snapshot` option (ledger plan step 28 landed): `python3 scripts/compute.py run --snapshot scan` and `python3 scripts/export.py --check`. If `--snapshot` is not available yet, run `python3 scripts/compute.py run` and paste the headline lines into the commit message instead.
-
-## 5. Write the scan record
+## 4. Write the scan record
 
 Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the shape given in docs/scan-plan.md under "The scan record": a `[scan]` table with `date`, `ran_at` (UTC, from `date -u +%Y-%m-%dT%H:%M:%SZ`), `scope`, `nodes_checked`, `searches`, `commit_before`, then one `[[item]]` per node checked, in the order checked, with `node`, `verdict`, `queries`, `found` (one to three sentences, plain English, absolute dates), `sources` for every verdict but quiet, `ledger` for moved and resolved when an entry was written, `for_john` for flagged. Validate it with tomllib. If the folder already has a file with today's date, suffix `-2`.
 
-## 6. Changelog and commit
+## 5. Changelog
 
-- Add one line under a `## YYYY-MM-DD` heading at the top of CHANGELOG.md (create the heading if today's is absent): "Weekly scan (scheduled task, YYYY-MM-DD): N nodes read, M moved, K resolved, F flagged for John; record at data/scans/YYYY-MM-DD.toml." Name each moved or resolved node and its before and after in the same line.
-- `git add -A && git commit` with the message "Weekly scan YYYY-MM-DD: N read, M moved, K resolved, F flagged" plus a body listing the moves, ending with the attribution lines this session was given.
-- `git push origin main`. If the push to main is refused, push the same commit once to a branch instead: `git push origin HEAD:refs/heads/claude/scan-YYYY-MM-DD` (routines always accept `claude/` branches). Report the branch name and the refusal message so John can merge it; the site does not update until he does. If that push is refused too, do not retry: put the scan record's contents in the report and stop. (Rule amended 2026-09-19 after the dress rehearsal, which lost a 44-node scan to a refused push.)
+Add one line under a `## YYYY-MM-DD` heading at the top of CHANGELOG.md (create the heading if today's is absent): "Weekly scan (scheduled task, YYYY-MM-DD): N nodes read, M moved, K resolved, F flagged for John; record at data/scans/YYYY-MM-DD.toml." Name each moved or resolved node and its before and after in the same line.
+
+## 6. Publish: one command
+
+The last step is one command, `scripts/publish.py` (website step 26, 2026-09-25). It checks the tree, takes the snapshot when asked, redraws the tree picture, writes the site's data (which also checks the ledger and the scan record you just wrote), builds the site, prints what changed with the headline before and after, then commits everything as one commit and pushes main. The deploy action on GitHub builds and deploys the site from that push; the script does not deploy by any other road. Replace the capitals with the scan's own date and counts:
+
+    python3 scripts/publish.py --push \
+      --message "Weekly scan YYYY-MM-DD: N read, M moved, K resolved, F flagged" \
+      --message "<one line per move, with before and after; or 'Nothing moved.'>" \
+      --message "<the attribution lines this session was given>" \
+      --fallback-branch claude/scan-YYYY-MM-DD
+
+- If anything moved or resolved, add `--snapshot scan`. That writes `data/snapshots/YYYY-MM-DD-scan.json`, the key the ledger entries from step 3 name. It adds about ten minutes.
+- The story snapshots in data/story/ are refreshed only where the TimeAssembler key is present. A cloud session has none, and the script leaves them alone and says so; that is expected.
+- If the script stops at steps 1 to 5 of its own output, the scan's edits broke a rule: read the message, fix the edit or revert that file and mark the node `flagged` (as in step 2), and run it again.
+- If it stops at step 6 of its own output (building the site) for a reason that is not the scan's data, such as Node missing or the site's packages not downloading, do not fight it: run `python3 scripts/export.py --check`, then `git add -A && git commit` with the same message and `git push origin main` (falling back to the branch below), and put the build error in the report. The deploy action builds the site on its own after the push.
+- A refused push: with `--fallback-branch`, the script pushes the same commit once to `claude/scan-YYYY-MM-DD` (routines always accept `claude/` branches) and says so. Report the branch name and the refusal message so John can merge it; the site does not update until he does. If that push is refused too, do not retry: put the scan record's contents in the report and stop. (Rule amended 2026-09-19 after the dress rehearsal, which lost a 44-node scan to a refused push.)
 
 ## 7. Report
 
@@ -73,5 +82,5 @@ Send John one short message, a numbered list and nothing else: first what he nee
 
 - Commas rather than em dashes; absolute dates; plain English with any shorthand explained on first use.
 - Read, do not infer: a node moves on evidence about its criterion, not on mood about the field.
-- One scan, one commit. Never force-push, never rebase, never touch a branch other than main.
+- One scan, one commit, made by the publish command in step 6. Never force-push, never rebase, never touch a branch other than main (and the one fallback branch in step 6).
 - If anything in this file cannot be followed as written, do the parts that can, flag the rest for John in the report, and never improvise an edit outside the limits in docs/scan-plan.md.
