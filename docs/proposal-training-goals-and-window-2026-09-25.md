@@ -1,6 +1,6 @@
 # Proposal: training goals aligned to the window and the access branch
 
-Date: 2026-09-25 (Pacific). Status: RULED 2026-09-25 by John, all five decisions accepted as recommended (Decision 2: both tests; Decision 3: three-day threshold; Decision 4: with the 2027 exception). Goals entered in TimeAssembler the same day (SERE Pipeline, Air Force Career, Longevity). Proposed by Claude from a comparison of the TimeAssembler training goals against data/W-window.toml, data/B-biology.toml, data/A-access.toml, definitions.md and docs/private/2026-09-25-astra-window-individual.md. Nothing here changes the tree, a tier, or a number. It changes how training goals are written and reviewed so that the training record and the equation's window move together.
+Date: 2026-09-25 (Pacific). Status: RULED 2026-09-25 by John, all five decisions accepted as recommended (Decision 2: both tests; Decision 3: three-day threshold; Decision 4: with the 2027 exception, corrected the same evening to an exodus-week baseline, 2026-12-21 to 27). Goals entered in TimeAssembler the same day (SERE Pipeline, Air Force Career, Longevity). Proposed by Claude from a comparison of the TimeAssembler training goals against data/W-window.toml, data/B-biology.toml, data/A-access.toml, definitions.md and docs/private/2026-09-25-astra-window-individual.md. Nothing here changes the tree, a tier, or a number. It changes how training goals are written and reviewed so that the training record and the equation's window move together.
 
 ## What the comparison showed
 
@@ -43,7 +43,7 @@ The goal in Decision 1 needs a test so it can be scored. Proposed: a week counts
 
 ## Decision 4: cadence tied to the annual review
 
-- The age-graded 5K is run in the week before the first Sunday of January (first: the week of 2026-12-28, inside exodus, which is off Air Force programming and already the week the run plan owns). If it conflicts with the Jan 4 2027 peak, it moves to the week after the PT test in 2027 only; every later year it sits in the pre-review week.
+- The age-graded 5K is run in the week before the first Sunday of January, from January 2028 onward. 2027 exception, CORRECTED 2026-09-25 after John's ruling: the first draft moved the 2027 run to the week after the Jan 4 test, which is impossible, since the pipeline runs 2027-01-04 to May 2027 and allows no extra-curricular tests. The 2027 baseline 5K is instead run during exodus in the week of 2026-12-21 to 2026-12-27 (off Air Force programming, 8 to 14 days before the Jan 4 peak, a tune-up distance rather than a cost).
 - The number enters the window paragraph in definitions.md at the annual review (first: 2027-01-03), with the standard and the date, under the existing rule that nothing else from the health record crosses.
 - The three horizon goals are re-read at the same review, beside the headline number, so training goals and the window are always revised on the same day from the same page.
 
