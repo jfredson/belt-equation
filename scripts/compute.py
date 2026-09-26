@@ -88,8 +88,9 @@ DEFAULT_RUNS = 20000
 REVIEW_STATUS = "reviewed"
 
 # The second number shown beside the headline (step 27, item 95, ruled 2026-09-19): A2 at Tier 1,
-# a rotation at a station or lunar base in a world that has an outpost but not yet a Belt. The
-# headline stays A2 at Tier 3, because a Belter means working rotations in a Belt that exists;
+# a rotation at a station or lunar base in a world that has an outpost but not yet the third tier.
+# The headline stays A2 at Tier 3, because the question means working rotations once human
+# industry reaches beyond Earth and Mars;
 # this is the plain-wording event a visitor may picture, reported beside it and never in its
 # place. Written as a joint over the outpost tier and the rotation-role node, so a play-through
 # counts when both held; the tier key is in the play-through's state like any node.
@@ -568,7 +569,7 @@ READER_TAIL_HALF_LIFE = 41
 
 # The three routes a reader can pick, each a list of world nodes that already exist in the tree,
 # plus at most one number the reader supplies. Nothing from John's own path is in any of them:
-# the pipeline, the six-year fork and the survival-instructor route are his, and a stranger's
+# his current training, the six-year fork and the route from his current career are his, and a stranger's
 # odds must not run through them. Decision 2 of docs/run-it-yourself-plan.md explains each
 # choice of nodes and what it leaves out.
 READER_ROUTES = [
@@ -733,7 +734,7 @@ def reader_cell(tree: dict, year: int | None, runs: int = READER_RUNS, seed: int
                 world_spread: float = 1.0) -> dict:
     """Play the whole tree out at one deadline. One cell of the grid the website reads.
 
-    The rates reported are every tier (is there an outpost, a settlement, a Belt, a full
+    The rates reported are every tier (is there an outpost, a settlement, industry beyond Earth and Mars, a full
     Expanse by this year) and, for each route, how often every one of its world nodes came true
     in the same play-through. The route figure is the world's part of a reader's odds and
     nothing else: the reader's own chance of taking the opportunity is a number they supply and
@@ -1415,7 +1416,7 @@ def chain_gates(tree: dict) -> dict[str, list[str]]:
     Fallback, added 2026-09-25 with the methodology pass (ruled by John the same day): a factor
     the headline rests on only through a dependency, with no node named in any tier list, takes
     as its gates the nearest nodes of that factor that the named gates depend on. Without it,
-    energy dropped off the chain when Tier 1 stopped naming the lunar reactor, although the Belt
+    energy dropped off the chain when Tier 1 stopped naming the lunar reactor, although the third tier
     still waits on that reactor through lunar material at scale. A factor with a named gate is
     left exactly as it was."""
     tiers = {t["key"]: t for t in tree["tiers"]}

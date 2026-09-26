@@ -30,7 +30,7 @@ const DIAL: Record<string, { label: string; when: string; note: string }> = {
   moderate: { label: '2080', when: 'by 2080', note: 'If medicine adds about a decade to a life like mine.' },
   strong: { label: '2095', when: 'by 2095', note: 'If I make it to 109. Strong life extension, the kind that is being seriously worked on but has not arrived.' },
   radical: { label: '2136', when: 'by 2136', note: 'A 150-year life. This is the long shot the whole project is built to keep in view.' },
-  open: { label: 'No limit', when: 'with no deadline', note: 'Aging solved outright. The odds stop depending on the calendar and depend only on whether the Belt ever happens.' },
+  open: { label: 'No limit', when: 'with no deadline', note: 'Aging solved outright. The odds stop depending on the calendar and depend only on whether human industry ever reaches that far.' },
 };
 
 // How far the headline and each link moved between the last two runs of the tree, from the
@@ -95,9 +95,9 @@ const contact = factorByLetter('C');
     <div class="home-hero-main">
       <p class="eyebrow">One man's odds of leaving Earth, tracked in public</p>
       <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
-      <h1 class="big-claim">The chance that I become a Belter before I die: working rotations off Earth, in a Belt that exists.</h1>
+      <h1 class="big-claim">The chance that, before I die, I live and work in a solar system where human industry reaches beyond Earth and Mars.</h1>
       <p class="big-sub"><span data-bind="windowLine">That is {current.when}.</span> Nobody knows how long I get, so the dial lets you change that assumption and watch the odds move.</p>
-      <p class="second-number">A Belter works out past Mars, in a Belt with its own economy. The nearer thing, a rotation at a station or a lunar base with no Belt yet, comes out at <strong data-bind="a2t1">{fmt(current.a2t1)}</strong>. That number is reported here beside the headline, not in its place.</p>
+      <p class="second-number">That means working rotations out past Mars, where something made off Earth sells at a profit. The nearer thing, a rotation at a station or a lunar base before industry reaches that far, comes out at <strong data-bind="a2t1">{fmt(current.a2t1)}</strong>. That number is reported here beside the headline, not in its place.</p>
       {move && (
         <p class={`headline-move tone-${direction(current.headlineMove).tone}`} data-bind-class="headlineMove">
           <span aria-hidden="true" data-bind="headlineArrow">{direction(current.headlineMove).arrow}</span>
@@ -139,8 +139,8 @@ const contact = factorByLetter('C');
       <p class="dial-note" data-bind="note">{current.note}</p>
       <div class="dial-stats">
         <div><span class="stat" data-bind="a1">{fmt(current.a1)}</span><span class="stat-label">I fly to space at least once</span></div>
-        <div><span class="stat" data-bind="a2t1">{fmt(current.a2t1)}</span><span class="stat-label">I work a rotation at a station or lunar base, Belt or no Belt</span></div>
-        <div><span class="stat" data-bind="t3">{fmt(current.t3)}</span><span class="stat-label">A Belt exists at all: people living past Mars</span></div>
+        <div><span class="stat" data-bind="a2t1">{fmt(current.a2t1)}</span><span class="stat-label">I work a rotation at a station or lunar base, however far industry has reached</span></div>
+        <div><span class="stat" data-bind="t3">{fmt(current.t3)}</span><span class="stat-label">Human industry reaches beyond Earth and Mars at all</span></div>
         <div><span class="stat accent" data-bind="headline">{fmt(current.headline)}</span><span class="stat-label">I'm out there working when it does</span></div>
       </div>
       <p class="dial-foot">These are my odds, against my lifetime. <a href="/run/">Run the same tree against yours</a>.</p>
@@ -149,12 +149,12 @@ const contact = factorByLetter('C');
 
   <section class="section who" id="who">
     <div>
-      <p class="kicker">A Belter?</p>
-      <p>In the TV series <em>The Expanse</em>, Belters are the people who live and work in the asteroid belt, far from Earth. Underestimated, and at home where nobody thought people could be. I want to see this reality unfold. This site works out, in public, how likely that is.</p>
+      <p class="kicker">Why the name?</p>
+      <p>The name comes from the Belters of the TV series <em>The Expanse</em>, the people who live and work in the asteroid belt, far from Earth. Underestimated, and at home where nobody thought people could be. I want to see a solar system like that unfold. This site works out, in public, how likely that is.</p>
     </div>
     <div>
       <p class="kicker">Who is asking</p>
-      <p>I'm John, 40, training to teach survival in the military. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page and let the math tell me which choices in the next few years move the number. Once a year I re-check every link and publish what changed. If you think a number is wrong, <a href="/disagree/">there's a page for that</a>.</p>
+      <p>I'm John, 40, and in training for my current job. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page and let the math tell me which choices in the next few years move the number. Once a year I re-check every link and publish what changed. If you think a number is wrong, <a href="/disagree/">there's a page for that</a>.</p>
     </div>
   </section>
 
@@ -212,7 +212,7 @@ const contact = factorByLetter('C');
 
     <p class="equation-line" aria-label="The equation">
       In the notation of the numbers page:
-      <span class="term">P(Belter)</span><span class="op">=</span>
+      <span class="term">P</span><span class="op">=</span>
       {equationFactors.map((f, i) => (
         <>
           <a class="term" href={f.path} title={f.name}>{f.letter}</a>

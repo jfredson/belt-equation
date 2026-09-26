@@ -6,7 +6,7 @@
 
 Each packet is the brief (docs/reviews/brief.md) followed by every node in its factors, rendered
 in plain text from data/, then the scenario table and the tier requirement lists. Standard
-library only. The access branch is never packaged before pipeline graduation (May 2027).
+library only. The access branch is never packaged before John completes his current training (May 2027).
 """
 from __future__ import annotations
 import argparse, datetime, sys

@@ -26,7 +26,7 @@ Land, in this order:
 
 3. Run the tree: cd into the repo and run python3 scripts/compute.py run --snapshot function-over-route --snapshot-date 2026-09-25, then the attribution against 2026-09-25-methodology-pass. Write docs/runs/2026-09-25-function-over-route.md in the form of the previous run records: what landed, the headline and tier table, the read against the run before, what moved and why, the second number, and what is left. Run scripts/export.py so site/src/data reflects the new tree. Check that the site builds.
 
-4. Update CHANGELOG.md with one entry for the pass. Do not touch docs/private/. Do not reference John's military career in any public file; the access branch's existing wording stands.
+4. Update CHANGELOG.md with one entry for the pass. Do not touch docs/private/. Do not reference John's current career in any public file; the access branch's existing wording stands.
 
 5. Open a pull request from function-over-route to main titled "Function over route: rule and first sweep (approved 2026-09-25)", with the run record's headline table in the body and a list of every node added or changed. Do not merge. Report the new headline under all five scenarios, the Tier 3 figures, the second number, and every first-estimate probability you set, so John can rule on them before merging.
 ```
