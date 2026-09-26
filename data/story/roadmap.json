@@ -191,7 +191,7 @@
     },
     {
       "order": 96,
-      "status": "todo",
+      "status": "in_progress",
       "phase": "Phase 6",
       "title": "Website step 26: one-command publish so the quarterly scan ends with the site updated"
     },
@@ -200,6 +200,12 @@
       "status": "done",
       "phase": "Phase 6",
       "title": "Website step 39: \"run it for yourself\", a page where a reader sets their own age, lifespan scenario and path and sees the tree's number for them"
+    },
+    {
+      "order": 98,
+      "status": "todo",
+      "phase": null,
+      "title": "Merge pull request 22: Contact Clause null rule and rung C5 in force (2026-09-25)"
     },
     {
       "order": 100,

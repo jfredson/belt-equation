@@ -1,8 +1,68 @@
 {
   "project": "Belt Equation",
-  "source": "TimeAssembler worklog, read with its tools on 2026-09-20 (Pacific)",
-  "fetched_on": "2026-09-20",
+  "source": "TimeAssembler worklog, read with its tools on 2026-09-25 (Pacific)",
+  "fetched_on": "2026-09-25",
   "entries": [
+    {
+      "date": "2026-09-26",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Contact Clause null rule and rung C5 landed, pull request 22 waiting on John (2026-09-25)"
+    },
+    {
+      "date": "2026-09-26",
+      "type": "decision",
+      "decided_by": "agent",
+      "title": "Contact Clause rungs roll their own random numbers, so no rung can ever move a tier rate (2026-09-25)"
+    },
+    {
+      "date": "2026-09-26",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Website step 26 built: one-command publish, pull request 21 waiting on John's merge (2026-09-25)"
+    },
+    {
+      "date": "2026-09-26",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Methodology pass ruled 2026-09-25: items 96 to 101 accepted as recommended except item 100 (ban leaves Tier 4, traffic authority stays in Tier 3); this pass counts as the review, changes land now"
+    },
+    {
+      "date": "2026-09-26",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Methodology pass: item 102 fixed, items 96 to 101 proposed (pull request 20)"
+    },
+    {
+      "date": "2026-09-25",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Cowork 2026-09-25: state read, rulings collected, four sessions handed off (docs/handoff-2026-09-25.md)"
+    },
+    {
+      "date": "2026-09-25",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Rulings 2026-09-25: PR 19 accepted, Contact Clause C5 adopted, essay publishes now and Reddit waits for the Radar audit"
+    },
+    {
+      "date": "2026-09-20",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Website step 39 built, \"run it for yourself\", waiting on John's ruling on three decisions (pull request 19)"
+    },
+    {
+      "date": "2026-09-20",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Steps 14 and 15: intro essay refreshed with the reviewed numbers, family-and-friends version written (2026-09-20)"
+    },
+    {
+      "date": "2026-09-20",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Website steps 22 to 24 built in Cowork: tree picture, methodology document, roadmap and workbench on the story page, issue templates (2026-09-20)"
+    },
     {
       "date": "2026-09-20",
       "type": "session-summary",

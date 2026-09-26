@@ -513,3 +513,26 @@ nodes = [
   "C2",
 ]
 snapshot = "2026-09-20-step-27"
+
+# --- The Contact Clause's machine branch (ruled 2026-09-25, landed 2026-09-25) -------------------
+
+[[entry]]
+id = "2026-09-25-a-rung-for-communion-with-a-machine-mind"
+date = 2026-09-25
+kind = "structure"
+title = "The Contact Clause gained a fifth rung, communion with a machine mind, beside the equation, and the headline did not move because of it"
+body = """
+The dream under the project names two forms of communion, with something of non-human origin
+and with a machine that has outgrown us, but only the first had a rung of its own. C5 is the
+second: an exchange with a human-built mind that has an inside and a perspective of its own. It
+sits above C2 the way C4 sits above C3, so the clause now has two sibling branches, each ending
+in communion. Its criterion is the strictest on the board: the machine must be the origin of an
+idea that changed a field, must pass an accepted test for having an inside that does not rely
+on its own reports, replicated by a team with no stake in the result, and must have been
+changed in turn by what people gave back. The null rule, adopted on 2026-09-19 and now written
+into the definitions, says nothing the system says about itself and nothing anyone feels in
+talking to it counts. First numbers, given C2: 3 percent by 2071, rising to 30 with no
+deadline. Like every rung it is never multiplied in. To make that exact rather than nearly so,
+the rungs now roll their own dice in a run, so the equation's numbers either side of this entry
+differ by the throw of the dice alone and a rung can never move them again."""
+snapshot = "2026-09-25-c5"

@@ -120,6 +120,7 @@ coarse.
 ## Tests
 
     python3 scripts/test_reader.py
+    python3 scripts/test_contact.py
 
 Standard library, no dependencies. Thirteen checks on the reader grid. The one that matters plays
 the tree out at John's own five windows with the committed snapshot's own dice and requires every
@@ -130,6 +131,8 @@ window returns its own number, nothing falls as the deadline moves out, the floo
 window, the approach to the no-deadline number beyond the last), that every birth year the page
 offers lands inside the grid, that no route runs through John's own path, and that playing the
 tree out for a reader leaves the tree it was given alone.
+
+`test_contact.py` (2026-09-25, with rung C5) checks that the Contact Clause is never multiplied in. It plays the tree out from the same seed with C5 in and with C5 taken out, and with C5 held at certain and at impossible, and requires the headline, every tier, every chain link and every node outside the clause to come out exactly equal each time. It also checks that the validator refuses a tier or an outside node that depends on a rung, and that C4 and C5 sit on sibling branches. Changing the Contact Clause rungs back to the equation's own dice makes the first check fail, which is how it was confirmed to test what it says.
 
 `export.py` turns the same tree, plus CHANGELOG.md, the run snapshots, the ledger and the weekly scan records in data/scans/, into the JSON the website reads (site/src/data/). Written 2026-09-19 (website step 21; the scans added the same day, scan plan step 34). It imports the loader and validator from `compute.py`, so it refuses to write anything for a tree that fails the schema, and the site can never show one.
 
@@ -142,4 +145,4 @@ Beyond a copy of each record it adds the derived views the pages need: each node
 
 The scan records get the same treatment as the tree, and the same refusal: `export_scans()` checks every file in data/scans/ before anything is written (the file name is the scan's own date; the [scan] table carries its six fields; every item names a node that is in the tree, once per scan; every verdict is one of the five in docs/scan-plan.md; every item names at least one search it ran, unless it is `quiet` and `found` says why no search was run; every verdict but `quiet` cites a source and a resolution cites two; a flagged item says what it would have done; a ledger entry an item names must be in data/ledger.toml once that file exists). Then it writes each item out with its node's name, factor, chain link and page address, plus every node's own checks newest first and the flagged items nothing has picked up yet. A record may still carry `test = true` to mark a hand-made fixture rather than a week of real work, and the site labels one as a test wherever it appears; no record carries it now that the first real scan has run, and such a record gets no exemption from the rules above. `export.py` also checks the optional `watch` list on a node, which `compute.py` does not know about.
 
-How a run works: for each scenario, the tree is played out many thousands of times. Nodes are visited in dependency order; a world node whose dependencies all came true comes true with its probability for that scenario, and otherwise stays false. Nodes already resolved in the real world are fixed. Choice points are set to their current-plan option. A tier is reached when everything it requires came true, and the number reported for a tier is the fraction of play-throughs that reached it. Contact Clause nodes are reported separately and never feed a tier.
+How a run works: for each scenario, the tree is played out many thousands of times. Nodes are visited in dependency order; a world node whose dependencies all came true comes true with its probability for that scenario, and otherwise stays false. Nodes already resolved in the real world are fixed. Choice points are set to their current-plan option. A tier is reached when everything it requires came true, and the number reported for a tier is the fraction of play-throughs that reached it. Contact Clause nodes are reported separately, as sibling branches (C4 under C3, C5 under C2, since 2026-09-25), and never feed a tier: the validator refuses a tier that requires a rung or a node outside the clause that depends on one, and the rungs roll their own dice, seeded from the run's seed, so adding or re-estimating a rung leaves every tier rate exactly where it was.

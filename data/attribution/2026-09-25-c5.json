@@ -1,0 +1,65 @@
+{
+  "snapshot": "2026-09-25-c5",
+  "previous_snapshot": "2026-09-20-step-27",
+  "tree_matches_snapshot": true,
+  "runs": 20000,
+  "noise": {
+    "baseline": 0.000967,
+    "moderate": 0.001521,
+    "strong": 0.002604,
+    "radical": 0.004372,
+    "open": 0.005004
+  },
+  "headline": {
+    "baseline": 0.0047,
+    "moderate": 0.0117,
+    "strong": 0.03515,
+    "radical": 0.10705,
+    "open": 0.1467
+  },
+  "headline_recorded": {
+    "baseline": 0.0047,
+    "moderate": 0.0117,
+    "strong": 0.03515,
+    "radical": 0.10705,
+    "open": 0.1467
+  },
+  "total_move": {
+    "baseline": 0.0009,
+    "moderate": 0.00095,
+    "strong": -0.00035,
+    "radical": 5e-05,
+    "open": 0.00215
+  },
+  "attributed": {
+    "baseline": 0,
+    "moderate": 0,
+    "strong": 0,
+    "radical": 0,
+    "open": 0
+  },
+  "remainder": {
+    "baseline": 0.0009,
+    "moderate": 0.00095,
+    "strong": -0.00035,
+    "radical": 5e-05,
+    "open": 0.00215
+  },
+  "unseparated": [
+    "2026-09-25-a-rung-for-communion-with-a-machine-mind"
+  ],
+  "entries": [
+    {
+      "id": "2026-09-25-a-rung-for-communion-with-a-machine-mind",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0047,
+        "moderate": 0.0117,
+        "strong": 0.03515,
+        "radical": 0.10705,
+        "open": 0.1467
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    }
+  ]
+}

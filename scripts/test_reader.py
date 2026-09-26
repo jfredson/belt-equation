@@ -45,7 +45,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import compute  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-SNAPSHOT = ROOT / "data" / "snapshots" / "2026-09-20-step-27.json"
+# Moved from 2026-09-20-step-27 on 2026-09-25: C5 was added and the Contact Clause rungs given
+# dice of their own, so the exact check is made against the run of the tree as it now stands.
+SNAPSHOT = ROOT / "data" / "snapshots" / "2026-09-25-c5.json"
 SYSTEM_TIERS = ["T1", "T2", "T3", "T4"]
 
 
