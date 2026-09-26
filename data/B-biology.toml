@@ -68,8 +68,9 @@ name = "A child is born off Earth and raised there through early childhood"
 factor = "B"
 kind = "world"
 description = """
-The marker that separates a settlement from a work camp, and the criterion Tier 2 uses.
-Early settlements may forbid it for years, so it resolves late even if the biology allows it."""
+The marker of a Full Expanse: a Belt population with families in it, not only workers on
+rotation. Tier 4 requires it. Early settlements may forbid it for years, so it resolves late
+even if the biology allows it."""
 resolution = """
 A child is born at a site off Earth and lives there continuously to at least age five, with
 the birth and residence publicly documented by the operating agency or company."""
@@ -83,6 +84,7 @@ estimated_on = 2026-09-08
 rationale = "Given either the animal result and the human year in partial gravity, or a year-long Earth-gravity habitat, the remaining barriers are policy and ethics, which early settlements are likely to hold for decades; raising a child needs a settlement, not a base."
 revisions = [
   { date = 2026-09-19, field = "depends_on", old = "depends_on: the mammal node and the human partial-gravity year, both required", new = "depends_on_any: [the mammal node and the human partial-gravity year] or [B-earth-gravity-habitat-occupied-for-a-year]", why = "Step 27 outside-model review, item 44 (docs/reviews/2026-09-19-rulings.md): the node required both partial-gravity milestones even for a child living in an Earth-gravity habitat, so the tree's own hedge did not reach it; the prerequisites now match the route. Written as two either-groups, which is the same logic in the schema's form. Ruled by John 2026-09-19. Item 45's health clause was declined: a child's medical outcomes are not public records." },
+  { date = 2026-09-25, field = "description", old = "'The marker that separates a settlement from a work camp, and the criterion Tier 2 uses.'", new = "'The marker of a Full Expanse: a Belt population with families in it, not only workers on rotation. Tier 4 requires it.'", why = "Methodology pass item 99 (docs/methodology-pass-2026-09-25.md), ruled by John 2026-09-25: the child left Tier 2's requirements on 2026-09-19 and has now left Tier 2's definition for Tier 4's, so the description follows. Text only; no number changed." },
 ]
 notes = "Moved from Tier 2 to Tier 4 on 2026-09-19 (first run ruling). Route fix 2026-09-19 under step 27, item 44."
 

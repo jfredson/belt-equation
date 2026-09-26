@@ -14,7 +14,8 @@ Every large space program since Apollo has been redrawn or cancelled by a new
 administration. A program that keeps its funding and keeps flying hardware across two
 changes of the government that pays for it has become an institution rather than a policy,
 which is what a multi-decade build needs. Any nation's or company's crewed lunar program
-counts, because Tier 1 is an outpost by anyone; the US program is the one to watch first."""
+counts, because lunar material at scale can come from anyone's program; the US program is
+the one to watch first. It gates the Slow Expanse through lunar material at scale."""
 resolution = """
 A crewed lunar program (a national program or a company's program with a national anchor
 customer) receives its yearly funding and flies crewed hardware in each of two successive
@@ -33,6 +34,7 @@ revisions = [
   { date = 2026-09-19, field = "resolution", old = "US program only; a single cut before two administrations had passed resolved the node no for good", new = "any nation's or company's crewed lunar program; a cancelled program can be restarted and a different program can reach the mark", why = "First run (docs/runs/2026-09-19-first-run.md): as a Tier 1 requirement and a hard dependency of lunar material at scale, a permanent no from one US budget cut foreclosed an outpost by anyone. John ruled 2026-09-19 to reword to durable, nation-agnostic form." },
   { date = 2026-09-19, field = "probability", old = "0.60 flat across scenarios", new = "0.75 / 0.80 / 0.85 / 0.90 / 0.92", why = "Re-estimated against the reworded criterion, which can resolve later and by more programs; no longer flat because the longer windows now add attempts." },
   { date = 2026-09-19, field = "resolution", old = "'for the US program, counting from 2026, that means two successive presidential administrations after the current one'; 'change of government' undefined", new = "the counting-from-2026 sentence dropped; a change of government means a change in the head of government, or for a company program in its anchor customer's government", why = "Step 27 outside-model review, item 84 (docs/reviews/2026-09-19-rulings.md): the 2026 sentence assumed crew first flew in 2026 and could contradict the general clause if the first crewed flight slips, and non-democracies needed a definition. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "description", old = "'counts, because Tier 1 is an outpost by anyone'", new = "'counts, because lunar material at scale can come from anyone's program ... It gates the Slow Expanse through lunar material at scale.'", why = "Methodology pass item 97 (docs/methodology-pass-2026-09-25.md), ruled by John 2026-09-25: Tier 1 is now tested by the hundred-workers node alone, so this node no longer feeds Tier 1 directly; it still gates Tier 3 through L-lunar-material-delivered-to-orbit-at-scale. Text only; no number changed." },
 ]
 
 [[node]]
@@ -92,6 +94,10 @@ status = "open"
 probability = { baseline = 0.3, moderate = 0.4, strong = 0.55, radical = 0.75, open = 0.8 }
 estimated_on = 2026-09-19
 rationale = "Unilateral pledges exist, a binding three-party treaty does not; it needs either a scare in orbit or a detente, and Russia is the holdout."
+notes = "Required by Tier 4 from 2026-09-08 to 2026-09-25. Removed from Tier 4 under methodology pass item 100 part (a) (docs/methodology-pass-2026-09-25.md), ruled by John 2026-09-25: a treaty is a sign that orbit is treated as shared, not a condition a Full Expanse cannot exist without. Kept in the tree as a tracked event that gates no tier, on the precedent of E-megawatt-heat-rejected-for-thirty-days-in-vacuum."
+revisions = [
+  { date = 2026-09-25, field = "notes", old = "", new = "the node's removal from Tier 4 and its place as a tracked event that gates no tier", why = "Methodology pass item 100 part (a), ruled by John 2026-09-25. The node record's own fields are unchanged; tier membership lives in data/tiers.toml." },
+]
 
 [[node]]
 id = "R-off-earth-resource-rights-recognised-by-major-powers"
@@ -198,4 +204,7 @@ status = "open"
 probability = { baseline = 0.35, moderate = 0.45, strong = 0.6, radical = 0.78, open = 0.85 }
 estimated_on = 2026-09-20
 rationale = "Coordination bodies without teeth exist and traffic in low orbit is already forcing the question, but an authority with enforcement over the major powers' own launches is a cession of sovereignty that took aviation a world war to reach; a little over one in three by 2071 and likely only with the longer windows. Proposed by Claude 2026-09-20 with the node's addition, accepted by John."
-notes = "Added 2026-09-20 under step 27, item 20 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; required by Tier 3 (data/tiers.toml), with the Tier 4 alternative to be revisited at the methodology pass alongside item 100 (the anti-satellite treaty under Tier 4)."
+notes = "Added 2026-09-20 under step 27, item 20 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; required by Tier 3 (data/tiers.toml). Moving it to Tier 4 in place of the anti-satellite ban was proposed at the methodology pass (item 100 part b, docs/methodology-pass-2026-09-25.md) and declined by John 2026-09-25; it stays in Tier 3."
+revisions = [
+  { date = 2026-09-25, field = "notes", old = "'with the Tier 4 alternative to be revisited at the methodology pass alongside item 100'", new = "the Tier 4 alternative considered at the methodology pass and declined; stays in Tier 3", why = "Methodology pass item 100 (docs/methodology-pass-2026-09-25.md), part (b) declined by John 2026-09-25. Notes only; no number or tier list changed for this node." },
+]

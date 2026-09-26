@@ -19,6 +19,10 @@ A snapshot is the complete output of one run, written to `data/snapshots/YYYY-MM
 and committed: the run's parameters and commit, every tier's rate per scenario, every node's
 rate, the seven chain links' gate rates, the Contact Clause rungs, the decision comparison, and
 what each open step would be worth to the headline if it settled now.
+A chain link's gates are its factor's steps that the headline's tiers name; a factor the tiers
+name no step of, but that the headline still waits on through a dependency, takes the nearest
+such steps instead (added 2026-09-25, so that energy keeps the lunar reactor after Tier 1 stopped
+naming it).
 Snapshots are the project's memory of its own numbers. The history charts on the website are
 drawn from them and from nothing else, so the history a reader sees is exactly the history in
 the repository. The plan and the reasoning are in docs/ledger-plan.md (the record, and decision 2).
