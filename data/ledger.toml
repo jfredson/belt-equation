@@ -711,3 +711,20 @@ step without moving the headline; whether the tier should list the either-route 
 a question for John."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
+
+[[entry]]
+id = "2026-09-25-food-made-on-site-counts-however-it-is-made"
+date = 2026-09-25
+kind = "structure"
+title = "The year of life support off Earth now counts food made on site from raw materials however it is made, not only food grown as crops"
+body = """
+The settlement tier needs a crew to live off Earth for a year with most of its food produced
+where it lives. The step asked for calories grown on site, which assumes crops. Food cultured
+or fermented from water, air, carbon dioxide and waste would do the same job. Under candidate 9
+of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved
+by John on 2026-09-25 with the lighter of the two handlings, the step's criterion now reads
+"most of its food produced on site from raw inputs", with raw inputs defined as things that are
+not themselves food. The staple crop harvested off Earth stays its parent as the likeliest
+route, and a cultured-food route would be added if one appears. No number changed."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"

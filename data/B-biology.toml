@@ -196,7 +196,7 @@ notes = "The magnetic route depends on high-temperature superconductors at pract
 
 [[node]]
 id = "B-closed-loop-life-support-year-off-earth"
-name = "A crew off Earth lives for a year with most of its food, water, and air recycled on site"
+name = "A crew off Earth lives for a year with most of its food produced on site and its water and air recycled"
 factor = "B"
 kind = "world"
 description = """
@@ -206,10 +206,13 @@ the food loop on Earth. Doing it off Earth for a year is what partial self-suffi
 Tier 2 criterion, means in practice."""
 resolution = """
 A crew at a site off Earth completes twelve continuous months during which more than half of
-their calories are grown on site and more than ninety-five percent of water and oxygen are
-recycled, as reported in the operating agency's or company's published accounting, which
-states the calorie, water, and oxygen figures separately and includes starting stocks,
-resupply, and emergency inputs."""
+their calories are produced on site from raw inputs, and more than ninety-five percent of
+water and oxygen are recycled. Raw inputs are water, air, carbon dioxide, minerals, waste
+streams and other materials that are not themselves food, so calories grown as crops or made
+by cultured or fermented processes from such inputs count, and calories made from shipped food
+or food ingredients do not. The figures are as reported in the operating agency's or
+company's published accounting, which states the calorie, water, and oxygen figures
+separately and includes starting stocks, resupply, and emergency inputs."""
 source = "The operator's published life-support accounting"
 horizon = "mid"
 depends_on = ["B-staple-crop-grown-from-seed-to-harvest-off-earth"]
@@ -221,6 +224,8 @@ revisions = [
   { date = 2026-09-19, field = "resolution", old = "percentages as reported by the operator, with no requirement to separate the figures or count starting stocks", new = "the operator's published accounting must state the calorie, water and oxygen figures separately and include starting stocks, resupply and emergency inputs", why = "Step 27 outside-model review, item 40 (docs/reviews/2026-09-19-rulings.md): percentages can hide imported stocks and accounting conventions; an independent audit was dropped as something that does not exist. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "depends_on", old = "none", new = "B-staple-crop-grown-from-seed-to-harvest-off-earth", why = "Step 27 outside-model review, item 3 (docs/reviews/2026-09-19-rulings.md): calories have never been grown off Earth, and a staple crop from seed to harvest is a cheap leaf this node needs. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "probability", old = "0.50 / 0.58 / 0.70 / 0.85 / 0.90", new = "0.35 / 0.45 / 0.60 / 0.85 / 0.92", why = "Step 27 outside-model review, item 7 (docs/reviews/2026-09-19-rulings.md): shipping food is cheap and farming is a settlement-scale project; moved partway toward the reviewer. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "resolution", old = "'more than half of their calories are grown on site'", new = "'more than half of their calories are produced on site from raw inputs', raw inputs defined as materials that are not themselves food", why = "Candidate 9 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25 with the lighter handling: what the year of life support needs is most of its food made on site, and cultured or fermented food made from raw inputs would serve as well as crops. The staple crop stays this node's parent, unchanged, as the likeliest route; a cultured-food route would be added as a second parent, under an either-route step, if one appears. Numbers unchanged: with only the crop route drawn, the widening matters once a second route exists." },
+  { date = 2026-09-25, field = "name", old = "A crew off Earth lives for a year with most of its food, water, and air recycled on site", new = "A crew off Earth lives for a year with most of its food produced on site and its water and air recycled", why = "Candidate 9, as above: the name follows the widened criterion." },
 ]
 
 [[node]]
