@@ -603,6 +603,7 @@ a.dim:hover { color: var(--accent); }
 .run-inputs > .run-field:nth-child(n + 2) { grid-column: 2; }
 .run-inputs > .run-field:first-child { grid-row: span 3; }
 .run-field { display: flex; flex-direction: column; gap: 10px; }
+.run-inputs .dial-btn { flex: 1 1 auto; min-width: max-content; padding: 0 12px; }
 .run-birth { width: 100%; height: 56px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line-strong); background: transparent; color: var(--text); font-family: var(--mono); font-size: 26px; }
 .run-birth:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .run-help { margin: 0; font-size: 14px; line-height: 1.5; color: var(--muted); min-height: 2.8em; }
