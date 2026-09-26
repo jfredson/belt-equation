@@ -14,7 +14,8 @@ electric thrusters, has been designed and ground-tested for sixty years, and no
 nuclear-powered system has ever produced a meaningful orbit change: SNAP-10A's reactor ran an
 ion thruster briefly in orbit in 1965, without moving the vehicle to speak of. The first
 in-space burn that substantially moves a vehicle is the step from paper to hardware, and it is
-what routine nuclear propulsion, the Tier 3 criterion, has to start from."""
+what routine nuclear propulsion, one route to the fast transit Tier 3 requires, has to
+start from."""
 resolution = """
 A spacecraft in space accumulates a velocity change of at least one kilometre per second from
 its propulsion itself, excluding gravitational effects, using propulsion powered by a nuclear
@@ -30,6 +31,7 @@ revisions = [
   { date = 2026-09-19, field = "name", old = "A nuclear-powered engine changes a spacecraft's orbit in space for the first time", new = "A nuclear-powered engine produces a kilometre per second of velocity change in space", why = "Step 27 outside-model review, item 72 (docs/reviews/2026-09-19-rulings.md): the name says 'first time' and the description said 'never flown', but SNAP-10A powered an ion thruster in orbit in 1965 (NASA's own assessment, fetched); the name now says what the criterion measures. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "resolution", old = "'changes its velocity by at least one kilometre per second'", new = "cumulative velocity change of at least one kilometre per second from the propulsion itself, excluding gravitational effects", why = "Step 27 outside-model review, item 72: the bar is the same, stated so that a gravity assist cannot be counted. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "description", old = "'never flown'", new = "no nuclear-powered system has produced a meaningful orbit change; SNAP-10A ran an ion thruster briefly in 1965", why = "Step 27 outside-model review, item 72: factual correction, verified against NASA's space-nuclear-systems assessment on 2026-09-19. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "description", old = "'routine nuclear propulsion, the Tier 3 criterion'", new = "'routine nuclear propulsion, one route to the fast transit Tier 3 requires'", why = "Candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: Tier 3 now requires D-fast-transit-in-routine-use, with routine nuclear propulsion as one route. Text only." },
 ]
 notes = "Shares a technology base with the lunar surface reactor (an energy node); whether that is a hard dependency is for step 7. SNAP-10A (1965): reactor-powered ion thruster ran briefly during a 43-day mission and produced no meaningful orbit change; the node stays open."
 
@@ -39,9 +41,11 @@ name = "Nuclear propulsion is used on several missions a year"
 factor = "D"
 kind = "world"
 description = """
-The Tier 3 criterion in propulsion terms. One demonstration proves it can be done; several
-missions a year means it is the ordinary way to move heavy things around the inner solar
-system, which is what transit times of months to the Belt assume."""
+One demonstration proves nuclear propulsion can be done; several missions a year means it is
+the ordinary way to move heavy things around the inner solar system, which is what transit
+times of months to the Belt assume. Until 2026-09-25 this was the Tier 3 criterion itself;
+it is now one of two routes to fast transit in routine use (D-fast-transit-in-routine-use), beside high-power
+solar-electric propulsion."""
 resolution = """
 In one calendar year, at least three separate missions beyond low Earth orbit use
 reactor-powered propulsion for their main transfer, meaning the burns that supply most of
@@ -57,7 +61,63 @@ rationale = "One demonstration to routine use is the gap the space station took 
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "'nuclear-powered propulsion for their main transfer', main transfer undefined", new = "reactor-powered, with main transfer meaning the burns supplying most of the mission's velocity change beyond low Earth orbit", why = "Step 27 outside-model review, item 73 (docs/reviews/2026-09-19-rulings.md): 'nuclear-powered' without 'reactor' would have let a radioisotope-electric probe count; a three-consecutive-years clause was declined as a stronger event than the name promises. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "probability", old = "0.50 / 0.60 / 0.75 / 0.88 / 0.92", new = "0.40 / 0.52 / 0.68 / 0.85 / 0.90", why = "Step 27 outside-model review, items 18, 74 and 104 (docs/reviews/2026-09-19-rulings.md): Gemini argued up (the first flight is the barrier, routine use is adoption), Astra argued down (a demonstration creates no demand), and Grok in Fast mode broke the tie toward Astra; moved partway, discounting Fast mode. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "description", old = "'The Tier 3 criterion in propulsion terms.'", new = "one of two routes to fast transit in routine use, which is now the Tier 3 requirement", why = "Candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25, the pass counting as the review a tier change needs: what the Belt tier takes from this step is transit fast enough that people go out there to work, and high-power solar-electric propulsion could supply it too. Tier 3 now requires D-fast-transit-in-routine-use, with this step as one route. Text only; criterion and numbers unchanged." },
 ]
+
+[[node]]
+id = "D-fast-transit-in-routine-use"
+name = "Three missions in one year reach the asteroid belt within twelve months of leaving Earth"
+factor = "D"
+kind = "world"
+description = """
+The Tier 3 criterion in propulsion terms: transit fast enough that people go out there to
+work. A Slow Expanse needs ships that reach the Belt in months rather than years, often enough
+that going is routine. Nuclear propulsion is one way to get there and high-power solar-electric
+propulsion is another; chemical rockets with refilling in orbit take well over a year to the
+Belt on the usual path. This is the function step, written so that any propulsion counts (the
+function-over-route rule, docs/methodology.md), with the two propulsion routes under it."""
+resolution = """
+In one calendar year, at least three separate missions, crewed or cargo, each arrive at a
+destination in the main asteroid belt or farther from the Sun (rendezvous with, orbit or land
+on a body at least 2.1 astronomical units from the Sun, or on a moon of such a body; a
+flyby does not count) within twelve months of leaving Earth orbit, by any propulsion,
+confirmed by the operators and independent tracking of the vehicles."""
+source = "Operators' mission records and independent tracking"
+horizon = "root"
+depends_on_any = [["D-nuclear-propulsion-in-routine-use", "D-high-power-solar-electric-propulsion-in-routine-use"]]
+status = "open"
+probability = { baseline = 0.5, moderate = 0.62, strong = 0.76, radical = 0.87, open = 0.91 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given that some fast propulsion is already in routine use somewhere in the inner solar system, the question is whether anyone sends three ships a year to the Belt on it; that needs a reason to go, which the Belt tier's other steps (an outer site, a product sold) are about. Even odds by 2071. One thing it can cost: a world whose outer site is Mars and whose fast ships go only there does not meet this step."
+notes = "Added 2026-09-25 under candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25, with the pass counting as the review a tier change needs. Replaces D-nuclear-propulsion-in-routine-use in Tier 3's requirements (data/tiers.toml); the tier's definition now reads 'transit fast enough that people go out there to work'. The criterion's numbers (under twelve months to the Belt, three missions a year, crewed or cargo) were set in the handoff; the 2.1-astronomical-unit edge of the Belt and the flyby exclusion are Claude's drafting."
+
+[[node]]
+id = "D-high-power-solar-electric-propulsion-in-routine-use"
+name = "Megawatt solar-electric propulsion is used on several missions a year"
+factor = "D"
+kind = "world"
+description = """
+Electric thrusters push gently but use a tenth of the propellant of a chemical rocket, and
+fed by large enough solar arrays they can keep pushing for months. Missions today run on
+kilowatts to tens of kilowatts; at a megawatt of thruster power, a solar-electric ship could
+carry a useful payload to the asteroid belt in about a year without a reactor. Megawatt solar
+spacecraft are already being built for orbital computing, which is where the arrays could
+come from. This is the solar route to fast transit, beside nuclear propulsion."""
+resolution = """
+In one calendar year, at least three separate missions beyond low Earth orbit use
+solar-electric propulsion with at least one megawatt of electrical power delivered to the
+thrusters for their main transfer, meaning the burns that supply most of the mission's
+velocity change beyond low Earth orbit, confirmed by the operators and independent
+tracking."""
+source = "Operators' mission records and independent tracking"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.4, moderate = 0.52, strong = 0.68, radical = 0.82, open = 0.87 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The parts exist: electric thrusters are flown every day, and megawatt solar spacecraft are funded for the late 2020s. What is missing is thrusters clustered to a megawatt and a customer who needs three heavy transfers a year beyond low Earth orbit, such as cargo tugs to the Moon or beyond. Set level with routine nuclear propulsion's own number: solar-electric is further along and needs no reactor politics, but weakens with distance from the Sun."
+verify = ["That a megawatt of solar-electric thruster power can carry a useful payload from Earth to the main asteroid belt in about a year is Claude's rough estimate from memory, written 2026-09-25; it needs checking against published mission studies, and the megawatt threshold moves if they show a different figure."]
+notes = "Added 2026-09-25 as a route under D-fast-transit-in-routine-use (candidate 6 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). Written to match D-nuclear-propulsion-in-routine-use (three missions beyond low Earth orbit in a year, main transfer defined the same way) so the two routes are like for like. E-megawatt-spacecraft-operates-in-orbit is a sibling rather than a dependency: a megawatt solar-electric ship running for a month resolves that step by construction."
 
 [[node]]
 id = "D-crew-round-trip-to-mars"
