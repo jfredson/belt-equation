@@ -45,7 +45,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import compute  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-SNAPSHOT = ROOT / "data" / "snapshots" / "2026-09-20-step-27.json"
+# The latest run of the tree as it stands. Moved from 2026-09-20-step-27 on 2026-09-25, when the
+# methodology pass changed Tier 1's and Tier 4's requirements; move it again whenever a run
+# follows a change to the tree's shape.
+SNAPSHOT = ROOT / "data" / "snapshots" / "2026-09-25-methodology-pass.json"
 SYSTEM_TIERS = ["T1", "T2", "T3", "T4"]
 
 

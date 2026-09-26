@@ -8,16 +8,19 @@ key = "T1"
 name = "Outpost"
 definition = "Permanent crewed presence at the Moon, Mars, or a permanently crewed station, hundreds of people, fully supplied from Earth."
 requires = [
-  "L-crew-lands-on-moon-in-reusable-lander",
-  "E-fission-reactor-runs-on-lunar-surface",
   "M-hundred-people-working-off-earth-for-pay",
-  "R-crewed-lunar-program-outlives-two-changes-of-president",
 ]
+# Methodology pass item 97 (docs/methodology-pass-2026-09-25.md), ruled by John 2026-09-25, the pass
+# counting as the review that tier changes require: Tier 1 is location-agnostic, so its test is the
+# location-agnostic headcount node alone and a crewed station counts. The three lunar nodes
+# (reusable lander, surface reactor, lunar program) were Tier 1 requirements from 2026-09-08 to
+# 2026-09-25; they still gate Tier 3 through L-lunar-material-delivered-to-orbit-at-scale, which
+# depends on all three.
 
 [[system_tier]]
 key = "T2"
 name = "Settlement"
-definition = "Thousands living off Earth at one or more sites, at least one child born and raised off Earth, partial local self-sufficiency in air, water, and food."
+definition = "Thousands living off Earth at one or more sites, partial local self-sufficiency in air, water, and food."
 requires = [
   "T1",
   "L-launch-price-below-200-dollars-per-kg",
@@ -29,7 +32,8 @@ requires = [
 # (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): a settlement cannot evacuate every appendix.
 # B-human-child-born-off-earth was a Tier 2 requirement until 2026-09-19, when John ruled it moved to
 # Tier 4 after the first run showed it capping every tier above Tier 2 (docs/runs/2026-09-19-first-run.md).
-# Tier 2's definition still names a child born off Earth; the node remains in the tree and the visual.
+# Tier 2's definition no longer names the child and Tier 4's does, so the words and the lists agree
+# (methodology pass item 99, docs/methodology-pass-2026-09-25.md, ruled by John 2026-09-25).
 
 [[system_tier]]
 key = "T3"
@@ -46,19 +50,23 @@ requires = [
   "R-space-traffic-management-authority-among-major-powers",
 ]
 # R-space-traffic-management-authority-among-major-powers added 2026-09-20 under step 27, item 20
-# (ruled 2026-09-19): a real gate on tens of thousands in transit. Whether it belongs under Tier 4
-# instead is revisited at the methodology pass with item 100 (the anti-satellite treaty under Tier 4).
+# (ruled 2026-09-19): a real gate on tens of thousands in transit. Moving it to Tier 4 in place of the
+# anti-satellite ban was considered at the methodology pass (item 100 part b,
+# docs/methodology-pass-2026-09-25.md) and declined by John 2026-09-25; it stays here.
 
 [[system_tier]]
 key = "T4"
 name = "Full Expanse"
-definition = "Millions off Earth, transit times in weeks on constant-acceleration drives, a Belt population with its own political identity and economy."
+definition = "Millions off Earth, transit times in weeks on constant-acceleration drives, children born and raised off Earth, a Belt population with its own political identity and economy."
 requires = [
   "T3",
   "D-constant-acceleration-drive-demonstrated",
-  "R-binding-ban-on-debris-creating-anti-satellite-tests",
   "B-human-child-born-off-earth",
 ]
+# R-binding-ban-on-debris-creating-anti-satellite-tests was a Tier 4 requirement from 2026-09-08 to
+# 2026-09-25. It left this list under methodology pass item 100 part (a), ruled by John 2026-09-25: a
+# treaty is a sign that orbit is treated as shared, not a condition of a Full Expanse. The node stays
+# in the tree as a tracked event that gates no tier, like the megawatt radiator node.
 
 [[access_tier]]
 key = "A0"
@@ -83,3 +91,7 @@ key = "A3"
 name = "Lives off Earth"
 definition = "Permanent residence at an off-world site. Reported beside the headline as the stretch. Requires A2 plus a site that accepts permanent residents; the choice to stay is a future choice point, not a world event."
 requires = ["A2", "R-off-earth-site-accepts-permanent-residents"]
+# Requiring A2 is a limit of the one route the access branch models (work a rotation, then stay), not
+# of what living off Earth means; moving straight to an off-Earth site is another route. Recorded in
+# docs/definitions.md under methodology pass item 96, ruled by John 2026-09-25; the list waits for the
+# access-branch review after pipeline graduation (May 2027).

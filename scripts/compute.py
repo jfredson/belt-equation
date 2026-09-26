@@ -1359,7 +1359,14 @@ def chain_gates(tree: dict) -> dict[str, list[str]]:
     every gate node of its factor holds in the same play-through; because each gate node
     already waits on its own dependencies, the link's rate counts those too. Factors with no
     gate node (W, whose job is done by the scenario, and C, never multiplied in) are left out.
-    Moved here from export.py on 2026-09-19 (ledger step 28) so a snapshot can record it too."""
+    Moved here from export.py on 2026-09-19 (ledger step 28) so a snapshot can record it too.
+
+    Fallback, added 2026-09-25 with the methodology pass (ruled by John the same day): a factor
+    the headline rests on only through a dependency, with no node named in any tier list, takes
+    as its gates the nearest nodes of that factor that the named gates depend on. Without it,
+    energy dropped off the chain when Tier 1 stopped naming the lunar reactor, although the Belt
+    still waits on that reactor through lunar material at scale. A factor with a named gate is
+    left exactly as it was."""
     tiers = {t["key"]: t for t in tree["tiers"]}
     by_id = {n["id"]: n for n in tree["nodes"]}
     seen: set[str] = set()
@@ -1377,6 +1384,34 @@ def chain_gates(tree: dict) -> dict[str, list[str]]:
                 gates.setdefault(by_id[r]["factor"], [])
                 if r not in gates[by_id[r]["factor"]]:
                     gates[by_id[r]["factor"]].append(r)
+
+    # The fallback: walk upstream from the named gates through both kinds of dependency, and give
+    # each factor that has no named gate the first nodes of its own it meets on the way. Beyond
+    # such a node the walk goes no further for that factor, since a node already waits on its own
+    # dependencies. W and C never become links.
+    named = {nid for ids in gates.values() for nid in ids}
+    upstream: dict[str, list[str]] = {}
+    visited: set[str] = set()
+    walk = list(named)
+    while walk:
+        nid = walk.pop()
+        node = by_id[nid]
+        parents = list(node.get("depends_on", []) or [])
+        for group in node.get("depends_on_any", []) or []:
+            parents.extend(group)
+        for p in parents:
+            if p in visited or p not in by_id:
+                continue
+            visited.add(p)
+            f = by_id[p]["factor"]
+            if f not in gates and f not in ("W", "C"):
+                upstream.setdefault(f, [])
+                if p not in upstream[f]:
+                    upstream[f].append(p)
+                continue
+            walk.append(p)
+    for f, ids in upstream.items():
+        gates[f] = ids
     return {f: sorted(gates[f]) for f in FACTORS if f in gates}
 
 

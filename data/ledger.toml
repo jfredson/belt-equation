@@ -513,3 +513,50 @@ nodes = [
   "C2",
 ]
 snapshot = "2026-09-20-step-27"
+
+# 2026-09-25: the methodology pass. The one structural review the outside-model review protocol
+# set aside (docs/reviews/protocol.md, decision 5) took the seven tier and method items the
+# 2026-09-19 rulings deferred to it; Claude proposed a change for each
+# (docs/methodology-pass-2026-09-25.md) and John ruled on 2026-09-25, counting the pass as the
+# review that a change to a tier's requirements needs. Two requirement lists changed, each with an
+# entry below; the rest changed words only (two tier definitions, a note on A3's route, a note that
+# the tier headcounts are descriptions, and the timing assumption in methodology.md) and moved
+# nothing. Both entries landed in one snapshot and break like-for-like comparison with the run
+# before it.
+
+[[entry]]
+id = "2026-09-25-outpost-tier-counts-a-station"
+date = 2026-09-25
+kind = "structure"
+title = "The outpost tier now counts a hundred people working off Earth anywhere, a station included, instead of insisting on a lunar base"
+body = """
+The outpost tier's definition always allowed a permanently crewed station, but its test required
+a reusable lunar lander, a reactor running on the Moon and a lunar programme that outlives two
+changes of government, so a hundred people working on commercial stations with no lunar programme
+failed a tier they plainly met. GPT-6 Astra raised it in two packets. John ruled on 2026-09-25 that
+the tier is tested by the hundred-workers step alone, which already counts every station and
+surface site and asks for a full year. The three lunar steps did not become less important: they
+still gate the Belt through lunar material delivered to orbit at scale. So the outpost and
+settlement tiers rose, and so did the second number beside the headline (a rotation at a station
+or lunar base), while the Belt and the headline did not move at all. On the home page chain, the
+regime link rose, because it no longer counts the lunar programme directly; the lunar reactor
+stays energy's link, found through lunar material at scale by a rule John approved the same day,
+so energy does not drop off the chain."""
+snapshot = "2026-09-25-methodology-pass"
+run_note = "docs/runs/2026-09-25-methodology-pass.md"
+
+[[entry]]
+id = "2026-09-25-anti-satellite-ban-no-longer-gates-the-top-tier"
+date = 2026-09-25
+kind = "structure"
+title = "A treaty banning debris-creating anti-satellite tests is no longer required for the top tier, and is kept as a tracked event"
+body = """
+The treaty was a requirement of the Full Expanse as a sign that orbit is treated as shared rather
+than fought over. GPT-6 Astra argued that a treaty is a diplomatic milestone, not something a Full
+Expanse cannot exist without, and covers neither wartime attacks nor accidental debris. John ruled
+on 2026-09-25 that it leaves the top tier and stays in the tree as a step that gates no tier, like
+the megawatt radiator. Claude also proposed moving the space traffic authority from the Belt tier
+into its place, which would have raised the headline; John declined that, so the authority stays a
+requirement of the Belt as ruled on 2026-09-19. Only the top tier moved, slightly up."""
+snapshot = "2026-09-25-methodology-pass"
+run_note = "docs/runs/2026-09-25-methodology-pass.md"
