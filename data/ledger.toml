@@ -583,3 +583,33 @@ into its place, which would have raised the headline; John declined that, so the
 requirement of the Belt as ruled on 2026-09-19. Only the top tier moved, slightly up."""
 snapshot = "2026-09-25-methodology-pass"
 run_note = "docs/runs/2026-09-25-methodology-pass.md"
+
+# 2026-09-25: the function-over-route pass. After the essay question "why does it have to be a
+# nuclear reactor?", Claude proposed a rule (a link names the function a child needs, not one route
+# to it) and a sweep of every link in the tree (docs/proposal-function-over-route-2026-09-25.md).
+# John approved it in full on 2026-09-25 (docs/handoff-function-over-route-2026-09-25.md), counting
+# the pass as the review a tier change needs, on the methodology-pass precedent. One entry per
+# candidate that changed; candidate 2 was checked and left, candidate 8 and the access branch were
+# not candidates. All landed in one snapshot, which breaks like-for-like comparison with the run
+# before it. The snapshot label sorts after 'methodology-pass' so the two same-day runs keep their
+# order.
+
+[[entry]]
+id = "2026-09-25-lunar-material-waits-on-power-not-on-a-reactor"
+date = 2026-09-25
+kind = "structure"
+title = "Lunar material at scale now waits on power through the lunar night from any source, not on a nuclear reactor"
+body = """
+Asked while the introduction essay was being drafted: why does it have to be a nuclear
+reactor? It does not. Mining on the Moon needs electricity through the two-week night, and
+a reactor is one way to get it. Solar panels on a polar ridge that is almost always in
+sunlight, with storage for the short dark spells, is another; power sent down from orbit is a
+third. The tree had the Belt waiting on the reactor alone, which counts one route as if it
+were the only one and always biases the number low. Under candidate 1 of the function-over-route
+proposal (docs/proposal-function-over-route-2026-09-25.md), approved by John on 2026-09-25,
+lunar material at scale now depends on a new step, a hundred kilowatts at one lunar site
+through a year from any source, with the reactor, polar solar with storage and power from
+orbit as its three routes. The two new routes and the new step carry first estimates from
+Claude that John has not yet ruled on. The reactor itself is unchanged and still tracked."""
+snapshot = "2026-09-25-sweep-function-over-route"
+run_note = "docs/runs/2026-09-25-function-over-route.md"

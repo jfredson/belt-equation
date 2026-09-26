@@ -40,8 +40,9 @@ description = """
 A lunar night lasts two weeks, so any permanent base needs power that does not come from the
 Sun. A small fission reactor of a few tens of kilowatts is the planned answer; on 2026-01-13
 the US space agency and energy department announced a 2030 target for a reactor on the lunar
-surface, a target rather than a flight. It is the power source that mining, refining, and a
-permanent outpost assume."""
+surface, a target rather than a flight. It is the planned power source for mining, refining,
+and a permanent outpost, and since 2026-09-25 one of three routes to the power they need
+(E-power-through-the-lunar-night-at-a-surface-site)."""
 resolution = """
 A fission reactor on the lunar surface makes at least forty kilowatts of net electrical output
 available to external loads for at least ninety percent of a twelve-month period, confirmed
@@ -56,8 +57,87 @@ rationale = "The schedule has already slipped to the early 2030s and reactor pro
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "'delivering at least forty kilowatts ... operates ... for twelve continuous months'", new = "at least forty kilowatts of net electrical output available to loads for at least ninety percent of a twelve-month period", why = "Step 27 outside-model review, item 64 (docs/reviews/2026-09-19-rulings.md): 'twelve continuous months' would have failed on a single maintenance outage, and net output to loads was unspecified. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "description", old = "'aimed at the end of this decade ... plans delivery of a reactor to the launch pad in the early 2030s'", new = "the 2030 target announced 2026-01-13, dated", why = "Step 27 outside-model review, item 64: the description needed a dated update; the release of 2026-01-13 was fetched and checked. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "description", old = "'It is the power source that mining, refining, and a permanent outpost assume.'", new = "the planned power source, and since 2026-09-25 one of three routes to power through the lunar night", why = "Candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: lunar material at scale now depends on the function step E-power-through-the-lunar-night-at-a-surface-site, with this reactor as one route under it. Text only; the reactor's criterion and numbers are unchanged." },
 ]
 notes = "Drafted as a leaf; moved to mid on 2026-09-08 after checking the program's schedule, which has slipped to the early 2030s. NASA release of 2026-01-13 setting a 2030 surface-reactor target fetched 2026-09-19."
+
+[[node]]
+id = "E-power-through-the-lunar-night-at-a-surface-site"
+name = "A site on the Moon has a hundred kilowatts of electricity through the lunar night, for a year, from any source"
+factor = "E"
+kind = "world"
+description = """
+A lunar night lasts two weeks, and mining, refining and a permanent base all need power that
+keeps running through it. What they need is the power, not any one way of making it: a
+fission reactor, solar panels on a polar ridge that is almost always in sunlight with storage
+for the short dark spells, or power sent down from orbit would all serve. This is the function
+step that lunar material at scale depends on, written so that any route counts (the
+function-over-route rule, docs/methodology.md). A hundred kilowatts is a few times the first
+planned reactor, the scale at which a site does industrial work rather than only keeping a
+small crew alive."""
+resolution = """
+At a single lunar surface site, at least one hundred kilowatts of net electrical power is
+available to the site's loads for at least ninety percent of a twelve-month period, from any
+source or mix of sources, confirmed by the operator's record."""
+source = "The site operator's published record (an agency mission record or a company's operating report)"
+horizon = "mid"
+depends_on_any = [["E-fission-reactor-runs-on-lunar-surface", "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year", "E-power-delivered-from-orbit-to-the-lunar-surface-for-a-year"]]
+status = "open"
+probability = { baseline = 0.9, moderate = 0.93, strong = 0.95, radical = 0.97, open = 0.98 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given that one route has already run a forty-kilowatt system through a whole year, the hard part is done; a hundred kilowatts at one site is two or three such units or one larger one, which a programme building toward mining will want anyway. The residual is a site that never needs more than its first unit. This step up was hidden before: lunar material at scale depended on a forty-kilowatt reactor and was estimated given power, so nothing priced the move to industrial scale."
+notes = "Added 2026-09-25 under candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. Threshold form: each of the three routes is a year-long demonstration at forty kilowatts, and this step is the scale-up at one site by whichever route or mix. The demonstration of power beamed to Earth's ground (M-power-beamed-from-orbit-to-ground-at-kilowatt-scale) is a cousin of the orbital route, not a dependency."
+
+[[node]]
+id = "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year"
+name = "Solar panels with storage keep a lunar polar site powered through a whole year"
+factor = "E"
+kind = "world"
+description = """
+Near the Moon's poles, a few ridges and crater rims are in sunlight most of the time, because
+the Sun circles low along the horizon there. Tall solar masts on such a ridge, with batteries
+or fuel cells for the short dark spells, can keep a site powered without a reactor. The US
+space agency has funded tall-mast solar designs for this purpose, and it is the route most
+likely to arrive first if the lunar reactor keeps slipping."""
+resolution = """
+A solar power system with energy storage, at a lunar site within ten degrees of latitude of
+either pole, makes at least forty kilowatts of net electrical output available to external
+loads for at least ninety percent of a twelve-month period, with no nuclear source
+contributing, confirmed by the responsible agency's or company's mission record."""
+source = "The responsible agency's or company's mission record"
+horizon = "mid"
+depends_on = []
+status = "open"
+probability = { baseline = 0.55, moderate = 0.68, strong = 0.82, radical = 0.9, open = 0.93 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The panels, masts and storage are ordinary engineering and every south-pole base plan starts on solar, but forty kilowatts held through a full year of dark spells and dust has not been attempted, and a programme that gets its reactor may never build a solar plant this size. Set below the reactor because the reactor is the planned answer."
+verify = ["The US space agency's tall-mast solar programme for the lunar south pole (Vertical Solar Array Technology, with awards around 2022 to 2024) was written from memory on 2026-09-25; its award records need checking and linking."]
+notes = "Added 2026-09-25 as a route under E-power-through-the-lunar-night-at-a-surface-site (candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). The forty-kilowatt threshold and the ninety-percent-of-a-year test match the reactor route, so the routes are like for like. Solar with storage was the alternative logged against the reactor link at step 27, item 61 (2026-09-19)."
+
+[[node]]
+id = "E-power-delivered-from-orbit-to-the-lunar-surface-for-a-year"
+name = "Power sent down from orbit keeps a site on the Moon running for a year"
+factor = "E"
+kind = "world"
+description = """
+A spacecraft in orbit around the Moon, or parked where it sees the Sun all the time, can
+collect sunlight and send the energy down to the surface as microwaves or laser light, or
+reflect sunlight straight onto panels at the site. It avoids both the reactor and the polar
+ridge, and it would let a site sit anywhere on the Moon. It is the least developed of the
+three routes: nothing has yet sent useful power from orbit to any surface."""
+resolution = """
+Energy sent from one or more spacecraft in space to a lunar surface site, as microwaves,
+laser light or reflected sunlight, is converted at the site into at least forty kilowatts of
+net electrical output available to external loads for at least ninety percent of a
+twelve-month period, confirmed by the responsible agency's or company's mission record."""
+source = "The responsible agency's or company's mission record"
+horizon = "root"
+depends_on = []
+status = "open"
+probability = { baseline = 0.08, moderate = 0.12, strong = 0.22, radical = 0.38, open = 0.48 }
+estimated_on = 2026-09-25
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The physics is ordinary, but the only orbital power-beaming flight so far delivered milliwatts, a kilowatt to Earth's ground is still under even odds by 2071, and a surface site has two cheaper routes; this one wins only where a site must sit far from the poles and a reactor is ruled out."
+notes = "Added 2026-09-25 as a route under E-power-through-the-lunar-night-at-a-surface-site (candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). A cousin of M-power-beamed-from-orbit-to-ground-at-kilowatt-scale, not a dependency: a lunar system could be built without an Earth demonstration first."
 
 [[node]]
 id = "E-superconducting-wire-price-falls-tenfold"
