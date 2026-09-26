@@ -327,8 +327,8 @@ def contact_branches(tree: dict) -> list[dict]:
     """The Contact Clause as its branches: each top rung with the rungs beneath it, trunk first.
 
     A top rung is one no other rung depends on. Since 2026-09-25 there are two, siblings of each
-    other: C4, communion with something not made by us, above C3; and C5, communion with a machine
-    mind, above C2 and C1. Worked out from the rungs' own dependencies rather than written down,
+    other: C4, a message from something not made by us, above C3; and C5, an exchange with a
+    machine mind, above C2 and C1. Worked out from the rungs' own dependencies rather than written down,
     so a rung added later lands on its branch without anyone editing this."""
     rungs = {n["id"]: n for n in tree["nodes"] if n["factor"] == "C"}
     parents = {nid: [d for d in (n.get("depends_on", []) or []) if d in rungs] for nid, n in rungs.items()}

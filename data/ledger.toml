@@ -583,3 +583,25 @@ into its place, which would have raised the headline; John declined that, so the
 requirement of the Belt as ruled on 2026-09-19. Only the top tier moved, slightly up."""
 snapshot = "2026-09-25-methodology-pass"
 run_note = "docs/runs/2026-09-25-methodology-pass.md"
+
+# 2026-09-25: two Contact Clause rungs renamed, words only, while John edited the intro essay.
+
+[[entry]]
+id = "2026-09-25-contact-rungs-named-for-the-event-not-the-feeling"
+date = 2026-09-25
+kind = "structure"
+title = "The Contact Clause's two top rungs were renamed for the event each criterion tests: a message from elsewhere is understood, and a real exchange with a machine mind"
+body = """
+Both top rungs had carried the word communion since the clause was written. Editing the intro
+essay on 2026-09-25, John ruled that a rung's label should name the event its criterion tests,
+not a feeling, and that communion carries a religious ring the project does not intend. C4,
+"Communion", is now "A message from elsewhere is understood", which is what its criterion has
+required since the 2026-09-20 review: a verified non-human signal decoded into information that
+produces a new peer-reviewed result. C5, "Communion with a machine mind of another perspective",
+is now "A real exchange with a machine mind", which is what its criterion requires: an exchange
+in which the machine originated an idea, met an accepted inside measure, and was changed in turn.
+Words only. No criterion, probability or dependency changed, so no number moved and no run was
+needed; the entry is filed as structure because names are part of the tree's public record. The
+dream statement in the definitions keeps its own wording."""
+nodes = ["C4", "C5"]
+snapshot = "2026-09-25-methodology-pass"

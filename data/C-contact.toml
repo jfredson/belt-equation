@@ -2,7 +2,7 @@
 # requires a C node; the compute script reports them in their own section. Rungs and criteria
 # from definitions.md. Record layout: docs/node-schema.md. Drafted 2026-09-08 in the third
 # brainstorm session. First probabilities 2026-09-19 (roadmap step 9, group three). Two branches
-# end in communion: C4 under C3 (something not made by us) and C5 under C2 (a machine mind),
+# end in an exchange: C4 under C3 (something not made by us) and C5 under C2 (a machine mind),
 # added 2026-09-25. The null rule in docs/definitions.md governs every rung.
 
 [[node]]
@@ -106,7 +106,7 @@ signals should be rests on guesses. The node cannot be made likelier by engineer
 
 [[node]]
 id = "C4"
-name = "Communion"
+name = "A message from elsewhere is understood"
 factor = "C"
 kind = "world"
 description = """
@@ -139,11 +139,12 @@ detection and the decoding would have to be invented."""
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "'a body of knowledge is received and understood by humans whose origin is established ... as neither human nor produced by any human-built system'", new = "a verified non-human signal, placed beyond plausible human technological reach by at least two independent physical observations, decoded into information that human researchers apply to produce a novel peer-reviewed result, with the decoding independently reproduced", why = "Step 27 outside-model review, items 25 and 94 (docs/reviews/2026-09-19-rulings.md): 'understood by humans' was subjective and the provenance clause proved a negative; the decoding-and-application test is checkable and the location test is positive. Mechanism and breaking point updated to match. Ruled by John 2026-09-19." },
   { date = 2026-09-19, field = "probability", old = "0.10 / 0.12 / 0.18 / 0.30 / 0.40", new = "0.04 / 0.05 / 0.08 / 0.15 / 0.25", why = "Step 27 outside-model review, item 28 (docs/reviews/2026-09-19-rulings.md): given C3, a detection is overwhelmingly likely to be incidental and decoding may be impossible; the first estimate assumed a message. Moved partway toward the reviewer. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "name", old = "Communion", new = "A message from elsewhere is understood", why = "Ruled by John 2026-09-25 while editing the intro essay: the label should name the event the criterion tests, not a feeling, and communion carries a religious ring. Words only; criterion, probabilities and dependencies unchanged." },
 ]
 
 [[node]]
 id = "C5"
-name = "Communion with a machine mind of another perspective"
+name = "A real exchange with a machine mind"
 factor = "C"
 kind = "world"
 description = """
@@ -183,3 +184,6 @@ become. The rung is also the one most exposed to the mirage: a candidate that cl
 be fluent, will describe itself as having a perspective, and will be argued for by the people
 who talk to it. None of that moves it."""
 notes = "Adopted 2026-09-25 by John as drafted in docs/proposal-contact-clause-null-rule-2026-09-19.md Part 2, with criterion (b) in generic wording and The Calibration Problem's three conditions named in the mechanism as one candidate test rather than in the resolution (handoff 2026-09-25, rulings 2 and 3). The null rule in docs/definitions.md applies to it in full."
+revisions = [
+  { date = 2026-09-25, field = "name", old = "Communion with a machine mind of another perspective", new = "A real exchange with a machine mind", why = "Ruled by John 2026-09-25 while editing the intro essay: the label should name the event the criterion tests, not a feeling. Words only; criterion, probabilities and dependencies unchanged." },
+]
