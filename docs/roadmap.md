@@ -53,6 +53,8 @@ Reviewed 2026-09-08 (Claude proposed, John approved all): the brainstorm runs as
 18. Schedule the first annual review for January 2027, before John's training resumes. DONE 2026-09-25: a recurring task in TimeAssembler, due 2027-01-03. The review's last step is the same one command, with its own label: `python3 scripts/publish.py --snapshot annual-review --push`.
 19. Fold any public or family critique into the tree before that review.
 
+Book note for steps 17 and 18 (added 2026-09-25; docs/book-tracking-setup-2026-09-25.md). Both end with a few minutes of private capture after the publish command, into John's book log under docs/private/book/ (ignored by git): the quarterly leaf scan prompts a state snapshot, one dated block in state-snapshots.md in John's own words; the annual review prompts a "What I got wrong" pass over the year's CHANGELOG.md, one line per probability, structure or wording the year overturned, into book-log.md.
+
 ## Phase 6. The website, alongside everything above
 
 Added 2026-09-08 when John reversed the deferral of a standalone site. The full plan, with what each page shows, the decisions behind the stack, and what each step waits on, is in belt-equation/docs/website-plan.md. Steps are numbered from 20 so they never collide with the roadmap's 1 to 19. In short: an Astro static site in site/ of this repo, deployed to Cloudflare Workers static assets like Sentient Horizons and Hearth and Void, fed JSON by a Python export script, with the tree visual as a committed picture and the project's story pulled from TimeAssembler at build time.
