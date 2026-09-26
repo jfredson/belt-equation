@@ -64,6 +64,8 @@
 }
 
 * { box-sizing: border-box; }
+/* The hidden attribute must win over component display rules (e.g. .run-out { display: flex }). */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; background: var(--bg); }
 
 body {
