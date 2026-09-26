@@ -1,0 +1,143 @@
+{
+  "snapshot": "2026-09-25-sweep-function-over-route",
+  "previous_snapshot": "2026-09-25-methodology-pass",
+  "tree_matches_snapshot": true,
+  "runs": 20000,
+  "noise": {
+    "baseline": 0.001083,
+    "moderate": 0.00154,
+    "strong": 0.002692,
+    "radical": 0.004395,
+    "open": 0.005057
+  },
+  "headline": {
+    "baseline": 0.0059,
+    "moderate": 0.012,
+    "strong": 0.03765,
+    "radical": 0.1083,
+    "open": 0.1505
+  },
+  "headline_recorded": {
+    "baseline": 0.0059,
+    "moderate": 0.012,
+    "strong": 0.03765,
+    "radical": 0.1083,
+    "open": 0.1505
+  },
+  "total_move": {
+    "baseline": 0.0012,
+    "moderate": 0.0003,
+    "strong": 0.0025,
+    "radical": 0.00125,
+    "open": 0.0038
+  },
+  "attributed": {
+    "baseline": 0,
+    "moderate": 0,
+    "strong": 0,
+    "radical": 0,
+    "open": 0
+  },
+  "remainder": {
+    "baseline": 0.0012,
+    "moderate": 0.0003,
+    "strong": 0.0025,
+    "radical": 0.00125,
+    "open": 0.0038
+  },
+  "unseparated": [
+    "2026-09-25-lunar-material-waits-on-power-not-on-a-reactor",
+    "2026-09-25-a-commercial-lunar-program-can-carry-the-lunar-gate",
+    "2026-09-25-fast-drive-waits-on-a-light-power-source-not-a-grid-plant",
+    "2026-09-25-any-crewed-round-trip-beyond-the-moon-counts-not-only-mars",
+    "2026-09-25-belt-tier-needs-fast-transit-not-nuclear-propulsion",
+    "2026-09-25-a-product-made-off-earth-can-come-from-an-asteroid",
+    "2026-09-25-food-made-on-site-counts-however-it-is-made"
+  ],
+  "entries": [
+    {
+      "id": "2026-09-25-lunar-material-waits-on-power-not-on-a-reactor",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0059,
+        "moderate": 0.012,
+        "strong": 0.03765,
+        "radical": 0.1083,
+        "open": 0.1505
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    },
+    {
+      "id": "2026-09-25-a-commercial-lunar-program-can-carry-the-lunar-gate",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0059,
+        "moderate": 0.012,
+        "strong": 0.03765,
+        "radical": 0.1083,
+        "open": 0.1505
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    },
+    {
+      "id": "2026-09-25-fast-drive-waits-on-a-light-power-source-not-a-grid-plant",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0059,
+        "moderate": 0.012,
+        "strong": 0.03765,
+        "radical": 0.1083,
+        "open": 0.1505
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    },
+    {
+      "id": "2026-09-25-any-crewed-round-trip-beyond-the-moon-counts-not-only-mars",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0059,
+        "moderate": 0.012,
+        "strong": 0.03765,
+        "radical": 0.1083,
+        "open": 0.1505
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    },
+    {
+      "id": "2026-09-25-belt-tier-needs-fast-transit-not-nuclear-propulsion",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0059,
+        "moderate": 0.012,
+        "strong": 0.03765,
+        "radical": 0.1083,
+        "open": 0.1505
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    },
+    {
+      "id": "2026-09-25-a-product-made-off-earth-can-come-from-an-asteroid",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0059,
+        "moderate": 0.012,
+        "strong": 0.03765,
+        "radical": 0.1083,
+        "open": 0.1505
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    },
+    {
+      "id": "2026-09-25-food-made-on-site-counts-however-it-is-made",
+      "separable": false,
+      "headline": {
+        "baseline": 0.0059,
+        "moderate": 0.012,
+        "strong": 0.03765,
+        "radical": 0.1083,
+        "open": 0.1505
+      },
+      "why": "This entry changed the shape of the tree, or the way the tree is played out, rather than any node's number, so there is no one change to undo. Its share of the run's move is reported with the rest that could not be separated."
+    }
+  ]
+}

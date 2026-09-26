@@ -49,7 +49,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # 2026-09-25, when C5 was added and the Contact Clause rungs given dice of their own; moved again
 # the same day to 2026-09-25-methodology-pass, when the methodology pass changed Tier 1's and
 # Tier 4's requirements. Move it again whenever a run follows a change to the tree's shape.
-SNAPSHOT = ROOT / "data" / "snapshots" / "2026-09-25-methodology-pass.json"
+SNAPSHOT = ROOT / "data" / "snapshots" / "2026-09-25-sweep-function-over-route.json"
 SYSTEM_TIERS = ["T1", "T2", "T3", "T4"]
 
 
