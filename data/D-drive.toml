@@ -75,14 +75,44 @@ agency or company and independent tracking of the vehicles."""
 source = "The responsible agency's or company's mission record and independent tracking"
 horizon = "root"
 depends_on = ["L-orbital-propellant-transfer-at-scale"]
-status = "open"
+status = "superseded"
+superseded_by = "D-crew-round-trip-beyond-the-earth-moon-system"
 probability = { baseline = 0.45, moderate = 0.6, strong = 0.78, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-19
 rationale = "One company is building for it, and refilling in orbit is one link of a long chain: crew-scale landing, surface systems, ascent, return propulsion, multi-year reliability and a programme willing to accept the risk all remain. Under even odds by 2071; likely by 2095 if the launch architecture works at all."
 revisions = [
   { date = 2026-09-19, field = "probability", old = "0.55 / 0.70 / 0.85 / 0.93 / 0.95", new = "0.45 / 0.60 / 0.78 / 0.90 / 0.93", why = "Step 27 outside-model review, item 71 (docs/reviews/2026-09-19-rulings.md): the first rationale leaned on one company's plans and the only dependency granted is the propellant transfer; moved partway toward the reviewer. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "status", old = "open", new = "superseded by D-crew-round-trip-beyond-the-earth-moon-system", why = "Candidate 5 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: what the beyond-the-Moon site takes from this step is a crew that has gone beyond the Earth-Moon system and come back, and Mars is the likeliest instance rather than the requirement. This node's numbers were published, so it is retired and replaced rather than renamed (docs/methodology.md, 'What is fixed and what moves')." },
 ]
 notes = "Edge drawn at step 7 (2026-09-08): a Mars departure on any current architecture needs refilling in orbit. Life support and shielding make it safer, not possible, so they are not hard dependencies. Step 27, item 76 (2026-09-19, declined): this node stays the only dependency of the beyond-the-Moon site node, standing in for 'a crew has gone beyond the Moon and returned'; it would be widened rather than removed if another destination came first."
+
+[[node]]
+id = "D-crew-round-trip-beyond-the-earth-moon-system"
+name = "A crew travels beyond the Earth-Moon system and returns to Earth"
+factor = "D"
+kind = "world"
+description = """
+The transit-in-months milestone with people aboard: the first round trip beyond the Moon's
+neighbourhood proves that a crew can be carried across interplanetary space and back, which
+is what working rotations to an outer site require. A crew landing on Mars and coming home is
+the likeliest way it happens, and the one most programs are aimed at; a crewed trip to a
+near-Earth asteroid, to one of Mars's moons, or around Mars without landing would count
+equally. It needs the launch, propellant and life-support steps as much as the drive, and it
+sits under drive because the transit is the hard part it resolves."""
+resolution = """
+People travel to a point at least five million kilometres from Earth (about thirteen times
+the Moon's distance, well outside the region where Earth's gravity dominates, so that a trip
+around the Moon or to a point near the Earth-Moon system does not count) and return alive to
+Earth, confirmed by the responsible agency or company and independent tracking of the
+vehicles. A crewed landing on Mars and return meets this by construction."""
+source = "The responsible agency's or company's mission record and independent tracking"
+horizon = "root"
+depends_on = ["L-orbital-propellant-transfer-at-scale"]
+status = "open"
+probability = { baseline = 0.52, moderate = 0.66, strong = 0.82, radical = 0.92, open = 0.94 }
+estimated_on = 2026-09-25
+rationale = "Re-estimated 2026-09-25 against the widened criterion, proposed by Claude and not yet ruled by John. Mars carries most of it, and the Mars-landing numbers (0.45 by 2071) are the floor. A crewed flight around Mars without landing, or to a near-Earth asteroid or Mars's moons, needs no landing or ascent from a planet and is a smaller step, so it adds real chance; but no program is funded for any of them and a crewed asteroid mission was cancelled once already, so they raise the number by several points rather than dominate it."
+notes = "Added 2026-09-25 as the replacement for D-crew-round-trip-to-mars under candidate 5 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. Step 27, item 76 (2026-09-19) had already said the Mars node stood in for 'a crew has gone beyond the Moon and returned' and would be widened rather than removed if another destination came first; this is that widening. The five-million-kilometre boundary is Claude's: the Moon's orbit alone would not do, because a crewed flight around the far side of the Moon passes slightly beyond the Moon's orbital distance (Apollo 13 reached about 400,000 kilometres from Earth in 1970). The link to orbital refilling is kept; a single-launch crewed asteroid trip might not need it, which the next review can test."
 
 [[node]]
 id = "D-constant-acceleration-drive-demonstrated"
@@ -154,12 +184,13 @@ before any departure leaves the site empty, confirmed by the operator and indepe
 tracking of the vehicles involved."""
 source = "The operator's records and independent tracking"
 horizon = "root"
-depends_on = ["D-crew-round-trip-to-mars", "B-closed-loop-life-support-year-off-earth"]
+depends_on = ["D-crew-round-trip-beyond-the-earth-moon-system", "B-closed-loop-life-support-year-off-earth"]
 status = "open"
 probability = { baseline = 0.4, moderate = 0.55, strong = 0.75, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-19
 rationale = "Getting there and back is proven by the dependency; staying needs a reason to keep a rotation running, which is a motive question the tree asks elsewhere."
 revisions = [
   { date = 2026-09-19, field = "resolution", old = "'beyond the Earth-Moon system' undefined; 'at least one crew rotation' could be read as a crew leaving with nobody arriving", new = "farther from Earth than the Moon's orbit, excluding the Earth-Moon Lagrange points; at least one arrival of new occupants before any departure leaves the site empty", why = "Step 27 outside-model review, item 75 (docs/reviews/2026-09-19-rulings.md): the boundary and the rotation are now defined; the name already says what the criterion tests. Ruled by John 2026-09-19." },
+  { date = 2026-09-25, field = "depends_on", old = "D-crew-round-trip-to-mars", new = "D-crew-round-trip-beyond-the-earth-moon-system", why = "Candidate 5 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25: the crew round trip this site needs is any round trip beyond the Earth-Moon system, of which Mars is the likeliest; the Mars step was retired in favour of the widened one. Numbers unchanged." },
 ]
 notes = "Added at step 7 (2026-09-08) because no node covered Tier 3's beyond-the-Moon criterion. The criterion is deliberately inclusive: Mars, the asteroid belt, an outer moon, a free-flying habitat, or anywhere else beyond the Earth-Moon system all count, and any one of them resolves the node. Confirmed by John 2026-09-08 that every kind of habitation at Tier 3's level should count."
