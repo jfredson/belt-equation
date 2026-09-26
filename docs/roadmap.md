@@ -76,6 +76,7 @@ Added 2026-09-08 when John reversed the deferral of a standalone site. The full 
 - Extending the access ladder above A3, if the world moves.
 - The possible missing rung between one flight (A1) and a months-long rotation (A2).
 - Refining the access branch with real detail after John completes his current training, May 2027.
+- A 51-second explainer video for new visitors, playing live on the home page from the site's own numbers and re-rendered to MP4 on publish. Tentative idea, parked by John 2026-09-25; source and plan in docs/idea-explainer-video-2026-09-25.md and docs/explainer-video/.
 
 ## Note on committing from a Cowork session
 
