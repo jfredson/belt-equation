@@ -1,4 +1,5 @@
-# What "the Belt exists" and "Belter" mean, as sets of required nodes (definitions.md).
+# What "human industry reaches beyond Earth and Mars" (the system tiers) and "live and work off
+# Earth" (the access tiers) mean, as sets of required nodes (definitions.md).
 # requires: every listed node or lower tier must resolve. "Either route" logic lives on nodes
 # (depends_on_any in docs/node-schema.md), not here, so this file stays a plain list.
 # Node lists drawn at roadmap step 7, 2026-09-08. The prose is the definition the lists must satisfy.
@@ -94,4 +95,4 @@ requires = ["A2", "R-off-earth-site-accepts-permanent-residents"]
 # Requiring A2 is a limit of the one route the access branch models (work a rotation, then stay), not
 # of what living off Earth means; moving straight to an off-Earth site is another route. Recorded in
 # docs/definitions.md under methodology pass item 96, ruled by John 2026-09-25; the list waits for the
-# access-branch review after pipeline graduation (May 2027).
+# access-branch review after John completes his current training (May 2027).

@@ -1,6 +1,8 @@
 # The Belt Equation
 
-What is the probability that I become a Belter before I die, and how does that number move year over year?
+What is the probability that, before I die, I live and work in a solar system where human industry reaches beyond Earth and Mars? And how does that number move year over year?
+
+The name comes from the Belters of The Expanse, the people who live and work in its asteroid belt.
 
 The Belt Equation is a public, long-horizon prediction project. It takes a question most people file under science fiction, whether a settled solar system like the one in The Expanse arrives within a single human lifetime, and breaks it into a handful of factors anyone can argue about, the way the Drake Equation did for the number of civilizations in the galaxy. Under each factor sits a tree of concrete breakthroughs, each with its own probability, its own resolution criterion, and its own revision history. The headline number is computed from the tree, never chosen by hand, and the whole thing is re-estimated on a fixed schedule and published so other people can disagree with specific pieces of it.
 
@@ -8,7 +10,7 @@ The "I" in the question is a real person with a real expected lifespan, which is
 
 ## The equation
 
-    P(Belter) = W × L × E × D × B × M × R × A
+    P = W × L × E × D × B × M × R × A
 
 Each factor is a probability between 0 and 1 that a necessary condition is met before the deadline:
 

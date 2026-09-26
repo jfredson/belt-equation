@@ -6,7 +6,7 @@ Drafted 2026-09-08 (roadmap step 2) and DECIDED the same day: Claude proposed si
 
 A node is one breakthrough, event, or decision that the tree tracks. It has a name anyone can read, a criterion that says exactly what would count as it having happened, and a place in the tree (its factor, and what it depends on). Later it gets a probability. A node without a resolution criterion is not a node.
 
-Two kinds of node exist. A **world event** is something that happens to the world (a launcher flies a hundred times in a year; a child is born off Earth). A **choice point** is something John decides (re-enlist or separate at the six-year mark). The tree is sampled for world events and forced for choice points, which is how the decision comparison works: run the whole tree once per option and compare.
+Two kinds of node exist. A **world event** is something that happens to the world (a launcher flies a hundred times in a year; a child is born off Earth). A **choice point** is something John decides (stay or leave at the six-year mark of his current contract). The tree is sampled for world events and forced for choice points, which is how the decision comparison works: run the whole tree once per option and compare.
 
 ## File format and layout
 
@@ -22,7 +22,7 @@ TOML, one file per factor, read by Python's standard library (`tomllib`, present
       B-biology.toml      nodes under biology
       M-motive.toml       nodes under motive
       R-regime.toml       nodes under regime
-      A-access.toml       nodes under access (a sketch until pipeline graduation; nothing personal)
+      A-access.toml       nodes under access (a sketch until John completes his current training; nothing personal)
       C-contact.toml      the Contact Clause rungs, beside the equation and never multiplied into it
 
 Each factor file is a list of `[[node]]` tables. Ids must be unique across all files.
@@ -71,7 +71,7 @@ Required fields are marked. Everything else may be left out until it is known.
 
 **Dependencies.** A node cannot resolve unless every id in `depends_on` resolved. Its probability is conditional on that, which is the number a person can actually estimate ("if we have cheap launch, how likely is orbital manufacturing at scale by 2070?"). The compute script samples nodes in dependency order and refuses to run if there is a cycle. A leaf that depends on a root is a sign the horizon classes are wrong.
 
-**Tiers.** `tiers.toml` defines each system tier (1 to 4) and access tier (A0 to A3) as a set of required nodes and lower tiers, all of which must resolve. A run reaches a tier when its requirements are met. The headline number is how often A2 is reached; Tier 3 is the bar for "the Belt exists". "Either of these" logic does not live in the tier file; it lives on nodes, through `depends_on_any`. The rotating-habitat hedge on biology is therefore one biology node, "humans can live off Earth long term by some route", which resolves if either the partial-gravity route or the habitat route does, and the tiers require that node. It gets a name, a probability of its own, and a place in the visual, and the tier file stays a plain list.
+**Tiers.** `tiers.toml` defines each system tier (1 to 4) and access tier (A0 to A3) as a set of required nodes and lower tiers, all of which must resolve. A run reaches a tier when its requirements are met. The headline number is how often A2 is reached; Tier 3 is the bar the headline is counted against, "human industry reaches beyond Earth and Mars". "Either of these" logic does not live in the tier file; it lives on nodes, through `depends_on_any`. The rotating-habitat hedge on biology is therefore one biology node, "humans can live off Earth long term by some route", which resolves if either the partial-gravity route or the habitat route does, and the tiers require that node. It gets a name, a probability of its own, and a place in the visual, and the tier file stays a plain list.
 
 **Scenarios.** `scenarios.toml` lists the five longevity scenarios (baseline 2071, moderate 2080, strong 2095, radical 2136, and the open window) with a key, a plain name, and the window year (or none, for escape velocity). The compute script runs the whole tree once per scenario and reports each separately. How the window factor's own nodes weigh the scenarios against each other is a methodology question for step 12, not a schema question; the file leaves room for a weight per scenario and does not fill it.
 
@@ -105,18 +105,18 @@ This node lives in `data/L-launch.toml` and is the one the compute script is fir
     status = "open"
     notes = "Written 2026-09-08 as the schema's worked example. Probability comes in Phase 3."
 
-A choice-point node, for illustration only (the access branch stays a sketch until pipeline graduation, and this one is not yet in the data):
+A choice-point node, for illustration only (the access branch stays a sketch until John completes his current training; the node in the data now carries fuller wording):
 
     [[node]]
     id = "A-reenlist-at-six-years"
-    name = "Re-enlist at the six-year mark"
+    name = "Stay past the six-year mark of the current contract"
     factor = "A"
     kind = "choice"
     choice_group = "six-year-fork"
     current_plan = true
-    description = "One option at the first fork in the personal pathway. The other option in the group is separating into civilian work."
-    resolution = "A signed re-enlistment contract at the end of the first six-year term."
-    source = "John's service record"
+    description = "One option at the first fork in the personal pathway. The other option in the group is leaving for civilian work."
+    resolution = "A signed extension of John's current contract at the end of its six-year term."
+    source = "John's employment record"
     horizon = "mid"
     depends_on = ["A-pipeline-graduation"]
     status = "open"

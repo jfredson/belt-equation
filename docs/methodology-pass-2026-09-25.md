@@ -11,7 +11,7 @@ Every recommendation is in the form the ground rule of 2026-09-08 requires (docs
 
 ## How the numbers below were made
 
-Each proposed change was applied to a scratch copy of data/ and the tree was played out exactly as a committed snapshot is: 20,000 play-throughs per longevity scenario, seed 2026, world spread 1.0, with the second number (A2 at Tier 1, a rotation at a station or lunar base whether or not a Belt exists) computed from the same play-throughs. The unchanged tree reproduces the reviewed snapshot of 2026-09-20 (`2026-09-20-step-27`) exactly, so every "before" figure below is that snapshot.
+Each proposed change was applied to a scratch copy of data/ and the tree was played out exactly as a committed snapshot is: 20,000 play-throughs per longevity scenario, seed 2026, world spread 1.0, with the second number (A2 at Tier 1, a rotation at a station or lunar base however far human industry has reached) computed from the same play-throughs. The unchanged tree reproduces the reviewed snapshot of 2026-09-20 (`2026-09-20-step-27`) exactly, so every "before" figure below is that snapshot.
 
 The five columns are the five longevity scenarios: the window closing in 2071 (the baseline), 2080, 2095, 2136, and no deadline. Figures are percentages. Because every run uses the same seed, a change that leaves a tier's requirements alone leaves its figure exactly where it was, and a difference of a tenth of a point is real rather than dice. Adding nodes (item 98's alternative) shifts the dice for everything after them, so there, movements under about half a point in tiers the change does not touch are noise.
 
@@ -21,7 +21,7 @@ The tree before any change (snapshot `2026-09-20-step-27`):
 |---|---|---|---|---|---|
 | Tier 1, outpost | 17.8 | 26.1 | 38.2 | 53.8 | 57.7 |
 | Tier 2, settlement | 5.0 | 8.8 | 17.3 | 36.7 | 44.5 |
-| Tier 3, Slow Expanse (the Belt exists) | 0.6 | 1.7 | 5.0 | 16.3 | 22.9 |
+| Tier 3, Slow Expanse (industry beyond Earth and Mars) | 0.6 | 1.7 | 5.0 | 16.3 | 22.9 |
 | Tier 4, Full Expanse | 0.1 | 0.3 | 1.4 | 7.5 | 12.6 |
 | A0, contributes from Earth | 14.0 | 21.1 | 30.6 | 39.9 | 40.3 |
 | A1, has flown | 35.8 | 48.7 | 64.3 | 77.2 | 81.7 |
@@ -45,7 +45,7 @@ docs/definitions.md defines A3 as "Permanent residence at an off-world site", wi
 
 **What the reviewer said.** A3 need not require a prior spell of rotational work; moving straight to an off-Earth site to live is another route.
 
-**Recommendation: the tree change waits for the access-branch review after pipeline graduation (May 2027); a note goes into definitions.md now so the words and the list stop disagreeing silently.** Confidence high that the shape change waits: the access branch is not reviewed before graduation by John's standing rule (protocol, "What is reviewed"), and a direct-migration route needs a new personal node, which is exactly the kind of node that rule holds back, beside the three personal nodes item 29 already sent to that review. Confidence moderate that the note is worth adding now rather than in May 2027. Judgment call. The reviewer is right on the definition: A3 as written in definitions.md does not require A2, and only the requirement list does. The list is a limit of the one route the access branch models (take a rotating job, then stay), and the note says so.
+**Recommendation: the tree change waits for the access-branch review after John completes his current training (May 2027); a note goes into definitions.md now so the words and the list stop disagreeing silently.** Confidence high that the shape change waits: the access branch is not reviewed before that training is complete by John's standing rule (protocol, "What is reviewed"), and a direct-migration route needs a new personal node, which is exactly the kind of node that rule holds back, beside the three personal nodes item 29 already sent to that review. Confidence moderate that the note is worth adding now rather than in May 2027. Judgment call. The reviewer is right on the definition: A3 as written in definitions.md does not require A2, and only the requirement list does. The list is a limit of the one route the access branch models (take a rotating job, then stay), and the note says so.
 
 Strongest alternative: add a direct-migration node now (for example, "John holds permanent resident status at an off-Earth site, by any route") and let A3 require it instead of A2. It costs a personal node written before the branch is rebuilt, which is what the standing rule exists to prevent, and it would be rewritten in May 2027 anyway. The other alternative, doing nothing until May 2027, costs nothing in numbers but leaves definitions.md and tiers.toml disagreeing for eight months with no word about it.
 
@@ -56,9 +56,9 @@ Strongest alternative: add a direct-migration node now (for example, "John holds
 +++ b/docs/definitions.md
 @@ -27,2 +27,4 @@
  
-+In version one the tree counts A3 only for a person who reached A2 first: data/tiers.toml lists A2 among A3's requirements. That is a limit of the one route the access branch models (work a rotation, then stay), not part of what living off Earth means. Someone who moves straight to an off-Earth site to live, without ever holding a job that rotates, lives off Earth too. The direct route is a question for the access-branch review after pipeline graduation (May 2027), with the other access-branch points the outside review raised (methodology pass item 96, docs/methodology-pass-2026-09-25.md).
++In version one the tree counts A3 only for a person who reached A2 first: data/tiers.toml lists A2 among A3's requirements. That is a limit of the one route the access branch models (work a rotation, then stay), not part of what living off Earth means. Someone who moves straight to an off-Earth site to live, without ever holding a job that rotates, lives off Earth too. The direct route is a question for the access-branch review after John completes his current training (May 2027), with the other access-branch points the outside review raised (methodology pass item 96, docs/methodology-pass-2026-09-25.md).
 +
- The codes A0 through A3 are what the tree data uses. Belter-flavored public names for the tiers are a presentation decision, deferred, and can be chosen without touching the tree.
+ The codes A0 through A3 are what the tree data uses. Public names for the tiers are a presentation decision, deferred, and can be chosen without touching the tree.
 ```
 
 The May 2027 shape, for the record and not for now: A3 would require Tier 3, the permanent-residents node, and one new "either route" access node that resolves if John holds a rotating role and stays, or if he emigrates directly (a `depends_on_any` group, as the biology hedge does it).

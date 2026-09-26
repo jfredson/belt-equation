@@ -80,8 +80,8 @@ this is how it happens, and the interpolation can be retired the day it does.
 **Recommended: three routes, each a list of world events already in the tree, plus at most one
 number the reader supplies. The reader's number is shown separately and labelled as theirs.**
 
-The access branch of the tree is John's: the training pipeline, the six-year fork, survival
-instruction turning into commercial crew training. None of that is a stranger's path, and a
+The access branch of the tree is John's: his current training, the six-year fork of his current
+contract, his current career turning into commercial crew training. None of that is a stranger's path, and a
 stranger's odds must not be run through it. So a route is defined from world events only:
 
 | Route | What the tree is asked | The reader's own part |
@@ -223,7 +223,7 @@ against the Python on every build. That is version two of this page, and it is n
 
 - The tree. No event added, cut, reworded or re-estimated.
 - The headline, the snapshots, the ledger, the Radar, and every number already on the site.
-- John's own path. No route touches the pipeline, the six-year fork, the two route events under
-  it, or the survival-instruction chain.
+- John's own path. No route touches his current training, the six-year fork, the two route events
+  under it, or the chain from his current career into crew training.
 - The five scenarios and the world spread, which are fixed until an annual review
   (docs/methodology.md, "What is fixed and what moves").
