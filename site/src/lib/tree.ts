@@ -137,6 +137,11 @@ export const nodesOf = (letter: string): Node[] => tree.nodes.filter((n) => n.fa
 export const tierByKey = (key: string): Tier | undefined => tree.tiers.find((t) => t.key === key);
 
 /** 0.45 -> "45%", 0.025 -> "2.5%". */
+/** A small count as a word, for prose ("five rungs"); larger counts stay as digits. */
+export function countWord(n: number): string {
+  return ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][n] ?? String(n);
+}
+
 export function percent(p: number): string {
   const v = p * 100;
   return (Number.isInteger(v) ? v.toFixed(0) : v.toFixed(1).replace(/\.0$/, '')) + '%';

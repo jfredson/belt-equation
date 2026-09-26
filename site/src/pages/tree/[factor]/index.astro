@@ -3,7 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import HistoryChart from '../../../components/HistoryChart.astro';
 import {
   tree, nodesOf, percent, horizonShort, statusLabel, tierByKey, snapshots, ledger, odds, movePoints,
-  band, worthOf, DEFAULT_SCENARIO, type Factor,
+  band, worthOf, countWord, DEFAULT_SCENARIO, type Factor,
 } from '../../../lib/tree';
 
 export function getStaticPaths() {
@@ -55,7 +55,7 @@ const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
     <p class="dim" style="font-size: 14px;">
       {nodes.length} events, {factor.with_probability} with a number{factor.resolved ? `, ${factor.resolved} already happened` : ''}.
       {isContact
-        ? ` These ${nodes.length} follow the same rules as every other event, but no milestone needs them and the headline number never multiplies them in.`
+        ? ` These ${countWord(nodes.length)} follow the same rules as every other event, but no milestone needs them and the headline number never multiplies them in.`
         : ' Listed by how soon they could be decided: the ones that could go either way by 2031 first, then the ones that take a decade or two, then the ones that play out over the whole window.'}
     </p>
   </section>
@@ -109,7 +109,7 @@ const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
     ) : (
       <p class="dim" style="font-size: 15px; margin-top: 0;">
         {isContact
-          ? `Nothing here moves the headline, by design. The Contact Clause sits beside the equation and is never multiplied into it, so however these ${nodes.length} rungs turn out, the number at the top of the site does not change.`
+          ? `Nothing here moves the headline, by design. The Contact Clause sits beside the equation and is never multiplied into it, so however these ${countWord(nodes.length)} rungs turn out, the number at the top of the site does not change.`
           : factor.letter === 'W'
             ? 'Nothing here moves the headline directly. How long I live is the dial rather than a link in the chain: it is the question the five scenarios ask, so these steps change which scenario looks plausible rather than the number under any one of them.'
             : 'No open step under this factor is one the headline rests on, so nothing here would move it.'}

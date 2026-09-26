@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { tree, nodesOf, scenarioWindow, percent } from '../lib/tree';
+import { tree, nodesOf, scenarioWindow, percent, countWord } from '../lib/tree';
 // The methodology document itself (docs/methodology.md, roadmap step 12), rendered below the
 // plain-language walk-through so there is one source for it (website step 23, 2026-09-20).
 import { Content as Methodology } from '../../../docs/methodology.md';
@@ -82,7 +82,7 @@ const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
       ours, whether a machine that has outgrown us or something of non-human origin. Drake's equation was about
       contact with other minds; the Belt Equation is about becoming the kind of people who could be out there
       to make it. The Contact Clause reconnects them. It is published beside the equation and never multiplied
-      into it, because nothing about the Belt depends on it. Its {contact.length} rungs follow the same rule as every other
+      into it, because nothing about the Belt depends on it. Its {countWord(contact.length)} rungs follow the same rule as every other
       event: each is in only because it has a written test. They form two branches, each ending in communion:
       one with something not made by us, one with a mind we built. Nothing a system says about itself, and
       nothing anyone feels in talking to one, counts toward any rung.
