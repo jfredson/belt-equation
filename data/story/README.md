@@ -11,7 +11,13 @@ TimeAssembler, where the project's day-by-day record lives:
 The website plan (decision 5) had the export script fetch these at build time with a key kept on
 the Mac. The build moved to GitHub Actions on 2026-09-19, where no key lives, so a snapshot is
 committed here instead and the page shows the date it was taken (`fetched_on`). Whichever session
-logs to TimeAssembler refreshes them with its tools and commits the result; the export script
+logs to TimeAssembler refreshes them with its tools and commits the result. Since 2026-09-25 the
+publish command (`python3 scripts/publish.py`, website step 26) does it too, whenever the
+TimeAssembler key is on the computer it runs on: it reads the Belt Equation project's worklog and
+roadmap through TimeAssembler's API, dates each worklog entry in Pacific time, leaves out tasks with
+no place in the roadmap's order (recurring tasks such as the quarterly scan), and rewrites a file
+only when its entries or steps changed. Without the key (a cloud session) it leaves them alone. The
+export script
 (`scripts/export.py`) turns them into `site/src/data/story.json`. When TimeAssembler grows a
 public read-only endpoint for one project's story, the alternative the plan named, the export can
 fetch live and these files go away.

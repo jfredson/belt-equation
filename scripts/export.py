@@ -213,6 +213,14 @@ def export_tree(tree: dict) -> dict:
         "tiers": out_tiers,
         "nodes": out_nodes,
         "counts": counts,
+        # The Contact Clause as its sibling branches (2026-09-25, when C5 was added): C4 above C3,
+        # and C5 above C2 and C1. Each rung carries its depth on the branch so the page can indent
+        # it under the rung it depends on. Beside the equation, never multiplied into it.
+        "contact_branches": [
+            {"top": b["top"], "name": b["name"],
+             "rungs": [{**ref(r), "depth": i} for i, r in enumerate(b["rungs"])]}
+            for b in compute.contact_branches(tree)
+        ],
         "numbers": export_numbers(tree),
     }
 

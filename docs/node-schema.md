@@ -33,7 +33,7 @@ Required fields are marked. Everything else may be left out until it is known.
 
 | Field | Required | Meaning |
 |---|---|---|
-| `id` | yes | Stable identifier: the factor letter, a dash, then a short lowercase slug with dashes, like `L-heavy-launcher-100-per-year`. The Contact Clause rungs use `C1` to `C4`, which are already their names. Never renamed once a probability has been recorded against it; retire it with `status = "superseded"` and point to the replacement instead. |
+| `id` | yes | Stable identifier: the factor letter, a dash, then a short lowercase slug with dashes, like `L-heavy-launcher-100-per-year`. The Contact Clause rungs use `C1` to `C5` (`C5` added 2026-09-25), which are already their names. Never renamed once a probability has been recorded against it; retire it with `status = "superseded"` and point to the replacement instead. |
 | `name` | yes | Plain-language name, one line, readable by someone outside the project. |
 | `factor` | yes | One of `W`, `L`, `E`, `D`, `B`, `M`, `R`, `A`, `C`. Must match the file it lives in. |
 | `kind` | yes | `"world"` (happens to the world) or `"choice"` (John decides). |
@@ -145,6 +145,8 @@ An "either route" node, also for illustration only (the ids it names do not exis
 6. A node's probability never falls as the window lengthens: baseline, moderate, strong, radical, then open must be non-decreasing, in the order scenarios.toml lists them. A node that breaks this has been estimated inconsistently.
 7. Choice nodes have a `choice_group` and no probability, and every choice group has exactly one node with `current_plan = true`.
 8. Every node with `long_shot = true` has a non-empty `mechanism` and `breaking_point`. This is the second founding rule (definitions.md, "plausible all the way to the edge of the impossible") as a check: a long shot without a named mechanism and a stated breaking point fails the same way a node without a resolution criterion does. The review pass (roadmap step 8) reads both fields aloud along with the name.
+9. Every node marked as having happened (`resolved-yes` or `resolved-no`) names the record that settled it in `resolved_by` and links to it in `resolved_links` (added 2026-09-19).
+10. No tier requires a Contact Clause rung, and no node outside the Contact Clause depends on one, so no rung can reach a tier at any remove (added 2026-09-25 with C5). The rungs also roll their own dice in a run, separate from the equation's, so adding or re-estimating a rung leaves every tier rate exactly where it was.
 
 ## Decisions (2026-09-08)
 
