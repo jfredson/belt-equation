@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-09-27
+
+- Weekly scan (scheduled task, 2026-09-27): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-09-27.toml. All seventeen eligible leaves came back quiet or noted, and no number moved: Starship Flight 14, the first attempted orbital flight, got its final FAA approval and completed its rehearsal in the window and is now set for 2026-09-28, but the vehicle has still not reached orbit even once, so the hundred-flights-in-a-year and both-stages-recovered nodes are unchanged; C1 (the disputed OpenAI Navier-Stokes manuscript) remains unresolved, unchanged since the 2026-09-20 scan.
+
 ## 2026-09-25
 
 - The story page can now withhold a worklog entry: data/story/exclude.toml lists TimeAssembler worklog ids, each with a reason in plain words, and an entry on it reaches neither data/story/worklog.json (the publish command leaves it out) nor the story page (the export leaves it out again, even from an older snapshot); worklog.json entries now carry their ids so the second check can work, and a list the export cannot read stops the build. The first row is John's ruling of 2026-09-25 on his career, whose own title names what it withholds; the entry is unchanged in TimeAssembler. Under the same ruling, docs/proposal-training-goals-and-window-2026-09-25.md, ruled the same day, is now held in docs/private/ under the same name, and the public file at the old path is a one-paragraph pointer carrying only what the window method needs: the two named standards and the dates. No number moved.
