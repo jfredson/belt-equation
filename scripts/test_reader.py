@@ -211,7 +211,7 @@ class TheGridAgreesWithTheSnapshot(unittest.TestCase):
 
     def test_no_route_runs_through_johns_own_path(self):
         johns_own = {"A-current-training-completed", "A-stay-past-six-years",
-                     "A-separate-at-six-years-into-civilian-space-work",
+                     "A-leave-at-six-years-into-civilian-space-work",
                      "A-civilian-spaceflight-training-role-obtained",
                      "A-current-career-role-with-off-earth-rotation-obtained",
                      "A-working-in-or-for-the-off-earth-industry",
