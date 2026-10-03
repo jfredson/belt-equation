@@ -32,6 +32,11 @@ tree in between. A snapshot is never rewritten: `--snapshot` refuses to overwrit
 exists, and a second run on the same day takes a label of its own. `--snapshot-date`,
 `--snapshot-commit` and `--snapshot-note` exist for backfilling a run that already happened.
 
+When a step's id changes after runs were saved under the old one, the runs stay as they are and
+`data/snapshots/renamed-ids.toml` lists the old id beside the new; the compute script reads each old
+id as the new one whenever it loads the saved runs (added 2026-10-03 with the first four renames,
+in the access branch).
+
 Two backfilled snapshots sit in the folder, both marked `pre-review` because they were taken before
 the outside-model review (roadmap step 27) was ruled in full; every snapshot from `2026-09-20-step-27`
 on is marked `reviewed`:

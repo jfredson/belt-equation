@@ -10,7 +10,7 @@
 # --- World events on the pathway ---
 
 [[node]]
-id = "A-pipeline-graduation"
+id = "A-current-training-completed"
 name = "John completes his current training program"
 factor = "A"
 kind = "world"
@@ -31,6 +31,7 @@ revisions = [
   { date = 2026-09-25, field = "resolution", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "John completes his current training program, confirmed by a dated record of completion.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "source", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "The dated record of completion", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "rationale", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "Resolves in 2027 whatever the window, so the number is flat. Published attrition in the program is substantial; arriving already adapted to its physical load from earlier training is the reason for a number this high. Personal, John's to move.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
+  { date = 2026-10-03, field = "id", old = "see data/snapshots/renamed-ids.toml", new = "A-current-training-completed", why = "Id only, and with it the page's address: the old id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; the rename approved by John 2026-10-03 on Claude's proposal). Name, criterion, numbers and links are unchanged. Saved runs keep the old id and are read through data/snapshots/renamed-ids.toml." },
 ]
 
 [[node]]
@@ -59,7 +60,7 @@ revisions = [
 ]
 
 [[node]]
-id = "A-military-survival-instructor-hired-into-spaceflight-training"
+id = "A-someone-from-current-role-hired-into-spaceflight-training"
 name = "Someone moves from the role John is training for into training spaceflight crews"
 factor = "A"
 kind = "world"
@@ -83,6 +84,7 @@ revisions = [
   { date = 2026-09-25, field = "description", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "Proof that the path exists: a person with the qualification John's current training leads to takes a role training crews for a spaceflight operator or a training company. Once one person has done it, it is a career move rather than a hope.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "resolution", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "Public reporting or an operator's announcement names a person whose prior role was the one John's current training program qualifies him for, and whose new role is training spaceflight crews.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "rationale", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "One person, one announcement, and the skills carry over directly; the bar is low enough that it may already have happened without being reported.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
+  { date = 2026-10-03, field = "id", old = "see data/snapshots/renamed-ids.toml", new = "A-someone-from-current-role-hired-into-spaceflight-training", why = "Id only, and with it the page's address: the old id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; the rename approved by John 2026-10-03 on Claude's proposal). Name, criterion, numbers and links are unchanged. Saved runs keep the old id and are read through data/snapshots/renamed-ids.toml." },
 ]
 
 [[node]]
@@ -160,7 +162,7 @@ revisions = [
 ]
 
 [[node]]
-id = "A-military-role-with-off-earth-rotation-obtained"
+id = "A-current-career-role-with-off-earth-rotation-obtained"
 name = "A role in John's current career whose holders rotate off Earth"
 factor = "A"
 kind = "world"
@@ -171,7 +173,7 @@ there. It needs the choice to have been made and a workforce off Earth to exist.
 resolution = "Assignment to a role in John's current career from which holders are sent off Earth for a month or more, as recorded in his employment record."
 source = "John's employment record"
 horizon = "root"
-depends_on = ["A-reenlist-at-six-years", "M-hundred-people-working-off-earth-for-pay"]
+depends_on = ["A-stay-past-six-years", "M-hundred-people-working-off-earth-for-pay"]
 status = "open"
 probability = { baseline = 0.25, moderate = 0.35, strong = 0.45, radical = 0.5, open = 0.5 }
 estimated_on = 2026-09-19
@@ -182,6 +184,7 @@ revisions = [
   { date = 2026-09-25, field = "resolution", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "Assignment to a role in John's current career from which holders are sent off Earth for a month or more, as recorded in his employment record.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "source", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "John's employment record", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "rationale", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "Needs his current employer to send people in roles like his off Earth while he is still in it; the lowest personal number because it depends on the employer's decision, not his. Personal, sketch-grade until John completes his current training (May 2027).", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
+  { date = 2026-10-03, field = "id", old = "see data/snapshots/renamed-ids.toml", new = "A-current-career-role-with-off-earth-rotation-obtained", why = "Id only, and with it the page's address: the old id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; the rename approved by John 2026-10-03 on Claude's proposal). Name, criterion, numbers and links are unchanged. Saved runs keep the old id and are read through data/snapshots/renamed-ids.toml." },
 ]
 
 [[node]]
@@ -195,7 +198,7 @@ node with a name so the tier file stays a plain list."""
 resolution = "Either route node it depends on has resolved yes."
 source = "The resolving route node's own source"
 horizon = "mid"
-depends_on_any = [["A-civilian-spaceflight-training-role-obtained", "A-military-role-with-off-earth-rotation-obtained"]]
+depends_on_any = [["A-civilian-spaceflight-training-role-obtained", "A-current-career-role-with-off-earth-rotation-obtained"]]
 status = "open"
 probability = { baseline = 1, moderate = 1, strong = 1, radical = 1, open = 1 }
 estimated_on = 2026-09-19
@@ -244,7 +247,7 @@ rationale = "Resolves whenever either way in does; carried entirely by the seat-
 # --- Choice points: John decides, the script never samples ---
 
 [[node]]
-id = "A-reenlist-at-six-years"
+id = "A-stay-past-six-years"
 name = "Stay past the six-year mark of the current contract"
 factor = "A"
 kind = "choice"
@@ -258,13 +261,14 @@ explicitly hesitant, and the decision comparison exists to test it."""
 resolution = "A signed extension of John's current contract at the end of its six-year term, in his employment record."
 source = "John's employment record"
 horizon = "mid"
-depends_on = ["A-pipeline-graduation"]
+depends_on = ["A-current-training-completed"]
 status = "open"
 revisions = [
   { date = 2026-09-25, field = "name", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "Stay past the six-year mark of the current contract", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "description", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "One option at the first fork in the pathway: stay in the current career past the first contract, for as long as it keeps expanding capability in ways that serve the longer goal. Marked as the current plan because the sketch in definitions.md leans this way; John was explicitly hesitant, and the decision comparison exists to test it.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "resolution", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "A signed extension of John's current contract at the end of its six-year term, in his employment record.", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
   { date = 2026-09-25, field = "source", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "John's employment record", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },
+  { date = 2026-10-03, field = "id", old = "see data/snapshots/renamed-ids.toml", new = "A-stay-past-six-years", why = "Id only, and with it the page's address: the old id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; the rename approved by John 2026-10-03 on Claude's proposal). Name, criterion, numbers and links are unchanged. Saved runs keep the old id and are read through data/snapshots/renamed-ids.toml." },
 ]
 
 [[node]]
@@ -279,7 +283,7 @@ spaceflight training, or defence work that gets closer to the goal than staying 
 resolution = "Leaving the current career at the end of the current six-year contract, followed by civilian employment in space or defence work, in John's employment records."
 source = "John's employment records"
 horizon = "mid"
-depends_on = ["A-pipeline-graduation"]
+depends_on = ["A-current-training-completed"]
 status = "open"
 revisions = [
   { date = 2026-09-25, field = "name", old = "Wording that named John's current career; withdrawn from public copy until May 2027 and kept in the repository's history", new = "Leave at the six-year mark into civilian space or defence work", why = "Ruling of 2026-09-25 (John; definitions.md decision log): no public surface names John's current career until he completes his training in May 2027. Same meaning; no probability or link moved." },

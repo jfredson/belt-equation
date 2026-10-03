@@ -28,7 +28,7 @@ Land, in this order:
 
 4. The Contact Clause rung rename (C4 to "A message from elsewhere is understood", C5 to "A real exchange with a machine mind") was landed directly on main on 2026-09-25 with its own ledger entry; do not redo it. If the rename is not on main when you start, stop and say so.
 
-5. Update CHANGELOG.md with one entry for the pass. Do not touch docs/private/. Do not reference John's military career in any public file; the access branch's existing wording stands.
+5. Update CHANGELOG.md with one entry for the pass. Do not touch docs/private/. Do not reference John's current career in any public file; the access branch's existing wording stands.
 
 6. Open a pull request from function-over-route to main titled "Function over route: rule and first sweep (approved 2026-09-25)", with the run record's headline table in the body and a list of every node added or changed. Do not merge. Report the new headline under all five scenarios, the Tier 3 figures, the second number, and every first-estimate probability you set, so John can rule on them before merging.
 ```

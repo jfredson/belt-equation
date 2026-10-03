@@ -1,0 +1,35 @@
+# Steps whose id changed after runs had been saved under the old one.
+#
+# A saved run is never rewritten, so a run taken before a rename still holds the step under its
+# old id. The compute script reads this file whenever it loads the saved runs and reads each old
+# id as the new one, so the history charts, the ledger's before-and-after figures and the tests
+# follow a step across its rename. Nothing else uses the old ids: the tree, the site's pages and
+# their addresses carry only the new ones.
+#
+# Renaming is not the ordinary way to change a published step (docs/methodology.md, "What is fixed
+# and what moves": a step whose meaning changes is retired and replaced). These renames change no
+# name, criterion, number or link; only the id, and with it the page's address.
+
+[[renamed]]
+old = "A-pipeline-graduation"
+new = "A-current-training-completed"
+date = 2026-10-03
+why = "The id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; rename ruled 2026-10-03)."
+
+[[renamed]]
+old = "A-military-survival-instructor-hired-into-spaceflight-training"
+new = "A-someone-from-current-role-hired-into-spaceflight-training"
+date = 2026-10-03
+why = "The id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; rename ruled 2026-10-03)."
+
+[[renamed]]
+old = "A-military-role-with-off-earth-rotation-obtained"
+new = "A-current-career-role-with-off-earth-rotation-obtained"
+date = 2026-10-03
+why = "The id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; rename ruled 2026-10-03)."
+
+[[renamed]]
+old = "A-reenlist-at-six-years"
+new = "A-stay-past-six-years"
+date = 2026-10-03
+why = "The id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; rename ruled 2026-10-03)."
