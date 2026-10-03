@@ -1,0 +1,107 @@
+{
+  "snapshot": "2026-10-02-estimates-ruled",
+  "previous_snapshot": "2026-09-25-sweep-function-over-route",
+  "tree_matches_snapshot": true,
+  "runs": 20000,
+  "noise": {
+    "baseline": 0.000962,
+    "moderate": 0.001543,
+    "strong": 0.002695,
+    "radical": 0.00438,
+    "open": 0.005027
+  },
+  "headline": {
+    "baseline": 0.00465,
+    "moderate": 0.01205,
+    "strong": 0.03775,
+    "radical": 0.1075,
+    "open": 0.1484
+  },
+  "headline_recorded": {
+    "baseline": 0.00465,
+    "moderate": 0.01205,
+    "strong": 0.03775,
+    "radical": 0.1075,
+    "open": 0.1484
+  },
+  "total_move": {
+    "baseline": -0.00125,
+    "moderate": 5e-05,
+    "strong": 0.0001,
+    "radical": -0.0008,
+    "open": -0.0021
+  },
+  "attributed": {
+    "baseline": -0.00065,
+    "moderate": 0.001,
+    "strong": -0.0013,
+    "radical": -0.00125,
+    "open": -0.00175
+  },
+  "remainder": {
+    "baseline": -0.0006,
+    "moderate": -0.00095,
+    "strong": 0.0014,
+    "radical": 0.00045,
+    "open": -0.00035
+  },
+  "unseparated": [],
+  "entries": [
+    {
+      "id": "2026-10-02-polar-solar-on-the-moon-raised",
+      "separable": true,
+      "nodes": [
+        "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year"
+      ],
+      "headline": {
+        "baseline": 0.00465,
+        "moderate": 0.01205,
+        "strong": 0.03775,
+        "radical": 0.1075,
+        "open": 0.1484
+      },
+      "headline_without": {
+        "baseline": 0.00465,
+        "moderate": 0.01155,
+        "strong": 0.03925,
+        "radical": 0.10775,
+        "open": 0.1481
+      },
+      "contribution": {
+        "baseline": 0.0,
+        "moderate": 0.0005,
+        "strong": -0.0015,
+        "radical": -0.00025,
+        "open": 0.0003
+      }
+    },
+    {
+      "id": "2026-10-02-routine-solar-electric-propulsion-raised",
+      "separable": true,
+      "nodes": [
+        "D-high-power-solar-electric-propulsion-in-routine-use"
+      ],
+      "headline": {
+        "baseline": 0.00465,
+        "moderate": 0.01205,
+        "strong": 0.03775,
+        "radical": 0.1075,
+        "open": 0.1484
+      },
+      "headline_without": {
+        "baseline": 0.0053,
+        "moderate": 0.01155,
+        "strong": 0.03755,
+        "radical": 0.1085,
+        "open": 0.15045
+      },
+      "contribution": {
+        "baseline": -0.00065,
+        "moderate": 0.0005,
+        "strong": 0.0002,
+        "radical": -0.001,
+        "open": -0.00205
+      }
+    }
+  ]
+}
