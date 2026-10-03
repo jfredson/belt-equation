@@ -820,6 +820,11 @@ def export_changelog(path: Path) -> dict:
 VERDICTS = ["quiet", "noted", "moved", "resolved", "flagged"]
 SCAN_SCOPES = {"weekly", "monthly"}
 SCAN_FIELDS = ["date", "ran_at", "scope", "nodes_checked", "searches", "commit_before"]
+# From this date a node that is searched at all is searched at least twice. The two weekly scans
+# before it averaged under one and a half searches a node, mostly one, which makes "nothing found"
+# a weak finding (ruled by John 2026-10-03, on Claude's proposal, ahead of the first audit). Earlier
+# records are never edited, so the rule starts at a date instead of applying to them.
+TWO_SEARCHES_FROM = "2026-10-04"
 SCAN_NAME = re.compile(r"^(\d{4}-\d{2}-\d{2})(-\d+)?$")
 LEDGER_ID = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9][a-z0-9-]*$")
 
@@ -891,8 +896,9 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
     Returns the problems (which stop the build) and the notes (which are printed and do not).
     The rules: the file name is the scan's own date; the [scan] table carries its six fields
     and a scope of weekly or monthly; every item names a node that exists in the tree, once
-    per scan; every verdict is one of the five; every item names at least one search it ran,
-    unless it is `quiet` and `found` says why no search was run; every verdict but `quiet`
+    per scan; every verdict is one of the five; every item names at least one search it ran
+    (at least two, in records dated 2026-10-04 or later), unless it is `quiet` and `found` says
+    why no search was run; every verdict but `quiet`
     cites a source;
     a `flagged` item says what it would have done; and a ledger entry named by an item both
     reads like a ledger id and, once the ledger exists, is in it."""
@@ -955,6 +961,10 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
                 problems.append(f"{iwhere}: 'queries' lists the searches that were run, at least one. "
                                 "Only a 'quiet' item may leave it empty, and then 'found' has to say "
                                 "why no search was run")
+            elif len(queries) == 1 and raw["_name_date"] >= TWO_SEARCHES_FROM:
+                problems.append(f"{iwhere}: one search is not enough to call a week. Run at least two "
+                                "different searches for every node that is searched at all (one aimed "
+                                "at the source the node names, one at wider reporting), and list both")
             sources = item.get("sources") or []
             if not isinstance(sources, list) or any(not str(s).strip() for s in sources):
                 problems.append(f"{iwhere}: 'sources' must be a list of public records")
