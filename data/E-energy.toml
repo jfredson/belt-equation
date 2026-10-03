@@ -85,7 +85,7 @@ depends_on_any = [["E-fission-reactor-runs-on-lunar-surface", "E-solar-with-stor
 status = "open"
 probability = { baseline = 0.9, moderate = 0.93, strong = 0.95, radical = 0.97, open = 0.98 }
 estimated_on = 2026-09-25
-rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given that one route has already run a forty-kilowatt system through a whole year, the hard part is done; a hundred kilowatts at one site is two or three such units or one larger one, which a programme building toward mining will want anyway. The residual is a site that never needs more than its first unit. This step up was hidden before: lunar material at scale depended on a forty-kilowatt reactor and was estimated given power, so nothing priced the move to industrial scale."
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and accepted by John 2026-10-02. Given that one route has already run a forty-kilowatt system through a whole year, the hard part is done; a hundred kilowatts at one site is two or three such units or one larger one, which a programme building toward mining will want anyway. The residual is a site that never needs more than its first unit. This step up was hidden before: lunar material at scale depended on a forty-kilowatt reactor and was estimated given power, so nothing priced the move to industrial scale."
 notes = "Added 2026-09-25 under candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25. Threshold form: each of the three routes is a year-long demonstration at forty kilowatts, and this step is the scale-up at one site by whichever route or mix. The demonstration of power beamed to Earth's ground (M-power-beamed-from-orbit-to-ground-at-kilowatt-scale) is a cousin of the orbital route, not a dependency."
 
 [[node]]
@@ -108,10 +108,13 @@ source = "The responsible agency's or company's mission record"
 horizon = "mid"
 depends_on = []
 status = "open"
-probability = { baseline = 0.55, moderate = 0.68, strong = 0.82, radical = 0.9, open = 0.93 }
-estimated_on = 2026-09-25
-rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The panels, masts and storage are ordinary engineering and every south-pole base plan starts on solar, but forty kilowatts held through a full year of dark spells and dust has not been attempted, and a programme that gets its reactor may never build a solar plant this size. Set below the reactor because the reactor is the planned answer."
+probability = { baseline = 0.65, moderate = 0.76, strong = 0.86, radical = 0.92, open = 0.94 }
+estimated_on = 2026-10-02
+rationale = "First estimate of 2026-09-25 raised at John's ruling on 2026-10-02: every south-pole base plan starts on solar, so sitting fifteen points under the reactor was too cautious; it stays below the reactor because the reactor is the planned answer. The reasoning of the first estimate follows. The panels, masts and storage are ordinary engineering and every south-pole base plan starts on solar, but forty kilowatts (this route's own bar, the same as the reactor's; the step up to a hundred kilowatts is priced separately in the step above) held through a full year of dark spells and dust has not been attempted, and a programme that gets its reactor may never build a solar plant this size. Set below the reactor because the reactor is the planned answer."
 verify = ["The US space agency's tall-mast solar programme for the lunar south pole (Vertical Solar Array Technology, with awards around 2022 to 2024) was written from memory on 2026-09-25; its award records need checking and linking."]
+revisions = [
+  { date = 2026-10-02, field = "probability", old = "0.55 / 0.68 / 0.82 / 0.90 / 0.93", new = "0.65 / 0.76 / 0.86 / 0.92 / 0.94", why = "Ruling on the first estimates of the function-over-route pass (pull request 29). Claude, reviewing the first estimate, proposed 0.65 by 2071 on the ground that every south-pole base plan starts on solar while the reactor stands at 0.70; John accepted on 2026-10-02. The figures for the four longer windows are Claude's, scaled to keep the same shape and to stay below the reactor in every window." },
+]
 notes = "Added 2026-09-25 as a route under E-power-through-the-lunar-night-at-a-surface-site (candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). The forty-kilowatt threshold and the ninety-percent-of-a-year test match the reactor route, so the routes are like for like. Solar with storage was the alternative logged against the reactor link at step 27, item 61 (2026-09-19)."
 
 [[node]]
@@ -136,7 +139,7 @@ depends_on = []
 status = "open"
 probability = { baseline = 0.08, moderate = 0.12, strong = 0.22, radical = 0.38, open = 0.48 }
 estimated_on = 2026-09-25
-rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The physics is ordinary, but the only orbital power-beaming flight so far delivered milliwatts, a kilowatt to Earth's ground is still under even odds by 2071, and a surface site has two cheaper routes; this one wins only where a site must sit far from the poles and a reactor is ruled out."
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and accepted by John 2026-10-02. The physics is ordinary, but the only orbital power-beaming flight so far delivered milliwatts, a kilowatt to Earth's ground is still under even odds by 2071, and a surface site has two cheaper routes; this one wins only where a site must sit far from the poles and a reactor is ruled out."
 notes = "Added 2026-09-25 as a route under E-power-through-the-lunar-night-at-a-surface-site (candidate 1 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). A cousin of M-power-beamed-from-orbit-to-ground-at-kilowatt-scale, not a dependency: a lunar system could be built without an Earth demonstration first."
 
 [[node]]
@@ -233,7 +236,7 @@ depends_on_any = [["E-fusion-plant-delivers-net-electricity", "E-fission-electri
 status = "open"
 probability = { baseline = 0.08, moderate = 0.12, strong = 0.2, radical = 0.4, open = 0.55 }
 estimated_on = 2026-09-25
-rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. Given a working grid fusion plant or a hundred-megawatt fission-electric system, this is the weight gap the fast-drive step's breaking point names: ground fusion designs run to tens or hundreds of tonnes per megawatt and flight fission-electric systems near five kilograms per kilowatt, so closing it by a hundred- to a thousandfold is the long shot. The numbers carry most of what the fast-drive step used to price for weight, which is why that step's own conditional rose on the same day."
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and accepted by John 2026-10-02. Given a working grid fusion plant or a hundred-megawatt fission-electric system, this is the weight gap the fast-drive step's breaking point names: ground fusion designs run to tens or hundreds of tonnes per megawatt and flight fission-electric systems near five kilograms per kilowatt, so closing it by a hundred- to a thousandfold is the long shot. The numbers carry most of what the fast-drive step used to price for weight, which is why that step's own conditional rose on the same day."
 long_shot = true
 mechanism = """
 Grid fusion plants prove the reaction can be held and sold. Compact magnet designs, made
@@ -274,7 +277,7 @@ depends_on = []
 status = "open"
 probability = { baseline = 0.04, moderate = 0.07, strong = 0.14, radical = 0.28, open = 0.38 }
 estimated_on = 2026-09-25
-rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The largest space reactor systems ever designed aimed at a megawatt or less and none has flown at that power; a hundred megawatts built to fly needs a mission that cannot be done any other way and decades of funding, which no program has yet found. Low by 2071, rising with the long windows as fast transit to the outer system becomes worth paying for."
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and accepted by John 2026-10-02. The largest space reactor systems ever designed aimed at a megawatt or less and none has flown at that power; a hundred megawatts built to fly needs a mission that cannot be done any other way and decades of funding, which no program has yet found. Low by 2071, rising with the long windows as fast transit to the outer system becomes worth paying for."
 notes = "Added 2026-09-25 as a route under E-compact-power-source-at-fast-drive-scale (candidate 4 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). It sets no weight limit: the function step above it carries the one-kilogram-per-kilowatt bar. Not marked a long shot because it is a scaling problem on known physics."
 
 [[node]]

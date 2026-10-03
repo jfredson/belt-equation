@@ -248,7 +248,7 @@ depends_on = []
 status = "open"
 probability = { baseline = 0.08, moderate = 0.13, strong = 0.25, radical = 0.45, open = 0.55 }
 estimated_on = 2026-09-25
-rationale = "First estimate, 2026-09-25, proposed by Claude with the node and not yet ruled by John. The first asteroid-mining companies of the 2010s folded without a customer, the total ever returned from asteroids is well under a kilogram, and every trip takes years; a hundred tonnes a year needs an industry nobody is yet building. Low by 2071, rising in the long windows where a Belt economy would make it ordinary."
+rationale = "First estimate, 2026-09-25, proposed by Claude with the node and accepted by John 2026-10-02. The first asteroid-mining companies of the 2010s folded without a customer, the total ever returned from asteroids is well under a kilogram, and every trip takes years; a hundred tonnes a year needs an industry nobody is yet building. Low by 2071, rising in the long windows where a Belt economy would make it ordinary."
 notes = "Added 2026-09-25 as a route under L-off-earth-material-delivered-at-scale (candidate 7 of docs/proposal-function-over-route-2026-09-25.md, approved by John 2026-09-25). The counting rules (net mass, Earth-supplied content excluded, counted once, received and used by a customer) are copied from the lunar route so that the two are like for like. No hard dependency is drawn: slow solar-electric tugs could do it without the fast-transit or refilling steps."
 
 [[node]]

@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-02
+
+- Function-over-route estimates RULED (docs/runs/2026-10-02-estimates-ruled.md). John ruled on the eleven first estimates the pass of 2026-09-25 left open, after Claude reviewed each with him. Nine stand as set and are now marked accepted on their steps. Two were raised on Claude's proposal: polar solar with storage running a lunar site for a year, from 0.55 / 0.68 / 0.82 / 0.90 / 0.93 to 0.65 / 0.76 / 0.86 / 0.92 / 0.94, and megawatt solar-electric propulsion in routine use, from 0.40 / 0.52 / 0.68 / 0.82 / 0.87 to 0.50 / 0.60 / 0.73 / 0.84 / 0.88 (the 2071 figures put to John; the longer windows scaled by Claude). Each has a revision on its step and a ledger entry. Seventh run, snapshot `2026-10-02-estimates-ruled`: **the headline did not move beyond the dice**, 0.47 percent by 2071, 1.21 by 2080, 3.78 by 2095, 10.75 by 2136 and 14.84 with no deadline; Tier 3 is 0.79 / 1.78 / 5.78 / 16.40 / 23.56 and the second number 9.3 / 14.9 / 23.7 / 32.1 / 33.8. The pass's four open questions (the Belt tier naming lunar material, the fast drive's fusion clause, fast transit naming the Belt, the beyond-the-Moon boundary) were not ruled and stand.
+
 ## 2026-09-27
 
 - Weekly scan (scheduled task, 2026-09-27): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-09-27.toml. All seventeen eligible leaves came back quiet or noted, and no number moved: Starship Flight 14, the first attempted orbital flight, got its final FAA approval and completed its rehearsal in the window and is now set for 2026-09-28, but the vehicle has still not reached orbit even once, so the hundred-flights-in-a-year and both-stages-recovered nodes are unchanged; C1 (the disputed OpenAI Navier-Stokes manuscript) remains unresolved, unchanged since the 2026-09-20 scan.

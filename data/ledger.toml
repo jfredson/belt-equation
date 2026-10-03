@@ -750,3 +750,42 @@ needed; the entry is filed as structure because names are part of the tree's pub
 dream statement in the definitions keeps its own wording."""
 nodes = ["C4", "C5"]
 snapshot = "2026-09-25-methodology-pass"
+
+# 2026-10-02: John ruled on the eleven first estimates of the function-over-route pass. Nine stand
+# as set on 2026-09-25; two were raised, each with its own entry below.
+
+[[entry]]
+id = "2026-10-02-polar-solar-on-the-moon-raised"
+date = 2026-10-02
+kind = "revision"
+title = "Solar panels with storage keeping a lunar polar site powered for a year was raised at John's ruling: every south-pole base plan starts on solar"
+body = """
+The function-over-route pass of 2026-09-25 added this step as a second way to get power through
+the lunar night, with a first estimate from Claude of 0.55 by 2071, well under the lunar
+reactor's 0.70. Reviewing the pass's eleven first estimates with John on 2026-10-02, Claude
+argued that fifteen points under the reactor was too cautious, since every plan for a base at
+the Moon's south pole starts on solar power and the reactor is the part that keeps slipping,
+and proposed 0.65. John accepted. The step stays below the reactor in every window because the
+reactor is still the planned answer. The figures for the four longer windows are Claude's,
+scaled to keep the same shape. The other nine first estimates of the pass were accepted as set."""
+nodes = ["E-solar-with-storage-powers-a-lunar-polar-site-for-a-year"]
+snapshot = "2026-10-02-estimates-ruled"
+run_note = "docs/runs/2026-10-02-estimates-ruled.md"
+
+[[entry]]
+id = "2026-10-02-routine-solar-electric-propulsion-raised"
+date = 2026-10-02
+kind = "revision"
+title = "Megawatt solar-electric propulsion becoming routine was raised at John's ruling: it is further along than nuclear propulsion and needs no reactor approvals"
+body = """
+The function-over-route pass of 2026-09-25 added this step as a second route to fast transit,
+with a first estimate from Claude set level with routine nuclear propulsion at 0.40 by 2071.
+Reviewing the pass's eleven first estimates with John on 2026-10-02, Claude argued that level
+was too cautious: electric thrusters fly every day, megawatt solar spacecraft are funded, and
+no reactor has to be approved for launch. Claude proposed 0.50 and John accepted. In the two
+longest windows the step stays just under nuclear propulsion, because solar power weakens with
+distance from the Sun. The figures for the four longer windows are Claude's, scaled to keep the
+same shape. Fast transit is a requirement of the Belt tier, so this reaches the headline."""
+nodes = ["D-high-power-solar-electric-propulsion-in-routine-use"]
+snapshot = "2026-10-02-estimates-ruled"
+run_note = "docs/runs/2026-10-02-estimates-ruled.md"

@@ -76,6 +76,8 @@ A rotation at a station or lunar base, Belt or no Belt, is 8.9 percent by 2071, 
 
 ## First estimates set in this pass, not yet ruled by John
 
+Ruled by John on 2026-10-02: nine accepted as set, two raised. See docs/runs/2026-10-02-estimates-ruled.md. The table below is the pass as it stood on 2026-09-25.
+
 | Step | 2071 | 2080 | 2095 | 2136 | open |
 |---|---|---|---|---|---|
 | Power through the lunar night at a site, 100 kW, any source (given a route) | 0.90 | 0.93 | 0.95 | 0.97 | 0.98 |
