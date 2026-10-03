@@ -5,4 +5,6 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://beltequation.com',
   trailingSlash: 'always',
+  // /disagree/ was the page's address until 2026-09-25; the intro essay and older links still point there.
+  redirects: { '/disagree/': '/feedback/' },
 });

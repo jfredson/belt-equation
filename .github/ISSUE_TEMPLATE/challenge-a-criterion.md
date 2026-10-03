@@ -11,4 +11,4 @@ labels: criterion
 
 **What I would write instead:**
 
-How this gets folded in: before a number has been published against a node its criterion can be corrected in place with a dated revision; after that the node is retired and replaced, so the calibration score can always find the forecast it is scoring (docs/methodology.md). Either way the change cites this issue. See beltequation.com/disagree/.
+How this gets folded in: before a number has been published against a node its criterion can be corrected in place with a dated revision; after that the node is retired and replaced, so the calibration score can always find the forecast it is scoring (docs/methodology.md). Either way the change cites this issue. See beltequation.com/feedback/.
