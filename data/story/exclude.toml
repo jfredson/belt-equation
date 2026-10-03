@@ -1,0 +1,8 @@
+# Worklog entries that never reach data/story/worklog.json or the story page (data/story/README.md).
+# One table per entry: `id` is the TimeAssembler worklog id, whole or its first eight characters;
+# `why` says in plain words why it is withheld, without repeating what it withholds. The entry
+# itself stays in TimeAssembler untouched. Remove a table when its reason lapses.
+
+[[exclude]]
+id = "966feeba"
+why = "Withheld until John completes his current training in May 2027, under his ruling of 2026-09-25: the entry's title describes what that ruling keeps off every public surface."

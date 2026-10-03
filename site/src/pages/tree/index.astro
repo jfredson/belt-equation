@@ -9,7 +9,7 @@ const plainFactor = tree.factors.filter((f) => f.letter !== 'C');
 const contact = tree.factors.find((f) => f.letter === 'C');
 ---
 
-<Base title="What has to happen — The Belt Equation" description="Every event the Belt Equation tracks, with a test for whether it has happened, and the milestones that define what 'the Belt exists' and 'Belter' mean.">
+<Base title="What has to happen — The Belt Equation" description="Every event the Belt Equation tracks, with a test for whether it has happened, and the milestones that define what 'human industry reaches beyond Earth and Mars' and 'live and work off Earth' mean.">
   <section class="hero">
     <p class="eyebrow">The tree</p>
     <h1>{c.nodes} things that have to happen, and a test for each</h1>
@@ -30,8 +30,8 @@ const contact = tree.factors.find((f) => f.letter === 'C');
   </section>
 
   <section class="section">
-    <div class="shead"><h2>For a Belt to exist</h2><span>four milestones, each building on the last</span></div>
-    <p class="section-note">The Expanse is a story. To say whether it is coming true, the project uses four milestones, from a first permanent base to a Belt with its own economy and politics. Each milestone is a short list of events that all have to happen. The third one, Slow Expanse, is the bar for "the Belt exists."</p>
+    <div class="shead"><h2>For human industry to reach beyond Earth and Mars</h2><span>four milestones, each building on the last</span></div>
+    <p class="section-note">The Expanse is a story. To say whether it is coming true, the project uses four milestones, from a first permanent base to millions living out there with their own economy and politics. Each milestone is a short list of events that all have to happen. The third one, Slow Expanse, is the bar the headline is counted against: human industry reaching beyond Earth and Mars.</p>
     <div class="grid-2">
       {systemTiers.map((t, i) => (
         <div class={`rail ${t.key === 'T3' ? 'marked' : ''}`}>
@@ -51,8 +51,8 @@ const contact = tree.factors.find((f) => f.letter === 'C');
   </section>
 
   <section class="section">
-    <div class="shead"><h2>For me to be a Belter</h2><span>four rungs, from contributing on Earth to living out there</span></div>
-    <p class="section-note">"Belter" could mean a lot of things, so the project spells out four rungs. The headline number on the home page is the third rung: working off Earth for months at a time. The fourth, living there permanently, is reported beside it as the stretch.</p>
+    <div class="shead"><h2>For me to live and work out there</h2><span>four rungs, from contributing on Earth to living out there</span></div>
+    <p class="section-note">"Live and work off Earth" could mean a lot of things, so the project spells out four rungs. The headline number on the home page is the third rung: working off Earth for months at a time. The fourth, living there permanently, is reported beside it as the stretch.</p>
     <div class="grid-2">
       {accessTiers.map((t, i) => (
         <div class={`rail ${t.key === tree.headline_tier ? 'marked' : ''}`}>

@@ -26,7 +26,7 @@ And it is a story about choosing where to go. Julie has enormous power and no id
 
 - The Belt as a place people live and die for: system Tiers 3 and 4, and the reason the headline tier is A2 (working out there on rotation) rather than a single flight.
 - The protomolecule as non-human intelligence: Contact Clause rungs C3 (an intelligence not descended from us is detected) and C4 (communion).
-- Julie and Miller's refusal: the founding rule that long shots stay on the board, and the Belter register of the question's wording.
+- Julie and Miller's refusal: the founding rule that long shots stay on the board, and the bluntness of the question's wording.
 - The groundedness of the impossible: the plausibility rule for writing long-shot nodes.
 - Choosing a destination: the choice-point nodes in the access branch and the run-per-option method.
 

@@ -125,7 +125,7 @@
     },
     {
       "order": 76,
-      "status": "todo",
+      "status": "done",
       "phase": "Phase 3",
       "title": "Re-ask the Astra window item as a specific healthy person born January 1986 and log it beside the cohort figure"
     },
@@ -175,7 +175,7 @@
       "order": 90,
       "status": "done",
       "phase": "Phase 5",
-      "title": "Schedule the first annual review for January 2027, before the pipeline resumes (roadmap step 18) (Phase 5)"
+      "title": "Schedule the first annual review for January 2027, before John's training resumes (roadmap step 18) (Phase 5)"
     },
     {
       "order": 92,

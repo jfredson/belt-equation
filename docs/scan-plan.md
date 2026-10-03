@@ -92,6 +92,6 @@ Per the ground rule of 2026-09-08. The first two were ruled by John on 2026-09-1
 ## Deferred, and why
 
 - **Reader-submitted items** ("did this move anything?"). Same answer as the ledger plan: a GitHub issue with a label, answered by a scan item or a held-steady entry. No new machinery before roadmap step 16.
-- **Scanning for the A branch.** Provisional until pipeline graduation in May 2027; its world nodes (the training industry, the military route) join the scan then.
+- **Scanning for the A branch.** Provisional until John completes his current training in May 2027; its world nodes (the training industry, the route that stays in his current career) join the scan then.
 - **Searching beyond the open web** (preprint servers by API, launch databases by feed). The criteria name their sources and a web search reaches most of them; a per-source fetch is worth adding only once a scan has demonstrably missed something a feed would have caught.
 - **The scanner proposing new nodes.** It may flag a gap it noticed; adding a node is structural and stays with John and the annual review.

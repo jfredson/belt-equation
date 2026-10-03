@@ -228,7 +228,7 @@ a.dim:hover { color: var(--accent); }
 .big-number { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: clamp(88px, 12vw, 160px); font-weight: 500; line-height: 0.95; letter-spacing: -0.04em; color: var(--text); margin: 0 0 18px; }
 .big-claim { font-family: var(--sans); font-size: clamp(24px, 2.6vw, 34px); font-weight: 500; line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 14px; max-width: 640px; }
 .big-sub { font-size: 18px; line-height: 1.5; color: var(--muted); margin: 0 0 22px; max-width: 600px; }
-/* The second number beside the headline (step 27, item 95, 2026-09-20): a rotation at a station or lunar base, no Belt required. */
+/* The second number beside the headline (step 27, item 95, 2026-09-20): a rotation at a station or lunar base, the third tier not required. */
 .second-number { font-size: 16px; line-height: 1.5; color: var(--text-soft); margin: 0 0 22px; max-width: 600px; padding-left: 14px; border-left: 2px solid var(--line-strong); }
 .second-number strong { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text); }
 .home-hero .btn { font-size: 15px; padding: 11px 20px; }
@@ -241,6 +241,7 @@ a.dim:hover { color: var(--accent); }
 .dial-btn { flex: 1 1 0; min-width: 64px; height: 44px; border-radius: 6px; border: 1px solid var(--line-strong); background: transparent; color: var(--text-soft); font-family: var(--mono); font-size: 13px; cursor: pointer; padding: 0 6px; white-space: nowrap; }
 .dial-btn:hover { border-color: var(--accent); color: var(--text); }
 .dial-btn.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.dial .dial-btn { flex: 1 1 auto; min-width: max-content; padding: 0 12px; }
 .dial-note { margin: 0; font-size: 15px; line-height: 1.45; color: var(--text-soft); min-height: 3.6em; }
 .dial-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; border-top: 1px solid var(--line); padding-top: 16px; }
 .dial-stats > div { display: flex; flex-direction: column; gap: 4px; }
