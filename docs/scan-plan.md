@@ -87,7 +87,7 @@ Per the ground rule of 2026-09-08. The first two were ruled by John on 2026-09-1
 
 37. **The Radar page, the home strip, and the node page's last checks** (done 2026-09-19). Done when the latest scan renders with its counts, a `moved` card links to its ledger entry, and every node page shows its last check. The page is `/radar/`, in the site's navigation as "This week's reading". One thing could not be finished as written: a `moved` card cannot link to its ledger entry yet, because the ledger does not exist until ledger plan step 30. The card names the entry and says it is not written yet, and the link appears on its own once the entry is there.
 
-38. **First audit** (two scans after step 35 lands; target 2026-10-11). John reads every scanner entry and scan item to date, corrects what he disagrees with by revision, and rules on the cap and the load split. Done when the changelog records the audit and any change to this plan.
+38. **First audit** (two scans after step 35 lands; target 2026-10-11). Moved up by John on 2026-10-03 to the week of 2026-10-05, after the first whole-tree scan on the reshaped tree. One finding was acted on ahead of it: the two weekly scans so far ran about 1.4 and 1.2 searches a node against the two to four the procedure asks for, so from the scan of 2026-10-04 a searched node must list at least two searches and the export refuses a record that does not. John reads every scanner entry and scan item to date, corrects what he disagrees with by revision, and rules on the cap and the load split. Done when the changelog records the audit and any change to this plan.
 
 ## Deferred, and why
 

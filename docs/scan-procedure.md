@@ -16,7 +16,7 @@ The standalone instruction for the scheduled Radar scan (docs/scan-plan.md, step
 
 For each eligible node, in file order:
 
-1. Compose two to four web searches from the node's `name`, `resolution` and `source`, plus every term in its `watch` list if it has one. Ask for the past week (or the past five weeks on a monthly scope for mid and root nodes). Prefer the source the node names: a launch log, an agency announcement, a journal, a regulator's register.
+1. Compose two to four web searches from the node's `name`, `resolution` and `source`, plus every term in its `watch` list if it has one. Two is a floor, not a suggestion: at least one search aimed at the source the node names and at least one at wider reporting, worded differently, and both listed in the item's `queries`. The export refuses a record dated 2026-10-04 or later in which a searched node lists only one (added 2026-10-03, after the scans of 2026-09-20 and 2026-09-27 ran barely more than one search a node). Ask for the past week (or the past five weeks on a monthly scope for mid and root nodes). Prefer the source the node names: a launch log, an agency announcement, a journal, a regulator's register.
 2. Read the results that bear on the criterion. Read the criterion literally; the standard is "two people reading it would agree whether it has happened", so a target date, a plan, a funding round or a press claim is not the event.
 3. Give one verdict:
    - `quiet`: nothing in the window bears on the criterion.
@@ -25,7 +25,7 @@ For each eligible node, in file order:
    - `resolved`: the criterion is met on the plain reading and two independent public records agree (the operator plus an independent observer; a journal plus a registry). Sources required, both listed.
    - `flagged`: anything you may not do (a move over the cap, a criterion that no longer fits the world, a node you think is missing, a resolve-no, anything in the A branch or in tiers, scenarios, definitions, methodology). `for_john` states the move you would have made and the evidence. Make no edit.
 
-Search economy: stop at four searches per node. If a search tool fails twice, mark the node `quiet` with `found = "search unavailable"` and move on.
+Search economy: no fewer than two searches per node and no more than four. If a search tool fails twice, mark the node `quiet` with `found = "search unavailable"` and move on.
 
 ## 2. Edit the tree (moved and resolved only)
 
