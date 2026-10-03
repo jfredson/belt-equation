@@ -19,7 +19,7 @@ const siblings = node.choice_group
   ? tree.nodes.filter((n) => n.choice_group === node.choice_group && n.id !== node.id)
   : [];
 const disagree = issueUrl(
-  `Disagree: ${node.name}`,
+  `Feedback: ${node.name}`,
   `Node: ${node.id} (${Astro.site}${node.path.slice(1)})\n\nWhat I would change, and why:\n\n`,
 );
 const links = node.resolved_links ?? [];
@@ -296,7 +296,7 @@ const lastChecks = checks.slice(0, 3);
       <p class="dim" style="font-size: 14.5px;">
         Think this is wrong, missing something it depends on, or badly estimated?
         <a href={disagree} rel="noopener">Open an issue about it</a>, or read
-        <a href="/disagree/">how critique gets folded into the tree</a>.
+        <a href="/feedback/">how feedback gets folded into the tree</a>.
         The record itself is <a href={recordUrl(node)} rel="noopener"><code>data/{node.file}</code></a> in the public repository.
       </p>
     </div>

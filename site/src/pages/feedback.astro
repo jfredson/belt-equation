@@ -7,31 +7,31 @@ const moveNumber = issueUrl('Move a probability: ', 'Node id:\n\nThe number I wo
 const challenge = issueUrl('Challenge a criterion: ', 'Node id:\n\nWhat is wrong with the resolution criterion, or the source, or a dependency:\n\nWhat I would write instead:\n');
 ---
 
-<Base title="Disagree with something — The Belt Equation" description="How to name a missing event, challenge a test, or argue a probability up or down, and how critique gets folded into the tree.">
+<Base title="Feedback — The Belt Equation" description="How to name a missing event, question a test, or suggest a probability move, and how feedback gets folded into the tree.">
   <section class="hero">
-    <p class="eyebrow">Disagree with something</p>
-    <h1>The point of publishing the tree is that you can argue with a specific piece of it</h1>
+    <p class="eyebrow">Feedback</p>
+    <h1>The point of publishing the tree is that you can improve a specific piece of it</h1>
     <p class="lede">
-      Three kinds of disagreement move the project: an event that is missing, a test that would not settle
+      Three kinds of feedback move the project: an event that is missing, a test that would not settle
       the question, and a number that is too high or too low. Each one is welcome, and each one leaves a trace.
     </p>
   </section>
 
   <section class="section narrow prose">
-    <h2>How to disagree</h2>
+    <h2>How to send it</h2>
     <p>
-      Critique goes through issues in the public repository, because issues are durable and quotable, and
+      Feedback goes through issues in the public repository, because issues are durable and quotable, and
       folding one into the tree is a commit that can cite it. Every event's page has a link that opens an issue
       about it with its id already filled in. Or start from one of these (the same three forms are the
       repository's issue templates, so opening a blank issue there offers them too):
     </p>
     <div class="ctas">
       <a class="btn" href={missingNode} rel="noopener">Name a missing event</a>
-      <a class="btn ghost" href={moveNumber} rel="noopener">Argue a number up or down</a>
-      <a class="btn ghost" href={challenge} rel="noopener">Challenge a test</a>
+      <a class="btn ghost" href={moveNumber} rel="noopener">Suggest a number move</a>
+      <a class="btn ghost" href={challenge} rel="noopener">Question a test</a>
     </div>
     <p style="margin-top: 18px;">
-      A good disagreement says which event (the id from its page), what you would change, and why. For a
+      Good feedback says which event (the id from its page), what you would change, and why. For a
       missing event, the most useful thing you can give is the test: what would count as it having happened,
       stated so that two people reading it would agree whether it has. An event without a test cannot be
       added.

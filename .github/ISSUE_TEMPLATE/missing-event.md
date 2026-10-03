@@ -15,4 +15,4 @@ labels: missing-node
 
 **Why the tree is wrong without it:**
 
-How this gets folded in: a missing event is added as a node with a first probability, a changelog line and a ledger entry that cite this issue, or declined with the reason written back here. See beltequation.com/disagree/.
+How this gets folded in: a missing event is added as a node with a first probability, a changelog line and a ledger entry that cite this issue, or declined with the reason written back here. See beltequation.com/feedback/.
