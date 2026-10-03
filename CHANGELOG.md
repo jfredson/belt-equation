@@ -4,6 +4,7 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 ## 2026-10-03
 
+- Four steps of the access branch given new ids, and so new page addresses, because the old ids described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; this rename proposed by Claude and approved by John 2026-10-03). **No number moved**: names, criteria, probabilities and links are unchanged, and no run was taken. The steps are now `A-current-training-completed`, `A-someone-from-current-role-hired-into-spaceflight-training`, `A-current-career-role-with-off-earth-rotation-obtained` and `A-stay-past-six-years`. The saved runs are not rewritten; they keep the old ids, and data/snapshots/renamed-ids.toml tells the compute script which old id is which new one, so the history charts follow each step across the rename. The old page addresses no longer exist. One line of the function-over-route handoff note that named the career was reworded.
 - Website wording only, no number moved: the page for readers' critique is renamed from "Disagree with something" (`/disagree/`) to "Feedback" (`/feedback/`), with softer button labels ("Suggest a number move", "Question a test"). The old address redirects, so the intro essay's and older links still work; the navigation, the footer, the home page, each event's page and the issue templates point at the new one. The edit was made on 2026-09-25 and committed on 2026-10-03.
 
 ## 2026-10-02

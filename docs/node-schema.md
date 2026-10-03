@@ -108,7 +108,7 @@ This node lives in `data/L-launch.toml` and is the one the compute script is fir
 A choice-point node, for illustration only (the access branch stays a sketch until John completes his current training; the node in the data now carries fuller wording):
 
     [[node]]
-    id = "A-reenlist-at-six-years"
+    id = "A-stay-past-six-years"
     name = "Stay past the six-year mark of the current contract"
     factor = "A"
     kind = "choice"
@@ -118,7 +118,7 @@ A choice-point node, for illustration only (the access branch stays a sketch unt
     resolution = "A signed extension of John's current contract at the end of its six-year term."
     source = "John's employment record"
     horizon = "mid"
-    depends_on = ["A-pipeline-graduation"]
+    depends_on = ["A-current-training-completed"]
     status = "open"
 
 An "either route" node, also for illustration only (the ids it names do not exist yet; the biology brainstorm writes them):

@@ -145,7 +145,8 @@ class TheGridAgreesWithTheSnapshot(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tree = load()
-        cls.snapshot = json.loads(SNAPSHOT.read_text())
+        cls.snapshot = compute.with_renamed_ids(json.loads(SNAPSHOT.read_text()),
+                                                compute.load_renamed_ids(SNAPSHOT.parent))
 
     def windows(self):
         return [(k, y) for k, y in compute.scenario_years(self.tree)] + [("open", None)]
@@ -209,10 +210,10 @@ class TheGridAgreesWithTheSnapshot(unittest.TestCase):
             self.assertIn(r["key"], cell["routes"])
 
     def test_no_route_runs_through_johns_own_path(self):
-        johns_own = {"A-pipeline-graduation", "A-reenlist-at-six-years",
+        johns_own = {"A-current-training-completed", "A-stay-past-six-years",
                      "A-separate-at-six-years-into-civilian-space-work",
                      "A-civilian-spaceflight-training-role-obtained",
-                     "A-military-role-with-off-earth-rotation-obtained",
+                     "A-current-career-role-with-off-earth-rotation-obtained",
                      "A-working-in-or-for-the-off-earth-industry",
                      "A-in-a-role-whose-holders-rotate-off-earth",
                      "A-first-spaceflight"}

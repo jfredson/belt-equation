@@ -1561,15 +1561,47 @@ def write_snapshot(snapshot: dict, folder: Path) -> Path:
     return path
 
 
+def load_renamed_ids(folder: Path) -> dict[str, str]:
+    """Old step id to new step id, from `renamed-ids.toml` in the snapshots folder, if it is there."""
+    path = folder / "renamed-ids.toml"
+    if not path.exists():
+        return {}
+    try:
+        rows = tomllib.loads(path.read_text()).get("renamed", [])
+    except tomllib.TOMLDecodeError as e:
+        raise TreeError(f"{path.name}: cannot be read as TOML: {e}")
+    out: dict[str, str] = {}
+    for r in rows:
+        if not r.get("old") or not r.get("new"):
+            raise TreeError(f"{path.name}: every [[renamed]] row needs an old id and a new id")
+        out[r["old"]] = r["new"]
+    return out
+
+
+def with_renamed_ids(value, renamed: dict[str, str]):
+    """A copy of a saved run with each old step id, as a key or as a value, read as the new one."""
+    if isinstance(value, dict):
+        return {renamed.get(k, k): with_renamed_ids(v, renamed) for k, v in value.items()}
+    if isinstance(value, list):
+        return [with_renamed_ids(v, renamed) for v in value]
+    if isinstance(value, str):
+        return renamed.get(value, value)
+    return value
+
+
 def load_snapshots(folder: Path) -> list[dict]:
     """Every snapshot in the folder, oldest first, with any malformed one named plainly.
 
     Runs are ordered by date and then by key, so two runs taken on one day are put in order by
-    their labels. Give a same-day label that sorts the way the runs happened."""
+    their labels. Give a same-day label that sorts the way the runs happened.
+
+    A step whose id was changed after runs were saved is read under its new id: the files are
+    never rewritten, and `renamed-ids.toml` beside them says which old id is which new one."""
     if not folder.exists():
         return []
     out: list[dict] = []
     problems: list[str] = []
+    renamed = load_renamed_ids(folder)
     for path in sorted(folder.glob("*.json")):
         try:
             snap = json.loads(path.read_text())
@@ -1583,7 +1615,7 @@ def load_snapshots(folder: Path) -> list[dict]:
         if snap["key"] != path.stem:
             problems.append(f"{path.name}: its key '{snap['key']}' is not its file name")
             continue
-        out.append(snap)
+        out.append(with_renamed_ids(snap, renamed) if renamed else snap)
     if problems:
         raise TreeError("\n".join(problems))
     return sorted(out, key=lambda s: (s["date"], s["key"]))
