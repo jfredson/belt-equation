@@ -33,3 +33,9 @@ old = "A-reenlist-at-six-years"
 new = "A-stay-past-six-years"
 date = 2026-10-03
 why = "The id described John's current career, which no public surface does until May 2027 (ruled by John 2026-09-25; rename ruled 2026-10-03)."
+
+[[renamed]]
+old = "A-separate-at-six-years-into-civilian-space-work"
+new = "A-leave-at-six-years-into-civilian-space-work"
+date = 2026-10-03
+why = "The id used service wording for leaving a contract, and no public surface describes John's current career until May 2027 (ruled by John 2026-09-25; rename ruled 2026-10-03)."

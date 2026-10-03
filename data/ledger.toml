@@ -789,3 +789,38 @@ same shape. Fast transit is a requirement of the Belt tier, so this reaches the 
 nodes = ["D-high-power-solar-electric-propulsion-in-routine-use"]
 snapshot = "2026-10-02-estimates-ruled"
 run_note = "docs/runs/2026-10-02-estimates-ruled.md"
+
+# 2026-10-03: two of the questions the function-over-route pass left open, ruled by John on
+# Claude's proposal. Words only; no probability moved and no run was taken.
+
+[[entry]]
+id = "2026-10-03-fast-drive-no-longer-has-to-be-fusion"
+date = 2026-10-03
+kind = "structure"
+title = "The fast drive no longer has to be fusion-powered: any engine that meets the thrust and exhaust-speed test counts"
+body = """
+The step for an engine with both high thrust and high exhaust speed had required a
+fusion-powered system since 2026-09-19, when the word was added so the criterion matched its
+link to the fusion power plant. On 2026-09-25 that link was replaced by one to a light power
+source reached by any route, fusion or fission, which left the criterion ruling out one of the
+two routes beneath it. John ruled on 2026-10-03, on Claude's proposal, that the word goes: the
+test is the hour-long firing at the stated exhaust speed and push, whatever powers it. No
+number moved, because a source that light is far likelier to be fusion anyway. The step feeds
+only the top tier, so the headline is untouched."""
+nodes = ["D-constant-acceleration-drive-demonstrated"]
+snapshot = "2026-10-02-estimates-ruled"
+
+[[entry]]
+id = "2026-10-03-site-beyond-the-moon-means-five-million-kilometres"
+date = 2026-10-03
+kind = "structure"
+title = "A crewed site beyond the Earth-Moon system now means at least five million kilometres from Earth, so nothing at the Moon can count"
+body = """
+The Belt tier needs a site beyond the Earth-Moon system occupied for a year. Its criterion
+said farther from Earth than the Moon's orbit, and the far side of the Moon is itself slightly
+farther than that, so a lunar base could have been argued to count. The crewed round trip the
+step waits on already used five million kilometres, about thirteen times the Moon's distance.
+John ruled on 2026-10-03, on Claude's proposal, that the site uses the same boundary. No number
+moved: the estimates were always for a site at Mars, in the Belt or farther."""
+nodes = ["D-permanent-crewed-site-beyond-the-earth-moon-system"]
+snapshot = "2026-10-02-estimates-ruled"
