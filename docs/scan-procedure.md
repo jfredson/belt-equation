@@ -7,6 +7,7 @@ The standalone instruction for the scheduled Radar scan (docs/scan-plan.md, step
 - Get the date in John's timezone before anything else: `TZ=America/Los_Angeles date +%F`. That is the scan's `date`; every date you write is absolute (YYYY-MM-DD), never "today" or "last week".
 - The repository is already cloned if you are reading this; if not: `git clone https://github.com/jfredson/belt-equation` in the cloud workspace and `cd` into it. Never work in the linked computer's copy at ~/Code/belt-equation; John's own sessions run there.
 - Record `git rev-parse --short HEAD` as `commit_before`.
+- Save the headline as it stands, for the article check in step 3b: `python3 scripts/headline.py save /tmp/belt-headline-before.json` (about twenty seconds). Keep the file outside the repository; the publish command commits everything inside it.
 - Read docs/node-schema.md (the record you will edit), docs/ledger-plan.md (the "Ledger entries" table, for the entry you may write), and this file. Skim data/README.md.
 - Scope: if this is the first scan of the calendar month (no file in data/scans/ dated this month), scope is `monthly` and you check every eligible node; otherwise scope is `weekly` and you check eligible leaves only.
 - Eligible: `kind = "world"`, `status = "open"`, factor in W, L, E, D, B, M, R, C. Never the A branch. Never choice nodes.
@@ -50,9 +51,20 @@ If data/ledger.toml does not yet exist (ledger plan step 30 not landed), skip th
 - `title` one plain sentence in the chain's vocabulary (link names, not factor letters); `body` two to five sentences; `source` the public record.
 - `snapshot` is the key of the snapshot the publish command takes in step 6 (`YYYY-MM-DD-scan`), even though you write it before running.
 
+## 3b. Article prompts
+
+Added 2026-10-03, ruled by John the same day: John writes articles about big moves, and the scan tells him when one happens. Give an item an `article` field when any of these holds, and only then:
+
+1. **A step came true.** Every `resolved` item. A step that has become impossible is never resolved by the scan; it is `flagged`, and it earns an article under rule 4.
+2. **The headline moved a lot.** If anything moved or resolved, run `python3 scripts/headline.py compare /tmp/belt-headline-before.json` after the edits in step 2. If its last line starts "BIG MOVER" (the 2080 headline moved by 5% of itself or more, either way), put the `article` on the moved or resolved item that did most of the moving, and name any others that contributed in the same field. If nothing moved, skip the command.
+3. **Big news on a high-stakes step.** A `noted` item that was widely reported (the same test that earns a `held-steady` ledger entry in step 3) on a step listed by `python3 scripts/headline.py stakes` (worth 10% or more of the 2080 headline if it came true). Starship's first orbital flight on 2026-09-28 is the example: nothing moved, but the step it bears on is worth about 12%.
+4. **A move too big for the scan to make.** A `flagged` item whose `for_john` proposes a move larger than the 0.10 cap, or proposes that a step can no longer happen.
+
+The field is one or two plain sentences: which of the four reasons applies, and the story in it for a general reader (what happened, why it matters to the question, what the tree now says). Never on a `quiet` item. If `headline.py` fails, say so in the report and still apply rules 1, 3 and 4.
+
 ## 4. Write the scan record
 
-Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the shape given in docs/scan-plan.md under "The scan record": a `[scan]` table with `date`, `ran_at` (UTC, from `date -u +%Y-%m-%dT%H:%M:%SZ`), `scope`, `nodes_checked`, `searches`, `commit_before`, then one `[[item]]` per node checked, in the order checked, with `node`, `verdict`, `queries`, `found` (one to three sentences, plain English, absolute dates), `sources` for every verdict but quiet, `ledger` for moved and resolved when an entry was written, `for_john` for flagged. Validate it with tomllib. If the folder already has a file with today's date, suffix `-2`.
+Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the shape given in docs/scan-plan.md under "The scan record": a `[scan]` table with `date`, `ran_at` (UTC, from `date -u +%Y-%m-%dT%H:%M:%SZ`), `scope`, `nodes_checked`, `searches`, `commit_before`, then one `[[item]]` per node checked, in the order checked, with `node`, `verdict`, `queries`, `found` (one to three sentences, plain English, absolute dates), `sources` for every verdict but quiet, `ledger` for moved and resolved when an entry was written, `for_john` for flagged, `article` where step 3b gave one. Validate it with tomllib. If the folder already has a file with today's date, suffix `-2`.
 
 ## 5. Changelog
 
@@ -76,7 +88,7 @@ The last step is one command, `scripts/publish.py` (website step 26, 2026-09-25)
 
 ## 7. Report
 
-Send John one short message, a numbered list and nothing else: first what he needs to do (each flagged item with its `for_john` line, and the push refusal if there was one), then one line per moved or resolved node with before and after, then one line with the counts. No prose, no summary of quiet nodes.
+Send John one short message, a numbered list and nothing else: first each article idea from step 3b, headed "Article idea:" with the step's plain name and the `article` line; then what he needs to do (each flagged item with its `for_john` line, and the push refusal if there was one), then one line per moved or resolved node with before and after, then one line with the counts. No prose, no summary of quiet nodes.
 
 ## Standing rules
 
