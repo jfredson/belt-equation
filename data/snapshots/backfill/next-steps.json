@@ -1,0 +1,3037 @@
+{
+  "note": "What could happen next, worked out on 2026-10-03 for runs saved before each run recorded its own list (scripts/backfill_next_steps.py). Ids are as they were at the time; data/snapshots/renamed-ids.toml maps any that changed.",
+  "runs": {
+    "2026-09-19-first-run": {
+      "tree_commit": "deac165",
+      "next_steps": [
+        {
+          "id": "B-mammal-born-and-weaned-in-partial-gravity",
+          "name": "A mammal is conceived, born, and weaned in partial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.8012,
+            "moderate": 0.82255,
+            "strong": 0.8534,
+            "radical": 0.91765,
+            "open": 0.9503
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.00025,
+            "radical": 0.00015,
+            "open": 0.00205
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.00095,
+            "radical": 0.0117,
+            "open": 0.02425
+          }
+        },
+        {
+          "id": "B-crewed-spin-gravity-demonstration",
+          "name": "A crew lives for a month in a spinning spacecraft that produces artificial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.6974,
+            "moderate": 0.74985,
+            "strong": 0.80075,
+            "radical": 0.8986,
+            "open": 0.921
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0,
+            "radical": 0.00025,
+            "open": -0.001
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0007,
+            "radical": 0.0118,
+            "open": 0.0212
+          }
+        },
+        {
+          "id": "B-shielding-halves-deep-space-radiation-dose",
+          "name": "A shielding system flown in space cuts the deep-space radiation dose to a crew by half",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5019,
+            "moderate": 0.5548,
+            "strong": 0.65175,
+            "radical": 0.7987,
+            "open": 0.85155
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": 0.00015,
+            "radical": 0.0019,
+            "open": 0.00375
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": 0.00085,
+            "radical": 0.01345,
+            "open": 0.02595
+          }
+        },
+        {
+          "id": "B-closed-loop-life-support-year-off-earth",
+          "name": "A crew off Earth lives for a year with most of its food, water, and air recycled on site",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50135,
+            "moderate": 0.5755,
+            "strong": 0.70125,
+            "radical": 0.8536,
+            "open": 0.9034
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0004,
+            "radical": 0.0001,
+            "open": 0.0034
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0011,
+            "radical": 0.01165,
+            "open": 0.0256
+          }
+        },
+        {
+          "id": "D-nuclear-propulsion-changes-orbit-in-space",
+          "name": "A nuclear-powered engine changes a spacecraft's orbit in space for the first time",
+          "factor": "D",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.60305,
+            "moderate": 0.72365,
+            "strong": 0.8465,
+            "radical": 0.92825,
+            "open": 0.9495
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.00035,
+            "radical": -0.0013,
+            "open": 0.0005
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.00105,
+            "radical": 0.01025,
+            "open": 0.0227
+          }
+        },
+        {
+          "id": "E-fission-reactor-runs-on-lunar-surface",
+          "name": "A nuclear reactor runs on the lunar surface for a year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7019,
+            "moderate": 0.80045,
+            "strong": 0.8993,
+            "radical": 0.9516,
+            "open": 0.96235
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0,
+            "radical": -0.0007,
+            "open": 0.00015
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0007,
+            "radical": 0.01085,
+            "open": 0.02235
+          }
+        },
+        {
+          "id": "L-fully-reusable-heavy-launcher-recovers-both-stages",
+          "name": "A heavy launcher recovers both of its stages intact from one orbital flight",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.95125,
+            "moderate": 0.9578,
+            "strong": 0.97,
+            "radical": 0.98015,
+            "open": 0.979
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.00015,
+            "radical": -0.00055,
+            "open": 0.00155
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.00085,
+            "radical": 0.011,
+            "open": 0.02375
+          }
+        },
+        {
+          "id": "L-orbital-propellant-transfer-at-scale",
+          "name": "A hundred tonnes of propellant are pumped from one spacecraft to another in orbit",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.90045,
+            "moderate": 0.93035,
+            "strong": 0.9477,
+            "radical": 0.97055,
+            "open": 0.96805
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": -0.0001,
+            "radical": -0.00045,
+            "open": 0.00045
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": 0.0006,
+            "radical": 0.0111,
+            "open": 0.02265
+          }
+        },
+        {
+          "id": "L-large-structure-assembled-in-orbit",
+          "name": "A structure more than a hundred metres across is assembled in orbit from separately launched parts",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.61315,
+            "moderate": 0.6964,
+            "strong": 0.8522,
+            "radical": 0.931,
+            "open": 0.94775
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": -0.00015,
+            "radical": -0.0011,
+            "open": 0.00025
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.00055,
+            "radical": 0.01045,
+            "open": 0.02245
+          }
+        },
+        {
+          "id": "R-crewed-lunar-program-outlives-two-changes-of-president",
+          "name": "A crewed lunar program keeps flying across two changes of its government",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.59995,
+            "moderate": 0.5987,
+            "strong": 0.6043,
+            "radical": 0.5999,
+            "open": 0.6014
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0002,
+            "radical": 0.0042,
+            "open": 0.01495
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.0,
+            "strong": 0.0009,
+            "radical": 0.01575,
+            "open": 0.03715
+          }
+        },
+        {
+          "id": "R-space-funding-holds-through-a-recession",
+          "name": "Space spending recovers within three years of a recession",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.55425,
+            "moderate": 0.55675,
+            "strong": 0.55045,
+            "radical": 0.5466,
+            "open": 0.54775
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": 0.0004,
+            "radical": 0.00525,
+            "open": 0.0179
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": 0.0011,
+            "radical": 0.0168,
+            "open": 0.0401
+          }
+        },
+        {
+          "id": "R-off-earth-resource-rights-recognised-by-major-powers",
+          "name": "The United States and China both recognise the same rules for owning what is mined off Earth",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.4524,
+            "moderate": 0.54685,
+            "strong": 0.7038,
+            "radical": 0.8492,
+            "open": 0.90065
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": 0.0003,
+            "radical": 0.00165,
+            "open": 0.00185
+          },
+          "headline_if_yes": {
+            "baseline": 0.0,
+            "moderate": 5e-05,
+            "strong": 0.001,
+            "radical": 0.0132,
+            "open": 0.02405
+          }
+        }
+      ]
+    },
+    "2026-09-19-second-run": {
+      "tree_commit": "deac165",
+      "next_steps": [
+        {
+          "id": "R-off-earth-resource-rights-recognised-by-major-powers",
+          "name": "The United States and China both recognise the same rules for owning what is mined off Earth",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.4622,
+            "moderate": 0.54515,
+            "strong": 0.66755,
+            "radical": 0.8119,
+            "open": 0.8648
+          },
+          "if_yes": {
+            "baseline": 0.0015,
+            "moderate": 0.00305,
+            "strong": 0.0107,
+            "radical": 0.00825,
+            "open": 0.0074
+          },
+          "headline_if_yes": {
+            "baseline": 0.0102,
+            "moderate": 0.02525,
+            "strong": 0.06685,
+            "radical": 0.1482,
+            "open": 0.1875
+          }
+        },
+        {
+          "id": "B-shielding-halves-deep-space-radiation-dose",
+          "name": "A shielding system flown in space cuts the deep-space radiation dose to a crew by half",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.4982,
+            "moderate": 0.54395,
+            "strong": 0.6233,
+            "radical": 0.7665,
+            "open": 0.81205
+          },
+          "if_yes": {
+            "baseline": 0.0013,
+            "moderate": 0.00255,
+            "strong": 0.00955,
+            "radical": 0.01375,
+            "open": 0.0152
+          },
+          "headline_if_yes": {
+            "baseline": 0.01,
+            "moderate": 0.02475,
+            "strong": 0.0657,
+            "radical": 0.1537,
+            "open": 0.1953
+          }
+        },
+        {
+          "id": "D-nuclear-propulsion-changes-orbit-in-space",
+          "name": "A nuclear-powered engine changes a spacecraft's orbit in space for the first time",
+          "factor": "D",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.583,
+            "moderate": 0.6835,
+            "strong": 0.8119,
+            "radical": 0.9009,
+            "open": 0.92875
+          },
+          "if_yes": {
+            "baseline": 0.00125,
+            "moderate": 0.0018,
+            "strong": 0.0038,
+            "radical": 0.0008,
+            "open": 0.007
+          },
+          "headline_if_yes": {
+            "baseline": 0.00995,
+            "moderate": 0.024,
+            "strong": 0.05995,
+            "radical": 0.14075,
+            "open": 0.1871
+          }
+        },
+        {
+          "id": "R-crewed-lunar-program-outlives-two-changes-of-president",
+          "name": "A crewed lunar program keeps flying across two changes of its government",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7108,
+            "moderate": 0.761,
+            "strong": 0.80725,
+            "radical": 0.8714,
+            "open": 0.88885
+          },
+          "if_yes": {
+            "baseline": 0.00125,
+            "moderate": 0.0018,
+            "strong": 0.0085,
+            "radical": 0.008,
+            "open": 0.00935
+          },
+          "headline_if_yes": {
+            "baseline": 0.00995,
+            "moderate": 0.024,
+            "strong": 0.06465,
+            "radical": 0.14795,
+            "open": 0.18945
+          }
+        },
+        {
+          "id": "B-crewed-spin-gravity-demonstration",
+          "name": "A crew lives for a month in a spinning spacecraft that produces artificial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.6704,
+            "moderate": 0.71675,
+            "strong": 0.75795,
+            "radical": 0.8661,
+            "open": 0.89115
+          },
+          "if_yes": {
+            "baseline": 0.0011,
+            "moderate": -0.00095,
+            "strong": 0.0061,
+            "radical": -0.001,
+            "open": 0.00155
+          },
+          "headline_if_yes": {
+            "baseline": 0.0098,
+            "moderate": 0.02125,
+            "strong": 0.06225,
+            "radical": 0.13895,
+            "open": 0.18165
+          }
+        },
+        {
+          "id": "B-closed-loop-life-support-year-off-earth",
+          "name": "A crew off Earth lives for a year with most of its food, water, and air recycled on site",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.4992,
+            "moderate": 0.5651,
+            "strong": 0.66505,
+            "radical": 0.8146,
+            "open": 0.8664
+          },
+          "if_yes": {
+            "baseline": 0.001,
+            "moderate": 0.00185,
+            "strong": 0.00905,
+            "radical": 0.00995,
+            "open": 0.01555
+          },
+          "headline_if_yes": {
+            "baseline": 0.0097,
+            "moderate": 0.02405,
+            "strong": 0.0652,
+            "radical": 0.1499,
+            "open": 0.19565
+          }
+        },
+        {
+          "id": "E-fission-reactor-runs-on-lunar-surface",
+          "name": "A nuclear reactor runs on the lunar surface for a year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.6648,
+            "moderate": 0.75605,
+            "strong": 0.86625,
+            "radical": 0.92815,
+            "open": 0.94135
+          },
+          "if_yes": {
+            "baseline": 0.00085,
+            "moderate": 0.0015,
+            "strong": 0.0077,
+            "radical": -0.00075,
+            "open": 0.00675
+          },
+          "headline_if_yes": {
+            "baseline": 0.00955,
+            "moderate": 0.0237,
+            "strong": 0.06385,
+            "radical": 0.1392,
+            "open": 0.18685
+          }
+        },
+        {
+          "id": "L-fully-reusable-heavy-launcher-recovers-both-stages",
+          "name": "A heavy launcher recovers both of its stages intact from one orbital flight",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.92925,
+            "moderate": 0.9379,
+            "strong": 0.95305,
+            "radical": 0.9716,
+            "open": 0.968
+          },
+          "if_yes": {
+            "baseline": 0.0007,
+            "moderate": 0.00125,
+            "strong": 0.00155,
+            "radical": -0.0002,
+            "open": 0.00195
+          },
+          "headline_if_yes": {
+            "baseline": 0.0094,
+            "moderate": 0.02345,
+            "strong": 0.0577,
+            "radical": 0.13975,
+            "open": 0.18205
+          }
+        },
+        {
+          "id": "L-large-structure-assembled-in-orbit",
+          "name": "A structure more than a hundred metres across is assembled in orbit from separately launched parts",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.588,
+            "moderate": 0.66755,
+            "strong": 0.8072,
+            "radical": 0.90025,
+            "open": 0.9282
+          },
+          "if_yes": {
+            "baseline": 0.0002,
+            "moderate": 0.001,
+            "strong": 0.00515,
+            "radical": 0.00125,
+            "open": 0.00115
+          },
+          "headline_if_yes": {
+            "baseline": 0.0089,
+            "moderate": 0.0232,
+            "strong": 0.0613,
+            "radical": 0.1412,
+            "open": 0.18125
+          }
+        },
+        {
+          "id": "R-space-funding-holds-through-a-recession",
+          "name": "Space spending recovers within three years of a recession",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.76775,
+            "moderate": 0.7791,
+            "strong": 0.812,
+            "radical": 0.8675,
+            "open": 0.86665
+          },
+          "if_yes": {
+            "baseline": -5e-05,
+            "moderate": -0.0005,
+            "strong": 0.00575,
+            "radical": 0.0011,
+            "open": 0.0128
+          },
+          "headline_if_yes": {
+            "baseline": 0.00865,
+            "moderate": 0.0217,
+            "strong": 0.0619,
+            "radical": 0.14105,
+            "open": 0.1929
+          }
+        },
+        {
+          "id": "L-orbital-propellant-transfer-at-scale",
+          "name": "A hundred tonnes of propellant are pumped from one spacecraft to another in orbit",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.8682,
+            "moderate": 0.90315,
+            "strong": 0.92555,
+            "radical": 0.95795,
+            "open": 0.95325
+          },
+          "if_yes": {
+            "baseline": -0.00015,
+            "moderate": -0.0011,
+            "strong": 0.00255,
+            "radical": 0.0017,
+            "open": 0.0024
+          },
+          "headline_if_yes": {
+            "baseline": 0.00855,
+            "moderate": 0.0211,
+            "strong": 0.0587,
+            "radical": 0.14165,
+            "open": 0.1825
+          }
+        }
+      ]
+    },
+    "2026-09-20-step-27": {
+      "tree_commit": "55f3412",
+      "next_steps": [
+        {
+          "id": "D-nuclear-propulsion-changes-orbit-in-space",
+          "name": "A nuclear-powered engine produces a kilometre per second of velocity change in space",
+          "factor": "D",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.58825,
+            "moderate": 0.68425,
+            "strong": 0.8132,
+            "radical": 0.9018,
+            "open": 0.925
+          },
+          "if_yes": {
+            "baseline": 0.00125,
+            "moderate": 0.0,
+            "strong": -0.00165,
+            "radical": -0.0008,
+            "open": 0.00305
+          },
+          "headline_if_yes": {
+            "baseline": 0.00505,
+            "moderate": 0.01075,
+            "strong": 0.03385,
+            "radical": 0.1062,
+            "open": 0.1476
+          }
+        },
+        {
+          "id": "L-propellant-produced-off-earth-and-fired-in-a-thruster",
+          "name": "A tonne of propellant made from off-Earth material is fired in a rocket engine",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.4964,
+            "moderate": 0.6041,
+            "strong": 0.7464,
+            "radical": 0.8658,
+            "open": 0.903
+          },
+          "if_yes": {
+            "baseline": 0.0009,
+            "moderate": 0.00135,
+            "strong": 0.0003,
+            "radical": 0.0032,
+            "open": 0.00755
+          },
+          "headline_if_yes": {
+            "baseline": 0.0047,
+            "moderate": 0.0121,
+            "strong": 0.0358,
+            "radical": 0.1102,
+            "open": 0.1521
+          }
+        },
+        {
+          "id": "R-space-traffic-management-authority-among-major-powers",
+          "name": "A space traffic authority among the major powers can enforce rules on manoeuvres and launch windows",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.3759,
+            "moderate": 0.45985,
+            "strong": 0.5926,
+            "radical": 0.7525,
+            "open": 0.8119
+          },
+          "if_yes": {
+            "baseline": 0.0009,
+            "moderate": 0.00235,
+            "strong": 0.00565,
+            "radical": 0.00935,
+            "open": 0.0103
+          },
+          "headline_if_yes": {
+            "baseline": 0.0047,
+            "moderate": 0.0131,
+            "strong": 0.04115,
+            "radical": 0.11635,
+            "open": 0.15485
+          }
+        },
+        {
+          "id": "R-off-earth-resource-rights-recognised-by-major-powers",
+          "name": "The United States and China both recognise the same rules for owning what is mined off Earth",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.45985,
+            "moderate": 0.54295,
+            "strong": 0.67165,
+            "radical": 0.81045,
+            "open": 0.86765
+          },
+          "if_yes": {
+            "baseline": 0.00085,
+            "moderate": 0.0022,
+            "strong": 0.00375,
+            "radical": 0.0019,
+            "open": 0.0062
+          },
+          "headline_if_yes": {
+            "baseline": 0.00465,
+            "moderate": 0.01295,
+            "strong": 0.03925,
+            "radical": 0.1089,
+            "open": 0.15075
+          }
+        },
+        {
+          "id": "B-major-operation-under-anaesthesia-performed-off-earth",
+          "name": "A major operation under anaesthesia is performed off Earth and the patient survives",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.4579,
+            "moderate": 0.54245,
+            "strong": 0.6655,
+            "radical": 0.84615,
+            "open": 0.8919
+          },
+          "if_yes": {
+            "baseline": 0.00045,
+            "moderate": 0.0012,
+            "strong": 0.0038,
+            "radical": 0.00475,
+            "open": 0.0051
+          },
+          "headline_if_yes": {
+            "baseline": 0.00425,
+            "moderate": 0.01195,
+            "strong": 0.0393,
+            "radical": 0.11175,
+            "open": 0.14965
+          }
+        },
+        {
+          "id": "E-fission-reactor-runs-on-lunar-surface",
+          "name": "A nuclear reactor runs on the lunar surface for a year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.6643,
+            "moderate": 0.7579,
+            "strong": 0.8654,
+            "radical": 0.92645,
+            "open": 0.94025
+          },
+          "if_yes": {
+            "baseline": 0.00045,
+            "moderate": 0.0014,
+            "strong": 0.0017,
+            "radical": 0.00055,
+            "open": 0.00275
+          },
+          "headline_if_yes": {
+            "baseline": 0.00425,
+            "moderate": 0.01215,
+            "strong": 0.0372,
+            "radical": 0.10755,
+            "open": 0.1473
+          }
+        },
+        {
+          "id": "R-space-funding-holds-through-a-recession",
+          "name": "Space spending recovers within three years of the next recession",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7627,
+            "moderate": 0.7806,
+            "strong": 0.8097,
+            "radical": 0.86715,
+            "open": 0.86575
+          },
+          "if_yes": {
+            "baseline": 0.00045,
+            "moderate": 0.00145,
+            "strong": 0.00085,
+            "radical": 0.001,
+            "open": 0.0082
+          },
+          "headline_if_yes": {
+            "baseline": 0.00425,
+            "moderate": 0.0122,
+            "strong": 0.03635,
+            "radical": 0.108,
+            "open": 0.15275
+          }
+        },
+        {
+          "id": "L-cryogenic-propellant-stored-in-orbit-six-months-and-used",
+          "name": "Ten tonnes of cryogenic propellant are kept in orbit for six months and then burned",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7633,
+            "moderate": 0.81235,
+            "strong": 0.8653,
+            "radical": 0.92655,
+            "open": 0.93865
+          },
+          "if_yes": {
+            "baseline": 0.0004,
+            "moderate": 0.0013,
+            "strong": -0.00015,
+            "radical": -0.0011,
+            "open": 0.00465
+          },
+          "headline_if_yes": {
+            "baseline": 0.0042,
+            "moderate": 0.01205,
+            "strong": 0.03535,
+            "radical": 0.1059,
+            "open": 0.1492
+          }
+        },
+        {
+          "id": "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations",
+          "name": "The United States and China recognise each other's keep-out zones around off-Earth installations",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50365,
+            "moderate": 0.58735,
+            "strong": 0.69245,
+            "radical": 0.81495,
+            "open": 0.86815
+          },
+          "if_yes": {
+            "baseline": 0.0004,
+            "moderate": 0.0021,
+            "strong": 0.00175,
+            "radical": 0.00375,
+            "open": 0.0078
+          },
+          "headline_if_yes": {
+            "baseline": 0.0042,
+            "moderate": 0.01285,
+            "strong": 0.03725,
+            "radical": 0.11075,
+            "open": 0.15235
+          }
+        },
+        {
+          "id": "B-shielding-halves-deep-space-radiation-dose",
+          "name": "A shielding system flown in space cuts the deep-space radiation dose to a crew by half",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.49925,
+            "moderate": 0.53955,
+            "strong": 0.6304,
+            "radical": 0.7614,
+            "open": 0.81095
+          },
+          "if_yes": {
+            "baseline": 0.0003,
+            "moderate": 0.0013,
+            "strong": 0.0046,
+            "radical": 0.0085,
+            "open": 0.01125
+          },
+          "headline_if_yes": {
+            "baseline": 0.0041,
+            "moderate": 0.01205,
+            "strong": 0.0401,
+            "radical": 0.1155,
+            "open": 0.1558
+          }
+        },
+        {
+          "id": "M-commercial-insurance-written-on-a-private-lunar-asset",
+          "name": "A commercial syndicate insures a privately owned lunar asset for a million-dollar premium",
+          "factor": "M",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.67165,
+            "moderate": 0.74215,
+            "strong": 0.8291,
+            "radical": 0.89155,
+            "open": 0.9134
+          },
+          "if_yes": {
+            "baseline": 0.00025,
+            "moderate": 0.0021,
+            "strong": 0.0003,
+            "radical": 0.0044,
+            "open": 0.002
+          },
+          "headline_if_yes": {
+            "baseline": 0.00405,
+            "moderate": 0.01285,
+            "strong": 0.0358,
+            "radical": 0.1114,
+            "open": 0.14655
+          }
+        },
+        {
+          "id": "B-crewed-spin-gravity-demonstration",
+          "name": "A crew lives for a month in a spinning spacecraft that produces artificial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.66995,
+            "moderate": 0.71385,
+            "strong": 0.7612,
+            "radical": 0.8674,
+            "open": 0.8899
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.00135,
+            "strong": -0.002,
+            "radical": -0.0018,
+            "open": -0.0015
+          },
+          "headline_if_yes": {
+            "baseline": 0.0038,
+            "moderate": 0.0121,
+            "strong": 0.0335,
+            "radical": 0.1052,
+            "open": 0.14305
+          }
+        },
+        {
+          "id": "L-fully-reusable-heavy-launcher-recovers-both-stages",
+          "name": "A heavy launcher recovers both of its stages intact from one orbital flight",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.9297,
+            "moderate": 0.94145,
+            "strong": 0.95665,
+            "radical": 0.9695,
+            "open": 0.96885
+          },
+          "if_yes": {
+            "baseline": -0.00015,
+            "moderate": 0.0009,
+            "strong": 0.00065,
+            "radical": -0.0031,
+            "open": 0.0013
+          },
+          "headline_if_yes": {
+            "baseline": 0.00365,
+            "moderate": 0.01165,
+            "strong": 0.03615,
+            "radical": 0.1039,
+            "open": 0.14585
+          }
+        },
+        {
+          "id": "L-large-structure-assembled-in-orbit",
+          "name": "A structure more than a hundred metres across is assembled in orbit from separately launched parts",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5793,
+            "moderate": 0.67315,
+            "strong": 0.8154,
+            "radical": 0.9013,
+            "open": 0.9248
+          },
+          "if_yes": {
+            "baseline": -0.0002,
+            "moderate": 0.0009,
+            "strong": -0.00085,
+            "radical": -0.00295,
+            "open": 0.0048
+          },
+          "headline_if_yes": {
+            "baseline": 0.0036,
+            "moderate": 0.01165,
+            "strong": 0.03465,
+            "radical": 0.10405,
+            "open": 0.14935
+          }
+        },
+        {
+          "id": "R-crewed-lunar-program-outlives-two-changes-of-president",
+          "name": "A crewed lunar program keeps flying across two changes of its government",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.71485,
+            "moderate": 0.762,
+            "strong": 0.8154,
+            "radical": 0.87035,
+            "open": 0.89155
+          },
+          "if_yes": {
+            "baseline": -0.0002,
+            "moderate": 0.00135,
+            "strong": 0.00075,
+            "radical": -0.0012,
+            "open": 0.0046
+          },
+          "headline_if_yes": {
+            "baseline": 0.0036,
+            "moderate": 0.0121,
+            "strong": 0.03625,
+            "radical": 0.1058,
+            "open": 0.14915
+          }
+        },
+        {
+          "id": "B-staple-crop-grown-from-seed-to-harvest-off-earth",
+          "name": "A staple crop is grown from seed to harvest off Earth",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.71385,
+            "moderate": 0.78115,
+            "strong": 0.866,
+            "radical": 0.92875,
+            "open": 0.94155
+          },
+          "if_yes": {
+            "baseline": -0.0003,
+            "moderate": 0.00095,
+            "strong": -0.00045,
+            "radical": 0.00025,
+            "open": 0.00375
+          },
+          "headline_if_yes": {
+            "baseline": 0.0035,
+            "moderate": 0.0117,
+            "strong": 0.03505,
+            "radical": 0.10725,
+            "open": 0.1483
+          }
+        }
+      ]
+    },
+    "2026-09-25-c5": {
+      "tree_commit": "81e47f8",
+      "next_steps": [
+        {
+          "id": "B-major-operation-under-anaesthesia-performed-off-earth",
+          "name": "A major operation under anaesthesia is performed off Earth and the patient survives",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.4627,
+            "moderate": 0.54155,
+            "strong": 0.66915,
+            "radical": 0.84415,
+            "open": 0.8881
+          },
+          "if_yes": {
+            "baseline": 0.0008,
+            "moderate": 0.0016,
+            "strong": 0.00305,
+            "radical": 0.0047,
+            "open": 0.00545
+          },
+          "headline_if_yes": {
+            "baseline": 0.0055,
+            "moderate": 0.0133,
+            "strong": 0.0382,
+            "radical": 0.11175,
+            "open": 0.15215
+          }
+        },
+        {
+          "id": "R-space-traffic-management-authority-among-major-powers",
+          "name": "A space traffic authority among the major powers can enforce rules on manoeuvres and launch windows",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.3783,
+            "moderate": 0.4535,
+            "strong": 0.584,
+            "radical": 0.7481,
+            "open": 0.81385
+          },
+          "if_yes": {
+            "baseline": 0.0006,
+            "moderate": 0.00185,
+            "strong": 0.0053,
+            "radical": 0.0093,
+            "open": 0.0102
+          },
+          "headline_if_yes": {
+            "baseline": 0.0053,
+            "moderate": 0.01355,
+            "strong": 0.04045,
+            "radical": 0.11635,
+            "open": 0.1569
+          }
+        },
+        {
+          "id": "B-shielding-halves-deep-space-radiation-dose",
+          "name": "A shielding system flown in space cuts the deep-space radiation dose to a crew by half",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50445,
+            "moderate": 0.5448,
+            "strong": 0.6229,
+            "radical": 0.7594,
+            "open": 0.813
+          },
+          "if_yes": {
+            "baseline": 0.00055,
+            "moderate": 0.00135,
+            "strong": 0.00475,
+            "radical": 0.01,
+            "open": 0.0112
+          },
+          "headline_if_yes": {
+            "baseline": 0.00525,
+            "moderate": 0.01305,
+            "strong": 0.0399,
+            "radical": 0.11705,
+            "open": 0.1579
+          }
+        },
+        {
+          "id": "D-nuclear-propulsion-changes-orbit-in-space",
+          "name": "A nuclear-powered engine produces a kilometre per second of velocity change in space",
+          "factor": "D",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5923,
+            "moderate": 0.6823,
+            "strong": 0.81095,
+            "radical": 0.90085,
+            "open": 0.9271
+          },
+          "if_yes": {
+            "baseline": 0.0004,
+            "moderate": -0.00015,
+            "strong": 0.0011,
+            "radical": -0.0023,
+            "open": -0.00085
+          },
+          "headline_if_yes": {
+            "baseline": 0.0051,
+            "moderate": 0.01155,
+            "strong": 0.03625,
+            "radical": 0.10475,
+            "open": 0.14585
+          }
+        },
+        {
+          "id": "L-propellant-produced-off-earth-and-fired-in-a-thruster",
+          "name": "A tonne of propellant made from off-Earth material is fired in a rocket engine",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50275,
+            "moderate": 0.60355,
+            "strong": 0.74685,
+            "radical": 0.86565,
+            "open": 0.90165
+          },
+          "if_yes": {
+            "baseline": 0.0004,
+            "moderate": -0.00105,
+            "strong": 0.002,
+            "radical": -0.00085,
+            "open": 0.00135
+          },
+          "headline_if_yes": {
+            "baseline": 0.0051,
+            "moderate": 0.01065,
+            "strong": 0.03715,
+            "radical": 0.1062,
+            "open": 0.14805
+          }
+        },
+        {
+          "id": "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations",
+          "name": "The United States and China recognise each other's keep-out zones around off-Earth installations",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5034,
+            "moderate": 0.57595,
+            "strong": 0.69365,
+            "radical": 0.80895,
+            "open": 0.8681
+          },
+          "if_yes": {
+            "baseline": 0.0003,
+            "moderate": 0.0011,
+            "strong": 0.0032,
+            "radical": 0.00475,
+            "open": 0.00865
+          },
+          "headline_if_yes": {
+            "baseline": 0.005,
+            "moderate": 0.0128,
+            "strong": 0.03835,
+            "radical": 0.1118,
+            "open": 0.15535
+          }
+        },
+        {
+          "id": "R-off-earth-resource-rights-recognised-by-major-powers",
+          "name": "The United States and China both recognise the same rules for owning what is mined off Earth",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.46295,
+            "moderate": 0.54085,
+            "strong": 0.6729,
+            "radical": 0.814,
+            "open": 0.8681
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": -0.0002,
+            "strong": 0.0028,
+            "radical": 0.00085,
+            "open": 0.0068
+          },
+          "headline_if_yes": {
+            "baseline": 0.0047,
+            "moderate": 0.0115,
+            "strong": 0.03795,
+            "radical": 0.1079,
+            "open": 0.1535
+          }
+        },
+        {
+          "id": "E-fission-reactor-runs-on-lunar-surface",
+          "name": "A nuclear reactor runs on the lunar surface for a year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.67475,
+            "moderate": 0.75815,
+            "strong": 0.86965,
+            "radical": 0.92795,
+            "open": 0.93775
+          },
+          "if_yes": {
+            "baseline": -5e-05,
+            "moderate": -0.0008,
+            "strong": 0.001,
+            "radical": -0.0028,
+            "open": 0.0013
+          },
+          "headline_if_yes": {
+            "baseline": 0.00465,
+            "moderate": 0.0109,
+            "strong": 0.03615,
+            "radical": 0.10425,
+            "open": 0.148
+          }
+        },
+        {
+          "id": "L-fully-reusable-heavy-launcher-recovers-both-stages",
+          "name": "A heavy launcher recovers both of its stages intact from one orbital flight",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.9295,
+            "moderate": 0.9426,
+            "strong": 0.95425,
+            "radical": 0.97055,
+            "open": 0.9708
+          },
+          "if_yes": {
+            "baseline": -0.0003,
+            "moderate": -0.00115,
+            "strong": 0.00015,
+            "radical": -0.0058,
+            "open": 0.00145
+          },
+          "headline_if_yes": {
+            "baseline": 0.0044,
+            "moderate": 0.01055,
+            "strong": 0.0353,
+            "radical": 0.10125,
+            "open": 0.14815
+          }
+        },
+        {
+          "id": "M-commercial-insurance-written-on-a-private-lunar-asset",
+          "name": "A commercial syndicate insures a privately owned lunar asset for a million-dollar premium",
+          "factor": "M",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.67545,
+            "moderate": 0.7464,
+            "strong": 0.8209,
+            "radical": 0.89175,
+            "open": 0.9145
+          },
+          "if_yes": {
+            "baseline": -0.0003,
+            "moderate": -0.0002,
+            "strong": -0.0014,
+            "radical": -0.0012,
+            "open": 0.0001
+          },
+          "headline_if_yes": {
+            "baseline": 0.0044,
+            "moderate": 0.0115,
+            "strong": 0.03375,
+            "radical": 0.10585,
+            "open": 0.1468
+          }
+        },
+        {
+          "id": "B-crewed-spin-gravity-demonstration",
+          "name": "A crew lives for a month in a spinning spacecraft that produces artificial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.6712,
+            "moderate": 0.71425,
+            "strong": 0.76685,
+            "radical": 0.8658,
+            "open": 0.88665
+          },
+          "if_yes": {
+            "baseline": -0.0005,
+            "moderate": -0.0008,
+            "strong": -0.0008,
+            "radical": -0.0063,
+            "open": -0.00225
+          },
+          "headline_if_yes": {
+            "baseline": 0.0042,
+            "moderate": 0.0109,
+            "strong": 0.03435,
+            "radical": 0.10075,
+            "open": 0.14445
+          }
+        },
+        {
+          "id": "B-staple-crop-grown-from-seed-to-harvest-off-earth",
+          "name": "A staple crop is grown from seed to harvest off Earth",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7166,
+            "moderate": 0.7845,
+            "strong": 0.86685,
+            "radical": 0.92475,
+            "open": 0.94185
+          },
+          "if_yes": {
+            "baseline": -0.0006,
+            "moderate": -0.00115,
+            "strong": -0.00255,
+            "radical": -0.00295,
+            "open": 0.00375
+          },
+          "headline_if_yes": {
+            "baseline": 0.0041,
+            "moderate": 0.01055,
+            "strong": 0.0326,
+            "radical": 0.1041,
+            "open": 0.15045
+          }
+        },
+        {
+          "id": "L-cryogenic-propellant-stored-in-orbit-six-months-and-used",
+          "name": "Ten tonnes of cryogenic propellant are kept in orbit for six months and then burned",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7619,
+            "moderate": 0.8116,
+            "strong": 0.8688,
+            "radical": 0.9272,
+            "open": 0.94025
+          },
+          "if_yes": {
+            "baseline": -0.0008,
+            "moderate": -0.0004,
+            "strong": 0.00045,
+            "radical": 0.0027,
+            "open": 0.00105
+          },
+          "headline_if_yes": {
+            "baseline": 0.0039,
+            "moderate": 0.0113,
+            "strong": 0.0356,
+            "radical": 0.10975,
+            "open": 0.14775
+          }
+        },
+        {
+          "id": "L-large-structure-assembled-in-orbit",
+          "name": "A structure more than a hundred metres across is assembled in orbit from separately launched parts",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5798,
+            "moderate": 0.66435,
+            "strong": 0.80745,
+            "radical": 0.90445,
+            "open": 0.9249
+          },
+          "if_yes": {
+            "baseline": -0.0009,
+            "moderate": -0.0014,
+            "strong": 0.00115,
+            "radical": -0.0061,
+            "open": 0.0016
+          },
+          "headline_if_yes": {
+            "baseline": 0.0038,
+            "moderate": 0.0103,
+            "strong": 0.0363,
+            "radical": 0.10095,
+            "open": 0.1483
+          }
+        },
+        {
+          "id": "R-crewed-lunar-program-outlives-two-changes-of-president",
+          "name": "A crewed lunar program keeps flying across two changes of its government",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7181,
+            "moderate": 0.76045,
+            "strong": 0.8112,
+            "radical": 0.8653,
+            "open": 0.8906
+          },
+          "if_yes": {
+            "baseline": -0.00125,
+            "moderate": 0.0014,
+            "strong": -0.00205,
+            "radical": -0.002,
+            "open": 0.00815
+          },
+          "headline_if_yes": {
+            "baseline": 0.00345,
+            "moderate": 0.0131,
+            "strong": 0.0331,
+            "radical": 0.10505,
+            "open": 0.15485
+          }
+        },
+        {
+          "id": "R-space-funding-holds-through-a-recession",
+          "name": "Space spending recovers within three years of the next recession",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7621,
+            "moderate": 0.78055,
+            "strong": 0.8144,
+            "radical": 0.8667,
+            "open": 0.86435
+          },
+          "if_yes": {
+            "baseline": -0.00125,
+            "moderate": -0.00155,
+            "strong": 0.00115,
+            "radical": -0.0034,
+            "open": 0.0046
+          },
+          "headline_if_yes": {
+            "baseline": 0.00345,
+            "moderate": 0.01015,
+            "strong": 0.0363,
+            "radical": 0.10365,
+            "open": 0.1513
+          }
+        }
+      ]
+    },
+    "2026-09-25-methodology-pass": {
+      "tree_commit": "bf88474",
+      "next_steps": [
+        {
+          "id": "B-major-operation-under-anaesthesia-performed-off-earth",
+          "name": "A major operation under anaesthesia is performed off Earth and the patient survives",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.4627,
+            "moderate": 0.54155,
+            "strong": 0.66915,
+            "radical": 0.84415,
+            "open": 0.8881
+          },
+          "if_yes": {
+            "baseline": 0.0008,
+            "moderate": 0.0016,
+            "strong": 0.00305,
+            "radical": 0.0047,
+            "open": 0.00545
+          },
+          "headline_if_yes": {
+            "baseline": 0.0055,
+            "moderate": 0.0133,
+            "strong": 0.0382,
+            "radical": 0.11175,
+            "open": 0.15215
+          }
+        },
+        {
+          "id": "R-space-traffic-management-authority-among-major-powers",
+          "name": "A space traffic authority among the major powers can enforce rules on manoeuvres and launch windows",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.3783,
+            "moderate": 0.4535,
+            "strong": 0.584,
+            "radical": 0.7481,
+            "open": 0.81385
+          },
+          "if_yes": {
+            "baseline": 0.0006,
+            "moderate": 0.00185,
+            "strong": 0.0053,
+            "radical": 0.0093,
+            "open": 0.0102
+          },
+          "headline_if_yes": {
+            "baseline": 0.0053,
+            "moderate": 0.01355,
+            "strong": 0.04045,
+            "radical": 0.11635,
+            "open": 0.1569
+          }
+        },
+        {
+          "id": "B-shielding-halves-deep-space-radiation-dose",
+          "name": "A shielding system flown in space cuts the deep-space radiation dose to a crew by half",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50445,
+            "moderate": 0.5448,
+            "strong": 0.6229,
+            "radical": 0.7594,
+            "open": 0.813
+          },
+          "if_yes": {
+            "baseline": 0.00055,
+            "moderate": 0.00135,
+            "strong": 0.00475,
+            "radical": 0.01,
+            "open": 0.0112
+          },
+          "headline_if_yes": {
+            "baseline": 0.00525,
+            "moderate": 0.01305,
+            "strong": 0.0399,
+            "radical": 0.11705,
+            "open": 0.1579
+          }
+        },
+        {
+          "id": "D-nuclear-propulsion-changes-orbit-in-space",
+          "name": "A nuclear-powered engine produces a kilometre per second of velocity change in space",
+          "factor": "D",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5923,
+            "moderate": 0.6823,
+            "strong": 0.81095,
+            "radical": 0.90085,
+            "open": 0.9271
+          },
+          "if_yes": {
+            "baseline": 0.0004,
+            "moderate": -0.00015,
+            "strong": 0.0011,
+            "radical": -0.0023,
+            "open": -0.00085
+          },
+          "headline_if_yes": {
+            "baseline": 0.0051,
+            "moderate": 0.01155,
+            "strong": 0.03625,
+            "radical": 0.10475,
+            "open": 0.14585
+          }
+        },
+        {
+          "id": "L-propellant-produced-off-earth-and-fired-in-a-thruster",
+          "name": "A tonne of propellant made from off-Earth material is fired in a rocket engine",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50275,
+            "moderate": 0.60355,
+            "strong": 0.74685,
+            "radical": 0.86565,
+            "open": 0.90165
+          },
+          "if_yes": {
+            "baseline": 0.0004,
+            "moderate": -0.00105,
+            "strong": 0.002,
+            "radical": -0.00085,
+            "open": 0.00135
+          },
+          "headline_if_yes": {
+            "baseline": 0.0051,
+            "moderate": 0.01065,
+            "strong": 0.03715,
+            "radical": 0.1062,
+            "open": 0.14805
+          }
+        },
+        {
+          "id": "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations",
+          "name": "The United States and China recognise each other's keep-out zones around off-Earth installations",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5034,
+            "moderate": 0.57595,
+            "strong": 0.69365,
+            "radical": 0.80895,
+            "open": 0.8681
+          },
+          "if_yes": {
+            "baseline": 0.0003,
+            "moderate": 0.0011,
+            "strong": 0.0032,
+            "radical": 0.00475,
+            "open": 0.00865
+          },
+          "headline_if_yes": {
+            "baseline": 0.005,
+            "moderate": 0.0128,
+            "strong": 0.03835,
+            "radical": 0.1118,
+            "open": 0.15535
+          }
+        },
+        {
+          "id": "R-off-earth-resource-rights-recognised-by-major-powers",
+          "name": "The United States and China both recognise the same rules for owning what is mined off Earth",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.46295,
+            "moderate": 0.54085,
+            "strong": 0.6729,
+            "radical": 0.814,
+            "open": 0.8681
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": -0.0002,
+            "strong": 0.0028,
+            "radical": 0.00085,
+            "open": 0.0068
+          },
+          "headline_if_yes": {
+            "baseline": 0.0047,
+            "moderate": 0.0115,
+            "strong": 0.03795,
+            "radical": 0.1079,
+            "open": 0.1535
+          }
+        },
+        {
+          "id": "E-fission-reactor-runs-on-lunar-surface",
+          "name": "A nuclear reactor runs on the lunar surface for a year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.67475,
+            "moderate": 0.75815,
+            "strong": 0.86965,
+            "radical": 0.92795,
+            "open": 0.93775
+          },
+          "if_yes": {
+            "baseline": -5e-05,
+            "moderate": -0.0008,
+            "strong": 0.001,
+            "radical": -0.0028,
+            "open": 0.0013
+          },
+          "headline_if_yes": {
+            "baseline": 0.00465,
+            "moderate": 0.0109,
+            "strong": 0.03615,
+            "radical": 0.10425,
+            "open": 0.148
+          }
+        },
+        {
+          "id": "L-fully-reusable-heavy-launcher-recovers-both-stages",
+          "name": "A heavy launcher recovers both of its stages intact from one orbital flight",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.9295,
+            "moderate": 0.9426,
+            "strong": 0.95425,
+            "radical": 0.97055,
+            "open": 0.9708
+          },
+          "if_yes": {
+            "baseline": -0.0003,
+            "moderate": -0.00115,
+            "strong": 0.00015,
+            "radical": -0.0058,
+            "open": 0.00145
+          },
+          "headline_if_yes": {
+            "baseline": 0.0044,
+            "moderate": 0.01055,
+            "strong": 0.0353,
+            "radical": 0.10125,
+            "open": 0.14815
+          }
+        },
+        {
+          "id": "M-commercial-insurance-written-on-a-private-lunar-asset",
+          "name": "A commercial syndicate insures a privately owned lunar asset for a million-dollar premium",
+          "factor": "M",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.67545,
+            "moderate": 0.7464,
+            "strong": 0.8209,
+            "radical": 0.89175,
+            "open": 0.9145
+          },
+          "if_yes": {
+            "baseline": -0.0003,
+            "moderate": -0.0002,
+            "strong": -0.0014,
+            "radical": -0.0012,
+            "open": 0.0001
+          },
+          "headline_if_yes": {
+            "baseline": 0.0044,
+            "moderate": 0.0115,
+            "strong": 0.03375,
+            "radical": 0.10585,
+            "open": 0.1468
+          }
+        },
+        {
+          "id": "B-crewed-spin-gravity-demonstration",
+          "name": "A crew lives for a month in a spinning spacecraft that produces artificial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.6712,
+            "moderate": 0.71425,
+            "strong": 0.76685,
+            "radical": 0.8658,
+            "open": 0.88665
+          },
+          "if_yes": {
+            "baseline": -0.0005,
+            "moderate": -0.0008,
+            "strong": -0.0008,
+            "radical": -0.0063,
+            "open": -0.00225
+          },
+          "headline_if_yes": {
+            "baseline": 0.0042,
+            "moderate": 0.0109,
+            "strong": 0.03435,
+            "radical": 0.10075,
+            "open": 0.14445
+          }
+        },
+        {
+          "id": "B-staple-crop-grown-from-seed-to-harvest-off-earth",
+          "name": "A staple crop is grown from seed to harvest off Earth",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7166,
+            "moderate": 0.7845,
+            "strong": 0.86685,
+            "radical": 0.92475,
+            "open": 0.94185
+          },
+          "if_yes": {
+            "baseline": -0.0006,
+            "moderate": -0.00115,
+            "strong": -0.00255,
+            "radical": -0.00295,
+            "open": 0.00375
+          },
+          "headline_if_yes": {
+            "baseline": 0.0041,
+            "moderate": 0.01055,
+            "strong": 0.0326,
+            "radical": 0.1041,
+            "open": 0.15045
+          }
+        },
+        {
+          "id": "L-cryogenic-propellant-stored-in-orbit-six-months-and-used",
+          "name": "Ten tonnes of cryogenic propellant are kept in orbit for six months and then burned",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7619,
+            "moderate": 0.8116,
+            "strong": 0.8688,
+            "radical": 0.9272,
+            "open": 0.94025
+          },
+          "if_yes": {
+            "baseline": -0.0008,
+            "moderate": -0.0004,
+            "strong": 0.00045,
+            "radical": 0.0027,
+            "open": 0.00105
+          },
+          "headline_if_yes": {
+            "baseline": 0.0039,
+            "moderate": 0.0113,
+            "strong": 0.0356,
+            "radical": 0.10975,
+            "open": 0.14775
+          }
+        },
+        {
+          "id": "L-large-structure-assembled-in-orbit",
+          "name": "A structure more than a hundred metres across is assembled in orbit from separately launched parts",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5798,
+            "moderate": 0.66435,
+            "strong": 0.80745,
+            "radical": 0.90445,
+            "open": 0.9249
+          },
+          "if_yes": {
+            "baseline": -0.0009,
+            "moderate": -0.0014,
+            "strong": 0.00115,
+            "radical": -0.0061,
+            "open": 0.0016
+          },
+          "headline_if_yes": {
+            "baseline": 0.0038,
+            "moderate": 0.0103,
+            "strong": 0.0363,
+            "radical": 0.10095,
+            "open": 0.1483
+          }
+        },
+        {
+          "id": "R-crewed-lunar-program-outlives-two-changes-of-president",
+          "name": "A crewed lunar program keeps flying across two changes of its government",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7181,
+            "moderate": 0.76045,
+            "strong": 0.8112,
+            "radical": 0.8653,
+            "open": 0.8906
+          },
+          "if_yes": {
+            "baseline": -0.00125,
+            "moderate": 0.0014,
+            "strong": -0.00205,
+            "radical": -0.002,
+            "open": 0.00815
+          },
+          "headline_if_yes": {
+            "baseline": 0.00345,
+            "moderate": 0.0131,
+            "strong": 0.0331,
+            "radical": 0.10505,
+            "open": 0.15485
+          }
+        },
+        {
+          "id": "R-space-funding-holds-through-a-recession",
+          "name": "Space spending recovers within three years of the next recession",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7621,
+            "moderate": 0.78055,
+            "strong": 0.8144,
+            "radical": 0.8667,
+            "open": 0.86435
+          },
+          "if_yes": {
+            "baseline": -0.00125,
+            "moderate": -0.00155,
+            "strong": 0.00115,
+            "radical": -0.0034,
+            "open": 0.0046
+          },
+          "headline_if_yes": {
+            "baseline": 0.00345,
+            "moderate": 0.01015,
+            "strong": 0.0363,
+            "radical": 0.10365,
+            "open": 0.1513
+          }
+        }
+      ]
+    },
+    "2026-09-25-sweep-function-over-route": {
+      "tree_commit": "8e839dc",
+      "next_steps": [
+        {
+          "id": "L-propellant-produced-off-earth-and-fired-in-a-thruster",
+          "name": "A tonne of propellant made from off-Earth material is fired in a rocket engine",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.498,
+            "moderate": 0.59625,
+            "strong": 0.7484,
+            "radical": 0.8647,
+            "open": 0.9053
+          },
+          "if_yes": {
+            "baseline": 0.001,
+            "moderate": 0.00175,
+            "strong": 0.00185,
+            "radical": 0.00215,
+            "open": 0.00685
+          },
+          "headline_if_yes": {
+            "baseline": 0.0069,
+            "moderate": 0.01375,
+            "strong": 0.0395,
+            "radical": 0.11045,
+            "open": 0.15735
+          }
+        },
+        {
+          "id": "R-space-traffic-management-authority-among-major-powers",
+          "name": "A space traffic authority among the major powers can enforce rules on manoeuvres and launch windows",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.37845,
+            "moderate": 0.4548,
+            "strong": 0.585,
+            "radical": 0.73675,
+            "open": 0.8108
+          },
+          "if_yes": {
+            "baseline": 0.00095,
+            "moderate": 0.00245,
+            "strong": 0.0064,
+            "radical": 0.01045,
+            "open": 0.00995
+          },
+          "headline_if_yes": {
+            "baseline": 0.00685,
+            "moderate": 0.01445,
+            "strong": 0.04405,
+            "radical": 0.11875,
+            "open": 0.16045
+          }
+        },
+        {
+          "id": "B-shielding-halves-deep-space-radiation-dose",
+          "name": "A shielding system flown in space cuts the deep-space radiation dose to a crew by half",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.49925,
+            "moderate": 0.54205,
+            "strong": 0.6256,
+            "radical": 0.7642,
+            "open": 0.8134
+          },
+          "if_yes": {
+            "baseline": 0.0007,
+            "moderate": 0.0016,
+            "strong": 0.00405,
+            "radical": 0.01045,
+            "open": 0.01065
+          },
+          "headline_if_yes": {
+            "baseline": 0.0066,
+            "moderate": 0.0136,
+            "strong": 0.0417,
+            "radical": 0.11875,
+            "open": 0.16115
+          }
+        },
+        {
+          "id": "B-major-operation-under-anaesthesia-performed-off-earth",
+          "name": "A major operation under anaesthesia is performed off Earth and the patient survives",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.4594,
+            "moderate": 0.54265,
+            "strong": 0.67065,
+            "radical": 0.8413,
+            "open": 0.89075
+          },
+          "if_yes": {
+            "baseline": 0.0007,
+            "moderate": 0.0015,
+            "strong": 0.00395,
+            "radical": 0.00545,
+            "open": 0.00545
+          },
+          "headline_if_yes": {
+            "baseline": 0.0066,
+            "moderate": 0.0135,
+            "strong": 0.0416,
+            "radical": 0.11375,
+            "open": 0.15595
+          }
+        },
+        {
+          "id": "R-off-earth-resource-rights-recognised-by-major-powers",
+          "name": "The United States and China both recognise the same rules for owning what is mined off Earth",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.4662,
+            "moderate": 0.53825,
+            "strong": 0.67305,
+            "radical": 0.8134,
+            "open": 0.8668
+          },
+          "if_yes": {
+            "baseline": 0.0004,
+            "moderate": 0.00165,
+            "strong": 0.0027,
+            "radical": 0.0076,
+            "open": 0.0089
+          },
+          "headline_if_yes": {
+            "baseline": 0.0063,
+            "moderate": 0.01365,
+            "strong": 0.04035,
+            "radical": 0.1159,
+            "open": 0.1594
+          }
+        },
+        {
+          "id": "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations",
+          "name": "The United States and China recognise each other's keep-out zones around off-Earth installations",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50115,
+            "moderate": 0.577,
+            "strong": 0.68695,
+            "radical": 0.8089,
+            "open": 0.8674
+          },
+          "if_yes": {
+            "baseline": 0.0,
+            "moderate": 0.00135,
+            "strong": 0.00605,
+            "radical": 0.0086,
+            "open": 0.00825
+          },
+          "headline_if_yes": {
+            "baseline": 0.0059,
+            "moderate": 0.01335,
+            "strong": 0.0437,
+            "radical": 0.1169,
+            "open": 0.15875
+          }
+        },
+        {
+          "id": "R-space-funding-holds-through-a-recession",
+          "name": "Space spending recovers within three years of the next recession",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7643,
+            "moderate": 0.7786,
+            "strong": 0.8132,
+            "radical": 0.86595,
+            "open": 0.86465
+          },
+          "if_yes": {
+            "baseline": -5e-05,
+            "moderate": 0.00115,
+            "strong": 0.001,
+            "radical": 0.0013,
+            "open": 0.00575
+          },
+          "headline_if_yes": {
+            "baseline": 0.00585,
+            "moderate": 0.01315,
+            "strong": 0.03865,
+            "radical": 0.1096,
+            "open": 0.15625
+          }
+        },
+        {
+          "id": "D-high-power-solar-electric-propulsion-in-routine-use",
+          "name": "Megawatt solar-electric propulsion is used on several missions a year",
+          "factor": "D",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.42185,
+            "moderate": 0.5158,
+            "strong": 0.65155,
+            "radical": 0.7818,
+            "open": 0.82755
+          },
+          "if_yes": {
+            "baseline": -0.0003,
+            "moderate": -0.0002,
+            "strong": 0.00105,
+            "radical": -0.00145,
+            "open": -0.00415
+          },
+          "headline_if_yes": {
+            "baseline": 0.0056,
+            "moderate": 0.0118,
+            "strong": 0.0387,
+            "radical": 0.10685,
+            "open": 0.14635
+          }
+        },
+        {
+          "id": "R-crewed-lunar-program-outlives-two-changes-of-backer",
+          "name": "A crewed lunar program, government or commercial, keeps flying across two changes of its principal backer",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7437,
+            "moderate": 0.7796,
+            "strong": 0.83405,
+            "radical": 0.87925,
+            "open": 0.89845
+          },
+          "if_yes": {
+            "baseline": -0.00045,
+            "moderate": 0.0017,
+            "strong": 0.00135,
+            "radical": -0.0027,
+            "open": 0.00475
+          },
+          "headline_if_yes": {
+            "baseline": 0.00545,
+            "moderate": 0.0137,
+            "strong": 0.039,
+            "radical": 0.1056,
+            "open": 0.15525
+          }
+        },
+        {
+          "id": "D-nuclear-propulsion-changes-orbit-in-space",
+          "name": "A nuclear-powered engine produces a kilometre per second of velocity change in space",
+          "factor": "D",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5917,
+            "moderate": 0.68185,
+            "strong": 0.8081,
+            "radical": 0.9008,
+            "open": 0.9281
+          },
+          "if_yes": {
+            "baseline": -0.0008,
+            "moderate": 0.00045,
+            "strong": 0.00165,
+            "radical": 0.00075,
+            "open": -5e-05
+          },
+          "headline_if_yes": {
+            "baseline": 0.0051,
+            "moderate": 0.01245,
+            "strong": 0.0393,
+            "radical": 0.10905,
+            "open": 0.15045
+          }
+        },
+        {
+          "id": "M-commercial-insurance-written-on-a-private-lunar-asset",
+          "name": "A commercial syndicate insures a privately owned lunar asset for a million-dollar premium",
+          "factor": "M",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.66775,
+            "moderate": 0.74545,
+            "strong": 0.82565,
+            "radical": 0.8903,
+            "open": 0.9152
+          },
+          "if_yes": {
+            "baseline": -0.0009,
+            "moderate": 0.0017,
+            "strong": 0.002,
+            "radical": 0.00065,
+            "open": 0.0011
+          },
+          "headline_if_yes": {
+            "baseline": 0.005,
+            "moderate": 0.0137,
+            "strong": 0.03965,
+            "radical": 0.10895,
+            "open": 0.1516
+          }
+        },
+        {
+          "id": "L-fully-reusable-heavy-launcher-recovers-both-stages",
+          "name": "A heavy launcher recovers both of its stages intact from one orbital flight",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.9263,
+            "moderate": 0.94,
+            "strong": 0.95405,
+            "radical": 0.96815,
+            "open": 0.969
+          },
+          "if_yes": {
+            "baseline": -0.00095,
+            "moderate": 0.00105,
+            "strong": -0.00055,
+            "radical": 0.00225,
+            "open": 0.0
+          },
+          "headline_if_yes": {
+            "baseline": 0.00495,
+            "moderate": 0.01305,
+            "strong": 0.0371,
+            "radical": 0.11055,
+            "open": 0.1505
+          }
+        },
+        {
+          "id": "L-cryogenic-propellant-stored-in-orbit-six-months-and-used",
+          "name": "Ten tonnes of cryogenic propellant are kept in orbit for six months and then burned",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7565,
+            "moderate": 0.81225,
+            "strong": 0.864,
+            "radical": 0.9251,
+            "open": 0.9396
+          },
+          "if_yes": {
+            "baseline": -0.00095,
+            "moderate": -0.0005,
+            "strong": 0.001,
+            "radical": 0.00165,
+            "open": 0.00565
+          },
+          "headline_if_yes": {
+            "baseline": 0.00495,
+            "moderate": 0.0115,
+            "strong": 0.03865,
+            "radical": 0.10995,
+            "open": 0.15615
+          }
+        },
+        {
+          "id": "B-crewed-spin-gravity-demonstration",
+          "name": "A crew lives for a month in a spinning spacecraft that produces artificial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.67395,
+            "moderate": 0.7118,
+            "strong": 0.75895,
+            "radical": 0.8669,
+            "open": 0.8897
+          },
+          "if_yes": {
+            "baseline": -0.00105,
+            "moderate": 0.0006,
+            "strong": -0.0013,
+            "radical": 0.00185,
+            "open": 0.0009
+          },
+          "headline_if_yes": {
+            "baseline": 0.00485,
+            "moderate": 0.0126,
+            "strong": 0.03635,
+            "radical": 0.11015,
+            "open": 0.1514
+          }
+        },
+        {
+          "id": "B-staple-crop-grown-from-seed-to-harvest-off-earth",
+          "name": "A staple crop is grown from seed to harvest off Earth",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7093,
+            "moderate": 0.7829,
+            "strong": 0.86685,
+            "radical": 0.92625,
+            "open": 0.94395
+          },
+          "if_yes": {
+            "baseline": -0.0012,
+            "moderate": -0.00055,
+            "strong": 0.0022,
+            "radical": 0.00505,
+            "open": 0.00045
+          },
+          "headline_if_yes": {
+            "baseline": 0.0047,
+            "moderate": 0.01145,
+            "strong": 0.03985,
+            "radical": 0.11335,
+            "open": 0.15095
+          }
+        },
+        {
+          "id": "L-large-structure-assembled-in-orbit",
+          "name": "A structure more than a hundred metres across is assembled in orbit from separately launched parts",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5846,
+            "moderate": 0.6666,
+            "strong": 0.81085,
+            "radical": 0.90095,
+            "open": 0.929
+          },
+          "if_yes": {
+            "baseline": -0.0016,
+            "moderate": 0.00135,
+            "strong": -0.00085,
+            "radical": 0.0005,
+            "open": -0.00315
+          },
+          "headline_if_yes": {
+            "baseline": 0.0043,
+            "moderate": 0.01335,
+            "strong": 0.0368,
+            "radical": 0.1088,
+            "open": 0.14735
+          }
+        },
+        {
+          "id": "L-asteroid-material-delivered-to-orbit-at-scale",
+          "name": "A hundred tonnes of material from an asteroid are delivered to orbit around Earth or the Moon in one year",
+          "factor": "L",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.1097,
+            "moderate": 0.16825,
+            "strong": 0.2865,
+            "radical": 0.4601,
+            "open": 0.54145
+          },
+          "if_yes": {
+            "baseline": -0.0018,
+            "moderate": 0.00185,
+            "strong": 0.0013,
+            "radical": -0.0018,
+            "open": 0.00255
+          },
+          "headline_if_yes": {
+            "baseline": 0.0041,
+            "moderate": 0.01385,
+            "strong": 0.03895,
+            "radical": 0.1065,
+            "open": 0.15305
+          }
+        },
+        {
+          "id": "E-fission-reactor-runs-on-lunar-surface",
+          "name": "A nuclear reactor runs on the lunar surface for a year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.66825,
+            "moderate": 0.7628,
+            "strong": 0.86945,
+            "radical": 0.92645,
+            "open": 0.9402
+          },
+          "if_yes": {
+            "baseline": -0.00205,
+            "moderate": -0.0002,
+            "strong": -0.0006,
+            "radical": 0.0006,
+            "open": -0.00065
+          },
+          "headline_if_yes": {
+            "baseline": 0.00385,
+            "moderate": 0.0118,
+            "strong": 0.03705,
+            "radical": 0.1089,
+            "open": 0.14985
+          }
+        },
+        {
+          "id": "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year",
+          "name": "Solar panels with storage keep a lunar polar site powered through a whole year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.54295,
+            "moderate": 0.65695,
+            "strong": 0.77995,
+            "radical": 0.86675,
+            "open": 0.8998
+          },
+          "if_yes": {
+            "baseline": -0.00205,
+            "moderate": -0.0002,
+            "strong": -0.0006,
+            "radical": 0.0006,
+            "open": -0.00065
+          },
+          "headline_if_yes": {
+            "baseline": 0.00385,
+            "moderate": 0.0118,
+            "strong": 0.03705,
+            "radical": 0.1089,
+            "open": 0.14985
+          }
+        },
+        {
+          "id": "E-power-delivered-from-orbit-to-the-lunar-surface-for-a-year",
+          "name": "Power sent down from orbit keeps a site on the Moon running for a year",
+          "factor": "E",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.1079,
+            "moderate": 0.1555,
+            "strong": 0.2685,
+            "radical": 0.39765,
+            "open": 0.481
+          },
+          "if_yes": {
+            "baseline": -0.00205,
+            "moderate": -0.0002,
+            "strong": -0.0006,
+            "radical": 0.0006,
+            "open": -0.00065
+          },
+          "headline_if_yes": {
+            "baseline": 0.00385,
+            "moderate": 0.0118,
+            "strong": 0.03705,
+            "radical": 0.1089,
+            "open": 0.14985
+          }
+        }
+      ]
+    },
+    "2026-10-02-estimates-ruled": {
+      "tree_commit": "3edef9b",
+      "next_steps": [
+        {
+          "id": "R-off-earth-resource-rights-recognised-by-major-powers",
+          "name": "The United States and China both recognise the same rules for owning what is mined off Earth",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.46185,
+            "moderate": 0.5365,
+            "strong": 0.67,
+            "radical": 0.81275,
+            "open": 0.8665
+          },
+          "if_yes": {
+            "baseline": 0.0021,
+            "moderate": 0.00195,
+            "strong": 0.0037,
+            "radical": 0.0099,
+            "open": 0.00875
+          },
+          "headline_if_yes": {
+            "baseline": 0.00675,
+            "moderate": 0.014,
+            "strong": 0.04145,
+            "radical": 0.1174,
+            "open": 0.15715
+          }
+        },
+        {
+          "id": "D-high-power-solar-electric-propulsion-in-routine-use",
+          "name": "Megawatt solar-electric propulsion is used on several missions a year",
+          "factor": "D",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.5004,
+            "moderate": 0.5814,
+            "strong": 0.70035,
+            "radical": 0.8045,
+            "open": 0.8363
+          },
+          "if_yes": {
+            "baseline": 0.00145,
+            "moderate": 0.0014,
+            "strong": 0.00145,
+            "radical": 0.00065,
+            "open": -0.0022
+          },
+          "headline_if_yes": {
+            "baseline": 0.0061,
+            "moderate": 0.01345,
+            "strong": 0.0392,
+            "radical": 0.10815,
+            "open": 0.1462
+          }
+        },
+        {
+          "id": "B-staple-crop-grown-from-seed-to-harvest-off-earth",
+          "name": "A staple crop is grown from seed to harvest off Earth",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.709,
+            "moderate": 0.78425,
+            "strong": 0.8716,
+            "radical": 0.92565,
+            "open": 0.94385
+          },
+          "if_yes": {
+            "baseline": 0.0014,
+            "moderate": -0.0002,
+            "strong": 0.00075,
+            "radical": 0.00825,
+            "open": 0.0032
+          },
+          "headline_if_yes": {
+            "baseline": 0.00605,
+            "moderate": 0.01185,
+            "strong": 0.0385,
+            "radical": 0.11575,
+            "open": 0.1516
+          }
+        },
+        {
+          "id": "B-crewed-spin-gravity-demonstration",
+          "name": "A crew lives for a month in a spinning spacecraft that produces artificial gravity",
+          "factor": "B",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.6707,
+            "moderate": 0.71385,
+            "strong": 0.7622,
+            "radical": 0.8668,
+            "open": 0.8895
+          },
+          "if_yes": {
+            "baseline": 0.0011,
+            "moderate": 0.0015,
+            "strong": 0.0001,
+            "radical": 0.0026,
+            "open": 0.0013
+          },
+          "headline_if_yes": {
+            "baseline": 0.00575,
+            "moderate": 0.01355,
+            "strong": 0.03785,
+            "radical": 0.1101,
+            "open": 0.1497
+          }
+        },
+        {
+          "id": "L-large-structure-assembled-in-orbit",
+          "name": "A structure more than a hundred metres across is assembled in orbit from separately launched parts",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.58385,
+            "moderate": 0.6715,
+            "strong": 0.81205,
+            "radical": 0.90235,
+            "open": 0.92745
+          },
+          "if_yes": {
+            "baseline": 0.0008,
+            "moderate": 0.00195,
+            "strong": -0.0013,
+            "radical": 0.0019,
+            "open": 0.0021
+          },
+          "headline_if_yes": {
+            "baseline": 0.00545,
+            "moderate": 0.014,
+            "strong": 0.03645,
+            "radical": 0.1094,
+            "open": 0.1505
+          }
+        },
+        {
+          "id": "R-space-traffic-management-authority-among-major-powers",
+          "name": "A space traffic authority among the major powers can enforce rules on manoeuvres and launch windows",
+          "factor": "R",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.37925,
+            "moderate": 0.46065,
+            "strong": 0.58455,
+            "radical": 0.73785,
+            "open": 0.80875
+          },
+          "if_yes": {
+            "baseline": 0.00075,
+            "moderate": 0.00265,
+            "strong": 0.00675,
+            "radical": 0.0112,
+            "open": 0.00985
+          },
+          "headline_if_yes": {
+            "baseline": 0.0054,
+            "moderate": 0.0147,
+            "strong": 0.0445,
+            "radical": 0.1187,
+            "open": 0.15825
+          }
+        },
+        {
+          "id": "B-major-operation-under-anaesthesia-performed-off-earth",
+          "name": "A major operation under anaesthesia is performed off Earth and the patient survives",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.45945,
+            "moderate": 0.54545,
+            "strong": 0.66835,
+            "radical": 0.83915,
+            "open": 0.8913
+          },
+          "if_yes": {
+            "baseline": 0.0007,
+            "moderate": 0.0015,
+            "strong": 0.00475,
+            "radical": 0.00575,
+            "open": 0.00495
+          },
+          "headline_if_yes": {
+            "baseline": 0.00535,
+            "moderate": 0.01355,
+            "strong": 0.0425,
+            "radical": 0.11325,
+            "open": 0.15335
+          }
+        },
+        {
+          "id": "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations",
+          "name": "The United States and China recognise each other's keep-out zones around off-Earth installations",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.5021,
+            "moderate": 0.5854,
+            "strong": 0.68315,
+            "radical": 0.8146,
+            "open": 0.8643
+          },
+          "if_yes": {
+            "baseline": 0.0007,
+            "moderate": 0.0019,
+            "strong": 0.00445,
+            "radical": 0.0059,
+            "open": 0.01145
+          },
+          "headline_if_yes": {
+            "baseline": 0.00535,
+            "moderate": 0.01395,
+            "strong": 0.0422,
+            "radical": 0.1134,
+            "open": 0.15985
+          }
+        },
+        {
+          "id": "L-cryogenic-propellant-stored-in-orbit-six-months-and-used",
+          "name": "Ten tonnes of cryogenic propellant are kept in orbit for six months and then burned",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.7624,
+            "moderate": 0.81095,
+            "strong": 0.86795,
+            "radical": 0.92785,
+            "open": 0.9384
+          },
+          "if_yes": {
+            "baseline": 0.00055,
+            "moderate": 0.001,
+            "strong": 0.00255,
+            "radical": 0.00175,
+            "open": 0.0003
+          },
+          "headline_if_yes": {
+            "baseline": 0.0052,
+            "moderate": 0.01305,
+            "strong": 0.0403,
+            "radical": 0.10925,
+            "open": 0.1487
+          }
+        },
+        {
+          "id": "B-shielding-halves-deep-space-radiation-dose",
+          "name": "A shielding system flown in space cuts the deep-space radiation dose to a crew by half",
+          "factor": "B",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50205,
+            "moderate": 0.5411,
+            "strong": 0.63445,
+            "radical": 0.7593,
+            "open": 0.80935
+          },
+          "if_yes": {
+            "baseline": 0.0005,
+            "moderate": 0.00205,
+            "strong": 0.0052,
+            "radical": 0.0102,
+            "open": 0.01115
+          },
+          "headline_if_yes": {
+            "baseline": 0.00515,
+            "moderate": 0.0141,
+            "strong": 0.04295,
+            "radical": 0.1177,
+            "open": 0.15955
+          }
+        },
+        {
+          "id": "L-propellant-produced-off-earth-and-fired-in-a-thruster",
+          "name": "A tonne of propellant made from off-Earth material is fired in a rocket engine",
+          "factor": "L",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.50875,
+            "moderate": 0.6063,
+            "strong": 0.74425,
+            "radical": 0.86615,
+            "open": 0.90415
+          },
+          "if_yes": {
+            "baseline": 0.0005,
+            "moderate": 0.002,
+            "strong": 0.0025,
+            "radical": 0.0028,
+            "open": 0.00795
+          },
+          "headline_if_yes": {
+            "baseline": 0.00515,
+            "moderate": 0.01405,
+            "strong": 0.04025,
+            "radical": 0.1103,
+            "open": 0.15635
+          }
+        },
+        {
+          "id": "R-crewed-lunar-program-outlives-two-changes-of-backer",
+          "name": "A crewed lunar program, government or commercial, keeps flying across two changes of its principal backer",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7483,
+            "moderate": 0.7852,
+            "strong": 0.8312,
+            "radical": 0.87745,
+            "open": 0.8961
+          },
+          "if_yes": {
+            "baseline": 0.00045,
+            "moderate": 0.0008,
+            "strong": -0.0017,
+            "radical": -0.001,
+            "open": 0.00805
+          },
+          "headline_if_yes": {
+            "baseline": 0.0051,
+            "moderate": 0.01285,
+            "strong": 0.03605,
+            "radical": 0.1065,
+            "open": 0.15645
+          }
+        },
+        {
+          "id": "M-commercial-insurance-written-on-a-private-lunar-asset",
+          "name": "A commercial syndicate insures a privately owned lunar asset for a million-dollar premium",
+          "factor": "M",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.6762,
+            "moderate": 0.7467,
+            "strong": 0.82775,
+            "radical": 0.88985,
+            "open": 0.916
+          },
+          "if_yes": {
+            "baseline": 0.00025,
+            "moderate": 0.0001,
+            "strong": 0.00095,
+            "radical": -5e-05,
+            "open": 0.00155
+          },
+          "headline_if_yes": {
+            "baseline": 0.0049,
+            "moderate": 0.01215,
+            "strong": 0.0387,
+            "radical": 0.10745,
+            "open": 0.14995
+          }
+        },
+        {
+          "id": "R-space-funding-holds-through-a-recession",
+          "name": "Space spending recovers within three years of the next recession",
+          "factor": "R",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.7663,
+            "moderate": 0.781,
+            "strong": 0.8174,
+            "radical": 0.86755,
+            "open": 0.8618
+          },
+          "if_yes": {
+            "baseline": 0.00015,
+            "moderate": 0.0009,
+            "strong": 0.001,
+            "radical": 0.00525,
+            "open": 0.00985
+          },
+          "headline_if_yes": {
+            "baseline": 0.0048,
+            "moderate": 0.01295,
+            "strong": 0.03875,
+            "radical": 0.11275,
+            "open": 0.15825
+          }
+        },
+        {
+          "id": "L-asteroid-material-delivered-to-orbit-at-scale",
+          "name": "A hundred tonnes of material from an asteroid are delivered to orbit around Earth or the Moon in one year",
+          "factor": "L",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.11035,
+            "moderate": 0.16935,
+            "strong": 0.28765,
+            "radical": 0.45725,
+            "open": 0.53855
+          },
+          "if_yes": {
+            "baseline": 0.0001,
+            "moderate": 0.00105,
+            "strong": 0.00015,
+            "radical": 0.0005,
+            "open": 0.0034
+          },
+          "headline_if_yes": {
+            "baseline": 0.00475,
+            "moderate": 0.0131,
+            "strong": 0.0379,
+            "radical": 0.108,
+            "open": 0.1518
+          }
+        },
+        {
+          "id": "E-fission-reactor-runs-on-lunar-surface",
+          "name": "A nuclear reactor runs on the lunar surface for a year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.67235,
+            "moderate": 0.75975,
+            "strong": 0.86855,
+            "radical": 0.92705,
+            "open": 0.9411
+          },
+          "if_yes": {
+            "baseline": -0.0002,
+            "moderate": 0.0003,
+            "strong": 0.00145,
+            "radical": 0.0022,
+            "open": 0.0014
+          },
+          "headline_if_yes": {
+            "baseline": 0.00445,
+            "moderate": 0.01235,
+            "strong": 0.0392,
+            "radical": 0.1097,
+            "open": 0.1498
+          }
+        },
+        {
+          "id": "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year",
+          "name": "Solar panels with storage keep a lunar polar site powered through a whole year",
+          "factor": "E",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.62825,
+            "moderate": 0.7263,
+            "strong": 0.8242,
+            "radical": 0.8886,
+            "open": 0.91335
+          },
+          "if_yes": {
+            "baseline": -0.0002,
+            "moderate": 0.0003,
+            "strong": 0.00145,
+            "radical": 0.0022,
+            "open": 0.0014
+          },
+          "headline_if_yes": {
+            "baseline": 0.00445,
+            "moderate": 0.01235,
+            "strong": 0.0392,
+            "radical": 0.1097,
+            "open": 0.1498
+          }
+        },
+        {
+          "id": "E-power-delivered-from-orbit-to-the-lunar-surface-for-a-year",
+          "name": "Power sent down from orbit keeps a site on the Moon running for a year",
+          "factor": "E",
+          "horizon": "root",
+          "chance": {
+            "baseline": 0.1122,
+            "moderate": 0.1572,
+            "strong": 0.25775,
+            "radical": 0.4003,
+            "open": 0.4795
+          },
+          "if_yes": {
+            "baseline": -0.0002,
+            "moderate": 0.0003,
+            "strong": 0.00145,
+            "radical": 0.0022,
+            "open": 0.0014
+          },
+          "headline_if_yes": {
+            "baseline": 0.00445,
+            "moderate": 0.01235,
+            "strong": 0.0392,
+            "radical": 0.1097,
+            "open": 0.1498
+          }
+        },
+        {
+          "id": "L-fully-reusable-heavy-launcher-recovers-both-stages",
+          "name": "A heavy launcher recovers both of its stages intact from one orbital flight",
+          "factor": "L",
+          "horizon": "leaf",
+          "chance": {
+            "baseline": 0.9303,
+            "moderate": 0.9392,
+            "strong": 0.95205,
+            "radical": 0.9681,
+            "open": 0.96795
+          },
+          "if_yes": {
+            "baseline": -0.0003,
+            "moderate": 0.00145,
+            "strong": 0.0,
+            "radical": 0.00215,
+            "open": 0.0051
+          },
+          "headline_if_yes": {
+            "baseline": 0.00435,
+            "moderate": 0.0135,
+            "strong": 0.03775,
+            "radical": 0.10965,
+            "open": 0.1535
+          }
+        },
+        {
+          "id": "D-nuclear-propulsion-changes-orbit-in-space",
+          "name": "A nuclear-powered engine produces a kilometre per second of velocity change in space",
+          "factor": "D",
+          "horizon": "mid",
+          "chance": {
+            "baseline": 0.58905,
+            "moderate": 0.6864,
+            "strong": 0.81185,
+            "radical": 0.89985,
+            "open": 0.92735
+          },
+          "if_yes": {
+            "baseline": -0.001,
+            "moderate": 0.00155,
+            "strong": 5e-05,
+            "radical": 0.0035,
+            "open": 0.0037
+          },
+          "headline_if_yes": {
+            "baseline": 0.00365,
+            "moderate": 0.0136,
+            "strong": 0.0378,
+            "radical": 0.111,
+            "open": 0.1521
+          }
+        }
+      ]
+    }
+  }
+}

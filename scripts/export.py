@@ -396,7 +396,18 @@ def write_tree_picture(tree: dict, numbers: dict, path: Path) -> None:
 # ------------------------------------------------------------ the snapshots
 
 
-def export_snapshots(snapshots: list[dict]) -> dict:
+def load_next_steps_backfill(folder: Path) -> dict:
+    """The "what could happen next" lists worked out afterwards for runs saved before 2026-10-03
+    (scripts/backfill_next_steps.py), keyed by run, with any renamed step id read as the new one."""
+    path = folder / "backfill" / "next-steps.json"
+    if not path.exists():
+        return {}
+    runs = json.loads(path.read_text()).get("runs", {})
+    renamed = compute.load_renamed_ids(folder)
+    return compute.with_renamed_ids(runs, renamed) if renamed else runs
+
+
+def export_snapshots(snapshots: list[dict], next_backfill: dict | None = None) -> dict:
     """The committed runs from data/snapshots/, turned into what the pages need.
 
     Each snapshot is the complete output of one run (scripts/compute.py, ledger step 28). The
@@ -459,6 +470,18 @@ def export_snapshots(snapshots: list[dict]) -> dict:
             "chain": {k: series(lambda s, k=k: s.get("chain", {}).get(k)) for k in chain_keys},
         },
         "change": change,
+        # What could happen next, run by run, oldest first (the /next/ page, added 2026-10-03).
+        # A run saved from 2026-10-03 carries its own list; the earlier ones were worked out
+        # afterwards from the tree as committed with them, and say so.
+        "next_steps": [
+            {
+                "key": s["key"], "date": s["date"], "label": s.get("label"),
+                "review_status": s.get("review_status"),
+                "backfilled": "next_steps" not in s,
+                "steps": s["next_steps"] if "next_steps" in s else (next_backfill or {}).get(s["key"], {}).get("next_steps"),
+            }
+            for s in snapshots if "next_steps" in s or s["key"] in (next_backfill or {})
+        ],
     }
 
 
@@ -1131,7 +1154,7 @@ def main(argv: list[str] | None = None) -> int:
         exported = export_tree(tree)
         changelog = export_changelog(args.changelog)
         all_snapshots = compute.load_snapshots(args.snapshots)
-        snapshots = export_snapshots(all_snapshots)
+        snapshots = export_snapshots(all_snapshots, load_next_steps_backfill(args.snapshots))
         entries = compute.load_ledger(args.ledger)
         broken = validate_ledger(entries, tree, all_snapshots)
         if broken:
