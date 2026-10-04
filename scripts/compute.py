@@ -1058,6 +1058,53 @@ def node_worth(tree: dict, runs: int, seed: int, world_spread: float) -> dict:
     }
 
 
+# The access branch is John's own path (his training, his career), not the world's. The list of
+# what could happen next leaves it out (ruled by John 2026-10-03): it is about the world.
+PERSONAL_FACTORS = ("A",)
+
+
+def next_steps(tree: dict, worth: dict | None, rates: dict[str, dict[str, float]]) -> list[dict]:
+    """The open steps that could happen next, with what each would be worth to the headline.
+
+    "Could happen next" means nothing else in the tree has to happen first: every step a node
+    depends on has already happened, and every "either of these" group has one member that has.
+    Only steps the headline rests on are listed, and never the personal access branch. Each carries
+    its worth from the same run (`worth`, from node_worth) and its own chance per scenario
+    (`rates`, the run's node rates; with nothing open before it, that is its own probability).
+    Ranked by worth-if-yes under the first scenario, and kept whole: the page decides how many to
+    show and which deadline to order by. Added 2026-10-03 for the site's /next/ page."""
+    if not worth:
+        return []
+    by_id = {n["id"]: n for n in tree["nodes"]}
+
+    def happened(nid: str) -> bool:
+        return nid in by_id and by_id[nid]["status"] == "resolved-yes"
+
+    out = []
+    for nid, w in worth["nodes"].items():
+        n = by_id.get(nid)
+        if not n or not w.get("reaches_headline") or n["factor"] in PERSONAL_FACTORS:
+            continue
+        if n["kind"] != "world" or n["status"] != "open":
+            continue
+        if not all(happened(d) for d in n.get("depends_on", []) or []):
+            continue
+        if not all(any(happened(d) for d in g) for g in n.get("depends_on_any", []) or []):
+            continue
+        out.append({
+            "id": nid,
+            "name": n["name"],
+            "factor": n["factor"],
+            "horizon": n["horizon"],
+            "chance": rates.get(nid),
+            "if_yes": w["if_yes"],
+            "headline_if_yes": w["headline_if_yes"],
+        })
+    first = next(iter(worth["headline"]), None)
+    out.sort(key=lambda r: -(r["if_yes"].get(first) or 0.0))
+    return out
+
+
 def report_worth(tree: dict, runs: int, seed: int, world_spread: float) -> str:
     missing = missing_probabilities(tree)
     if missing:
@@ -1519,6 +1566,8 @@ def take_snapshot(tree: dict, runs: int, seed: int, world_spread: float, date: s
     def per_scenario(pick):
         return {k: pick(results[k]) for k in keys}
 
+    worth = node_worth(tree, runs, seed, world_spread) if with_worth else None
+
     return {
         "key": f"{date}-{label}" if label else date,
         "date": date,
@@ -1543,7 +1592,9 @@ def take_snapshot(tree: dict, runs: int, seed: int, world_spread: float, date: s
                     for n in tree["nodes"] if n["factor"] == "C"},
         "contact_branches": contact_branches(tree),
         "decisions": decision_comparison(tree, runs, seed, world_spread),
-        "worth": node_worth(tree, runs, seed, world_spread) if with_worth else None,
+        "worth": worth,
+        "next_steps": next_steps(tree, worth, {nid: per_scenario(lambda r, nid=nid: r["nodes"][nid])
+                                               for nid in (n["id"] for n in tree["nodes"])}),
     }
 
 

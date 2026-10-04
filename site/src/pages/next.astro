@@ -1,0 +1,220 @@
+---
+// What could happen next (added 2026-10-03, at John's request). The ten open steps with nothing
+// else in the tree standing before them, ranked by how far each would move the headline if it
+// happened tomorrow. Every saved run records its own list (scripts/compute.py, next_steps), so
+// the page's past versions are read from the runs in the repository rather than kept by hand.
+// John's own access branch is left out (ruled 2026-10-03): this page is about the world.
+import Base from '../layouts/Base.astro';
+import {
+  tree, snapshots, odds, movePoints, band, horizonLabel, type NextStep, type NextStepsRun,
+} from '../lib/tree';
+
+// Ordered by the 2080 deadline, not the 2071 one the rest of the site ranks by. By 2071 the
+// headline is about half a per cent, and most of these steps would move it by less than the
+// dice move it between two runs, so a 2071 order would be partly chance. The weekly scan's
+// article check reads the same deadline (scripts/headline.py).
+const RANK = 'moderate';
+const SHOWN = 10;
+
+const runs: NextStepsRun[] = snapshots.next_steps ?? [];
+const latest = runs.at(-1) ?? null;
+const rankScenario = tree.scenarios.find((s) => s.key === RANK)!;
+const firstScenario = tree.scenarios[0];
+const noise = snapshots.noise?.[RANK] ?? null;
+const headlineNow = snapshots.latest?.worth?.headline?.[RANK] ?? null;
+
+const ranked = (run: NextStepsRun) =>
+  [...(run.steps ?? [])].sort((a, b) => (b.if_yes[RANK] ?? 0) - (a.if_yes[RANK] ?? 0)).slice(0, SHOWN);
+
+const pathOf = (id: string) => tree.nodes.find((n) => n.id === id)?.path ?? null;
+const linkOf = (letter: string) => tree.factors.find((f) => f.letter === letter)?.chain_link ?? letter;
+
+// Where a step stood in the run before: its place, or new to the list.
+function since(step: NextStep, index: number, before: NextStep[] | null): string | null {
+  if (!before) return null;
+  const was = before.findIndex((s) => s.id === step.id);
+  if (was === -1) return 'new to the list';
+  if (was === index) return 'same place';
+  return was > index ? `up from ${was + 1}` : `down from ${was + 1}`;
+}
+
+const top = latest ? ranked(latest) : [];
+const previousTop = runs.length > 1 ? ranked(runs[runs.length - 2]) : null;
+const dropped = previousTop ? previousTop.filter((s) => !top.some((t) => t.id === s.id)) : [];
+
+// Older versions, newest first, each compared with the one before it.
+const history = runs
+  .map((run, i) => ({ run, top: ranked(run), before: i > 0 ? ranked(runs[i - 1]) : null }))
+  .slice(0, -1)
+  .reverse();
+
+const share = (delta: number, base: number | null) =>
+  base ? `${delta >= 0 ? '+' : '−'}${Math.abs(Math.round((100 * delta) / base))}% of today's figure` : '';
+const inNoise = (delta: number) => noise !== null && Math.abs(delta) <= noise;
+// Runs are named by date; several on one day are told apart by their order that day. The labels
+// in the repository are working names ("c5", "step 27") and mean nothing to a reader.
+function runName(run: NextStepsRun): string {
+  const sameDay = runs.filter((r) => r.date === run.date);
+  if (sameDay.length === 1) return run.date;
+  return `${run.date}, run ${sameDay.indexOf(run) + 1} of ${sameDay.length} that day`;
+}
+function changeLine(list: NextStep[], before: NextStep[] | null): string {
+  if (!before) return 'the first list';
+  const added = list.filter((s) => !before.some((b) => b.id === s.id)).length;
+  if (added === 0) return list.every((s, i) => before[i]?.id === s.id) ? 'no change' : 'same steps, new order';
+  return `${added} new to the list`;
+}
+---
+
+<Base
+  title="What could happen next — The Belt Equation"
+  description="The ten open steps with nothing standing before them, ranked by how far each would move the headline if it happened tomorrow, with every earlier version of the list."
+>
+  <section class="hero">
+    <p class="eyebrow">What could happen next</p>
+    <h1>The ten things that would move the number most</h1>
+    <p class="lede">
+      Of the steps the headline rests on, these are the ones nothing else has to happen before. Any of them
+      could land next. They are ranked by how far the headline would move if one happened tomorrow and nothing
+      else changed.
+    </p>
+    <p class="dim" style="font-size: 14px;">
+      Each figure comes from forcing that one step to happen and playing the whole tree out again, so it is
+      worked out rather than guessed. The list is redrawn every time the tree is run, and every earlier version
+      is kept below. My own path in, the training and career steps, is left off: this page is about the world.
+    </p>
+  </section>
+
+  {!latest && (
+    <section class="section narrow">
+      <div class="callout">
+        <h3>No run yet</h3>
+        <p>The list appears once the tree has been played out with each step's worth worked out.</p>
+      </div>
+    </section>
+  )}
+
+  {latest && (
+    <section class="section">
+      <div class="shead">
+        <h2>The list now</h2>
+        <span>from the run of {runName(latest)}, ranked by {rankScenario.window_year}</span>
+      </div>
+      <p class="dim" style="font-size: 14.5px; margin-top: 0;">
+        The headline stands at {odds(headlineNow)} by {rankScenario.window_year}. The figures are read against
+        {' '}{rankScenario.window_year} rather than {firstScenario.window_year} because by {firstScenario.window_year}
+        {' '}the headline is so small that most of these steps would move it by less than the dice do between two
+        runs, and the order would be partly chance.
+        {noise !== null && <> Anything under about {band(noise)} is inside that noise even here, so read the order
+        more than the last decimal.</>}
+      </p>
+      <ol class="watchlist nextlist">
+        {top.map((s, i) => {
+          const path = pathOf(s.id);
+          const moved = since(s, i, previousTop);
+          return (
+            <li>
+              <span class="nrank">{i + 1}</span>
+              <span class="nbody">
+                {path ? <a class="wname" href={path}>{s.name}</a> : <span class="wname">{s.name}</span>}
+                <span class="wno">
+                  {linkOf(s.factor)} · {horizonLabel[s.horizon]}
+                  {s.chance && <> · {odds(s.chance[firstScenario.key])} chance by {firstScenario.window_year},
+                  {' '}{odds(s.chance[RANK])} by {rankScenario.window_year}</>}
+                  {moved && <> · {moved}</>}
+                </span>
+              </span>
+              <span class="wworth">
+                {movePoints(s.if_yes[RANK], 2)}
+                <span class="nshare">
+                  {share(s.if_yes[RANK], headlineNow)}{inNoise(s.if_yes[RANK]) && <>, within the noise</>}
+                </span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+      {dropped.length > 0 && (
+        <p class="dim" style="font-size: 13.5px;">
+          Off the list since the run before: {dropped.map((s, i) => (
+            <>{i > 0 ? ', ' : ''}{pathOf(s.id) ? <a href={pathOf(s.id)!}>{s.name}</a> : s.name}</>
+          ))}.
+        </p>
+      )}
+    </section>
+  )}
+
+  {latest && (
+    <section class="section narrow">
+      <div class="shead">
+        <h2>How to read it</h2>
+      </div>
+      <p>
+        <strong>When.</strong> The tree does not give a year for each step. It gives a rough band, how soon the step
+        could be decided, and a chance for each deadline. A step marked as playing out over the whole window can
+        still happen early; it just is not expected to.
+      </p>
+      <p>
+        <strong>Worth, not likelihood.</strong> A step near the top is not the most likely to happen next. It is
+        the one that would change the answer most if it did. Steps the tree already expects, like a rocket
+        recovering both its stages, are worth less because most of their effect is already counted.
+      </p>
+      <p>
+        <strong>What is missing.</strong> Bigger steps sit further up the tree, behind ones that have not happened
+        yet, so they are not on this list until those do. The full picture is on <a href="/tree/">the tree</a>,
+        where each part has its own list of what would move it.
+      </p>
+    </section>
+  )}
+
+  {history.length > 0 && (
+    <section class="section">
+      <div class="shead">
+        <h2>Earlier versions</h2>
+        <span>one per saved run, newest first</span>
+      </div>
+      <p class="dim" style="font-size: 14px; margin-top: 0;">
+        Each list is read from a run saved in the repository. Runs from before 2026-10-03 did not record the list
+        themselves; it was worked out afterwards from the tree as it was committed with each run, using the figures
+        that run saved.
+      </p>
+      {history.map(({ run, top: list, before }) => (
+        <details class="old-scan">
+          <summary>
+            <span class="old-date">{runName(run)}</span>
+            <span class="old-sum">{changeLine(list, before)}</span>
+            {run.review_status === 'pre-review' && <span class="chip">before the outside review</span>}
+            {run.backfilled && <span class="chip">worked out afterwards</span>}
+          </summary>
+          <ol class="old-items">
+            {list.map((s, i) => {
+              const path = pathOf(s.id);
+              const moved = since(s, i, before);
+              return (
+                <li>
+                  {i + 1}. {path ? <a href={path}>{s.name}</a> : s.name}
+                  <p>
+                    {movePoints(s.if_yes[RANK], 2)} by {rankScenario.window_year} · {horizonLabel[s.horizon]}
+                    {moved && <> · {moved}</>}
+                  </p>
+                </li>
+              );
+            })}
+          </ol>
+        </details>
+      ))}
+    </section>
+  )}
+</Base>
+
+<style>
+  .nextlist li { grid-template-columns: 2.2em minmax(0, 1fr) auto; }
+  .nrank { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+  .nbody { display: grid; gap: 4px; }
+  .nextlist .wno { grid-column: auto; }
+  .nshare { display: block; font-family: var(--sans); font-size: 11.5px; color: var(--muted); }
+  @media (max-width: 720px) {
+    .nextlist li { grid-template-columns: 2.2em minmax(0, 1fr); }
+    .nextlist .wworth { grid-column: 2; text-align: left; }
+  }
+</style>

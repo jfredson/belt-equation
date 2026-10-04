@@ -42,6 +42,7 @@ One file per scan, appended to the folder and never edited. The export script va
     sources = ["https://..."]      # required for every verdict but quiet
     ledger = "2026-09-27-ship-caught"   # the ledger entry id, for moved and resolved
     for_john = "..."               # required for flagged: the move it would have made and why
+    article = "..."                # optional: an article prompt for John (scan procedure, step 3b)
 
 Every item names at least one search it ran, with one exception: a node that resolves only when one of the nodes it depends on resolves has nothing of its own to look for, so it may leave `queries` empty as long as its verdict is `quiet` and `found` says why no search was run. Every other verdict still needs a search.
 

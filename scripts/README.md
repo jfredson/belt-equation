@@ -13,6 +13,14 @@
 
 `validate` and `shape` work on a tree with no probabilities. `run` and `compare` refuse until every open world node has a probability for every scenario, which is Phase 3. The rules the script enforces are listed in docs/node-schema.md under "Rules the compute script enforces".
 
+`headline.py` is the weekly scan's article check (added 2026-10-03; docs/scan-procedure.md, step 3b). It saves the headline before the scan's edits and compares it after, printing "BIG MOVER" when the 2080 headline moved by 5% of itself or more, and lists the steps worth 10% or more of that headline if they came true, from the newest saved run.
+
+    python3 scripts/headline.py save FILE          keep the headline as it stands in FILE
+    python3 scripts/headline.py compare FILE       compare the headline now with FILE
+    python3 scripts/headline.py stakes             the high-stakes steps
+
+`backfill_next_steps.py` (added 2026-10-03) works out "what could happen next" for the runs saved before each run recorded that list itself, reading each from the tree as committed with the run, and writes `data/snapshots/backfill/next-steps.json`. The site's `/next/` page reads every run's list from there or from the run itself.
+
 ## Snapshots
 
 A snapshot is the complete output of one run, written to `data/snapshots/YYYY-MM-DD[-label].json`

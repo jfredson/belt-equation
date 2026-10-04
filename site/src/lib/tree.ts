@@ -254,6 +254,29 @@ export type Snapshots = {
     tiers: Record<string, ByScenario>;
     chain: Record<string, ByScenario>;
   } | null;
+  /** What could happen next, run by run, oldest first (the /next/ page). */
+  next_steps: NextStepsRun[];
+};
+
+/** One open step with nothing open before it, as one run saw it (scripts/compute.py, next_steps). */
+export type NextStep = {
+  id: string;
+  name: string;
+  factor: string;
+  horizon: Node['horizon'];
+  chance: ByScenario | null;
+  if_yes: ByScenario;
+  headline_if_yes: ByScenario;
+};
+
+export type NextStepsRun = {
+  key: string;
+  date: string;
+  label: string | null;
+  review_status: string | null;
+  /** True for runs saved before 2026-10-03, whose list was worked out afterwards. */
+  backfilled: boolean;
+  steps: NextStep[];
 };
 
 export type LedgerKind = 'event' | 'resolution' | 'revision' | 'structure' | 'decision' | 'held-steady';
