@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-06
+
+- First audit of the weekly scan (docs/scan-plan.md, step 38, now done), ruled by John on Claude's proposals. **No number moved** and no run was taken. The four scans on file (2026-09-19 to 2026-10-04) made 141 checks, moved nothing, resolved nothing and sent nothing to John; the 2026-10-04 scan kept the two-searches rule and was accepted by the export, but was committed about 39 hours after it ran (started 2026-10-04 18:07 Pacific, pushed 2026-10-06 09:11), most likely because the laptop was closed. Four rulings. First, C1 ("A non-human mind produces knowledge beyond us") stays open, and "not specified by its operators" is read strictly: a search frame and scoring rule built by the operators make the idea theirs, so FunSearch and AlphaTensor do not resolve it, AlphaEvolve fails for now for want of a peer-reviewed record saying the idea was the system's, and Axiom Math's proofs fail for want of a record saying they go beyond human work; it may be looked at again after 2026-12-31 (decision log in docs/definitions.md). Second, the scan now reads each node's `verify` list (its claims still to check) and gives each claim a search of its own (docs/scan-procedure.md, step 1), after four scans in a row never read C1's list; AlphaTensor (Nature, October 2022) is added to that list. Third, a search counts toward a node only if it was aimed at that node, a search reused from another node is marked in a new `reused` field with a one-line reason, and each month's audit spot-checks that searches bear on their nodes, starting with the reused ones (docs/scan-plan.md, decision 8). Fourth, the 0.10 cap on a move per scan and the weekly/monthly reading split stay as they are, with a fallback if a whole-tree run comes back thin (docs/scan-plan.md, decisions 2 and 3).
+
 ## 2026-10-04
 
 - Weekly scan (scheduled task, 2026-10-04): 63 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-10-04.toml. Starship Flight 14 (2026-09-28) reached orbit with no stage recovered, noted with a held-steady ledger entry.
