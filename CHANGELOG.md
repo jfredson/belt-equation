@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-04
+
+- Weekly scan (scheduled task, 2026-10-04): 63 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-10-04.toml. Starship Flight 14 (2026-09-28) reached orbit with no stage recovered, noted with a held-steady ledger entry.
+
 ## 2026-10-03
 
 - New page on the website, "What could happen next" (`/next/`, asked for by John 2026-10-03, his own access steps left off at his ruling). **No number moved.** It lists the ten open steps that nothing else in the tree has to happen before, ranked by how far each would move the headline by 2080 if it happened tomorrow, with each step's rough timing band and its chance by 2071 and 2080; and it keeps every earlier version of the list, one per saved run. From now on each saved run records its own list; the seven runs saved before today had theirs worked out afterwards from the tree as committed with each (data/snapshots/backfill/next-steps.json), and the page says so. Ranked by 2080, unlike the rest of the site's lists, because by 2071 most of these steps would move the headline by less than the dice move it between two runs.

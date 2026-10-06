@@ -1,0 +1,391 @@
+[scan]
+date = 2026-10-04
+ran_at = "2026-10-05T01:07:32Z"
+scope = "monthly"
+nodes_checked = 63
+searches = 128
+commit_before = "d84050f"
+
+[[item]]
+node = "B-mammal-born-and-weaned-in-partial-gravity"
+verdict = "quiet"
+queries = ["mammal born partial gravity centrifuge mice pregnancy weaned study September 2026", "NASA JAXA rodent reproduction artificial gravity Moon Mars gravity October 2026"]
+found = "No peer-reviewed report of a mammal conceived, born and weaned in partial gravity appeared. Results only describe the existing JAXA MARS centrifuge work and planned reproduction studies."
+
+[[item]]
+node = "B-human-year-in-partial-gravity-without-disqualifying-harm"
+verdict = "quiet"
+queries = ["astronaut year-long mission lunar gravity health outcomes peer-reviewed September 2026", "Artemis crew lunar surface stay twelve months partial gravity planning October 2026"]
+found = "No person has completed twelve months at partial gravity and no such health report appeared. Lunar surface stays remain planned at days to weeks, with Artemis crewed landing not before 2028."
+
+[[item]]
+node = "B-human-child-born-off-earth"
+verdict = "quiet"
+queries = ["first baby born in space human reproduction off Earth news September 2026", "SpaceBorn United embryo orbit mission update October 2026"]
+found = "No child has been born off Earth. A SpaceBorn United reproduction consortium met 2026-09-26 to 2026-09-28 in Amsterdam, which is a roadmap meeting, not the event."
+
+[[item]]
+node = "B-crewed-spin-gravity-demonstration"
+verdict = "quiet"
+queries = ["Vast Haven-2 artificial gravity spinning station crewed demonstration September 2026", "rotating space station artificial gravity crew month spin launch news October 2026"]
+found = "No crewed spinning spacecraft has produced artificial gravity for thirty days. Vast says its rotating habitat is not before the 2030s, unchanged from the prior scan."
+
+[[item]]
+node = "B-earth-gravity-habitat-occupied-for-a-year"
+verdict = "quiet"
+queries = ["Gateway Foundation Von Braun rotating space habitat Earth gravity news September 2026", "spinning habitat one gravity ten people occupied orbit construction 2026 October"]
+found = "No rotating habitat with Earth-normal gravity exists or is under construction in orbit; results are only concepts such as Voyager Station and Von Braun, with repeated delays."
+
+[[item]]
+node = "B-long-term-off-earth-living-by-some-route"
+verdict = "quiet"
+queries = ["long-term human settlement off Earth partial gravity or spinning habitat milestone October 2026", "spinning habitat one gravity ten people occupied orbit construction 2026 October"]
+found = "Neither route node has resolved; no milestone for either appeared in the window."
+
+[[item]]
+node = "B-shielding-halves-deep-space-radiation-dose"
+verdict = "quiet"
+queries = ["radiation shielding flight measurement deep space dose reduction Artemis II results September 2026", "magnetic shield OR water shield OR hydrogen-rich shielding crew cosmic ray dose halved flight test 2026"]
+found = "No peer-reviewed flight measurement of a shield halving deep-space dose appeared. Artemis I and II radiation work, including the AstroRad vest, is about solar events and orientation, not a matched 50 percent GCR comparison."
+
+[[item]]
+node = "B-closed-loop-life-support-year-off-earth"
+verdict = "quiet"
+queries = ["closed-loop life support year-long crew food grown on site Lunar Palace OR Biosphere OR MELiSSA September 2026", "Tiangong OR ISS water recovery oxygen recycling percent record crew food production October 2026"]
+found = "No off-Earth crew has done twelve months with over half of calories grown on site. Ground analogues like Lunar Palace and Tiangong recycling claims (about 95 percent water, 100 percent oxygen regeneration) do not meet the criterion."
+
+[[item]]
+node = "B-radiation-resistance-treatment-for-humans"
+verdict = "quiet"
+queries = ["FDA approves radioprotector OR radiation countermeasure astronauts cancer risk drug approval September 2026", "NASA crew health standard space radiation cancer risk countermeasure gene therapy October 2026"]
+found = "No regulator approval or agency standard adoption of a treatment halving chronic space radiation risk appeared. Only research and countermeasure development was found."
+
+[[item]]
+node = "B-staple-crop-grown-from-seed-to-harvest-off-earth"
+verdict = "quiet"
+queries = ["wheat OR rice OR potato harvest space station Tiangong crop grain kilogram September 2026", "Shenzhou rice wheat grown seed to seed Tiangong harvest 2026"]
+found = "The Tiangong two-generation rice harvest was on 2026-08-05, before the leaf window, and was a science sample collection with no reported one-kilogram edible harvest. A second wheat generation is nearing the end of its cycle but no harvest weight was reported."
+
+[[item]]
+node = "B-major-operation-under-anaesthesia-performed-off-earth"
+verdict = "quiet"
+queries = ["surgery performed in space astronaut operation under anesthesia first off Earth September 2026", "space surgery robot microgravity operation astronaut medical evacuation ISS October 2026"]
+found = "No operation under anaesthesia has been performed off Earth. Only simulated robotic surgery on the ISS (SpaceMIRA) and parabolic flight anaesthesia studies appeared."
+
+[[item]]
+node = "C1"
+verdict = "noted"
+queries = ["AI-discovered proof peer-reviewed Lean verified beyond human mathematicians September 2026", "Navier-Stokes OpenAI proof review October 2026", "Claude Fermat's Last Theorem Lean formalization Anthropic Buzzard"]
+found = "Anthropic reported Claude produced a full Lean formalization of Fermat's Last Theorem, checked by Kevin Buzzard, but it formalizes a known human proof so it is not a result beyond human work; OpenAI's Navier-Stokes claim (2026-09-08) still has no independent peer review and Clay has not accepted it, and Axiom Math has AI proofs accepted by journals, though not shown acknowledged as beyond human results. Probability is already 0.95 so nothing moves."
+sources = ["https://www.anthropic.com/news/formalizing-fermats-last-theorem", "https://thenextweb.com/news/anthropic-claude-fermat-last-theorem-lean-buzzard", "https://www.implicator.ai/clay-institute-navier-stokes-openai-proof-claim/", "https://axios.com/2026/05/26/axiom-ai-math-journal"]
+
+[[item]]
+node = "C2"
+verdict = "quiet"
+queries = ["AI-originated concept adopted textbooks field standard method AlphaFold AlphaEvolve September 2026", "AI-discovered proof peer-reviewed Lean verified beyond human mathematicians September 2026"]
+found = "No new evidence of an AI-originated concept reaching the two-textbook or majority-of-papers bar in a named field; results were general AlphaFold and AlphaEvolve background."
+
+[[item]]
+node = "C3"
+verdict = "quiet"
+queries = ["technosignature detection confirmed independent teams peer-reviewed September 2026", "K2-18b biosignature or Mars life evidence new results October 2026"]
+found = "No confirmed technosignature or complex-life detection; K2-18b microbial biosignature claims are increasingly disputed and Mars findings concern possible microbial proxies, neither meeting the criterion."
+
+[[item]]
+node = "C4"
+verdict = "quiet"
+queries = ["SETI signal decoded extraterrestrial message news October 2026", "technosignature detection confirmed independent teams peer-reviewed September 2026"]
+found = "No verified non-human signal exists to decode; the only decoding story is the 2023 SETI Institute Sign in Space art project simulation."
+
+[[item]]
+node = "C5"
+verdict = "quiet"
+queries = ["AI consciousness independent replication measurement machine mind study September 2026", "Navier-Stokes OpenAI proof review October 2026"]
+found = "No independently replicated inside measurement for any AI system and no resolved C2 precursor; only symposium papers and an upcoming book on machine consciousness appeared."
+
+[[item]]
+node = "D-nuclear-propulsion-changes-orbit-in-space"
+verdict = "quiet"
+queries = ["nuclear thermal electric propulsion spacecraft in space delta-v news September 2026", "NASA nuclear electric propulsion SR-1 Freedom reactor launch 2028 update September 2026"]
+found = "No reactor-powered spacecraft has flown or accumulated delta-v in the window; DARPA DRACO was cancelled in 2025 and SR-1 Freedom remains a plan for a December 2028 launch."
+
+[[item]]
+node = "D-nuclear-propulsion-in-routine-use"
+verdict = "quiet"
+queries = ["nuclear reactor spacecraft launch Jetson DRACO fission propulsion October 2026", "DARPA DRACO cancelled nuclear thermal rocket demonstration status 2026"]
+found = "No new nuclear-propulsion mission flew or was funded in the window; DRACO stays cancelled and SR-1 Freedom is still a 2028 plan."
+
+[[item]]
+node = "D-fast-transit-in-routine-use"
+verdict = "quiet"
+queries = ["Starship Flight 14 result September 2026 asteroid belt mission arrival", "spacecraft arrives asteroid belt Psyche Ceres mission within year fast transit September 2026"]
+found = "Starship Flight 14 reached orbit on 2026-09-28 and was cut short, but no mission reached the asteroid belt within twelve months of leaving Earth; Psyche arrives in 2029 after a multi-year cruise."
+
+[[item]]
+node = "D-high-power-solar-electric-propulsion-in-routine-use"
+verdict = "quiet"
+queries = ["megawatt solar electric propulsion mission Power and Propulsion Element Gateway September 2026", "high-power electric propulsion tug megawatt thruster test announcement October 2026"]
+found = "No megawatt-class solar-electric mission flew in the window; the PPE is about 60 kilowatts and NASA's lithium MPD thruster work (120 kilowatts, February 2026) is ground testing."
+
+[[item]]
+node = "D-crew-round-trip-beyond-the-earth-moon-system"
+verdict = "quiet"
+queries = ["Artemis II crew beyond Moon return Mars crewed mission news September 2026", "crewed Mars mission SpaceX Starship Mars 2026 window crew plans September 2026"]
+found = "Nothing new in the window; Artemis II flew around the Moon in April 2026, well short of five million kilometres, and crewed Mars plans remain undated, with uncrewed Starships targeting the November to December 2026 window."
+
+[[item]]
+node = "D-constant-acceleration-drive-demonstrated"
+verdict = "quiet"
+queries = ["fusion drive high thrust high exhaust velocity space test October 2026", "Helicity Space Princeton Satellite Systems fusion propulsion thrust milestone September 2026"]
+found = "No in-space test reached 100 km/s exhaust speed with over one kilonewton; Pulsar Fusion's Sunbird first plasma (April 2026) is a ground test, and thrust measurement is only a stated next step."
+
+[[item]]
+node = "D-permanent-crewed-site-beyond-the-earth-moon-system"
+verdict = "quiet"
+queries = ["Mars base crewed outpost year-round occupation plan beyond Moon 2026 news September 2026", "permanent crewed station Mars or deep space continuously occupied year Moon base crew rotation October 2026"]
+found = "No site beyond the Earth-Moon system is crewed; a 2026-07-25 multi-agency roadmap only plans a lunar base and crewed Mars around 2035."
+
+[[item]]
+node = "E-megawatt-spacecraft-operates-in-orbit"
+verdict = "quiet"
+queries = ["megawatt-class spacecraft power in orbit operator October 2026", "high power solar electric spacecraft 1 megawatt orbit flight September 2026"]
+found = "No operator reported a spacecraft generating and using a megawatt in orbit since 2026-09-27. Results show only plans (Orbital Composites 2027 kilowatt demo, K2 Space buses of about 20 kilowatts)."
+
+[[item]]
+node = "E-fission-reactor-runs-on-lunar-surface"
+verdict = "quiet"
+queries = ["NASA Fission Surface Power lunar reactor September 2026", "lunar nuclear reactor 40 kilowatt contract award October 2026"]
+found = "Idaho National Laboratory's request for information on Fission Surface Power closed 2026-09-08, with a request for proposals to follow, and the target remains about 2030. Plans and procurement steps only, no reactor operating."
+
+[[item]]
+node = "E-power-through-the-lunar-night-at-a-surface-site"
+verdict = "quiet"
+queries = ["lunar surface power 100 kilowatts lunar night site September 2026", "Moon base power system lunar night mission record October 2026"]
+found = "No lunar site with 100 kilowatts through the night was reported. Northrop Grumman's Lunar Infrastructure Demo plans (announced 2026-08-04, before the window) and Astrobotic LunaGrid (operational 2028 target) are plans."
+
+[[item]]
+node = "E-solar-with-storage-powers-a-lunar-polar-site-for-a-year"
+verdict = "quiet"
+queries = ["lunar south pole solar array storage power demonstration September 2026", "Astrobotic LunaGrid Honeybee vertical solar array lunar 2026 news"]
+found = "No polar solar-plus-storage system has operated on the Moon; Astrobotic's LunaGrid and VOLT remain in ground testing with an operational target of 2028."
+
+[[item]]
+node = "E-power-delivered-from-orbit-to-the-lunar-surface-for-a-year"
+verdict = "quiet"
+queries = ["power beaming Moon laser microwave lunar surface demonstration September 2026", "Volta Space Technologies lunar power beaming orbit reflected sunlight Moon October 2026"]
+found = "No orbit-to-Moon power delivery was reported; Volta's LightGrid is a plan with an Earth-orbit test and surface benefit not before 2028."
+
+[[item]]
+node = "E-superconducting-wire-price-falls-tenfold"
+verdict = "quiet"
+queries = ["REBCO HTS tape price per kiloamp-metre September 2026", "high-temperature superconductor wire cost reduction manufacturer capacity announcement October 2026"]
+found = "No price list or procurement record at 15 dollars per kiloamp-metre or less appeared; results only restate industry targets of 10 to 20 dollars per kiloamp-metre."
+
+[[item]]
+node = "E-fusion-plant-delivers-net-electricity"
+verdict = "quiet"
+queries = ["fusion power plant grid electricity SPARC ARC Helion Polaris September 2026", "fusion plant first electricity to grid Helion Orion Microsoft October 2026"]
+found = "No fusion plant exported net electricity. Helion's Orion is under construction with a grid connection required by end of 2028 and SPARC is not designed to produce electricity."
+
+[[item]]
+node = "E-compact-power-source-at-fast-drive-scale"
+verdict = "quiet"
+queries = ["100 megawatt compact reactor or fusion power system test under 100 tonnes September 2026", "space nuclear electric propulsion megawatt reactor ground test September 2026"]
+found = "No 100 megawatt system at or under 100 tonnes was tested. Only an unsubstantiated Kepler Fusion 2026 target appeared, with no mass or test record."
+
+[[item]]
+node = "E-fission-electric-space-power-system-reaches-a-hundred-megawatts"
+verdict = "quiet"
+queries = ["space nuclear electric propulsion megawatt reactor ground test September 2026", "NASA DARPA space reactor megawatt power conversion radiator test October 2026"]
+found = "No 100 megawatt space fission test was reported; the nearest flight plan is SR-1 Freedom at about 20 kilowatts electric, scheduled for end of 2028."
+
+[[item]]
+node = "E-megawatt-heat-rejected-for-thirty-days-in-vacuum"
+verdict = "quiet"
+queries = ["space radiator megawatt heat rejection flight test orbit 2026", "spacecraft thermal radiator in-orbit demonstration kilowatt heat rejection October 2026"]
+found = "No megawatt, thirty-day vacuum heat rejection flight test was reported. A shape-memory-alloy radiator flight test is scheduled for spring 2027 at far smaller scale, and MARVL is design work."
+
+[[item]]
+node = "L-heavy-launcher-100-per-year"
+verdict = "noted"
+queries = ["Starship Flight 14 result orbit booster ship splashdown September 28 2026", "SpaceX Starship Flight 14 outcome October 2026", "SpaceX orbital launch log 2026 launches so far Falcon 9 count September 2026"]
+found = "Starship Flight 14 launched 2026-09-28 and reached orbit (about 275 km) for the first time, deploying 26 Starlink V3 satellites, but one Raptor shut down early and the ship was deorbited after about 2 orbits, splashing down in the Pacific roughly 3 hours after liftoff. This is the first Starship orbital flight, one of the 100 needed in a calendar year, and neither stage is a reuse flight, so no probability moves; the criterion needs 100 orbital flights by a fully reusable vehicle with both stages recovered on half of them."
+sources = ["https://www.astronomy.com/whats-launching-this-week/starship-reaches-orbit-on-14th-test-flight/", "https://www.fox13seattle.com/news/spacex-preps-starship-flight-14-historic-first-orbital-test-launch-monday", "https://abcnews.com/video/136824936/"]
+ledger = "2026-10-04-starship-reaches-orbit-no-recovery"
+
+[[item]]
+node = "L-fully-reusable-heavy-launcher-recovers-both-stages"
+verdict = "noted"
+queries = ["Starship Flight 14 result orbit booster ship splashdown September 28 2026", "Starship Flight 14 booster Super Heavy Gulf splashdown not recovered Flight 15 catch plan"]
+found = "On Flight 14 (2026-09-28) the booster splashed down in the Gulf of Mexico and the ship made a controlled splashdown in the Pacific, with no tower catch attempted for either stage; neither was retrieved or declared reflight-ready. The flight reached orbit but no recovery occurred, so the criterion is not met and no probability moves; catch attempts are deferred to Flight 15, with provisional planning pointing to 2026-10-19 at the earliest."
+sources = ["https://www.astronomy.com/whats-launching-this-week/starship-reaches-orbit-on-14th-test-flight/", "https://www.fox13seattle.com/news/spacex-preps-starship-flight-14-historic-first-orbital-test-launch-monday", "https://www.space.com/space-exploration/launches-spacecraft/starship-just-reached-orbit-for-the-1st-time-whats-next-for-the-spacex-megarocket"]
+ledger = "2026-10-04-starship-reaches-orbit-no-recovery"
+article = "Big news on a high-stakes step: Starship reached orbit for the first time on 2026-09-28 and deployed 26 Starlink V3 satellites, but both stages splashed down and neither was caught, so the step for recovering both stages of a heavy launcher stays open. Nothing in the tree moved, because the criterion needs a physical recovery of both stages; the first catch attempts are provisionally set for Flight 15 on 2026-10-19 or later."
+
+[[item]]
+node = "L-orbital-propellant-transfer-at-scale"
+verdict = "quiet"
+queries = ["Starship ship-to-ship propellant transfer date HLS NASA milestone September 2026", "Starship propellant transfer demonstration Flight 15 Flight 16 timeline after orbit Musk October 2026"]
+found = "No propellant transfer has been attempted as of 2026-09-26 per NASA OIG reporting; the demonstration remains targeted no earlier than late 2026 with no firm date, and the first Starship orbital flight on 2026-09-28 did not include one."
+
+[[item]]
+node = "L-crew-lands-on-moon-in-reusable-lander"
+verdict = "quiet"
+queries = ["Artemis lunar lander crewed landing Starship Blue Moon news October 2026", "NASA Artemis III Artemis IV lander schedule announcement September 2026 Isaacman"]
+found = "Plans are unchanged: Artemis III is a late-2027 Earth-orbit docking test with no landing, and the first crewed landing is Artemis IV, targeted for early 2028. No new schedule change surfaced in the window."
+
+[[item]]
+node = "L-launch-price-below-200-dollars-per-kg"
+verdict = "quiet"
+queries = ["launch price per kg low Earth orbit Starship price list contract September 2026", "SpaceX Starship launch services price per kilogram customer contract announced 2026 Rocket Lab Neutron price"]
+found = "The only public Starship contract price found is the 90 million dollar figure from a Voyager Technologies filing, about 600 dollars per kg at 150 tonnes; Musk's 2026-07-29 sub-100-dollar claim is a target, not a sold price, and both predate the window."
+
+[[item]]
+node = "L-large-structure-assembled-in-orbit"
+verdict = "quiet"
+queries = ["large structure assembled in orbit 100 meters robotic assembly launches September 2026", "in-space assembly large truss antenna solar array kilometer orbit Starlab Axiom Vast station assembly 2026 news"]
+found = "No assembly of a structure over 100 metres from five or more launches was reported; results were concept studies and commercial station schedules (Haven-1 and Axiom modules slipping to 2027 or later)."
+
+[[item]]
+node = "L-lunar-material-delivered-to-orbit-at-scale"
+verdict = "quiet"
+queries = ["lunar regolith oxygen extraction delivered to orbit tonnes Moon mining September 2026", "Interlune helium-3 Moon regolith excavation Blue Origin lunar resources customer 2026"]
+found = "No lunar material has been delivered to orbit in any quantity; activity is ground prototypes (NASA solar carbothermal demo in May 2026, Interlune's excavator prototype) and contracts for later this decade."
+
+[[item]]
+node = "L-off-earth-material-delivered-at-scale"
+verdict = "quiet"
+queries = ["lunar regolith oxygen extraction delivered to orbit tonnes Moon mining September 2026", "asteroid mining material delivered orbit AstroForge Karman+ September 2026"]
+found = "Neither route node has resolved; no lunar or asteroid material delivered to orbit was reported in the window."
+
+[[item]]
+node = "L-asteroid-material-delivered-to-orbit-at-scale"
+verdict = "quiet"
+queries = ["asteroid mining material delivered orbit AstroForge Karman+ September 2026", "asteroid mining mission news October 2026 AstroForge Odin Vestri launch"]
+found = "No asteroid material delivery was reported; AstroForge's Odin lost contact after its February 2025 launch, its Vestri lander is still ahead, and Karman+ aims for a first launch in 2027."
+
+[[item]]
+node = "L-cryogenic-propellant-stored-in-orbit-six-months-and-used"
+verdict = "quiet"
+queries = ["orbital depot cryogenic propellant long-duration storage boil-off flight test September October 2026", "LOXSAT Eta Space Rocket Lab launch cryogenic oxygen orbit 2026 status"]
+found = "No ten-tonne cryogenic storage in orbit was reported; the nearest effort, NASA and Eta Space's LOXSAT, is a roughly 135 kg satellite technology demonstration with a nine-month plan, far below ten tonnes, and a full-scale depot is not expected before 2030."
+
+[[item]]
+node = "L-propellant-produced-off-earth-and-fired-in-a-thruster"
+verdict = "quiet"
+queries = ["in-situ resource utilization propellant produced on Moon Mars fired thruster water ice September 2026", "lunar ISRU demonstration water ice oxygen propellant production Moon mission news September 2026 Intuitive Machines Lunar Outpost"]
+found = "No propellant has been produced off Earth and fired; ISRU demonstrations remain ground work or planned flights, such as OffWorld's Prospector 1 scheduled for late 2027."
+
+[[item]]
+node = "M-paying-customer-for-work-done-in-orbit"
+verdict = "quiet"
+queries = ["Varda OR Space Forge OR Starcloud OR Axiom orbital data center revenue filing in-orbit manufacturing customers October 2026", "in-orbit computing OR manufacturing company annual revenue million paying customers September 2026"]
+found = "No filing showing ten million dollars of in-orbit service revenue appeared. Starcloud raised 250 million dollars on 2026-08-21 (before the window), is pre-commercial, and plans Starcloud-2 in October 2026."
+
+[[item]]
+node = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
+verdict = "quiet"
+queries = ["space-based solar power beaming ground receiver kilowatt demonstration Caltech OR Aetherflux OR OHISAMA October 2026", "Aetherflux power beaming launch orbit demonstration 2026 news"]
+found = "No orbital power-beaming demonstration was reported as launched or completed in the window. OHISAMA and Aetherflux remain planned for 2026 with no new launch news."
+
+[[item]]
+node = "M-hundred-people-working-off-earth-for-pay"
+verdict = "quiet"
+queries = ["number of people in space record crew count ISS Tiangong commercial station paid crew September 2026", "hundred people in orbit at once workers space station crew October 2026"]
+found = "Crew counts off Earth remain around 10 to 14 with a record of 19 (2024-09-11). Nothing near one hundred paid workers appeared."
+
+[[item]]
+node = "M-off-earth-product-sold-at-a-profit"
+verdict = "quiet"
+queries = ["asteroid OR lunar mining company sells product revenue profit audited accounts September 2026", "lunar regolith OR helium-3 OR water ice sale commercial contract Interlune OR Astrobotic October 2026"]
+found = "No company reported profitable sales of an off-Earth product. Interlune's helium-3 supply agreements are future deliveries (2029 onward) and AstroForge is pre-revenue."
+
+[[item]]
+node = "M-commercial-insurance-written-on-a-private-lunar-asset"
+verdict = "quiet"
+queries = ["insurance lunar lander OR lunar asset policy underwriter Lloyd's Intuitive Machines OR Firefly OR ispace September 2026", "space insurance market lunar mission cover premium October 2026"]
+found = "No new lunar-asset insurance policy with a million-dollar premium was reported. Results are general market commentary and older 2022 ispace coverage."
+
+[[item]]
+node = "R-crewed-lunar-program-outlives-two-changes-of-backer"
+verdict = "quiet"
+queries = ["NASA Artemis budget Congress appropriations Moon program September 2026", "Artemis lunar program Congress shutdown continuing resolution NASA fiscal 2027 appropriations September 2026"]
+found = "No change of head of government occurred; Congress passed a continuing resolution through 2026-12-11 keeping Artemis funded, which is not a backer change."
+
+[[item]]
+node = "R-space-funding-holds-through-a-recession"
+verdict = "quiet"
+queries = ["NBER recession declared US economy September 2026", "US economy recession GDP unemployment jobs report September 2026"]
+found = "No NBER recession dating or end date appeared; the US is not officially in recession, with forecasters citing risk around 30 percent."
+
+[[item]]
+node = "R-binding-ban-on-debris-creating-anti-satellite-tests"
+verdict = "quiet"
+queries = ["anti-satellite test ban treaty United Nations China Russia United States September 2026", "UN General Assembly First Committee outer space debris anti-satellite October 2026"]
+found = "No legally binding ASAT test ban with US, China and Russia as parties appeared; the existing moratorium efforts are non-binding and Russia and China opposed them."
+
+[[item]]
+node = "R-off-earth-resource-rights-recognised-by-major-powers"
+verdict = "quiet"
+queries = ["space resources mining legal framework US China agreement October 2026", "China space resources law lunar ILRS ownership extracted resources Artemis Accords September 2026"]
+found = "No treaty or mutually recognising laws on extracted-resource ownership appeared; China has no space-resources statute and still criticises the Artemis Accords."
+
+[[item]]
+node = "R-off-earth-site-accepts-permanent-residents"
+verdict = "quiet"
+queries = ["off-Earth permanent residency Moon Mars settlement residents legal status September 2026", "space station resident status indefinite stay voluntary residence Moon Mars settlers policy September 2026"]
+found = "No off-Earth site has published a permanent resident status; results were only academic discussion and ISS crew news."
+
+[[item]]
+node = "R-us-and-china-recognise-keep-out-zones-around-off-earth-installations"
+verdict = "quiet"
+queries = ["lunar safety zones keep-out zones China US Artemis Accords ILRS recognition September 2026", "US China space talks bilateral agreement lunar safety zone dialogue October 2026"]
+found = "No US-China instrument recognising each other's keep-out zones appeared; September 2026 commentary (NASA chief Isaacman) concerned racing to the lunar surface, not an agreement."
+
+[[item]]
+node = "R-space-traffic-management-authority-among-major-powers"
+verdict = "quiet"
+queries = ["space traffic coordination international authority agreement launch windows manoeuvres September 2026", "UN space traffic management body China United States Russia enforcement authority 2026 agreement"]
+found = "No multi-power body with enforcement authority over manoeuvres or launch windows exists; coordination remains informal and bilateral, with US civil traffic work moving to Commerce."
+
+[[item]]
+node = "W-dog-rapamycin-trial-reports-longer-life"
+verdict = "quiet"
+queries = ["Dog Aging Project TRIAD rapamycin results October 2026", "rapamycin dogs lifespan trial published peer-reviewed September 2026"]
+found = "No primary lifespan analysis of TRIAD or an equivalent trial has been published; the trial remains in progress with about 170 dogs enrolled and a 580-dog goal, and the latest peer-reviewed TRIAD paper found is the 2025 design paper."
+
+[[item]]
+node = "W-regulator-accepts-aging-as-an-indication"
+verdict = "quiet"
+queries = ["FDA EMA aging indication guidance healthy lifespan approval pathway October 2026", "regulator approve drug to slow aging news September 2026"]
+found = "No final guidance, pathway decision or approval naming aging as an indication appeared; the Reagan-Udall Foundation meeting on gerotherapeutic regulatory constructs was held 2026-05-27 and its summary is dated 2026-07-31, both before the window, and is discussion only."
+
+[[item]]
+node = "W-composite-aging-trial-positive-in-humans"
+verdict = "quiet"
+queries = ["randomized trial older adults composite endpoint multiple age-related diseases results September 2026", "TAME trial metformin aging funding results 2026"]
+found = "No qualifying trial reported results; TAME is still not fully funded or reported, with no efficacy results as of 2026."
+
+[[item]]
+node = "W-first-drug-approved-to-slow-aging"
+verdict = "quiet"
+queries = ["first drug approved slow aging label FDA EMA October 2026", "regulator approve drug to slow aging news September 2026"]
+found = "No FDA or EMA approval with an aging or healthspan indication appeared; the only aging-labelled item is a veterinary (dog) drug that cleared an FDA step in April 2026, which does not meet the human-regulator criterion as read here."
+
+[[item]]
+node = "W-human-therapy-cuts-death-rate-in-older-adults"
+verdict = "quiet"
+queries = ["randomized trial all-cause mortality reduction older adults 25 percent September 2026", "TAME trial metformin aging funding results 2026"]
+found = "No placebo-controlled trial in unselected older adults reporting a 25 percent or greater all-cause mortality cut appeared; search returned only older observational and nursing-intervention studies."
+
+[[item]]
+node = "W-verified-human-lifespan-passes-122"
+verdict = "quiet"
+queries = ["Gerontology Research Group oldest person verified September 2026", "world's oldest living person age supercentenarian October 2026"]
+found = "The oldest validated living person is Ethel Caterham of the UK, born 1909-08-21, about 117 years old, well short of the 122 years 164 days needed; Jeanne Calment's record is unchanged."
+
+[[item]]
+node = "W-regulator-accepts-a-biological-measure-of-aging-as-a-trial-endpoint"
+verdict = "quiet"
+queries = ["FDA biomarker qualification epigenetic clock aging endpoint October 2026", "aging biomarker primary endpoint pivotal trial agreed FDA EMA September 2026"]
+found = "No FDA or EMA qualification, guidance or agreed pivotal design using an aging clock as primary endpoint appeared; as of August 2026 epigenetic clocks are not among the eight biomarkers qualified, and the 2026-09-07 Insilico framework paper is a proposal, already noted last scan."
