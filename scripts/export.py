@@ -849,6 +849,16 @@ SCAN_FIELDS = ["date", "ran_at", "scope", "nodes_checked", "searches", "commit_b
 # records are never edited, so the rule starts at a date instead of applying to them.
 TWO_SEARCHES_FROM = "2026-10-04"
 SCAN_NAME = re.compile(r"^(\d{4}-\d{2}-\d{2})(-\d+)?$")
+# A search first run for one node and listed again under another carries a `reused` line: the
+# search as written in `queries`, the node it was first run for, and one line on why it bears on
+# this node (ruled by John 2026-10-06 at the first audit; docs/scan-procedure.md, step 1). The
+# export cannot judge whether the reason is a good one, only that there is one: once the search
+# itself, any node id and these linking words are taken out, at least REUSED_REASON_WORDS words
+# must be left.
+REUSED_FILLER = {"a", "an", "and", "as", "at", "by", "first", "for", "from", "in", "is", "it",
+                 "node", "of", "on", "ran", "reused", "run", "same", "search", "see", "the",
+                 "this", "to", "was", "with"}
+REUSED_REASON_WORDS = 2
 LEDGER_ID = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9][a-z0-9-]*$")
 
 
@@ -910,6 +920,32 @@ def load_scans(scans_dir: Path) -> tuple[list[dict], list[str]]:
         raw["_name_date"] = m.group(1)
         scans.append(raw)
     return scans, problems
+
+
+def reused_problems(iwhere: str, reused, queries, node_ids: set[str]) -> list[str]:
+    """Check an item's `reused` lines: each names one of the item's own searches and gives a reason."""
+    if reused is None:
+        return []
+    if not isinstance(reused, list) or any(not isinstance(r, str) or not r.strip() for r in reused):
+        return [f"{iwhere}: 'reused' lists the searches first run for another node, each one a line "
+                "of text naming the search, that node, and why it bears on this one"]
+    searches = [str(q).strip() for q in queries] if isinstance(queries, list) else []
+    ids = {n.lower() for n in node_ids}
+    problems = []
+    for line in reused:
+        named = [q for q in searches if q and q.lower() in line.lower()]
+        if not named:
+            problems.append(f"{iwhere}: the 'reused' line {line.strip()!r} does not name any search in "
+                            "this item's 'queries'; quote the search as it is written there")
+            continue
+        rest = line.lower().replace(max(named, key=len).lower(), " ")
+        words = [w for w in re.findall(r"[a-z0-9][a-z0-9'-]*", rest)
+                 if w not in REUSED_FILLER and w not in ids]
+        if len(words) < REUSED_REASON_WORDS:
+            problems.append(f"{iwhere}: the search {max(named, key=len)!r} is marked reused without a "
+                            "reason. Say in one line why it bears on this node's criterion, or run a "
+                            "search aimed at this node instead")
+    return problems
 
 
 def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
@@ -988,6 +1024,7 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
                 problems.append(f"{iwhere}: one search is not enough to call a week. Run at least two "
                                 "different searches for every node that is searched at all (one aimed "
                                 "at the source the node names, one at wider reporting), and list both")
+            problems += reused_problems(iwhere, item.get("reused"), queries, node_ids)
             sources = item.get("sources") or []
             if not isinstance(sources, list) or any(not str(s).strip() for s in sources):
                 problems.append(f"{iwhere}: 'sources' must be a list of public records")
