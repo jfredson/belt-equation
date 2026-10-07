@@ -44,7 +44,8 @@ One file per scan, appended to the folder and never edited. The export script va
     for_john = "..."               # required for flagged: the move it would have made and why
     article = "..."                # optional: an article prompt for John (scan procedure, step 3b)
     reused = ["..."]               # required when a search in `queries` was first run for another node:
-                                   # the search, that node, and one line on why it bears on this one
+                                   # the search as written in `queries`, that node, and one line on
+                                   # why it bears on this one; the export refuses a line with no reason
 
 A search counts toward a node only if it was aimed at that node; a search first run for another node and listed again carries a `reused` line saying why it bears on this one (ruled by John 2026-10-06 at the first audit). Every item names at least one search it ran, with one exception: a node that resolves only when one of the nodes it depends on resolves has nothing of its own to look for, so it may leave `queries` empty as long as its verdict is `quiet` and `found` says why no search was run. Every other verdict still needs a search.
 
@@ -78,7 +79,7 @@ Per the ground rule of 2026-09-08. The first two were ruled by John on 2026-09-1
 
 7. **Three surfaces: the Radar page, the home strip, the node page's last three checks.** Moderate confidence. Alternative: the Radar page alone. The strip is the surface most people will see and is one line; the node page's line is what makes a node's number trustworthy at a glance.
 
-8. **After-the-fact review as a standing item in the quarterly scan, and a first audit two scans in.** High confidence. John reads the scanner's entries since the last review, writes correcting revisions where he disagrees, and adjusts the cap or the watch terms. The first audit (step 38) is deliberately early so the procedure is tuned on two real weeks rather than a guess. From the first audit (ruled by John 2026-10-06), each month's audit also spot-checks that searches were aimed at the nodes they are listed under: start with every search marked `reused` since the last audit, then read a handful of other items, and correct by revision where a search did not bear on the criterion.
+8. **After-the-fact review as a standing item in the quarterly scan, and a first audit two scans in.** High confidence. John reads the scanner's entries since the last review, writes correcting revisions where he disagrees, and adjusts the cap or the watch terms. The first audit (step 38) is deliberately early so the procedure is tuned on two real weeks rather than a guess. From the first audit (ruled by John 2026-10-06), a monthly spot-check makes sure searches were aimed at the nodes they are listed under. It is one item in John's monthly Operations review (the monthly section of the review templates document in TimeAssembler's Operations project), not a separate audit: "pick three of the month's Belt Equation scan records and check each search was aimed at its event; reused searches carry a reason." Where a search did not bear on the criterion, correct by revision. (Placed there by John on 2026-10-06, on Claude's proposal, since no monthly audit of the scan existed to hold it.) The export already refuses a `reused` line that gives no reason (scripts/export.py).
 
 ## Steps
 
