@@ -6,6 +6,7 @@ The standalone instruction for the scheduled Radar scan (docs/scan-plan.md, step
 
 - Get the date in John's timezone before anything else: `TZ=America/Los_Angeles date +%F`. That is the scan's `date`; every date you write is absolute (YYYY-MM-DD), never "today" or "last week".
 - The repository is already cloned if you are reading this; if not: `git clone https://github.com/jfredson/belt-equation` in the cloud workspace and `cd` into it. Never work in the linked computer's copy at ~/Code/belt-equation; John's own sessions run there.
+- Switch to main before anything else: `git checkout main`. The cloud workspace clones onto a session branch named `claude/...` that points at the same commit as main, and the publish command in step 6 refuses to push from any branch but main. The scans of 2026-09-27 and 2026-10-04 each had to work this out on their own, and the second lost 39 hours to it (added 2026-10-08).
 - Record `git rev-parse --short HEAD` as `commit_before`.
 - Save the headline as it stands, for the article check in step 3b: `python3 scripts/headline.py save /tmp/belt-headline-before.json` (about twenty seconds). Keep the file outside the repository; the publish command commits everything inside it.
 - Read docs/node-schema.md (the record you will edit), docs/ledger-plan.md (the "Ledger entries" table, for the entry you may write), and this file. Skim data/README.md.
