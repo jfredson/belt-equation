@@ -1,0 +1,113 @@
+[scan]
+date = 2026-10-08
+ran_at = "2026-10-08T18:11:47Z"
+scope = "weekly"
+nodes_checked = 17
+searches = 39
+commit_before = "9322a94"
+
+[[item]]
+node = "B-mammal-born-and-weaned-in-partial-gravity"
+verdict = "quiet"
+queries = ["mouse OR rodent partial gravity centrifuge reproduction pregnancy space station mammal 2026", "JAXA OR NASA OR CMSA mice artificial gravity lunar gravity 1/6 g space station results published"]
+found = "No peer-reviewed report of a mammal conceived, born and weaned at one-sixth to one-half gravity appeared. The nearest items are old JAXA centrifuge mouse work (2017 paper, 2019 lunar-gravity flight with no reproduction result) and a China microgravity mouse birth after return to Earth in December 2025."
+
+[[item]]
+node = "B-crewed-spin-gravity-demonstration"
+verdict = "quiet"
+queries = ["artificial gravity crewed rotating spacecraft Vast Gravitics Voyager Starlab spin gravity 2026 news", "spinning space station crew artificial gravity month-long mission announced Vast Haven-2 rotation test"]
+found = "No crewed spin-gravity mission has flown or been scheduled; Vast has only discussed spin tests of Haven-1 (one uncrewed at end of life) and Vast-1 is a stay of up to 30 days with a launch date of 2027 or later."
+
+[[item]]
+node = "B-staple-crop-grown-from-seed-to-harvest-off-earth"
+verdict = "flagged"
+queries = ["wheat OR potato OR rice harvest grown aboard space station Tiangong Veggie kilogram 2026", "Tiangong rice full life cycle 2022 Chinese Academy of Sciences seed to seed 120 days space station"]
+found = "The verify claim is settled: CAS reported in December 2022 that rice completed a seed-to-seed cycle on Tiangong (2022-07-29 to 2022-11-25, about 120 days), with six seeds yielding 59. Shenzhou-23's rice harvest was reported in August 2026 and tomatoes in March 2026, but no source gives a harvest mass near one kilogram, so the criterion is not met."
+sources = ["https://english.cas.cn/newsroom/cas_media/202212/t20221206_325291.shtml", "https://www.ecns.cn/cns-wire/2026-08-05/detail-ihfhziqh0060650.shtml"]
+for_john = "Verify claim checked: the 2022 Tiangong rice seed-to-seed result (about 120 days) is confirmed by CAS, December 2022, so the claim can be cleared or reworded to cite that record (I may not edit the list). No number would move: the 2026 Shenzhou-23 rice harvest gives no mass, and the step needs at least 1 kg of edible grain or tuber."
+
+[[item]]
+node = "C1"
+verdict = "flagged"
+queries = ["AlphaEvolve peer-reviewed paper published construction discovered by system mathematics 2026", "AlphaEvolve journal publication Nature kissing number 11 dimensions matrix multiplication 4x4 complex 48 multiplications peer reviewed", "AlphaTensor Nature 2022 47 multiplications 4x4 matrices modulo 2 beyond best human-designed algorithms", "AI system discovers new mathematical proof OR construction beyond human record Nature OR Science September 2026", "OpenAI unit distance conjecture disproof Erdős paper accepted journal peer review Annals OR Nature"]
+found = "AlphaEvolve question: its mathematics results are still an arXiv preprint (2511.02864, Georgiev, Gomez-Serrano, Tao, Wagner, 2025-11-03) and the search found no journal acceptance, so no peer-reviewed record yet says the construction was the system's. AlphaTensor facts are confirmed (Nature, October 2022, 47 multiplications for 4x4 over GF(2)) and, under the strict reading ruled 2026-10-06, it does not resolve the step. New candidate: an OpenAI internal model's disproof of Erdős's unit-distance conjecture (announced 2026-05-20 or 21, checked by external mathematicians including Alon and Gowers), with no journal publication found."
+sources = ["https://arxiv.org/abs/2511.02864", "https://en.wikipedia.org/wiki/AlphaTensor", "https://www.scientificamerican.com/article/ai-just-solved-an-80-year-old-erdos-problem-and-mathematicians-are-amazed/"]
+for_john = "Verify claims read: AlphaEvolve is not yet in the peer-reviewed record as the source of its constructions (preprint only); AlphaTensor's facts are correct and it stays unresolved under the strict reading. Please look at the OpenAI unit-distance disproof (May 2026) as a new candidate for C1 once a journal publishes it; its model built the construction itself and outsiders verified it, but I found no peer-reviewed record yet. No move proposed; I may not edit the verify list."
+
+[[item]]
+node = "E-megawatt-spacecraft-operates-in-orbit"
+verdict = "quiet"
+queries = ["megawatt-class power spacecraft orbit solar array 1 MW ROSA Gateway PPE nuclear electric 2026 launch", "nuclear electric spacecraft megawatt power in orbit demonstration DARPA OR NASA OR Roscosmos Zeus 2026"]
+found = "No spacecraft is generating a megawatt in orbit; Gateway was paused in March 2026, its 60 kW power element is being repurposed for SR-1 Freedom (about 20 kW reactor, launch targeted December 2028), and Russia's megawatt-class Zeus tug is not before about 2030."
+
+[[item]]
+node = "E-megawatt-heat-rejected-for-thirty-days-in-vacuum"
+verdict = "quiet"
+queries = ["space radiator megawatt heat rejection flight test reactor NASA Fission Surface Power Space Reactor-1 Freedom 2026", "large deployable radiator flight demonstration kilowatt vacuum thermal loop 2026 orbit"]
+found = "No flight test of a megawatt-scale radiator exists or is scheduled; the nearest hardware is SR-1 Freedom's kilowatt-class radiators, with no published performance figures, and earlier deployable radiators rejected only hundreds of watts to about two kilowatts."
+
+[[item]]
+node = "L-heavy-launcher-100-per-year"
+verdict = "quiet"
+queries = ["orbital launches 2026 count Starship flights this year launch log", "Starship V3 launch cadence 2026 flights per year SpaceX manifest reusable heavy"]
+found = "Starship has flown 14 times in total, with Flight 14 on 2026-09-28 the first to reach orbit; forecasters expect only a handful of flights in 2026, and Musk's weekly cadence target is for 2027, far from 100 qualifying flights in a year."
+
+[[item]]
+node = "L-fully-reusable-heavy-launcher-recovers-both-stages"
+verdict = "quiet"
+queries = ["Starship flight launch October 2026 ship booster catch", "Starship ship catch tower reuse second stage recovered September 2026", "SpaceX Starship Flight 14 results orbit ship splashdown next flight 15 catch FAA"]
+found = "No ship has been caught or landed; Flight 14 (2026-09-28) ended in an ocean splashdown after about three hours and Flight 15, with the first planned tower catch of a ship, is provisionally no earlier than 2026-10-19 with no confirmed FAA approval found."
+
+[[item]]
+node = "L-orbital-propellant-transfer-at-scale"
+verdict = "quiet"
+queries = ["Starship propellant transfer ship-to-ship demonstration HLS NASA 2026", "Starship Flight 15 plans ship-to-ship propellant transfer date HLS milestone NASA SpaceX update"]
+found = "No ship-to-ship transfer has happened; the demonstration is listed as late 2026 or 2026 Q4 and is not confirmed scheduled, and the criterion needs 100 tonnes received."
+
+[[item]]
+node = "L-crew-lands-on-moon-in-reusable-lander"
+verdict = "quiet"
+queries = ["NASA Artemis III lander crewed Moon landing schedule Starship HLS Blue Moon September 2026", "Artemis II aftermath Artemis III Artemis IV lander readiness October 2026 NASA Isaacman", "Blue Origin Blue Moon MK1 lunar landing 2026 reusable"]
+found = "Artemis III is now a 2027 Earth-orbit docking test and the first crewed landing is expected on Artemis IV in 2028; no new lander milestone surfaced in the window, and Blue Origin is repairing its pad after the May 2026 New Glenn explosion."
+
+[[item]]
+node = "L-cryogenic-propellant-stored-in-orbit-six-months-and-used"
+verdict = "quiet"
+queries = ["cryogenic propellant long-duration storage orbit depot boil-off demonstration 2026", "Eta Space LOXSAT launch NASA cryogenic fluid management orbit demonstration news"]
+found = "No ten-tonne, six-month storage has occurred; LOXSAT (a small liquid-oxygen demonstration on Rocket Lab Electron) has slipped repeatedly and its launch status could not be confirmed, and it is far below ten tonnes in any case."
+
+[[item]]
+node = "M-paying-customer-for-work-done-in-orbit"
+verdict = "quiet"
+queries = ["Starcloud OR Axiom OR Sophia Space orbital computing revenue customer filing 2026", "space manufacturing in orbit revenue Varda Redwire 2026 quarterly results customer"]
+found = "No company reports ten million dollars of revenue from non-government customers for in-orbit computing or manufacturing; the orbital data-centre firms are private and show funding and valuations, not revenue, and Redwire's 2026 filings give no in-orbit manufacturing revenue split."
+
+[[item]]
+node = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
+verdict = "quiet"
+queries = ["space-based solar power beaming kilowatt to ground demonstration Aetherflux Caltech Virtus 2026", "Aetherflux Apex Link satellite launch power beaming September 2026"]
+found = "No orbit-to-ground power beaming has been reported; Aetherflux's kilowatt-class Mission 1 is still listed as a 2026 launch with no report of it flying, and Caltech's 2023 MAPLE test was far below a kilowatt received."
+
+[[item]]
+node = "M-commercial-insurance-written-on-a-private-lunar-asset"
+verdict = "quiet"
+queries = ["lunar insurance Lloyd's syndicate Intuitive Machines Firefly Blue Ghost insured premium 2026", "space insurance market lunar mission underwriters 2026 Marsh Howden lunar lander cover"]
+found = "No insurer has announced cover with a premium of a million dollars or more on a private lunar asset; underwriters quoted in April 2026 said they want multiple successful missions first, and the only lunar precedent found is ispace's 2022 launch-to-landing policy."
+
+[[item]]
+node = "W-dog-rapamycin-trial-reports-longer-life"
+verdict = "quiet"
+queries = ["TRIAD rapamycin Dog Aging Project results announcement lifespan", "Loyal LOY-002 FDA lifespan extension dogs conditional approval September 2026"]
+found = "No TRIAD lifespan analysis has been published; the trial is still enrolling toward 580 dogs under an NIH grant running to November 2029. Loyal's separate dog drug LOY-002 is not rapamycin and has two of three technical sections accepted by the FDA, with no approval."
+
+[[item]]
+node = "W-regulator-accepts-aging-as-an-indication"
+verdict = "quiet"
+queries = ["FDA aging indication healthspan drug approval pathway guidance Makary longevity October 2026", "EMA OR FDA healthy ageing indication reflection paper composite endpoint older adults regulatory September 2026"]
+found = "No final guidance, pathway decision or approval naming aging as an indication appeared; the FDA chief scientist said at the ARDD meeting that its Focus Areas of Regulatory Science report, due early in fiscal year 2027, will list aging, which is a research-priority document, not guidance."
+
+[[item]]
+node = "W-regulator-accepts-a-biological-measure-of-aging-as-a-trial-endpoint"
+verdict = "quiet"
+queries = ["epigenetic clock biomarker qualification FDA OR EMA surrogate endpoint aging trial 2026 letter of intent", "clinicaltrials.gov pivotal trial primary endpoint biological age epigenetic clock FDA agreed design 2026"]
+found = "No qualification, guidance or agreed pivotal design using an aging clock as primary endpoint appeared; as of August 2026 epigenetic clocks are not among the eight qualified FDA biomarkers."
