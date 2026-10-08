@@ -37,6 +37,10 @@ The factors are a way of talking about the tree, not a literal multiplication of
 
 Created 2026-09-08. The project is at the definitions stage: no nodes, no probabilities yet. The first public version is targeted for 2026-11-16.
 
+## Licence
+
+The tree and every other data file are under Creative Commons Attribution 4.0 (`LICENSE-DATA`): reuse them freely, with credit. The scripts and the site are under the MIT licence (`LICENSE`). Added 2026-10-08 under the Sentient Horizons design standard.
+
 ## Author
 
 John Fredrickson, with Claude as a working partner. Published under the Sentient Horizons project.
