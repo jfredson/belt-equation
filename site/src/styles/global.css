@@ -471,6 +471,9 @@ a.dim:hover { color: var(--accent); }
 .footer-links a { color: var(--text-soft); }
 .footer-links a:hover { color: var(--accent); }
 .footer-meta { margin: 0.5rem 0 0; font-size: 12px; }
+.footer-parent { margin: 0.6rem 0 0; font-size: 12px; }
+.footer-parent a { color: var(--text-soft); text-decoration: none; }
+.footer-parent a:hover { color: var(--accent); }
 
 /* ---- responsive ---- */
 @media (max-width: 960px) {

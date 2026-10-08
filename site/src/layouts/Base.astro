@@ -18,6 +18,11 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const currentYear = new Date().getFullYear();
+// "7 October 2026" for the footer; the design standard writes dates out there.
+const longDate = (iso: string) => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+};
 ---
 
 <!doctype html>
@@ -76,11 +81,11 @@ const currentYear = new Date().getFullYear();
             <a href="/story/">The story so far</a>
             <a href="/feedback/">Send feedback</a>
             <a href="https://github.com/jfredson/belt-equation" rel="noopener">Source on GitHub</a>
-            <a href="https://sentient-horizons.com" rel="noopener">Sentient Horizons</a>
           </p>
           <p class="footer-meta">
-            © {currentYear} John Fredrickson, with Claude. Tree exported {tree.exported_on}{tree.commit ? ` from commit ${tree.commit}` : ''}: {tree.counts.nodes} nodes, {tree.counts.with_probability} with probabilities.
+            © {currentYear} John Fredrickson, <a href="https://sentient-horizons.com/with-claude/">with Claude</a>. Last built {longDate(tree.exported_on)}{tree.commit ? ` (version ${tree.commit})` : ''} from a tree of {tree.counts.nodes} events, {tree.counts.with_probability} with a probability. Free to reuse with credit (<a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>); code under the MIT licence.
           </p>
+          <p class="footer-parent"><a href="https://sentient-horizons.com" rel="noopener">A Sentient Horizons project.</a></p>
         </div>
       </div>
     </footer>
