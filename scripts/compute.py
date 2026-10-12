@@ -1672,6 +1672,173 @@ def load_snapshots(folder: Path) -> list[dict]:
     return sorted(out, key=lambda s: (s["date"], s["key"]))
 
 
+# ------------------------------------------- the calibration score (methodology.md, "The calibration score")
+
+
+def iso_date(value) -> str | None:
+    """A date from the record as YYYY-MM-DD text, whatever type TOML or JSON gave it."""
+    if value is None or value == "":
+        return None
+    return value.isoformat() if hasattr(value, "isoformat") else str(value)[:10]
+
+
+def dated_probabilities(node: dict, scen_keys: list[str]) -> list[tuple[str, dict[str, float]]]:
+    """Every probability the node's record carries with a date on it, oldest first: the current
+    number under `estimated_on`, and each probability revision's new value under the revision's
+    date. A revision's old value carries no date of its own and is not listed; the rule in
+    methodology.md scores only what the record dates."""
+    out: list[tuple[str, dict[str, float]]] = []
+    prob = node.get("probability")
+    when = iso_date(node.get("estimated_on"))
+    if isinstance(prob, dict) and when and all(k in prob for k in scen_keys):
+        out.append((when, {k: float(prob[k]) for k in scen_keys}))
+    for r in node.get("revisions", []) or []:
+        if r.get("field") != "probability":
+            continue
+        when = iso_date(r.get("date"))
+        parsed = probability_from_revision(r.get("new"), scen_keys)
+        if when and parsed:
+            out.append((when, parsed))
+    return sorted(out, key=lambda t: t[0])
+
+
+def probability_on_record(node: dict, on_date: str, scen_keys: list[str]) -> tuple[str, dict[str, float]] | None:
+    """The probability that was on the record for the node on a date: the latest dated one before
+    that date, or None when the record holds nothing dated before it."""
+    before = [(d, p) for d, p in dated_probabilities(node, scen_keys) if d < on_date]
+    return before[-1] if before else None
+
+
+def scored_resolutions(tree: dict) -> list[dict]:
+    """One row per resolved node, oldest resolution first, saying whether it is scored and why.
+
+    The rule (methodology.md, confirmed 2026-09-25 at the methodology pass, item 102): a node is
+    scored only if its record holds a probability dated before its resolution date, either as its
+    current number or in its revision log; the score uses the baseline scenario's number. A node
+    resolved before its first estimate, or found resolved after a re-estimate had replaced the
+    number that was in force when it happened, is listed as unscored with the reason."""
+    scen_keys = [s["key"] for s in tree["scenarios"]]
+    baseline = scen_keys[0]
+    rows = []
+    for n in tree["nodes"]:
+        if n.get("status") not in ("resolved-yes", "resolved-no"):
+            continue
+        resolved_on = iso_date(n.get("resolved_on"))
+        outcome = 1.0 if n["status"] == "resolved-yes" else 0.0
+        row = {"id": n["id"], "name": n["name"], "factor": n["factor"], "resolved_on": resolved_on,
+               "outcome": outcome, "scored": False, "probability": None, "recorded_on": None,
+               "brier": None, "reason": None}
+        if not resolved_on:
+            row["reason"] = "no resolution date on the record"
+        else:
+            found = probability_on_record(n, resolved_on, scen_keys)
+            dated = dated_probabilities(n, scen_keys)
+            if found:
+                recorded_on, prob = found
+                row.update(scored=True, probability=prob, recorded_on=recorded_on,
+                           brier=(prob[baseline] - outcome) ** 2)
+            elif dated:
+                row["reason"] = (f"its earliest dated probability, {dated[0][0]}, is after it resolved; "
+                                 "an earlier number its revision log mentions carries no date, so under "
+                                 "the rule it is not scored")
+            else:
+                row["reason"] = f"no probability on the record before {resolved_on}"
+        rows.append(row)
+    return sorted(rows, key=lambda r: (r["resolved_on"] or "", r["id"]))
+
+
+def brier(rows: list[dict]) -> dict:
+    scored = [r for r in rows if r["scored"]]
+    return {"count": len(scored), "unscored": len(rows) - len(scored),
+            "brier": (sum(r["brier"] for r in scored) / len(scored)) if scored else None}
+
+
+def calibration(tree: dict, year: int) -> dict:
+    """The two numbers the annual review reports, with the rows behind them: the Brier score over
+    the nodes that resolved in the year, and over every node that has ever resolved."""
+    rows = scored_resolutions(tree)
+    in_year = [r for r in rows if (r["resolved_on"] or "").startswith(f"{year}-")]
+    return {"year": year, "rows_in_year": in_year, "year_score": brier(in_year),
+            "cumulative_score": brier(rows), "all_rows": rows}
+
+
+def headline_movement(snapshots: list[dict], year: int) -> dict | None:
+    """How the headline moved over a year, from the last run before the year (or the year's
+    first run, when there is none) to the year's last run. None when the year has no run.
+
+    Only runs marked reviewed count, the same runs the website's history shows: the two runs
+    backfilled from before the outside-model review are marked pre-review, and the first of
+    them rolled every node independently, so a year measured from it would start at a number
+    the method never produced."""
+    reviewed = [s for s in snapshots if s.get("review_status", REVIEW_STATUS) == REVIEW_STATUS]
+    in_year = [s for s in reviewed if s["date"].startswith(f"{year}-")]
+    if not in_year:
+        return None
+    earlier = [s for s in reviewed if s["date"] < f"{year}-01-01"]
+    start, end = (earlier[-1] if earlier else in_year[0]), in_year[-1]
+
+    def headline(s: dict) -> dict[str, float]:
+        return s["tiers"][s.get("headline_tier", HEADLINE_TIER)]
+
+    scen = [(x["key"], x.get("window_year")) for x in end.get("scenarios", [])]
+    return {"from": {"key": start["key"], "date": start["date"], "headline": headline(start)},
+            "to": {"key": end["key"], "date": end["date"], "headline": headline(end)},
+            "scenarios": scen, "from_previous_year": bool(earlier)}
+
+
+def report_score(tree: dict, snapshots: list[dict], year: int) -> str:
+    """The calibration score for a year, printed the way the annual review's changelog post
+    reports it: each resolution with the number that was on the record and what happened, the
+    year's Brier score, the cumulative one, and the headline's movement over the year."""
+    cal = calibration(tree, year)
+    lines = [f"Calibration score for {year} (methodology.md, \"The calibration score\")", ""]
+
+    def row_lines(r: dict) -> list[str]:
+        what = "happened" if r["outcome"] == 1.0 else "did not happen"
+        head = f"    {r['id']}: {what} {r['resolved_on'] or '(no date)'}"
+        if r["scored"]:
+            return [head, f"        on the record since {r['recorded_on']}: {r['probability'][tree['scenarios'][0]['key']]:.2f} "
+                          f"under the baseline scenario; Brier {r['brier']:.4f}"]
+        return [head, f"        not scored: {r['reason']}"]
+
+    lines.append(f"Resolved in {year}: {len(cal['rows_in_year'])} step(s)")
+    for r in cal["rows_in_year"]:
+        lines += row_lines(r)
+    if not cal["rows_in_year"]:
+        lines.append("    (none)")
+    ys = cal["year_score"]
+    lines.append("")
+    lines.append(f"Brier score for {year}: " + (f"{ys['brier']:.4f} over {ys['count']} scored step(s)"
+                                                if ys["brier"] is not None else "none, no scored step resolved")
+                 + (f", {ys['unscored']} unscored" if ys["unscored"] else ""))
+    cs = cal["cumulative_score"]
+    lines.append("Cumulative Brier score, every year: " + (f"{cs['brier']:.4f} over {cs['count']} scored step(s)"
+                                                           if cs["brier"] is not None else "none, no scored step has resolved")
+                 + (f", {cs['unscored']} unscored" if cs["unscored"] else ""))
+    lines.append("    0 is perfect; 0.25 is saying fifty percent about everything; above 0.25 is worse than saying nothing.")
+    earlier = [r for r in cal["all_rows"] if not (r["resolved_on"] or "").startswith(f"{year}-")]
+    if earlier:
+        lines += ["", "Resolved in other years:"]
+        for r in earlier:
+            lines += row_lines(r)
+
+    move = headline_movement(snapshots, year)
+    lines.append("")
+    if not move:
+        lines.append(f"The headline over {year}: no run saved in the year.")
+    else:
+        since = ("the last run of the year before" if move["from_previous_year"] else "the year's first run")
+        lines.append(f"The headline ({HEADLINE_TIER}) over {year}, reviewed runs only, from {since} "
+                     f"({move['from']['key']}) to the year's last ({move['to']['key']}):")
+        for key, window in move["scenarios"]:
+            a, b = move["from"]["headline"].get(key), move["to"]["headline"].get(key)
+            if a is None or b is None:
+                continue
+            label = f"{key} ({window})" if window else f"{key} (no deadline)"
+            lines.append(f"    {label:<22} {a * 100:6.2f}% -> {b * 100:6.2f}%   {(b - a) * 100:+.2f} points")
+    return "\n".join(lines)
+
+
 # ------------------------------------------------------------------ main
 
 
@@ -1679,9 +1846,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", nargs="?", default="validate",
                         choices=["validate", "shape", "run", "compare", "worth", "attribute",
-                                 "reader"])
+                                 "reader", "score"])
     parser.add_argument("target", nargs="?", default=None,
-                        help="with 'attribute': the ledger entry id, or a snapshot key for the whole run")
+                        help="with 'attribute': the ledger entry id, or a snapshot key for the whole run; "
+                             "with 'score': the year to score (default: this year)")
     parser.add_argument("--data", type=Path, default=Path(__file__).resolve().parent.parent / "data")
     parser.add_argument("--runs", type=int, default=None,
                         help=f"play-throughs per scenario; {DEFAULT_RUNS} for every command but "
@@ -1783,6 +1951,16 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "worth":
             print(report_worth(tree, runs, args.seed, args.world_spread))
+            return 0
+        if args.command == "score":
+            # The two numbers the annual review's changelog post reports (methodology.md),
+            # worked out from the record alone: no run is taken, so it is quick.
+            try:
+                year = int(args.target) if args.target else dt.date.today().year
+            except ValueError:
+                print(f"score takes a year, for example 'score 2026'; '{args.target}' is not one.")
+                return 1
+            print(report_score(tree, load_snapshots(args.snapshots), year))
             return 0
         if args.command == "attribute":
             if not args.target:

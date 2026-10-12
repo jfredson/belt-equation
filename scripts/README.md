@@ -10,6 +10,7 @@
     python3 scripts/compute.py worth               what each open step would be worth to the headline
     python3 scripts/compute.py attribute ENTRY     how much of a run's move came from one ledger entry
     python3 scripts/compute.py reader --birth YEAR what the tree says for a reader born that year
+    python3 scripts/compute.py score [YEAR]       the calibration score for a year, and cumulative (default: this year)
 
 `validate` and `shape` work on a tree with no probabilities. `run` and `compare` refuse until every open world node has a probability for every scenario, which is Phase 3. The rules the script enforces are listed in docs/node-schema.md under "Rules the compute script enforces".
 
@@ -174,6 +175,25 @@ Beyond a copy of each record it adds the derived views the pages need: each node
 The scan records get the same treatment as the tree, and the same refusal: `export_scans()` checks every file in data/scans/ before anything is written (the file name is the scan's own date; the [scan] table carries its six fields; every item names a node that is in the tree, once per scan; every verdict is one of the five in docs/scan-plan.md; every item names at least one search it ran, unless it is `quiet` and `found` says why no search was run; every verdict but `quiet` cites a source and a resolution cites two; a flagged item says what it would have done; a `reused` line names one of the item's own searches and gives a reason, so a search borrowed from another node without one is refused (added 2026-10-06, tested in `scripts/test_scans.py`); a ledger entry an item names must be in data/ledger.toml once that file exists). Then it writes each item out with its node's name, factor, chain link and page address, plus every node's own checks newest first and the flagged items nothing has picked up yet. A record may still carry `test = true` to mark a hand-made fixture rather than a week of real work, and the site labels one as a test wherever it appears; no record carries it now that the first real scan has run, and such a record gets no exemption from the rules above. `export.py` also checks the optional `watch` list on a node, which `compute.py` does not know about.
 
 How a run works: for each scenario, the tree is played out many thousands of times. Nodes are visited in dependency order; a world node whose dependencies all came true comes true with its probability for that scenario, and otherwise stays false. Nodes already resolved in the real world are fixed. Choice points are set to their current-plan option. A tier is reached when everything it requires came true, and the number reported for a tier is the fraction of play-throughs that reached it. Contact Clause nodes are reported separately and never feed a tier.
+
+## The calibration score
+
+`score` prints the two numbers the annual review's changelog post reports (docs/methodology.md,
+"The calibration score"; built 2026-10-12, roadmap step 18's review is the first to use it):
+
+    python3 scripts/compute.py score 2026
+
+It reads the record alone and takes no run, so it is quick. For each step that resolved in the
+year it shows what happened and the number that was on the record for it, then the Brier score
+over the year's scored steps and over every scored step ever, then the headline's movement over
+the year from the last reviewed run of the year before (or the year's first) to its last. A
+step is scored only if its record holds a probability dated before its resolution date, as its
+current number under `estimated_on` or as a probability revision's new value under the
+revision's date, and the latest such number is the one scored, under the baseline scenario.
+Anything else is listed as unscored with the reason: the three steps that resolved before any
+estimate, and a step whose number was re-estimated between the day it happened and the day the
+scan caught it, since the number in force on the day is then undated in the record. The checks
+are in `scripts/test_score.py`.
 
 ## Publishing: one command
 
