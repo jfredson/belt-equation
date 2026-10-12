@@ -199,7 +199,10 @@ changed, as git sees it, and the headline before and after. "Before" is the tree
 played out with the export's own seed, so an unchanged tree shows the same figures to the last digit.
 
 Without `--push` it stops there so the diff can be read; run it again with `--push` to publish. With
-`--push`, on main only, it stages everything, makes one commit, and pushes. The site is deployed by
+`--push`, on main only, it first fetches GitHub and stops with nothing committed if main here is behind
+`origin/main` (added 2026-10-12: the scan of 2026-10-11 ran on a clone five commits behind, its push was
+refused as not a fast-forward, and it sat on its fallback branch for a day), then stages everything, makes
+one commit, and pushes. The site is deployed by
 the GitHub Action (.github/workflows/deploy.yml) from that push, as it is for any push to main that
 touches the site; the script never deploys by any other road. Every script it runs is run in John's
 time zone (America/Los_Angeles), so the dated picture, the snapshot and the commit agree on the date.

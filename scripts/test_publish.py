@@ -24,7 +24,8 @@ It also checks that the publish script made no commit, since it was not given --
 calls TimeAssembler and runs the same with or without the key.
 
 Slow on purpose: two exports, two site builds, one dry run and one reading of the committed
-tree, about five minutes on the Mac.
+tree, about five minutes on the Mac. The PushGuard checks at the end are the exception: they build
+nothing and run in a second on their own with `python3 scripts/test_publish.py PushGuard`.
 """
 
 from __future__ import annotations
@@ -161,6 +162,73 @@ class DryRunWritesNothing(unittest.TestCase):
             self.assertEqual(sorted(before), sorted(after), "--dry-run added or removed files")
             self.assertEqual([r for r in before if before[r] != after[r]], [], "--dry-run changed files")
             self.assertIn("nothing was written, committed or pushed", result.stdout)
+
+
+class PushGuard(unittest.TestCase):
+    """With --push, a main that is behind GitHub is refused before anything is committed (added
+    2026-10-12, after the scan of 2026-10-11 pushed from a stale clone and was parked on its fallback
+    branch for a day). A bare repository stands in for GitHub; nothing leaves the scratch folder."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        tmp = Path(self._tmp.name)
+        self._env = {k: os.environ.get(k) for k in ("GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL",
+                                                    "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL",
+                                                    "GIT_CONFIG_COUNT", "GIT_CONFIG_KEY_0", "GIT_CONFIG_VALUE_0")}
+        os.environ.update(GIT_AUTHOR_NAME="test", GIT_AUTHOR_EMAIL="test@example.invalid",
+                          GIT_COMMITTER_NAME="test", GIT_COMMITTER_EMAIL="test@example.invalid",
+                          GIT_CONFIG_COUNT="1", GIT_CONFIG_KEY_0="commit.gpgsign", GIT_CONFIG_VALUE_0="false")
+        self.github = tmp / "github.git"
+        subprocess.run(["git", "init", "-q", "--bare", "-b", "main", str(self.github)], check=True)
+        self.clone = tmp / "clone"
+        subprocess.run(["git", "init", "-q", "-b", "main", str(self.clone)], check=True)
+        (self.clone / "CHANGELOG.md").write_text("# Changelog\n")
+        self.commit(self.clone, "first")
+        subprocess.run(["git", "remote", "add", "origin", str(self.github)], cwd=self.clone, check=True)
+        subprocess.run(["git", "push", "-q", "-u", "origin", "main"], cwd=self.clone, check=True)
+        self.first = self.head(self.clone)
+
+    def tearDown(self):
+        for k, v in self._env.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+        self._tmp.cleanup()
+
+    @staticmethod
+    def commit(repo: Path, message: str) -> None:
+        subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
+        subprocess.run(["git", "commit", "-q", "-m", message], cwd=repo, check=True)
+
+    @staticmethod
+    def head(repo: Path, ref: str = "HEAD") -> str:
+        return subprocess.run(["git", "rev-parse", ref], cwd=repo, check=True,
+                              text=True, stdout=subprocess.PIPE).stdout.strip()
+
+    def somebody_else_pushes(self) -> None:
+        other = Path(self._tmp.name) / "other"
+        subprocess.run(["git", "clone", "-q", str(self.github), str(other)], check=True)
+        (other / "README.md").write_text("main moved on while the scan ran\n")
+        self.commit(other, "moved on")
+        subprocess.run(["git", "push", "-q", "origin", "main"], cwd=other, check=True)
+
+    def test_a_main_behind_github_is_refused_with_nothing_committed(self):
+        self.somebody_else_pushes()
+        (self.clone / "CHANGELOG.md").write_text("# Changelog\n\n## scan\n")
+        with self.assertRaises(publish.PublishError) as caught:
+            publish.commit_and_push(self.clone, "Weekly scan", None)
+        self.assertIn("1 commit(s) behind GitHub", str(caught.exception))
+        self.assertEqual(self.head(self.clone), self.first, "a commit was made despite the refusal")
+        status = subprocess.run(["git", "status", "--short"], cwd=self.clone, check=True,
+                                text=True, stdout=subprocess.PIPE).stdout
+        self.assertIn("CHANGELOG.md", status, "the scan's edit was lost")
+
+    def test_a_current_main_is_committed_and_pushed(self):
+        (self.clone / "CHANGELOG.md").write_text("# Changelog\n\n## scan\n")
+        publish.commit_and_push(self.clone, "Weekly scan", None)
+        self.assertNotEqual(self.head(self.clone), self.first, "nothing was committed")
+        self.assertEqual(self.head(self.github, "main"), self.head(self.clone), "the commit did not reach GitHub")
 
 
 if __name__ == "__main__":
