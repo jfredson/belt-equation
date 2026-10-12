@@ -26,6 +26,9 @@ What it does, in order, stopping at the first thing that fails:
    main. The GitHub Action (.github/workflows/deploy.yml) then builds and deploys the site from
    that push, exactly as it does for any other push; this script never deploys by any other road.
    With --fallback-branch NAME, a push to main that is refused is tried once on that branch.
+   Before committing it fetches GitHub and stops, with nothing committed, if main here is behind
+   origin/main: the push would be refused as not a fast-forward (added 2026-10-12, after the scan of
+   2026-10-11 ran on a clone five commits behind and sat on its fallback branch for a day).
 
 Without --push it stops after step 7 so the caller can read the diff before anything is committed.
 --dry-run copies the working tree to a scratch folder, runs every step there, and reports what
@@ -342,11 +345,30 @@ def pipeline(root: Path, date: str, snapshot: str | None, no_story: bool) -> Non
     say(f"    built {pages} pages into site/dist/")
 
 
+def commits_behind_github(root: Path) -> int | None:
+    """How many commits main here is behind origin/main, fetched just now; None when GitHub could not
+    be reached, in which case the push itself will say what is wrong."""
+    p = subprocess.run(["git", "fetch", "--quiet", "origin", "main"], cwd=root, text=True,
+                       stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    if p.returncode != 0:
+        reason = (p.stdout.strip().splitlines() or ["no reason given"])[-1]
+        say(f"    Could not fetch GitHub ({reason}), so whether main here is current is unknown.")
+        return None
+    return int(git(root, "rev-list", "--count", "HEAD..origin/main").strip())
+
+
 def commit_and_push(root: Path, message: str, fallback: str | None) -> None:
     branch = git(root, "rev-parse", "--abbrev-ref", "HEAD").strip()
     if branch != "main":
         raise PublishError(f"--push publishes main, and this checkout is on '{branch}'. "
                            "Switch to main, or commit here and open a pull request instead.")
+    behind = commits_behind_github(root)
+    if behind:
+        raise PublishError(
+            f"main here is {behind} commit(s) behind GitHub (fetched just now), so the push would be refused "
+            "as not a fast-forward. Nothing was committed. Bring main up to date with your edits kept, "
+            "`git stash && git merge --ff-only origin/main && git stash pop`, then run this again. "
+            "The scan of 2026-10-11 lost a day to this; the scan procedure's step 0 now fetches first.")
     git(root, "add", "-A")
     if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=root).returncode == 0:
         say("Nothing to commit: the site already shows this tree. Nothing pushed.")
