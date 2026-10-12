@@ -6,6 +6,11 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 - The two claims-to-check items the weekly scan of 2026-10-08 flagged for John, ruled (proposed by Claude, approved by John at the merge); the scan of 2026-10-11 flagged the first of them again, and that is answered here too. **No number moved** and no run was taken. The staple-crop step's one claim is cleared: the Chinese Academy of Sciences reported in December 2022, and again on 2024-11-07, that rice completed a 120-day seed-to-seed life cycle aboard Tiangong in 2022 (the 'over 100 days' the second scan read is the time the returned seeds' ears took to mature on Earth), and the fact now stands in the step's notes with its sources, the archived copies, since the addresses both scans recorded have moved; the one-kilogram harvest test is still open, since the 2026 Shenzhou-23 reports give no mass. C1 ("A non-human mind produces knowledge beyond us") keeps its two claims with the scan's dated findings written in (AlphaEvolve's mathematics results are still a preprint, so the peer-review question stays open; AlphaTensor's facts are confirmed and it stays unresolved under the strict reading) and gains a third: the May 2026 OpenAI disproof of Erdős's unit-distance conjecture, to be checked by each scan for a peer-reviewed record saying the idea was the system's. A revision on each step.
 
+## 2026-10-11
+
+- Weekly scan (scheduled task, 2026-10-11): 17 nodes read, 0 moved, 0 resolved, 1 flagged for John; record at data/scans/2026-10-11.toml.
+
+
 ## 2026-10-08
 
 - Weekly scan (scheduled task, 2026-10-08): 17 nodes read, 0 moved, 0 resolved, 2 flagged for John (B-staple-crop-grown-from-seed-to-harvest-off-earth and C1, both about their claims-to-check lists); record at data/scans/2026-10-08.toml.

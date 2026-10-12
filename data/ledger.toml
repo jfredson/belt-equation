@@ -840,3 +840,21 @@ source = "https://www.astronomy.com/whats-launching-this-week/starship-reaches-o
 checked_against = ["L-fully-reusable-heavy-launcher-recovers-both-stages", "L-heavy-launcher-100-per-year"]
 author = "scan"
 snapshot = "2026-10-04-scan"
+
+[[entry]]
+id = "2026-10-11-openai-math-batch-not-peer-reviewed"
+date = 2026-10-11
+occurred_on = 2026-10-06
+kind = "held-steady"
+title = "OpenAI posted hundreds of machine-generated maths results on 2026-10-06, but none is peer reviewed yet, so the first Contact Clause rung stays where it was"
+body = """
+On 2026-10-06 OpenAI released 372 families of mathematical results from an unreleased internal model,
+including a claimed proof of the Unique Games Conjecture, and about 42 percent of the top-line results
+had been machine-checked in the Lean proof language by 2026-10-07. The first Contact Clause rung asks for
+a result whose key idea came from the system, verified, and acknowledged as beyond human work in the
+peer-reviewed record. Mathematicians were still reading the proofs and no journal has accepted them,
+so the criterion is not met and no number moved."""
+source = "https://www.implicator.ai/openai-372-math-results-mathematicians-race-to-read.md"
+checked_against = ["C1"]
+author = "scan"
+snapshot = "2026-10-11-scan"
