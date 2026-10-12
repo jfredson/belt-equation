@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-11
+
+- Weekly scan (scheduled task, 2026-10-11): 17 nodes read, 0 moved, 0 resolved, 1 flagged for John; record at data/scans/2026-10-11.toml.
+
 ## 2026-10-08
 
 - The Monday digest of the weekly scan now runs in the cloud instead of on John's Mac, so neither half of the weekly reading needs the laptop open (asked by John 2026-10-08). **No number moved** and no run was taken. The weekly scan itself was already a cloud routine (Sundays 01:00 UTC); the digest that reads it was a scheduled task in the desktop app, which only fired when the Mac was awake with the app open. It is now a cloud routine of its own (Mondays 14:04 UTC, which is 07:04 Pacific in summer and 06:04 in winter), reading the repository fresh and creating article tasks through the TimeAssembler connector; the desktop task is switched off. The audit section of the old digest is dropped, since the first audit is done. Two corrections landed with it: docs/scan-procedure.md, step 0, now says to switch to main before anything else, and the 2026-10-06 audit line below no longer blames the laptop for the 39-hour delay of the 2026-10-04 scan (see it for the real cause).
