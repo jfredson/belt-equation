@@ -1,7 +1,7 @@
 {
   "project": "Belt Equation",
-  "source": "TimeAssembler roadmap, read by scripts/publish.py on 2026-09-25 (Pacific)",
-  "fetched_on": "2026-09-25",
+  "source": "TimeAssembler roadmap, read by scripts/publish.py on 2026-10-12 (Pacific)",
+  "fetched_on": "2026-10-12",
   "steps": [
     {
       "order": 10,
@@ -149,9 +149,15 @@
     },
     {
       "order": 82,
-      "status": "in_progress",
+      "status": "done",
       "phase": "Phase 4",
       "title": "Draft the introductory essay for Sentient Horizons, with the Calibration Problem cross-reference (roadmap step 14) (Phase 4)"
+    },
+    {
+      "order": 83,
+      "status": "done",
+      "phase": "Phase 4",
+      "title": "GO: read and merge the intro essay's update note (sentient-horizons pull request 4)"
     },
     {
       "order": 84,
@@ -179,19 +185,55 @@
     },
     {
       "order": 92,
-      "status": "todo",
+      "status": "waiting",
       "phase": "Phase 5",
       "title": "Fold public or family critique into the tree before the annual review (roadmap step 19) (Phase 5)"
     },
     {
+      "order": 93,
+      "status": "done",
+      "phase": "Phase 6",
+      "title": "Refresh the family-and-friends writeup with the current numbers and the reworded question, for John to edit and send"
+    },
+    {
       "order": 94,
-      "status": "in_progress",
+      "status": "waiting",
       "phase": "Phase 6",
       "title": "Website step 25: go live on beltequation.com to family and friends (waits on step 15) (Phase 6)"
     },
     {
+      "order": 94,
+      "status": "done",
+      "phase": null,
+      "title": "Scan plan step 38: first audit of the weekly scan (moved up to the week of 2026-10-05)"
+    },
+    {
+      "order": 94,
+      "status": "done",
+      "phase": null,
+      "title": "GO: merge pull request 42, Sunday's scan of 2026-10-11 brought in from its fallback branch (17 read, 0 moved, 1 flagged)"
+    },
+    {
+      "order": 95,
+      "status": "done",
+      "phase": null,
+      "title": "John: review and merge pull request 35, the new \"What could happen next\" page with every earlier version"
+    },
+    {
+      "order": 95,
+      "status": "done",
+      "phase": null,
+      "title": "DECIDE: merge pull request 41 (the two claims-to-check items the 2026-10-08 scan flagged: staple-crop claim cleared, C1's claims updated and a third added)"
+    },
+    {
+      "order": 95,
+      "status": "done",
+      "phase": null,
+      "title": "GO: merge pull request 43, the scan procedure fix (step 0 fetches GitHub's main first; the publish command refuses a main that is behind)"
+    },
+    {
       "order": 96,
-      "status": "in_progress",
+      "status": "waiting",
       "phase": "Phase 6",
       "title": "Website step 26: one-command publish so the quarterly scan ends with the site updated (Phase 6)"
     },
@@ -203,9 +245,15 @@
     },
     {
       "order": 98,
-      "status": "todo",
+      "status": "done",
       "phase": null,
       "title": "Merge pull request 22: Contact Clause null rule and rung C5 in force (2026-09-25)"
+    },
+    {
+      "order": 99,
+      "status": "done",
+      "phase": "Phase 5",
+      "title": "DECIDE: the four questions the function-over-route pass left open"
     },
     {
       "order": 100,
@@ -226,16 +274,34 @@
       "title": "Scan plan step 35 (John's action): add the two Cloudflare repository secrets and authorise the repository for the cloud environment's git proxy"
     },
     {
-      "order": 120,
-      "status": "todo",
-      "phase": null,
-      "title": "Scan plan step 38: first audit of the weekly scan, two scans in (target 2026-10-11)"
-    },
-    {
       "order": 130,
-      "status": "todo",
+      "status": "waiting",
       "phase": null,
       "title": "Ledger plan step 33: the feeds, the badge image, and the quarterly scan rewritten as a procedure"
+    },
+    {
+      "order": 140,
+      "status": "done",
+      "phase": "Phase 5",
+      "title": "GO: merge pull request 44, the yearly scoring of past forecasts (a score command in the compute script, built 2026-10-12 ahead of the 2026-12-06 date)"
+    },
+    {
+      "order": 142,
+      "status": "todo",
+      "phase": null,
+      "title": "GO: publish the public-copy pass of 2026-10-12 (home page wording and dial, Method and Story rewritten for a lay reader, Radar \"ruled\" marker), sitting uncommitted on main"
+    },
+    {
+      "order": 150,
+      "status": "todo",
+      "phase": "Phase 5",
+      "title": "December sittings: re-estimate every open event ahead of the annual review, grouped by factor"
+    },
+    {
+      "order": 155,
+      "status": "todo",
+      "phase": null,
+      "title": "Access-branch review (after May 2027): the \"I fly to space at least once\" tier needs a step for John actually taking a seat, and the over-65 flyer step as a gate"
     }
   ]
 }

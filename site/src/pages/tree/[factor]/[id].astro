@@ -232,12 +232,13 @@ const lastChecks = checks.slice(0, 3);
                 <details>
                   <summary>
                     <span class="check-date">{c.date}</span>
-                    <span class={`badge v-${c.verdict}`}>{verdictLabel[c.verdict]}</span>
+                    <span class={`badge v-${c.verdict}`}>{c.picked_up ? 'Ruled' : verdictLabel[c.verdict]}</span>
                     {c.test && <span class="badge v-test">Test record</span>}
                   </summary>
                   <div class="check-body">
                     <p>{c.found}</p>
                     {c.for_john && <p><strong>For me:</strong> {c.for_john}</p>}
+                    {c.picked_up && <p class="dim">Taken off my list on {c.picked_up.on}, by {c.picked_up.how}.</p>}
                     {c.sources.length > 0 && (
                       <p class="dim">
                         {c.sources.map((s, i) => (

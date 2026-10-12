@@ -1,18 +1,17 @@
 ---
 // The story so far, rebuilt around the ledger (docs/ledger-plan.md, step 31 and decision 6).
 // A changelog says what was edited. This page says what moved the number, by how much, and what
-// was widely reported and moved nothing at all. The raw changelog stays, rendered below as the
-// full record. Every figure on this page comes from the committed runs in data/snapshots/ and
-// the attribution in data/attribution/; nothing is typed by hand into an entry.
+// was widely reported and moved nothing at all. Every figure on this page comes from the committed
+// runs in data/snapshots/ and the attribution in data/attribution/; nothing is typed by hand into
+// an entry. The roadmap, the day-by-day workbench and the full changelog were taken off this page
+// on 2026-10-12 at John's asking: they were the project's process, not its results, and the
+// changelog is linked from the repository instead.
 import Base from '../layouts/Base.astro';
 import HistoryChart from '../components/HistoryChart.astro';
 import {
-  changelog, inline, tree, ledger, snapshots, odds, movePoints, direction, band,
-  authorLabel, linkShort, factorByLetter, DEFAULT_SCENARIO, story, decidedByLabel,
+  tree, ledger, snapshots, odds, movePoints, direction, band,
+  linkShort, factorByLetter, DEFAULT_SCENARIO,
 } from '../lib/tree';
-
-const roadmap = story.roadmap;
-const worklog = story.worklog;
 
 const headlineTier = ledger.headline_tier;
 const scenarios = tree.scenarios;
@@ -59,7 +58,6 @@ const latest = snapshots.latest;
 // How far a figure can move between two runs for no reason but the dice, from the run itself.
 const noisyRun = ledger.runs.find((r) => r.noise && r.runs);
 const totalEntries = ledger.count;
-const authors = ledger.totals.by_author;
 ---
 
 <Base
@@ -79,7 +77,8 @@ const authors = ledger.totals.by_author;
       Nothing on an entry is typed in by hand except the words: every figure is worked out from the
       runs saved in the public repository, so an entry cannot claim a change the tree did not
       produce. Entries are added and never edited; a mistake is corrected by a later entry that
-      says so. The project's full changelog, down to the commit, is at the bottom of this page.
+      says so. The project's full changelog, down to the commit, is
+      <a href="https://github.com/jfredson/belt-equation/blob/main/CHANGELOG.md" rel="noopener">in the public repository</a>.
     </p>
   </section>
 
@@ -168,7 +167,7 @@ const authors = ledger.totals.by_author;
                 <p class="dim"><strong>It happened on:</strong> {e.occurred_on}. Written into this record on {e.date}.</p>
               )}
               {e.source && <p class="dim"><strong>Settled by:</strong> {e.source}</p>}
-              <p class="dim">{authorLabel(e.author)}. It landed in the run <code>{e.snapshot}</code>.</p>
+              <p class="dim">It landed in the run <code>{e.snapshot}</code>.</p>
 
               {e.node_changes.length > 0 && (
                 <table class="ptable">
@@ -236,9 +235,6 @@ const authors = ledger.totals.by_author;
 
               {e.corrects && (
                 <p class="dim">This entry corrects an earlier one: <a href={`#${e.corrects}`}>{e.corrects}</a>.</p>
-              )}
-              {e.run_note && (
-                <p class="dim">The note written at the time: <code>{e.run_note}</code> in the public repository.</p>
               )}
             </div>
           </details>
@@ -317,7 +313,6 @@ const authors = ledger.totals.by_author;
             <td>
               <code>{r.key}</code>
               {structuralRuns.has(r.key) && <span class="chip" style="margin-left: 8px;">the tree itself changed</span>}
-              {r.note && <span class="run-note">{r.note}</span>}
             </td>
             <td class="num-cell" data-run-total={r.key}>{r.total_move ? movePoints(r.total_move[DEFAULT_SCENARIO]) : 'the first run'}</td>
             <td class="num-cell" data-run-attributed={r.key}>{r.attributed ? movePoints(r.attributed[DEFAULT_SCENARIO]) : '—'}</td>
@@ -328,95 +323,16 @@ const authors = ledger.totals.by_author;
     </table>
     {latest && latest.review_status === 'pre-review' && (
       <p class="dim" style="font-size: 14px;">
-        Every run so far is marked as a first pass: the outside-model review of every number
-        (roadmap step 27) has not been ruled in full, and each of these figures may still move.
+        Every run so far is marked as a first pass: the outside review of every number has not been
+        ruled in full, and each of these figures may still move.
       </p>
     )}
     <p class="dim" style="font-size: 14px;">
-      Written by me: {authors['john'] ?? 0}.
-      {authors['scan'] ? ` Found by the weekly web scan: ${authors['scan']}.` : ''}
-      {' '}Each run is saved whole in the public repository, under <code>data/snapshots/</code>, so
+      Each run is saved whole in the public repository, under <code>data/snapshots/</code>, so
       any figure on this page can be checked against the run that produced it.
     </p>
   </section>
 
-  {roadmap && (
-    <section class="section narrow-wide" id="roadmap">
-      <div class="shead">
-        <h2>The roadmap</h2>
-        <span>{roadmap.done} of {roadmap.count} steps done, as of {roadmap.fetched_on}</span>
-      </div>
-      <p class="dim" style="font-size: 14.5px;">
-        The plan the project is working through, in order, from the project's own task list. The steps that
-        remain are the honest answer to "what is this site still missing".
-      </p>
-      <div class="roadmap-bar" role="img" aria-label={`${roadmap.done} of ${roadmap.count} roadmap steps done`}>
-        <span style={`width: ${Math.round((100 * roadmap.done) / Math.max(1, roadmap.count))}%`}></span>
-      </div>
-      <h3 class="roadmap-h">Up next</h3>
-      <ol class="roadmap up-next">
-        {roadmap.up_next.map((st) => (
-          <li class={`step-${st.status}`}><span class="rstatus">{st.status_label}</span> {st.title}</li>
-        ))}
-      </ol>
-      <details class="roadmap-all">
-        <summary>Every step, done and not</summary>
-        <ol class="roadmap">
-          {roadmap.steps.map((st) => (
-            <li class={`step-${st.status}`}><span class="rstatus">{st.status_label}</span> {st.title}</li>
-          ))}
-        </ol>
-      </details>
-    </section>
-  )}
-
-  {worklog && (
-    <section class="section narrow-wide" id="workbench">
-      <div class="shead">
-        <h2>From the workbench</h2>
-        <span>{worklog.count} entries, as of {worklog.fetched_on}</span>
-      </div>
-      <p class="dim" style="font-size: 14.5px;">
-        The day-by-day record: what was decided and by whom, what got built, and what each working session
-        came to. The ledger above is the part of this that moved a number; this is everything else. Decisions
-        are marked with who made them, because a call Claude made alone is not the same as one John ruled on.
-      </p>
-      {worklog.days.map((day) => (
-        <div class="day">
-          <h2>{day.date}</h2>
-          <ul class="workbench">
-            {day.entries.map((e) => (
-              <li>
-                <span class={`wtype wtype-${e.type}`}>{e.type_label}</span>
-                <span class="wtitle">{e.title}</span>
-                {e.type === 'decision' && e.decided_by && <span class="wby">{decidedByLabel[e.decided_by] ?? e.decided_by}</span>}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </section>
-  )}
-
-  <section class="section narrow-wide" id="changelog">
-    <div class="shead">
-      <h2>The full changelog</h2>
-      <span>every change, down to the commit</span>
-    </div>
-    <p class="dim" style="font-size: 14.5px;">
-      {changelog.intro || 'Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.'}
-      {' '}The ledger above is the part of this that moved a number, or that notably failed to; the roadmap and
-      the workbench above it are the plan and the day-by-day record.
-    </p>
-    {changelog.days.map((day) => (
-      <div class="day">
-        <h2>{day.date}</h2>
-        <ul>
-          {day.items.map((item) => <li set:html={inline(item)} />)}
-        </ul>
-      </div>
-    ))}
-  </section>
 
   <script type="application/json" id="ledger-data" set:html={JSON.stringify(dialData)}></script>
   <script is:inline>

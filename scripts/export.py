@@ -1054,6 +1054,28 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
     return problems, notes
 
 
+def ruled_on_the_node(node: dict, scan_date: str) -> str | None:
+    """The date of John's ruling on a flagged item, when it was recorded as a revision on the node
+    itself, or None.
+
+    Added 2026-10-12, after the staple-crop flag of the 2026-10-11 scan stayed on the Radar
+    page's waiting list for a day after John had ruled on it: the ruling went in as a revision
+    on the node (its claims-to-check list cleared, with the reason naming both scans) and no
+    ledger entry named the node, so the two older tests never saw it. A revision counts when
+    it is dated on or after the scan and its reason, or the text it put in place, names the
+    scan's date. The same-day case is allowed because a ruling can land on the scan's own date;
+    the scan itself writes no revision for a flagged item, so there is nothing to confuse it with.
+    """
+    for rev in node.get("revisions") or []:
+        rev_date = str(plain(rev.get("date", "")))
+        if rev_date < scan_date:
+            continue
+        text = " ".join(str(rev.get(k) or "") for k in ("why", "new"))
+        if scan_date in text:
+            return rev_date
+    return None
+
+
 def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, list[str], list[str]]:
     """Validate data/scans/ and turn it into what the site reads (site/src/data/scans.json).
 
@@ -1062,7 +1084,9 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
     week's work the way the home page reads. Alongside the scans: `by_node`, every node's own
     checks newest first, which is what a node page shows above its revisions; and
     `waiting_on_john`, the flagged items nothing has picked up yet. A flagged item counts as
-    picked up when a later scan checks that node again or a later ledger entry names it."""
+    picked up when a later scan checks that node again, a later ledger entry names it, or the
+    node carries a revision, dated on or after the scan, whose reason names the scan's date
+    (see ruled_on_the_node; added 2026-10-12)."""
     by_id = {n["id"]: n for n in tree["nodes"]}
     raw_scans, problems = load_scans(scans_dir)
     ledger_entries, ledger_problems = load_ledger(ledger_path)
@@ -1115,29 +1139,44 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
         })
     out_scans.sort(key=lambda s: (s["date"], s["file"]), reverse=True)
 
+    # A flagged item carries `picked_up` (what took it off John's list, and when) or None, so the
+    # Radar page and the node pages can say "ruled" on a card instead of leaving it marked as
+    # waiting for good (added 2026-10-12). Every other item carries None.
+    waiting = []
+    for s in out_scans:
+        for it in s["items"]:
+            it["picked_up"] = None
+            if it["verdict"] != "flagged":
+                continue
+            later_scans = sorted(
+                later["date"] for later in out_scans
+                if later["date"] > s["date"] and any(x["node"] == it["node"] for x in later["items"]))
+            later_entries = sorted(
+                str(plain(e.get("date", ""))) for e in ledger_entries
+                if str(plain(e.get("date", ""))) > s["date"]
+                and it["node"] in ((e.get("nodes") or []) + (e.get("checked_against") or [])))
+            ruled = ruled_on_the_node(by_id[it["node"]], s["date"])
+            candidates = []
+            if ruled:
+                candidates.append((ruled, "a ruling recorded on the step"))
+            if later_entries:
+                candidates.append((later_entries[0], "a ledger entry"))
+            if later_scans:
+                candidates.append((later_scans[0], "a later scan"))
+            if candidates:
+                on, how = min(candidates)
+                it["picked_up"] = {"on": on, "how": how}
+            else:
+                waiting.append({"scan_date": s["date"], "scan_file": s["file"], "test": s["test"], **it})
+
     by_node: dict[str, list[dict]] = defaultdict(list)
     for s in out_scans:
         for it in s["items"]:
             by_node[it["node"]].append({
                 "date": s["date"], "scope": s["scope"], "test": s["test"], "file": s["file"],
                 "verdict": it["verdict"], "found": it["found"], "sources": it["sources"],
-                "ledger": it["ledger"], "for_john": it["for_john"],
+                "ledger": it["ledger"], "for_john": it["for_john"], "picked_up": it["picked_up"],
             })
-
-    waiting = []
-    for s in out_scans:
-        for it in s["items"]:
-            if it["verdict"] != "flagged":
-                continue
-            checked_again = any(
-                later["date"] > s["date"] and any(x["node"] == it["node"] for x in later["items"])
-                for later in out_scans)
-            in_ledger = any(
-                str(plain(e.get("date", ""))) > s["date"]
-                and it["node"] in ((e.get("nodes") or []) + (e.get("checked_against") or []))
-                for e in ledger_entries)
-            if not (checked_again or in_ledger):
-                waiting.append({"scan_date": s["date"], "scan_file": s["file"], "test": s["test"], **it})
 
     return {
         "exported_on": dt.date.today().isoformat(),

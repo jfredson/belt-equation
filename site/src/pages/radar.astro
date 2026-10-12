@@ -129,11 +129,14 @@ const description = latestScan
               <article class={`scan-card v-${item.verdict}`}>
                 <div class="card-top">
                   <a class="card-name" href={item.path}>{item.node_name}</a>
-                  <span class={`badge v-${item.verdict}`}>{verdictLabel[item.verdict]}</span>
+                  <span class={`badge v-${item.verdict}`}>{item.picked_up ? 'Ruled' : verdictLabel[item.verdict]}</span>
                 </div>
                 <p class="card-found">{item.found}</p>
                 {item.for_john && (
                   <p class="card-john"><strong>For me:</strong> {item.for_john}</p>
+                )}
+                {item.picked_up && (
+                  <p class="card-john dim">Taken off my list on {item.picked_up.on}, by {item.picked_up.how}.</p>
                 )}
                 <div class="card-foot">
                   {item.ledger && (

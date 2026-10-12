@@ -1,6 +1,6 @@
 # How the numbers are computed
 
-Written 2026-09-19 (roadmap step 12), the day the tree was first run end to end. This is the document the website renders on its methodology page and the one a reader should be able to argue with. What the question is and what the tiers mean is in definitions.md; this document is only about how a tree of sixty nodes becomes a handful of percentages, how those percentages will be scored against reality, and how the decision comparison is run.
+Written 2026-09-19 (roadmap step 12), the day the tree was first run end to end. This is the project's record of the method and the one a reader should be able to argue with; the website's Method page gives the plain account of it and links here (it rendered this document in full from 2026-09-20 to 2026-10-12). What the question is and what the tiers mean is in definitions.md; this document is only about how a tree of sixty nodes becomes a handful of percentages, how those percentages will be scored against reality, and how the decision comparison is run.
 
 Updated 2026-09-20, when the outside review (roadmap step 27) landed: the tree stands at sixty-nine nodes after nine were added on the reviewers' arguments, every number has been through the review described below, and the run reports one more figure beside the headline, A2 at Tier 1, explained under "What is reported and what is not". The counts elsewhere in this document are the ones of 2026-09-19 and are left as written.
 

@@ -53,7 +53,7 @@ Five verdicts. `quiet`: nothing found that bears on the criterion. `noted`: some
 
 ## What the reader sees
 
-**The Radar page** (`/radar`). The latest scan at the top: date, scope, nodes checked, and a count per verdict. Below it the items grouped by chain link (the home page's seven plain-English links), each a card with the node name, the verdict as a badge, the `found` sentence, and the sources; a `moved` or `resolved` card links to its ledger entry. Older scans follow, collapsed. A "Waiting on John" list of every open `flagged` item, cleared when a later ledger entry or scan item cites it.
+**The Radar page** (`/radar`). The latest scan at the top: date, scope, nodes checked, and a count per verdict. Below it the items grouped by chain link (the home page's seven plain-English links), each a card with the node name, the verdict as a badge, the `found` sentence, and the sources; a `moved` or `resolved` card links to its ledger entry. Older scans follow, collapsed. A "Waiting on John" list of every open `flagged` item, cleared when a later scan checks the node again, a later ledger entry names the node, or (added 2026-10-12) the node carries a revision dated on or after the scan whose reason names the scan's date, which is how a ruling made by editing the node is seen.
 
 **A strip on the home page**, under the headline number: "Last checked 2026-09-27: 21 nodes read, none moved" (or "one moved: the ship came back", linking to the entry). This is how a first-time visitor learns the number is watched.
 

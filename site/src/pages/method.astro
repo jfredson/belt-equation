@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import { tree, nodesOf, scenarioWindow, percent, countWord } from '../lib/tree';
-// The methodology document itself (docs/methodology.md, roadmap step 12), rendered below the
-// plain-language walk-through so there is one source for it (website step 23, 2026-09-20).
-import { Content as Methodology } from '../../../docs/methodology.md';
+// The method as it stands, in plain language. Rewritten 2026-10-12 at John's asking: the page used
+// to render docs/methodology.md in full, which is the project's dated record of how each part was
+// settled and read oddly to a first-time visitor. That document stays in the repository and is
+// linked at the end; this page says only what the method is.
 
 const contact = nodesOf('C');
 const runs = tree.numbers.runs ?? 20000;
@@ -11,6 +12,7 @@ const headlineTier = tree.tiers.find((t) => t.key === tree.headline_tier);
 const headlineP = tree.numbers.available ? tree.numbers.tiers[tree.headline_tier]['baseline'] : null;
 const exampleHits = headlineP !== null ? Math.round(headlineP * runs) : 700;
 const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
+const REPO = 'https://github.com/jfredson/belt-equation/blob/main';
 ---
 
 <Base title="How the numbers are computed — The Belt Equation" description="How the Belt Equation's headline number is computed from the tree: play-throughs in dependency order, five longevity scenarios, tiers, and the Contact Clause beside it.">
@@ -44,16 +46,9 @@ const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
       ("if launch is cheap, how likely is factory-scale manufacturing in orbit by 2070?"), and walking the tree
       in dependency order is what keeps the chain honest.
     </p>
-    <p>
-      To weigh a decision, the tree is run again once per option at that fork, and the change in the headline
-      number is the value of choosing one way over another. That is what makes this a decision tool and not only
-      a forecast.
-    </p>
     <p class="dim">
-      The full write-up, including the world draw and the yearly calibration score (a standard measure of how
-      well past probabilities matched what actually happened), is <a href="#document">further down this page</a>,
-      rendered from the repository's own methodology document. The code is the reference behind it:
-      <a href="https://github.com/jfredson/belt-equation/blob/main/scripts/compute.py" rel="noopener"><code>scripts/compute.py</code></a>.
+      The code that does this is public:
+      <a href={`${REPO}/scripts/compute.py`} rel="noopener"><code>scripts/compute.py</code></a>.
     </p>
 
     <h2>Five guesses at the deadline</h2>
@@ -70,11 +65,129 @@ const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
           <tr>
             <td><code>{s.key}</code></td>
             <td>{s.name}</td>
-            <td>{scenarioWindow(s)}{s.refined_on ? <span class="dim"> (updated {s.refined_on})</span> : null}</td>
+            <td>{scenarioWindow(s)}</td>
           </tr>
         ))}
       </tbody>
     </table>
+    <p>
+      The five are reported side by side and never combined into one number. The spread across them is itself
+      a finding: it shows how much of the question is about spaceflight and how much is about medicine.
+    </p>
+
+    <h2>Why the events are not rolled on their own</h2>
+    <p>
+      If every event were rolled independently, the tree would say the far side of Mars is all but out of reach,
+      even though each event on the way there is individually likely. That is what happens when fifteen fairly
+      likely things are all required and are multiplied as if they had nothing to do with each other. But they
+      do: cheap launch, steady money and a working off-Earth economy are causes shared across most of the tree,
+      and a world where one of them comes good is a world where the others tend to.
+    </p>
+    <p>
+      So before each play-through the calculation draws one number for how favourable the world turned out, and
+      nudges every open event's odds by that amount before rolling it. In some play-throughs everything is easier
+      and in some everything is harder, which is what shared causes do. The size of the nudge is the one free
+      setting in the method. It is set so that a typical good world roughly doubles the odds of a middling event
+      and a typical bad world roughly halves them, about the swing the last two decades of spaceflight have shown
+      between optimistic and pessimistic readings of the same facts. Every run also prints the independent-roll
+      result beside the real one, so anyone can see exactly how much that setting is worth.
+    </p>
+
+    <h2>The thing needed, not one way of getting it</h2>
+    <p>
+      When an event needs something that more than one route could supply, its dependency names the thing, not
+      the route. Mining the Moon at scale needs power through the two-week lunar night, so the step it depends on
+      is "power through the lunar night at a surface site", not "a fission reactor on the Moon". The reactor
+      stays in the tree as one route, with its own test and probability, and the power step happens once any
+      route has. A link that named only one route would multiply the child by that route's chance, when the true
+      chance is that of any route coming good, and the tree would always lean low.
+    </p>
+
+    <h2>What the numbers assume about timing</h2>
+    <p>
+      Each number is the chance an event happens before the deadline, given that what it depends on has
+      happened. It says nothing about when. A parent finished in 2035 leaves its child decades; one finished in
+      December 2070 leaves it weeks. The estimates are read as if parents finish at about the time they typically
+      would, in the worlds where they finish at all. Where that is wrong, it is most likely wrong in one
+      direction: events at the top of long chains, under the shorter deadlines, probably lean a little high. A
+      version that estimates when each event lands, rather than one probability per deadline, is on the list for
+      later.
+    </p>
+
+    <h2>What is reported</h2>
+    <p>
+      Each run reports, for each of the five deadlines: the chance of each of the four stages human industry could
+      reach (an outpost, a settlement, the slow expanse, the full expanse); the chance of each of the four ways I
+      could be part of it (working for the industry from Earth, flying once, working off Earth on rotation,
+      living off Earth); the rungs of the Contact Clause; and every event's overall chance. The headline is
+      working off Earth on rotation once industry reaches the slow expanse: tens of thousands of people off
+      Earth, at least one site beyond the Moon, transit fast enough that people go out there to work, and
+      something made out there sold at a profit.
+    </p>
+    <p>
+      Beside it sits the nearer figure the home page shows: a rotation at a station or a lunar base, whatever
+      industry has reached. It is counted in the same play-throughs, so the two are always from the same run, and
+      it is shown so the gap between them is visible.
+    </p>
+
+    <h2>Weighing my own decisions</h2>
+    <p>
+      Some events in the tree are my decisions rather than the world's: at the six-year mark of my current
+      contract, stay or leave for civilian space work. These are never rolled. Instead the whole tree is run once
+      per option, with that option forced and everything else as usual, and the difference between the headlines
+      is what the decision is worth. That is what makes this a decision tool and not only a forecast. That part
+      of the tree is still a sketch and is rebuilt in 2027, so the comparison is reported but not yet read.
+    </p>
+
+    <h2>Running the tree for somebody else</h2>
+    <p>
+      Everything above is about my odds. The <a href="/run/">Your Odds</a> page runs the same tree for a visitor.
+      The five deadlines are my ages 85, 94, 109 and 150, and no deadline at all. A visitor's are the same ages
+      shifted to their own birth year, and the page reads a number for each event at the shifted year by drawing
+      a straight line between the two nearest deadlines' numbers, on the scale where probabilities move evenly.
+      Nothing is read below the first deadline: for a reader older than me the number holds flat at the 2071
+      figure, and the page says that the tree cannot see below its own first window. Past the last deadline the
+      reading moves toward the no-deadline number and never passes it.
+    </p>
+    <p>
+      The tree can say how likely the world is to offer a chance. Whether a particular person takes it depends on
+      their money, health, work and luck, none of which the tree knows. So the page asks the reader for that
+      number themselves, shows it beside the world's part, and only then multiplies the two.
+    </p>
+
+    <h2>Scoring the forecasts</h2>
+    <p>
+      A forecast that is never scored is an opinion. Every event has a written test so that it can be scored.
+      Each January, every event that resolved in the year is scored with the standard measure, the Brier score:
+      take the probability that was on the record for it when it resolved, subtract one if it happened and zero
+      if it did not, square the difference, and average across the events. Zero is perfect, 0.25 is what saying
+      fifty percent about everything gets, and anything worse than that is worse than saying nothing. An event is
+      scored only if a probability for it was on the record before it resolved; the three that had already
+      happened before the tree was first estimated are not. The score is published with each resolved event's
+      recorded probability and outcome, and with the headline's movement over the year, which is the product the
+      project actually delivers.
+    </p>
+
+    <h2>What is fixed and what moves</h2>
+    <p>
+      Fixed, and changed only at a yearly review: the question, the four stages and what each requires, the
+      eight factors, the five deadlines, the size of the world nudge, and the scoring rule. Moved whenever the
+      world moves, with a dated note on the event: its status when it resolves, and its probability when the
+      weekly scan or a review finds reason. Added at any time: new events, when a scan or a critic finds a gap.
+      Never changed once a probability has been published against it: an event's test, so that the score can
+      always find the forecast it is scoring. An event that needs a different test is retired and replaced.
+    </p>
+
+    <h2>Where the numbers come from</h2>
+    <p>
+      The probabilities are estimates, and they are the least reliable part of the method; the rest of the method
+      exists to correct them over time. Each was first drafted by Claude, the AI I build this project with, with a
+      one-line reason, and then accepted or moved by me. Before anything was published, every factor's events,
+      tests and numbers were put to other AI models with a fixed brief: name a missing event, challenge a test,
+      argue a number up or down. I ruled on every disagreement. Every number carries its date and reason, and
+      every change since is a dated revision on the event, so a number can always be traced to why it is what it
+      is. If you think one is wrong, <a href="/feedback/">there is a page for that</a>.
+    </p>
 
     <h2>The Contact Clause, beside the equation</h2>
     <p>
@@ -92,11 +205,10 @@ const examplePct = headlineP !== null ? percent(headlineP) : '3.5%';
         <li><a href={n.path}>{n.name}</a></li>
       ))}
     </ul>
-  </section>
 
-  <section class="section narrow prose document" id="document">
-    <div class="shead"><h2>The methodology document</h2><span>docs/methodology.md in the repository, rendered as is</span></div>
-    <p class="section-note">Everything above is the short version. This is the document the project keeps and argues from, with the dates it was written and changed; the numbers page and the code are meant to be read against it.</p>
-    <Methodology />
+    <p class="dim">
+      The project's own methodology document, with the date each part was settled and the reasoning behind it,
+      is in the repository: <a href={`${REPO}/docs/methodology.md`} rel="noopener"><code>docs/methodology.md</code></a>.
+    </p>
   </section>
 </Base>

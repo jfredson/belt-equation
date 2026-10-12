@@ -27,6 +27,8 @@ export type ScanItem = {
   sources: string[];
   ledger: LedgerRef | null;
   for_john: string | null;
+  /** On a flagged item: what took it off my list and when; null while it is still waiting. */
+  picked_up: { on: string; how: string } | null;
 };
 
 export type Scan = {
@@ -54,6 +56,7 @@ export type NodeCheck = {
   sources: string[];
   ledger: LedgerRef | null;
   for_john: string | null;
+  picked_up: { on: string; how: string } | null;
 };
 
 export type WaitingItem = ScanItem & { scan_date: string; scan_file: string; test: boolean };
@@ -126,7 +129,10 @@ export function scanSummary(scan: Scan): string {
   const parts: string[] = [];
   if (scan.counts.moved) parts.push(`${plainCount(scan.counts.moved)} moved`);
   if (scan.counts.resolved) parts.push(`${plainCount(scan.counts.resolved)} resolved`);
-  if (scan.counts.flagged) parts.push(`${plainCount(scan.counts.flagged)} left for me`);
+  if (scan.counts.flagged) {
+    const open = scan.items.filter((i) => i.verdict === 'flagged' && !i.picked_up).length;
+    parts.push(open ? `${plainCount(open)} left for me` : `${plainCount(scan.counts.flagged)} ruled on since`);
+  }
   if (parts.length === 0) return `${read}, nothing moved`;
   const joined = parts.length === 1 ? parts[0] : parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1];
   return `${read}, ${joined}`;

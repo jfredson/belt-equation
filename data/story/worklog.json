@@ -1,8 +1,239 @@
 {
   "project": "Belt Equation",
-  "source": "TimeAssembler worklog, read by scripts/publish.py on 2026-09-25 (Pacific)",
-  "fetched_on": "2026-09-25",
+  "source": "TimeAssembler worklog, read by scripts/publish.py on 2026-10-12 (Pacific)",
+  "fetched_on": "2026-10-12",
   "entries": [
+    {
+      "id": "1828997c-5aa6-4703-bef1-4361c2b927da",
+      "date": "2026-10-12",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Evening session 2026-10-12: the public copy refined line by line with John (home page, nav, footer), the Method and Story pages cut back to results, and a missed flagged-item notification traced and fixed at both ends (belt-equation)"
+    },
+    {
+      "id": "e58386fd-90d4-4c6b-8388-339499445ac7",
+      "date": "2026-10-12",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "A flagged scan item counts as picked up when a revision on the step names the scan, and the Monday digest reads a parked scan from its branch"
+    },
+    {
+      "id": "a077708e-60e3-4c75-8fbd-e2e35b61e19d",
+      "date": "2026-10-12",
+      "type": "decision",
+      "decided_by": "john",
+      "title": "The Method and Story pages show results, not process: the methodology document is no longer rendered on the site, and the roadmap, workbench and changelog came off the Story page"
+    },
+    {
+      "id": "29e06fe4-08c2-46ff-b32b-de3aa09f7cab",
+      "date": "2026-10-12",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "The home page's first dial line now shows the chance of an orbital seat under a million dollars (33%), not the \"I fly to space at least once\" tier (36%)"
+    },
+    {
+      "id": "be5d1f2c-ac82-4f47-bc9c-d9d5d01c3ea0",
+      "date": "2026-10-12",
+      "type": "progress",
+      "decided_by": null,
+      "title": "The yearly scoring of past forecasts built as pull request 44: a score command that prints the calibration score the annual review reports"
+    },
+    {
+      "id": "d43d4fa3-d34f-4cae-8ecd-5a8d71bbd289",
+      "date": "2026-10-12",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Session 2026-10-12: status check, the 2026-10-08 scan flags ruled (pull request 41), Sunday's parked scan found and brought in (42), the stale-clone cause fixed (43); all three merged"
+    },
+    {
+      "id": "c9c45d63-b67a-40e9-82df-ad48e5ba1e20",
+      "date": "2026-10-12",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Ruled: the weekly scan starts from GitHub's copy of main, and the publish command refuses to commit on a main that is behind (pull request 43 merged 2026-10-12)"
+    },
+    {
+      "id": "8788dcf3-00fe-4e0a-a59b-e0d30d779068",
+      "date": "2026-10-12",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Scan procedure fix drafted as pull request 43: step 0 fetches GitHub's main first, and the publish command refuses to commit on a main that is behind"
+    },
+    {
+      "id": "73efb60e-fbbf-4b8c-b2d2-12a7e4c60d5b",
+      "date": "2026-10-12",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Sunday's scan (2026-10-11) ran but sits on a fallback branch: the cloud copy of main was stale, so the push to main was refused; 17 read, 0 moved, 1 flagged"
+    },
+    {
+      "id": "0c9ffab1-6e45-4747-84d5-e642014e3bad",
+      "date": "2026-10-12",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "The two items the 2026-10-08 scan flagged, ruled: the staple-crop claim is cleared with its source, and the Erdős unit-distance disproof joins the C1 candidates (pull request 41)"
+    },
+    {
+      "id": "c8da76dc-67d8-4f8c-89f6-3ae825815a2d",
+      "date": "2026-10-12",
+      "type": "progress",
+      "decided_by": null,
+      "title": "The two claims-to-check items the 2026-10-08 scan flagged, drafted as pull request 41 for John to rule on by merging"
+    },
+    {
+      "id": "291018c3-d80f-4c2b-b2f9-08708feaf582",
+      "date": "2026-10-09",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Website step 26 checked: one-command publish works on current main; the two items from the 2026-10-08 scan written up for John"
+    },
+    {
+      "id": "c0ee84f1-a446-4580-8393-7b60000caece",
+      "date": "2026-10-08",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Test run of the cloud weekly scan passed (2026-10-08): pushed to main unattended in 3.5 minutes; 17 read, 0 moved, 2 flagged for John"
+    },
+    {
+      "id": "d2f2a250-9510-4683-9196-6f2adcbb449b",
+      "date": "2026-10-08",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Test run of the cloud Monday digest passed (2026-10-08): 32 seconds, connector reached, duplicate article task correctly skipped"
+    },
+    {
+      "id": "58f7ac42-190b-4abe-a3d2-be9fa384ec50",
+      "date": "2026-10-08",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Status check 2026-10-08, then the Monday digest moved to the cloud and the delayed-scan cause corrected"
+    },
+    {
+      "id": "aaa2e204-5503-435e-8a2c-e33be0239169",
+      "date": "2026-10-08",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "The Monday digest of the weekly scan moves to a cloud routine, so no part of the weekly reading needs the laptop (2026-10-08)"
+    },
+    {
+      "id": "38aa63be-2fab-4f82-8775-8446c8b608b3",
+      "date": "2026-10-06",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Evening session 2026-10-06: the four scan rulings confirmed in the repo, four follow-ups applied and merged; Starship article drafted"
+    },
+    {
+      "id": "cb472c70-eace-47c9-894a-21c97142ecd1",
+      "date": "2026-10-06",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Ruled: four follow-ups to the scan rulings — C1's text reworded with its numbers held, FunSearch claim settled, relevance spot-check in the Operations monthly review, and a check on reused searches"
+    },
+    {
+      "id": "efce5566-7e67-43f7-bd12-2b309542e376",
+      "date": "2026-10-06",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Ruled at the first scan audit: keep the 0.10 per-scan cap and the weekly/monthly reading split unchanged"
+    },
+    {
+      "id": "3631812b-0257-457f-94a2-3dfe98b8d5e9",
+      "date": "2026-10-06",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Ruled: a search counts toward an event only if aimed at it; reused searches must be marked with a reason; the monthly audit spot-checks relevance"
+    },
+    {
+      "id": "3cc35dc8-b8b0-49d8-ab61-04ebefe9bc4e",
+      "date": "2026-10-06",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Ruled: the scan must read each node's \"claims to check\" (verify) list, giving each claim its own search; AlphaTensor added to C1's list"
+    },
+    {
+      "id": "65c3206e-2d00-4fca-89d9-39791895679f",
+      "date": "2026-10-06",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Ruled: Contact Clause first step (C1) stays open; \"not specified by its operators\" is read strictly, so an operator-built frame and scoring rule make the idea the operators'"
+    },
+    {
+      "id": "2c3a3b59-da66-459f-8516-5afbaf381153",
+      "date": "2026-10-03",
+      "type": "progress",
+      "decided_by": null,
+      "title": "New site page \"What could happen next\" with every earlier version; pull request 35 open"
+    },
+    {
+      "id": "edf0a41d-0a5d-4099-8607-0d70801c1b4e",
+      "date": "2026-10-03",
+      "type": "progress",
+      "decided_by": null,
+      "title": "Drafted the pinned X post for The Belt Equation essay"
+    },
+    {
+      "id": "3ea2292b-b0c2-4649-b528-c6872fe80831",
+      "date": "2026-10-03",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Weekly scan now prompts article ideas for big moves; Flight 14 read against the tree"
+    },
+    {
+      "id": "32d22c4a-51a9-43f1-8902-b41a670775fa",
+      "date": "2026-10-03",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Second half of 2026-10-03: every remaining roadmap item walked through with John, one by one"
+    },
+    {
+      "id": "fa509778-8edb-4211-adc3-945640405116",
+      "date": "2026-10-03",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "The weekly scan must run at least two searches per event from 2026-10-04, and its first audit moves up to the week of 2026-10-05"
+    },
+    {
+      "id": "4fd1f72a-303f-4208-bac4-bf46da10083c",
+      "date": "2026-10-03",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "The questions left by the function-over-route pass are ruled: two wording fixes now, the tier change held for January, fast transit left naming the Belt (2026-10-03)"
+    },
+    {
+      "id": "bb6d53e2-be22-4a0c-b559-b6cae54f0cc1",
+      "date": "2026-10-03",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Progress review, then three pull requests merged: the function-over-route pass with its estimates ruled, the Feedback page, and four ids renamed (2026-10-02 to 2026-10-03)"
+    },
+    {
+      "id": "efdad9fe-7d41-4e17-891f-9574984be497",
+      "date": "2026-10-03",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "Four access-branch ids renamed so no page address describes John's current career; saved runs left untouched and read through a lookup (2026-10-03)"
+    },
+    {
+      "id": "4cd6cdfa-8ccb-42f1-aa45-fa673880f393",
+      "date": "2026-10-03",
+      "type": "decision",
+      "decided_by": "john",
+      "title": "Q3 quarterly ruling: The Belt Equation moves front and center — a named quarter priority, the single most interesting project to develop right now"
+    },
+    {
+      "id": "520745bb-6531-4f41-9bba-c47adb20e104",
+      "date": "2026-10-02",
+      "type": "decision",
+      "decided_by": "mixed",
+      "title": "The eleven first estimates of the function-over-route pass are ruled: nine stand, two raised (2026-10-02)"
+    },
+    {
+      "id": "fcedbbfb-5eef-4b20-8d5c-393a8b4838e4",
+      "date": "2026-09-25",
+      "type": "session-summary",
+      "decided_by": null,
+      "title": "Cowork 2026-09-25, close of day: seven pull requests merged, question reworded live, essay held at pull request 2"
+    },
     {
       "id": "47785366-e592-485d-8cf3-38e2d29225bc",
       "date": "2026-09-25",

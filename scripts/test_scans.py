@@ -85,5 +85,40 @@ class AReusedSearchNeedsAReason(unittest.TestCase):
         self.assertEqual([p for p in problems if "reused" in p], [])
 
 
+class ARulingOnTheNodeClearsAFlag(unittest.TestCase):
+    """Added 2026-10-12: a flagged item is picked up when the node carries a revision, dated on
+    or after the scan, whose reason names the scan's date (docs/scan-plan.md, the Radar page)."""
+
+    def test_a_later_revision_naming_the_scan_counts(self):
+        node = {"revisions": [{"date": "2026-10-12", "field": "verify", "old": "a claim", "new": "cleared",
+                               "why": "Checked by the scan of 2026-10-11 and settled; ruled by John."}]}
+        self.assertTrue(export.ruled_on_the_node(node, "2026-10-11"))
+
+    def test_a_same_day_revision_naming_the_scan_counts(self):
+        node = {"revisions": [{"date": "2026-10-11", "field": "verify", "old": "a", "new": "b",
+                               "why": "Ruled the same evening as the 2026-10-11 scan."}]}
+        self.assertTrue(export.ruled_on_the_node(node, "2026-10-11"))
+
+    def test_an_earlier_revision_does_not_count(self):
+        node = {"revisions": [{"date": "2026-10-10", "field": "verify", "old": "a", "new": "b",
+                               "why": "Mentions 2026-10-11 as a future date, oddly."}]}
+        self.assertFalse(export.ruled_on_the_node(node, "2026-10-11"))
+
+    def test_a_later_revision_about_something_else_does_not_count(self):
+        node = {"revisions": [{"date": "2026-10-12", "field": "probability", "old": "0.5", "new": "0.6",
+                               "why": "Moved at the annual review."}]}
+        self.assertFalse(export.ruled_on_the_node(node, "2026-10-11"))
+
+    def test_a_node_with_no_revisions_does_not_count(self):
+        self.assertFalse(export.ruled_on_the_node({}, "2026-10-11"))
+
+    def test_the_staple_crop_flag_of_2026_10_11_is_no_longer_waiting(self):
+        tree = export.compute.load_tree(ROOT / "data")
+        scans, problems, _ = export.export_scans(tree, ROOT / "data" / "scans", ROOT / "data" / "ledger.toml")
+        self.assertEqual(problems, [])
+        still = [(w["scan_date"], w["node"]) for w in scans["waiting_on_john"]]
+        self.assertNotIn(("2026-10-11", "B-staple-crop-grown-from-seed-to-harvest-off-earth"), still)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -19,8 +19,8 @@ The public face of the tree: beltequation.com (attached at website step 25; unti
 | `/tree/` | The factors, and the system and access tiers with what each requires. |
 | `/tree/<factor>/` | One page per factor listing its nodes, leaves first. |
 | `/tree/<factor>/<node-id>/` | One page per node: description, resolution criterion, source, horizon, dependencies, what needs it, probability by scenario with rationale and date, long-shot mechanism and breaking point, revisions, notes, and a link to open an issue about it. |
-| `/method/` | How the numbers are computed, the scenario table, the Contact Clause. The full methodology document joins at website step 23. |
-| `/story/` | The changelog, rendered. TimeAssembler's progress feed joins at website step 24. |
+| `/method/` | How the numbers are computed, in plain language and results only: play-throughs, the five deadlines, the world draw, what is reported, scoring, the Contact Clause. From 2026-09-20 to 2026-10-12 it also rendered docs/methodology.md in full; that document is now linked from the page instead, since its dated record of who settled what read oddly to a first-time visitor. |
+| `/story/` | What moved the headline number and by how much: the ledger of entries, the biggest movers, and the run-by-run table, all from the committed runs. The roadmap, the day-by-day workbench and the rendered changelog were on this page from 2026-09-20 to 2026-10-12 and were taken off as process rather than results; the changelog is linked from the repository. |
 | `/disagree/` | How to name a missing node, challenge a criterion, or move a number, and what happens to critique. |
 
 Node ids are the URL keys because the schema promises they are never renamed once a probability has been recorded.

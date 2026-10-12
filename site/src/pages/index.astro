@@ -26,7 +26,7 @@ const LINKS = [
 
 // One line per scenario for the dial. Keys match data/scenarios.toml.
 const DIAL: Record<string, { label: string; when: string; note: string }> = {
-  baseline: { label: '2071', when: 'by 2071', note: 'If I live about as long as a man my age is expected to: roughly to 2071. This is the default, and the number I hold myself to.' },
+  baseline: { label: '2071', when: 'by 2071', note: 'If I reach my life expectancy, about 85 years old.' },
   moderate: { label: '2080', when: 'by 2080', note: 'If medicine adds about a decade to a life like mine.' },
   strong: { label: '2095', when: 'by 2095', note: 'If I make it to 109. Strong life extension, the kind that is being seriously worked on but has not arrived.' },
   radical: { label: '2136', when: 'by 2136', note: 'A 150-year life. This is the long shot the whole project is built to keep in view.' },
@@ -49,7 +49,7 @@ const scenarios = tree.scenarios.map((s) => {
   const n = numbers.available
     ? {
         headline: numbers.tiers[headlineKey][s.key],
-        a1: numbers.tiers['A1'][s.key],
+        seat: numbers.nodes['A-orbital-seat-sold-under-one-million-dollars']?.[s.key] ?? null,
         t3: numbers.tiers['T3'][s.key],
         a2t1: numbers.a2_at_tier1 ? numbers.a2_at_tier1[s.key] : null,
         links: Object.fromEntries(LINKS.map((l) => [l.letter, numbers.chain[l.letter]?.[s.key] ?? null])),
@@ -97,7 +97,7 @@ const contact = factorByLetter('C');
       <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
       <h1 class="big-claim">The chance that, before I die, I live and work in a solar system where human industry reaches beyond Earth and Mars.</h1>
       <p class="big-sub"><span data-bind="windowLine">That is {current.when}.</span> Nobody knows how long I get, so the dial lets you change that assumption and watch the odds move.</p>
-      <p class="second-number">That means working rotations out past Mars, where something made off Earth sells at a profit. The nearer thing, a rotation at a station or a lunar base before industry reaches that far, comes out at <strong data-bind="a2t1">{fmt(current.a2t1)}</strong>. That number is reported here beside the headline, not in its place.</p>
+      <p class="second-number">That number is the chance that, in my lifetime, I work a rotation on a ship, a station or a rock out past Mars, where something made off Earth sells at a profit. The nearer thing, a rotation at a station or a lunar base whether or not industry ever goes further, comes out at <strong data-bind="a2t1">{fmt(current.a2t1)}</strong>.</p>
       {move && (
         <p class={`headline-move tone-${direction(current.headlineMove).tone}`} data-bind-class="headlineMove">
           <span aria-hidden="true" data-bind="headlineArrow">{direction(current.headlineMove).arrow}</span>
@@ -138,12 +138,12 @@ const contact = factorByLetter('C');
       </div>
       <p class="dial-note" data-bind="note">{current.note}</p>
       <div class="dial-stats">
-        <div><span class="stat" data-bind="a1">{fmt(current.a1)}</span><span class="stat-label">I fly to space at least once</span></div>
-        <div><span class="stat" data-bind="a2t1">{fmt(current.a2t1)}</span><span class="stat-label">I work a rotation at a station or lunar base, however far industry has reached</span></div>
-        <div><span class="stat" data-bind="t3">{fmt(current.t3)}</span><span class="stat-label">Human industry reaches beyond Earth and Mars at all</span></div>
+        <div><span class="stat" data-bind="seat">{fmt(current.seat)}</span><span class="stat-label">An orbital seat sells for under a million dollars</span></div>
+        <div><span class="stat" data-bind="a2t1">{fmt(current.a2t1)}</span><span class="stat-label">I work a rotation at a station or lunar base, whether or not industry goes any further</span></div>
+        <div><span class="stat" data-bind="t3">{fmt(current.t3)}</span><span class="stat-label">Human industry reaches beyond Earth and Mars, with or without me</span></div>
         <div><span class="stat accent" data-bind="headline">{fmt(current.headline)}</span><span class="stat-label">I'm out there working when it does</span></div>
       </div>
-      <p class="dial-foot">These are my odds, against my lifetime. <a href="/run/">Run the same tree against yours</a>.</p>
+      <p class="dial-foot">These are my odds, in my lifetime.<br /><a href="/run/">Run the same tree for your lifetime</a>.</p>
     </div>
   </section>
 
@@ -154,7 +154,7 @@ const contact = factorByLetter('C');
     </div>
     <div>
       <p class="kicker">Who is asking</p>
-      <p>I'm John, 40, and in training for my current job. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page and let the math tell me which choices in the next few years move the number. Once a year I re-check every link and publish what changed. If you think a number is wrong, <a href="/feedback/">there's a page for that</a>.</p>
+      <p>I'm John, 40 years old, and I write about AI, sentience and the spread of conscious life beyond Earth at <a href="https://sentient-horizons.com" rel="noopener">Sentient Horizons</a>. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page. It puts a number on the wish and it shows me which links are likely to move in the next few years, so I know where to watch, and which ones would move the odds most.</p>
     </div>
   </section>
 
@@ -282,7 +282,7 @@ const contact = factorByLetter('C');
         var s = byKey[key];
         if (!s) return;
         setAll('headline', fmt(s.headline));
-        setAll('a1', fmt(s.a1));
+        setAll('seat', fmt(s.seat));
         setAll('t3', fmt(s.t3));
         setAll('a2t1', fmt(s.a2t1));
         setAll('windowLine', 'That is ' + s.when + '.');
