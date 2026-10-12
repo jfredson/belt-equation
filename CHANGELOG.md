@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-12
+
+- The two claims-to-check items the weekly scan of 2026-10-08 flagged for John, ruled (proposed by Claude, approved by John at the merge). **No number moved** and no run was taken. The staple-crop step's one claim is cleared: the Chinese Academy of Sciences confirmed on 2022-12-06 that rice went from seed to seed aboard Tiangong in 2022, and the fact now stands in the step's notes with its source; the one-kilogram harvest test is still open, since the 2026 Shenzhou-23 harvest reports give no mass. C1 ("A non-human mind produces knowledge beyond us") keeps its two claims with the scan's dated findings written in (AlphaEvolve's mathematics results are still a preprint, so the peer-review question stays open; AlphaTensor's facts are confirmed and it stays unresolved under the strict reading) and gains a third: the May 2026 OpenAI disproof of Erdős's unit-distance conjecture, to be checked by each scan for a peer-reviewed record saying the idea was the system's. A revision on each step.
+
 ## 2026-10-08
 
 - Weekly scan (scheduled task, 2026-10-08): 17 nodes read, 0 moved, 0 resolved, 2 flagged for John (B-staple-crop-grown-from-seed-to-harvest-off-earth and C1, both about their claims-to-check lists); record at data/scans/2026-10-08.toml.
