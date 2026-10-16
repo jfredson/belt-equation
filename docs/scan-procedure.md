@@ -27,6 +27,8 @@ For each eligible node, in file order:
    - `resolved`: the criterion is met on the plain reading and two independent public records agree (the operator plus an independent observer; a journal plus a registry). Sources required, both listed.
    - `flagged`: anything you may not do (a move over the cap, a criterion that no longer fits the world, a node you think is missing, a resolve-no, anything in the A branch or in tiers, scenarios, definitions, methodology). `for_john` states the move you would have made and the evidence. Make no edit.
 
+Search results are leads, not records. A search summary is never enough for a `flagged` item that proposes correcting a `verify` claim or a node's wording: open the primary page with WebFetch and quote what it says in `for_john`. If the page cannot be fetched (moved, blocked), say so in `for_john` and report what you could not check; do not propose a correction from a summary (added 2026-10-15, after the scan of 2026-10-11 flagged a CAS "over 100 days" reading that the CAS pages themselves contradict: they say 120 days).
+
 Search economy: no fewer than two searches per node aimed at it, and no more than four, plus one for each claim on the node's `verify` list (item 1). If a search tool fails twice, mark the node `quiet` with `found = "search unavailable"` and move on.
 
 ## 2. Edit the tree (moved and resolved only)
@@ -47,6 +49,7 @@ Never edit any other field. Never edit a node you did not mark `moved` or `resol
 
 If data/ledger.toml does not yet exist (ledger plan step 30 not landed), skip this step and say so in the commit message; the scan record still carries the verdicts. Otherwise append one `[[entry]]` per moved, resolved and widely-reported noted node, per the ledger plan's table, newest last, with these particulars:
 - `id = "YYYY-MM-DD-<slug>"` using the scan date; `date` the scan date; `occurred_on` the world date when it differs.
+- `source` is a primary record (the operator, agency, journal or registry) or a major outlet's report, never an aggregator or a blog. If only an aggregator carries the story, mark the node `noted` and write no ledger entry; say so in `found` (added 2026-10-15, after the 2026-10-11 entry cited an aggregator).
 - `kind` is `event` for moved, `resolution` for resolved, `held-steady` for the noted ones (with `checked_against`, no `nodes`).
 - `author = "scan"`.
 - `title` one plain sentence in the chain's vocabulary (link names, not factor letters); `body` two to five sentences; `source` the public record.
@@ -81,7 +84,7 @@ The last step is one command, `scripts/publish.py` (website step 26, 2026-09-25)
       --message "<the attribution lines this session was given>" \
       --fallback-branch claude/scan-YYYY-MM-DD
 
-- If anything moved or resolved, add `--snapshot scan`. That writes `data/snapshots/YYYY-MM-DD-scan.json`, the key the ledger entries from step 3 name. It adds about ten minutes.
+- If anything moved or resolved, or if step 3 wrote any ledger entry of any kind (a `held-steady` entry names the snapshot too, and the export refuses a ledger entry whose snapshot does not exist; found on 2026-10-11), add `--snapshot scan`. That writes `data/snapshots/YYYY-MM-DD-scan.json`, the key the ledger entries from step 3 name. It adds about ten minutes, longer than a foreground command may run: start the publish command in the background and wait for it to finish rather than giving it a timeout, because killing it mid-snapshot wastes the run.
 - The story snapshots in data/story/ are refreshed only where the TimeAssembler key is present. A cloud session has none, and the script leaves them alone and says so; that is expected.
 - If the script stops at steps 1 to 5 of its own output, the scan's edits broke a rule: read the message, fix the edit or revert that file and mark the node `flagged` (as in step 2), and run it again.
 - If it stops at step 6 of its own output (building the site) for a reason that is not the scan's data, such as Node missing or the site's packages not downloading, do not fight it: run `python3 scripts/export.py --check`, then `git add -A && git commit` with the same message and `git push origin main` (falling back to the branch below), and put the build error in the report. The deploy action builds the site on its own after the push.
