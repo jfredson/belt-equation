@@ -5,6 +5,7 @@
 import Base from '../layouts/Base.astro';
 import { tree, percent, factorByLetter, snapshots, ledger, direction, movePoints } from '../lib/tree';
 import { latestScan, scanSummary } from '../lib/scans';
+import { longDate } from '../lib/dates';
 
 const numbers = tree.numbers;
 const headlineKey = tree.headline_tier;
@@ -83,7 +84,11 @@ const weakestLink = w ? LINKS.find((l) => l.letter === w.letter) : null;
 // The strip under the headline (docs/scan-plan.md, step 37): one line saying when the tree was
 // last read against the news and what came of it. It is how a first-time visitor learns that
 // the number is watched rather than posted once and left. When exactly one node moved or
-// resolved, the line names it; otherwise the Radar page has the detail.
+// resolved, the line names it; otherwise the Radar page has the detail. Its words follow the
+// tracker pattern's section 5 (sentient-horizons/design/tracker-pattern.md, brought in line
+// 2026-10-17 from the lessons review of the same day): the date is the reading's, written out
+// (rule 5.2); the counted things are "events", never "nodes" (section 8); and in a week in which
+// no reading has run the strip says so rather than being left off (rule 5.2).
 const movers = latestScan ? latestScan.items.filter((i) => i.verdict === 'moved' || i.verdict === 'resolved') : [];
 const loneMover = movers.length === 1 ? movers[0] : null;
 const equationFactors = tree.factors.filter((f) => f.letter !== 'C');
@@ -110,16 +115,20 @@ const contact = factorByLetter('C');
           </span>
         </p>
       )}
-      {latestScan && (
-        <p class="scan-strip">
-          <span class="strip-dot" aria-hidden="true"></span>
+      <p class="scan-strip">
+        <span class="strip-dot" aria-hidden="true"></span>
+        {latestScan ? (
           <span>
-            Last checked {latestScan.date}: {scanSummary(latestScan)}{loneMover ? <>: <a href={loneMover.path}>{loneMover.node_name}</a></> : ''}.
+            Last checked {longDate(latestScan.date)}: {scanSummary(latestScan)}{loneMover ? <>: <a href={loneMover.path}>{loneMover.node_name}</a></> : ''}.
             {' '}<a href="/radar/">See the week's reading</a>.
             {latestScan.test && <span class="strip-test">This one is a hand-made test record; no real scan has run yet.</span>}
           </span>
-        </p>
-      )}
+        ) : (
+          <span>
+            No reading has run yet. <a href="/radar/">How the week's reading works</a>.
+          </span>
+        )}
+      </p>
       <div class="ctas">
         <a class="btn" href="#chain">Why so low?</a>
         <a class="btn ghost" href="#who">Who is asking</a>

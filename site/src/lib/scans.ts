@@ -122,10 +122,13 @@ export function ranAtLabel(scan: Scan): string {
   return `${time} Pacific, ${day}`;
 }
 
-/** "6 nodes read, one moved and one resolved" — the line the home page strip and the Radar
-    page both use, so the site says the same thing about a scan in both places. */
+/** "6 events read, one moved and one resolved" — the line the home page strip and the Radar
+    page both use, so the site says the same thing about a scan in both places. It says "events",
+    never "nodes": the tracker pattern (section 8) keeps "node", "leaf" and "trunk" off public
+    pages, and "events" is what the tree page already calls them (changed 2026-10-17, the first
+    adoption from the lessons review of 2026-10-17). */
 export function scanSummary(scan: Scan): string {
-  const read = `${scan.nodes_checked} node${scan.nodes_checked === 1 ? '' : 's'} read`;
+  const read = `${scan.nodes_checked} event${scan.nodes_checked === 1 ? '' : 's'} read`;
   const parts: string[] = [];
   if (scan.counts.moved) parts.push(`${plainCount(scan.counts.moved)} moved`);
   if (scan.counts.resolved) parts.push(`${plainCount(scan.counts.resolved)} resolved`);

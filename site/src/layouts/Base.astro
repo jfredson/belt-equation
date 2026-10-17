@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Starfield from '../components/Starfield.astro';
 import { tree } from '../lib/tree';
+import { longDate } from '../lib/dates';
 
 interface Props {
   title?: string;
@@ -18,11 +19,8 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const currentYear = new Date().getFullYear();
-// "7 October 2026" for the footer; the design standard writes dates out there.
-const longDate = (iso: string) => {
-  const [y, m, d] = iso.split('-').map(Number);
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-};
+// The footer's "Last built 7 October 2026" uses longDate from src/lib/dates.ts (shared with the
+// home page's last-checked strip since 2026-10-17); the design standard writes dates out there.
 ---
 
 <!doctype html>
