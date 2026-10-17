@@ -13,6 +13,9 @@ What it does, in order, stopping at the first thing that fails:
 1. Checks the tree against the schema (compute.py validate).
 2. With --snapshot LABEL, plays the tree out and writes data/snapshots/<date>-<label>.json
    (compute.py run --snapshot LABEL), which is what a scan or a review does when something moved.
+   Snapshot or not, it then writes data/headline.json (compute.py headline), the small file the
+   family's Projects page reads: the headline from the newest snapshot, the date of the last
+   weekly reading from the newest scan record (added 2026-10-17).
 3. Draws the tree picture (visual.py) and keeps a dated copy under docs/visual/, unless the newest
    copy there is the same picture apart from its date, in which case nothing is written.
 4. Refreshes the story snapshots in data/story/ from TimeAssembler (see data/story/README.md),
@@ -324,6 +327,9 @@ def pipeline(root: Path, date: str, snapshot: str | None, no_story: bool) -> Non
         run([sys.executable, "scripts/compute.py", "run", "--snapshot", snapshot], root, "The snapshot run")
     else:
         say("2. No snapshot asked for (--snapshot LABEL takes one)")
+    # Every run, snapshot or not: the numbers come from the newest snapshot, the date of the last
+    # weekly reading from the newest scan record, so a quiet week still moves the reading date.
+    say("    " + run([sys.executable, "scripts/compute.py", "headline"], root, "The headline file", quiet=True).strip().splitlines()[-1])
 
     say("3. Drawing the tree picture")
     say("    " + refresh_picture(root, date))

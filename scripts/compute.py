@@ -12,6 +12,7 @@ Plain Python, standard library only. Run from anywhere:
     python3 scripts/compute.py worth               what each open world node would be worth to the headline
     python3 scripts/compute.py attribute ENTRY     how much of a run's move came from one ledger entry
     python3 scripts/compute.py reader --birth YEAR what the tree says for a reader born that year
+    python3 scripts/compute.py headline            write data/headline.json from the newest snapshot and scan record
     python3 scripts/compute.py --data DIR ...      use a different data folder (for tests)
 
 What "run" does: for each scenario, it plays the tree out many thousands of times. In each
@@ -1842,11 +1843,120 @@ def report_score(tree: dict, snapshots: list[dict], year: int) -> str:
 # ------------------------------------------------------------------ main
 
 
+# ---------------------------------------------------------------- the headline file
+
+
+def newest_scan_date(scans_dir: Path) -> str | None:
+    """The date of the newest weekly scan record in data/scans/, as YYYY-MM-DD, or None."""
+    dates = []
+    for path in sorted(scans_dir.glob("*.toml")) if scans_dir.exists() else []:
+        try:
+            date = tomllib.loads(path.read_text()).get("scan", {}).get("date")
+        except tomllib.TOMLDecodeError as e:
+            raise TreeError(f"{path.name}: cannot be read as TOML: {e}")
+        dates.append(date.isoformat() if hasattr(date, "isoformat") else str(date or path.stem))
+    return max(dates) if dates else None
+
+
+def build_headline_file(tree: dict, snapshot: dict, last_reading: str | None) -> dict:
+    """The small file the family's Projects page reads (data/headline.json), made from the
+    newest snapshot and the newest scan record. It plays nothing out: the numbers are the
+    snapshot's own, so the file can never disagree with the run it names.
+
+    Shaped like the headline files the sibling trackers publish: the date the numbers were
+    worked out, the method and its status, the headline with its words, and the date of the
+    last weekly reading. `last_reading` moves every week; the numbers move only when a run is
+    taken (a scan takes one when anything moved)."""
+    tiers = {t["key"]: t for t in tree["tiers"]}
+    tier = tiers[HEADLINE_TIER]
+    scenarios = [plain(s) for s in tree["scenarios"]]
+    by_key = {s["key"]: s for s in scenarios}
+    first = scenarios[0]["key"]          # the baseline: the headline the site leads with
+    second = snapshot.get("second", {}).get(SECOND_NUMBER_KEY, {})
+    reviewed = snapshot.get("review_status") == "reviewed"
+    return {
+        "computed_on": snapshot["run"]["taken_on"],
+        "last_reading": last_reading,
+        "snapshot": snapshot["key"],
+        "method": {
+            "document": "docs/methodology.md",
+            "runs": snapshot["run"]["runs"],
+            "seed": snapshot["run"]["seed"],
+            "world_spread": snapshot["run"]["world_spread"],
+            "commit": snapshot["run"]["commit"],
+            "status": snapshot.get("review_status"),
+            "status_note": ("the outside-model review was ruled in full on 2026-09-20; the figures are no longer a first pass"
+                            if reviewed else "a first pass: the outside-model review had not yet been ruled in full"),
+        },
+        "headline": {
+            "tier": HEADLINE_TIER,
+            "name": tier["name"],
+            "definition": tier.get("definition"),
+            "scenario": first,
+            "window_year": by_key[first].get("window_year"),
+            "chance": snapshot["tiers"][HEADLINE_TIER][first],
+        },
+        "second_number": {
+            "key": SECOND_NUMBER_KEY,
+            "nodes": list(SECOND_NUMBER_NODES),
+            "chance": second.get(first),
+        },
+        "by_scenario": [
+            {"key": s["key"], "name": s["name"], "window_year": s.get("window_year"),
+             "chance": snapshot["tiers"][HEADLINE_TIER].get(s["key"]),
+             "second_number": second.get(s["key"])}
+            for s in scenarios
+        ],
+        "tiers": snapshot["tiers"],
+    }
+
+
+def write_headline_file(data_dir: Path, snapshots_dir: Path, tree: dict | None = None) -> Path:
+    """Write data/headline.json from the newest snapshot and the newest scan record. Idempotent:
+    the same records give the same bytes, so running it when nothing moved changes nothing."""
+    snaps = load_snapshots(snapshots_dir)
+    if not snaps:
+        raise TreeError(f"no snapshot in {snapshots_dir}, so there is no headline to publish; "
+                        "take one with `compute.py run --snapshot LABEL`.")
+    tree = tree if tree is not None else load_tree(data_dir)
+    doc = build_headline_file(tree, snaps[-1], newest_scan_date(data_dir / "scans"))
+    path = data_dir / "headline.json"
+    path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
+    return path
+
+
+def headline_file_problems(data_dir: Path, snapshots_dir: Path) -> list[str]:
+    """What is wrong with data/headline.json, in plain words: missing, naming a snapshot that is
+    not the newest, carrying numbers that are not that snapshot's, or a last-reading date that is
+    not the newest scan's. Empty when the file is current."""
+    path = data_dir / "headline.json"
+    if not path.exists():
+        return [f"{path} is missing; `python3 scripts/compute.py headline` writes it."]
+    try:
+        have = json.loads(path.read_text())
+    except json.JSONDecodeError as e:
+        return [f"{path.name} cannot be read as JSON: {e}"]
+    snaps = load_snapshots(snapshots_dir)
+    if not snaps:
+        return []
+    want = build_headline_file(load_tree(data_dir), snaps[-1], newest_scan_date(data_dir / "scans"))
+    if have == want:
+        return []
+    problems = []
+    for key in ("snapshot", "last_reading", "computed_on"):
+        if have.get(key) != want[key]:
+            problems.append(f"headline.json {key} is {have.get(key)!r} where the records say {want[key]!r}")
+    if not problems:
+        problems.append("headline.json differs from what the newest snapshot gives; "
+                        "`python3 scripts/compute.py headline` rewrites it.")
+    return problems
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", nargs="?", default="validate",
                         choices=["validate", "shape", "run", "compare", "worth", "attribute",
-                                 "reader", "score"])
+                                 "reader", "score", "headline"])
     parser.add_argument("target", nargs="?", default=None,
                         help="with 'attribute': the ledger entry id, or a snapshot key for the whole run; "
                              "with 'score': the year to score (default: this year)")
@@ -1925,6 +2035,12 @@ def main(argv: list[str] | None = None) -> int:
                 )
                 path = write_snapshot(snapshot, args.snapshots)
                 print(f"\nSnapshot {snapshot['key']} written to {path}, marked {snapshot['review_status']}.")
+                # The same step publishes the headline file the Projects page reads.
+                print(f"Headline file {write_headline_file(args.data, args.snapshots, tree)} written from it.")
+            return 0
+        if args.command == "headline":
+            print(f"Headline file {write_headline_file(args.data, args.snapshots, tree)} written "
+                  f"from the newest snapshot and the newest scan record.")
             return 0
         if args.command == "compare":
             print(report_compare(tree, runs, args.seed, args.world_spread))
