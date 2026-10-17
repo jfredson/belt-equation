@@ -1,0 +1,96 @@
+/* ---------------------------------------------------------------
+   The Belt Equation · skin "Ore", version 1.0.0 (2026-10-17)
+   What the Belt keeps of Deep Field, the family's original look that was
+   drawn on this site: the dark sky, the starfield, the warm white, the
+   monospace numbers. What becomes its own: a blue-black field with no
+   violet, a Belter rust in place of the galaxy's amber, a steel blue for
+   data, and the belt itself as the backdrop. Proposed with pictures in
+   sentient-horizons/design/proposals/belt-equation-skin-2026-10-17.md and
+   ruled by John on 2026-10-17 as proposed. A skin supplies every token the
+   skeleton (sentient-horizons/design/shell.css) names, for both themes,
+   plus the backdrop (design standard, section 3a).
+   --------------------------------------------------------------- */
+:root {
+  --bg: #070a0e;          /* blue-black, no violet cast */
+  --bg-soft: #0a0e14;
+  --panel: #0f141b;
+  --text: #f0ebe2;        /* warm white, kept from Deep Field */
+  --text-soft: #d3cdc1;
+  --muted: #8c929c;
+  --line: rgba(240, 235, 226, 0.10);
+  --line-strong: rgba(240, 235, 226, 0.20);
+  --accent: #d9825a;      /* Belter rust: links, the one action, the chosen dial setting */
+  --accent-2: #b89a6a;    /* a second mark, dusty ochre */
+  --accent-3: #7fa6c4;    /* data: the bars under the seven links, the history charts */
+  --on-accent: #1a0f08;
+  --accent-hover: #e6946d;
+  --link: #d9825a;
+  --link-hover: #e6946d;
+  --glow: rgba(217, 130, 90, 0.22);
+  --header-bg: rgba(7, 10, 14, 0.74);
+  --hover-bg: rgba(240, 235, 226, 0.06);
+  --active-bg: rgba(240, 235, 226, 0.09);
+  --chip-bg: rgba(240, 235, 226, 0.03);
+  --callout-bg: rgba(217, 130, 90, 0.10);
+  --ok: #7fc48a;
+  --no: #d98a7a;
+  --star: #f0ebe2;
+  --radius: 8px;
+  --maxw: 1080px;
+  --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* Light: a warm pale paper with the rust deepened; the belt is off, as Deep Field's sky is at day. */
+:root[data-theme='light'] {
+  --bg: #f5f1ea;
+  --bg-soft: #ece7dd;
+  --panel: #fbf9f5;
+  --text: #1b1916;
+  --text-soft: #37332d;
+  --muted: #6b665e;
+  --line: rgba(27, 25, 22, 0.12);
+  --line-strong: rgba(27, 25, 22, 0.22);
+  --accent: #9a4a24;
+  --accent-2: #7d6a3f;
+  --accent-3: #35637f;
+  --on-accent: #fbf7f2;
+  --accent-hover: #ad5a32;
+  --link: #9a4a24;
+  --link-hover: #ad5a32;
+  --glow: rgba(154, 74, 36, 0.12);
+  --header-bg: rgba(245, 241, 234, 0.88);
+  --hover-bg: rgba(27, 25, 22, 0.05);
+  --active-bg: rgba(27, 25, 22, 0.08);
+  --chip-bg: transparent;
+  --callout-bg: rgba(154, 74, 36, 0.07);
+  --ok: #2f7c4a;
+  --no: #a5432f;
+  --star: #b9ae9c;
+  --radius: 5px;
+}
+
+/* ---- the backdrop: the belt ----
+   Behind the top of the page, fading out within the first screen: a faint diagonal band, rust
+   fading to steel, the belt seen edge-on, with the stars gathered into the same band by a mask.
+   No galaxy glow, no core. Off in the light theme. */
+.space-bg {
+  position: absolute; top: 0; left: 0; right: 0; height: 760px; z-index: 0;
+  overflow: hidden; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 50%, transparent 100%);
+}
+.space-bg .galaxy {
+  position: absolute; inset: 0;
+  background: linear-gradient(112deg, transparent 26%, rgba(217, 130, 90, 0.16) 40%, rgba(127, 166, 196, 0.12) 54%, transparent 70%);
+}
+.starfield {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  -webkit-mask-image: linear-gradient(112deg, transparent 18%, #000 36%, #000 62%, transparent 82%);
+  mask-image: linear-gradient(112deg, transparent 18%, #000 36%, #000 62%, transparent 82%);
+}
+.starfield span { position: absolute; border-radius: 50%; background: var(--star); }
+@keyframes twk { 0%, 100% { opacity: 0.14; } 50% { opacity: 0.95; } }
+@media (prefers-reduced-motion: reduce) { .starfield span { animation: none !important; } }
+:root[data-theme='light'] .space-bg { display: none; }

@@ -9,7 +9,7 @@ The public face of the tree: beltequation.com (attached at website step 25; unti
 
 - **Python owns the data.** `scripts/export.py` reads the tree with the same loader and validator as `scripts/compute.py`, so the site can never show a tree that fails the schema. It writes `src/data/tree.json` and `src/data/changelog.json`. Those files are generated, not committed: every `npm run build` and `npm run dev` runs the export first (`prebuild`, `predev`), so the site always reflects the tree in `data/`.
 - **Astro owns the pages.** Astro 5, fully static, same generator and folder layout as the Sentient Horizons and Hearth and Void sites. `src/lib/tree.ts` is the typed view of the JSON; every page reads from it.
-- **The styles are copied** from Sentient Horizons' design system (website-plan decision 7): same colour tokens, typography, nav, and light/dark toggle, so the three sites read as one family.
+- **The styles are the family's skeleton with this site's own skin.** From 2026-09-19 to 2026-10-17 the stylesheet was the Deep Field look copied from Sentient Horizons (website-plan decision 7), and the whole family copied it from here. Since 2026-10-17 `src/styles/skin.css` is the "Ore" skin (a blue-black sky with the belt across it, a Belter rust, a steel blue for data; ruled by John 2026-10-17), and `src/styles/global.css` imports it, then carries `sentient-horizons/design/shell.css` copied unchanged (version noted at the marked line), then this site's own rules.
 
 ## Pages
 

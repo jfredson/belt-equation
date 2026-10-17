@@ -45,7 +45,7 @@ const longDate = (iso: string) => {
         } catch (e) {}
       })();
     </script>
-    <meta id="theme-color-meta" name="theme-color" content="#08070f" />
+    <meta id="theme-color-meta" name="theme-color" content="#070a0e" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="John Fredrickson" />
@@ -60,9 +60,9 @@ const longDate = (iso: string) => {
     <meta name="twitter:card" content="summary" />
   </head>
   <body>
+    {/* The Ore skin's sky (ruled 2026-10-17): the belt, a faint diagonal band with the stars gathered into it; no core. */}
     <div class="space-bg" aria-hidden="true">
       <div class="galaxy"></div>
-      <div class="core"></div>
       <Starfield count={150} />
     </div>
     <Nav />

@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-17
+
+- **The site wears its own skin, "Ore".** Since 2026-09-19 the site carried the Deep Field look the whole family copied from here; on 2026-10-16 the design standard split into a shared skeleton and a skin per site, with Deep Field as the parent's, and on 2026-10-17 John ruled the Belt's own skin as proposed in the standard (`design/proposals/belt-equation-skin-2026-10-17.md`). What the Belt keeps: the dark sky, the starfield, the warm white, the monospace numbers, the dial and the chain unchanged in shape. What is its own: a blue-black field with no violet, a Belter rust in place of the galaxy's amber for links, the one action and the chosen dial year, a steel blue for data so the bars under the seven links stop being the accent colour (as the standard has asked since 2026-10-08), and the belt itself as the backdrop: the galaxy glow and core are gone, and a faint diagonal band of rust fading to steel crosses the top of the page with the stars gathered into it. Dark by default; the light theme is a warm pale paper with the rust deepened and the belt off. The stylesheet is now `skin.css` plus the shared `shell.css` 2.0.1 plus the site's own rules (which brings the skeleton's light-theme button fix); the favicon and the browser's theme colour take the blue-black and the rust. **No number moved** and no run was taken. Pictures in `docs/visual/site-2026-10-17-ore-*.jpg`.
+
 ## 2026-10-15
 
 - Scan procedure tightened after the run of 2026-10-11 (docs/scan-procedure.md): search summaries are leads, so a flag that corrects a `verify` claim must quote the primary page; a ledger entry of any kind needs `--snapshot scan`; the snapshot run goes in the background; ledger sources must be primary or a major outlet. **No number moved.**
