@@ -1,4 +1,7 @@
 # The site is public but under-promoted (docs/definitions.md, "Where it lives publicly").
-# Crawling is allowed; there is no sitemap until the site goes live on its domain.
+# Crawling is allowed. The site serves no sitemap: it is a hundred or so pages, every one of
+# them reachable from the top bar and the tree page, and nothing here names one. (Until
+# 2026-10-17 this file said there would be none "until the site goes live on its domain";
+# the domain has been live since 2026-09-19 and no sitemap was built, so the line was stale.)
 User-agent: *
 Allow: /

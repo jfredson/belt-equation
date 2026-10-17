@@ -10,7 +10,8 @@ data/scans/, and plays nothing out, so the checks are quick. They fail, in plain
 committed file is missing, names a snapshot that is not the newest, carries numbers that are not
 that snapshot's, or gives a last-reading date that is not the newest scan's. That is the
 failure to catch: a scan that moved something, took a snapshot, and forgot to publish the file
-(scripts/publish.py writes it on every run).
+(scripts/publish.py writes it on every run). Since 2026-10-17 they also check that the export's
+copy for the site (site/public/data/headline.json, served at /data/headline.json) is the file.
 """
 
 from __future__ import annotations
@@ -25,6 +26,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import compute  # noqa: E402
+import export  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -57,6 +59,27 @@ class CommittedHeadlineFile(unittest.TestCase):
         snap = json.loads((DATA / "snapshots" / f"{last}.json").read_text())
         h = json.loads((DATA / "headline.json").read_text())
         self.assertEqual(h["headline"]["chance"], snap["tiers"][compute.HEADLINE_TIER]["baseline"])
+
+
+class ServedWithTheSite(unittest.TestCase):
+    """The export copies data/headline.json to site/public/data/ so the site serves it at
+    /data/headline.json (2026-10-17). The copy is the file, byte for byte; a missing source is
+    reported and skipped rather than stopping the build."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.data = copy_of_data(self._tmp.name)
+        self.served = Path(self._tmp.name) / "public" / "data" / "headline.json"
+
+    def test_the_served_copy_is_the_committed_file(self):
+        self.assertTrue(export.serve_headline_file(self.data, self.data / "snapshots", self.served))
+        self.assertEqual(self.served.read_bytes(), (DATA / "headline.json").read_bytes())
+
+    def test_a_missing_source_is_skipped_not_fatal(self):
+        (self.data / "headline.json").unlink()
+        self.assertFalse(export.serve_headline_file(self.data, self.data / "snapshots", self.served))
+        self.assertFalse(self.served.exists())
 
 
 class StaleOrMissingIsRefused(unittest.TestCase):
