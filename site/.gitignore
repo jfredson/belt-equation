@@ -10,6 +10,9 @@ node_modules/
 src/data/*.json
 # the tree picture the export script draws (website step 22); rebuilt the same way
 public/tree.svg
+# the copy of ../data/headline.json the export script makes so the site serves it at
+# /data/headline.json (2026-10-17); rebuilt the same way
+public/data/
 # logs and macOS
 npm-debug.log*
 .DS_Store

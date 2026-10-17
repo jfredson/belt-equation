@@ -7,6 +7,7 @@ Plain Python, standard library only. Run from anywhere:
                                                snapshots.json, ledger.json, scans.json, story.json,
                                                reader.json,
                                                and the tree picture at site/public/tree.svg
+                                               and a copy of data/headline.json at site/public/data/
     python3 scripts/export.py --check          validate and print the counts, write nothing
     python3 scripts/export.py --out DIR        write the JSON somewhere else
     python3 scripts/export.py --data DIR       read a different data folder (for tests)
@@ -1196,6 +1197,27 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
 # ------------------------------------------------------------------ main
 
 
+def serve_headline_file(data_dir: Path, snapshots_dir: Path, served: Path) -> bool:
+    """A copy of data/headline.json at site/public/data/headline.json, so the site serves the
+    headline at https://beltequation.com/data/headline.json as well as the repository does
+    (ruled by John 2026-10-17 from the lessons review of the same day: every tracker serves
+    its headline file from its own site). Copied byte for byte, so the two can never differ;
+    generated on every build like the tree picture, not committed. Returns True when the copy
+    was written. A missing source is reported and skipped rather than stopping the build, since
+    `scripts/test_headline.py` is the check that the file exists and is current; a stale one is
+    copied as it is, with a note, so a quiet week's deploy still goes out."""
+    source = data_dir / "headline.json"
+    if not source.exists():
+        print(f"Headline file not served: {source} is missing; `python3 scripts/compute.py headline` writes it.")
+        return False
+    for problem in compute.headline_file_problems(data_dir, snapshots_dir):
+        print("Note: the headline file served with the site is stale:", problem)
+    served.parent.mkdir(parents=True, exist_ok=True)
+    served.write_bytes(source.read_bytes())
+    print(f"Headline file copied to {served} (served at /data/headline.json).")
+    return True
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--data", type=Path, default=ROOT / "data")
@@ -1209,6 +1231,9 @@ def main(argv: list[str] | None = None) -> int:
                         help="the committed TimeAssembler snapshots the story page reads (website step 24)")
     parser.add_argument("--svg", type=Path, default=ROOT / "site" / "public" / "tree.svg",
                         help="where the tree picture is written (website step 22); the site serves it at /tree.svg")
+    parser.add_argument("--served-headline", type=Path, default=ROOT / "site" / "public" / "data" / "headline.json",
+                        help="where the copy of data/headline.json the site serves is written (2026-10-17); "
+                             "the site serves it at /data/headline.json")
     parser.add_argument("--check", action="store_true", help="validate and count, write nothing")
     args = parser.parse_args(argv)
 
@@ -1271,6 +1296,7 @@ def main(argv: list[str] | None = None) -> int:
     (args.out / "reader.json").write_text(json.dumps(reader, indent=2, ensure_ascii=False) + "\n")
     print(f"Exported {summary} to {args.out}.")
     write_tree_picture(tree, exported["numbers"], args.svg)
+    serve_headline_file(args.data, args.snapshots, args.served_headline)
     if not exported["numbers"]["available"]:
         print("Headline numbers not exported: " + exported["numbers"]["reason"])
     return 0

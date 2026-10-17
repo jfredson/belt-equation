@@ -33,7 +33,8 @@ by `compute.py run --snapshot` straight after the snapshot is written, and by `p
 run whether or not a snapshot was taken, so a quiet week moves the reading date and a week that took
 a snapshot moves the numbers. `python3 scripts/test_headline.py` checks that the committed file is the
 one the records give, and that a missing file, a newer snapshot or a newer scan record each makes it
-stale.
+stale. `export.py` copies the file into `site/public/data/` on every build (2026-10-17), so the site
+serves it at https://beltequation.com/data/headline.json; the test checks that the copy is the file.
 
 ## Snapshots
 
@@ -182,8 +183,9 @@ writes nothing at all.
     python3 scripts/export.py --check          validate and print the counts, write nothing
     python3 scripts/export.py --out DIR        write the JSON somewhere else
     python3 scripts/export.py --scans DIR      read a different folder of scan records (for tests)
+    python3 scripts/export.py --served-headline FILE   write the site's copy of data/headline.json somewhere else
 
-Beyond a copy of each record it adds the derived views the pages need: each node's dependencies resolved to names, the nodes that depend on it, and the tiers that require it directly. When every open world node has a probability it also includes the run results; until then it says why not. The site's build runs it automatically (see site/README.md).
+Besides the JSON it writes the tree picture to site/public/tree.svg and, since 2026-10-17, a byte-for-byte copy of `data/headline.json` to site/public/data/headline.json, which the built site serves at /data/headline.json (a missing headline file is reported and skipped; a stale one is copied with a note, and `test_headline.py` is the check that fails). Beyond a copy of each record it adds the derived views the pages need: each node's dependencies resolved to names, the nodes that depend on it, and the tiers that require it directly. When every open world node has a probability it also includes the run results; until then it says why not. The site's build runs it automatically (see site/README.md).
 
 The scan records get the same treatment as the tree, and the same refusal: `export_scans()` checks every file in data/scans/ before anything is written (the file name is the scan's own date; the [scan] table carries its six fields; every item names a node that is in the tree, once per scan; every verdict is one of the five in docs/scan-plan.md; every item names at least one search it ran, unless it is `quiet` and `found` says why no search was run; every verdict but `quiet` cites a source and a resolution cites two; a flagged item says what it would have done; a `reused` line names one of the item's own searches and gives a reason, so a search borrowed from another node without one is refused (added 2026-10-06, tested in `scripts/test_scans.py`); a ledger entry an item names must be in data/ledger.toml once that file exists). Then it writes each item out with its node's name, factor, chain link and page address, plus every node's own checks newest first and the flagged items nothing has picked up yet. A record may still carry `test = true` to mark a hand-made fixture rather than a week of real work, and the site labels one as a test wherever it appears; no record carries it now that the first real scan has run, and such a record gets no exemption from the rules above. `export.py` also checks the optional `watch` list on a node, which `compute.py` does not know about.
 
