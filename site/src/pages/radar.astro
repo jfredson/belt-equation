@@ -6,11 +6,14 @@
 // being watched instead of taking it on faith.
 import Base from '../layouts/Base.astro';
 import { tree } from '../lib/tree';
+import { datedPosts, postPath } from '../lib/news';
 import {
   scans, latestScan, verdictLabel, verdictMeaning, scopeLabel, scanSummary, plainCount, ranAtLabel,
   type Scan, type ScanItem, type Verdict,
 } from '../lib/scans';
 
+const newsPosts = await datedPosts();
+const postFor = (nodeId: string) => newsPosts.find((p) => p.data.records.includes(nodeId)) ?? null; // rule 4.14
 const VERDICT_ORDER: Verdict[] = ['resolved', 'moved', 'flagged', 'noted', 'quiet'];
 const older = scans.scans.slice(1);
 const waiting = scans.waiting_on_john;
@@ -137,6 +140,9 @@ const description = latestScan
                 )}
                 {item.picked_up && (
                   <p class="card-john dim">Taken off my list on {item.picked_up.on}, by {item.picked_up.how}.</p>
+                )}
+                {item.picked_up && postFor(item.node) && (
+                  <p class="card-john">In the news: <a href={postPath(postFor(item.node)!)}>{postFor(item.node)!.data.title}</a>.</p>
                 )}
                 <div class="card-foot">
                   {item.ledger && (
