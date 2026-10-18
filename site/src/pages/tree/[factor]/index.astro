@@ -119,7 +119,7 @@ const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
       <p class="dim" style="font-size: 13.5px;">
         {unreached.length} other open step{unreached.length === 1 ? '' : 's'} under this factor
         {unreached.length === 1 ? ' is' : ' are'} worth nothing to the headline, because the headline
-        does not rest on {unreached.length === 1 ? 'it' : 'them'} at any remove — {unreached.map((n, i) => (
+        does not rest on {unreached.length === 1 ? 'it' : 'them'} at any remove: {unreached.map((n, i) => (
           <>{i > 0 ? ', ' : ''}<a href={n.path}>{n.name}</a></>
         ))}. Most belong to the tiers above the one the headline asks about.
       </p>
