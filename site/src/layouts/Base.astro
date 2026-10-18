@@ -18,6 +18,8 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// The preview picture link cards show (site/public/social-preview.png, made by scripts/social-image.mjs); an absolute address, as the tags require.
+const socialImage = new URL('/social-preview.png', Astro.site).href;
 const currentYear = new Date().getFullYear();
 // The footer's "Last built 7 October 2026" uses longDate from src/lib/dates.ts (shared with the
 // home page's last-checked strip since 2026-10-17); the design standard writes dates out there.
@@ -55,7 +57,13 @@ const currentYear = new Date().getFullYear();
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Belt Equation: the chance that, before I die, I live and work in a solar system where human industry reaches beyond Earth and Mars." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={socialImage} />
   </head>
   <body>
     {/* The Ore skin's sky (ruled 2026-10-17): the belt, a faint diagonal band with the stars gathered into it; no core. */}
