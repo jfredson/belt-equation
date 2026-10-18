@@ -36,19 +36,19 @@ The next day the whole tree went to outside reviewers with a fixed brief: name a
 
 On 25 September 2026 [I changed how every step is written](/story/#2026-09-25-food-made-on-site-counts-however-it-is-made), so that it names the thing it needs and not one way of getting it: lunar mining now waits on power through the lunar night from any source, where it used to wait on a nuclear reactor. The headline rose from 0.47 to 0.59 percent, about the width of the noise.
 
-On 28 September 2026 [Starship reached orbit for the first time](/story/#2026-10-04-starship-reaches-orbit-no-recovery). Neither stage was caught, so the launch steps stayed where they were and the number held still. That is the tree doing its job: famous news that does not meet a step's test moves nothing.
+On 28 September 2026 SpaceX's rocket [Starship](https://www.spacex.com/vehicles/starship/) reached orbit for the first time ([the story](/story/#2026-10-04-starship-reaches-orbit-no-recovery)). Neither stage was caught, so the launch steps stayed where they were and the number held still. That is the tree doing its job: famous news that does not meet a step's test moves nothing.
 
-On 6 October 2026 [OpenAI posted 372 families](/story/#2026-10-11-openai-math-batch-not-peer-reviewed) of machine-made mathematics results, which bear on a line I track beside the equation and never multiply into it: a non-human mind producing knowledge beyond us. None was peer reviewed yet, so that line stayed where it was.
+On 6 October 2026 OpenAI posted [372 families of machine-made mathematics results](https://github.com/openai/math) ([the story](/story/#2026-10-11-openai-math-batch-not-peer-reviewed)), which bear on a line I track beside the equation and never multiply into it: a non-human mind producing knowledge beyond us. None was peer reviewed yet, so that line stayed where it was.
 
 Since the review landed on 20 September the headline has stayed near half a percent, and in [six weekly readings](/radar/) no number has moved.
 
 ## What to watch for
 
-The nearest event is Starship's Flight 15, which [the reading of 11 October 2026](/radar/) said would make the first attempt to catch the ship. SpaceX has announced no date; that reading had it no earlier than 19 October, and the latest planning date I can find is no earlier than 8 November 2026. The step it bears on counts only when a launcher's two stages are both retrieved intact from one orbital flight and the operator confirms they can fly again, and even then it is worth about 0.14 points on the 2080 figure, because the tree already expects it.
+The nearest event is Starship's [Flight 15](https://en.wikipedia.org/wiki/Starship_flight_15), which [the reading of 11 October 2026](/radar/) said would make the first attempt to catch the ship. SpaceX has announced no date; that reading had it no earlier than 19 October, and the latest planning date I can find is no earlier than 8 November 2026. The step it bears on counts only when a launcher's two stages are both retrieved intact from one orbital flight and the operator confirms they can fly again, and even then it is worth about 0.14 points on the 2080 figure, because the tree already expects it.
 
 The steps that would move the number most are slower and have no date. At the top of [the Next list](/next/) is a space traffic authority among the major powers that can enforce rules on manoeuvres and launch windows, worth about 0.27 points on the 2080 figure, a rise of about a fifth. After it come shielding that halves a crew's radiation dose in deep space, and a tonne of propellant made from off-Earth material fired in a rocket engine.
 
-[The readings](/radar/) are also following two dated plans: Vast's Haven-1, a small commercial space station, now launches no earlier than the first quarter of 2027, and NASA's Space Reactor-1 Freedom, a spacecraft with a reactor making more than 20 kilowatts, is proposed for December 2028. A plan is not an event, and the tree moves only on events.
+[The readings](/radar/) are also following two dated plans: Vast's [Haven-1](https://www.vastspace.com/haven-1), a small commercial space station, now launches no earlier than the first quarter of 2027, and NASA's [Space Reactor-1 Freedom](https://en.wikipedia.org/wiki/Space_Reactor-1_Freedom), a spacecraft with a reactor making more than 20 kilowatts, is proposed for December 2028. A plan is not an event, and the tree moves only on events.
 
 On [the site's own calendar](/method/), the next whole-tree reading is on 1 November 2026, and the first annual review, when every number is re-estimated, is on 3 January 2027.
 
