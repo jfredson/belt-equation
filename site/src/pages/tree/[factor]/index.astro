@@ -47,7 +47,7 @@ const branches = isContact ? tree.contact_branches : [];
 const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
 ---
 
-<Base title={`${factor.name} — The Belt Equation`} description={`${factor.meaning} The ${nodes.length} events behind the ${factor.name.toLowerCase()} link.`}>
+<Base title={`${factor.name} · The Belt Equation`} description={`${factor.meaning} The ${nodes.length} events behind the ${factor.name.toLowerCase()} link.`}>
   <section class="hero">
     <p class="eyebrow"><a href="/tree/">The tree</a> · {rank}</p>
     <h1>{factor.name}</h1>
