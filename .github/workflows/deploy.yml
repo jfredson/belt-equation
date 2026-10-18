@@ -36,6 +36,8 @@ jobs:
           cache-dependency-path: site/package-lock.json
       - name: Validate the tree
         run: python3 scripts/export.py --check
+      - name: Check the news posts
+        run: python3 scripts/export.py && python3 scripts/check_news.py
       - name: Install and build
         working-directory: site
         run: |

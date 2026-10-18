@@ -7,6 +7,7 @@
 // on 2026-10-12 at John's asking: they were the project's process, not its results, and the
 // changelog is linked from the repository instead.
 import Base from '../layouts/Base.astro';
+import { datedPosts, postPath } from '../lib/news';
 import HistoryChart from '../components/HistoryChart.astro';
 import {
   tree, ledger, snapshots, odds, movePoints, direction, band,
@@ -22,6 +23,8 @@ const scenarioWhen: Record<string, string> = {
   baseline: 'by 2071', moderate: 'by 2080', strong: 'by 2095', radical: 'by 2136', open: 'with no deadline',
 };
 
+const newsPosts = await datedPosts();
+const postsForEntry = (id: string) => newsPosts.filter((p) => p.data.records.includes(id)); // rule 4.14
 const entries = ledger.entries;
 const kindsPresent = ledger.kinds.filter((k) => (ledger.totals.by_kind[k.key] ?? 0) > 0);
 const linksPresent = [...new Set(entries.flatMap((e) => e.links))].sort();
@@ -151,6 +154,7 @@ const totalEntries = ledger.count;
                   : `${odds(e.headline_before?.[DEFAULT_SCENARIO])} → ${odds(e.headline_after?.[DEFAULT_SCENARIO])}`}
               </span>
             </summary>
+            {postsForEntry(e.id).map((p) => <p class="in-the-news-line">In the news: <a href={postPath(p)}>{p.data.title}</a>.</p>)}
 
             <div class="entry-body">
               <p>{e.body}</p>
