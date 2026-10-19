@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-18
+
+- Weekly scan (scheduled task, 2026-10-18): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-10-18.toml.
+
 ## 2026-10-17
 
 - **The first adoptions from the family's lessons review (sentient-horizons/design/reviews/2026-10-17-lessons-review.md, section 3 and section 9; ruled by John 2026-10-17).** **No number moved** and no run was taken. Three things changed. First, the last-checked strip on the home page now follows the tracker pattern's section 5: the date is written out ("Last checked 11 October 2026" where it read "Last checked 2026-10-11"), the counted things are "events", not "nodes" (the pattern's section 8 keeps "node" off public pages; the Radar page's summary line, which shares the sentence, changes with it), and in a week in which no reading has run the strip says "No reading has run yet" instead of being left off; nothing else on the first screen changed. Second, the site serves the headline file: `scripts/export.py` copies `data/headline.json` into `site/public/data/` on every build, so https://beltequation.com/data/headline.json answers with the same bytes as the repository's copy (generated, not committed; a test in `scripts/test_headline.py`; documented in site/README.md, data/README.md and scripts/README.md). Third, the README's status section, which still said "no nodes, no probabilities yet" five weeks after the tree was built, now says what is true as of 2026-10-17 (the headline, the tree's size, the site and its skin, the scan's schedule, the reviews held and due) and dates the line it replaced; its layout list no longer calls `data/` empty or the site not yet live. `site/public/robots.txt` stops saying a sitemap will come once the site is on its domain (it has been since 2026-09-19); the site serves none and the file now says so. Done on a branch by a cloud session and brought in by pull request, since only the Sunday scan pushes to main unattended.
