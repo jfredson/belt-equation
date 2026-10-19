@@ -69,6 +69,7 @@ import sys
 import tomllib
 from collections import defaultdict
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -1581,7 +1582,7 @@ def take_snapshot(tree: dict, runs: int, seed: int, world_spread: float, date: s
             "seed": seed,
             "world_spread": world_spread,
             "commit": commit if commit is not None else git_commit(),
-            "taken_on": dt.date.today().isoformat(),
+            "taken_on": dt.datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat(),
         },
         "scenarios": [plain(s) for s in tree["scenarios"]],
         "tiers": {t["key"]: per_scenario(lambda r, key=t["key"]: r["tiers"][key]) for t in tree["tiers"]},
@@ -2029,7 +2030,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.snapshot is not None:
                 snapshot = take_snapshot(
                     tree, runs, args.seed, args.world_spread,
-                    date=args.snapshot_date or dt.date.today().isoformat(),
+                    date=args.snapshot_date or dt.datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat(),
                     label=args.snapshot or None, note=args.snapshot_note,
                     commit=args.snapshot_commit, with_worth=args.with_worth,
                 )
@@ -2072,7 +2073,7 @@ def main(argv: list[str] | None = None) -> int:
             # The two numbers the annual review's changelog post reports (methodology.md),
             # worked out from the record alone: no run is taken, so it is quick.
             try:
-                year = int(args.target) if args.target else dt.date.today().year
+                year = int(args.target) if args.target else dt.datetime.now(ZoneInfo("America/Los_Angeles")).date().year
             except ValueError:
                 print(f"score takes a year, for example 'score 2026'; '{args.target}' is not one.")
                 return 1
