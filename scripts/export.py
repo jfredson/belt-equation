@@ -49,6 +49,7 @@ import sys
 import tomllib
 from collections import defaultdict
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -206,7 +207,7 @@ def export_tree(tree: dict) -> dict:
     }
 
     return {
-        "exported_on": dt.date.today().isoformat(),
+        "exported_on": dt.datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat(),
         "commit": git_commit(),
         "headline_tier": compute.HEADLINE_TIER,
         "scenarios": [plain(s) for s in scenarios],
@@ -251,7 +252,7 @@ def export_numbers(tree: dict, runs: int = 20000, seed: int = 2026) -> dict:
         "available": True,
         "runs": runs,
         "seed": seed,
-        "computed_on": dt.date.today().isoformat(),
+        "computed_on": dt.datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat(),
         "review_status": NUMBERS_REVIEW_STATUS,
         "tiers": {t["key"]: {k: results[k]["tiers"][t["key"]] for k in keys} for t in tree["tiers"]},
         "nodes": {n["id"]: {k: results[k]["nodes"][n["id"]] for k in keys} for n in tree["nodes"]},
@@ -282,7 +283,7 @@ def export_reader(tree: dict) -> dict:
         }
     grid = compute.reader_grid(tree)
     grid["available"] = True
-    grid["computed_on"] = dt.date.today().isoformat()
+    grid["computed_on"] = dt.datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
     grid["review_status"] = NUMBERS_REVIEW_STATUS
     return grid
 
@@ -1180,7 +1181,7 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
             })
 
     return {
-        "exported_on": dt.date.today().isoformat(),
+        "exported_on": dt.datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat(),
         "scans": out_scans,
         "waiting_on_john": waiting,
         "by_node": dict(by_node),

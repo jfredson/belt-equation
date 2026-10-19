@@ -4,6 +4,7 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 ## 2026-10-18
 
+- **The export and compute scripts stamp the Pacific date, not the machine's, as John ruled on 2026-10-18.** They read the machine's clock, which in a cloud workspace is universal time and a day ahead on an evening run; the other sites' scripts already used Pacific time. Found by the audit of The Upgrade Tree's first cloud reading. The site data's `exported_on`, the headline file's `computed_on` and a snapshot's `taken_on` change; no node, probability or count does.
 - Weekly scan (scheduled task, 2026-10-18): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-10-18.toml.
 
 ## 2026-10-17
