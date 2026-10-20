@@ -8,7 +8,7 @@
       "date": "2026-10-12",
       "type": "session-summary",
       "decided_by": null,
-      "title": "Evening session 2026-10-12: the public copy refined line by line with John (home page, nav, footer), the Method and Story pages cut back to results, and a missed flagged-item notification traced and fixed at both ends (belt-equation)"
+      "title": "Evening session 2026-10-12: the public copy refined line by line with me (home page, nav, footer), the Method and Story pages cut back to results, and a missed flagged-item notification traced and fixed at both ends (belt-equation)"
     },
     {
       "id": "e58386fd-90d4-4c6b-8388-339499445ac7",
@@ -78,21 +78,21 @@
       "date": "2026-10-12",
       "type": "progress",
       "decided_by": null,
-      "title": "The two claims-to-check items the 2026-10-08 scan flagged, drafted as pull request 41 for John to rule on by merging"
+      "title": "The two claims-to-check items the 2026-10-08 scan flagged, drafted as pull request 41 for me to rule on by merging"
     },
     {
       "id": "291018c3-d80f-4c2b-b2f9-08708feaf582",
       "date": "2026-10-09",
       "type": "progress",
       "decided_by": null,
-      "title": "Website step 26 checked: one-command publish works on current main; the two items from the 2026-10-08 scan written up for John"
+      "title": "Website step 26 checked: one-command publish works on current main; the two items from the 2026-10-08 scan written up for me"
     },
     {
       "id": "c0ee84f1-a446-4580-8393-7b60000caece",
       "date": "2026-10-08",
       "type": "progress",
       "decided_by": null,
-      "title": "Test run of the cloud weekly scan passed (2026-10-08): pushed to main unattended in 3.5 minutes; 17 read, 0 moved, 2 flagged for John"
+      "title": "Test run of the cloud weekly scan passed (2026-10-08): pushed to main unattended in 3.5 minutes; 17 read, 0 moved, 2 flagged for me"
     },
     {
       "id": "d2f2a250-9510-4683-9196-6f2adcbb449b",
@@ -183,7 +183,7 @@
       "date": "2026-10-03",
       "type": "session-summary",
       "decided_by": null,
-      "title": "Second half of 2026-10-03: every remaining roadmap item walked through with John, one by one"
+      "title": "Second half of 2026-10-03: every remaining roadmap item walked through with me, one by one"
     },
     {
       "id": "fa509778-8edb-4211-adc3-945640405116",
@@ -211,7 +211,7 @@
       "date": "2026-10-03",
       "type": "decision",
       "decided_by": "mixed",
-      "title": "Four access-branch ids renamed so no page address describes John's current career; saved runs left untouched and read through a lookup (2026-10-03)"
+      "title": "Four access-branch ids renamed so no page address describes my current career; saved runs left untouched and read through a lookup (2026-10-03)"
     },
     {
       "id": "4cd6cdfa-8ccb-42f1-aa45-fa673880f393",
@@ -239,7 +239,7 @@
       "date": "2026-09-25",
       "type": "session-summary",
       "decided_by": null,
-      "title": "Function-over-route pass landed on a branch; PR #29 awaits John's ruling on eleven new estimates"
+      "title": "Function-over-route pass landed on a branch; PR #29 awaits my ruling on eleven new estimates"
     },
     {
       "id": "1a4bd035-a78e-4928-a467-5a52ac014528",
@@ -288,14 +288,14 @@
       "date": "2026-09-25",
       "type": "decision",
       "decided_by": "john",
-      "title": "Contact Clause rungs draw their own random numbers: the C5 session's method change ratified by John 2026-09-25 (pull request 22)"
+      "title": "Contact Clause rungs draw their own random numbers: the C5 session's method change ratified by me 2026-09-25 (pull request 22)"
     },
     {
       "id": "c494bf9e-c043-416d-be1f-fd2b6a84ebb5",
       "date": "2026-09-25",
       "type": "session-summary",
       "decided_by": null,
-      "title": "Contact Clause null rule and rung C5 landed, pull request 22 waiting on John (2026-09-25)"
+      "title": "Contact Clause null rule and rung C5 landed, pull request 22 waiting on me (2026-09-25)"
     },
     {
       "id": "096a3a86-1cdb-4992-a75e-1b83aefca5a7",
@@ -309,7 +309,7 @@
       "date": "2026-09-25",
       "type": "session-summary",
       "decided_by": null,
-      "title": "Website step 26 built: one-command publish, pull request 21 waiting on John's merge (2026-09-25)"
+      "title": "Website step 26 built: one-command publish, pull request 21 waiting on my merge (2026-09-25)"
     },
     {
       "id": "6e9c3dd7-4de3-462a-81e0-7d1b08858121",
@@ -344,7 +344,7 @@
       "date": "2026-09-20",
       "type": "progress",
       "decided_by": null,
-      "title": "Website step 39 built, \"run it for yourself\", waiting on John's ruling on three decisions (pull request 19)"
+      "title": "Website step 39 built, \"run it for yourself\", waiting on my ruling on three decisions (pull request 19)"
     },
     {
       "id": "646bac21-3517-475e-84de-95b8b8dd9ada",

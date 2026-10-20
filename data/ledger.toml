@@ -3,7 +3,7 @@
 # One [[entry]] per thing that happened, newest last, never edited once written. A mistake in an
 # entry is fixed by a later entry that says so and points back at it with `corrects`. The record
 # layout, the six kinds, and the reasoning behind both are in docs/ledger-plan.md, written and
-# ruled by John on 2026-09-19. The export script (scripts/export.py) checks every rule below and
+# decided on 2026-09-19. The export script (scripts/export.py) checks every rule below and
 # refuses to build the site when one is broken.
 #
 # Nothing in here is typed as a number. The narrative is written by hand; every figure an entry
@@ -77,11 +77,11 @@ source = "Life Biosciences' announcement of 2026-06-09 of first dosing in its Ph
 nodes = ["W-partial-reprogramming-reaches-human-trials"]
 snapshot = "2026-09-19-first-run"
 
-# --- John's four rulings on the first run (2026-09-19) ------------------------------------------
+# --- my four rulings on the first run (2026-09-19) ------------------------------------------
 # The first run put the headline at nought point nought percent by 2071 and the Belt itself at two
 # in a thousand by 2095. Read against ordinary judgement, three of its results failed: two regime
 # nodes were written so that a single bad year foreclosed an outpost for ever, and the requirement
-# for a child born off Earth capped every tier above a settlement. John ruled on four fixes the
+# for a child born off Earth capped every tier above a settlement. I ruled on four fixes the
 # same day and the tree was run again. All four are structural: they change what the tree is or
 # how it is played out rather than reporting news, so numbers either side of them are not a
 # like-for-like comparison, and the site says so wherever the two runs sit together.
@@ -96,7 +96,7 @@ As first written, the node resolved no for good if a single administration in on
 its crewed lunar programme, and it was a hard requirement for an outpost and for lunar
 material at scale. That made one budget decision in the 2030s foreclose an outpost for ever,
 by anybody, including operators and nations that had nothing to do with the cut. It was a
-good signal and a bad gate. John ruled it reworded on 2026-09-19 to a durable, nation-agnostic
+good signal and a bad gate. I ruled it reworded on 2026-09-19 to a durable, nation-agnostic
 form: any nation's or company's crewed lunar programme, and a cancelled programme can be
 restarted or replaced. The probability was re-estimated against the new criterion and is no
 longer flat across the scenarios, because longer windows now bring more attempts."""
@@ -112,7 +112,7 @@ title = "The test for space spending surviving a recession was rewritten to ask 
 body = """
 The node asked that budgets and flight rates not fall during a recession year at all, and a
 failure was permanent. Since it was a hard requirement for a hundred people working off Earth
-for pay, one bad budget year in the 2020s closed off that node in every later decade. John
+for pay, one bad budget year in the 2020s closed off that node in every later decade. I
 ruled it reworded on 2026-09-19 to ask instead whether spending and flight rates are back
 within a tenth of where they were within three years of a recession, and to leave the node
 open for the next recession if they are not. A dip is allowed; what the tree needs is that
@@ -132,7 +132,7 @@ A child born and raised off Earth is the least likely thing in the tree, and it 
 requirement of the settlement tier, which every tier above it rests on. That made it the cap
 on the headline: the odds of working off Earth on rotation could never exceed the odds that
 somebody had by then raised a child there. A rotation workforce of tens of thousands could
-plainly exist at a site where no child has yet been born. John ruled on 2026-09-19 that the
+plainly exist at a site where no child has yet been born. I ruled on 2026-09-19 that the
 requirement moves to the top tier, where it belongs. The settlement tier's written definition
 still names a child born off Earth, and the node stays in the tree with its own number; what
 changed is which tier waits on it."""
@@ -148,7 +148,7 @@ body = """
 The first run multiplied a long chain of requirements together as though each were independent,
 when most of them share their causes: cheap launch, sustained funding, and a working off-Earth
 economy lift or sink many of them together. That is why every link stood between a third and
-nine tenths by 2095 while the whole chain came out at two in a thousand. John ruled on
+nine tenths by 2095 while the whole chain came out at two in a thousand. I ruled on
 2026-09-19 that each play-through now begins by drawing one number for how favourable the world
 turned out, which shifts every open node's probability together, up in a good world and down in
 a bad one. The spread is set at one, and the calculation still prints the independent-roll
@@ -160,14 +160,14 @@ run_note = "docs/runs/2026-09-19-first-run.md"
 
 # --- The outside-model review landed (roadmap step 27, ruled 2026-09-19, landed 2026-09-20) ------
 # Two outside models (Gemini Pro Extended Thinking and GPT-6 Astra) read every node in three
-# packets, with Grok in Fast mode as a tiebreak on two launch and drive numbers; John ruled on all
+# packets, with Grok in Fast mode as a tiebreak on two launch and drive numbers; I ruled on all
 # 105 items on 2026-09-19 (docs/reviews/2026-09-19-rulings.md). The landing is one run: fifteen
 # probabilities moved by the reviews, nine nodes added (seven of them new requirements on the
 # chain), forty-one criteria tightened, two nodes reworded after estimation, and one edge fixed.
 # Every entry below landed in the same snapshot. The structural entries break comparability with
 # the runs before them, and the site says so wherever the two sit together. The nine new nodes'
 # first probabilities and the three re-estimates the rulings left open were proposed by Claude
-# and accepted by John as proposed on 2026-09-20.
+# and accepted by me as proposed on 2026-09-20.
 
 [[entry]]
 id = "2026-09-20-launch-price-below-200-dollars-marked-down"
@@ -179,7 +179,7 @@ Gemini argued the number up, on the ground that a hundred flights a year is over
 monopoly premium holds for forty-five years; Astra argued it down, because flight count says
 nothing about utilisation, refurbishment, vehicle life or competition, and a sold price is a
 commercial choice. Grok, run in Fast mode as the tiebreak the protocol allows, sided with
-Astra. John moved the number partway toward the two-of-three side, discounting the Fast-mode
+Astra. I moved the number partway toward the two-of-three side, discounting the Fast-mode
 vote, and fixed the description's arithmetic: a tonne at two hundred dollars a kilogram is two
 hundred thousand dollars, not the price of a car. The criterion now names its inflation index
 and what a price means. This is a settlement-tier requirement, so it moves the headline."""
@@ -196,7 +196,7 @@ The reviewers pulled opposite ways by about the same amount. Gemini said the fir
 the barrier and routine use is adoption; Astra said that given the demonstration, the question
 is whether operators keep choosing nuclear and fund enough missions for three transfers in one
 year, and that the station analogy gives no adoption rate. Grok, the Fast-mode tiebreak, sided
-with Astra, and John moved the number partway toward that side. The criterion now says
+with Astra, and I moved the number partway toward that side. The criterion now says
 reactor-powered, so a radioisotope-electric probe cannot count, and defines the main transfer.
 A Slow-Expanse requirement, so it moves the headline."""
 nodes = ["D-nuclear-propulsion-in-routine-use"]
@@ -212,7 +212,7 @@ Both outside models agreed with the tree to 2095 and argued only the long window
 deadline, the question is whether it ever happens, and 0.70 was low for that. Astra also
 showed that the criterion as written could be met by a trial in a single high-risk disease
 group, and that a blood-pressure trial in the over-80s already cut all-cause mortality by a
-fifth over under two years. John tightened the criterion to a statistically significant result
+fifth over under two years. I tightened the criterion to a statistically significant result
 in a population not restricted to one disease, and raised the number, priced for that wording.
 The window's steps set the dial rather than a link in the chain, so the headline is unmoved."""
 nodes = ["W-human-therapy-cuts-death-rate-in-older-adults"]
@@ -228,7 +228,7 @@ The first estimate reasoned from a fifty percent yearly death rate past 110 and 
 passing 122 needs a therapy. Astra cited Pearce and Raftery (2021), who use the same plateau and
 get a greater than 99 percent chance the record falls by 2100 with no rejuvenation at all,
 because the number of people reaching 110 grows fast each decade and the record needs one run
-of twelve heads among thousands of tries; the abstract was fetched and says exactly that. John
+of twelve heads among thousands of tries; the abstract was fetched and says exactly that. I
 raised the number well short of the paper, since the record has stood twenty-nine years and
 some analyses find mortality still rising past 110, and dropped the long-shot flag. The node is
 now a demographic milestone, the first sign that maximum lifespan is moving, whatever moves it.
@@ -243,7 +243,7 @@ kind = "revision"
 title = "A year off Earth on mostly home-grown food, water and air came down: shipping food is cheap and farming is a settlement-scale project"
 body = """
 Gemini's argument was about incentives: as long as food can be shipped, nobody builds a farm,
-and a farm is what the criterion needs. John moved the number partway. The criterion now
+and a farm is what the criterion needs. I moved the number partway. The criterion now
 requires the operator's accounting to state the calorie, water and oxygen figures separately
 and to include starting stocks and resupply, so a percentage cannot hide an imported larder.
 The node also gained a new requirement, a staple crop harvested off Earth, entered separately
@@ -259,7 +259,7 @@ title = "A year in a spinning habitat at Earth gravity was raised: given the spi
 body = """
 Astra pointed out that the first estimate carried the difficulty of the prerequisites into the
 conditional a second time. What survives the criticism is the motive discount: the
-partial-gravity route may make the habitat unnecessary. John raised the number partway and
+partial-gravity route may make the habitat unnecessary. I raised the number partway and
 tightened the criterion to a bounded range of gravity at the level where the crew live, with
 no occupant medically evacuated during the year, so that the habitat route proves the same
 minimum of health the partial-gravity route does. The node reaches the settlement tier through
@@ -276,7 +276,7 @@ body = """
 Astra read the criterion for what it asks, one person, any gravity from one-sixth to one-half,
 under the agency's own standards, and called it a permissive bar with selection of the most
 favourable gravity. The first rationale's discount was mostly about timing rather than
-difficulty. John raised the number partway and added that the health outcomes are judged after
+difficulty. I raised the number partway and added that the health outcomes are judged after
 return to Earth and without a medical waiver, which the node's own name had promised. It
 reaches the settlement tier through the hedge and moves the headline."""
 nodes = ["B-human-year-in-partial-gravity-without-disqualifying-harm"]
@@ -289,7 +289,7 @@ kind = "revision"
 title = "A hundred tonnes of lunar material a year, given power, people and political continuity, was raised: at that point it is cadence, not a breakthrough"
 body = """
 Gemini's was the strongest number argument in the set: the first estimate was written as if
-the dependencies were still uncertain. John raised the number partway, and the first tonne of
+the dependencies were still uncertain. I raised the number partway, and the first tonne of
 lunar propellant fired became a new requirement under this node (entered below), so the
 first-tonne difficulty is priced there and not twice. The criterion now counts net mass of
 lunar origin, once, excluding Earth-supplied content, received and used by a customer in
@@ -306,7 +306,7 @@ body = """
 The first rationale leaned on one company's plans and granted the whole mission once
 propellant transfer was proven. Astra listed what remains after that: crew-scale landing,
 surface systems, ascent, return propulsion, multi-year reliability, and a programme willing to
-accept the risk. John moved the number partway. This node is the only requirement under a
+accept the risk. I moved the number partway. This node is the only requirement under a
 site beyond the Moon, itself a Slow-Expanse requirement, so it moves the headline."""
 nodes = ["D-crew-round-trip-to-mars"]
 snapshot = "2026-09-20-step-27"
@@ -320,7 +320,7 @@ body = """
 Astra made two points. A crew-change overlap at two stations plus a tourist flight could hit a
 hundred for one day, so the single-day test was too easy; and given launch cadence the
 capacity exists but the demand does not, because orbital computing, manufacturing and mining
-need few workers in space. John reworded the criterion to a hundred paid people, not counting
+need few workers in space. I reworded the criterion to a hundred paid people, not counting
 passengers, on at least one day in each of twelve consecutive months, and moved the number
 partway, priced for that wording. This is an outpost-tier requirement, under every tier, so it
 moves the headline more than most single numbers."""
@@ -337,7 +337,7 @@ Astra argued that with lunar delivery at scale and resource rules in place, the 
 test is one company, one product, one profitable year, and a government buyer can settle it.
 Gemini did not dispute the number but put two new gates under the node, mutually recognised
 keep-out zones and a commercial insurance policy on a lunar asset, which pull the
-unconditional chance down while the conditional goes up; both can be right at once. John
+unconditional chance down while the conditional goes up; both can be right at once. I
 raised the number partway and accepted both gates (entered below). The criterion was narrowed
 to products made mostly from off-Earth material, so orbital fibre drawn from Earth glass no
 longer counts, and 'full cost' now means what the company's accounts attribute to the product,
@@ -354,7 +354,7 @@ body = """
 Gemini's cut was the largest single one proposed: a received kilowatt needs an aperture nobody
 will fund, and ground solar plus storage kills the case. Astra left the number alone. The 2023
 orbital demonstration was checked and did beam power, at milliwatt scale, and the mission ended
-in 2024. John moved the number partway. The criterion now requires a kilowatt of net
+in 2024. I moved the number partway. The criterion now requires a kilowatt of net
 electrical output at the ground receiver, sustained ten minutes, with calibrated measurements,
 so a momentary peak during a pass cannot count. The node feeds no tier."""
 nodes = ["M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"]
@@ -368,7 +368,7 @@ title = "An off-Earth site accepting permanent residents was raised: one permiss
 body = """
 The first rationale said work-camp terms could persist for decades after staying becomes safe,
 which is a claim about every operator at once; Astra pointed out that the test is one site and
-one person. John raised the number partway. Both reviewers wanted the criterion to stop proving
+one person. I raised the number partway. Both reviewers wanted the criterion to stop proving
 a negative, so it now resolves on a published resident status permitting voluntary indefinite
 residence, held by one person for three years, which also rules out stranded crew. The node
 gates living off Earth, the stretch beside the headline, and not the headline itself."""
@@ -382,7 +382,7 @@ kind = "revision"
 title = "The third rung of the Contact Clause, another intelligence detected, came down: the search rests on technosignatures and sixty years of silence"
 body = """
 Gemini argued that biosignatures cannot show complexity, so the rung rests on technology
-being seen, and that sixty years of listening have found nothing. John moved the number
+being seen, and that sixty years of listening have found nothing. I moved the number
 partway; the founding rule keeps the rung on the board, not its number. The criterion gained
 one clause, that an artefact must not have been made by any human or human-built system,
 closing the gap an AI-made object would have opened. The Contact Clause sits beside the
@@ -397,7 +397,7 @@ kind = "revision"
 title = "The fourth rung, Communion, came down and became a checkable test: a decoded signal applied to a new result"
 body = """
 Given a detection, Gemini argued, it is overwhelmingly likely to be incidental rather than a
-message, and decoding may be impossible; the first estimate had assumed a message. John moved
+message, and decoding may be impossible; the first estimate had assumed a message. I moved
 the number partway. Both reviewers wanted the criterion to stop asking whether knowledge was
 'understood', and it now resolves when a verified non-human signal, placed beyond human reach
 by two independent physical observations, is decoded into information that researchers apply
@@ -415,7 +415,7 @@ body = """
 Astra showed that the criterion as written, a machine-produced, machine-verified result beyond
 what humans had produced and not checkable by hand, was met by the 2016 satisfiability proof of
 the Boolean Pythagorean triples problem, two hundred terabytes that no reader can check. That
-is a search program's work, not a mind's, and the node's name and description meant a mind. John
+is a search program's work, not a mind's, and the node's name and description meant a mind. I
 chose to reword rather than resolve: the result's key construction or proof idea must have been
 generated by a learning- or search-based AI system and not specified by its operators,
 acknowledged as such in the record. The criterion changed after it was estimated, which is why
@@ -436,7 +436,7 @@ Astra read the criterion against the record: the 2020 recession ended in April 2
 relevant budget was about two percent above its 2019 level by fiscal 2021, and the largest
 provider flew thirteen orbital launches in 2019 and thirty-one in 2021, which the 'within ten
 percent' band perversely failed for growing too much. The node's own rationale conceded the
-event while pricing it at 0.80. John chose to keep the node as a guard on the next downturn
+event while pricing it at 0.80. I chose to keep the node as a guard on the next downturn
 rather than resolve it on the last one: it now waits for the first US recession that ends after
 2026-09-19, recovery means equalling the best of the three prior years in nominal dollars, the
 budget basket is NASA's Exploration and Space Operations accounts, and the provider is the one
@@ -453,7 +453,7 @@ title = "A child born off Earth no longer needs the partial-gravity milestones i
 body = """
 The node required both the mammal experiment and the human year in partial gravity even for
 a child raised in a spinning habitat at Earth gravity, so the tree's own biology hedge did not
-reach it. Astra caught it. John rewired the node so that either the two partial-gravity
+reach it. Astra caught it. I rewired the node so that either the two partial-gravity
 milestones or the year-long Earth-gravity habitat opens the way. A top-tier requirement only
 since 2026-09-19, so the headline is untouched; Astra's request for a health clause through age
 five was declined because a child's medical outcomes are not public records."""
@@ -466,7 +466,7 @@ date = 2026-09-20
 kind = "structure"
 title = "Nine steps were added to the tree, seven of them new requirements on the chain, which is most of why the headline fell in this run"
 body = """
-Gemini proposed nine missing steps and John accepted all nine. On the chain: a staple crop
+Gemini proposed nine missing steps and I accepted all nine. On the chain: a staple crop
 harvested off Earth (under the year of recycled food, water and air); ten tonnes of cryogenic
 propellant kept six months in orbit and then burned (under the hundred-tonne transfer); a tonne
 of propellant made off Earth and fired (under lunar material at scale); a commercial insurance
@@ -476,7 +476,7 @@ performed off Earth (a settlement-tier requirement); and a space traffic authori
 enforcement among the major powers (a Slow-Expanse requirement). Beside the chain: a regulator
 accepting a biological measure of aging as a trial endpoint (under the first approved aging
 drug), and a megawatt of heat rejected for thirty days in vacuum, which gates nothing. Each new
-step's first probability was proposed by Claude and accepted by John on 2026-09-20. Adding a
+step's first probability was proposed by Claude and accepted by me on 2026-09-20. Adding a
 requirement can only lower the tiers that need it, so the runs on either side of this entry are
 not measuring the same tree; Astra's proposals for a child raised to eighteen, a food-share
 rung and a hundred-tonne lunar production rung were declined as covered."""
@@ -493,7 +493,7 @@ Astra's pass over almost every step, and Gemini's over ten, found the same kind 
 throughout: undefined words ('heavy', 'most of the joining', 'main transfer', 'beyond the
 Earth-Moon system'), references with no fixed baseline (the superconducting tape price), tests
 an ordinary object could pass (an unshielded reference that a plain hull satisfies), and
-subjective words ('understood by humans'). John accepted or accepted with change on every one
+subjective words ('understood by humans'). I accepted or accepted with change on every one
 of these rows, declining only where a fix would have made a step unmeasurable or turned a leaf
 into a research programme. Two steps were renamed to say what they measure (the
 constant-acceleration drive is now an engine with both high thrust and high exhaust speed; the
@@ -540,7 +540,7 @@ snapshot = "2026-09-25-c5"
 # 2026-09-25: the methodology pass. The one structural review the outside-model review protocol
 # set aside (docs/reviews/protocol.md, decision 5) took the seven tier and method items the
 # 2026-09-19 rulings deferred to it; Claude proposed a change for each
-# (docs/methodology-pass-2026-09-25.md) and John ruled on 2026-09-25, counting the pass as the
+# (docs/methodology-pass-2026-09-25.md) and I ruled on 2026-09-25, counting the pass as the
 # review that a change to a tier's requirements needs. Two requirement lists changed, each with an
 # entry below; the rest changed words only (two tier definitions, a note on A3's route, a note that
 # the tier headcounts are descriptions, and the timing assumption in methodology.md) and moved
@@ -556,14 +556,14 @@ body = """
 The outpost tier's definition always allowed a permanently crewed station, but its test required
 a reusable lunar lander, a reactor running on the Moon and a lunar programme that outlives two
 changes of government, so a hundred people working on commercial stations with no lunar programme
-failed a tier they plainly met. GPT-6 Astra raised it in two packets. John ruled on 2026-09-25 that
+failed a tier they plainly met. GPT-6 Astra raised it in two packets. I ruled on 2026-09-25 that
 the tier is tested by the hundred-workers step alone, which already counts every station and
 surface site and asks for a full year. The three lunar steps did not become less important: they
 still gate the Belt through lunar material delivered to orbit at scale. So the outpost and
 settlement tiers rose, and so did the second number beside the headline (a rotation at a station
 or lunar base), while the Belt and the headline did not move at all. On the home page chain, the
 regime link rose, because it no longer counts the lunar programme directly; the lunar reactor
-stays energy's link, found through lunar material at scale by a rule John approved the same day,
+stays energy's link, found through lunar material at scale by a rule I approved the same day,
 so energy does not drop off the chain."""
 snapshot = "2026-09-25-methodology-pass"
 run_note = "docs/runs/2026-09-25-methodology-pass.md"
@@ -576,10 +576,10 @@ title = "A treaty banning debris-creating anti-satellite tests is no longer requ
 body = """
 The treaty was a requirement of the Full Expanse as a sign that orbit is treated as shared rather
 than fought over. GPT-6 Astra argued that a treaty is a diplomatic milestone, not something a Full
-Expanse cannot exist without, and covers neither wartime attacks nor accidental debris. John ruled
+Expanse cannot exist without, and covers neither wartime attacks nor accidental debris. I ruled
 on 2026-09-25 that it leaves the top tier and stays in the tree as a step that gates no tier, like
 the megawatt radiator. Claude also proposed moving the space traffic authority from the Belt tier
-into its place, which would have raised the headline; John declined that, so the authority stays a
+into its place, which would have raised the headline; I declined that, so the authority stays a
 requirement of the Belt as ruled on 2026-09-19. Only the top tier moved, slightly up."""
 snapshot = "2026-09-25-methodology-pass"
 run_note = "docs/runs/2026-09-25-methodology-pass.md"
@@ -587,7 +587,7 @@ run_note = "docs/runs/2026-09-25-methodology-pass.md"
 # 2026-09-25: the function-over-route pass. After the essay question "why does it have to be a
 # nuclear reactor?", Claude proposed a rule (a link names the function a child needs, not one route
 # to it) and a sweep of every link in the tree (docs/proposal-function-over-route-2026-09-25.md).
-# John approved it in full on 2026-09-25 (docs/handoff-function-over-route-2026-09-25.md), counting
+# I approved it in full on 2026-09-25 (docs/handoff-function-over-route-2026-09-25.md), counting
 # the pass as the review a tier change needs, on the methodology-pass precedent. One entry per
 # candidate that changed; candidate 2 was checked and left, candidate 8 and the access branch were
 # not candidates. All landed in one snapshot, which breaks like-for-like comparison with the run
@@ -606,11 +606,11 @@ a reactor is one way to get it. Solar panels on a polar ridge that is almost alw
 sunlight, with storage for the short dark spells, is another; power sent down from orbit is a
 third. The tree had the Belt waiting on the reactor alone, which counts one route as if it
 were the only one and always biases the number low. Under candidate 1 of the function-over-route
-proposal (docs/proposal-function-over-route-2026-09-25.md), approved by John on 2026-09-25,
+proposal (docs/proposal-function-over-route-2026-09-25.md), I approved on 2026-09-25,
 lunar material at scale now depends on a new step, a hundred kilowatts at one lunar site
 through a year from any source, with the reactor, polar solar with storage and power from
 orbit as its three routes. The two new routes and the new step carry first estimates from
-Claude that John has not yet ruled on. The reactor itself is unchanged and still tracked."""
+Claude that I have not yet ruled on. The reactor itself is unchanged and still tracked."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
 
@@ -625,11 +625,11 @@ institution. The step it waited on asked for a program that survives two changes
 government, which quietly assumed the program would be a government's. A company program
 whose owner or lead funder changes twice and keeps flying crew supplies the same thing. Under
 candidate 3 of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md),
-approved by John on 2026-09-25, the step now reads: a crewed lunar program, government or
+I approved on 2026-09-25, the step now reads: a crewed lunar program, government or
 commercial, keeps flying across two changes of its principal backer. Because the old step had
 published numbers, it is retired and replaced rather than renamed, and lunar material at scale
 points at the new one. Claude re-estimated it a few points up, 0.75 to 0.78 by 2071, since the
-government route still carries almost all of it; John has not yet ruled on the new numbers."""
+government route still carries almost all of it; I have not yet ruled on the new numbers."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
 
@@ -643,13 +643,12 @@ The engine that would cross to the Belt in weeks was waiting on a fusion plant p
 electricity onto a grid. What the drive needs from that plant is a power source large and light
 enough to fly, and a grid plant is only one way toward it: a fusion drive could be developed
 without one, and a very large fission-electric system is a separate path. Under candidate 4 of
-the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved by
-John on 2026-09-25, the drive now depends on a new step: a hundred megawatts of electricity from a
+the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), I approved on 2026-09-25, the drive now depends on a new step: a hundred megawatts of electricity from a
 source that weighs no more than a hundred tonnes, one kilogram for each kilowatt, the figure the
 drive's own record gives as the practical requirement. The grid fusion plant and a new
 fission-electric route sit under it. Because the new step carries the weight gap, the drive's own
 conditional was re-estimated up so the fusion route alone gives about the same chance as before.
-The new numbers are Claude's first estimates, not yet ruled by John. This touches only the top
+The new numbers are Claude's first estimates, not yet ruled on by me. This touches only the top
 tier, not the headline."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
@@ -664,11 +663,11 @@ A crewed site beyond the Earth-Moon system, which the Belt tier requires, waited
 landing on Mars and returning. What the site needs from that step is proof that people can be
 carried across interplanetary space and back, and a crewed flight to a near-Earth asteroid, to
 Mars's moons, or around Mars without landing would supply it too. Under candidate 5 of the
-function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved by John
+function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), I approved
 on 2026-09-25, the step now reads: a crew travels beyond the Earth-Moon system, at least five
 million kilometres from Earth, and returns. Mars is named as the likeliest way it happens, not
 the requirement. The Mars step had published numbers, so it is retired and replaced rather than
-renamed. Claude re-estimated the widened step a few points up (0.45 to 0.52 by 2071); John has
+renamed. Claude re-estimated the widened step a few points up (0.45 to 0.52 by 2071); I have
 not yet ruled on the new numbers."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
@@ -683,12 +682,12 @@ The Belt tier listed nuclear propulsion in routine use among the things it canno
 without. What a Slow Expanse needs is ships that reach the Belt in months, often enough that
 going is routine; nuclear propulsion is one way to get there, and high-power solar-electric
 propulsion is another. Under candidate 6 of the function-over-route proposal
-(docs/proposal-function-over-route-2026-09-25.md), approved by John on 2026-09-25 and counted as
+(docs/proposal-function-over-route-2026-09-25.md), I approved on 2026-09-25 and counted as
 the review a tier change needs, the tier's words now read "transit fast enough that people go out
 there to work", and its test is a new step: three missions in one year, crewed or cargo, reaching
 the asteroid belt within twelve months of leaving Earth, by any propulsion. Routine nuclear
 propulsion and a new step for megawatt solar-electric propulsion in routine use sit under it as
-routes. The new numbers are Claude's first estimates, not yet ruled by John. The step names the
+routes. The new numbers are Claude's first estimates, not yet ruled on by me. The step names the
 Belt, so a world whose fast ships go only to Mars does not meet it."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
@@ -703,12 +702,12 @@ The first profitable off-Earth product waited on a hundred tonnes a year of luna
 reaching orbit. What the product needs is off-Earth material at scale, and an asteroid could
 supply it as well as the Moon; this is the link the introduction essay says gates the Belt.
 Under candidate 7 of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md),
-approved by John on 2026-09-25, the product step now depends on a new either-route step, a
+I approved on 2026-09-25, the product step now depends on a new either-route step, a
 hundred tonnes a year from the Moon or from an asteroid, with a new asteroid route beside the
-lunar one. The asteroid route carries a first estimate from Claude, not yet ruled by John. The
+lunar one. The asteroid route carries a first estimate from Claude, not yet ruled on by me. The
 Belt tier itself still lists lunar material at scale by name, so this change lifts the product
 step without moving the headline; whether the tier should list the either-route step instead is
-a question for John."""
+a question for me."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
 
@@ -721,15 +720,14 @@ body = """
 The settlement tier needs a crew to live off Earth for a year with most of its food produced
 where it lives. The step asked for calories grown on site, which assumes crops. Food cultured
 or fermented from water, air, carbon dioxide and waste would do the same job. Under candidate 9
-of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), approved
-by John on 2026-09-25 with the lighter of the two handlings, the step's criterion now reads
+of the function-over-route proposal (docs/proposal-function-over-route-2026-09-25.md), I approved on 2026-09-25 with the lighter of the two handlings, the step's criterion now reads
 "most of its food produced on site from raw inputs", with raw inputs defined as things that are
 not themselves food. The staple crop harvested off Earth stays its parent as the likeliest
 route, and a cultured-food route would be added if one appears. No number changed."""
 snapshot = "2026-09-25-sweep-function-over-route"
 run_note = "docs/runs/2026-09-25-function-over-route.md"
 
-# 2026-09-25: two Contact Clause rungs renamed, words only, while John edited the intro essay.
+# 2026-09-25: two Contact Clause rungs renamed, words only, while I edited the intro essay.
 
 [[entry]]
 id = "2026-09-25-contact-rungs-named-for-the-event-not-the-feeling"
@@ -738,7 +736,7 @@ kind = "structure"
 title = "The Contact Clause's two top rungs were renamed for the event each criterion tests: a message from elsewhere is understood, and a real exchange with a machine mind"
 body = """
 Both top rungs had carried the word communion since the clause was written. Editing the intro
-essay on 2026-09-25, John ruled that a rung's label should name the event its criterion tests,
+essay on 2026-09-25, I ruled that a rung's label should name the event its criterion tests,
 not a feeling, and that communion carries a religious ring the project does not intend. C4,
 "Communion", is now "A message from elsewhere is understood", which is what its criterion has
 required since the 2026-09-20 review: a verified non-human signal decoded into information that
@@ -751,21 +749,21 @@ dream statement in the definitions keeps its own wording."""
 nodes = ["C4", "C5"]
 snapshot = "2026-09-25-methodology-pass"
 
-# 2026-10-02: John ruled on the eleven first estimates of the function-over-route pass. Nine stand
+# 2026-10-02: I ruled on the eleven first estimates of the function-over-route pass. Nine stand
 # as set on 2026-09-25; two were raised, each with its own entry below.
 
 [[entry]]
 id = "2026-10-02-polar-solar-on-the-moon-raised"
 date = 2026-10-02
 kind = "revision"
-title = "Solar panels with storage keeping a lunar polar site powered for a year was raised at John's ruling: every south-pole base plan starts on solar"
+title = "Solar panels with storage keeping a lunar polar site powered for a year was raised at my ruling: every south-pole base plan starts on solar"
 body = """
 The function-over-route pass of 2026-09-25 added this step as a second way to get power through
 the lunar night, with a first estimate from Claude of 0.55 by 2071, well under the lunar
-reactor's 0.70. Reviewing the pass's eleven first estimates with John on 2026-10-02, Claude
+reactor's 0.70. Reviewing the pass's eleven first estimates with me on 2026-10-02, Claude
 argued that fifteen points under the reactor was too cautious, since every plan for a base at
 the Moon's south pole starts on solar power and the reactor is the part that keeps slipping,
-and proposed 0.65. John accepted. The step stays below the reactor in every window because the
+and proposed 0.65. I accepted. The step stays below the reactor in every window because the
 reactor is still the planned answer. The figures for the four longer windows are Claude's,
 scaled to keep the same shape. The other nine first estimates of the pass were accepted as set."""
 nodes = ["E-solar-with-storage-powers-a-lunar-polar-site-for-a-year"]
@@ -776,13 +774,13 @@ run_note = "docs/runs/2026-10-02-estimates-ruled.md"
 id = "2026-10-02-routine-solar-electric-propulsion-raised"
 date = 2026-10-02
 kind = "revision"
-title = "Megawatt solar-electric propulsion becoming routine was raised at John's ruling: it is further along than nuclear propulsion and needs no reactor approvals"
+title = "Megawatt solar-electric propulsion becoming routine was raised at my ruling: it is further along than nuclear propulsion and needs no reactor approvals"
 body = """
 The function-over-route pass of 2026-09-25 added this step as a second route to fast transit,
 with a first estimate from Claude set level with routine nuclear propulsion at 0.40 by 2071.
-Reviewing the pass's eleven first estimates with John on 2026-10-02, Claude argued that level
+Reviewing the pass's eleven first estimates with me on 2026-10-02, Claude argued that level
 was too cautious: electric thrusters fly every day, megawatt solar spacecraft are funded, and
-no reactor has to be approved for launch. Claude proposed 0.50 and John accepted. In the two
+no reactor has to be approved for launch. Claude proposed 0.50 and I accepted. In the two
 longest windows the step stays just under nuclear propulsion, because solar power weakens with
 distance from the Sun. The figures for the four longer windows are Claude's, scaled to keep the
 same shape. Fast transit is a requirement of the Belt tier, so this reaches the headline."""
@@ -790,7 +788,7 @@ nodes = ["D-high-power-solar-electric-propulsion-in-routine-use"]
 snapshot = "2026-10-02-estimates-ruled"
 run_note = "docs/runs/2026-10-02-estimates-ruled.md"
 
-# 2026-10-03: two of the questions the function-over-route pass left open, ruled by John on
+# 2026-10-03: two of the questions the function-over-route pass left open, ruled by me on
 # Claude's proposal. Words only; no probability moved and no run was taken.
 
 [[entry]]
@@ -803,7 +801,7 @@ The step for an engine with both high thrust and high exhaust speed had required
 fusion-powered system since 2026-09-19, when the word was added so the criterion matched its
 link to the fusion power plant. On 2026-09-25 that link was replaced by one to a light power
 source reached by any route, fusion or fission, which left the criterion ruling out one of the
-two routes beneath it. John ruled on 2026-10-03, on Claude's proposal, that the word goes: the
+two routes beneath it. I ruled on 2026-10-03, on Claude's proposal, that the word goes: the
 test is the hour-long firing at the stated exhaust speed and push, whatever powers it. No
 number moved, because a source that light is far likelier to be fusion anyway. The step feeds
 only the top tier, so the headline is untouched."""
@@ -820,7 +818,7 @@ The Belt tier needs a site beyond the Earth-Moon system occupied for a year. Its
 said farther from Earth than the Moon's orbit, and the far side of the Moon is itself slightly
 farther than that, so a lunar base could have been argued to count. The crewed round trip the
 step waits on already used five million kilometres, about thirteen times the Moon's distance.
-John ruled on 2026-10-03, on Claude's proposal, that the site uses the same boundary. No number
+I ruled on 2026-10-03, on Claude's proposal, that the site uses the same boundary. No number
 moved: the estimates were always for a site at Mars, in the Belt or farther."""
 nodes = ["D-permanent-crewed-site-beyond-the-earth-moon-system"]
 snapshot = "2026-10-02-estimates-ruled"
