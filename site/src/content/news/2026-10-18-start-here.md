@@ -62,4 +62,4 @@ I am also following two plans with dates on them: [Vast](https://www.vastspace.c
 
 The next monthly search, the one that checks every step, is on 1 November 2026, and [the first yearly review](/method/), when every number is estimated afresh, is on 3 January 2027.
 
-*Corrected 2026-10-19:* the outside review [began on 19 September 2026](/story/), the same day as the first calculation; this post first said it began the next day.
+*Corrected 2026-10-19:* the outside review [began on 19 September 2026](/story/), the same day as the first calculation; I first wrote here that it began the next day.
