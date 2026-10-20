@@ -52,6 +52,9 @@ const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
     <p class="eyebrow"><a href="/tree/">The tree</a> · {rank}</p>
     <h1>{factor.name}</h1>
     <p class="lede">{factor.meaning}</p>
+    {factor.letter === 'W' && (
+      <p class="dim" style="font-size: 14px;">My whole timeline rests on this one. For the wider question of when medicine starts outrunning ageing, see <a href="https://outrunningageing.com" rel="noopener">Outrunning Ageing</a>.</p>
+    )}
     <p class="dim" style="font-size: 14px;">
       {nodes.length} events, {factor.with_probability} with a number{factor.resolved ? `, ${factor.resolved} already happened` : ''}.
       {isContact
