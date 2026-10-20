@@ -4,7 +4,7 @@ Two files the website's story page reads (website step 24, 2026-09-20), both cop
 TimeAssembler, where the project's day-by-day record lives:
 
 - `worklog.json`: the Belt Equation project's worklog, every entry's date, type (decision,
-  progress, session summary, idea), who made a decision (John, or Claude with John's approval,
+  progress, session summary, idea), who made a decision (John, or Claude with my approval,
   or Claude alone), its title, and (since 2026-09-25) its TimeAssembler id. Bodies stay in
   TimeAssembler.
 - `roadmap.json`: the project's roadmap as TimeAssembler orders it, each step with its status.
@@ -15,7 +15,7 @@ with a `why` in plain words that does not repeat what the entry says. The publis
 a listed entry out when it writes `worklog.json`, and the export script leaves it out again when
 it builds the story page, so an entry on the list reaches neither even from an older snapshot. A
 list the export cannot read, or a row with no id or no reason, stops the build. The entry stays in
-TimeAssembler as it is. Added 2026-09-25 for John's ruling of that day that no public surface
+TimeAssembler as it is. Added 2026-09-25 for my ruling of that day that no public surface
 describes his current career until May 2027; its first row is that ruling's own entry, whose title
 names what the ruling withholds. Remove a row when its reason lapses.
 

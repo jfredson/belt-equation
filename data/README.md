@@ -22,6 +22,6 @@ beside it, and `by_scenario` and `tiers` hold the same for all five scenarios an
 rewritten, never edited by hand; `scripts/test_headline.py` fails if it is missing or stale. Since
 2026-10-17 the site serves a copy of it too, at `https://beltequation.com/data/headline.json`: the
 export (`scripts/export.py`) copies it into `site/public/data/` on every build, so the two cannot
-differ (ruled by John 2026-10-17 from the first cross-project lessons review, for every tracker).
+differ (decided 2026-10-17 from the first cross-project lessons review, for every tracker).
 
 `scans/` holds the weekly web scans (the Radar, docs/scan-plan.md): one TOML file per scan, named for the date it ran, saying for each node it checked what was searched, what was found and what verdict it reached. Scan files are appended and never edited. The export script (`scripts/export.py`) checks every one of them and refuses to build the site if a record breaks a rule, so a scan on the site is always a scan that adds up. The file dated 2026-09-19 is a hand-made test record, marked `test = true` and labelled as a test wherever the site shows it; it exists so the pages had something to render before the first real scan, and it goes away once one has run.

@@ -28,7 +28,7 @@ window_year = 2095
 key = "radical"
 name = "Radical extension, a 150-year life"
 window_year = 2136
-# added 2026-09-08 (agreed by John): a named, finite rung between strong extension and the open
+# added 2026-09-08 (agreed by me): a named, finite rung between strong extension and the open
 # window, so the long shot has a number people can picture
 
 [[scenario]]

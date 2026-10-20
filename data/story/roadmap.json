@@ -133,7 +133,7 @@
       "order": 77,
       "status": "done",
       "phase": "Phase 3",
-      "title": "Methodology pass: John rules on items 96 to 101 (docs/methodology-pass-2026-09-25.md), then land what he accepts at a review"
+      "title": "Methodology pass: I rules on items 96 to 101 (docs/methodology-pass-2026-09-25.md), then land what he accepts at a review"
     },
     {
       "order": 78,
@@ -181,7 +181,7 @@
       "order": 90,
       "status": "done",
       "phase": "Phase 5",
-      "title": "Schedule the first annual review for January 2027, before John's training resumes (roadmap step 18) (Phase 5)"
+      "title": "Schedule the first annual review for January 2027, before my training resumes (roadmap step 18) (Phase 5)"
     },
     {
       "order": 92,
@@ -193,7 +193,7 @@
       "order": 93,
       "status": "done",
       "phase": "Phase 6",
-      "title": "Refresh the family-and-friends writeup with the current numbers and the reworded question, for John to edit and send"
+      "title": "Refresh the family-and-friends writeup with the current numbers and the reworded question, for me to edit and send"
     },
     {
       "order": 94,
@@ -271,7 +271,7 @@
       "order": 110,
       "status": "done",
       "phase": null,
-      "title": "Scan plan step 35 (John's action): add the two Cloudflare repository secrets and authorise the repository for the cloud environment's git proxy"
+      "title": "Scan plan step 35 (my action): add the two Cloudflare repository secrets and authorise the repository for the cloud environment's git proxy"
     },
     {
       "order": 130,
@@ -301,7 +301,7 @@
       "order": 155,
       "status": "todo",
       "phase": null,
-      "title": "Access-branch review (after May 2027): the \"I fly to space at least once\" tier needs a step for John actually taking a seat, and the over-65 flyer step as a gate"
+      "title": "Access-branch review (after May 2027): the \"I fly to space at least once\" tier needs a step for me actually taking a seat, and the over-65 flyer step as a gate"
     }
   ]
 }

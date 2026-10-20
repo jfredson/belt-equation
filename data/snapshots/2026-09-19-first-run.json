@@ -2,7 +2,7 @@
   "key": "2026-09-19-first-run",
   "date": "2026-09-19",
   "label": "first-run",
-  "note": "Roadmap step 10, the first run of the tree (docs/runs/2026-09-19-first-run.md), before John's four rulings of the same day. Nodes were rolled independently because the per-run world draw did not exist yet. Backfilled on 2026-09-19 at ledger step 28 by replaying the tree as it stood at commit af01ac5; every tier figure matches the run note. The table of what each step is worth was added at ledger step 29 the same day.",
+  "note": "Roadmap step 10, the first run of the tree (docs/runs/2026-09-19-first-run.md), before my four rulings of the same day. Nodes were rolled independently because the per-run world draw did not exist yet. Backfilled on 2026-09-19 at ledger step 28 by replaying the tree as it stood at commit af01ac5; every tier figure matches the run note. The table of what each step is worth was added at ledger step 29 the same day.",
   "review_status": "pre-review",
   "headline_tier": "A2",
   "run": {
