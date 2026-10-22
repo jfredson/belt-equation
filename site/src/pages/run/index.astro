@@ -8,6 +8,7 @@
 // website-plan decision 3 sets. The page reads the tree and never writes to it.
 import Base from '../../layouts/Base.astro';
 import { reader, tree, percent } from '../../lib/tree';
+import { longDate } from '../../lib/dates';
 
 // The five windows, worded as the home page's dial words them, so a visitor who has used the
 // dial meets the same five choices here. The dial says what the year means for John; here the
@@ -179,7 +180,7 @@ const DEFAULT_ROUTE = 'seat';
           </div>
 
           <p class="dim run-meta">
-            From the run of {reader.computed_on}, {reader.runs.toLocaleString()} play-throughs of the tree per
+            From the run of {longDate(reader.computed_on)}, {reader.runs.toLocaleString()} play-throughs of the tree per
             deadline, read between five-year steps. Check any figure here by hand:
             <code class="mono" data-bind="command"></code>.
             <span class="sep">|</span><a href="/method/#running-the-tree-for-somebody-else">How this is done</a>

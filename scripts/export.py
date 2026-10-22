@@ -1160,7 +1160,7 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
             ruled = ruled_on_the_node(by_id[it["node"]], s["date"])
             candidates = []
             if ruled:
-                candidates.append((ruled, "a ruling recorded on the step"))
+                candidates.append((ruled, "a decision recorded on the step"))
             if later_entries:
                 candidates.append((later_entries[0], "a ledger entry"))
             if later_scans:

@@ -5,6 +5,7 @@
 // the page's past versions are read from the runs in the repository rather than kept by hand.
 // John's own access branch is left out (ruled 2026-10-03): this page is about the world.
 import Base from '../layouts/Base.astro';
+import { longDate } from '../lib/dates';
 import {
   tree, snapshots, odds, movePoints, band, horizonLabel, type NextStep, type NextStepsRun,
 } from '../lib/tree';
@@ -55,8 +56,8 @@ const inNoise = (delta: number) => noise !== null && Math.abs(delta) <= noise;
 // in the repository are working names ("c5", "step 27") and mean nothing to a reader.
 function runName(run: NextStepsRun): string {
   const sameDay = runs.filter((r) => r.date === run.date);
-  if (sameDay.length === 1) return run.date;
-  return `${run.date}, run ${sameDay.indexOf(run) + 1} of ${sameDay.length} that day`;
+  if (sameDay.length === 1) return longDate(run.date);
+  return `${longDate(run.date)}, run ${sameDay.indexOf(run) + 1} of ${sameDay.length} that day`;
 }
 function changeLine(list: NextStep[], before: NextStep[] | null): string {
   if (!before) return 'the first list';
@@ -174,7 +175,7 @@ function changeLine(list: NextStep[], before: NextStep[] | null): string {
         <span>one per saved run, newest first</span>
       </div>
       <p class="dim" style="font-size: 14px; margin-top: 0;">
-        Each list is read from a run saved in the repository. Runs from before 2026-10-03 did not record the list
+        Each list is read from a run saved in the repository. Runs from before October 3rd, 2026 did not record the list
         themselves; it was worked out afterwards from the tree as it was committed with each run, using the figures
         that run saved.
       </p>

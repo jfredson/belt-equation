@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import HistoryChart from '../../../components/HistoryChart.astro';
+import { proseDates } from '../../../lib/dates';
 import {
   tree, nodesOf, percent, horizonShort, statusLabel, tierByKey, snapshots, ledger, odds, movePoints,
   band, worthOf, countWord, DEFAULT_SCENARIO, type Factor,
@@ -138,7 +139,7 @@ const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
       <ul class="watchlist">
         {ledgerHere.map((e) => (
           <li>
-            <a class="wname" href={`/story/#${e.id}`}>{e.title}</a>
+            <a class="wname" href={`/story/#${e.id}`}>{proseDates(e.title)}</a>
             <span class="wworth">{e.date}</span>
             <span class="wno">{ledger.kinds.find((k) => k.key === e.kind)?.label ?? e.kind}</span>
           </li>

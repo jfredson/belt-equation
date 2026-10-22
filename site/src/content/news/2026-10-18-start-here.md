@@ -26,7 +26,7 @@ This is the start of the site's news. When something moves my odds, or big news 
 
 ## Where the Odds Stand
 
-As of the last calculation, on 11 October 2026, [my odds are half a percent](/): a 0.5 percent chance that by 2071 I am living and working at a site off Earth, months at a time. 2071 is the year I reach my life expectancy, at about 85.
+As of the last calculation, on October 11th, 2026, [my odds are half a percent](/): a 0.5 percent chance that by 2071 I am living and working at a site off Earth, months at a time. 2071 is the year I reach my life expectancy, at about 85.
 
 The two parts of the question come out very differently. The chance that human industry reaches beyond Earth and Mars at all, with or without me, is [only 0.8 percent](/). The chance that I work months at a time at a space station or a base on the Moon, whether or not industry ever goes further, is much higher, at 9.3 percent.
 
@@ -44,22 +44,22 @@ Every Sunday evening, Pacific time, an automated search checks the week's news a
 
 ## What Has Happened So Far
 
-[The site's first calculation](/story/), on 19 September 2026, said zero: no chance at all by 2071. That was plainly wrong, and the fault was in the method. It treated every step as if it had nothing to do with the others, when in fact the steps lean on each other. Fixing that was one of four changes I made that day, and the second calculation came out at 0.9 percent.
+[The site's first calculation](/story/), on September 19th, 2026, said zero: no chance at all by 2071. That was plainly wrong, and the fault was in the method. It treated every step as if it had nothing to do with the others, when in fact the steps lean on each other. Fixing that was one of four changes I made that day, and the second calculation came out at 0.9 percent.
 
-The same day, I sent every step out for outside review, with the same instructions for each reviewer: name a missing step, challenge a test, argue a number up or down. I decided each of the [105 points they raised](/story/#2026-09-20-nine-steps-added-seven-of-them-on-the-chain), and on 20 September 2026, with those decisions in, my odds fell from 0.9 percent to 0.4 percent. Most of the fall came from seven new steps that now also have to go right.
+The same day, I sent every step out for outside review, with the same instructions for each reviewer: name a missing step, challenge a test, argue a number up or down. I decided each of the [105 points they raised](/story/#2026-09-20-nine-steps-added-seven-of-them-on-the-chain), and on September 20th, 2026, with those decisions in, my odds fell from 0.9 percent to 0.4 percent. Most of the fall came from seven new steps that now also have to go right.
 
-The first big news from outside came on 28 September 2026, when [SpaceX](https://www.spacex.com/)'s giant rocket [Starship](https://www.spacex.com/vehicles/starship/) reached orbit for the first time. Neither part of the rocket was recovered, and recovery is what the launch steps test for, so [nothing moved](/story/#2026-10-04-starship-reaches-orbit-no-recovery). That is the site working as it should: famous news that does not pass a step's test changes nothing.
+The first big news from outside came on September 28th, 2026, when [SpaceX](https://www.spacex.com/)'s giant rocket [Starship](https://www.spacex.com/vehicles/starship/) reached orbit for the first time. Neither part of the rocket was recovered, and recovery is what the launch steps test for, so [nothing moved](/story/#2026-10-04-starship-reaches-orbit-no-recovery). That is the site working as it should: famous news that does not pass a step's test changes nothing.
 
-Since 20 September my odds have stayed near half a percent, and in [six weekly readings](/radar/) nothing has moved.
+Since September 20th my odds have stayed near half a percent, and in [six weekly readings](/radar/) nothing has moved.
 
 ## What to Watch
 
-The nearest event is Starship's next flight, [Flight 15](https://en.wikipedia.org/wiki/Starship_flight_15), which is expected to make the first attempt to recover the rocket's upper part. SpaceX has announced no date, and the latest planning date I can find is no earlier than 8 November 2026. The step it bears on counts only when both parts of one rocket come back intact from one flight to orbit and the company that flew it confirms they can fly again. Even then it would move my odds only a little, because the calculation already expects it to happen.
+The nearest event is Starship's next flight, [Flight 15](https://en.wikipedia.org/wiki/Starship_flight_15), which is expected to make the first attempt to recover the rocket's upper part. SpaceX has announced no date, and the latest planning date I can find is no earlier than November 8th, 2026. The step it bears on counts only when both parts of one rocket come back intact from one flight to orbit and the company that flew it confirms they can fly again. Even then it would move my odds only a little, because the calculation already expects it to happen.
 
 The steps that would matter most are slower and have no date. At the top of [the list of steps that would move my odds most](/next/) is a space traffic authority among the major powers, able to enforce rules on how spacecraft move and when rockets launch. No other step that could happen next would move my odds as far. After it come shielding that halves the radiation a crew takes in deep space, and a tonne of rocket fuel made from material found off Earth and burned in a rocket engine.
 
 I am also following two plans with dates on them: [Vast](https://www.vastspace.com/)'s [Haven-1](https://www.vastspace.com/haven-1), a small commercial space station, now due no earlier than the first quarter of 2027, and [NASA](https://www.nasa.gov/)'s [Space Reactor-1 Freedom](https://en.wikipedia.org/wiki/Space_Reactor-1_Freedom), a spacecraft powered by a nuclear reactor, proposed for December 2028. A plan is not an event, so neither moves my odds until it flies.
 
-The next monthly search, the one that checks every step, is on 1 November 2026, and [the first yearly review](/method/), when every number is estimated afresh, is on 3 January 2027.
+The next monthly search, the one that checks every step, is on November 1st, 2026, and [the first yearly review](/method/), when every number is estimated afresh, is on January 3rd, 2027.
 
-*Corrected 2026-10-19:* the outside review [began on 19 September 2026](/story/), the same day as the first calculation; I first wrote here that it began the next day.
+*Corrected October 19th, 2026:* the outside review [began on September 19th, 2026](/story/), the same day as the first calculation; I first wrote here that it began the next day.

@@ -138,4 +138,4 @@ status = "open"
 probability = { baseline = 0.7, moderate = 0.78, strong = 0.86, radical = 0.92, open = 0.94 }
 estimated_on = 2026-09-20
 rationale = "The satellite insurance market already writes launch and in-orbit cover on commercial landers, and a lunar asset worth insuring at a million a year needs only a commercial lunar operation of any size, which the outpost tier assumes; the residual is that operators self-insure or governments carry the risk for decades. Proposed by Claude 2026-09-20 with the node's addition, I accepted."
-notes = "Added 2026-09-20 under step 27, item 21 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a dependency of M-off-earth-product-sold-at-a-profit."
+notes = "Added 2026-09-20 under step 27, item 21 (docs/reviews/2026-09-19-rulings.md, decided 2026-09-19): raised by Gemini as a missing node; a dependency of M-off-earth-product-sold-at-a-profit."

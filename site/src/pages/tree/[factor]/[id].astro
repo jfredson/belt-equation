@@ -7,7 +7,7 @@ import {
 } from '../../../lib/tree';
 import { checksFor, verdictLabel } from '../../../lib/scans';
 import { postsAbout, postPath } from '../../../lib/news';
-import { longDate as newsDate } from '../../../lib/dates';
+import { longDate as newsDate, longDate, proseDates } from '../../../lib/dates';
 
 export function getStaticPaths() {
   return tree.nodes.map((n) => ({ params: { factor: n.factor_slug, id: n.id }, props: { node: n } }));
@@ -25,7 +25,8 @@ const disagree = issueUrl(
   `Node: ${node.id} (${Astro.site}${node.path.slice(1)})\n\nWhat I would change, and why:\n\n`,
 );
 const links = node.resolved_links ?? [];
-const description = node.description.length > 200 ? node.description.slice(0, 197) + '…' : node.description;
+const spoken = proseDates(node.description);
+const description = spoken.length > 200 ? spoken.slice(0, 197) + '…' : spoken;
 
 // What this step is worth to the headline, from the latest committed run (step 32): the headline
 // as it stands, where it would go if this settled yes tomorrow, and where it would go on a no.
@@ -66,15 +67,15 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
 
   <div class="record">
     <div class="prose">
-      <p>{node.description}</p>
+      <p>{proseDates(node.description)}</p>
 
       <h2>The test: what counts as it having happened</h2>
-      <p>{node.resolution}</p>
-      <p class="dim"><strong>Settled by:</strong> {node.source}</p>
+      <p>{proseDates(node.resolution)}</p>
+      <p class="dim"><strong>Settled by:</strong> {proseDates(node.source)}</p>
 
       {node.status.startsWith('resolved') && (
         <div class="callout">
-          <h3>{statusLabel[node.status]}{node.resolved_on ? `, ${node.resolved_on}` : ''}</h3>
+          <h3>{statusLabel[node.status]}{node.resolved_on ? `, ${longDate(node.resolved_on)}` : ''}</h3>
           <p>{node.resolved_by ?? 'The record that settled it is not yet noted.'}</p>
           {links.length > 0 && (
             <p class="sources">Sources: {links.map((u, i) => (
@@ -123,9 +124,9 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
           <p style="font-size: 15px;">
             Each column is a different guess at how long I live, from current trends (baseline) to open-ended.
             The number is the chance this happens before that deadline, assuming everything it depends on happens
-            first. As of {node.estimated_on}.
+            first. As of {longDate(node.estimated_on)}.
           </p>
-          {node.rationale && <p><strong>Why these numbers:</strong> {node.rationale}</p>}
+          {node.rationale && <p><strong>Why these numbers:</strong> {proseDates(node.rationale)}</p>}
         </>
       ) : (
         <p class="dim">
@@ -198,7 +199,7 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
           <ul class="watchlist">
             {mentions.map((e) => (
               <li>
-                <a class="wname" href={`/story/#${e.id}`}>{e.title}</a>
+                <a class="wname" href={`/story/#${e.id}`}>{proseDates(e.title)}</a>
                 <span class="wworth">{e.date}</span>
                 <span class="wno">
                   {ledger.kinds.find((k) => k.key === e.kind)?.label ?? e.kind}
@@ -221,8 +222,8 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
             has to be written plausibly all the way to the edge of the impossible, naming how it would work and
             exactly where it would break.
           </p>
-          {node.mechanism && <p><strong>The mechanism:</strong> {node.mechanism}</p>}
-          {node.breaking_point && <p><strong>The breaking point:</strong> {node.breaking_point}</p>}
+          {node.mechanism && <p><strong>The mechanism:</strong> {proseDates(node.mechanism)}</p>}
+          {node.breaking_point && <p><strong>The breaking point:</strong> {proseDates(node.breaking_point)}</p>}
         </>
       )}
 
@@ -243,9 +244,9 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
                     {c.test && <span class="badge v-test">Test record</span>}
                   </summary>
                   <div class="check-body">
-                    <p>{c.found}</p>
-                    {c.for_john && <p><strong>For me:</strong> {c.for_john}</p>}
-                    {c.picked_up && <p class="dim">Taken off my list on {c.picked_up.on}, by {c.picked_up.how}.</p>}
+                    <p>{proseDates(c.found)}</p>
+                    {c.for_john && <p><strong>For me:</strong> {proseDates(c.for_john)}</p>}
+                    {c.picked_up && <p class="dim">Taken off my list on {longDate(c.picked_up.on)}, by {c.picked_up.how}.</p>}
                     {c.sources.length > 0 && (
                       <p class="dim">
                         {c.sources.map((s, i) => (
@@ -279,7 +280,7 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
                   <td>{r.field}</td>
                   <td class="dim">{typeof r.old === 'object' ? JSON.stringify(r.old) : String(r.old ?? '')}</td>
                   <td>{typeof r.new === 'object' ? JSON.stringify(r.new) : String(r.new ?? '')}</td>
-                  <td>{r.why}</td>
+                  <td>{proseDates(r.why)}</td>
                 </tr>
               ))}
             </tbody>
@@ -290,13 +291,13 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
       {node.notes && (
         <>
           <h2>Notes</h2>
-          <p set:html={inline(node.notes)} />
+          <p set:html={inline(proseDates(node.notes))} />
         </>
       )}
       {node.verify.length > 0 && (
         <div class="callout">
           <h3>Claims still to be checked</h3>
-          <ul>{node.verify.map((v) => <li>{v}</li>)}</ul>
+          <ul>{node.verify.map((v) => <li>{proseDates(v)}</li>)}</ul>
         </div>
       )}
 
