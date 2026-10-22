@@ -16,7 +16,7 @@ const named = post.data.records.map((id) => {
   const n = tree.nodes.find((x) => x.id === id);
   if (n) return { name: n.name, path: n.path };
   const e = ledger.entries.find((x) => x.id === id);
-  return e ? { name: e.title, path: `/story/#${e.id}` } : null;
+  return e ? { name: e.title, path: `/about/#${e.id}` } : null;
 }).filter(Boolean) as { name: string; path: string }[];
 // A mission news post names missions instead of records (tracker pattern rule 4.20).
 const namedMissions = post.data.missions.map((id) => missions.missions.find((m) => m.id === id)).filter(Boolean).map((m) => ({ name: m!.short, path: missionPath(m!.id) }));
@@ -33,7 +33,7 @@ const namedMissions = post.data.missions.map((id) => missions.missions.find((m) 
     {(named.length > 0 || namedMissions.length > 0 || post.data.sources.length > 0) && (
       <section class="post-record">
         {namedMissions.length > 0 && <p class="rec">On the Missions page: {namedMissions.map((r, i) => <>{i > 0 ? ' · ' : ''}<a href={r.path}>{r.name}</a></>)} · <a href="/missions/">every mission I follow</a>.</p>}
-        {named.length > 0 && <p class="rec">The record: {named.map((r, i) => <>{i > 0 ? ' · ' : ''}<a href={r.path}>{r.name}</a></>)}{post.data.reading && <> · the reading of <a href={`/radar/#${post.data.reading}`}>{longDate(post.data.reading)}</a></>} · <a href="/story/">the story so far</a>.</p>}
+        {named.length > 0 && <p class="rec">The record: {named.map((r, i) => <>{i > 0 ? ' · ' : ''}<a href={r.path}>{r.name}</a></>)}{post.data.reading && <> · the reading of <a href={`/radar/#${post.data.reading}`}>{longDate(post.data.reading)}</a></>} · <a href="/about/#story">the story so far</a>.</p>}
         {post.data.sources.length > 0 && <p class="sources">Sources: {post.data.sources.map((s, i) => <>{i > 0 ? ' · ' : ''}<a href={s.url} rel="noopener">{s.label}</a></>)}.</p>}
       </section>
     )}

@@ -79,6 +79,7 @@ function changeLine(list: NextStep[], before: NextStep[] | null): string {
       could land next. They are ranked by how far the headline would move if one happened tomorrow and nothing
       else changed.
     </p>
+    <p class="next-radar">Every Sunday these steps are checked against the news: <a href="/radar/">see the weekly readings</a>.</p>
     <p class="dim" style="font-size: 14px;">
       Each figure comes from forcing that one step to happen and playing the whole tree out again, so it is
       worked out rather than guessed. The list is redrawn every time the tree is run, and every earlier version
@@ -209,6 +210,7 @@ function changeLine(list: NextStep[], before: NextStep[] | null): string {
 </Base>
 
 <style>
+  .next-radar { font-family: var(--sans); font-size: 14.5px; color: var(--text-soft); margin-top: 10px; }
   .nextlist li { grid-template-columns: 2.2em minmax(0, 1fr) auto; }
   .nrank { font-family: var(--mono); font-size: 14px; color: var(--muted); }
   .nbody { display: grid; gap: 4px; }

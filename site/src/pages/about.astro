@@ -1,0 +1,34 @@
+---
+// About: why I built the site, then how the numbers work, then what has moved them. Made on
+// 2026-10-21 from the Method and Story pages when the top bar was simplified (agreed by John that
+// day): the two pages' text is kept as it was, in components/AboutMethod.astro and
+// components/AboutStory.astro, and /method/ and /story/ redirect to their parts here.
+import Base from '../layouts/Base.astro';
+import AboutMethod from '../components/AboutMethod.astro';
+import AboutStory from '../components/AboutStory.astro';
+---
+
+<Base title="About The Belt Equation: why I built it, how the odds are worked out, and what has moved them" description="Why I built a public model of my odds of living and working in space, how the number is worked out from the tree, and every change to it so far.">
+  <section class="hero">
+    <p class="eyebrow">About</p>
+    <h1>Why I built this, and how it works</h1>
+    <p class="lede">I'm John, 40 years old, and I write about AI, sentience and the spread of conscious life beyond Earth at <a href="https://sentient-horizons.com" rel="noopener">Sentient Horizons</a>. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this site. It puts a number on the wish and it shows me which links are likely to move in the next few years, so I know where to watch, and which ones would move the odds most.</p>
+    <p>The name comes from the Belters of the TV series <a href="https://en.wikipedia.org/wiki/The_Expanse_%28TV_series%29" rel="noopener"><em>The Expanse</em></a>, the people who live and work in the asteroid belt, far from Earth. Underestimated, and at home where nobody thought people could be. I want to see a solar system like that unfold. This site works out, in public, how likely that is. The longer story is in <a href="https://sentient-horizons.com/essays/the-belt-equation/" rel="noopener">the essay that introduced the project</a>.</p>
+    <ul class="about-toc">
+      <li><a href="#method">How the numbers are computed</a></li>
+      <li><a href="#story">What moved the number, and by how much</a></li>
+      <li><a href="/radar/">The weekly readings</a>, where every step is checked against the news each Sunday</li>
+      <li><a href="/run/">Your own odds</a>, the same calculation for your birth year</li>
+      <li><a href="/feedback/">Disagree with something</a></li>
+    </ul>
+  </section>
+
+  <AboutMethod />
+  <AboutStory />
+</Base>
+
+<style>
+  .about-toc { margin: 18px 0 0; padding-left: 1.1em; font-size: 16px; line-height: 1.7; }
+  :global(.about-part) { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 48px; scroll-margin-top: 70px; }
+  :global(.about-h) { font-size: clamp(30px, 4vw, 44px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 14px; }
+</style>

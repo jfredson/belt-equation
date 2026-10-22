@@ -475,7 +475,7 @@ export function authorLabel(author: string | null): string {
   return `Written by ${author}`;
 }
 
-export const entryPath = (id: string): string => `/story/#${id}`;
+export const entryPath = (id: string): string => `/about/#${id}`;
 
 /** The plain name of a chain link, by factor letter: what the home page calls it. */
 export const linkShort: Record<string, string> = {
