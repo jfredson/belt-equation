@@ -49,6 +49,20 @@ One file per scan, appended to the folder and never edited. The export script va
 
 A search counts toward a node only if it was aimed at that node; a search first run for another node and listed again carries a `reused` line saying why it bears on this one (ruled by John 2026-10-06 at the first audit). Every item names at least one search it ran, with one exception: a node that resolves only when one of the nodes it depends on resolves has nothing of its own to look for, so it may leave `queries` empty as long as its verdict is `quiet` and `found` says why no search was run. Every other verdict still needs a search.
 
+From 2026-10-21 a record also carries one `[[mission]]` item per mission read in step 3c of the scan procedure (the Missions page; tracker pattern rule 4.20):
+
+    [[mission]]
+    mission = "hera"               # the mission's id in data/missions.toml
+    milestone = "Arrives at Didymos and its moonlet Dimorphos"
+    change = "done"                # "done", "moved", "failed" or "checked" (read, nothing changed)
+    was = "2026-11"                # for moved: the old date, as data/missions.toml wrote it
+    now = "2026-12"                # for moved: the new date
+    queries = ["..."]              # at least one
+    found = "One or two sentences, with absolute dates."
+    sources = ["https://..."]      # required for done, moved and failed
+
+The export refuses an item that names a mission not on the page, gives another kind of change, names no search, or marks a milestone done, moved or failed with no source. A mission item never moves a number.
+
 Five verdicts. `quiet`: nothing found that bears on the criterion. `noted`: something relevant happened and no number moved; `found` says why not. When the thing was widely reported, the scanner also writes a `held-steady` ledger entry that names the criterion it was read against. `moved`: the probability changed within the cap; a revision on the node and an `event` ledger entry. `resolved`: the criterion was met; `resolved_on`, `resolved_by` on the node and a `resolution` entry. `flagged`: something the scanner may not do on its own; a `for_john` line and no edit.
 
 ## What the reader sees

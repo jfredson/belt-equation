@@ -1,6 +1,7 @@
 ---
 // Site navigation: the five pages of version one (docs/website-plan.md), the reader's own
-// run (website step 39), what could happen next (2026-10-03), plus the public repo.
+// run (website step 39), what could happen next (2026-10-03), the missions I follow (2026-10-21,
+// tracker pattern rule 4.20), plus the public repo.
 // Copied from Sentient Horizons' nav pattern:
 // collapses to a menu on small screens, and a light/dark toggle that remembers the choice.
 const path = Astro.url.pathname;
@@ -9,6 +10,7 @@ const primary = [
   { href: '/tree/', label: 'The Tree' },
   { href: '/radar/', label: 'Radar' },
   { href: '/news/', label: 'News' }, // tracker pattern rule 4.10, John 2026-10-18
+  { href: '/missions/', label: 'Missions' }, // rule 4.20, John 2026-10-21: after News
   { href: '/next/', label: 'Next' },
   { href: '/method/', label: 'Method' },
   { href: '/story/', label: 'Story' },

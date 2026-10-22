@@ -6,7 +6,9 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-export const NEWS_KINDS = ['start-here', 'rung-reached', 'estimate-revised', 'flagged-item-ruled', 'claim', 'headline-moved', 'method-changed'] as const;
+// 'mission-news' is the Belt's eighth kind (tracker pattern rule 4.20, ruled by John 2026-10-21): a post
+// about a mission on the Missions page, which names missions (`missions`) instead of records.
+export const NEWS_KINDS = ['start-here', 'rung-reached', 'estimate-revised', 'flagged-item-ruled', 'claim', 'headline-moved', 'method-changed', 'mission-news'] as const;
 
 // YAML reads a bare 2026-10-18 as a date; the site keeps dates as YYYY-MM-DD strings.
 const isoDate = z.union([z.string().regex(/^\d{4}-\d{2}-\d{2}$/), z.date().transform((d) => d.toISOString().slice(0, 10))]);
@@ -19,6 +21,7 @@ const news = defineCollection({
     kind: z.enum(NEWS_KINDS),
     summary: z.string(),
     records: z.array(z.string()).default([]),
+    missions: z.array(z.string()).default([]),
     sources: z.array(z.object({ label: z.string(), url: z.string().url() })).default([]),
     reading: isoDate.optional(),
     before: z.string().optional(),

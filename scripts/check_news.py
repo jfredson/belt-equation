@@ -17,6 +17,13 @@ address; states a figure (any digit) in a paragraph that carries no link (a Mark
 prose); or names a record that shows no dated change within fourteen days of the post's date
 (a revision, a resolution, a ledger entry, or a scan item ruled or moved), so a post cannot announce
 what the record does not show. The rules are John's of 2026-10-18.
+
+Mission news (the eighth kind, "mission-news"; tracker pattern rule 4.20, ruled by John 2026-10-21)
+names missions from data/missions.toml (`missions: [...]`) in place of records. The check refuses
+one that names no mission or one not on the Missions page; names a mission with no milestone
+marked done, moved or failed within fourteen days of the post's date; does not end on what the
+event does and does not change for the odds (its last paragraph must speak of the odds or the
+number); or is a third mission news post in one week (Monday to Sunday), past the ceiling of two.
 """
 from __future__ import annotations
 
@@ -28,7 +35,9 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed"}
+KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed", "mission-news"}
+MISSION_POSTS_PER_WEEK = 2
+ODDS_RE = re.compile(r"\b(odds|number)\b", re.I)
 WINDOW_DAYS = 14
 NAME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
 
@@ -114,6 +123,21 @@ def record_changed_near(rec: dict, when: date, readings: list[dict]) -> bool:
     return False
 
 
+def mission_changed_near(mission: dict, when: date) -> bool:
+    """A milestone marked done or failed, or a date moved, within the window of the post's date."""
+    lo, hi = when - timedelta(days=WINDOW_DAYS), when + timedelta(days=WINDOW_DAYS)
+    for ms in mission.get("milestones") or []:
+        try:
+            if ms.get("state") in ("done", "failed"):
+                if date.fromisoformat(ms["start"]) <= hi and date.fromisoformat(ms["end"]) >= lo:
+                    return True
+            if ms.get("was") and lo <= date.fromisoformat(ms["was"]["moved_on"]) <= hi:
+                return True
+        except (KeyError, ValueError):
+            pass
+    return False
+
+
 def check(posts_dir: Path, records: dict) -> tuple[list[str], int]:
     problems: list[str] = []
     by_id: dict[str, dict] = {}
@@ -122,6 +146,8 @@ def check(posts_dir: Path, records: dict) -> tuple[list[str], int]:
     for r in records.get("entries") or []:
         by_id[r["id"]] = r
     readings = records.get("scans") or []
+    missions = {m["id"]: m for m in records.get("missions") or []}
+    mission_weeks: dict[tuple[int, int], list[str]] = {}
     files = sorted(p for p in posts_dir.glob("*.md")) if posts_dir.exists() else []
     openers = 0
     for path in files:
@@ -140,11 +166,20 @@ def check(posts_dir: Path, records: dict) -> tuple[list[str], int]:
             problems.append(f"{name}: the frontmatter date {fm['date']} differs from the file name's {m.group(1)}")
         kind = fm.get("kind")
         if kind not in KINDS:
-            problems.append(f"{name}: kind {kind!r} is not one of the seven")
+            problems.append(f"{name}: kind {kind!r} is not one of the eight")
         if kind == "start-here":
             openers += 1
         recs = fm.get("records") or []
-        if kind != "start-here" and not recs:
+        named = fm.get("missions") or []
+        if kind == "mission-news":
+            if not named:
+                problems.append(f"{name}: a mission news post names no mission (missions: [...])")
+            for mid in named:
+                if mid not in missions:
+                    problems.append(f"{name}: names a mission that is not on the Missions page: {mid}")
+        elif named:
+            problems.append(f"{name}: only a mission news post names missions")
+        if kind not in ("start-here", "mission-news") and not recs:
             problems.append(f"{name}: names no record (records: [...])")
         for rid in recs:
             if rid not in by_id:
@@ -156,13 +191,25 @@ def check(posts_dir: Path, records: dict) -> tuple[list[str], int]:
             when = date.fromisoformat(fm.get("date") or m.group(1))
         except ValueError:
             when = None
-        if when and kind != "start-here":
+        if when and kind == "mission-news":
+            for mid in named:
+                if mid in missions and not mission_changed_near(missions[mid], when):
+                    problems.append(f"{name}: {mid} has no milestone marked done, moved or failed within {WINDOW_DAYS} days of {when}; a post cannot announce what the Missions page does not show")
+            iso = when.isocalendar()
+            mission_weeks.setdefault((iso[0], iso[1]), []).append(name)
+            paras = paragraphs(body)
+            if not paras or not ODDS_RE.search(paras[-1]):
+                problems.append(f"{name}: a mission news post ends on what the event does and does not change for the odds; its last paragraph does not")
+        if when and kind not in ("start-here", "mission-news"):
             for rid in recs:
                 if rid in by_id and not record_changed_near(by_id[rid], when, readings):
                     problems.append(f"{name}: {rid} shows no dated change within {WINDOW_DAYS} days of {when}; a post cannot announce what the record does not show")
         for i, para in enumerate(paragraphs(body), 1):
             if re.search(r"\d", para) and "](" not in para and "https://" not in para:
                 problems.append(f"{name}: paragraph {i} states a figure with no link to a source or a record: {para[:70]!r}")
+    for (y, wk), names in sorted(mission_weeks.items()):
+        if len(names) > MISSION_POSTS_PER_WEEK:
+            problems.append(f"week {wk} of {y}: {len(names)} mission news posts ({', '.join(names)}); the ceiling is {MISSION_POSTS_PER_WEEK} a week")
     if openers > 1:
         problems.append(f"{posts_dir}: {openers} posts of kind start-here; there is one per site")
     return problems, len(files)
@@ -184,7 +231,11 @@ def main(argv: list[str]) -> int:
         except FileNotFoundError as e:
             print(f"{e.filename} is missing; run scripts/export.py first", file=sys.stderr)
             return 2
-        records = {"nodes": tree.get("nodes") or [], "entries": ledger.get("entries") or [], "scans": scans.get("scans") or []}
+        try:
+            missions = json.loads((data_dir / "missions.json").read_text(encoding="utf-8")).get("missions") or []
+        except FileNotFoundError:
+            missions = []
+        records = {"nodes": tree.get("nodes") or [], "entries": ledger.get("entries") or [], "scans": scans.get("scans") or [], "missions": missions}
     problems, n = check(Path(a.posts), records)
     if problems:
         print("\n".join(problems), file=sys.stderr)

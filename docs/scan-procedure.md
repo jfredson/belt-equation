@@ -66,6 +66,18 @@ Added 2026-10-03, ruled by John the same day: John writes articles about big mov
 
 The field is one or two plain sentences: which of the four reasons applies, and the story in it for a general reader (what happened, why it matters to the question, what the tree now says). Never on a `quiet` item. If `headline.py` fails, say so in the report and still apply rules 1, 3 and 4.
 
+## 3c. The missions (added 2026-10-21)
+
+Ruled by John on 2026-10-21 (tracker pattern rule 4.20; docs/proposal-missions-to-watch-2026-10-20.md, part 4). After the tree is read and before the scan record is written, read the missions in `data/missions.toml`, the Missions page:
+
+1. For each mission with a milestone in the next sixty days, or a milestone in the past thirty days still marked `plan`, run one or two searches aimed at the operator's own pages (the agency or the company), and one at wider reporting. `python3 scripts/missions_watch.py --list 60` prints that list.
+2. Mark what happened, in `data/missions.toml`: a milestone that happened gets `state = "done"`, its date as the source gives it, and the source; one that has moved gets its new date in `when` (or `from` and `to`), the old date in `was` and today's date in `moved_on`, with a source; one that failed gets `state = "failed"` and a source. Never sharpen a date the source gives only as a month, a season or a year. Set the mission's `checked` and the file's `checked` to today.
+3. On the first scan of each month, also check every future milestone of every mission once, so a slip announced far ahead is caught.
+4. Write each change as a `[[mission]]` item in the scan record (docs/scan-plan.md, "The scan record"), and one `checked` item for each mission read with no change.
+5. For each event on the fixed list (a launch; an arrival in orbit, or a flyby that returns pictures; a first picture of somewhere never seen; a landing; a sample or crew coming home; a crew flying; a failure or loss; a cancellation; a slip of more than a year in the mission's main milestone, marked `main = true`), add a line headed "Article idea (mission news):" to the report in step 7. No more than two mission news posts go up in a week; when more events land, say which is biggest.
+
+A mission that bears on a step is still read against that step in step 1, in the ordinary way. This step never replaces the tree reading and never moves a number.
+
 ## 4. Write the scan record
 
 Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the shape given in docs/scan-plan.md under "The scan record": a `[scan]` table with `date`, `ran_at` (UTC, from `date -u +%Y-%m-%dT%H:%M:%SZ`), `scope`, `nodes_checked`, `searches`, `commit_before`, then one `[[item]]` per node checked, in the order checked, with `node`, `verdict`, `queries`, `found` (one to three sentences, plain English, absolute dates), `sources` for every verdict but quiet, `ledger` for moved and resolved when an entry was written, `for_john` for flagged, `article` where step 3b gave one, `reused` where step 1 asked for it. Validate it with tomllib. If the folder already has a file with today's date, suffix `-2`.
@@ -93,13 +105,14 @@ The last step is one command, `scripts/publish.py` (website step 26, 2026-09-25)
 
 ## 7. Report
 
-Send John one short message, a numbered list and nothing else: first each article idea from step 3b, headed "Article idea:" with the step's plain name and the `article` line; then what he needs to do (each flagged item with its `for_john` line, and the push refusal if there was one), then one line per moved or resolved node with before and after, then one line with the counts. No prose, no summary of quiet nodes.
+Send John one short message, a numbered list and nothing else: first each article idea from step 3b, then each mission news idea from step 3c, headed "Article idea:" with the step's plain name and the `article` line; then what he needs to do (each flagged item with its `for_john` line, and the push refusal if there was one), then one line per moved or resolved node with before and after, then one line with the counts. No prose, no summary of quiet nodes.
 
 ## Standing rules
 
 - Commas rather than em dashes; absolute dates; plain English with any shorthand explained on first use.
 - Read, do not infer: a node moves on evidence about its criterion, not on mood about the field.
 - One scan, one commit, made by the publish command in step 6. Never force-push, never rebase, never touch a branch other than main (and the one fallback branch in step 6).
+- The missions (step 3c): the scan may change a milestone's date and mark it done, moved or failed, with a source. It may not add or remove a mission, add a milestone the operator has not announced, or change why a mission is on the list. Those are John's; flag them in the report.
 - If anything in this file cannot be followed as written, do the parts that can, flag the rest for John in the report, and never improvise an edit outside the limits in docs/scan-plan.md.
 
 ## 8. Book log line (only if something moved or resolved)

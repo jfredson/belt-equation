@@ -191,6 +191,12 @@ The scan records get the same treatment as the tree, and the same refusal: `expo
 
 How a run works: for each scenario, the tree is played out many thousands of times. Nodes are visited in dependency order; a world node whose dependencies all came true comes true with its probability for that scenario, and otherwise stays false. Nodes already resolved in the real world are fixed. Choice points are set to their current-plan option. A tier is reached when everything it requires came true, and the number reported for a tier is the fraction of play-throughs that reached it. Contact Clause nodes are reported separately and never feed a tier.
 
+## The missions (added 2026-10-21)
+
+- `python3 scripts/missions.py` checks `data/missions.toml`, the Missions page's file (what it holds and the rules it is checked against: data/README.md, "The missions"). `scripts/export.py` runs the same check and writes `site/src/data/missions.json` and `site/public/data/missions.csv`. Nothing in `compute.py` reads it.
+- `python3 scripts/missions_watch.py --list 60` lists the milestones the weekly scan reads in its step 3c; `--due` lists what the daily launch-day check would look at today. `--daily` is the daily check itself, run by launchd (scripts/launchd/README.md): it calls the API only when a milestone is due, and files a TimeAssembler task, never a post or an edit.
+- The tests are in `scripts/test_news.py` (the `MissionNews` and `MissionsFile` classes).
+
 ## The calibration score
 
 `score` prints the two numbers the annual review's changelog post reports (docs/methodology.md,

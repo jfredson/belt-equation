@@ -9,11 +9,11 @@ const posts = await datedPosts();
 const start = await opener();
 ---
 
-<Base title="News · The Belt Equation" description="What moved the number, and why: one post for each change a reader would want explained, with what happened, where the record is, what it changed on this site, and what it does not mean.">
+<Base title="News: what moved my odds, and the missions I follow · The Belt Equation" description="One post for each change in my odds a reader would want explained, and short posts marked mission news about space missions worth following, whether or not they move the number.">
   <section class="hero">
     <p class="eyebrow">News</p>
-    <h1>What moved the number, and why</h1>
-    <p class="lede">A post is written only when a weekly reading or a ruling changes something a reader would want explained: a step settled, a probability revised, a famous claim held against a step's test, the headline moving. Each post says what happened, where the record is, what it changes on this site, and what it does not mean.</p>
+    <h1>What moved the number, and the missions I follow</h1>
+    <p class="lede">Most posts here explain a change in my odds: a step settled, a probability revised, a famous claim held against a step's test, the headline moving. Some, marked mission news, are about <a href="/missions/">a space mission worth following</a> on the way out, whether or not it moves them. Every post says what happened and what it does not mean.</p>
   </section>
 
   <section class="section">
@@ -31,7 +31,7 @@ const start = await opener();
       <ul class="news-list">
         {posts.map((p) => (
           <li class="news-item">
-            <time datetime={p.data.date}>{p.data.date}</time><span class="kind">{KIND_LABEL[p.data.kind]}</span>
+            <time datetime={p.data.date}>{p.data.date}</time><span class={`kind${p.data.kind === 'mission-news' ? ' kind-mission' : ''}`}>{KIND_LABEL[p.data.kind]}</span>
             <h3><a href={postPath(p)}>{p.data.title}</a></h3>
             <p>{p.data.summary}</p>
           </li>

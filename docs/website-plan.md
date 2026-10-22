@@ -66,3 +66,12 @@ Each step names the roadmap step it waits on. Targets follow the roadmap's phase
 - **A public TimeAssembler endpoint for a project's story:** belongs on TimeAssembler's roadmap, not this one.
 - **Analytics, comments, a newsletter:** only if the posture changes at roadmap step 16.
 - **Automatic rebuild on push:** only if the quarterly scan turns out to be a chore to publish by hand. In place since 2026-09-19 for another reason (the weekly scan runs in the cloud, scan plan step 35); step 26 ends in a push for that reason.
+
+## The Missions page (added 2026-10-21)
+
+Ruled by John on 2026-10-20 and 2026-10-21 (docs/proposal-missions-to-watch-2026-10-20.md; tracker pattern rule 4.20). A ninth page, **Missions**, at `/missions/`, with a "Missions" handle in the top bar after News. The handles' side padding went from 12 to 9 pixels on screens wider than 820 pixels so the bar stays on one row at 1280 pixels (rule 4.10).
+
+- **What it shows:** about fifteen space missions worth following on the way out, whether or not they bear on a step; each with its official page, who flies it, what it is for, why John follows it, the steps it bears on (marked with an ochre diamond), its milestones with dates and sources, and any mission news posts about it. Below them: the missions next in line, the ones left out and why, an Ended list, and how the list is kept.
+- **The timeline** (`site/src/components/MissionTimeline.astro`): every milestone from 2026 to 2035, drawn as plain SVG at build time like the history chart. Years run left to right on a computer; below 700 pixels it becomes a list by year, with the years already past folded behind "Show what has happened". A filled dot happened, a hollow dot is planned, a bar is planned for a season, a year or a span, a cross failed, and a faint mark joined by a line is a moved date's old place. Every mark is in the data colour (`--accent-3`), never the rust. Under it, every milestone as a table and as a CSV file at `/data/missions.csv`.
+- **Where it comes from:** `data/missions.toml`, checked and exported by `scripts/missions.py` (called from `scripts/export.py`) into `site/src/data/missions.json`. A file that breaks its rules stops the build.
+- **Mission news:** posts of the eighth kind, `mission-news`, live in News with their own label and name missions instead of records (`site/src/content.config.ts`; `scripts/check_news.py`).

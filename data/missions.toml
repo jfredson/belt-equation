@@ -1,0 +1,773 @@
+# The missions I follow (the Missions page, /missions/). Ruled by John on 2026-10-20 and
+# 2026-10-21 (docs/proposal-missions-to-watch-2026-10-20.md; tracker pattern rule 4.20).
+#
+# This file never feeds the number. A mission is here because it is worth following on the way
+# out, whether or not it bears on a step of the tree. What the fields mean, and the check the
+# export runs on them: data/README.md, "The missions".
+#
+# Who may change what. The weekly reading and the daily launch-day check may change a milestone's
+# date and mark it done, moved or failed, always with a source. Only John adds or removes a
+# mission, adds a milestone its operator has not announced, or changes why a mission is here.
+# A moved date keeps its old date in `was`, with the day it moved in `moved_on`; nothing is
+# deleted. A mission whose last milestone has passed, or that is cancelled or lost, gets
+# `status = "ended"` and moves to the Ended list at the foot of the page.
+#
+# Dates. `when` is written as precisely as the source gives it and never sharpened: a day
+# ("2027-08-11"), a month ("2027-08"), a part of a year ("early 2028", "mid 2027", "late 2027"),
+# or a year ("2027"). A span (sources differ, or the source gives one) is `from` and `to` in the
+# same forms. `net = true` means "no earlier than". `label` replaces the written-out date only
+# where the plain form would mislead. Every date was read on `checked` from the source beside it.
+#
+# The "why I follow it" lines (`why`) are drafts written for John in his voice on 2026-10-21, for
+# him to change; `why_draft = true` until he has. The page marks them as drafts.
+
+checked = "2026-10-21"
+
+# ---------------------------------------------------------------- the Moon
+
+[[mission]]
+id = "artemis"
+name = "Artemis"
+url = "https://www.nasa.gov/mission/artemis-iii/"
+operator = "NASA, with SpaceX and Blue Origin building the landers"
+group = "moon"
+what = "NASA's programme to send people back to the Moon. Its first crew flew round the Moon in April 2026, [the first people beyond low Earth orbit since 1972](https://en.wikipedia.org/wiki/Artemis_II)."
+why = "These are the first people to go past low Earth orbit since before I was born. If they land, and keep landing, the Moon stops being history and becomes a place people work."
+why_draft = true
+steps = ["L-crew-lands-on-moon-in-reusable-lander", "R-crewed-lunar-program-outlives-two-changes-of-backer"]
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Artemis II launches four astronauts on a flight around the Moon"
+when = "2026-04-01"
+state = "done"
+sources = [{ label = "NASA, Artemis II", url = "https://www.nasa.gov/mission/artemis-ii/" }]
+
+[[mission.milestone]]
+what = "Artemis II splashes down, the crew home"
+when = "2026-04-10"
+state = "done"
+sources = [{ label = "NASA, Artemis II", url = "https://www.nasa.gov/mission/artemis-ii/" }]
+
+[[mission.milestone]]
+what = "Artemis III: a crew tests docking with one or both Moon landers in orbit around Earth"
+when = "2027"
+state = "plan"
+main = true
+note = "Changed on 27 February 2026 from a Moon landing to this test in Earth orbit. NASA gives only the year; Wikipedia says no earlier than June 2027 in one place and late 2027 in another, and quotes a NASA lander schedule of October 2026 that says mid-2027."
+sources = [
+  { label = "NASA, Artemis III", url = "https://www.nasa.gov/mission/artemis-iii/" },
+  { label = "Wikipedia, Artemis III", url = "https://en.wikipedia.org/wiki/Artemis_III" },
+]
+
+[[mission.milestone]]
+what = "Artemis IV: the first crewed Moon landing of the programme"
+when = "early 2028"
+state = "plan"
+main = true
+note = "As of October 2026 NASA had not chosen which lander carries the crew."
+sources = [
+  { label = "NASA, Artemis IV", url = "https://www.nasa.gov/mission/artemis-iv/" },
+  { label = "Wikipedia, Starship HLS", url = "https://en.wikipedia.org/wiki/Starship_HLS" },
+]
+
+[[mission]]
+id = "starship"
+name = "Starship"
+url = "https://en.wikipedia.org/wiki/SpaceX_Starship"
+url_label = "Wikipedia (SpaceX's own pages show no text)"
+operator = "SpaceX"
+group = "moon"
+what = "A heavy rocket built to be flown again, both halves, and one of the two Moon landers NASA is testing for Artemis."
+why = "If a rocket this big can fly, land and fly again like an airliner, nearly everything else on this page gets cheaper. It is the one machine my odds lean on most."
+why_draft = true
+steps = ["L-fully-reusable-heavy-launcher-recovers-both-stages", "L-orbital-propellant-transfer-at-scale", "L-heavy-launcher-100-per-year", "L-launch-price-below-200-dollars-per-kg"]
+checked = "2026-10-21"
+notes = "So far the tower has caught the booster three times, and two caught boosters have flown again. No upper stage has yet been caught."
+
+[[mission.milestone]]
+what = "Flight 14, the first Starship flight to reach orbit"
+when = "2026-09-28"
+state = "done"
+sources = [{ label = "Wikipedia, list of Starship launches", url = "https://en.wikipedia.org/wiki/List_of_Starship_launches" }]
+
+[[mission.milestone]]
+what = "Flight 15, which may try the first catch of the upper stage"
+when = "2026-11-08"
+net = true
+state = "plan"
+note = "The date is provisional, and SpaceX had not confirmed the catch attempt."
+sources = [{ label = "Wikipedia, list of Starship launches", url = "https://en.wikipedia.org/wiki/List_of_Starship_launches" }]
+
+[[mission.milestone]]
+what = "One Starship refuels another in orbit, the first time"
+when = "early 2027"
+state = "plan"
+main = true
+note = "From a NASA schedule shown in October 2026. The demonstration's own Wikipedia article says no earlier than late 2026 and \"not yet scheduled\"."
+sources = [
+  { label = "Wikipedia, Starship HLS", url = "https://en.wikipedia.org/wiki/Starship_HLS" },
+  { label = "Wikipedia, the refuelling demonstration", url = "https://en.wikipedia.org/wiki/Starship_Propellant_Transfer_Demonstration" },
+]
+
+[[mission.milestone]]
+what = "Starship lands on the Moon with no crew"
+when = "late 2027"
+state = "plan"
+sources = [{ label = "Wikipedia, Starship HLS", url = "https://en.wikipedia.org/wiki/Starship_HLS" }]
+
+[[mission]]
+id = "change-7-8"
+name = "Chang'e 7 and Chang'e 8"
+url = "https://en.wikipedia.org/wiki/Chang%27e_7"
+url_label = "Wikipedia (China's space agency gives no dates)"
+operator = "China"
+group = "moon"
+what = "Two robot landers for the Moon's south pole: one hunts for ice, the other tries building with Moon soil."
+why = "Water ice at the poles is the first thing anyone living on the Moon would need, and printing bricks from the dirt underfoot is the first try at building with what is already there."
+why_draft = true
+steps = []
+step_note = "The nearest steps are about making fuel and material from what is found off Earth, which need far more than a first test."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Chang'e 7 launches to look for ice in the south pole's shadowed craters"
+when = "2027"
+state = "plan"
+main = true
+was = "2026"
+moved_on = "2026-08-23"
+note = "Postponed on 23 August 2026 from its launch window that year, with no reason given and no new date."
+sources = [
+  { label = "AP, via News4JAX", url = "https://www.news4jax.com/tech/2026/08/23/china-abruptly-postpones-ambitious-change-7-lunar-mission-launch/" },
+  { label = "Wikipedia, Chang'e 7", url = "https://en.wikipedia.org/wiki/Chang%27e_7" },
+]
+
+[[mission.milestone]]
+what = "Chang'e 8 launches, to test making bricks from Moon soil"
+from = "2028"
+to = "2029"
+state = "plan"
+sources = [{ label = "Wikipedia, Chang'e 8", url = "https://en.wikipedia.org/wiki/Chang%27e_8" }]
+
+[[mission]]
+id = "nasa-reactors"
+name = "NASA's space reactors: SR-1 Freedom and Lunar Reactor-1"
+url = "https://www.nasa.gov/mission/space-reactor-1-freedom/"
+operator = "NASA, with the Department of Energy's Idaho National Laboratory designing the reactor"
+group = "moon"
+what = "A spacecraft driven by a nuclear reactor, to fly to Mars, and a reactor to power a base on the Moon."
+why = "The Moon's night lasts two weeks, and sunlight can't carry a base through it. A reactor that works out there is the difference between visiting and staying."
+why_draft = true
+steps = ["E-fission-reactor-runs-on-lunar-surface", "E-power-through-the-lunar-night-at-a-surface-site", "D-nuclear-propulsion-changes-orbit-in-space"]
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "SR-1 Freedom, a reactor-driven spacecraft, launches toward Mars"
+when = "late 2028"
+state = "plan"
+main = true
+note = "NASA's pages say late 2028; the American Nuclear Society's report of the announcement said December 2028."
+sources = [
+  { label = "NASA, SR-1 Freedom", url = "https://www.nasa.gov/mission/space-reactor-1-freedom/" },
+  { label = "NASA, 20 October 2026", url = "https://www.nasa.gov/centers-and-facilities/glenn/sr-1-freedom-advances-with-progress-on-nuclear-power-module/" },
+]
+
+[[mission.milestone]]
+what = "SR-1 Freedom reaches Mars"
+when = "2029"
+state = "plan"
+sources = [{ label = "NASA, SR-1 Freedom", url = "https://www.nasa.gov/mission/space-reactor-1-freedom/" }]
+
+[[mission.milestone]]
+what = "Lunar Reactor-1 runs on the Moon"
+from = "2030"
+to = "2032"
+label = "2030 to the early 2030s"
+state = "plan"
+note = "2030 is from the American Nuclear Society's report of NASA's announcement on 24 March 2026. NASA's own surface-reactor page, older than the announcement, says by the early 2030s."
+sources = [
+  { label = "American Nuclear Society, 25 March 2026", url = "https://www.ans.org/news/2026-03-25/article-7879/nasa-announces-plan-for-space-nuclear-propulsion-by-2028/" },
+  { label = "NASA, Fission Surface Power", url = "https://www.nasa.gov/exploration-systems-development-mission-directorate/fission-surface-power/" },
+]
+
+# ---------------------------------------------------------------- Mars and its moons
+
+[[mission]]
+id = "mmx"
+name = "MMX, Martian Moons eXploration"
+url = "https://www.mmx.jaxa.jp/en/"
+operator = "JAXA, Japan's space agency, with instruments from NASA, France's CNES and Germany's DLR"
+group = "mars"
+what = "Brings back the first sample from a moon of Mars: Phobos, the larger of its two moons."
+why = "Nobody has ever held a piece of a moon of Mars. If this works, in 2031 there will be one in a lab on Earth, and it was launched the week I started following missions here."
+why_draft = true
+steps = []
+step_note = "No step depends on a sample from Phobos; a few grams is a science return, not a supply line."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Launches on an [H3 rocket](https://en.wikipedia.org/wiki/H3_%28rocket%29) from Tanegashima, Japan"
+when = "2026-10-19"
+label = "20 October 2026, Japan time (19 October in universal time)"
+state = "done"
+sources = [
+  { label = "JAXA's launch release", url = "https://global.jaxa.jp/press/2026/10/20261020-1_e.html" },
+  { label = "ESA", url = "https://www.esa.int/Science_Exploration/Space_Science/Mars_moon_lander_set_to_launch_on_19_October" },
+]
+
+[[mission.milestone]]
+what = "Goes into orbit around Mars"
+when = "2027-08"
+state = "plan"
+main = true
+note = "Germany's space agency says the second half of 2027."
+sources = [{ label = "ESA", url = "https://www.esa.int/Science_Exploration/Space_Science/Mars_moon_lander_set_to_launch_on_19_October" }]
+
+[[mission.milestone]]
+what = "Begins orbiting Phobos"
+when = "2027-09"
+state = "plan"
+sources = [{ label = "ESA's mission graphic", url = "https://www.esa.int/ESA_Multimedia/Images/2026/10/The_Martian_Moons_eXploration_MMX_mission" }]
+
+[[mission.milestone]]
+what = "Drops the small rover Idefix onto Phobos"
+from = "late 2028"
+to = "early 2029"
+state = "plan"
+note = "Sources differ: Germany's space agency says around the turn of 2028 and 2029; ESA says early 2029."
+sources = [
+  { label = "DLR", url = "https://www.dlr.de/en/latest/news/2026/off-to-the-moons-of-mars-mmx-mission-and-idefix-rover-ready-for-launch" },
+  { label = "ESA", url = "https://www.esa.int/Science_Exploration/Space_Science/Mars_moon_lander_set_to_launch_on_19_October" },
+]
+
+[[mission.milestone]]
+what = "Lands on Phobos and collects at least ten grams"
+when = "2030"
+state = "plan"
+main = true
+note = "JAXA plans two landings. France's space agency was reported to give 2029, but its page would not open on 21 October 2026, so it is not used here."
+sources = [
+  { label = "ESA", url = "https://www.esa.int/Science_Exploration/Space_Science/Mars_moon_lander_set_to_launch_on_19_October" },
+  { label = "JAXA", url = "https://www.mmx.jaxa.jp/en/" },
+]
+
+[[mission.milestone]]
+what = "Leaves Mars for home"
+when = "2030-11"
+state = "plan"
+sources = [{ label = "ESA's mission graphic", url = "https://www.esa.int/ESA_Multimedia/Images/2026/10/The_Martian_Moons_eXploration_MMX_mission" }]
+
+[[mission.milestone]]
+what = "The sample capsule lands in Australia"
+when = "2031"
+state = "plan"
+main = true
+sources = [{ label = "JAXA, the mission", url = "https://www.mmx.jaxa.jp/en/mission/" }]
+
+[[mission]]
+id = "escapade"
+name = "ESCAPADE"
+url = "https://science.nasa.gov/mission/escapade/"
+operator = "NASA"
+group = "mars"
+what = "Two small spacecraft that will orbit Mars together, to study how the stream of particles from the Sun strips away its air. It was built to show that a Mars mission [can be done for little money](https://en.wikipedia.org/wiki/ESCAPADE)."
+why = "Two spacecraft for Mars on a small budget is the kind of mission falling launch prices are supposed to make ordinary. I want to see whether they do."
+why_draft = true
+steps = []
+step_note = "It studies Mars's thin air; no step turns on what it finds."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Launches on Blue Origin's [New Glenn rocket](https://en.wikipedia.org/wiki/New_Glenn)"
+when = "2025-11-13"
+state = "done"
+sources = [{ label = "NASA, ESCAPADE", url = "https://science.nasa.gov/mission/escapade/" }]
+
+[[mission.milestone]]
+what = "Swings past Earth to head for Mars"
+when = "late 2026"
+label = "autumn 2026"
+state = "plan"
+note = "NASA says autumn 2026; Wikipedia says November 2026."
+sources = [
+  { label = "NASA, ESCAPADE", url = "https://science.nasa.gov/mission/escapade/" },
+  { label = "Wikipedia, ESCAPADE", url = "https://en.wikipedia.org/wiki/ESCAPADE" },
+]
+
+[[mission.milestone]]
+what = "Both spacecraft go into orbit around Mars, a few days apart"
+when = "2027-09"
+label = "by September 2027"
+state = "plan"
+main = true
+note = "NASA gives no date; the date is Wikipedia's."
+sources = [{ label = "Wikipedia, ESCAPADE", url = "https://en.wikipedia.org/wiki/ESCAPADE" }]
+
+[[mission.milestone]]
+what = "Both reach their matching science orbits"
+when = "mid 2028"
+state = "plan"
+sources = [{ label = "NASA, ESCAPADE", url = "https://science.nasa.gov/mission/escapade/" }]
+
+# ---------------------------------------------------------------- Asteroids and comets
+
+[[mission]]
+id = "hera"
+name = "Hera"
+url = "https://www.esa.int/Space_Safety/Hera"
+operator = "ESA, the European Space Agency"
+group = "asteroids"
+what = "Goes to see what [NASA's DART spacecraft](https://science.nasa.gov/mission/dart/) did when it struck the small asteroid Dimorphos in 2022, the first mission to try one way of moving an asteroid."
+why = "In 2022 a spacecraft hit a small asteroid on purpose and [shortened its orbit](https://en.wikipedia.org/wiki/Double_Asteroid_Redirection_Test). Hera is going to see exactly what that push did, which is the first step to doing it when it matters."
+why_draft = true
+steps = []
+step_note = "It tests defending Earth from asteroids, not going out to them; no step turns on it."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "First pictures of the asteroid Didymos, a single bright dot"
+when = "2026-10-07"
+state = "done"
+sources = [{ label = "Wikipedia, Hera", url = "https://en.wikipedia.org/wiki/Hera_(space_mission)" }]
+
+[[mission.milestone]]
+what = "First braking burn as it nears the asteroids"
+when = "2026-10-15"
+state = "done"
+note = "Wikipedia reports the burn as done; ESA's own pages had not yet reported it on 21 October 2026."
+sources = [
+  { label = "Wikipedia, Hera", url = "https://en.wikipedia.org/wiki/Hera_(space_mission)" },
+  { label = "ESA, the burns planned", url = "https://www.esa.int/Space_Safety/Hera/Braking_news!_Time_for_ESA_s_Hera_asteroid_mission_to_go_slow" },
+]
+
+[[mission.milestone]]
+what = "Second braking burn"
+when = "2026-10-22"
+state = "plan"
+sources = [{ label = "ESA, the burns planned", url = "https://www.esa.int/Space_Safety/Hera/Braking_news!_Time_for_ESA_s_Hera_asteroid_mission_to_go_slow" }]
+
+[[mission.milestone]]
+what = "Arrives at Didymos and its moonlet Dimorphos"
+when = "2026-11"
+state = "plan"
+main = true
+note = "ESA gives the month and no day. Close study starts at 25 to 30 kilometres in November and December."
+sources = [{ label = "ESA, Hera", url = "https://www.esa.int/Space_Safety/Hera" }]
+
+[[mission.milestone]]
+what = "Releases its two small satellites, Milani and Juventas"
+when = "early 2027"
+state = "plan"
+sources = [{ label = "ESA, Hera", url = "https://www.esa.int/Space_Safety/Hera" }]
+
+[[mission]]
+id = "tianwen-2"
+name = "Tianwen-2"
+url = "https://en.wikipedia.org/wiki/Tianwen-2"
+url_label = "Wikipedia (China's space agency has posted nothing since the launch)"
+operator = "China"
+group = "asteroids"
+what = "China's first sample from an asteroid, then on to a comet in the main belt."
+why = "One spacecraft, two very different worlds: a tiny rock that travels alongside Earth, then a comet out in the asteroid belt. It's the kind of long, patient mission the belt itself will need."
+why_draft = true
+steps = []
+step_note = "A sample of grams brought home is science, not the off-Earth mining a step would need."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Launches"
+when = "2025-05-28"
+state = "done"
+sources = [{ label = "Wikipedia, Tianwen-2", url = "https://en.wikipedia.org/wiki/Tianwen-2" }]
+
+[[mission.milestone]]
+what = "Arrives at the small asteroid Kamoʻoalewa"
+when = "2026-07-04"
+state = "done"
+note = "Wikipedia gives 7 June 2026 for the burn that brought it in, and 4 July for the arrival."
+sources = [{ label = "Wikipedia, Tianwen-2", url = "https://en.wikipedia.org/wiki/Tianwen-2" }]
+
+[[mission.milestone]]
+what = "Studies the asteroid and collects a sample"
+from = "2026-07"
+to = "2027-04"
+state = "plan"
+note = "No sample had been reported by 21 October 2026."
+sources = [{ label = "Wikipedia, Tianwen-2", url = "https://en.wikipedia.org/wiki/Tianwen-2" }]
+
+[[mission.milestone]]
+what = "Leaves the asteroid"
+when = "2027-04-24"
+state = "plan"
+sources = [{ label = "Wikipedia, Tianwen-2", url = "https://en.wikipedia.org/wiki/Tianwen-2" }]
+
+[[mission.milestone]]
+what = "The sample capsule lands on Earth"
+when = "2027-11-29"
+state = "plan"
+main = true
+sources = [{ label = "Wikipedia, Tianwen-2", url = "https://en.wikipedia.org/wiki/Tianwen-2" }]
+
+[[mission.milestone]]
+what = "Reaches the comet 311P"
+when = "2035-01-24"
+state = "plan"
+sources = [{ label = "Wikipedia, Tianwen-2", url = "https://en.wikipedia.org/wiki/Tianwen-2" }]
+
+[[mission]]
+id = "psyche"
+name = "Psyche"
+url = "https://science.nasa.gov/mission/psyche/"
+operator = "NASA"
+group = "asteroids"
+what = "The first visit to an asteroid whose surface holds a lot of metal. It may be part of the core of one of the building blocks of an early planet."
+why = "The Belt in this site's name is full of places like this, and nobody has ever seen one up close. Psyche will be the first."
+why_draft = true
+steps = []
+step_note = "Looking at a metal asteroid is not mining one; the steps about off-Earth material need far more."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Launches"
+when = "2023-10-13"
+state = "done"
+sources = [{ label = "NASA, Psyche", url = "https://science.nasa.gov/mission/psyche/" }]
+
+[[mission.milestone]]
+what = "Swings past Mars"
+when = "2026-05-15"
+state = "done"
+sources = [{ label = "NASA's Psyche blog", url = "https://science.nasa.gov/blogs/psyche/" }]
+
+[[mission.milestone]]
+what = "Arrives at the asteroid Psyche, for about two years in orbit"
+when = "2029-08"
+label = "by August 2029"
+state = "plan"
+main = true
+sources = [{ label = "NASA, Psyche", url = "https://science.nasa.gov/mission/psyche/" }]
+
+[[mission]]
+id = "osiris-apex"
+name = "OSIRIS-APEX"
+url = "https://science.nasa.gov/mission/osiris-apex/"
+operator = "NASA"
+group = "asteroids"
+what = "The spacecraft that [brought back pieces of the asteroid Bennu](https://en.wikipedia.org/wiki/OSIRIS-REx) in 2023, sent on to meet Apophis just after it passes closer to Earth than our highest satellites."
+why = "In April 2029 [an asteroid about 450 metres long](https://en.wikipedia.org/wiki/99942_Apophis) will pass closer than the ring of satellites that hang over the equator, close enough to see without a telescope from a dark place. I want to see what the close pass does to it."
+why_draft = true
+steps = []
+step_note = "It is a science visit; no step turns on it."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Swings past Earth on its way to Apophis"
+when = "2025-09-23"
+state = "done"
+sources = [{ label = "NASA, OSIRIS-APEX", url = "https://science.nasa.gov/mission/osiris-apex/" }]
+
+[[mission.milestone]]
+what = "Apophis passes close to Earth"
+when = "2029-04-13"
+state = "plan"
+note = "NASA says April 2029; the day is Wikipedia's."
+sources = [
+  { label = "NASA, OSIRIS-APEX", url = "https://science.nasa.gov/mission/osiris-apex/" },
+  { label = "Wikipedia, OSIRIS-REx", url = "https://en.wikipedia.org/wiki/OSIRIS-REx" },
+]
+
+[[mission.milestone]]
+what = "Meets Apophis and stays to study it"
+from = "2029-04"
+to = "2029-06"
+label = "April or June 2029 (sources differ)"
+state = "plan"
+main = true
+note = "NASA says June 2029; Wikipedia says 21 April 2029, with a stay of about eighteen months."
+sources = [
+  { label = "NASA, OSIRIS-APEX", url = "https://science.nasa.gov/mission/osiris-apex/" },
+  { label = "Wikipedia, OSIRIS-REx", url = "https://en.wikipedia.org/wiki/OSIRIS-REx" },
+]
+
+[[mission]]
+id = "lucy"
+name = "Lucy"
+url = "https://science.nasa.gov/mission/lucy/"
+operator = "NASA"
+group = "asteroids"
+what = "The first visit to the Trojan asteroids, which share Jupiter's orbit and are left over from when the planets formed."
+why = "Lucy will fly past a record number of asteroids, out where Jupiter keeps two swarms of them, left over from when the planets were made."
+why_draft = true
+steps = []
+step_note = "Flybys are science; no step turns on them."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Flies past Eurybates and its small moon Queta"
+when = "2027-08-11"
+state = "plan"
+main = true
+sources = [{ label = "NASA, Lucy", url = "https://science.nasa.gov/mission/lucy/" }]
+
+[[mission.milestone]]
+what = "Flies past Polymele"
+when = "2027-09-14"
+state = "plan"
+sources = [{ label = "NASA, Lucy", url = "https://science.nasa.gov/mission/lucy/" }]
+
+[[mission.milestone]]
+what = "Flies past Leucus"
+when = "2028-04-18"
+state = "plan"
+sources = [{ label = "NASA, Lucy", url = "https://science.nasa.gov/mission/lucy/" }]
+
+[[mission.milestone]]
+what = "Flies past Orus"
+when = "2028-11-11"
+state = "plan"
+sources = [{ label = "NASA, Lucy", url = "https://science.nasa.gov/mission/lucy/" }]
+
+[[mission.milestone]]
+what = "Flies past the pair Patroclus and Menoetius"
+when = "2033-03-03"
+state = "plan"
+sources = [{ label = "NASA, Lucy", url = "https://science.nasa.gov/mission/lucy/" }]
+
+[[mission]]
+id = "hayabusa2"
+name = "Hayabusa2"
+url = "https://en.wikipedia.org/wiki/Hayabusa2"
+url_label = "Wikipedia (JAXA's Hayabusa2 page refused every request on 21 October 2026)"
+operator = "JAXA, Japan's space agency"
+group = "asteroids"
+what = "The spacecraft that [brought back pieces of the asteroid Ryugu](https://en.wikipedia.org/wiki/Hayabusa2) in December 2020, still going, on its way to a small, fast-spinning asteroid."
+why = "It already did the hard thing, bringing a piece of an asteroid home, and then kept going. I like a machine that outlives its first job."
+why_draft = true
+steps = []
+step_note = "Its next visits are science; no step turns on them."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Flies past the asteroid Torifune"
+when = "2026-07"
+state = "done"
+note = "Wikipedia gives the month. JAXA's page would not open on 21 October 2026."
+sources = [{ label = "Wikipedia, Hayabusa2", url = "https://en.wikipedia.org/wiki/Hayabusa2" }]
+
+[[mission.milestone]]
+what = "Swings past Earth"
+when = "2027-12"
+state = "plan"
+sources = [{ label = "Wikipedia, Hayabusa2", url = "https://en.wikipedia.org/wiki/Hayabusa2" }]
+
+[[mission.milestone]]
+what = "Swings past Earth again"
+when = "2028-06"
+state = "plan"
+sources = [{ label = "Wikipedia, Hayabusa2", url = "https://en.wikipedia.org/wiki/Hayabusa2" }]
+
+[[mission.milestone]]
+what = "Reaches the asteroid 1998 KY26"
+when = "2031-07"
+state = "plan"
+main = true
+sources = [{ label = "Wikipedia, Hayabusa2", url = "https://en.wikipedia.org/wiki/Hayabusa2" }]
+
+[[mission]]
+id = "astroforge"
+name = "AstroForge"
+url = "https://www.astroforge.com/deepspace-2"
+operator = "AstroForge, a private company that wants to mine asteroids for metal"
+group = "asteroids"
+what = "A company trying to reach a metal-rich asteroid, the first step to mining one."
+why = "This is the closest anyone is to the idea this site is named for: a business going to an asteroid for what it's made of. Its first try was lost, and I want to show its failures as plainly as its successes."
+why_draft = true
+steps = []
+step_note = "Not yet. The steps about off-Earth material at scale need far more than a first visit."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Its first spacecraft, Odin, is declared lost before reaching its asteroid"
+when = "2025-03-06"
+state = "failed"
+sources = [{ label = "Wikipedia, AstroForge", url = "https://en.wikipedia.org/wiki/AstroForge" }]
+
+[[mission.milestone]]
+what = "Its second spacecraft, DeepSpace-2, launches"
+from = "late 2026"
+to = "2027"
+label = "late 2026 or 2027 (its own pages say both)"
+state = "plan"
+main = true
+note = "AstroForge's pages say both \"the fourth quarter of 2026\" and \"2027\"; Wikipedia says the second half of 2026."
+sources = [
+  { label = "AstroForge, DeepSpace-2", url = "https://www.astroforge.com/deepspace-2" },
+  { label = "Wikipedia, AstroForge", url = "https://en.wikipedia.org/wiki/AstroForge" },
+]
+
+[[mission.milestone]]
+what = "DeepSpace-2 meets a metal-rich asteroid and photographs it"
+from = "late 2027"
+to = "2028"
+label = "about a year after launch"
+state = "plan"
+note = "Since 20 October 2026 AstroForge's page describes a flyby and pictures; Wikipedia still says a landing or docking. No target has been named."
+sources = [
+  { label = "AstroForge, DeepSpace-2", url = "https://www.astroforge.com/deepspace-2" },
+  { label = "Wikipedia, AstroForge", url = "https://en.wikipedia.org/wiki/AstroForge" },
+]
+
+# ---------------------------------------------------------------- Jupiter
+
+[[mission]]
+id = "europa-clipper"
+name = "Europa Clipper"
+url = "https://science.nasa.gov/mission/europa-clipper/"
+operator = "NASA"
+group = "outer"
+what = "A spacecraft to look at Europa, a moon of Jupiter with an ocean under its ice."
+why = "There may be more than twice as much water under Europa's ice as in all of Earth's oceans. This is the closest look anyone has planned at whether something could live there."
+why_draft = true
+steps = []
+step_note = "It is science; no step turns on it."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Launches"
+when = "2024-10-14"
+state = "done"
+sources = [{ label = "NASA, Europa Clipper", url = "https://science.nasa.gov/mission/europa-clipper/" }]
+
+[[mission.milestone]]
+what = "Swings past Mars"
+when = "2025"
+state = "done"
+sources = [{ label = "NASA, Europa Clipper", url = "https://science.nasa.gov/mission/europa-clipper/" }]
+
+[[mission.milestone]]
+what = "Swings past Earth"
+when = "2026-12-03"
+state = "plan"
+sources = [{ label = "NASA, Europa Clipper", url = "https://science.nasa.gov/mission/europa-clipper/" }]
+
+[[mission.milestone]]
+what = "Reaches Jupiter, for 49 close passes of Europa"
+when = "2030-04"
+state = "plan"
+main = true
+sources = [{ label = "NASA, Europa Clipper", url = "https://science.nasa.gov/mission/europa-clipper/" }]
+
+[[mission]]
+id = "juice"
+name = "JUICE, the Jupiter Icy Moons Explorer"
+url = "https://www.esa.int/Science_Exploration/Space_Science/Juice"
+operator = "ESA, the European Space Agency"
+group = "outer"
+what = "The first spacecraft meant to orbit a moon other than our own: Ganymede, the largest in the solar system."
+why = "Going into orbit around a moon of another planet is new. [Ganymede is bigger than the planet Mercury](https://en.wikipedia.org/wiki/Ganymede_%28moon%29), and it has an ocean under its ice too."
+why_draft = true
+steps = []
+step_note = "It is science; no step turns on it."
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Launches"
+when = "2023-04-14"
+state = "done"
+sources = [{ label = "ESA, JUICE", url = "https://www.esa.int/Science_Exploration/Space_Science/Juice" }]
+
+[[mission.milestone]]
+what = "Swings past Earth"
+when = "2026-09-28"
+state = "done"
+sources = [{ label = "ESA, 28 September 2026", url = "https://www.esa.int/Science_Exploration/Space_Science/Juice/Successful_Earth_flyby_improves_Juice_s_course_to_Jupiter" }]
+
+[[mission.milestone]]
+what = "Swings past Earth for the last time"
+when = "2029-01"
+state = "plan"
+sources = [{ label = "ESA, JUICE", url = "https://www.esa.int/Science_Exploration/Space_Science/Juice" }]
+
+[[mission.milestone]]
+what = "Reaches Jupiter"
+when = "2031-07"
+state = "plan"
+main = true
+sources = [{ label = "ESA, JUICE", url = "https://www.esa.int/Science_Exploration/Space_Science/Juice" }]
+
+[[mission.milestone]]
+what = "Goes into orbit around Ganymede"
+when = "2034-12"
+state = "plan"
+note = "Only Wikipedia gives this date; ESA's pages do not."
+sources = [{ label = "Wikipedia, JUICE", url = "https://en.wikipedia.org/wiki/Jupiter_Icy_Moons_Explorer" }]
+
+# ---------------------------------------------------------------- Stations in Earth orbit
+
+[[mission]]
+id = "haven-1"
+name = "Haven-1"
+url = "https://www.vastspace.com/haven-1"
+operator = "Vast, a private company"
+group = "orbit"
+what = "A small private space station, which its maker calls the world's first commercial space station."
+why = "A place in orbit run as a business, not a government outpost, is how working in space stops being rare. I'd like to know whether the first one flies, and who goes."
+why_draft = true
+steps = []
+step_note = "Not directly. The nearest step is a hundred people living and working off Earth at once, for pay, which needs many stations like it."
+step_near = "M-hundred-people-working-off-earth-for-pay"
+checked = "2026-10-21"
+
+[[mission.milestone]]
+what = "Launches"
+when = "2027"
+state = "plan"
+main = true
+was = "late 2026"
+moved_on = "2026-01-20"
+note = "Wikipedia says no earlier than the first three months of 2027, and that it moved from late 2026 on 20 January 2026. A video caption on Vast's page still says May 2026."
+sources = [
+  { label = "Vast, Haven-1", url = "https://www.vastspace.com/haven-1" },
+  { label = "Wikipedia, Haven-1", url = "https://en.wikipedia.org/wiki/Haven-1" },
+]
+
+[[mission.milestone]]
+what = "Its first crew of four, Vast-1, flies up to stay aboard"
+when = "2027"
+net = true
+state = "plan"
+note = "Vast describes a two-week stay; Wikipedia says up to thirty days."
+sources = [
+  { label = "Wikipedia, Vast-1", url = "https://en.wikipedia.org/wiki/Vast-1" },
+  { label = "Vast, Haven-1", url = "https://www.vastspace.com/haven-1" },
+]
+
+# ---------------------------------------------------------------- next in line, and left out
+# Shown on the page as plain lines. Adding one to the list above is John's call.
+
+[[next]]
+name = "Rosalind Franklin"
+url = "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Exploration/ExoMars"
+line = "ESA's Mars rover that drills two metres down. ESA targets a launch in 2028; Wikipedia gives October 2028, and a landing in November 2030."
+
+[[next]]
+name = "Dragonfly"
+url = "https://science.nasa.gov/mission/dragonfly/"
+line = "NASA's nuclear-powered drone for Titan, Saturn's largest moon. Launch no earlier than July 2028, arriving late 2034."
+
+[[next]]
+name = "Blue Moon"
+url = "https://en.wikipedia.org/wiki/Blue_Moon_(spacecraft)"
+line = "Blue Origin's uncrewed Moon lander. Wikipedia's list of New Glenn launches shows its flight in the first three months of 2027, but a New Glenn rocket exploded in a ground test on 28 May 2026 and badly damaged the only pad it launches from, and rebuilding was expected to take over a year. It may join Artemis as a milestone rather than an entry of its own."
+
+[[next]]
+name = "Axiom Station and Starlab"
+url = "https://en.wikipedia.org/wiki/Axiom_Station"
+line = "The next private space stations: Axiom's first module no earlier than 2027, and Starlab no earlier than 2029."
+also = [{ label = "Starlab", url = "https://en.wikipedia.org/wiki/Starlab_Space" }]
+
+[[left_out]]
+name = "SpaceX's plans for Mars"
+url = "https://euronews.com/2026/02/11/spacex-puts-mars-mission-plans-on-ice-and-u-turns-for-moon-city-instead"
+line = "On 11 February 2026 SpaceX said it would pause its Mars plans to focus on the Moon, and there is no announced Mars mission with a date. Starship itself is on the list."
