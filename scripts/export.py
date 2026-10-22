@@ -1129,7 +1129,7 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
                 "ledger": None if led is None else {
                     "id": led,
                     "written": led in ledger_ids,
-                    "path": f"/story/#{led}" if led in ledger_ids else None,
+                    "path": f"/about/#{led}" if led in ledger_ids else None,
                 },
                 "for_john": one_paragraph(item.get("for_john")) or None,
             })

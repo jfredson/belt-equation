@@ -84,6 +84,7 @@ function changeLine(list: NextStep[], before: NextStep[] | null): string {
       worked out rather than guessed. The list is redrawn every time the tree is run, and every earlier version
       is kept below. My own path in, the training and career steps, is left off: this page is about the world.
     </p>
+    <p class="next-radar">Every Sunday each of these steps, and every other, is checked against the week's news. <a href="/radar/">See the weekly readings</a>.</p>
   </section>
 
   {!latest && (
@@ -209,6 +210,7 @@ function changeLine(list: NextStep[], before: NextStep[] | null): string {
 </Base>
 
 <style>
+  .next-radar { font-family: var(--sans); font-size: 14.5px; color: var(--text-soft); margin-top: 10px; }
   .nextlist li { grid-template-columns: 2.2em minmax(0, 1fr) auto; }
   .nrank { font-family: var(--mono); font-size: 14px; color: var(--muted); }
   .nbody { display: grid; gap: 4px; }

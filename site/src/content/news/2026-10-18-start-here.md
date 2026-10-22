@@ -7,13 +7,13 @@ sources:
   - label: The home page, with the numbers as they stand
     url: https://beltequation.com/
   - label: The story of every change to the number
-    url: https://beltequation.com/story/
+    url: https://beltequation.com/about/#story
   - label: The weekly readings
     url: https://beltequation.com/radar/
   - label: The ten steps that would move the number most
     url: https://beltequation.com/next/
   - label: How the numbers are worked out
-    url: https://beltequation.com/method/
+    url: https://beltequation.com/about/#method
 ---
 
 I'm 40 years old, and I want to leave the planet before I die, to live and work out there for months at a time. The name of this site comes from the Belters of the TV series [The Expanse](https://en.wikipedia.org/wiki/The_Expanse_%28TV_series%29): the people who live and work in the asteroid belt, far from Earth, at home where nobody thought people could be. I want to see a solar system like that unfold, and to be part of it. Wanting it is easy. I would rather [know my real odds](/#who) than keep the wish vague.
@@ -40,15 +40,15 @@ What the number gives me is a map. It shows which steps are likely to move in th
 
 ## How the Number Moves
 
-Every Sunday evening, Pacific time, an automated search checks the week's news against the test of each step that could be settled within about five years, and the first search of each month checks every step. What it finds is written down whether or not anything moved. It may change a chance by a small amount on the strength of a public source, or mark a step as done when two independent sources confirm it; anything bigger waits for me. Every weekly reading is kept on [the site's Radar page](/radar/), and [the Method page](/method/) explains how the numbers are worked out and who does what.
+Every Sunday evening, Pacific time, an automated search checks the week's news against the test of each step that could be settled within about five years, and the first search of each month checks every step. What it finds is written down whether or not anything moved. It may change a chance by a small amount on the strength of a public source, or mark a step as done when two independent sources confirm it; anything bigger waits for me. Every weekly reading is kept on [the site's Radar page](/radar/), and [the Method page](/about/#method) explains how the numbers are worked out and who does what.
 
 ## What Has Happened So Far
 
-[The site's first calculation](/story/), on September 19th, 2026, said zero: no chance at all by 2071. That was plainly wrong, and the fault was in the method. It treated every step as if it had nothing to do with the others, when in fact the steps lean on each other. Fixing that was one of four changes I made that day, and the second calculation came out at 0.9 percent.
+[The site's first calculation](/about/#story), on September 19th, 2026, said zero: no chance at all by 2071. That was plainly wrong, and the fault was in the method. It treated every step as if it had nothing to do with the others, when in fact the steps lean on each other. Fixing that was one of four changes I made that day, and the second calculation came out at 0.9 percent.
 
-The same day, I sent every step out for outside review, with the same instructions for each reviewer: name a missing step, challenge a test, argue a number up or down. I decided each of the [105 points they raised](/story/#2026-09-20-nine-steps-added-seven-of-them-on-the-chain), and on September 20th, 2026, with those decisions in, my odds fell from 0.9 percent to 0.4 percent. Most of the fall came from seven new steps that now also have to go right.
+The same day, I sent every step out for outside review, with the same instructions for each reviewer: name a missing step, challenge a test, argue a number up or down. I decided each of the [105 points they raised](/about/#2026-09-20-nine-steps-added-seven-of-them-on-the-chain), and on September 20th, 2026, with those decisions in, my odds fell from 0.9 percent to 0.4 percent. Most of the fall came from seven new steps that now also have to go right.
 
-The first big news from outside came on September 28th, 2026, when [SpaceX](https://www.spacex.com/)'s giant rocket [Starship](https://www.spacex.com/vehicles/starship/) reached orbit for the first time. Neither part of the rocket was recovered, and recovery is what the launch steps test for, so [nothing moved](/story/#2026-10-04-starship-reaches-orbit-no-recovery). That is the site working as it should: famous news that does not pass a step's test changes nothing.
+The first big news from outside came on September 28th, 2026, when [SpaceX](https://www.spacex.com/)'s giant rocket [Starship](https://www.spacex.com/vehicles/starship/) reached orbit for the first time. Neither part of the rocket was recovered, and recovery is what the launch steps test for, so [nothing moved](/about/#2026-10-04-starship-reaches-orbit-no-recovery). That is the site working as it should: famous news that does not pass a step's test changes nothing.
 
 Since September 20th my odds have stayed near half a percent, and in [six weekly readings](/radar/) nothing has moved.
 
@@ -60,6 +60,6 @@ The steps that would matter most are slower and have no date. At the top of [the
 
 I am also following two plans with dates on them: [Vast](https://www.vastspace.com/)'s [Haven-1](https://www.vastspace.com/haven-1), a small commercial space station, now due no earlier than the first quarter of 2027, and [NASA](https://www.nasa.gov/)'s [Space Reactor-1 Freedom](https://en.wikipedia.org/wiki/Space_Reactor-1_Freedom), a spacecraft powered by a nuclear reactor, proposed for December 2028. A plan is not an event, so neither moves my odds until it flies.
 
-The next monthly search, the one that checks every step, is on November 1st, 2026, and [the first yearly review](/method/), when every number is estimated afresh, is on January 3rd, 2027.
+The next monthly search, the one that checks every step, is on November 1st, 2026, and [the first yearly review](/about/#method), when every number is estimated afresh, is on January 3rd, 2027.
 
-*Corrected October 19th, 2026:* the outside review [began on September 19th, 2026](/story/), the same day as the first calculation; I first wrote here that it began the next day.
+*Corrected October 19th, 2026:* the outside review [began on September 19th, 2026](/about/#story), the same day as the first calculation; I first wrote here that it began the next day.

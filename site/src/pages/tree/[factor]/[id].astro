@@ -199,7 +199,7 @@ const inTheNews = await postsAbout(node.id); // rule 4.14: computed from the pos
           <ul class="watchlist">
             {mentions.map((e) => (
               <li>
-                <a class="wname" href={`/story/#${e.id}`}>{proseDates(e.title)}</a>
+                <a class="wname" href={`/about/#${e.id}`}>{proseDates(e.title)}</a>
                 <span class="wworth">{e.date}</span>
                 <span class="wno">
                   {ledger.kinds.find((k) => k.key === e.kind)?.label ?? e.kind}

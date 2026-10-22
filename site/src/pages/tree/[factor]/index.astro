@@ -139,7 +139,7 @@ const nodeById = (id: string) => tree.nodes.find((n) => n.id === id)!;
       <ul class="watchlist">
         {ledgerHere.map((e) => (
           <li>
-            <a class="wname" href={`/story/#${e.id}`}>{proseDates(e.title)}</a>
+            <a class="wname" href={`/about/#${e.id}`}>{proseDates(e.title)}</a>
             <span class="wworth">{e.date}</span>
             <span class="wno">{ledger.kinds.find((k) => k.key === e.kind)?.label ?? e.kind}</span>
           </li>
