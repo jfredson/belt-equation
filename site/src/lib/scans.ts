@@ -141,3 +141,46 @@ export function scanSummary(scan: Scan): string {
   const joined = parts.length === 1 ? parts[0] : parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1];
   return `${read}, ${joined}`;
 }
+
+/** The Radar's one-line form of a check (the one-column layout John approved 2026-10-21): the
+ *  first sentence of what was found, and the rest for when the entry is opened. Nothing is
+ *  rewritten; the split is at the first full stop, question or exclamation mark followed by a
+ *  space and a capital, a digit or an opening bracket, skipping initials ("U.S.") and the common
+ *  abbreviations. A note with no such break is all line. Copied from Outrunning Ageing's reading. */
+const ABBREVIATIONS = /(?:^|\s)(?:e\.g|i\.e|etc|vs|cf|al|Dr|Mr|Mrs|Ms|Prof|St|No|Fig|approx|Inc|Ltd|Co|Jr|Sr)\.$/;
+export function splitFirstSentence(note: string): { line: string; rest: string } {
+  const text = note.replace(/\s+/g, ' ').trim();
+  const breakAt = /[.!?]["'’”)]?\s+(?=[A-Z0-9(“"‘'])/g;
+  let m: RegExpExecArray | null;
+  while ((m = breakAt.exec(text)) !== null) {
+    const upTo = text.slice(0, m.index + 1);
+    if (ABBREVIATIONS.test(upTo) || /(?:^|[\s.])[A-Z]\.$/.test(upTo)) continue;
+    const end = m.index + m[0].trimEnd().length;
+    return { line: text.slice(0, end), rest: text.slice(end).trim() };
+  }
+  return { line: text, rest: '' };
+}
+
+/** Which checks open by default: every verdict except quiet ("Nothing new"), so anything noted,
+ *  anything that moved or happened, and anything left for me, ruled on or not. */
+export const opensByDefault = (item: ScanItem): boolean => item.verdict !== 'quiet';
+
+/** "17 events read · 15 nothing new · 1 no change · 1 left for me, since ruled": the counts line
+ *  under the Radar's heading, in the verdicts' own words (the same ones scanSummary uses for
+ *  moved, resolved and left for me). */
+export function scanCountLine(scan: Scan): string {
+  const parts = [`${scan.nodes_checked} event${scan.nodes_checked === 1 ? '' : 's'} read`];
+  const c = scan.counts;
+  if (c.quiet) parts.push(`${c.quiet} nothing new`);
+  if (c.noted) parts.push(`${c.noted} no change`);
+  if (c.moved) parts.push(`${c.moved} moved`);
+  if (c.resolved) parts.push(`${c.resolved} resolved`);
+  if (c.flagged) {
+    const open = scan.items.filter((i) => i.verdict === 'flagged' && !i.picked_up).length;
+    const ruled = c.flagged - open;
+    let part = `${c.flagged} left for me`;
+    if (ruled > 0) part += open === 0 ? (c.flagged === 1 ? ', since ruled' : `, all ${c.flagged} since ruled`) : `, ${ruled} since ruled`;
+    parts.push(part);
+  }
+  return parts.join(' · ');
+}

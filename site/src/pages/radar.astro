@@ -4,37 +4,20 @@
 // to data/scans/; the export script checks it and hands it to this page. The point of showing
 // all of it, including the weeks where nothing happened, is that a reader can watch the tree
 // being watched instead of taking it on faith.
+// 2026-10-21: the card grid became one column of checks that open and close
+// (components/ScanEntries.astro), with the counts under the heading, as John approved.
 import Base from '../layouts/Base.astro';
-import { tree } from '../lib/tree';
-import { longDate, proseDates } from '../lib/dates';
-import { datedPosts, postPath } from '../lib/news';
+import ScanEntries from '../components/ScanEntries.astro';
+import { longDate } from '../lib/dates';
 import {
-  scans, latestScan, verdictLabel, verdictMeaning, scopeLabel, scanSummary, plainCount, ranAtLabel,
-  type Scan, type ScanItem, type Verdict,
+  scans, latestScan, verdictLabel, verdictMeaning, scopeLabel, scanSummary, scanCountLine, plainCount, ranAtLabel,
+  type Verdict,
 } from '../lib/scans';
 
-const newsPosts = await datedPosts();
-const postFor = (nodeId: string) => newsPosts.find((p) => p.data.records.includes(nodeId)) ?? null; // rule 4.14
 const VERDICT_ORDER: Verdict[] = ['resolved', 'moved', 'flagged', 'noted', 'quiet'];
 const older = scans.scans.slice(1);
 const waiting = scans.waiting_on_john;
 
-// Items grouped by the chain link their node sits on, in the order the home page reads the
-// chain. The window and the Contact Clause are not links, so they fall in at the end with
-// their own plain names, which is where the factor table puts them.
-function groupByLink(scan: Scan): { letter: string; link: string; name: string; path: string; items: ScanItem[] }[] {
-  return tree.factors
-    .map((f) => ({
-      letter: f.letter,
-      link: f.chain_link,
-      name: f.name,
-      path: f.path,
-      items: scan.items.filter((i) => i.factor === f.letter),
-    }))
-    .filter((g) => g.items.length > 0);
-}
-
-const groups = latestScan ? groupByLink(latestScan) : [];
 const description = latestScan
   ? `The Belt Equation's weekly scan: ${scanSummary(latestScan)} on ${longDate(latestScan.date)}. Every node checked, what was searched, what was found, and the verdict.`
   : "The Belt Equation's weekly scan of the tree against the news. The first scan has not run yet.";
@@ -44,6 +27,7 @@ const description = latestScan
   <section class="hero">
     <p class="eyebrow">The Radar</p>
     <h1>Sixty tests, checked against the news every Sunday</h1>
+    {latestScan && <p class="reading-count-line">Latest scan, <a href="#latest-scan">{longDate(latestScan.date)}</a>: {scanCountLine(latestScan)}</p>}
     <p class="lede">
       Every node in the tree carries a test that says exactly what would count as it having happened. Once a
       week a fresh session searches for what the world did against each of those tests and writes down what it
@@ -71,7 +55,7 @@ const description = latestScan
 
   {latestScan && (
     <section class="section">
-      <div class="shead">
+      <div class="shead" id="latest-scan">
         <h2>The latest scan</h2>
         <span>{longDate(latestScan.date)}, reading {scopeLabel[latestScan.scope]}</span>
       </div>
@@ -95,11 +79,7 @@ const description = latestScan
             read against the tree as it stood that day (<a href={`https://github.com/jfredson/belt-equation/tree/${latestScan.commit_before}`} rel="noopener">this version</a>). The run finished {ranAtLabel(latestScan)}.
             The record is <code>data/scans/{latestScan.file}</code>.
           </p>
-        </div>
-        <div class="verdict-counts">
-          {VERDICT_ORDER.filter((v) => latestScan.counts[v] > 0).map((v) => (
-            <span class={`badge v-${v}`}>{latestScan.counts[v]} · {verdictLabel[v]}</span>
-          ))}
+          <p class="reading-tally">Checks marked Nothing new start closed; open one to see the full note, its searches and its sources.</p>
         </div>
       </div>
 
@@ -122,52 +102,7 @@ const description = latestScan
         </div>
       )}
 
-      {groups.map((g) => (
-        <div class="link-group">
-          <div class="link-head">
-            <h3><span class="dim">Category: </span>{g.link}</h3>
-            <span class="dim"><a href={g.path}>{g.letter}, {g.name}</a> · {g.items.length} node{g.items.length === 1 ? '' : 's'} read</span>
-          </div>
-          <div class="scan-cards">
-            {g.items.map((item) => (
-              <article class={`scan-card v-${item.verdict}`}>
-                <div class="card-top">
-                  <a class="card-name" href={item.path}>{item.node_name}</a>
-                  <span class={`badge v-${item.verdict}`}>{item.picked_up ? 'Ruled' : verdictLabel[item.verdict]}</span>
-                </div>
-                <p class="card-found">{proseDates(item.found)}</p>
-                {item.for_john && (
-                  <p class="card-john"><strong>For me:</strong> {proseDates(item.for_john)}</p>
-                )}
-                {item.picked_up && (
-                  <p class="card-john dim">Taken off my list on {longDate(item.picked_up.on)}, by {item.picked_up.how}.</p>
-                )}
-                {item.picked_up && postFor(item.node) && (
-                  <p class="card-john">In the news: <a href={postPath(postFor(item.node)!)}>{postFor(item.node)!.data.title}</a>.</p>
-                )}
-                <div class="card-foot">
-                  {item.ledger && (
-                    item.ledger.path
-                      ? <a class="card-ledger" href={item.ledger.path}>The ledger entry for this</a>
-                      : <span class="card-ledger dim">Ledger entry <code>{item.ledger.id}</code>, not written yet</span>
-                  )}
-                  {item.sources.length > 0 && (
-                    <span class="card-sources">
-                      {item.sources.map((s, i) => (
-                        <a href={s} rel="noopener nofollow">source {item.sources.length > 1 ? i + 1 : ''}</a>
-                      ))}
-                    </span>
-                  )}
-                  <details class="card-queries">
-                    <summary>What was searched</summary>
-                    <ul>{item.queries.map((q) => <li>{q}</li>)}</ul>
-                  </details>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      ))}
+      <ScanEntries scan={latestScan} />
 
       <div class="verdict-key">
         <h3>What the five verdicts mean</h3>
@@ -193,15 +128,7 @@ const description = latestScan
             <span class="old-sum">{scanSummary(scan)}</span>
             {scan.test && <span class="badge v-test">Test record</span>}
           </summary>
-          <ul class="old-items">
-            {scan.items.map((item) => (
-              <li>
-                <span class={`badge v-${item.verdict}`}>{verdictLabel[item.verdict]}</span>
-                <a href={item.path}>{item.node_name}</a>
-                <p>{proseDates(item.found)}</p>
-              </li>
-            ))}
-          </ul>
+          <div class="old-body"><ScanEntries scan={scan} /></div>
         </details>
       ))}
     </section>
