@@ -70,7 +70,7 @@ const comingUp = missions.coming_up;
         {comingUp.map((s) => (
           <li>
             <span class="c-when">{s.words}</span>
-            <span class="c-what">{s.bears && <span class="dia" title="bears on a step of my odds">◆ </span>}<a href={`#${s.mission}`}>{s.mission_name}</a>: {plain(s.what)}</span>
+            <span class="c-what">{s.bears && <span class="dia" title="bears on a step of my odds">◆ </span>}<a href={`#${s.mission}`}>{s.mission_name}</a>{s.operator_short !== s.mission_name && <span class="c-who"> ({s.operator_short})</span>}: {plain(s.what)}</span>
           </li>
         ))}
       </ul>
@@ -179,6 +179,7 @@ const comingUp = missions.coming_up;
   .coming li { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 14px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 15.5px; line-height: 1.45; }
   .coming li:first-child { border-top: 0; }
   .c-when { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding-top: 2px; }
+  .c-who { color: var(--muted); }
   .dia { color: var(--accent-2); }
   .tl-table { margin-top: 18px; }
   .tl-table summary { cursor: pointer; font-family: var(--sans); font-size: 14px; color: var(--text-soft); padding: 6px 0; }

@@ -5,6 +5,9 @@
 # out, whether or not it bears on a step of the tree. What the fields mean, and the check the
 # export runs on them: data/README.md, "The missions".
 #
+# `operator_short` is the name shown beside the mission in the "Coming up" list; without it, the
+# part of `operator` before the first comma is shown.
+#
 # Who may change what. The weekly reading and the daily launch-day check may change a milestone's
 # date and mark it done, moved or failed, always with a source. Only John adds or removes a
 # mission, adds a milestone its operator has not announced, or changes why a mission is here.
@@ -195,6 +198,7 @@ sources = [
 
 [[mission]]
 id = "mmx"
+operator_short = "Japan's JAXA"
 name = "MMX, Martian Moons eXploration"
 url = "https://www.mmx.jaxa.jp/en/"
 operator = "JAXA, Japan's space agency, with instruments from NASA, France's CNES and Germany's DLR"
@@ -314,6 +318,7 @@ sources = [{ label = "NASA, ESCAPADE", url = "https://science.nasa.gov/mission/e
 
 [[mission]]
 id = "hera"
+operator_short = "Europe's ESA"
 name = "Hera"
 url = "https://www.esa.int/Space_Safety/Hera"
 operator = "ESA, the European Space Agency"
@@ -536,6 +541,7 @@ sources = [{ label = "NASA, Lucy", url = "https://science.nasa.gov/mission/lucy/
 
 [[mission]]
 id = "hayabusa2"
+operator_short = "Japan's JAXA"
 name = "Hayabusa2"
 url = "https://en.wikipedia.org/wiki/Hayabusa2"
 url_label = "Wikipedia (JAXA's Hayabusa2 page refused every request on 21 October 2026)"
@@ -660,6 +666,7 @@ sources = [{ label = "NASA, Europa Clipper", url = "https://science.nasa.gov/mis
 
 [[mission]]
 id = "juice"
+operator_short = "Europe's ESA"
 name = "JUICE, the Jupiter Icy Moons Explorer"
 url = "https://www.esa.int/Science_Exploration/Space_Science/Juice"
 operator = "ESA, the European Space Agency"

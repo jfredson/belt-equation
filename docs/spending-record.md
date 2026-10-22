@@ -11,7 +11,7 @@ file the project spent nothing outside the plan: the weekly scan runs in a sessi
 
 | Job | Vendor | Since | Estimate | Ceiling | Go |
 |---|---|---|---|---|---|
-| The daily launch-day check (`scripts/missions_watch.py`, `scripts/launchd/README.md`) | Anthropic credits (the `weekly-readings` workspace key) | 2026-10-21 | about $5 a month on average; about $20 to $30 in the busiest month | stop and ask John if any month passes $50 | John, 2026-10-21: switch it on if under about $50 a month |
+| The daily launch-day check (`scripts/missions_watch.py`, `scripts/launchd/README.md`) | Anthropic credits (the `weekly-readings` workspace key) | 2026-10-21 | about $5 a month on average; about $20 to $30 in the busiest month | stop and ask John if any month passes $50 | John, 2026-10-21: switch it on if under about $50 a month. Switched on 2026-10-21, then off the same evening before a restart of the Mac; off until John says to switch it on again |
 
 **How the estimate was made (2026-10-21).** One test run on 2026-10-21 checked one milestone (Hera's
 second braking burn) with three web searches and cost $0.36: 76,469 input tokens and 1,328 output

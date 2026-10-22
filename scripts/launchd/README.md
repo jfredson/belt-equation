@@ -22,7 +22,7 @@ commits nothing and posts nothing.
 
 ## Install, and switch off
 
-Installed on John's Mac on 2026-10-21. To install again:
+Installed on John's Mac on 2026-10-21, then switched off the same evening before a restart of the Mac, at the master session's request. It stays off until John says to switch it on. To install it:
 
     mkdir -p ~/Library/Application\ Support/belt-missions-watch
     python3 -m venv ~/Library/Application\ Support/belt-missions-watch/venv

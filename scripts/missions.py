@@ -270,6 +270,7 @@ def export(data: dict, nodes: list[dict]) -> dict:
             "url": m["url"],
             "url_label": m.get("url_label") or "Official page",
             "operator": m["operator"],
+            "operator_short": m.get("operator_short") or m["operator"].split(",")[0].strip(),
             "group": m["group"],
             "what": m["what"],
             "why": m["why"],
@@ -285,7 +286,8 @@ def export(data: dict, nodes: list[dict]) -> dict:
         }
         out.append(mission)
         for r in stones:
-            flat.append({**r, "mission": m["id"], "mission_name": mission["short"], "bears": bool(mission["steps"])})
+            flat.append({**r, "mission": m["id"], "mission_name": mission["short"], "operator_short": mission["operator_short"],
+                         "bears": bool(mission["steps"])})
     order = {k: i for i, (k, _) in enumerate(GROUPS)}
     out.sort(key=lambda x: order[x["group"]])
     flat.sort(key=lambda r: (r["start"], r["end"], r["mission"]))

@@ -18,7 +18,7 @@ export interface Milestone {
   was: { start: string; end: string; words: string; moved_on: string } | null;
   sources: Source[];
 }
-export interface FlatMilestone extends Milestone { mission: string; mission_name: string; bears: boolean }
+export interface FlatMilestone extends Milestone { mission: string; mission_name: string; operator_short: string; bears: boolean }
 export interface Mission {
   id: string;
   name: string;
@@ -26,6 +26,7 @@ export interface Mission {
   url: string;
   url_label: string;
   operator: string;
+  operator_short: string;
   group: string;
   what: string;
   why: string;
