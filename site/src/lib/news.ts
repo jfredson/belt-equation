@@ -11,6 +11,7 @@ export const KIND_LABEL: Record<string, string> = {
   'claim': 'a claim added or settled',
   'headline-moved': 'the headline moved',
   'method-changed': 'the method changed',
+  'mission-news': 'mission news', // rule 4.20: a mission worth following, whether or not it moves the number
 };
 
 export const postPath = (p: Post) => `/news/${p.id}/`;
@@ -30,6 +31,10 @@ export async function opener(): Promise<Post | null> {
 /** The posts that name a record (rule 4.14: the back link is computed here, never written into the record). */
 export async function postsAbout(recordId: string): Promise<Post[]> {
   return (await datedPosts()).filter((p) => p.data.records.includes(recordId));
+}
+/** The mission news posts about one mission, for its entry on the Missions page (rule 4.20, computed like 4.14). */
+export async function postsAboutMission(missionId: string): Promise<Post[]> {
+  return (await datedPosts()).filter((p) => p.data.missions.includes(missionId));
 }
 /** The posts of one date, for the story page's day line and the reading's resolved items. */
 export async function postsOn(date: string): Promise<Post[]> {

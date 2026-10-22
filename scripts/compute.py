@@ -139,7 +139,8 @@ def load_tree(data_dir: Path) -> dict:
     # Everything in data/ that is not one of these is read as a factor file of nodes. The
     # ledger is a record of what changed rather than a part of the tree, so it is skipped here
     # and read by its own loader (load_ledger, below).
-    NOT_FACTOR_FILES = ("scenarios.toml", "tiers.toml", "ledger.toml")
+    # The missions (data/missions.toml, the Missions page) are skipped too: they never feed the number.
+    NOT_FACTOR_FILES = ("scenarios.toml", "tiers.toml", "ledger.toml", "missions.toml")
 
     nodes = []
     for path in sorted(data_dir.glob("*.toml")):

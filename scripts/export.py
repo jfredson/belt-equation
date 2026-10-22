@@ -5,9 +5,10 @@ Plain Python, standard library only. Run from anywhere:
 
     python3 scripts/export.py                  write site/src/data/tree.json, changelog.json,
                                                snapshots.json, ledger.json, scans.json, story.json,
-                                               reader.json,
+                                               reader.json, missions.json,
                                                and the tree picture at site/public/tree.svg
-                                               and a copy of data/headline.json at site/public/data/
+                                               and a copy of data/headline.json at site/public/data/,
+                                               and the missions as site/public/data/missions.csv
     python3 scripts/export.py --check          validate and print the counts, write nothing
     python3 scripts/export.py --out DIR        write the JSON somewhere else
     python3 scripts/export.py --data DIR       read a different data folder (for tests)
@@ -35,7 +36,11 @@ What the JSON holds, beyond a copy of each record:
   once per five-year deadline across the range a reader's shifted window can fall in, plus one
   cell for no deadline at all. It is worked out here, in Python, so the browser never computes
   a probability of its own (docs/website-plan.md, decision 3). It changes nothing: the stored
-  probabilities, the snapshots and the headline are all untouched by it.
+  probabilities, the snapshots and the headline are all untouched by it;
+- the missions I follow, from data/missions.toml (the Missions page, tracker pattern rule 4.20,
+  ruled by John 2026-10-21), checked by scripts/missions.py and written as missions.json and a CSV
+  of every milestone. A file that breaks its rules stops the build like a broken tree. The
+  missions never feed the number: nothing in compute.py reads them.
 """
 
 from __future__ import annotations
@@ -55,6 +60,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 import compute  # noqa: E402  (the loader and validator, shared on purpose)
+import missions as missions_mod  # noqa: E402  (the Missions page; it never feeds the number)
 
 # The eight factors and the Contact Clause, in equation order, with the one-line meanings
 # from README.md. The slug is the folder each factor gets on the site. The chain link is the
@@ -1253,7 +1259,17 @@ def main(argv: list[str] | None = None) -> int:
             for p in scan_problems:
                 print("  -", p)
             return 1
+        mission_data = missions_mod.load(args.data / "missions.toml")
+        mission_problems, mission_notes = missions_mod.validate(mission_data, {n["id"] for n in tree["nodes"]})
+        mission_problems += missions_mod.validate_scan_items(args.scans, {m.get("id") for m in mission_data.get("mission") or []})
+        if mission_problems:
+            print(f"Nothing exported: the missions (data/missions.toml, and the mission items of the scan records) break their rules in {len(mission_problems)} place(s):")
+            for p in mission_problems:
+                print("  -", p)
+            return 1
+        scan_notes = scan_notes + mission_notes
         exported = export_tree(tree)
+        missions = missions_mod.export(mission_data, exported["nodes"])
         changelog = export_changelog(args.changelog)
         all_snapshots = compute.load_snapshots(args.snapshots)
         snapshots = export_snapshots(all_snapshots, load_next_steps_backfill(args.snapshots))
@@ -1268,7 +1284,7 @@ def main(argv: list[str] | None = None) -> int:
         ledger = export_ledger(entries, tree, all_snapshots, load_attribution(args.attribution))
         story = export_story(args.story)
         reader = export_reader(tree)
-    except (compute.TreeError, OSError) as e:
+    except (compute.TreeError, missions_mod.MissionError, OSError) as e:
         print(f"Nothing exported: {e}")
         return 1
 
@@ -1280,7 +1296,8 @@ def main(argv: list[str] | None = None) -> int:
     summary = (f"{c['nodes']} nodes ({c['with_probability']} with probabilities, {c['resolved']} resolved), "
                f"{len(exported['tiers'])} tiers, {len(exported['scenarios'])} scenarios, "
                f"{len(changelog['days'])} changelog day(s), {snapshots['count']} snapshot(s), "
-               f"{ledger['count']} ledger entr{'y' if ledger['count'] == 1 else 'ies'}, {scan_line}")
+               f"{ledger['count']} ledger entr{'y' if ledger['count'] == 1 else 'ies'}, {scan_line}, "
+               f"{len(missions['missions'])} mission(s) followed")
     for note in scan_notes:
         print("Note:", note)
     if args.check:
@@ -1295,9 +1312,14 @@ def main(argv: list[str] | None = None) -> int:
     (args.out / "scans.json").write_text(json.dumps(scans, indent=2, ensure_ascii=False) + "\n")
     (args.out / "story.json").write_text(json.dumps(story, indent=2, ensure_ascii=False) + "\n")
     (args.out / "reader.json").write_text(json.dumps(reader, indent=2, ensure_ascii=False) + "\n")
+    (args.out / "missions.json").write_text(json.dumps(missions, indent=2, ensure_ascii=False) + "\n")
     print(f"Exported {summary} to {args.out}.")
     write_tree_picture(tree, exported["numbers"], args.svg)
     serve_headline_file(args.data, args.snapshots, args.served_headline)
+    if missions["available"]:
+        csv_path = args.served_headline.parent / "missions.csv"
+        csv_path.parent.mkdir(parents=True, exist_ok=True)
+        csv_path.write_text(missions_mod.to_csv(missions), encoding="utf-8")
     if not exported["numbers"]["available"]:
         print("Headline numbers not exported: " + exported["numbers"]["reason"])
     return 0

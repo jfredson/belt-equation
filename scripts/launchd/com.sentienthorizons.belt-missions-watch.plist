@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- The daily launch-day check for the Belt Equation's Missions page (scripts/launchd/README.md).
+     Installed at ~/Library/LaunchAgents/; runs at 07:40 local (Pacific) time every day. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.sentienthorizons.belt-missions-watch</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-lc</string>
+    <string>"$HOME/Library/Application Support/belt-missions-watch/missions-watch.sh"</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>7</integer>
+    <key>Minute</key>
+    <integer>40</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/john/Library/Logs/belt-missions-watch.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/john/Library/Logs/belt-missions-watch.err.log</string>
+</dict>
+</plist>
