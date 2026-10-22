@@ -1,0 +1,218 @@
+---
+// Missions: the space missions I follow on the way out, whether or not they move my odds (tracker
+// pattern rule 4.20). Ruled by John on 2026-10-20 ("It is still the journey that is worth
+// tracking") and built from the proposal he agreed to on 2026-10-21
+// (docs/proposal-missions-to-watch-2026-10-20.md). Everything here comes from data/missions.toml
+// through scripts/export.py; the page never feeds the number.
+import Base from '../layouts/Base.astro';
+import MissionTimeline from '../components/MissionTimeline.astro';
+import { longDate } from '../lib/dates';
+import { missions, watching, ended, linked, plain, STATE_WORD, type Mission } from '../lib/missions';
+import { postsAboutMission, postPath } from '../lib/news';
+
+// Organisations are linked at their first mention on the page (tracker pattern rule 4.17). The
+// operator lines are plain text in the file; the links live here, once.
+const ORGS: [string, string][] = [
+  ["Idaho National Laboratory", 'https://inl.gov/'],
+  ['Department of Energy', 'https://www.energy.gov/'],
+  ['Blue Origin', 'https://en.wikipedia.org/wiki/Blue_Origin'],
+  ['SpaceX', 'https://en.wikipedia.org/wiki/SpaceX'],
+  ['NASA', 'https://www.nasa.gov/'],
+  ['ESA', 'https://www.esa.int/'],
+  ['JAXA', 'https://global.jaxa.jp/'],
+  ['CNES', 'https://en.wikipedia.org/wiki/CNES'],
+  ['DLR', 'https://www.dlr.de/en'],
+  ['Vast', 'https://www.vastspace.com/'],
+];
+const used = new Set<string>();
+const orgRe = new RegExp(`\\b(${ORGS.map(([k]) => k).join('|')})\\b`, 'g');
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+function operatorHtml(s: string): string {
+  return esc(s).replace(orgRe, (k) => {
+    if (used.has(k)) return k;
+    used.add(k);
+    const url = ORGS.find(([n]) => n === k)![1];
+    return `<a href="${url}" rel="noopener">${k}</a>`;
+  });
+}
+// Worked out in page order, so the first mention is the one that gets the link.
+const groups = missions.groups.map((g) => ({ ...g, list: watching.filter((m) => m.group === g.key) }));
+const operators = new Map<string, string>();
+for (const g of groups) for (const m of g.list) operators.set(m.id, operatorHtml(m.operator));
+for (const m of ended) operators.set(m.id, operatorHtml(m.operator));
+
+const news = new Map<string, Awaited<ReturnType<typeof postsAboutMission>>>();
+for (const m of missions.missions) news.set(m.id, await postsAboutMission(m.id));
+
+const bearing = watching.filter((m) => m.steps.length > 0);
+const glyph: Record<string, string> = { done: '●', plan: '○', span: '═', failed: '×' };
+const nextLine = (m: Mission) => (m.next ? `${plain(m.next.what)}, ${m.next.words} (planned)` : 'nothing planned');
+const comingUp = missions.coming_up;
+---
+
+<Base title="Space missions I'm following, and when they happen · The Belt Equation" description="The space missions worth watching on the way out, whether or not they move my odds: what each is for, why I follow it, and its dates on one timeline.">
+  <section class="hero">
+    <p class="eyebrow">Missions</p>
+    <h1>The space missions I'm following</h1>
+    <p class="lede">These are the missions worth watching on the way out: launches, landings and samples coming home over the next ten years. Most of them don't move my odds at all, and I follow them anyway. The {["no", "one", "two", "three", "four", "five", "six"][bearing.length] ?? bearing.length} that do bear on a step of my odds carry a diamond, and name the step.</p>
+  </section>
+
+  {!missions.available ? (
+    <section class="section narrow"><p class="empty-note">No missions yet.</p></section>
+  ) : (
+  <>
+  <section class="section">
+    <div class="shead"><h2>Coming up</h2><span>the next {missions.coming_up_days} days, from {longDate(missions.checked)}</span></div>
+    {comingUp.length === 0 ? (
+      <p class="dim">Nothing is planned in the next {missions.coming_up_days} days.</p>
+    ) : (
+      <ul class="coming">
+        {comingUp.map((s) => (
+          <li>
+            <span class="c-when">{s.words}</span>
+            <span class="c-what">{s.bears && <span class="dia" title="bears on a step of my odds">◆ </span>}<a href={`#${s.mission}`}>{s.mission_name}</a>{s.operator_short !== s.mission_name && <span class="c-who"> ({s.operator_short})</span>}: {plain(s.what)}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <section class="section">
+    <MissionTimeline />
+    <details class="tl-table">
+      <summary>Every milestone as a table</summary>
+      <table class="data">
+        <thead><tr><th>Mission</th><th>Milestone</th><th>When</th><th>Happened or planned</th><th>Source</th></tr></thead>
+        <tbody>
+          {missions.milestones.map((s) => (
+            <tr>
+              <td><a href={`#${s.mission}`}>{s.mission_name}</a></td>
+              <td>{plain(s.what)}</td>
+              <td>{s.words}{s.was && <><br /><span class="dim">was {s.was.words}, moved {longDate(s.was.moved_on)}</span></>}</td>
+              <td>{STATE_WORD[s.state]}</td>
+              <td>{s.sources.map((src, i) => <>{i > 0 ? ' · ' : ''}<a href={src.url} rel="noopener">{src.label}</a></>)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </details>
+    <p class="dim tl-source">Dates from each mission's own pages, or where those give none, from Wikipedia or a news report, as each line says. Read weekly; last read {longDate(missions.checked)}. <a href="/data/missions.csv">Download every milestone as a CSV file</a>, or read <a href="https://github.com/jfredson/belt-equation/blob/main/data/missions.toml" rel="noopener">the file the page is built from</a>.</p>
+  </section>
+
+  {groups.map((g) => (
+    <section class="section">
+      <div class="shead"><h2>{g.label}</h2></div>
+      <div class="mlist">
+        {g.list.map((m) => (
+          <article class="mission" id={m.id}>
+            <header class="m-head">
+              <h3>{m.steps.length > 0 && <span class="dia" title="bears on a step of my odds">◆ </span>}<a href={m.url} rel="noopener">{m.name}</a></h3>
+              <p class="m-op" set:html={operators.get(m.id)} />
+            </header>
+            <p class="m-what" set:html={linked(m.what)} />
+            <p class="m-why"><span class="m-label">Why I follow it:</span> <span set:html={linked(m.why)} />{m.why_draft && <span class="chip draft" title="Drafted for John to rewrite in his own words">draft for John to rewrite</span>}</p>
+            {m.steps.length > 0 ? (
+              <p class="m-steps"><span class="m-label"><span class="dia">◆</span> Bears on {m.steps.length === 1 ? 'a step' : `${m.steps.length} steps`} of my odds:</span> {m.steps.map((s, i) => <>{i > 0 ? '; ' : ''}<a href={s.path}>{s.name}</a></>)}.</p>
+            ) : (
+              <p class="m-steps"><span class="m-label">Bears on a step of my odds: no.</span> {m.step_note}{m.step_near && <> (<a href={m.step_near.path}>{m.step_near.name}</a>)</>}</p>
+            )}
+            {m.notes && <p class="m-notes">{m.notes}</p>}
+            <p class="m-next"><span class="m-label">Next:</span> {nextLine(m)}</p>
+            <ul class="m-stones">
+              {m.milestones.map((s) => (
+                <li class={`m-${s.mark}`}>
+                  <span class="g" aria-hidden="true">{glyph[s.mark]}</span>
+                  <span class="s-body">
+                    <span class="s-what" set:html={linked(s.what)} />, <span class="s-when">{s.words}</span> <span class="s-state">({STATE_WORD[s.state]})</span>
+                    {s.was && <span class="s-moved"> Planned for {s.was.words}; moved on {longDate(s.was.moved_on)}.</span>}
+                    {s.note && <span class="s-note"> {s.note}</span>}
+                    <span class="s-src"> {s.sources.map((src, i) => <>{i > 0 ? ' · ' : ''}<a href={src.url} rel="noopener">{src.label}</a></>)}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            {(news.get(m.id) ?? []).length > 0 && (
+              <p class="m-news"><span class="m-label">In the news:</span> {(news.get(m.id) ?? []).map((p, i) => <>{i > 0 ? ' · ' : ''}<a href={postPath(p)}>{p.data.title}</a> ({longDate(p.data.date)})</>)}</p>
+            )}
+            <p class="m-foot"><a href={m.url} rel="noopener">{m.url_label}</a> · last checked {longDate(m.checked)}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section class="section narrow">
+    <div class="shead"><h2>Next in line</h2></div>
+    <p class="dim">Worth following, and not on the list yet. A mission joins when one on the list ends, or when I add it.</p>
+    <ul class="plainlist">
+      {missions.next.map((n) => (
+        <li><a href={n.url} rel="noopener">{n.name}</a>{n.also && n.also.map((a) => <> (and <a href={a.url} rel="noopener">{a.label}</a>)</>)}: {n.line}</li>
+      ))}
+    </ul>
+
+    <div class="shead"><h2>Left out, and why</h2></div>
+    <ul class="plainlist">
+      {missions.left_out.map((n) => <li><a href={n.url} rel="noopener">{n.name}</a>: {n.line}</li>)}
+    </ul>
+
+    <div class="shead"><h2>Ended</h2></div>
+    {ended.length === 0 ? (
+      <p class="dim">None yet. A mission moves here when its last milestone has passed, or it is cancelled or lost. Nothing is ever taken off the page.</p>
+    ) : (
+      <ul class="plainlist">{ended.map((m) => <li id={m.id}><a href={m.url} rel="noopener">{m.name}</a> (<span set:html={operators.get(m.id)} />): {plain(m.what)}</li>)}</ul>
+    )}
+
+    <div class="shead"><h2>How this list is kept</h2></div>
+    <div class="prose">
+      <p>A mission is on this page when four things hold. It goes beyond low Earth orbit, or it tests a way for people to live, work, build or make things off Earth. It is real: it has flown, or it is paid for and being built, with a date its makers have announced. It has something worth watching in the next ten years. And a stranger can follow it, on an official page or an encyclopedia article that is kept up to date.</p>
+      <p>Whether it moves my odds is not one of the tests. I keep about fifteen at a time, so the page stays a short list of what is worth watching and not a catalogue. I choose which missions are on it.</p>
+      <p>Every week, when the steps of my odds are checked against the news (<a href="/radar/">the weekly reading</a>), the missions' dates are checked too. A date that moves keeps its old date beside it, because how plans slip is part of the story. On the days around a launch or a landing, a small daily check looks only at the next week's milestones and drafts a post for me to read. Nothing goes up without my say.</p>
+      <p>When a mission does something worth telling, a launch, an arrival, a landing, a sample coming home, a crew flying, or a failure, I write a short post in <a href="/news/">the News</a>, marked "mission news". Each one ends by saying what the event does and doesn't change for my odds. Where a mission does bear on a step, the step's own test decides whether anything moves, exactly as it would if this page did not exist. <a href="/method/">How the odds are worked out</a> is on its own page.</p>
+    </div>
+  </section>
+  </>
+  )}
+</Base>
+
+<style>
+  .coming { list-style: none; margin: 0; padding: 0; max-width: 760px; }
+  .coming li { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 14px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 15.5px; line-height: 1.45; }
+  .coming li:first-child { border-top: 0; }
+  .c-when { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding-top: 2px; }
+  .c-who { color: var(--muted); }
+  .dia { color: var(--accent-2); }
+  .tl-table { margin-top: 18px; }
+  .tl-table summary { cursor: pointer; font-family: var(--sans); font-size: 14px; color: var(--text-soft); padding: 6px 0; }
+  .tl-table table { max-height: 520px; }
+  .tl-source { font-size: 13.5px; margin-top: 10px; }
+  .mlist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .mission { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 18px 20px 14px; scroll-margin-top: 90px; }
+  .mission:target { border-color: var(--accent-3); }
+  .m-head h3 { margin: 0; font-size: 18px; line-height: 1.25; }
+  .m-head h3 a { color: var(--text); }
+  .m-head h3 a:hover { color: var(--accent); }
+  .m-op { margin: 4px 0 0; font-family: var(--sans); font-size: 12.5px; color: var(--muted); }
+  .m-op :global(a) { color: var(--muted); }
+  .mission p { font-size: 15px; line-height: 1.5; }
+  .m-what { margin: 12px 0 8px; color: var(--text); }
+  .m-why, .m-steps, .m-next, .m-notes, .m-news { margin: 6px 0; color: var(--text-soft); }
+  .m-label { font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--muted); }
+  .chip.draft { margin-left: 8px; color: var(--accent-2); border-color: var(--accent-2); font-size: 11px; vertical-align: 1px; }
+  .m-stones { list-style: none; margin: 12px 0 8px; padding: 10px 0 0; border-top: 1px solid var(--line); }
+  .m-stones li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; padding: 4px 0; font-size: 14px; line-height: 1.45; color: var(--text-soft); }
+  .m-stones .g { font-family: var(--mono); color: var(--accent-3); }
+  .m-stones .m-failed .g { color: var(--no); }
+  .s-when { color: var(--text); }
+  .s-state, .s-note, .s-moved { color: var(--muted); }
+  .s-src { font-size: 12.5px; }
+  .s-src :global(a), .s-src a { color: var(--muted); }
+  .s-src a:hover { color: var(--accent); }
+  .m-foot { margin: 8px 0 0; font-family: var(--sans); font-size: 12.5px !important; color: var(--muted); }
+  .plainlist { margin: 0 0 26px; padding-left: 1.1em; }
+  .plainlist li { margin: 8px 0; line-height: 1.5; }
+  .narrow .shead { margin-top: 30px; }
+  @media (max-width: 900px) { .mlist { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) {
+    .coming li { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>

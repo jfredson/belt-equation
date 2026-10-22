@@ -1,0 +1,235 @@
+---
+// The missions timeline (tracker pattern rule 4.20; John's ruling of 2026-10-21, decision 5 of
+// docs/proposal-missions-to-watch-2026-10-20.md). Drawn as plain SVG at build time, like the history
+// chart, with no chart library and no script. On a computer, years run left to right and each
+// mission is a row; below 700 pixels the same milestones become a list by year running down the
+// page, because a ten-year picture does not fit a phone without sideways scrolling, which the design
+// standard forbids outside a table's own box. The list is also what a screen reader gets on every
+// screen: the picture is marked hidden from it, since the list says everything the picture says.
+//
+// Marks, all in the data colour (--accent-3), never the rust accent: a filled dot happened; a hollow
+// dot is planned; a bar is planned as a span (a season, a year, or "sources differ"), drawn across
+// the whole span so it never looks more certain than its source; a cross in the "no" colour failed;
+// a faint mark joined by a thin line is where a moved date was planned before. An ochre diamond
+// (--accent-2) before a name marks a mission that bears on a step of the tree.
+import { missions, watching, plain, STATE_WORD, type Milestone, type Mission } from '../lib/missions';
+import { longDate } from '../lib/dates';
+
+const FIRST = 2026;
+const LAST = 2036; // the right edge: the picture runs from the start of 2026 to the start of 2036
+const W = 960;
+const LABEL = 200;
+const RIGHT = 14;
+const TOP = 34;
+const ROW = 24;
+const HEAD = 28;
+const plotW = W - LABEL - RIGHT;
+
+const t0 = Date.UTC(FIRST, 0, 1);
+const t1 = Date.UTC(LAST, 0, 1);
+const ms = (iso: string) => Date.parse(iso + 'T00:00:00Z');
+const x = (iso: string) => LABEL + ((ms(iso) - t0) / (t1 - t0)) * plotW;
+const xEnd = (iso: string) => x(iso) + (86400000 / (t1 - t0)) * plotW; // the end of that day
+const inRange = (m: { start: string; end: string }) => ms(m.end) >= t0 && ms(m.start) < t1;
+const mid = (m: { start: string; end: string }) => (x(m.start) + xEnd(m.end)) / 2;
+const clampX = (v: number) => Math.max(LABEL, Math.min(W - RIGHT, v));
+// Spans on one row that touch or overlap are drawn in two thin lanes, so two plans never read as one.
+function lanes(stones: Milestone[]): Map<Milestone, number> {
+  const out = new Map<Milestone, number>();
+  let lastEnd = -Infinity;
+  let lane = 0;
+  for (const s of stones.filter((m) => m.mark === 'span')) {
+    const a = x(s.start);
+    lane = a <= lastEnd + 2 ? 1 - lane : 0;
+    out.set(s, lane);
+    lastEnd = Math.max(lastEnd, xEnd(s.end));
+  }
+  if (![...out.values()].includes(1)) out.clear();
+  return out;
+}
+
+// Rows: a heading per group, then one row per mission in that group.
+type Row = { kind: 'head'; label: string; y: number } | { kind: 'mission'; mission: Mission; y: number };
+const rows: Row[] = [];
+let y = TOP;
+for (const g of missions.groups) {
+  rows.push({ kind: 'head', label: g.label, y: y + HEAD - 9 });
+  y += HEAD;
+  for (const m of watching.filter((w) => w.group === g.key)) {
+    rows.push({ kind: 'mission', mission: m, y: y + ROW / 2 });
+    y += ROW;
+  }
+}
+const H = y + 30;
+const years = Array.from({ length: LAST - FIRST + 1 }, (_, i) => FIRST + i);
+const nowX = x(missions.checked);
+const tip = (m: Mission, s: Milestone) =>
+  `${m.short}: ${plain(s.what)} · ${STATE_WORD[s.state]}, ${s.words}${s.was ? ` (moved from ${s.was.words} on ${longDate(s.was.moved_on)})` : ''}${s.sources[0] ? ` · source: ${s.sources[0].label}` : ''}`;
+
+// The list by year, for phones and screen readers. A milestone is listed under the year it starts.
+const all = missions.milestones.filter((s) => watching.some((m) => m.id === s.mission));
+const isPast = (s: Milestone) => s.end < missions.checked;
+const byYear = (list: typeof all) => {
+  const out = new Map<number, typeof all>();
+  for (const s of list) {
+    const yr = Number(s.start.slice(0, 4));
+    if (!out.has(yr)) out.set(yr, []);
+    out.get(yr)!.push(s);
+  }
+  return [...out.entries()].sort((a, b) => a[0] - b[0]);
+};
+const past = byYear(all.filter(isPast));
+const ahead = byYear(all.filter((s) => !isPast(s)));
+const name = (id: string) => watching.find((m) => m.id === id)!;
+const glyph: Record<string, string> = { done: '●', plan: '○', span: '═', failed: '×' };
+---
+
+<figure class="tl" aria-labelledby="tl-title">
+  <figcaption class="chart-head">
+    <span class="chart-title" id="tl-title">Every milestone, 2026 to 2035</span>
+    <span class="chart-note">Dates last checked {longDate(missions.checked)}. Every date after that is a plan, and plans in this field slip.</span>
+  </figcaption>
+
+  <svg class="tl-svg" viewBox={`0 0 ${W} ${H}`} aria-hidden="true" focusable="false">
+    {years.map((yr) => (
+      <>
+        <line class="tl-year" x1={x(`${yr}-01-01`)} x2={x(`${yr}-01-01`)} y1={TOP - 6} y2={H - 26} />
+        {yr < LAST && <text class="tl-axis" x={x(`${yr}-01-01`) + 4} y={TOP - 12}>{yr}</text>}
+      </>
+    ))}
+    <line class="tl-now" x1={nowX} x2={nowX} y1={TOP - 4} y2={H - 22} />
+    <text class="tl-now-label" x={nowX + 5} y={H - 10}>now: {longDate(missions.checked)}</text>
+
+    {rows.map((r) => r.kind === 'head' ? (
+      <text class="tl-group" x={0} y={r.y}>{r.label.toUpperCase()}</text>
+    ) : (
+      <g class="tl-row">
+        <line class="tl-track" x1={LABEL} x2={W - RIGHT} y1={r.y} y2={r.y} />
+        <a href={`#${r.mission.id}`} tabindex="-1">
+          {r.mission.steps.length > 0 && (
+            <path class="tl-diamond" d={`M6,${r.y - 5} L11,${r.y} L6,${r.y + 5} L1,${r.y} Z`} />
+          )}
+          <text class="tl-name" x={16} y={r.y + 4}>{r.mission.short}</text>
+        </a>
+        {(() => { const ln = lanes(r.mission.milestones.filter(inRange)); return r.mission.milestones.filter(inRange).map((s) => {
+          const lane = ln.get(s);
+          const old = s.was && inRange(s.was) ? s.was : null;
+          const cx = clampX(mid(s));
+          return (
+            <a href={`#${r.mission.id}`} tabindex="-1" class="tl-mark">
+              <title>{tip(r.mission, s)}</title>
+              {old && (
+                <>
+                  <line class="tl-moved-line" x1={clampX(mid(old))} x2={s.mark === 'span' ? clampX(x(s.start)) : cx} y1={r.y} y2={r.y} />
+                  <circle class="tl-moved" cx={clampX(mid(old))} cy={r.y} r={3.5} />
+                </>
+              )}
+              {s.mark === 'span' ? (
+                <rect class="tl-span" x={clampX(x(s.start)) + 1} y={lane === undefined ? r.y - 4 : lane === 0 ? r.y - 6 : r.y + 1} width={Math.max(6, clampX(xEnd(s.end)) - clampX(x(s.start)) - 2)} height={lane === undefined ? 8 : 5} rx={lane === undefined ? 4 : 2.5} />
+              ) : s.mark === 'failed' ? (
+                <path class="tl-failed" d={`M${cx - 4},${r.y - 4} L${cx + 4},${r.y + 4} M${cx + 4},${r.y - 4} L${cx - 4},${r.y + 4}`} />
+              ) : (
+                <circle class={s.mark === 'done' ? 'tl-done' : 'tl-plan'} cx={cx} cy={r.y} r={4.5} />
+              )}
+            </a>
+          );
+        }); })()}
+      </g>
+    ))}
+  </svg>
+
+  <ul class="tl-legend" aria-hidden="true">
+    <li><svg width="12" height="12" viewBox="0 0 12 12"><circle class="tl-done" cx="6" cy="6" r="4.5" /></svg>happened</li>
+    <li><svg width="12" height="12" viewBox="0 0 12 12"><circle class="tl-plan" cx="6" cy="6" r="4.5" /></svg>planned</li>
+    <li><svg width="22" height="12" viewBox="0 0 22 12"><rect class="tl-span" x="1" y="2" width="20" height="8" rx="4" /></svg>planned for a season, a year, or a span where sources differ</li>
+    <li><svg width="12" height="12" viewBox="0 0 12 12"><path class="tl-failed" d="M2,2 L10,10 M10,2 L2,10" /></svg>failed</li>
+    <li><svg width="26" height="12" viewBox="0 0 26 12"><line class="tl-moved-line" x1="4" x2="21" y1="6" y2="6" /><circle class="tl-moved" cx="4" cy="6" r="3.5" /><circle class="tl-plan" cx="21" cy="6" r="4.5" /></svg>moved: the faint mark is the old date</li>
+    <li><svg width="12" height="12" viewBox="0 0 12 12"><path class="tl-diamond" d="M6,1 L11,6 L6,11 L1,6 Z" /></svg>bears on a step of my odds</li>
+  </ul>
+
+  <div class="tl-list">
+    <p class="tl-list-key">● happened · ○ planned · ═ planned for a season, a year or a span · × failed · <span class="tl-dia">◆</span> bears on a step of my odds</p>
+    {past.length > 0 && (
+      <details class="tl-past">
+        <summary>Show what has happened</summary>
+        {past.map(([yr, list]) => (
+          <section class="tl-year-block">
+            <h3 class="tl-year-head">{yr}</h3>
+            <ul>
+              {list.map((s) => (
+                <li class={`tl-item m-${s.mark}`}>
+                  <span class="tl-when">{s.words}</span>
+                  <span class="tl-what"><a href={`#${s.mission}`}>{name(s.mission).short}</a>: {plain(s.what)}{s.was ? `, moved from ${s.was.words}` : ''}</span>
+                  <span class="tl-glyph" aria-label={STATE_WORD[s.state]}>{glyph[s.mark]}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </details>
+    )}
+    <p class="tl-now-rule"><span>now: {longDate(missions.checked)}</span></p>
+    {ahead.map(([yr, list]) => (
+      <section class="tl-year-block">
+        <h3 class="tl-year-head">{yr}</h3>
+        <ul>
+          {list.map((s) => (
+            <li class={`tl-item m-${s.mark}`}>
+              <span class="tl-when">{s.words}</span>
+              <span class="tl-what">
+                {s.bears && <span class="tl-dia" aria-label="bears on a step of my odds">◆ </span>}
+                <a href={`#${s.mission}`}>{name(s.mission).short}</a>: {plain(s.what)}{s.was ? ` (moved from ${s.was.words})` : ''}
+              </span>
+              <span class="tl-glyph" aria-label={s.state === 'done' ? 'happened' : s.state === 'failed' ? 'failed' : 'planned'}>{glyph[s.mark]}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</figure>
+
+<style>
+  .tl { margin: 0; }
+  .tl-svg { display: block; width: 100%; height: auto; }
+  .tl-year { stroke: var(--line); stroke-width: 1; }
+  .tl-axis { font-family: var(--mono); font-size: 11.5px; fill: var(--muted); }
+  .tl-group { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.12em; fill: var(--muted); }
+  .tl-name { font-family: var(--sans); font-size: 13px; fill: var(--text-soft); }
+  .tl-row a:hover .tl-name { fill: var(--text); }
+  .tl-track { stroke: var(--line); stroke-width: 1; stroke-dasharray: 1 5; }
+  .tl-now { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; }
+  .tl-now-label { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
+  .tl-done { fill: var(--accent-3); }
+  .tl-plan { fill: var(--bg); stroke: var(--accent-3); stroke-width: 1.6; }
+  .tl-span { fill: color-mix(in srgb, var(--accent-3) 28%, transparent); stroke: var(--accent-3); stroke-width: 1.2; }
+  .tl-failed { stroke: var(--no); stroke-width: 2; stroke-linecap: round; fill: none; }
+  .tl-moved { fill: var(--muted); opacity: 0.55; }
+  .tl-moved-line { stroke: var(--muted); stroke-width: 1; opacity: 0.7; }
+  .tl-diamond { fill: var(--accent-2); }
+  .tl-mark:hover circle, .tl-mark:hover rect { stroke-width: 2.4; }
+
+  .tl-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 10px 0 0; font-family: var(--sans); font-size: 12.5px; color: var(--muted); }
+  .tl-legend li { display: flex; align-items: center; gap: 6px; }
+  .tl-legend svg { flex: 0 0 auto; }
+
+  /* The list by year: shown on phones, kept for screen readers everywhere. */
+  .tl-list { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  .tl-list-key { font-family: var(--sans); font-size: 12.5px; color: var(--muted); margin: 6px 0 0; }
+  .tl-year-head { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--muted); margin: 18px 0 6px; letter-spacing: 0.04em; }
+  .tl-year-block ul { list-style: none; margin: 0; padding: 0; }
+  .tl-item { display: grid; grid-template-columns: 92px minmax(0, 1fr) 18px; gap: 10px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--line); font-size: 14.5px; line-height: 1.4; }
+  .tl-when { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+  .tl-what { color: var(--text-soft); }
+  .tl-glyph { font-family: var(--mono); color: var(--accent-3); text-align: right; }
+  .m-failed .tl-glyph { color: var(--no); }
+  .tl-dia { color: var(--accent-2); }
+  .tl-past summary { cursor: pointer; font-family: var(--sans); font-size: 14px; color: var(--text-soft); padding: 8px 0; }
+  .tl-now-rule { display: flex; align-items: center; gap: 10px; margin: 14px 0 0; font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+  .tl-now-rule::before, .tl-now-rule::after { content: ''; flex: 1; border-top: 1px dashed var(--line-strong); }
+
+  @media (max-width: 700px) {
+    .tl-svg, .tl-legend { display: none; }
+    .tl-list { position: static; width: auto; height: auto; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
+  }
+</style>

@@ -642,6 +642,7 @@ a.dim:hover { color: var(--accent); }
 .news-item { border-top: 1px solid var(--line); padding: 18px 0; }
 .news-item time { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
 .news-item .kind { font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-left: 10px; }
+.news-item .kind.kind-mission { color: var(--accent-2); } /* mission news, rule 4.20: told apart from the posts that move the number */
 .news-item h3 { margin: 4px 0 6px; font-size: 21px; line-height: 1.25; }
 .news-item h3 a { text-decoration: none; color: var(--text); }
 .news-item p { margin: 0; color: var(--text-soft); font-size: 15.5px; }
@@ -671,3 +672,10 @@ a.dim:hover { color: var(--accent); }
 .footer-follow { margin: 4px 0 0; font-size: 12.5px; }
 .footer-follow a { color: var(--muted); }
 .news-follow { font-family: var(--sans); font-size: 13.5px; color: var(--muted); max-width: 760px; margin-top: 22px; border-top: 1px solid var(--line); padding-top: 10px; }
+
+/* The top bar with Missions added (2026-10-21, tracker pattern rules 4.10 and 4.20): nine handles
+   wrapped the bar to two rows at 1280 pixels, so the handles are 3 pixels tighter each side on wide
+   screens, as Outrunning Ageing did for News. The phone menu keeps its own padding. */
+@media (min-width: 821px) {
+  .navlinks a { padding: 6px 9px; }
+}
