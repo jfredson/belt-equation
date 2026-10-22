@@ -1,0 +1,72 @@
+---
+// One scan's checks in one column, grouped by the chain link their event sits on (the layout John
+// approved 2026-10-21 in place of the card grid, copied from Outrunning Ageing's weekly reading).
+// Each check is one row when closed: the event's name, the verdict, and the first sentence of what
+// was found. Opening it shows the rest of the note, anything left for me and how it was ruled, the
+// ledger entry, the searches and the sources. "Nothing new" starts closed; every other verdict
+// starts open. A native <details>, so it works without JavaScript and with a keyboard and a screen
+// reader. The latest scan and the earlier ones both use it.
+import { tree } from '../lib/tree';
+import { longDate, proseDates } from '../lib/dates';
+import { datedPosts, postPath } from '../lib/news';
+import { verdictLabel, splitFirstSentence, opensByDefault, type Scan, type ScanItem } from '../lib/scans';
+
+interface Props { scan: Scan }
+const { scan } = Astro.props;
+const newsPosts = await datedPosts();
+const postFor = (nodeId: string) => newsPosts.find((p) => p.data.records.includes(nodeId)) ?? null; // rule 4.14
+
+// Checks grouped by the chain link their event sits on, in the order the home page reads the
+// chain. The window and the Contact Clause are not links, so they fall in at the end with their
+// own plain names, which is where the factor table puts them.
+const groups: { letter: string; link: string; name: string; path: string; items: ScanItem[] }[] = tree.factors
+  .map((f) => ({ letter: f.letter, link: f.chain_link, name: f.name, path: f.path, items: scan.items.filter((i) => i.factor === f.letter) }))
+  .filter((g) => g.items.length > 0);
+---
+
+{groups.map((g) => (
+  <div class="link-group">
+    <div class="link-head">
+      <h3><span class="dim">Category: </span>{g.link}</h3>
+      <span class="dim"><a href={g.path}>{g.letter}, {g.name}</a> · {g.items.length} event{g.items.length === 1 ? '' : 's'} read</span>
+    </div>
+    <div class="reading-rows">
+      {g.items.map((item) => {
+        const { line, rest } = splitFirstSentence(proseDates(item.found));
+        const post = item.picked_up ? postFor(item.node) : null;
+        return (
+          <details class={`reading-row v-${item.verdict}`} id={`${scan.date}-${item.node}`} open={opensByDefault(item)}>
+            <summary>
+              <span class="row-head">
+                <span class="row-name">{item.node_name}</span>
+                <span class="row-tags">
+                  <span class={`badge v-${item.verdict}`}>{item.picked_up ? 'Ruled' : verdictLabel[item.verdict]}</span>
+                </span>
+              </span>
+              <span class="row-line">{line}</span>
+            </summary>
+            <div class="row-body">
+              {rest && <p class="card-found">{rest}</p>}
+              {item.for_john && <p class="card-john"><strong>For me:</strong>{' '}{proseDates(item.for_john)}</p>}
+              {item.picked_up && <p class="card-john dim">Taken off my list on {longDate(item.picked_up.on)}, by {item.picked_up.how}.</p>}
+              {post && <p class="card-john">In the news: <a href={postPath(post)}>{post.data.title}</a>.</p>}
+              {item.ledger && (
+                item.ledger.path
+                  ? <p class="row-link"><a href={item.ledger.path}>The ledger entry for this</a></p>
+                  : <p class="row-link dim">Ledger entry <code>{item.ledger.id}</code>, not written yet</p>
+              )}
+              <div class="row-searches">
+                <p>{item.queries.length} search{item.queries.length === 1 ? '' : 'es'}{item.sources.length > 0 ? `, ${item.sources.length} source${item.sources.length === 1 ? '' : 's'}` : ''}:</p>
+                <ul>
+                  {item.queries.map((q) => <li>{q}</li>)}
+                  {item.sources.map((s) => <li><a href={s} rel="noopener nofollow">{s}</a></li>)}
+                </ul>
+              </div>
+              <p class="row-link"><a href={item.path}>Go to the event's page</a></p>
+            </div>
+          </details>
+        );
+      })}
+    </div>
+  </div>
+))}
