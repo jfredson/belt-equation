@@ -18,7 +18,7 @@ import { longDate } from '../lib/dates';
 const FIRST = 2026;
 const LAST = 2036; // the right edge: the picture runs from the start of 2026 to the start of 2036
 const W = 960;
-const LABEL = 200;
+const LABEL = 290; // room for the mission and, in muted type, who runs it
 const RIGHT = 14;
 const TOP = 34;
 const ROW = 24;
@@ -64,7 +64,7 @@ const H = y + 30;
 const years = Array.from({ length: LAST - FIRST + 1 }, (_, i) => FIRST + i);
 const nowX = x(missions.checked);
 const tip = (m: Mission, s: Milestone) =>
-  `${m.short}: ${plain(s.what)} · ${STATE_WORD[s.state]}, ${s.words}${s.was ? ` (moved from ${s.was.words} on ${longDate(s.was.moved_on)})` : ''}${s.sources[0] ? ` · source: ${s.sources[0].label}` : ''}`;
+  `${m.short} (${m.operator_short}): ${plain(s.what)} · ${STATE_WORD[s.state]}, ${s.words}${s.was ? ` (moved from ${s.was.words} on ${longDate(s.was.moved_on)})` : ''}${s.sources[0] ? ` · source: ${s.sources[0].label}` : ''}`;
 
 // The list by year, for phones and screen readers. A milestone is listed under the year it starts.
 const all = missions.milestones.filter((s) => watching.some((m) => m.id === s.mission));
@@ -109,7 +109,7 @@ const glyph: Record<string, string> = { done: '●', plan: '○', span: '═', f
           {r.mission.steps.length > 0 && (
             <path class="tl-diamond" d={`M6,${r.y - 5} L11,${r.y} L6,${r.y + 5} L1,${r.y} Z`} />
           )}
-          <text class="tl-name" x={16} y={r.y + 4}>{r.mission.short}</text>
+          <text class="tl-name" x={16} y={r.y + 4}>{r.mission.short}<tspan class="tl-op"> ({r.mission.operator_short})</tspan></text>
         </a>
         {(() => { const ln = lanes(r.mission.milestones.filter(inRange)); return r.mission.milestones.filter(inRange).map((s) => {
           const lane = ln.get(s);
@@ -159,7 +159,7 @@ const glyph: Record<string, string> = { done: '●', plan: '○', span: '═', f
               {list.map((s) => (
                 <li class={`tl-item m-${s.mark}`}>
                   <span class="tl-when">{s.words}</span>
-                  <span class="tl-what"><a href={`#${s.mission}`}>{name(s.mission).short}</a>: {plain(s.what)}{s.was ? `, moved from ${s.was.words}` : ''}</span>
+                  <span class="tl-what"><a href={`#${s.mission}`}>{name(s.mission).short}</a> <span class="tl-who">({name(s.mission).operator_short})</span>: {plain(s.what)}{s.was ? `, moved from ${s.was.words}` : ''}</span>
                   <span class="tl-glyph" aria-label={STATE_WORD[s.state]}>{glyph[s.mark]}</span>
                 </li>
               ))}
@@ -178,7 +178,7 @@ const glyph: Record<string, string> = { done: '●', plan: '○', span: '═', f
               <span class="tl-when">{s.words}</span>
               <span class="tl-what">
                 {s.bears && <span class="tl-dia" aria-label="bears on a step of my odds">◆ </span>}
-                <a href={`#${s.mission}`}>{name(s.mission).short}</a>: {plain(s.what)}{s.was ? ` (moved from ${s.was.words})` : ''}
+                <a href={`#${s.mission}`}>{name(s.mission).short}</a> <span class="tl-who">({name(s.mission).operator_short})</span>: {plain(s.what)}{s.was ? ` (moved from ${s.was.words})` : ''}
               </span>
               <span class="tl-glyph" aria-label={s.state === 'done' ? 'happened' : s.state === 'failed' ? 'failed' : 'planned'}>{glyph[s.mark]}</span>
             </li>
@@ -197,6 +197,8 @@ const glyph: Record<string, string> = { done: '●', plan: '○', span: '═', f
   .tl-group { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.12em; fill: var(--muted); }
   .tl-name { font-family: var(--sans); font-size: 13px; fill: var(--text-soft); }
   .tl-row a:hover .tl-name { fill: var(--text); }
+  .tl-op { fill: var(--muted); font-size: 11.5px; }
+  .tl-who { color: var(--muted); }
   .tl-track { stroke: var(--line); stroke-width: 1; stroke-dasharray: 1 5; }
   .tl-now { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; }
   .tl-now-label { font-family: var(--mono); font-size: 11px; fill: var(--muted); }

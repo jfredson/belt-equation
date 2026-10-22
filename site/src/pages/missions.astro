@@ -70,7 +70,7 @@ const comingUp = missions.coming_up;
         {comingUp.map((s) => (
           <li>
             <span class="c-when">{s.words}</span>
-            <span class="c-what">{s.bears && <span class="dia" title="bears on a step of my odds">◆ </span>}<a href={`#${s.mission}`}>{s.mission_name}</a>{s.operator_short !== s.mission_name && <span class="c-who"> ({s.operator_short})</span>}: {plain(s.what)}</span>
+            <span class="c-what">{s.bears && <span class="dia" title="bears on a step of my odds">◆ </span>}<a href={`#${s.mission}`}>{s.mission_name}</a><span class="c-who"> ({s.operator_short})</span>: {plain(s.what)}</span>
           </li>
         ))}
       </ul>
@@ -86,7 +86,7 @@ const comingUp = missions.coming_up;
         <tbody>
           {missions.milestones.map((s) => (
             <tr>
-              <td><a href={`#${s.mission}`}>{s.mission_name}</a></td>
+              <td><a href={`#${s.mission}`}>{s.mission_name}</a> <span class="dim">({s.operator_short})</span></td>
               <td>{plain(s.what)}</td>
               <td>{s.words}{s.was && <><br /><span class="dim">was {s.was.words}, moved {longDate(s.was.moved_on)}</span></>}</td>
               <td>{STATE_WORD[s.state]}</td>
