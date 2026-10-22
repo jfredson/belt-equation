@@ -7,7 +7,7 @@ export const KIND_LABEL: Record<string, string> = {
   'start-here': 'start here',
   'rung-reached': 'a rung reached',
   'estimate-revised': 'an estimate revised',
-  'flagged-item-ruled': 'a flagged item ruled',
+  'flagged-item-ruled': 'a flagged item decided',
   'claim': 'a claim added or settled',
   'headline-moved': 'the headline moved',
   'method-changed': 'the method changed',

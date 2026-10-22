@@ -6,6 +6,7 @@
 // was searched, what was found, and one of five verdicts. The Radar page shows every scan,
 // the home page shows a line about the latest one, and each node page shows its last checks.
 import scansJson from '../data/scans.json';
+import { longDate } from './dates';
 
 export type Verdict = 'quiet' | 'noted' | 'moved' | 'resolved' | 'flagged';
 
@@ -119,7 +120,7 @@ export function ranAtLabel(scan: Scan): string {
   if (Number.isNaN(d.getTime())) return scan.ran_at;
   const time = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit' }).format(d);
   const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
-  return `${time} Pacific, ${day}`;
+  return `${time} Pacific, ${longDate(day)}`;
 }
 
 /** "6 events read, one moved and one resolved" — the line the home page strip and the Radar
@@ -134,7 +135,7 @@ export function scanSummary(scan: Scan): string {
   if (scan.counts.resolved) parts.push(`${plainCount(scan.counts.resolved)} resolved`);
   if (scan.counts.flagged) {
     const open = scan.items.filter((i) => i.verdict === 'flagged' && !i.picked_up).length;
-    parts.push(open ? `${plainCount(open)} left for me` : `${plainCount(scan.counts.flagged)} ruled on since`);
+    parts.push(open ? `${plainCount(open)} left for me` : `${plainCount(scan.counts.flagged)} decided since`);
   }
   if (parts.length === 0) return `${read}, nothing moved`;
   const joined = parts.length === 1 ? parts[0] : parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1];

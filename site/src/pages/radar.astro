@@ -6,6 +6,7 @@
 // being watched instead of taking it on faith.
 import Base from '../layouts/Base.astro';
 import { tree } from '../lib/tree';
+import { longDate, proseDates } from '../lib/dates';
 import { datedPosts, postPath } from '../lib/news';
 import {
   scans, latestScan, verdictLabel, verdictMeaning, scopeLabel, scanSummary, plainCount, ranAtLabel,
@@ -35,7 +36,7 @@ function groupByLink(scan: Scan): { letter: string; link: string; name: string; 
 
 const groups = latestScan ? groupByLink(latestScan) : [];
 const description = latestScan
-  ? `The Belt Equation's weekly scan: ${scanSummary(latestScan)} on ${latestScan.date}. Every node checked, what was searched, what was found, and the verdict.`
+  ? `The Belt Equation's weekly scan: ${scanSummary(latestScan)} on ${longDate(latestScan.date)}. Every node checked, what was searched, what was found, and the verdict.`
   : "The Belt Equation's weekly scan of the tree against the news. The first scan has not run yet.";
 ---
 
@@ -72,7 +73,7 @@ const description = latestScan
     <section class="section">
       <div class="shead">
         <h2>The latest scan</h2>
-        <span>{latestScan.date}, reading {scopeLabel[latestScan.scope]}</span>
+        <span>{longDate(latestScan.date)}, reading {scopeLabel[latestScan.scope]}</span>
       </div>
 
       {latestScan.test && (
@@ -113,7 +114,7 @@ const description = latestScan
             {waiting.map((w) => (
               <li>
                 <a href={w.path}>{w.node_name}</a>
-                <span class="dim"> · {w.chain_link} · flagged {w.scan_date}{w.test ? ', in the test record' : ''}</span>
+                <span class="dim"> · {w.chain_link} · flagged {longDate(w.scan_date)}{w.test ? ', in the test record' : ''}</span>
                 <p>{w.for_john}</p>
               </li>
             ))}
@@ -134,12 +135,12 @@ const description = latestScan
                   <a class="card-name" href={item.path}>{item.node_name}</a>
                   <span class={`badge v-${item.verdict}`}>{item.picked_up ? 'Ruled' : verdictLabel[item.verdict]}</span>
                 </div>
-                <p class="card-found">{item.found}</p>
+                <p class="card-found">{proseDates(item.found)}</p>
                 {item.for_john && (
-                  <p class="card-john"><strong>For me:</strong> {item.for_john}</p>
+                  <p class="card-john"><strong>For me:</strong> {proseDates(item.for_john)}</p>
                 )}
                 {item.picked_up && (
-                  <p class="card-john dim">Taken off my list on {item.picked_up.on}, by {item.picked_up.how}.</p>
+                  <p class="card-john dim">Taken off my list on {longDate(item.picked_up.on)}, by {item.picked_up.how}.</p>
                 )}
                 {item.picked_up && postFor(item.node) && (
                   <p class="card-john">In the news: <a href={postPath(postFor(item.node)!)}>{postFor(item.node)!.data.title}</a>.</p>
@@ -197,7 +198,7 @@ const description = latestScan
               <li>
                 <span class={`badge v-${item.verdict}`}>{verdictLabel[item.verdict]}</span>
                 <a href={item.path}>{item.node_name}</a>
-                <p>{item.found}</p>
+                <p>{proseDates(item.found)}</p>
               </li>
             ))}
           </ul>

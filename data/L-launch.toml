@@ -223,7 +223,7 @@ status = "open"
 probability = { baseline = 1.0, moderate = 1.0, strong = 1.0, radical = 1.0, open = 1.0 }
 estimated_on = 2026-09-25
 rationale = "Resolves whenever either route does; certainty here means the number is carried entirely by the two route nodes."
-notes = "Added 2026-09-25 under candidate 7 of docs/proposal-function-over-route-2026-09-25.md, I approved 2026-09-25. M-off-earth-product-sold-at-a-profit depends on this step instead of the lunar route alone. Tier 3 still lists the lunar route itself among its requirements, so the asteroid route can lift the product step but not the Belt tier; whether Tier 3 should list this step instead was not part of the ruling."
+notes = "Added 2026-09-25 under candidate 7 of docs/proposal-function-over-route-2026-09-25.md, I approved 2026-09-25. M-off-earth-product-sold-at-a-profit depends on this step instead of the lunar route alone. Tier 3 still lists the lunar route itself among its requirements, so the asteroid route can lift the product step but not the Belt tier; whether Tier 3 should list this step instead was not part of that decision."
 
 [[node]]
 id = "L-asteroid-material-delivered-to-orbit-at-scale"
@@ -275,7 +275,7 @@ status = "open"
 probability = { baseline = 0.8, moderate = 0.85, strong = 0.9, radical = 0.95, open = 0.96 }
 estimated_on = 2026-09-20
 rationale = "Zero-boil-off hardware has been ground-tested for years and long-duration storage flights are on the manifest of the lunar programme, so the first six-month demonstration is a matter of a decade or so; the residual is that architectures move to fast tanker cadence instead of long storage and nobody bothers to prove six months. Proposed by Claude 2026-09-20 with the node's addition, I accepted."
-notes = "Added 2026-09-20 under step 27, items 10 and 52 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): Gemini's leaf with Astra's 'and subsequently used in a burn' added, so the node is storage proven by use; Astra's hundred-tonne scale stays with L-orbital-propellant-transfer-at-scale, which this node gates."
+notes = "Added 2026-09-20 under step 27, items 10 and 52 (docs/reviews/2026-09-19-rulings.md, decided 2026-09-19): Gemini's leaf with Astra's 'and subsequently used in a burn' added, so the node is storage proven by use; Astra's hundred-tonne scale stays with L-orbital-propellant-transfer-at-scale, which this node gates."
 
 [[node]]
 id = "L-propellant-produced-off-earth-and-fired-in-a-thruster"
@@ -298,4 +298,4 @@ status = "open"
 probability = { baseline = 0.5, moderate = 0.62, strong = 0.78, radical = 0.9, open = 0.93 }
 estimated_on = 2026-09-20
 rationale = "Oxygen has been made from simulated regolith in the lab and a small demonstrator has flown to Mars; a tonne made and fired on the Moon needs a surface plant and a customer for the first product, which is a lunar outpost's second decade. Even odds by 2071. Proposed by Claude 2026-09-20 with the node's addition, I accepted."
-notes = "Added 2026-09-20 under step 27, items 11 and 53 (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): raised by Gemini as a missing node; a dependency of L-lunar-material-delivered-to-orbit-at-scale, whose conditional was raised at the same time so that the first-tonne difficulty is priced here and not twice (the double-counting note from item 53)."
+notes = "Added 2026-09-20 under step 27, items 11 and 53 (docs/reviews/2026-09-19-rulings.md, decided 2026-09-19): raised by Gemini as a missing node; a dependency of L-lunar-material-delivered-to-orbit-at-scale, whose conditional was raised at the same time so that the first-tonne difficulty is priced here and not twice (the double-counting note from item 53)."

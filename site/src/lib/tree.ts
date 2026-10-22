@@ -373,7 +373,7 @@ export type Story = {
 };
 export const story = storyJson as unknown as Story;
 export const decidedByLabel: Record<string, string> = {
-  john: 'I ruled', mixed: 'The model proposed, I accepted', agent: "The model's own call",
+  john: 'I decided', mixed: 'The model proposed, I accepted', agent: "The model's own call",
 };
 
 /**

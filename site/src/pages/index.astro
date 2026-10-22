@@ -107,7 +107,7 @@ const contact = factorByLetter('C');
         <p class={`headline-move tone-${direction(current.headlineMove).tone}`} data-bind-class="headlineMove">
           <span aria-hidden="true" data-bind="headlineArrow">{direction(current.headlineMove).arrow}</span>
           <span>
-            <span data-bind="headlineMove">{movePoints(current.headlineMove)}</span> since the last run of the tree, on {move.to_date}.
+            <span data-bind="headlineMove">{movePoints(current.headlineMove)}</span> since the last run of the tree, on {longDate(move.to_date)}.
             {structuralMove
               ? ' The tree itself changed between those two runs, so they are not measuring quite the same thing.'
               : ''}
@@ -250,7 +250,7 @@ const contact = factorByLetter('C');
 
   <p class="dim home-meta">
     {numbers.available
-      ? `Numbers from the run of ${numbers.computed_on}, ${numbers.runs.toLocaleString()} play-throughs of the tree per scenario.${numbers.review_status ? ' ' + numbers.review_status : ''}`
+      ? `Numbers from the run of ${longDate(numbers.computed_on)}, ${numbers.runs.toLocaleString()} play-throughs of the tree per scenario.${numbers.review_status ? ' ' + numbers.review_status : ''}`
       : `The numbers wait on the first probabilities: ${numbers.reason}`}
     <span class="sep">|</span><a href="/method/">How the numbers are computed</a><span class="sep">|</span><a href="/story/">What has changed</a>
   </p>

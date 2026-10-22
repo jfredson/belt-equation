@@ -30,7 +30,7 @@ requires = [
   "B-major-operation-under-anaesthesia-performed-off-earth",
 ]
 # B-major-operation-under-anaesthesia-performed-off-earth added 2026-09-20 under step 27, item 2
-# (docs/reviews/2026-09-19-rulings.md, ruled 2026-09-19): a settlement cannot evacuate every appendix.
+# (docs/reviews/2026-09-19-rulings.md, decided 2026-09-19): a settlement cannot evacuate every appendix.
 # B-human-child-born-off-earth was a Tier 2 requirement until 2026-09-19, when I ruled it moved to
 # Tier 4 after the first run showed it capping every tier above Tier 2 (docs/runs/2026-09-19-first-run.md).
 # Tier 2's definition no longer names the child and Tier 4's does, so the words and the lists agree
