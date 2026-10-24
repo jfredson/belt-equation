@@ -46,8 +46,10 @@ Created 2026-09-08. Until 2026-10-17 this section still read "no nodes, no proba
 
 ## Licence
 
-The tree and every other data file are under Creative Commons Attribution 4.0 (`LICENSE-DATA`): reuse them freely, with credit. The scripts and the site are under the MIT licence (`LICENSE`). Added 2026-10-08 under the Sentient Horizons design standard.
+The tree and every other data file are under Creative Commons Attribution 4.0 (`LICENSE-DATA`): reuse them freely, with credit. The scripts and the site's code are under the MIT licence (`LICENSE`); its text and data are under CC BY 4.0 (`LICENSE-DATA`). Added 2026-10-08 under the Sentient Horizons design standard.
+
+When you reuse the data or the text, please credit it as: *The Belt Equation*, by John Andrew Fredrickson, a Sentient Horizons project, https://beltequation.com/
 
 ## Author
 
-John Fredrickson, with Claude as a working partner. Published under the Sentient Horizons project.
+John Andrew Fredrickson, with Claude as a working partner. Published under the Sentient Horizons project.
