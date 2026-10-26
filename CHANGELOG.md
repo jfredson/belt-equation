@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-25
+
+- Weekly scan (scheduled task, 2026-10-25): 17 nodes read, 0 moved, 0 resolved, 1 flagged for John (C1, AlphaProof Nexus in Science); record at data/scans/2026-10-25.toml. Seven missions read, none changed.
+
 ## 2026-10-21
 
 - **A simpler top bar (on a branch for John's look).** Agreed by John on 2026-10-21: the menu is The Tree · News · Missions · Next · About, with Family beside the theme switch. The site's name links home, so "Your Odds" leaves the bar (the page stays, linked from the home page, About and the footer). Method and Story become the two parts of a new About page (`/about/`), which opens with why I built the site; their text is unchanged, and `/method/` and `/story/` forward to the right part, keeping a link to one story entry pointed at that entry. Feedback and Source move to the footer. The weekly readings (Radar) keep their page, linked from Next, About and the footer. Every internal link points at the new addresses, and the handles' tightened spacing is gone. **No number moved.**

@@ -24,7 +24,7 @@
 # The "why I follow it" lines (`why`) are drafts written for John in his voice on 2026-10-21, for
 # him to change; `why_draft = true` until he has. The page marks them as drafts.
 
-checked = "2026-10-21"
+checked = "2026-10-25"
 
 # ---------------------------------------------------------------- the Moon
 
@@ -38,7 +38,7 @@ what = "NASA's programme to send people back to the Moon. Its first crew flew ro
 why = "These are the first people to go past low Earth orbit since before I was born. If they land, and keep landing, the Moon stops being history and becomes a place people work."
 why_draft = true
 steps = ["L-crew-lands-on-moon-in-reusable-lander", "R-crewed-lunar-program-outlives-two-changes-of-backer"]
-checked = "2026-10-21"
+checked = "2026-10-25"
 
 [[mission.milestone]]
 what = "Artemis II launches four astronauts on a flight around the Moon"
@@ -85,7 +85,7 @@ what = "A heavy rocket built to be flown again, both halves, and one of the two 
 why = "If a rocket this big can fly, land and fly again like an airliner, nearly everything else on this page gets cheaper. It is the one machine my odds lean on most."
 why_draft = true
 steps = ["L-fully-reusable-heavy-launcher-recovers-both-stages", "L-orbital-propellant-transfer-at-scale", "L-heavy-launcher-100-per-year", "L-launch-price-below-200-dollars-per-kg"]
-checked = "2026-10-21"
+checked = "2026-10-25"
 notes = "So far the tower has caught the booster three times, and two caught boosters have flown again. No upper stage has yet been caught."
 
 [[mission.milestone]]
@@ -280,7 +280,7 @@ why = "Two spacecraft for Mars on a small budget is the kind of mission falling 
 why_draft = true
 steps = []
 step_note = "It studies Mars's thin air; no step turns on what it finds."
-checked = "2026-10-21"
+checked = "2026-10-25"
 
 [[mission.milestone]]
 what = "Launches on Blue Origin's [New Glenn rocket](https://en.wikipedia.org/wiki/New_Glenn)"
@@ -328,7 +328,7 @@ why = "In 2022 a spacecraft hit a small asteroid on purpose and [shortened its o
 why_draft = true
 steps = []
 step_note = "It tests defending Earth from asteroids, not going out to them; no step turns on it."
-checked = "2026-10-21"
+checked = "2026-10-25"
 
 [[mission.milestone]]
 what = "First pictures of the asteroid Didymos, a single bright dot"
@@ -378,7 +378,7 @@ why = "One spacecraft, two very different worlds: a tiny rock that travels along
 why_draft = true
 steps = []
 step_note = "A sample of grams brought home is science, not the off-Earth mining a step would need."
-checked = "2026-10-21"
+checked = "2026-10-25"
 
 [[mission.milestone]]
 what = "Launches"
@@ -591,7 +591,7 @@ why = "This is the closest anyone is to the idea this site is named for: a busin
 why_draft = true
 steps = []
 step_note = "Not yet. The steps about off-Earth material at scale need far more than a first visit."
-checked = "2026-10-21"
+checked = "2026-10-25"
 
 [[mission.milestone]]
 what = "Its first spacecraft, Odin, is declared lost before reaching its asteroid"
@@ -637,7 +637,7 @@ why = "There may be more than twice as much water under Europa's ice as in all o
 why_draft = true
 steps = []
 step_note = "It is science; no step turns on it."
-checked = "2026-10-21"
+checked = "2026-10-25"
 
 [[mission.milestone]]
 what = "Launches"
