@@ -8,7 +8,10 @@ import { glob } from 'astro/loaders';
 
 // 'mission-news' is the Belt's eighth kind (tracker pattern rule 4.20, ruled by John 2026-10-21): a post
 // about a mission on the Missions page, which names missions (`missions`) instead of records.
-export const NEWS_KINDS = ['start-here', 'rung-reached', 'estimate-revised', 'flagged-item-ruled', 'claim', 'headline-moved', 'method-changed', 'mission-news'] as const;
+// 'discovery' is the ninth kind (asked for by John 2026-10-27, on Rubin's first dwarf planet candidate): something
+// newly found in the solar system, worth knowing about whether or not it touches a step. It names no record and
+// no mission, carries its sources, and ends on what it does and does not change for the odds.
+export const NEWS_KINDS = ['start-here', 'rung-reached', 'estimate-revised', 'flagged-item-ruled', 'claim', 'headline-moved', 'method-changed', 'mission-news', 'discovery'] as const;
 
 // YAML reads a bare 2026-10-18 as a date; the site keeps dates as YYYY-MM-DD strings.
 const isoDate = z.union([z.string().regex(/^\d{4}-\d{2}-\d{2}$/), z.date().transform((d) => d.toISOString().slice(0, 10))]);
