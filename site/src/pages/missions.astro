@@ -110,7 +110,7 @@ const comingUp = missions.coming_up;
               <p class="m-op" set:html={operators.get(m.id)} />
             </header>
             <p class="m-what" set:html={linked(m.what)} />
-            <p class="m-why"><span class="m-label">Why I follow it:</span> <span set:html={linked(m.why)} />{m.why_draft && <span class="chip draft" title="Drafted for John to rewrite in his own words">draft for John to rewrite</span>}</p>
+            <p class="m-why"><span class="m-label">Why I follow it:</span> <span set:html={linked(m.why)} /></p>
             {m.steps.length > 0 ? (
               <p class="m-steps"><span class="m-label"><span class="dia">◆</span> Bears on {m.steps.length === 1 ? 'a step' : `${m.steps.length} steps`} of my odds:</span> {m.steps.map((s, i) => <>{i > 0 ? '; ' : ''}<a href={s.path}>{s.name}</a></>)}.</p>
             ) : (
@@ -197,7 +197,6 @@ const comingUp = missions.coming_up;
   .m-what { margin: 12px 0 8px; color: var(--text); }
   .m-why, .m-steps, .m-next, .m-notes, .m-news { margin: 6px 0; color: var(--text-soft); }
   .m-label { font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--muted); }
-  .chip.draft { margin-left: 8px; color: var(--accent-2); border-color: var(--accent-2); font-size: 11px; vertical-align: 1px; }
   .m-stones { list-style: none; margin: 12px 0 8px; padding: 10px 0 0; border-top: 1px solid var(--line); }
   .m-stones li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; padding: 4px 0; font-size: 14px; line-height: 1.45; color: var(--text-soft); }
   .m-stones .g { font-family: var(--mono); color: var(--accent-3); }

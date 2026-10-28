@@ -43,6 +43,8 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Check the built site carries nothing meant for John
+        run: python3 scripts/check_site.py site/dist
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
