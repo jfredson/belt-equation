@@ -24,6 +24,12 @@ one that names no mission or one not on the Missions page; names a mission with 
 marked done, moved or failed within fourteen days of the post's date; does not end on what the
 event does and does not change for the odds (its last paragraph must speak of the odds or the
 number); or is a third mission news post in one week (Monday to Sunday), past the ceiling of two.
+
+A discovery (the ninth kind, "discovery"; asked for by John 2026-10-27, on Rubin's first dwarf planet
+candidate) is about something newly found in the solar system, whether or not it touches a step. It
+names no record and no mission, so the check asks of it only what it asks of every post (a source, a
+link beside every figure) and, as of mission news, that its last paragraph speaks of the odds or the
+number, so a reader is never left thinking a find moved the tree when it did not.
 """
 from __future__ import annotations
 
@@ -35,7 +41,10 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed", "mission-news"}
+KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed", "mission-news", "discovery"}
+UNRECORDED = ("start-here", "mission-news", "discovery")  # the kinds that name no record
+ENDS_ON_THE_ODDS = ("mission-news", "discovery")  # the kinds whose last paragraph must say what it means for the odds
+KIND_WORDS = {"mission-news": "mission news", "discovery": "discovery"}
 MISSION_POSTS_PER_WEEK = 2
 ODDS_RE = re.compile(r"\b(odds|number)\b", re.I)
 WINDOW_DAYS = 14
@@ -166,7 +175,7 @@ def check(posts_dir: Path, records: dict) -> tuple[list[str], int]:
             problems.append(f"{name}: the frontmatter date {fm['date']} differs from the file name's {m.group(1)}")
         kind = fm.get("kind")
         if kind not in KINDS:
-            problems.append(f"{name}: kind {kind!r} is not one of the eight")
+            problems.append(f"{name}: kind {kind!r} is not one of the nine")
         if kind == "start-here":
             openers += 1
         recs = fm.get("records") or []
@@ -179,7 +188,7 @@ def check(posts_dir: Path, records: dict) -> tuple[list[str], int]:
                     problems.append(f"{name}: names a mission that is not on the Missions page: {mid}")
         elif named:
             problems.append(f"{name}: only a mission news post names missions")
-        if kind not in ("start-here", "mission-news") and not recs:
+        if kind not in UNRECORDED and not recs:
             problems.append(f"{name}: names no record (records: [...])")
         for rid in recs:
             if rid not in by_id:
@@ -197,10 +206,11 @@ def check(posts_dir: Path, records: dict) -> tuple[list[str], int]:
                     problems.append(f"{name}: {mid} has no milestone marked done, moved or failed within {WINDOW_DAYS} days of {when}; a post cannot announce what the Missions page does not show")
             iso = when.isocalendar()
             mission_weeks.setdefault((iso[0], iso[1]), []).append(name)
+        if kind in ENDS_ON_THE_ODDS:
             paras = paragraphs(body)
             if not paras or not ODDS_RE.search(paras[-1]):
-                problems.append(f"{name}: a mission news post ends on what the event does and does not change for the odds; its last paragraph does not")
-        if when and kind not in ("start-here", "mission-news"):
+                problems.append(f"{name}: a {KIND_WORDS[kind]} post ends on what the event does and does not change for the odds; its last paragraph does not")
+        if when and kind not in UNRECORDED:
             for rid in recs:
                 if rid in by_id and not record_changed_near(by_id[rid], when, readings):
                     problems.append(f"{name}: {rid} shows no dated change within {WINDOW_DAYS} days of {when}; a post cannot announce what the record does not show")

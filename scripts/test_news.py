@@ -104,6 +104,36 @@ class MissionNews(unittest.TestCase):
         self.assertTrue(any("only a mission news post names missions" in p for p in self.run_check({"2026-10-08-hera.md": bad})))
 
 
+class Discovery(unittest.TestCase):
+    """A discovery, the ninth kind (asked for by John 2026-10-27): names no record or mission; ends on the odds."""
+
+    RECORDS = {"nodes": [], "entries": [], "scans": [], "missions": []}
+    GOOD = ("---\ntitle: A new dwarf planet candidate\ndate: 2026-10-27\nkind: discovery\nsummary: Found.\n"
+            "sources:\n  - label: The release\n    url: https://example.org/release\n---\n\n"
+            "On 13 October it was [found](https://example.org/release).\n\nIt moves none of my odds.\n")
+
+    def run_check(self, text, name="2026-10-27-a-find.md"):
+        import check_news
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp); (d / name).write_text(text, encoding="utf-8")
+            problems, n = check_news.check(d, self.RECORDS)
+        return problems
+
+    def test_a_good_post_passes(self):
+        self.assertEqual(self.run_check(self.GOOD), [])
+
+    def test_it_need_not_name_a_record(self):
+        self.assertFalse(any("names no record" in p for p in self.run_check(self.GOOD)))
+
+    def test_a_post_that_does_not_end_on_the_odds_is_refused(self):
+        bad = self.GOOD.replace("It moves none of my odds.", "Next comes the infrared.")
+        self.assertTrue(any("a discovery post ends on what the event" in p for p in self.run_check(bad)))
+
+    def test_it_may_not_name_a_mission(self):
+        bad = self.GOOD.replace("sources:", "missions: [hera]\nsources:")
+        self.assertTrue(any("only a mission news post names missions" in p for p in self.run_check(bad)))
+
+
 class MissionsFile(unittest.TestCase):
     """scripts/missions.py refuses a missions file that cannot be trusted (rule 4.20)."""
 

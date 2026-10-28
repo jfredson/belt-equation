@@ -12,6 +12,7 @@ export const KIND_LABEL: Record<string, string> = {
   'headline-moved': 'the headline moved',
   'method-changed': 'the method changed',
   'mission-news': 'mission news', // rule 4.20: a mission worth following, whether or not it moves the number
+  'discovery': 'a discovery', // the ninth kind (John, 2026-10-27): something newly found in the solar system, whether or not it touches a step
 };
 
 export const postPath = (p: Post) => `/news/${p.id}/`;
