@@ -29,9 +29,10 @@ What the JSON holds, beyond a copy of each record:
 - the ledger in data/ledger.toml, checked against its own rules and against the node records,
   with every figure on an entry filled in from the runs rather than read off the entry (step 30);
 - the weekly scan records in data/scans/ (the Radar, docs/scan-plan.md), newest scan first,
-  each item's factor, chain link and node page resolved from the node it names. Every scan
-  file is validated first, and a file that breaks the rules stops the build exactly as a
-  broken tree does;
+  each item's factor, chain link and node page resolved from the node it names, and each
+  record's discovery items (the discovery watch, docs/discovery-sources.md, added 2026-10-27)
+  gathered into one list, newest first. Every scan file is validated first, and a file that
+  breaks the rules stops the build exactly as a broken tree does;
 - the reader grid the "Run it for yourself" page reads (website step 39): the tree played out
   once per five-year deadline across the range a reader's shifted window can fall in, plus one
   cell for no deadline at all. It is worked out here, in Python, so the browser never computes
@@ -868,6 +869,15 @@ REUSED_FILLER = {"a", "an", "and", "as", "at", "by", "first", "for", "from", "in
                  "this", "to", "was", "with"}
 REUSED_REASON_WORDS = 2
 LEDGER_ID = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9][a-z0-9-]*$")
+# The discovery watch (docs/discovery-sources.md; scan procedure step 3d, added 2026-10-27, after
+# John decided the site should keep readers up to date on discoveries in our own solar system). A
+# record may carry `[[discovery]]` items, each a discovery or a first in the solar system read from
+# the fixed list of primary sources, and `discovery_sources` in its [scan] table, the number of
+# sources the pass read (so a pass that found nothing is still on the record). A record that holds
+# only the discovery pass, as the first hand run of 2026-10-27 does, reads no nodes: it says so
+# with nodes_checked = 0 and may leave out the [[item]] list altogether.
+DISCOVERY_FIELDS = ["title", "date", "source", "found", "node"]
+NO_NODE = "none"
 
 
 def validate_watch_terms(tree: dict) -> list[str]:
@@ -956,6 +966,47 @@ def reused_problems(iwhere: str, reused, queries, node_ids: set[str]) -> list[st
     return problems
 
 
+def discovery_problems(where: str, scan: dict, discoveries, node_ids: set[str]) -> list[str]:
+    """Check a record's discovery pass: `discovery_sources` on the [scan] table and the `[[discovery]]`
+    items (docs/scan-plan.md, "The scan record"; added 2026-10-27)."""
+    problems: list[str] = []
+    sources_read = scan.get("discovery_sources")
+    if sources_read is not None and (not isinstance(sources_read, int) or isinstance(sources_read, bool) or sources_read < 0):
+        problems.append(f"{where}: 'discovery_sources' is the number of sources the discovery pass read, "
+                        f"a whole number, not {sources_read!r}")
+    if discoveries is None:
+        return problems
+    if not isinstance(discoveries, list):
+        problems.append(f"{where}: 'discovery' must be a list of [[discovery]] tables")
+        return problems
+    if discoveries and sources_read is None:
+        problems.append(f"{where}: the record carries [[discovery]] items but its [scan] table does not say "
+                        "how many sources the pass read ('discovery_sources')")
+    for i, d in enumerate(discoveries, 1):
+        dwhere = f"{where} discovery {i} ({one_paragraph(d.get('title')) or 'no title'})"
+        if not isinstance(d, dict):
+            problems.append(f"{dwhere}: a [[discovery]] is a table with {', '.join(DISCOVERY_FIELDS)}")
+            continue
+        for field in DISCOVERY_FIELDS:
+            if d.get(field) in (None, ""):
+                problems.append(f"{dwhere}: missing '{field}'")
+        if "title" in d and not one_paragraph(d["title"]):
+            problems.append(f"{dwhere}: 'title' is one line naming what was found")
+        if "date" in d and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(plain(d["date"]))):
+            problems.append(f"{dwhere}: 'date' is the day it happened or was announced, YYYY-MM-DD")
+        if "source" in d and not str(d["source"]).startswith("https://"):
+            problems.append(f"{dwhere}: 'source' is the primary record's https address, opened before it was written")
+        if "found" in d and not one_paragraph(d["found"]):
+            problems.append(f"{dwhere}: 'found' is one plain sentence on what was found")
+        node = d.get("node")
+        if node is not None and node != NO_NODE and node not in node_ids:
+            problems.append(f"{dwhere}: 'node' names a step of the tree it touches, or is \"{NO_NODE}\"; "
+                            f"no node has the id {node!r}")
+        if "via" in d and not one_paragraph(d.get("via")):
+            problems.append(f"{dwhere}: 'via' names the source on the list it came from, or is left out")
+    return problems
+
+
 def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
                    ledger_exists: bool) -> tuple[list[str], list[str]]:
     """Check every scan record against the rules in docs/scan-plan.md.
@@ -968,7 +1019,10 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
     why no search was run; every verdict but `quiet`
     cites a source;
     a `flagged` item says what it would have done; and a ledger entry named by an item both
-    reads like a ledger id and, once the ledger exists, is in it."""
+    reads like a ledger id and, once the ledger exists, is in it. A `[[discovery]]` item (the
+    discovery watch, step 3d, added 2026-10-27) carries a title, the date it happened, the
+    primary source it was opened at (an https address), one plain sentence, and the node it
+    touches or "none"; a record that carries any needs `discovery_sources` in its [scan] table."""
     problems: list[str] = []
     notes: list[str] = []
     for raw in scans:
@@ -988,10 +1042,17 @@ def validate_scans(scans: list[dict], node_ids: set[str], ledger_ids: set[str],
                             f"not {scan['scope']!r}")
         if "test" in scan and not isinstance(scan["test"], bool):
             problems.append(f"{where}: 'test' marks a made-up record and must be true or false")
+        if "note" in scan and not one_paragraph(scan.get("note")):
+            problems.append(f"{where}: 'note' is a line about the run, or is left out")
+        problems += discovery_problems(where, scan, raw.get("discovery"), node_ids)
 
         items = raw.get("item") or []
-        if not items:
-            problems.append(f"{where}: a scan record needs at least one [[item]]")
+        # A record that holds only the discovery pass reads no nodes and says so (nodes_checked = 0
+        # beside discovery_sources); every other record reads at least one node.
+        discovery_only = scan.get("nodes_checked") == 0 and "discovery_sources" in scan
+        if not items and not discovery_only:
+            problems.append(f"{where}: a scan record needs at least one [[item]], unless it holds only the "
+                            "discovery pass (nodes_checked = 0, with discovery_sources)")
         if isinstance(scan.get("nodes_checked"), int) and items and scan["nodes_checked"] != len(items):
             problems.append(f"{where}: the [scan] table says {scan['nodes_checked']} nodes were checked "
                             f"and the record holds {len(items)} item(s)")
@@ -1133,6 +1194,22 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
                 },
                 "for_john": one_paragraph(item.get("for_john")) or None,
             })
+        # The discovery pass (step 3d, added 2026-10-27): what the fixed list of sources held that
+        # week. A node it touches is resolved to its page like an item's; "none" becomes null.
+        discoveries = []
+        for d in raw.get("discovery") or []:
+            node = by_id.get(d["node"]) if d["node"] != NO_NODE else None
+            discoveries.append({
+                "title": one_paragraph(d["title"]),
+                "date": str(plain(d["date"])),
+                "source": str(d["source"]).strip(),
+                "found": one_paragraph(d["found"]),
+                "via": one_paragraph(d.get("via")) or None,
+                "node": None if node is None else {
+                    "id": node["id"], "name": node["name"],
+                    "path": f"/tree/{SLUG_BY_LETTER[node['factor']]}/{node['id']}/",
+                },
+            })
         out_scans.append({
             "date": plain(scan["date"]),
             "ran_at": plain(scan["ran_at"]),
@@ -1141,11 +1218,26 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
             "searches": scan["searches"],
             "commit_before": scan["commit_before"],
             "test": bool(scan.get("test")),
+            "note": one_paragraph(scan.get("note")) or None,
             "file": raw["_file"],
             "counts": {v: sum(1 for it in items if it["verdict"] == v) for v in VERDICTS},
             "items": items,
+            # None when the record predates the pass (or the pass was skipped); 0 or more once it ran.
+            "discovery_sources": scan.get("discovery_sources"),
+            "discoveries": discoveries,
         })
     out_scans.sort(key=lambda s: (s["date"], s["file"]), reverse=True)
+
+    # Every discovery on the record, newest first, each knowing the record it came from, for the
+    # Radar page's own short list.
+    all_discoveries = [{"scan_date": s["date"], "scan_file": s["file"], "test": s["test"], **d}
+                       for s in out_scans for d in s["discoveries"]]
+    all_discoveries.sort(key=lambda d: (d["date"], d["scan_date"]), reverse=True)
+    # The newest pass that ran at all, found anything or not, so the page can say when the sources
+    # were last read.
+    last_pass = next(({"date": s["date"], "file": s["file"], "sources": s["discovery_sources"],
+                       "found": len(s["discoveries"])}
+                      for s in out_scans if s["discovery_sources"] is not None), None)
 
     # A flagged item carries `picked_up` (what took it off John's list, and when) or None, so the
     # Radar page and the node pages can say "ruled" on a card instead of leaving it marked as
@@ -1191,12 +1283,15 @@ def export_scans(tree: dict, scans_dir: Path, ledger_path: Path) -> tuple[dict, 
         "scans": out_scans,
         "waiting_on_john": waiting,
         "by_node": dict(by_node),
+        "discoveries": all_discoveries,
+        "last_discovery_pass": last_pass,
         "counts": {
             "scans": len(out_scans),
             "real_scans": sum(1 for s in out_scans if not s["test"]),
             "test_scans": sum(1 for s in out_scans if s["test"]),
             "items": sum(len(s["items"]) for s in out_scans),
             "waiting_on_john": len(waiting),
+            "discoveries": len(all_discoveries),
         },
     }, problems, notes
 

@@ -78,13 +78,25 @@ Ruled by John on 2026-10-21 (tracker pattern rule 4.20; docs/proposal-missions-t
 
 A mission that bears on a step is still read against that step in step 1, in the ordinary way. This step never replaces the tree reading and never moves a number.
 
+## 3d. The discovery watch (added 2026-10-27)
+
+Decided by John on 2026-10-27, the day the Rubin Observatory announced its first dwarf planet candidate: the site also keeps readers up to date on discoveries in our own solar system. After the missions (step 3c) and before the scan record is written, read the fixed list of primary sources in docs/discovery-sources.md for the past week. No web searches in this step, no aggregators, no Reddit: a feed is the same every week, so a quiet week is a real finding and not a search that happened to miss.
+
+1. Run `python3 scripts/discoveries.py --week-ending <the scan date>` (about half a minute, no cost, standard library only). It fetches every source on the list and prints what each published in the seven days ending on the scan date, grouped by source: the Minor Planet Center's circulars with the routine new asteroid designations folded into one line, the observatory and agency releases with their first line, and the week's planetary science papers whose titles carry a discovery word (it says how many it left out). A source it could not read is marked "COULD NOT READ"; say so in the record's `note`, and open that source's page by hand if a browser tool can.
+2. Keep the lines that are a discovery or a first in our own solar system: a new body (a dwarf planet candidate, a comet, an interstellar object, a moon), a first image of somewhere never seen, a first measurement, a mission arriving somewhere. Leave out launches (step 3c's business), anniversaries, schedules, funding, explainers, and exoplanets (another star's system is not ours). A routine new near-Earth asteroid is not a discovery for this list unless an observatory or agency announced it in its own words.
+3. Open each kept line's primary page before writing it (the observatory's or agency's release, the circular, the paper's abstract page), and write it as a `[[discovery]]` item in the scan record (docs/scan-plan.md, "The scan record"): `title`, one line in plain words; `date`, the day it happened or was announced; `source`, the primary page you opened, an https address; `found`, one plain sentence with absolute dates; `node`, the id of the step it touches, or `"none"` (most touch none, and a thin link is "none"); and `via`, which source on the list surfaced it. A find that two sources carry (the body that found it and the register that recorded it) gets the finder's page as `source` and both named in `via`.
+4. Set `discovery_sources` in the `[scan]` table to the number of sources the script read, the failed ones left out, so a week that found nothing is still on the record as a week read.
+5. For each item, add a line headed "Discovery:" to the report in step 7, with the title and `found`. A post of the `discovery` kind (site/src/content/news/) is written only when John says so; the scan writes none. The items show on the Radar page in their own list until then.
+
+This step never moves a number. A discovery that bears on a step's criterion is still read against that step in step 1, in the ordinary way.
+
 ## 4. Write the scan record
 
-Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the shape given in docs/scan-plan.md under "The scan record": a `[scan]` table with `date`, `ran_at` (UTC, from `date -u +%Y-%m-%dT%H:%M:%SZ`), `scope`, `nodes_checked`, `searches`, `commit_before`, then one `[[item]]` per node checked, in the order checked, with `node`, `verdict`, `queries`, `found` (one to three sentences, plain English, absolute dates), `sources` for every verdict but quiet, `ledger` for moved and resolved when an entry was written, `for_john` for flagged, `article` where step 3b gave one, `reused` where step 1 asked for it. Validate it with tomllib. If the folder already has a file with today's date, suffix `-2`.
+Write `data/scans/YYYY-MM-DD.toml` (create the folder if absent) exactly in the shape given in docs/scan-plan.md under "The scan record": a `[scan]` table with `date`, `ran_at` (UTC, from `date -u +%Y-%m-%dT%H:%M:%SZ`), `scope`, `nodes_checked`, `searches`, `commit_before`, then one `[[item]]` per node checked, in the order checked, with `node`, `verdict`, `queries`, `found` (one to three sentences, plain English, absolute dates), `sources` for every verdict but quiet, `ledger` for moved and resolved when an entry was written, `for_john` for flagged, `article` where step 3b gave one, `reused` where step 1 asked for it; then the `[[mission]]` items from step 3c; then `discovery_sources` in the `[scan]` table and one `[[discovery]]` per item step 3d kept. Validate it with tomllib. If the folder already has a file with today's date, suffix `-2`.
 
 ## 5. Changelog
 
-Add one line under a `## YYYY-MM-DD` heading at the top of CHANGELOG.md (create the heading if today's is absent): "Weekly scan (scheduled task, YYYY-MM-DD): N nodes read, M moved, K resolved, F flagged for John; record at data/scans/YYYY-MM-DD.toml." Name each moved or resolved node and its before and after in the same line.
+Add one line under a `## YYYY-MM-DD` heading at the top of CHANGELOG.md (create the heading if today's is absent): "Weekly scan (scheduled task, YYYY-MM-DD): N nodes read, M moved, K resolved, F flagged for John; record at data/scans/YYYY-MM-DD.toml." Name each moved or resolved node and its before and after in the same line, and end it with the discovery watch's count from step 3d ("D discoveries in the solar system", naming each, or "no discoveries").
 
 ## 6. Publish: one command
 
@@ -105,7 +117,7 @@ The last step is one command, `scripts/publish.py` (website step 26, 2026-09-25)
 
 ## 7. Report
 
-Send John one short message, a numbered list and nothing else: first each article idea from step 3b, then each mission news idea from step 3c, headed "Article idea:" with the step's plain name and the `article` line; then what he needs to do (each flagged item with its `for_john` line, and the push refusal if there was one), then one line per moved or resolved node with before and after, then one line with the counts. No prose, no summary of quiet nodes.
+Send John one short message, a numbered list and nothing else: first each article idea from step 3b, then each mission news idea from step 3c, headed "Article idea:" with the step's plain name and the `article` line; then each discovery from step 3d, headed "Discovery:" with its title and `found` (he decides whether it gets a post); then what he needs to do (each flagged item with its `for_john` line, and the push refusal if there was one), then one line per moved or resolved node with before and after, then one line with the counts. No prose, no summary of quiet nodes.
 
 ## Standing rules
 
@@ -113,6 +125,7 @@ Send John one short message, a numbered list and nothing else: first each articl
 - Read, do not infer: a node moves on evidence about its criterion, not on mood about the field.
 - One scan, one commit, made by the publish command in step 6. Never force-push, never rebase, never touch a branch other than main (and the one fallback branch in step 6).
 - The missions (step 3c): the scan may change a milestone's date and mark it done, moved or failed, with a source. It may not add or remove a mission, add a milestone the operator has not announced, or change why a mission is on the list. Those are John's; flag them in the report.
+- The discovery watch (step 3d): the scan reads the sources in docs/discovery-sources.md and writes `[[discovery]]` items. It may not add or remove a source, write a post, or move a number on the strength of a discovery. A source it thinks is missing goes in the report.
 - If anything in this file cannot be followed as written, do the parts that can, flag the rest for John in the report, and never improvise an edit outside the limits in docs/scan-plan.md.
 
 ## 8. Book log line (only if something moved or resolved)

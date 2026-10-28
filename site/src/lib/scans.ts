@@ -32,18 +32,46 @@ export type ScanItem = {
   picked_up: { on: string; how: string } | null;
 };
 
+/** A step of the tree a discovery touches, resolved to its page. */
+export type DiscoveryNode = { id: string; name: string; path: string };
+
+/** One thing the discovery watch found (scan procedure step 3d, added 2026-10-27): a discovery or a
+    first in our own solar system, read from the fixed list of primary sources in
+    docs/discovery-sources.md. It never moves a number. */
+export type Discovery = {
+  title: string;
+  /** The day it happened or was announced, YYYY-MM-DD. */
+  date: string;
+  /** The primary record, an https address the scan opened before writing the item. */
+  source: string;
+  found: string;
+  /** Which source on the list surfaced it, or null. */
+  via: string | null;
+  node: DiscoveryNode | null;
+};
+
+/** A discovery as the Radar's list shows it: knowing the record it came from. */
+export type ListedDiscovery = Discovery & { scan_date: string; scan_file: string; test: boolean };
+
 export type Scan = {
   date: string;
   ran_at: string;
   scope: 'weekly' | 'monthly';
+  /** Zero on a record that holds only the discovery pass (the first, run by hand on 2026-10-27);
+      such a record is not a reading of the tree and is never the latest scan. */
   nodes_checked: number;
   searches: number;
   commit_before: string;
   /** True on a hand-made record that stands in for a real week. The site says so wherever it shows one. */
   test: boolean;
+  /** A line about the run, when the record has one. */
+  note: string | null;
   file: string;
   counts: Record<Verdict, number>;
   items: ScanItem[];
+  /** How many sources the discovery watch read, or null when the record predates it. */
+  discovery_sources: number | null;
+  discoveries: Discovery[];
 };
 
 /** One node's own check, as the node page shows it: the scan it came from, flattened in. */
@@ -67,19 +95,28 @@ export type Scans = {
   scans: Scan[];
   waiting_on_john: WaitingItem[];
   by_node: Record<string, NodeCheck[]>;
+  /** Every discovery on the record, newest first. */
+  discoveries: ListedDiscovery[];
+  /** The newest record whose discovery pass ran, found anything or not; null before the first. */
+  last_discovery_pass: { date: string; file: string; sources: number; found: number } | null;
   counts: {
     scans: number;
     real_scans: number;
     test_scans: number;
     items: number;
     waiting_on_john: number;
+    discoveries: number;
   };
 };
 
 export const scans = scansJson as unknown as Scans;
 
-/** The most recent scan, or null before the first one has run. */
-export const latestScan: Scan | null = scans.scans[0] ?? null;
+/** The scans that read the tree, newest first. A record holding only the discovery pass
+    (nodes_checked of zero) is left out: it is a list of finds, not a reading. */
+export const readings: Scan[] = scans.scans.filter((s) => s.nodes_checked > 0);
+
+/** The most recent scan that read the tree, or null before the first one has run. */
+export const latestScan: Scan | null = readings[0] ?? null;
 
 /** Every check on one node, newest first. */
 export const checksFor = (nodeId: string): NodeCheck[] => scans.by_node[nodeId] ?? [];

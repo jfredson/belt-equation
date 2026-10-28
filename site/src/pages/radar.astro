@@ -6,17 +6,23 @@
 // being watched instead of taking it on faith.
 // 2026-10-21: the card grid became one column of checks that open and close
 // (components/ScanEntries.astro), with the counts under the heading, as John approved.
+// 2026-10-27: the discovery watch (docs/discovery-sources.md, scan procedure step 3d) gets its own
+// short list near the top: what the scan found in our own solar system, newest first, which moves
+// no number. A record that holds only that pass is never "the latest scan" here.
 import Base from '../layouts/Base.astro';
 import ScanEntries from '../components/ScanEntries.astro';
-import { longDate } from '../lib/dates';
+import { longDate, proseDates } from '../lib/dates';
 import {
-  scans, latestScan, verdictLabel, verdictMeaning, scopeLabel, scanSummary, scanCountLine, plainCount, ranAtLabel,
+  scans, readings, latestScan, verdictLabel, verdictMeaning, scopeLabel, scanSummary, scanCountLine, plainCount, ranAtLabel,
   type Verdict,
 } from '../lib/scans';
 
 const VERDICT_ORDER: Verdict[] = ['resolved', 'moved', 'flagged', 'noted', 'quiet'];
-const older = scans.scans.slice(1);
+const older = readings.slice(1);
 const waiting = scans.waiting_on_john;
+const FOUND_SHOWN = 10;
+const found = scans.discoveries.slice(0, FOUND_SHOWN);
+const lastPass = scans.last_discovery_pass;
 
 const description = latestScan
   ? `The Belt Equation's weekly scan: ${scanSummary(latestScan)} on ${longDate(latestScan.date)}. Every node checked, what was searched, what was found, and the verdict.`
@@ -40,6 +46,51 @@ const description = latestScan
       of them does not add up.
     </p>
   </section>
+
+  {lastPass && (
+    <section class="section">
+      <div class="shead" id="found">
+        <h2>Found in our solar system</h2>
+        <span>sources last read {longDate(lastPass.date)}</span>
+      </div>
+      <p class="dim" style="font-size: 14px;">
+        Since 27 October 2026 the scan also reads a fixed list of {lastPass.sources} primary sources (the Minor Planet
+        Center, the observatories, the space agencies, the week's planetary science papers) for discoveries and
+        firsts in our own solar system: a new body, a first image, a first measurement, a mission arriving
+        somewhere. None of it moves a number. Each find is written down here, and the ones worth a story get a
+        post in <a href="/news/">the news</a>.
+      </p>
+      {lastPass.found === 0 && (
+        <p class="dim" style="font-size: 14px;">
+          The last pass, on {longDate(lastPass.date)}, read {lastPass.sources} sources and found nothing new.
+        </p>
+      )}
+      {found.length > 0 && (
+        <ul class="found-list">
+          {found.map((d) => (
+            <li>
+              <span class="found-date">{longDate(d.date)}</span>
+              <a href={d.source} rel="noopener">{d.title}</a>
+              <p>
+                {proseDates(d.found)}{' '}
+                {d.node
+                  ? <>Touches <a href={d.node.path}>{d.node.name}</a>.</>
+                  : <span class="dim">Touches no step of the tree.</span>}
+              </p>
+              <span class="dim found-meta">
+                {d.via ? `Surfaced by ${d.via}; ` : ''}from the pass of {longDate(d.scan_date)}, record <code>data/scans/{d.scan_file}</code>{d.test ? ', a test record' : ''}.
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {scans.counts.discoveries > FOUND_SHOWN && (
+        <p class="dim" style="font-size: 14px;">
+          The newest {FOUND_SHOWN} of {scans.counts.discoveries}; the rest are in the records under <code>data/scans/</code>.
+        </p>
+      )}
+    </section>
+  )}
 
   {!latestScan && (
     <section class="section narrow">
@@ -135,9 +186,9 @@ const description = latestScan
   )}
 
   <p class="dim home-meta">
-    {scans.counts.scans === 0
+    {readings.length === 0
       ? 'No scan has run yet.'
-      : `${scans.counts.scans} scan${scans.counts.scans === 1 ? '' : 's'} on the record, ${scans.counts.items} node check${scans.counts.items === 1 ? '' : 's'} in all${scans.counts.test_scans ? `, ${scans.counts.test_scans} of them a hand-made test record` : ''}.`}
+      : `${readings.length} scan${readings.length === 1 ? '' : 's'} on the record, ${scans.counts.items} node check${scans.counts.items === 1 ? '' : 's'} in all${scans.counts.test_scans ? `, ${scans.counts.test_scans} of them a hand-made test record` : ''}${scans.counts.discoveries ? `, ${scans.counts.discoveries} ${scans.counts.discoveries === 1 ? 'discovery' : 'discoveries'} in the solar system` : ''}.`}
     <span class="sep">|</span><a href="/tree/">The tree</a><span class="sep">|</span><a href="/about/#story">What has changed</a>
   </p>
 </Base>
