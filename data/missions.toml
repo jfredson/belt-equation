@@ -22,7 +22,8 @@
 # where the plain form would mislead. Every date was read on `checked` from the source beside it.
 #
 # The "why I follow it" lines (`why`) are drafts written for John in his voice on 2026-10-21, for
-# him to change; `why_draft = true` until he has. The page marks them as drafts.
+# him to change; `why_draft = true` until he has. The mark is private: the page stopped showing it on
+# 2026-10-27 (John: a note addressed to him must never be on the public site).
 
 checked = "2026-10-25"
 
