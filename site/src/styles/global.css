@@ -393,6 +393,12 @@ a.dim:hover { color: var(--accent); }
 .waiting-list { list-style: none; margin: 0; padding: 0; }
 .waiting-list li { padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; }
 .waiting-list li p { margin: 6px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--text-soft); }
+/* The Radar's list of what the discovery watch found in our solar system (2026-10-27). */
+.found-list { list-style: none; margin: 0; padding: 0; }
+.found-list li { padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.found-list li p { margin: 6px 0 4px; font-size: 14.5px; line-height: 1.55; color: var(--text-soft); }
+.found-date { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-right: 10px; }
+.found-meta { font-family: var(--sans); font-size: 13px; }
 
 .link-group { margin-bottom: 26px; }
 .link-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 14px; }

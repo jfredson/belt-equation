@@ -120,5 +120,73 @@ class ARulingOnTheNodeClearsAFlag(unittest.TestCase):
         self.assertNotIn(("2026-10-11", "B-staple-crop-grown-from-seed-to-harvest-off-earth"), still)
 
 
+class ADiscoveryItemIsChecked(unittest.TestCase):
+    """Added 2026-10-27 with the discovery watch (docs/discovery-sources.md; scan procedure step 3d):
+    a `[[discovery]]` item carries a title, a date, an https source, one sentence and a node or
+    "none", the record says how many sources the pass read, and a record holding only the pass
+    may leave out its [[item]] list when it says it read no nodes."""
+
+    GOOD = {"title": "The Rubin Observatory's first dwarf planet candidate, 2026 ED138", "date": "2026-10-27",
+            "source": "https://rubinobservatory.org/news/rubin-first-dwarf-planet-candidate",
+            "found": "On 2026-10-27 the Rubin Observatory announced 2026 ED138.", "node": "none"}
+
+    def with_discoveries(self, discoveries, scan_extra=None, items=True) -> list[str]:
+        raw = record({})
+        raw["discovery"] = discoveries
+        raw["scan"].update(scan_extra or {})
+        if not items:
+            raw["item"] = []
+        problems, _ = export.validate_scans([raw], NODES, set(), False)
+        return problems
+
+    def test_a_good_item_passes(self):
+        self.assertEqual(self.with_discoveries([self.GOOD], {"discovery_sources": 7}), [])
+
+    def test_an_item_touching_a_step_names_a_node_in_the_tree(self):
+        self.assertEqual(self.with_discoveries([{**self.GOOD, "node": "C5"}], {"discovery_sources": 7}), [])
+        found = self.with_discoveries([{**self.GOOD, "node": "Z9"}], {"discovery_sources": 7})
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("no node has the id 'Z9'", found[0])
+
+    def test_items_need_the_count_of_sources_read(self):
+        found = self.with_discoveries([self.GOOD])
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("discovery_sources", found[0])
+
+    def test_each_field_is_required_and_the_source_is_an_https_address(self):
+        for field in ("title", "date", "source", "found", "node"):
+            with self.subTest(missing=field):
+                item = {k: v for k, v in self.GOOD.items() if k != field}
+                found = self.with_discoveries([item], {"discovery_sources": 7})
+                self.assertTrue(any(f"missing '{field}'" in p for p in found), found)
+        found = self.with_discoveries([{**self.GOOD, "source": "a search result"}], {"discovery_sources": 7})
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("https address", found[0])
+
+    def test_the_date_is_a_day(self):
+        found = self.with_discoveries([{**self.GOOD, "date": "October 2026"}], {"discovery_sources": 7})
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("YYYY-MM-DD", found[0])
+
+    def test_a_pass_that_found_nothing_is_fine(self):
+        self.assertEqual(self.with_discoveries([], {"discovery_sources": 7}), [])
+
+    def test_a_record_holding_only_the_pass_says_it_read_no_nodes(self):
+        self.assertEqual(self.with_discoveries([self.GOOD], {"discovery_sources": 7, "nodes_checked": 0}, items=False), [])
+        found = self.with_discoveries([self.GOOD], {"discovery_sources": 7}, items=False)
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("at least one [[item]]", found[0])
+
+    def test_the_export_lists_every_discovery_newest_first_with_its_record(self):
+        tree = export.compute.load_tree(ROOT / "data")
+        scans, problems, _ = export.export_scans(tree, ROOT / "data" / "scans", ROOT / "data" / "ledger.toml")
+        self.assertEqual(problems, [])
+        dates = [d["date"] for d in scans["discoveries"]]
+        self.assertEqual(dates, sorted(dates, reverse=True))
+        self.assertIn("2026-10-27", [d["scan_date"] for d in scans["discoveries"]])
+        self.assertIsNotNone(scans["last_discovery_pass"])
+        self.assertEqual(scans["counts"]["discoveries"], len(scans["discoveries"]))
+
+
 if __name__ == "__main__":
     unittest.main()

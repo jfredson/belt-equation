@@ -103,7 +103,9 @@ class StaleOrMissingIsRefused(unittest.TestCase):
 
     def test_a_newer_scan_makes_the_file_stale(self):
         scans = self.data / "scans"
-        newest = sorted(scans.glob("*.toml"))[-1]
+        # The newest record that read the tree: a record holding only the discovery pass
+        # (nodes_checked = 0) does not count as a reading, so it is not the one copied here.
+        newest = [p for p in sorted(scans.glob("*.toml")) if "nodes_checked = 0" not in p.read_text()][-1]
         text = newest.read_text().replace(newest.stem, "2099-01-04", 1)
         (scans / "2099-01-04.toml").write_text(text)
         problems = compute.headline_file_problems(self.data, self.snaps)

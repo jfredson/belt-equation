@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-27
+
+- **The discovery watch.** John decided on 2026-10-27 that the site also keeps readers up to date on discoveries in our own solar system. The weekly scan has a new step 3d (docs/scan-procedure.md) that reads a fixed list of seven primary sources (docs/discovery-sources.md; `scripts/discoveries.py` fetches them, standard library only) and writes each discovery or first as a `[[discovery]]` item in the scan record, which the Radar page shows in its own list. The first pass, run by hand for the week 2026-10-21 to 2026-10-27, found two: the Rubin Observatory's first dwarf planet candidate, 2026 ED138, and comet-like activity on the main-belt asteroid 6993; record at data/scans/2026-10-27.toml, which read no nodes. **No number moved.**
+
 ## 2026-10-25
 
 - Weekly scan (scheduled task, 2026-10-25): 17 nodes read, 0 moved, 0 resolved, 1 flagged for John (C1, AlphaProof Nexus in Science); record at data/scans/2026-10-25.toml. Seven missions read, none changed.

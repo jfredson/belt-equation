@@ -1849,13 +1849,18 @@ def report_score(tree: dict, snapshots: list[dict], year: int) -> str:
 
 
 def newest_scan_date(scans_dir: Path) -> str | None:
-    """The date of the newest weekly scan record in data/scans/, as YYYY-MM-DD, or None."""
+    """The date of the newest weekly scan record in data/scans/ that read the tree, as YYYY-MM-DD,
+    or None. A record that holds only the discovery pass (nodes_checked = 0; the discovery watch,
+    added 2026-10-27) is not a reading of the tree, so it does not move the last-reading date."""
     dates = []
     for path in sorted(scans_dir.glob("*.toml")) if scans_dir.exists() else []:
         try:
-            date = tomllib.loads(path.read_text()).get("scan", {}).get("date")
+            scan = tomllib.loads(path.read_text()).get("scan", {})
         except tomllib.TOMLDecodeError as e:
             raise TreeError(f"{path.name}: cannot be read as TOML: {e}")
+        if scan.get("nodes_checked") == 0:
+            continue
+        date = scan.get("date")
         dates.append(date.isoformat() if hasattr(date, "isoformat") else str(date or path.stem))
     return max(dates) if dates else None
 

@@ -1,0 +1,25 @@
+[scan]
+date = 2026-10-27
+ran_at = "2026-10-28T04:32:34Z"
+scope = "weekly"
+nodes_checked = 0
+searches = 0
+commit_before = "2667341"
+discovery_sources = 7
+note = "A hand run of the discovery watch alone (scan procedure step 3d, added this day), for the seven days 2026-10-21 to 2026-10-27. The tree was last read on 2026-10-25 and is not read here, so nodes_checked is 0. All seven sources answered; the script printed 35 lines, 22 of them routine asteroid designations folded into one, and two were kept."
+
+[[discovery]]
+title = "The Rubin Observatory's first dwarf planet candidate, 2026 ED138"
+date = 2026-10-27
+source = "https://rubinobservatory.org/news/rubin-first-dwarf-planet-candidate"
+via = "NOIRLab news (science release noirlab2626), and the Minor Planet Center's circular 2026-U85"
+found = "On 2026-10-27 the Rubin Observatory announced 2026 ED138, an icy body found on 2026-10-13 about 46 times as far from the Sun as Earth is and judged 600 to 1,500 kilometres across, which would make it a dwarf planet once its size is confirmed in the infrared; the Minor Planet Center published its orbit the same day."
+node = "none"
+
+[[discovery]]
+title = "Comet-like activity found on the main-belt asteroid 6993 (1995 BJ4)"
+date = 2026-10-26
+source = "https://arxiv.org/abs/2610.31910"
+via = "arXiv, planetary science papers of the past week"
+found = "A paper posted on 2026-10-26 and accepted by the Astrophysical Journal Letters reports that the outer main-belt asteroid 6993 (1995 BJ4), about 12 kilometres across, was seen shedding material from 2026-06-25 in Zwicky Transient Facility images, which would make it the largest known main-belt comet if the activity comes from ice turning to gas rather than from an impact."
+node = "none"
