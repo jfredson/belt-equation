@@ -1,6 +1,6 @@
 # Proposal: does a service sold from equipment built off Earth count as an off-Earth economy?
 
-*Written 2026-10-31 by Claude, after John asked what a post by Elon Musk meant for the economic side of the tree. Status: proposed. Nothing in the tree changes until John rules. This touches a Tier 3 requirement, so under docs/methodology.md ("Fixed for version one, and changed only at an annual review") it lands at a review: the annual review on 2027-01-03, or earlier if John counts this proposal as the review, as he did for the function-over-route pass on 2026-09-25.*
+*Written 2026-10-31 by Claude, after John asked what a post by Elon Musk meant for the economic side of the tree; revised the same day after John questioned the rule against rewording published criteria (see "Why not just reword the old node"). Status: proposed. Nothing in the tree changes until John rules. This touches a Tier 3 requirement, so under docs/methodology.md ("Fixed for version one, and changed only at an annual review") it lands at a review: the annual review on 2027-01-03, or earlier if John counts this proposal as the review, as he did for the function-over-route pass on 2026-09-25.*
 
 ## What prompted it
 
@@ -18,9 +18,22 @@ The tree already has a node for computing in orbit, the paying-customer node (`M
 
 This is the same kind of fault the function-over-route rule (docs/proposal-function-over-route-2026-09-25.md) was written to fix. That rule says a requirement should name what the tier needs, not one way of getting it. What Tier 3 needs here is an off-Earth industry that pays for itself. Selling a physical product is one way to get there, and selling a service from equipment built off Earth is a second.
 
-## Why the old node cannot simply be reworded
+## Why not just reword the old node
 
-docs/methodology.md says a node's id and criterion are never changed once a probability has been published against it, so that the yearly score can always find the forecast it is scoring. The profitable-product node has been published since the site went live. So widening its criterion in place is not allowed. Under the method, the only options are to retire it and replace it, or to leave it standing and add the second route beside it. This proposal does the second.
+The first draft of this proposal said the old node could not be reworded because docs/methodology.md forbids changing a published criterion. John asked whether that rule was still right, and it turned out to be only half right. Its stated reason, that the yearly score could not find the forecast, does not hold as long as every change comes with a dated re-estimate. The tree has also reworded three published criteria in place since the site went public. A rewrite is proposed separately (docs/proposal-rewording-rule-2026-10-31.md).
+
+Under either rule, though, this change should not be an edit in place. Counting services as well as products makes the event more likely than the number on record assumed, and it moves toward the outcome the project hopes for. A change like that should be loud, with a new node and a new number, not a quiet edit. So the real choice is between two forms:
+
+- **Add a second route beside the old node** (this proposal: three nodes, the old one unchanged).
+- **Retire the old node and replace it with one wider node** that counts a product or a service, with its own single number (two nodes, the old one marked superseded).
+
+This proposal recommends the first, for three reasons:
+
+1. The two routes differ greatly in difficulty. Making propellant is chemistry, while making working solar cells from lunar soil is something nobody can do yet. One blended number would hide that difference, and two numbers show it.
+2. The weekly scan can watch the computing route on its own, so news about lunar manufacturing has a node to land on.
+3. The old node keeps going as it is, with its forecast and its meaning, and nothing about it is retired.
+
+The cost is one more node than the alternative, and a tier list that points at a node with no number of its own. The tree already accepts that cost for the biology hedge and the access branch.
 
 ## The proposed change
 
@@ -96,7 +109,7 @@ The Tier 3 list in data/tiers.toml swaps `M-off-earth-product-sold-at-a-profit` 
 | Choice | Confidence | Standard or judgment | Strongest alternative, and its cost |
 |---|---|---|---|
 | A service from equipment built off Earth should count toward Tier 3 at all | **High.** Tier 3's own words describe "a resource economy", and a lunar factory selling computing time is one by any plain reading. | Judgment, but it follows the tree's own function-over-route rule. | Rule that Tier 3 means trade in physical goods only, and say so in definitions.md. Cheap, but the tree could then show no off-Earth economy in a world where the largest business off Earth was running. |
-| Add a route node and an either-route node, rather than reword the old node | **High.** The method forbids rewording a published criterion, and this is the form the tree already uses three times. | Standard for this tree. | Retire the product node and replace it with one wider node. One node instead of three, but it throws away a published forecast and its score, which the method exists to protect. |
+| Add a route node and an either-route node, rather than reword the old node | **Moderate to high.** Rewording in place is ruled out on its merits, because the change loosens toward the hoped-for outcome (see "Why not just reword the old node"). Two routes beat one blended number because their difficulty differs so much. | Standard for this tree: it already uses this form for the biology hedge and the access branch. | Retire the product node and replace it with one wider node that counts a product or a service. Two nodes instead of three and a plainer tier list, at the cost of one number that hides how far apart the two routes are. |
 | The equipment must be mostly off-Earth material by mass | **Moderate.** It matches the product node's test and stops Earth-built satellites with a lunar bolt from counting. It lets chips come from Earth, which is right, since they are light. | Judgment, copied from the existing node. | Count value instead of mass (most of the equipment's cost from off-Earth manufacturing). Closer to "industry" in spirit, but hard to check from accounts, since costs are not broken out that way. |
 | Revenue counts only from customers not affiliated with the company | **Moderate.** Without it a company could sell to itself at any price and show a profit. The cost: the likeliest first user is the builder running its own AI, which this test does not count. | Standard accounting caution; the paying-customer node already uses it. | Count affiliated sales, disclosed, as the product node does for government buyers. Catches the in-house case sooner, but the profit figure would then rest on a price the company set for itself. |
 | Same four gates as the product route | **Moderate.** Both routes need material at scale, the right to keep what you mine, safe zones and an insurable asset. The service route arguably also needs a way to make working hardware off Earth, and the tree has no node for that. | Judgment. | Add a gate node, "working solar cells made off Earth from off-Earth material". More honest about the extra step, but a fourth new node and a new number. I would leave it out for now and let the route node's low numbers carry it; flag if you disagree. |
@@ -116,7 +129,7 @@ The post also shows a second, larger gap, which this proposal does not try to fi
 ## What John decides
 
 1. Whether a service from equipment built off Earth counts toward Tier 3, or Tier 3 means physical goods only (in which case definitions.md should say so).
-2. If it counts: the either-route form above, or retiring and replacing the product node.
+2. If it counts: the either-route form above, or retiring the product node and replacing it with one wider node. Either works under the current rule or the rewritten one (docs/proposal-rewording-rule-2026-10-31.md).
 3. The three tests in the new node: mass, outside customers only, and the same four gates. Also whether to add a gate for making working hardware off Earth.
 4. The first numbers for the new route.
 5. Whether this lands at the annual review on 2027-01-03, or now under the 2026-09-25 precedent.
