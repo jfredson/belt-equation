@@ -682,6 +682,7 @@ a.dim:hover { color: var(--accent); }
 .news-item time { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
 .news-item .kind { font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-left: 10px; }
 .news-item .kind.kind-mission { color: var(--accent-2); } /* mission news, rule 4.20: told apart from the posts that move the number */
+.news-item .kind.kind-discovery { color: var(--text-soft); } /* a discovery (John, 2026-10-27): likewise told apart; it touches no step directly */
 .news-item h3 { margin: 4px 0 6px; font-size: 21px; line-height: 1.25; }
 .news-item h3 a { text-decoration: none; color: var(--text); }
 .news-item p { margin: 0; color: var(--text-soft); font-size: 15.5px; }
@@ -698,6 +699,9 @@ a.dim:hover { color: var(--accent); }
 .post table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 14.5px; border-top: 3px double var(--line-strong); border-bottom: 3px double var(--line-strong); margin: 18px 0 22px; }
 .post td, .post th { text-align: left; padding: 8px 10px 8px 0; vertical-align: top; border-bottom: 1px solid var(--line); }
 .post th { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.post figure { margin: 22px 0; }
+.post figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.post figcaption { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
 .post .stand-in { border: 1px dashed var(--line-strong); padding: 8px 12px; font-family: var(--sans); font-size: 13px; color: var(--muted); margin: 0 0 18px; }
 .post-record { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 12px; }
 .post-record .rec { font-family: var(--sans); font-size: 14px; color: var(--text-soft); margin: 0 0 8px; }
