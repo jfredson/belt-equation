@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-10-31
+
+- **The site serves a sitemap at /sitemap.xml, and robots.txt names it.** Built from the tree at every build (`site/src/pages/sitemap.xml.ts`): the fixed pages, one page per factor, one per event, one per news post; the not-found page and the two redirect pages (`/method/` and `/story/`) are left out. Until now the robots file said, truthfully, that the site served none. Added after a check on 2026-10-31 of how the family's sites show up on Google when searched by name found four of them without a sitemap. **No number moved.**
+
 ## 2026-10-27
 
 - **The discovery watch.** John decided on 2026-10-27 that the site also keeps readers up to date on discoveries in our own solar system. The weekly scan has a new step 3d (docs/scan-procedure.md) that reads a fixed list of seven primary sources (docs/discovery-sources.md; `scripts/discoveries.py` fetches them, standard library only) and writes each discovery or first as a `[[discovery]]` item in the scan record, which the Radar page shows in its own list. The first pass, run by hand for the week 2026-10-21 to 2026-10-27, found two: the Rubin Observatory's first dwarf planet candidate, 2026 ED138, and comet-like activity on the main-belt asteroid 6993; record at data/scans/2026-10-27.toml, which read no nodes. **No number moved.**
