@@ -1,7 +1,9 @@
 # The site is public but under-promoted (docs/definitions.md, "Where it lives publicly").
-# Crawling is allowed. The site serves no sitemap: it is a hundred or so pages, every one of
-# them reachable from the top bar and the tree page, and nothing here names one. (Until
-# 2026-10-17 this file said there would be none "until the site goes live on its domain";
-# the domain has been live since 2026-09-19 and no sitemap was built, so the line was stale.)
+# Crawling is allowed. The sitemap is built from the tree at every build
+# (site/src/pages/sitemap.xml.ts, added 2026-10-31) and lists every public page at its stable
+# address. (Until 2026-10-31 this file said the site served no sitemap, which was true: a search
+# for the family's sites by name that day found four of them without one.)
 User-agent: *
 Allow: /
+
+Sitemap: https://beltequation.com/sitemap.xml
