@@ -25,7 +25,7 @@
 # him to change; `why_draft = true` until he has. The mark is private: the page stopped showing it on
 # 2026-10-27 (John: a note addressed to him must never be on the public site).
 
-checked = "2026-10-25"
+checked = "2026-11-01"
 
 # ---------------------------------------------------------------- the Moon
 
@@ -39,7 +39,7 @@ what = "NASA's programme to send people back to the Moon. Its first crew flew ro
 why = "These are the first people to go past low Earth orbit since before I was born. If they land, and keep landing, the Moon stops being history and becomes a place people work."
 why_draft = true
 steps = ["L-crew-lands-on-moon-in-reusable-lander", "R-crewed-lunar-program-outlives-two-changes-of-backer"]
-checked = "2026-10-25"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Artemis II launches four astronauts on a flight around the Moon"
@@ -86,7 +86,7 @@ what = "A heavy rocket built to be flown again, both halves, and one of the two 
 why = "If a rocket this big can fly, land and fly again like an airliner, nearly everything else on this page gets cheaper. It is the one machine my odds lean on most."
 why_draft = true
 steps = ["L-fully-reusable-heavy-launcher-recovers-both-stages", "L-orbital-propellant-transfer-at-scale", "L-heavy-launcher-100-per-year", "L-launch-price-below-200-dollars-per-kg"]
-checked = "2026-10-25"
+checked = "2026-11-01"
 notes = "So far the tower has caught the booster three times, and two caught boosters have flown again. No upper stage has yet been caught."
 
 [[mission.milestone]]
@@ -132,7 +132,7 @@ why = "Water ice at the poles is the first thing anyone living on the Moon would
 why_draft = true
 steps = []
 step_note = "The nearest steps are about making fuel and material from what is found off Earth, which need far more than a first test."
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Chang'e 7 launches to look for ice in the south pole's shadowed craters"
@@ -164,7 +164,7 @@ what = "A spacecraft driven by a nuclear reactor, to fly to Mars, and a reactor 
 why = "The Moon's night lasts two weeks, and sunlight can't carry a base through it. A reactor that works out there is the difference between visiting and staying."
 why_draft = true
 steps = ["E-fission-reactor-runs-on-lunar-surface", "E-power-through-the-lunar-night-at-a-surface-site", "D-nuclear-propulsion-changes-orbit-in-space"]
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "SR-1 Freedom, a reactor-driven spacecraft, launches toward Mars"
@@ -209,7 +209,7 @@ why = "Nobody has ever held a piece of a moon of Mars. If this works, in 2031 th
 why_draft = true
 steps = []
 step_note = "No step depends on a sample from Phobos; a few grams is a science return, not a supply line."
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Launches on an [H3 rocket](https://en.wikipedia.org/wiki/H3_%28rocket%29) from Tanegashima, Japan"
@@ -281,7 +281,7 @@ why = "Two spacecraft for Mars on a small budget is the kind of mission falling 
 why_draft = true
 steps = []
 step_note = "It studies Mars's thin air; no step turns on what it finds."
-checked = "2026-10-25"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Launches on Blue Origin's [New Glenn rocket](https://en.wikipedia.org/wiki/New_Glenn)"
@@ -329,7 +329,7 @@ why = "In 2022 a spacecraft hit a small asteroid on purpose and [shortened its o
 why_draft = true
 steps = []
 step_note = "It tests defending Earth from asteroids, not going out to them; no step turns on it."
-checked = "2026-10-25"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "First pictures of the asteroid Didymos, a single bright dot"
@@ -379,7 +379,7 @@ why = "One spacecraft, two very different worlds: a tiny rock that travels along
 why_draft = true
 steps = []
 step_note = "A sample of grams brought home is science, not the off-Earth mining a step would need."
-checked = "2026-10-25"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Launches"
@@ -432,7 +432,7 @@ why = "The Belt in this site's name is full of places like this, and nobody has 
 why_draft = true
 steps = []
 step_note = "Looking at a metal asteroid is not mining one; the steps about off-Earth material need far more."
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Launches"
@@ -465,7 +465,7 @@ why = "In April 2029 [an asteroid about 450 metres long](https://en.wikipedia.or
 why_draft = true
 steps = []
 step_note = "It is a science visit; no step turns on it."
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Swings past Earth on its way to Apophis"
@@ -507,7 +507,7 @@ why = "Lucy will fly past a record number of asteroids, out where Jupiter keeps 
 why_draft = true
 steps = []
 step_note = "Flybys are science; no step turns on them."
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Flies past Eurybates and its small moon Queta"
@@ -553,7 +553,7 @@ why = "It already did the hard thing, bringing a piece of an asteroid home, and 
 why_draft = true
 steps = []
 step_note = "Its next visits are science; no step turns on them."
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Flies past the asteroid Torifune"
@@ -592,7 +592,7 @@ why = "This is the closest anyone is to the idea this site is named for: a busin
 why_draft = true
 steps = []
 step_note = "Not yet. The steps about off-Earth material at scale need far more than a first visit."
-checked = "2026-10-25"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Its first spacecraft, Odin, is declared lost before reaching its asteroid"
@@ -638,7 +638,7 @@ why = "There may be more than twice as much water under Europa's ice as in all o
 why_draft = true
 steps = []
 step_note = "It is science; no step turns on it."
-checked = "2026-10-25"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Launches"
@@ -677,7 +677,7 @@ why = "Going into orbit around a moon of another planet is new. [Ganymede is big
 why_draft = true
 steps = []
 step_note = "It is science; no step turns on it."
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Launches"
@@ -725,7 +725,7 @@ why_draft = true
 steps = []
 step_note = "Not directly. The nearest step is a hundred people living and working off Earth at once, for pay, which needs many stations like it."
 step_near = "M-hundred-people-working-off-earth-for-pay"
-checked = "2026-10-21"
+checked = "2026-11-01"
 
 [[mission.milestone]]
 what = "Launches"

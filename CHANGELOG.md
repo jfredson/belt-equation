@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-11-01
+
+- Weekly scan (scheduled task, 2026-11-01): 63 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-11-01.toml. 17 mission milestones read, none changed. 1 discovery in the solar system: Lucy enters the Jupiter Trojan region.
+
 ## 2026-10-31
 
 - **The site serves a sitemap at /sitemap.xml, and robots.txt names it.** Built from the tree at every build (`site/src/pages/sitemap.xml.ts`): the fixed pages, one page per factor, one per event, one per news post; the not-found page and the two redirect pages (`/method/` and `/story/`) are left out. Until now the robots file said, truthfully, that the site served none. Added after a check on 2026-10-31 of how the family's sites show up on Google when searched by name found four of them without a sitemap. **No number moved.**
