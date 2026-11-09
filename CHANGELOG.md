@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-11-08
+
+- Weekly scan (scheduled task, 2026-11-08): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-11-08.toml. 10 mission milestones read, none changed. 1 discovery in the solar system: the archival study of the Rubin dwarf planet candidate 2026 ED138.
+
 ## 2026-11-01
 
 - Weekly scan (scheduled task, 2026-11-01): 63 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-11-01.toml. 17 mission milestones read, none changed. 1 discovery in the solar system: Lucy enters the Jupiter Trojan region.
