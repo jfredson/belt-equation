@@ -10,7 +10,10 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 - Proposal on computing from equipment built off Earth: agreed in principle, to land at the annual review of 2027-01-03 after revision. Nothing in the tree changes yet.
 - E-solar-with-storage-powers-a-lunar-polar-site-for-a-year: its claim to check is cleared. NASA's release of 2022-08-23 confirms the $19.4 million Vertical Solar Array Technology awards, now linked in the notes. Words only; criterion and numbers unchanged.
 - Missions: ESCAPADE's powered Earth flybys are done (7 and 9 November, per NASA); both spacecraft are on course for Mars in September 2027.
-- Discovery watch: ESA's space science feed and page were withdrawn in a site move (404 since the scan of 2026-11-08); the watch now reads ESA's top-news feed (scripts/discoveries.py, docs/discovery-sources.md). All seven sources answer.
+- Discovery watch: ESA's space science feed and page were withdrawn in a site move (404 since the scan of 2026-11-08); the watch now reads ESA's top-news feed (scripts/discoveries.py, docs/discovery-sources.md). All seven sources answer. That feed's dates were re-stamped by the move, so the source list now tells the scan to use each story's own page date. The Euclid comet (C/2026 S1) is not logged: ESA announced it on 2026-10-19, before the watch began, not on 2026-11-06 as the feed says.
+- Missions: Hayabusa2's main link is now JAXA's own Hayabusa2 page, which loads again. The two Chinese missions keep their Wikipedia links: China's space agency site still gives no dates for Chang'e 7 and nothing on Tianwen-2 since its launch.
+- Scan procedure: the first scan of each month re-checks every mission that links to Wikipedia instead of its operator (docs/scan-procedure.md, step 3c, item 6).
+- Proposal on computing from equipment built off Earth: John ruled that in-house use counts when the company sells what the computing produces to outside customers.
 
 ## 2026-11-08
 

@@ -75,6 +75,7 @@ Ruled by John on 2026-10-21 (tracker pattern rule 4.20; docs/proposal-missions-t
 3. On the first scan of each month, also check every future milestone of every mission once, so a slip announced far ahead is caught.
 4. Write each change as a `[[mission]]` item in the scan record (docs/scan-plan.md, "The scan record"), and one `checked` item for each mission read with no change.
 5. For each event on the fixed list (a launch; an arrival in orbit, or a flyby that returns pictures; a first picture of somewhere never seen; a landing; a sample or crew coming home; a crew flying; a failure or loss; a cancellation; a slip of more than a year in the mission's main milestone, marked `main = true`), add a line headed "Article idea (mission news):" to the report in step 7. No more than two mission news posts go up in a week; when more events land, say which is biggest.
+6. On the first scan of each month, open the operator's own page for each mission whose `url` falls back to Wikipedia (the missions with a `url_label`). If that page now loads and gives the mission's news or dates in text, set `url` to it, remove `url_label`, and say so in the report in step 7; if it still gives nothing, leave both as they are. Added 2026-11-09, ruled by John, after Starship's link was found still pointing at Wikipedia weeks after SpaceX's own pages had text again.
 
 A mission that bears on a step is still read against that step in step 1, in the ordinary way. This step never replaces the tree reading and never moves a number.
 

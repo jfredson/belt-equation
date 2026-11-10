@@ -50,8 +50,11 @@ back it reaches, which matters because the scan runs once a week.
    (https://www.esa.int/rssfeed/science) and its Space Science page; both answered 404 from the scan of
    2026-11-08, after ESA moved its articles to new addresses, and ESA's list of feeds
    (https://www.esa.int/Services/RSS_Feeds) no longer offers a science feed. The top-news feed mixes
-   science with council, business and launcher news, which the scan reads past; it carried both of ESA's
-   solar-system stories of 2026-11-06 to 2026-11-09. Changed 2026-11-09.
+   science with council, business and launcher news, which the scan reads past. Its dates cannot be
+   trusted: the site move re-stamped old articles, so on 2026-11-09 the feed dated a story of 2026-06-24
+   to 2026-11-06, and the Euclid comet announcement of 2026-10-19 to the same day. Step 3 of the watch
+   already requires opening each kept story's own page; use the publication date printed there, and
+   leave out a story whose page date falls outside the week. Changed 2026-11-09.
 6. **JAXA, press releases.** Page: https://global.jaxa.jp/press/. Feed: https://global.jaxa.jp/rss/press.rdf
    (the RDF form of RSS, twenty items, about three months deep). The Japanese agency's missions,
    including MMX, launched on 2026-10-19 for the Martian moon Phobos, whose arrival will be a first.
