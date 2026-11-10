@@ -133,9 +133,9 @@ depends_on = []
 status = "open"
 probability = { baseline = 0.2, moderate = 0.3, strong = 0.42, radical = 0.55, open = 0.62 }
 estimated_on = 2027-01-03
-rationale = "Solar cells have been made from simulated lunar soil in laboratories on Earth, but none has been made off Earth, and a hundred kilowatts in service for a year needs a production line on the Moon or an asteroid, not a demonstration. Set well under the first tonne of propellant made off Earth (0.50 by 2071), because a semiconductor line is a harder thing to run remotely than a chemical plant."
-notes = "Proposed 2026-11-09 as a gate under M-service-sold-from-off-earth-built-equipment-at-a-profit (docs/proposal-computing-as-off-earth-product-2026-10-31.md), at John's ruling that the service route's manufacturing step needs a node of its own."
-verify = ["Solar cells have been made from simulated lunar soil in laboratories on Earth (the rationale's claim, written from memory on 2026-11-09). Lead found 2026-11-09: secondary reports (Space.com, Universe Today) say Blue Origin announced on 2023-02-10 that its Blue Alchemist process made working solar cells from lunar soil simulant; Blue Origin's own page (https://www.blueorigin.com/news/blue-alchemist-powers-our-lunar-future) refused the request that day, so the claim is not yet confirmed against the primary record."]
+rationale = "Solar cells have been made from simulated lunar soil in a laboratory on Earth, but none has been made off Earth, and a hundred kilowatts in service for a year needs a production line on the Moon or an asteroid, not a demonstration. Set well under the first tonne of propellant made off Earth (0.50 by 2071), because a semiconductor line is a harder thing to run remotely than a chemical plant."
+notes = "Proposed 2026-11-09 as a gate under M-service-sold-from-off-earth-built-equipment-at-a-profit (docs/proposal-computing-as-off-earth-product-2026-10-31.md), at John's ruling that the service route's manufacturing step needs a node of its own. The laboratory work: Blue Origin announced on 2023-02-10 that since 2021 its Blue Alchemist process had made solar cells, cover glass and transmission wire from lunar soil simulant in one laboratory on Earth, by passing a current through the molten simulant to free silicon, iron and aluminium (Blue Origin, https://www.blueorigin.com/news/blue-alchemist-powers-our-lunar-future, read 2026-11-09). That is the company's own account; no independent test of the cells was checked."
+verify = []
 ```
 
 Taken together, the gate and the route give the service route about 0.08 / 0.14 / 0.23 / 0.34 / 0.42 given the four gates it shares with the product route, against the product route's 0.65 to 0.95. The first draft's alternative asked for 0.10 to 0.40.
@@ -177,4 +177,4 @@ Decided on 2026-11-09: that a service from equipment built off Earth counts towa
 
 1. The gate's bar (100 kilowatts for a year) and its numbers, and the route's numbers given its gates.
 2. The mass test and the attribution of revenue to the equipment in the company's accounts, as worded in the route node.
-3. The gate's one claim to check (solar cells made from simulated lunar soil on Earth). A lead is recorded in the node's `verify` line; Blue Origin's own page could not be opened on 2026-11-09, so it is confirmed before the review if that page answers, and the node goes in with its record linked.
+3. The gate's one claim to check (solar cells made from simulated lunar soil on Earth) is cleared: Blue Origin's own page was opened from the Mac on 2026-11-09 and confirms it, and the record now stands in the node's notes with its link, so the `verify` line is empty.

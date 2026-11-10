@@ -4,6 +4,7 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 ## 2026-11-09
 
+- Proposal on computing from equipment built off Earth: the gate node's claim to check is cleared. Blue Origin's own page of 2023-02-10 confirms its Blue Alchemist laboratory made solar cells from lunar soil simulant, now linked in the proposed node's notes. The proposal only; nothing in the tree changes.
 - Missions: Starship Flight 15 moved from 2026-11-08 to no earlier than 2026-11-13 (window opens 4:45 p.m. Central, pending regulatory approval). SpaceX's own Flight 15 page now confirms the date and that the flight will try to catch both the booster and the ship, so the milestone now reads that way and cites that page.
 - Missions: Starship's main link is now SpaceX's own Starship page, which shows text again, in place of Wikipedia.
 - Method: the rule on rewording a published criterion is rewritten (docs/methodology.md, What is fixed and what moves; docs/proposal-rewording-rule-2026-10-31.md). Corrections in place with a dated re-estimate; changes of meaning retire and replace; a loosening in place needs John's own approval. B-closed-loop-life-support-year-off-earth is marked for re-estimate by 2027-01-03. No number changes today.
