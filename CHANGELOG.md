@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-11-09
+
+- Missions: Starship Flight 15 moved from 2026-11-08 to no earlier than 2026-11-13 (window opens 4:45 p.m. Central, pending regulatory approval). SpaceX's own Flight 15 page now confirms the date and that the flight will try to catch both the booster and the ship, so the milestone now reads that way and cites that page.
+
 ## 2026-11-08
 
 - Weekly scan (scheduled task, 2026-11-08): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-11-08.toml. 10 mission milestones read, none changed. 1 discovery in the solar system: the archival study of the Rubin dwarf planet candidate 2026 ED138.

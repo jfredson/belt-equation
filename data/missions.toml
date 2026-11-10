@@ -86,7 +86,7 @@ what = "A heavy rocket built to be flown again, both halves, and one of the two 
 why = "If a rocket this big can fly, land and fly again like an airliner, nearly everything else on this page gets cheaper. It is the one machine my odds lean on most."
 why_draft = true
 steps = ["L-fully-reusable-heavy-launcher-recovers-both-stages", "L-orbital-propellant-transfer-at-scale", "L-heavy-launcher-100-per-year", "L-launch-price-below-200-dollars-per-kg"]
-checked = "2026-11-08"
+checked = "2026-11-09"
 notes = "So far the tower has caught the booster three times, and two caught boosters have flown again. No upper stage has yet been caught."
 
 [[mission.milestone]]
@@ -96,12 +96,14 @@ state = "done"
 sources = [{ label = "Wikipedia, list of Starship launches", url = "https://en.wikipedia.org/wiki/List_of_Starship_launches" }]
 
 [[mission.milestone]]
-what = "Flight 15, which may try the first catch of the upper stage"
-when = "2026-11-08"
+what = "Flight 15, the first try at catching both the booster and the upper stage"
+when = "2026-11-13"
 net = true
 state = "plan"
-note = "The date is provisional, and SpaceX had not confirmed the catch attempt."
-sources = [{ label = "Wikipedia, list of Starship launches", url = "https://en.wikipedia.org/wiki/List_of_Starship_launches" }]
+was = "2026-11-08"
+moved_on = "2026-11-05"
+note = "SpaceX gives a 75-minute window opening at 4:45 p.m. Central time, pending regulatory approval, for a flight of about 14 orbits and more than 22 hours."
+sources = [{ label = "SpaceX, Starship Flight 15", url = "https://www.spacex.com/launches/starship-flight-15" }, { label = "Wikipedia, list of Starship launches", url = "https://en.wikipedia.org/wiki/List_of_Starship_launches" }]
 
 [[mission.milestone]]
 what = "One Starship refuels another in orbit, the first time"
