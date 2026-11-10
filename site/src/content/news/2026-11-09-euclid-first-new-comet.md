@@ -1,8 +1,8 @@
 ---
-title: "A telescope built to map galaxies found a comet: Euclid's first new one, and what it does and does not change for my odds"
+title: "ESA's Euclid telescope has found its first new comet"
 date: 2026-11-09
 kind: discovery
-summary: ESA's Euclid space telescope, built to look far beyond the solar system, found a comet no one had seen before, C/2026 S1 (Euclid), on an orbit tilted almost straight up from the planets. No step of the tree is about finding comets, so my odds hold still, but every new eye on the small bodies of the solar system fills in the map the steps will be walked on.
+summary: Euclid, a European space telescope built to map distant galaxies, has found a comet no one had seen before. C/2026 S1 (Euclid) is between the distances of Jupiter and Saturn from the Sun, on an orbit tilted almost straight up from the planets.
 sources:
   - label: ESA's announcement of October 19th, 2026
     url: https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-discovers-new-comet
@@ -14,7 +14,7 @@ sources:
     url: https://www.esa.int/media/a-composite-of-eight-euclid-vis-exposures-of-comet-c-2026-s1-euclid
 ---
 
-I want to leave the planet before I die, and [the odds this site works out](/) depend on seven kinds of things going right, from cheap launch to a seat for me. None of the seven is "we find another comet". So this post moves nothing. I am writing it because this site is also a place to keep up with what is being found in our own solar system, and this one slipped past: [ESA announced it on October 19th, 2026](https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-discovers-new-comet), a week before this site began watching for discoveries.
+The European Space Agency [announced on October 19th, 2026](https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-discovers-new-comet) that its Euclid space telescope has found its first previously unknown comet, now named C/2026 S1 (Euclid).
 
 ## What was found
 
@@ -37,12 +37,10 @@ It will come closest to the Sun around [September 13th, 2027](https://www.minorp
 
 Euclid [deliberately looks away](https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-discovers-new-comet) from the band of sky along the planets' plane, where most asteroids and comets are, because their dust adds glare to its deep pictures. It also looks at each patch of sky only once, so it cannot go back to check a moving thing. This comet was caught because its steep orbit carried it through the patch Euclid happened to be photographing over those days. ESA's team calls it a happy coincidence.
 
-## What it has to do with this site
+## A rehearsal for Comet Interceptor
 
-The question the site asks is whether human industry reaches beyond Earth and Mars. No step of [the tree](/tree/) is about finding comets, and this find changes no number. The nearest step is [a hundred tonnes of material from an asteroid delivered to orbit in one year](/tree/launch/L-asteroid-material-delivered-to-orbit-at-scale/), and a comet that never comes inside Saturn's orbit is no one's mine.
-
-The more interesting link is the one ESA draws itself. Its [Comet Interceptor](https://en.wikipedia.org/wiki/Comet_Interceptor) mission will wait in space for a fresh comet to visit, and finding candidates early, while they are still far from the Sun, is what makes that possible. This comet is [not a suitable target](https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-discovers-new-comet), but the chain from a flagged streak to a confirmed comet two weeks after the last pictures is a rehearsal for one that is.
+ESA's [Comet Interceptor](https://en.wikipedia.org/wiki/Comet_Interceptor) mission will wait in space for a fresh comet to visit, and finding candidates early, while they are still far from the Sun, is what makes that possible. This comet is [not a suitable target](https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-discovers-new-comet), but ESA calls the process of finding it and raising the alert a real test case for how the two mission teams will work together.
 
 ## What to watch for
 
-A better orbit, as the comet is followed toward [its closest pass in 2027](https://www.minorplanetcenter.net/db_search/show_object?object_id=C%2F2026+S1), and whether Euclid's software, built to clean moving things out of its galaxy pictures, turns up more. When the orbit firms up, I will note it here. My odds will stay where they are: a comet found is a fact about the map, not a step taken on it.
+A better orbit, as the comet is followed toward [its closest pass in 2027](https://www.minorplanetcenter.net/db_search/show_object?object_id=C%2F2026+S1), and whether Euclid's software, built to clean moving things out of its galaxy pictures, turns up more.

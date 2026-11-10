@@ -91,9 +91,10 @@ class MissionNews(unittest.TestCase):
         far = self.GOOD.replace("2026-10-08", "2026-12-20")
         self.assertTrue(any("no milestone marked done" in p for p in self.run_check({"2026-12-20-hera.md": far})))
 
-    def test_a_post_that_does_not_end_on_the_odds_is_refused(self):
-        bad = self.GOOD.replace("This doesn't change my odds.", "Next it arrives.")
-        self.assertTrue(any("ends on what the event" in p for p in self.run_check({"2026-10-08-hera.md": bad})))
+    def test_a_post_need_not_end_on_the_odds(self):
+        # John, 2026-11-09: mission news sticks to the news; the odds line is no longer required.
+        plain = self.GOOD.replace("This doesn't change my odds.", "Next it arrives.")
+        self.assertEqual(self.run_check({"2026-10-08-hera.md": plain}), [])
 
     def test_a_third_post_in_one_week_is_refused(self):
         posts = {f"2026-10-0{d}-hera-{d}.md": self.GOOD.replace("2026-10-08", f"2026-10-0{d}") for d in (6, 7, 8)}
@@ -105,7 +106,7 @@ class MissionNews(unittest.TestCase):
 
 
 class Discovery(unittest.TestCase):
-    """A discovery, the ninth kind (asked for by John 2026-10-27): names no record or mission; ends on the odds."""
+    """A discovery, the ninth kind (asked for by John 2026-10-27): names no record or mission."""
 
     RECORDS = {"nodes": [], "entries": [], "scans": [], "missions": []}
     GOOD = ("---\ntitle: A new dwarf planet candidate\ndate: 2026-10-27\nkind: discovery\nsummary: Found.\n"
@@ -125,9 +126,9 @@ class Discovery(unittest.TestCase):
     def test_it_need_not_name_a_record(self):
         self.assertFalse(any("names no record" in p for p in self.run_check(self.GOOD)))
 
-    def test_a_post_that_does_not_end_on_the_odds_is_refused(self):
-        bad = self.GOOD.replace("It moves none of my odds.", "Next comes the infrared.")
-        self.assertTrue(any("a discovery post ends on what the event" in p for p in self.run_check(bad)))
+    def test_a_post_need_not_end_on_the_odds(self):
+        # John, 2026-11-09: a discovery post sticks to the news; the odds line is no longer required.
+        self.assertEqual(self.run_check(self.GOOD.replace("It moves none of my odds.", "Next comes the infrared.")), [])
 
     def test_it_may_not_name_a_mission(self):
         bad = self.GOOD.replace("sources:", "missions: [hera]\nsources:")

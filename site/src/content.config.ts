@@ -10,7 +10,8 @@ import { glob } from 'astro/loaders';
 // about a mission on the Missions page, which names missions (`missions`) instead of records.
 // 'discovery' is the ninth kind (asked for by John 2026-10-27, on Rubin's first dwarf planet candidate): something
 // newly found in the solar system, worth knowing about whether or not it touches a step. It names no record and
-// no mission, carries its sources, and ends on what it does and does not change for the odds.
+// no mission and carries its sources. It sticks to the news, and speaks of the odds only where the find bears on a
+// step (John, 2026-11-09; until then it had to end on what it does and does not change for the odds).
 export const NEWS_KINDS = ['start-here', 'rung-reached', 'estimate-revised', 'flagged-item-ruled', 'claim', 'headline-moved', 'method-changed', 'mission-news', 'discovery'] as const;
 
 // YAML reads a bare 2026-10-18 as a date; the site keeps dates as YYYY-MM-DD strings.
