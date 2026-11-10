@@ -14,6 +14,7 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 - Missions: Hayabusa2's main link is now JAXA's own Hayabusa2 page, which loads again. The two Chinese missions keep their Wikipedia links: China's space agency site still gives no dates for Chang'e 7 and nothing on Tianwen-2 since its launch.
 - Scan procedure: the first scan of each month re-checks every mission that links to Wikipedia instead of its operator (docs/scan-procedure.md, step 3c, item 6).
 - Proposal on computing from equipment built off Earth: John ruled that in-house use counts when the company sells what the computing produces to outside customers.
+- Scan procedure: a moved milestone's `moved_on` is the day it moved, as the source gives it, not the day the scan reads it, matching data/README.md (ruled by John).
 
 ## 2026-11-08
 
