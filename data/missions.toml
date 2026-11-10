@@ -78,8 +78,7 @@ sources = [
 [[mission]]
 id = "starship"
 name = "Starship"
-url = "https://en.wikipedia.org/wiki/SpaceX_Starship"
-url_label = "Wikipedia (SpaceX's own pages show no text)"
+url = "https://www.spacex.com/vehicles/starship/"
 operator = "SpaceX"
 group = "moon"
 what = "A heavy rocket built to be flown again, both halves, and one of the two Moon landers NASA is testing for Artemis."
