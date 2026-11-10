@@ -701,6 +701,8 @@ a.dim:hover { color: var(--accent); }
 .post th { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 .post figure { margin: 22px 0; }
 .post figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+/* A square or tall picture (the Euclid comet, 2026-11-09) would fill the column; `narrow` caps it. */
+.post figure.narrow img { max-width: 420px; }
 .post figcaption { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
 .post .stand-in { border: 1px dashed var(--line-strong); padding: 8px 12px; font-family: var(--sans); font-size: 13px; color: var(--muted); margin: 0 0 18px; }
 .post-record { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 12px; }
