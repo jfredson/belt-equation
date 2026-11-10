@@ -282,7 +282,7 @@ why = "Two spacecraft for Mars on a small budget is the kind of mission falling 
 why_draft = true
 steps = []
 step_note = "It studies Mars's thin air; no step turns on what it finds."
-checked = "2026-11-08"
+checked = "2026-11-09"
 
 [[mission.milestone]]
 what = "Launches on Blue Origin's [New Glenn rocket](https://en.wikipedia.org/wiki/New_Glenn)"
@@ -292,13 +292,12 @@ sources = [{ label = "NASA, ESCAPADE", url = "https://science.nasa.gov/mission/e
 
 [[mission.milestone]]
 what = "Swings past Earth to head for Mars"
-when = "late 2026"
-label = "autumn 2026"
-state = "plan"
-note = "NASA says autumn 2026; Wikipedia says November 2026."
+from = "2026-11-07"
+to = "2026-11-09"
+state = "done"
+note = "Each spacecraft made a powered flyby with a burn of about nine minutes, the first on 7 November and the second on 9 November, NASA's first use of a powered Earth flyby to head for Mars. Both are on course to arrive in September 2027."
 sources = [
-  { label = "NASA, ESCAPADE", url = "https://science.nasa.gov/mission/escapade/" },
-  { label = "Wikipedia, ESCAPADE", url = "https://en.wikipedia.org/wiki/ESCAPADE" },
+  { label = "NASA, ESCAPADE completes powered Earth flybys", url = "https://science.nasa.gov/science-research/heliophysics/nasas-escapade-completes-powered-earth-flybys-now-en-route-to-mars/" },
 ]
 
 [[mission.milestone]]

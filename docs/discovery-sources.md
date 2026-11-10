@@ -43,10 +43,15 @@ back it reaches, which matters because the scan runs once a week.
    https://www.jpl.nasa.gov/feeds/news/ (RSS, a hundred items, more than a year deep). JPL runs most of
    NASA's planetary spacecraft and announces their firsts first; it overlaps the NASA Science feed and
    the overlap is cheap, since the script prints a repeated story twice and the scan writes it once.
-5. **ESA, space science news.** Page: https://www.esa.int/Science_Exploration/Space_Science. Feed:
-   https://www.esa.int/rssfeed/science (RSS, fifteen items, about two months deep). The European
-   agency's missions: Juice on its way to Jupiter, BepiColombo at Mercury, Hera at the asteroid Didymos,
-   and Euclid, which found its first comet in September 2026.
+5. **ESA, top news.** Page: https://www.esa.int/. Feed: https://www.esa.int/rssfeed/TopNews (RSS,
+   fifteen items, about six weeks deep). The European agency's missions: Juice on its way to Jupiter,
+   BepiColombo at Mercury, Hera at the asteroid Didymos, and Euclid, which found its first comet in
+   September 2026. Until November 2026 the watch read ESA's space science feed
+   (https://www.esa.int/rssfeed/science) and its Space Science page; both answered 404 from the scan of
+   2026-11-08, after ESA moved its articles to new addresses, and ESA's list of feeds
+   (https://www.esa.int/Services/RSS_Feeds) no longer offers a science feed. The top-news feed mixes
+   science with council, business and launcher news, which the scan reads past; it carried both of ESA's
+   solar-system stories of 2026-11-06 to 2026-11-09. Changed 2026-11-09.
 6. **JAXA, press releases.** Page: https://global.jaxa.jp/press/. Feed: https://global.jaxa.jp/rss/press.rdf
    (the RDF form of RSS, twenty items, about three months deep). The Japanese agency's missions,
    including MMX, launched on 2026-10-19 for the Martian moon Phobos, whose arrival will be a first.

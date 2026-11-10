@@ -6,6 +6,11 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 - Missions: Starship Flight 15 moved from 2026-11-08 to no earlier than 2026-11-13 (window opens 4:45 p.m. Central, pending regulatory approval). SpaceX's own Flight 15 page now confirms the date and that the flight will try to catch both the booster and the ship, so the milestone now reads that way and cites that page.
 - Missions: Starship's main link is now SpaceX's own Starship page, which shows text again, in place of Wikipedia.
+- Method: the rule on rewording a published criterion is rewritten (docs/methodology.md, What is fixed and what moves; docs/proposal-rewording-rule-2026-10-31.md). Corrections in place with a dated re-estimate; changes of meaning retire and replace; a loosening in place needs John's own approval. B-closed-loop-life-support-year-off-earth is marked for re-estimate by 2027-01-03. No number changes today.
+- Proposal on computing from equipment built off Earth: agreed in principle, to land at the annual review of 2027-01-03 after revision. Nothing in the tree changes yet.
+- E-solar-with-storage-powers-a-lunar-polar-site-for-a-year: its claim to check is cleared. NASA's release of 2022-08-23 confirms the $19.4 million Vertical Solar Array Technology awards, now linked in the notes. Words only; criterion and numbers unchanged.
+- Missions: ESCAPADE's powered Earth flybys are done (7 and 9 November, per NASA); both spacecraft are on course for Mars in September 2027.
+- Discovery watch: ESA's space science feed and page were withdrawn in a site move (404 since the scan of 2026-11-08); the watch now reads ESA's top-news feed (scripts/discoveries.py, docs/discovery-sources.md). All seven sources answer.
 
 ## 2026-11-08
 
