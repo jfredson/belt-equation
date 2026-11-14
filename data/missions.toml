@@ -328,7 +328,7 @@ why = "In 2022 a spacecraft hit a small asteroid on purpose and [shortened its o
 why_draft = true
 steps = []
 step_note = "It tests defending Earth from asteroids, not going out to them; no step turns on it."
-checked = "2026-11-08"
+checked = "2026-11-14"
 
 [[mission.milestone]]
 what = "First pictures of the asteroid Didymos, a single bright dot"
@@ -348,17 +348,33 @@ sources = [
 
 [[mission.milestone]]
 what = "Second braking burn"
-when = "2026-10-22"
-state = "plan"
-sources = [{ label = "ESA, the burns planned", url = "https://www.esa.int/Space_Safety/Hera/Braking_news!_Time_for_ESA_s_Hera_asteroid_mission_to_go_slow" }]
+when = "2026-10"
+state = "done"
+note = "ESA planned it for 22 October 2026. Wikipedia reports it done later in October, 2,300 kilometres from Didymos, without giving the day."
+sources = [
+  { label = "Wikipedia, Hera", url = "https://en.wikipedia.org/wiki/Hera_(space_mission)" },
+  { label = "ESA, the burns planned", url = "https://www.esa.int/Space_Safety/Hera/Braking_news!_Time_for_ESA_s_Hera_asteroid_mission_to_go_slow" },
+]
 
 [[mission.milestone]]
 what = "Arrives at Didymos and its moonlet Dimorphos"
-when = "2026-11"
-state = "plan"
+when = "2026-11-11"
+state = "done"
 main = true
-note = "ESA gives the month and no day. Close study starts at 25 to 30 kilometres in November and December."
-sources = [{ label = "ESA, Hera", url = "https://www.esa.int/Space_Safety/Hera" }]
+note = "Hera circles the pair 25 to 30 kilometres away, on a path shaped like a rectangle, until about 2 December, then moves in to 8 to 20 kilometres."
+sources = [
+  { label = "ESA, Hera has arrived", url = "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-spacecraft-in-rectangular-orbit-around-target-asteroids" },
+  { label = "Sky & Telescope, Hera peeks at the moonlet", url = "https://skyandtelescope.org/astronomy-news/spacecraft-investigates-asteroid-after-impact/" },
+]
+
+[[mission.milestone]]
+what = "First detailed pictures of Dimorphos since DART struck it, shown at an event in Berlin"
+when = "2026-11-25"
+state = "plan"
+sources = [
+  { label = "ESA, Hera spies a half-hidden moonlet", url = "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-spies-a-half-hidden-asteroid-moonlet" },
+  { label = "Sky & Telescope, Hera peeks at the moonlet", url = "https://skyandtelescope.org/astronomy-news/spacecraft-investigates-asteroid-after-impact/" },
+]
 
 [[mission.milestone]]
 what = "Releases its two small satellites, Milani and Juventas"
