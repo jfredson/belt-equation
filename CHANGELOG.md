@@ -6,6 +6,8 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 - Wording only: the lines of this changelog and the note on the year-of-life-support step that named who ruled on a change now say what was decided and, where the line gives one, why. **No number moved**: no probability, estimate, stage, count, date of a fact or source changed, and no run was taken. The life-support step carries a revision for its note.
 - Home page: the three newest news posts are now listed on the right of the first screen, under the dial, as a date, a kind and a title that links to the post, with a link to all the news and a line sending a new reader to the "Start here" post (site/src/pages/index.astro). Before this, nothing on the home page said a post existed. "Who is asking" moves up into the left column under the two buttons, so the longer right column leaves no gap; "Why the name?" keeps its own row below. Chosen over a block of cards below the first screen (sentient-horizons/design/proposals/home-latest-news-2026-11-14.md). No number, definition or record changes.
+- Missions: Hera arrived at Didymos and Dimorphos on 2026-11-11 (ESA's release of that day; Sky & Telescope, 2026-11-13); the arrival is marked done, the second braking burn marked done in October 2026 (Wikipedia, no day given), and ESA's showing of the first detailed pictures of Dimorphos on 2026-11-25 added as a planned milestone. No step turns on Hera, and nothing in the tree changes.
+- News (draft, not yet published): the first mission news post on Hera's arrival (docs/news/2026-11-14-hera-arrives-checks.md).
 
 ## 2026-11-09
 
