@@ -6,6 +6,20 @@ import Base from '../layouts/Base.astro';
 import { tree, percent, factorByLetter, snapshots, ledger, direction, movePoints } from '../lib/tree';
 import { latestScan, scanSummary } from '../lib/scans';
 import { longDate } from '../lib/dates';
+import { datedPosts, opener, postPath, KIND_LABEL } from '../lib/news';
+
+// The latest news, on the right of the first screen under the dial (chosen by John on
+// 2026-11-14 over a block of cards below the first screen; both are drawn in
+// sentient-horizons/design/proposals/home-latest-news-2026-11-14.md). Titles and links only:
+// the three newest posts, newest first, so a returning reader sees what is new the moment the
+// page opens. The pinned "Start here" post is not one of the three; it gets its own line
+// underneath. The panel is left off while the site has fewer than two dated posts, because a
+// list of one reads as a site nobody is keeping up.
+const NEWS_ON_HOME = 3;
+const newsPosts = await datedPosts();
+const latestNews = newsPosts.length >= 2 ? newsPosts.slice(0, NEWS_ON_HOME) : [];
+const startHere = await opener();
+const hasNews = latestNews.length > 0;
 
 const numbers = tree.numbers;
 const headlineKey = tree.headline_tier;
@@ -96,7 +110,7 @@ const contact = factorByLetter('C');
 ---
 
 <Base>
-  <section class="home-hero">
+  <section class={`home-hero${hasNews ? ' has-news' : ''}`}>
     <div class="home-hero-main">
       <p class="eyebrow">One man's odds of leaving Earth, tracked in public</p>
       <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
@@ -135,6 +149,7 @@ const contact = factorByLetter('C');
       </div>
     </div>
 
+    <div class="home-hero-side">
     <div class="dial" id="dial">
       <div class="dial-head">
         <span class="dial-label">How long do I get?</span>
@@ -154,17 +169,48 @@ const contact = factorByLetter('C');
       </div>
       <p class="dial-foot">These are my odds, in my lifetime.<br /><a href="/run/">Run the same tree for your lifetime</a>.<br />How likely is a much longer life? That's the question <a href="https://outrunningageing.com" rel="noopener">Outrunning Ageing</a> tracks.</p>
     </div>
+    {latestNews.length > 0 && (
+      <aside class="side-news" aria-labelledby="side-news-title">
+        <div class="side-news-head">
+          <h2 class="dial-label" id="side-news-title">Latest news</h2>
+          <a href="/news/">All news</a>
+        </div>
+        <ul class="side-news-list">
+          {latestNews.map((p) => (
+            <li>
+              <p class="side-news-meta"><time datetime={p.data.date}>{longDate(p.data.date)}</time><span class={`kind${p.data.kind === 'mission-news' ? ' kind-mission' : p.data.kind === 'discovery' ? ' kind-discovery' : ''}`}>{KIND_LABEL[p.data.kind]}</span></p>
+              <a class="side-news-title" href={postPath(p)}>{p.data.title}</a>
+            </li>
+          ))}
+        </ul>
+        {startHere && (
+          <p class="side-news-foot">New here? <a href={postPath(startHere)}>Start with where the odds stand</a>.</p>
+        )}
+      </aside>
+    )}
+    </div>
+    {hasNews && (
+      <div class="hero-who who" id="who">
+      <p class="kicker">Who is asking</p>
+      <p>I'm John, 40 years old, and I write about AI, sentience and the spread of conscious life beyond Earth at <a href="https://sentient-horizons.com" rel="noopener">Sentient Horizons</a>. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page. It puts a number on the wish and it shows me which links are likely to move in the next few years, so I know where to watch, and which ones would move the odds most.</p>
+      </div>
+    )}
   </section>
 
-  <section class="section who" id="who">
+  {/* With the news panel under the dial, the right column runs past the left one, so "Who is
+      asking" sits in the first screen's left column (above) and fills what would be a gap; "Why
+      the name?" keeps this row alone. Without the panel both stay here, side by side. */}
+  <section class={`section who${hasNews ? ' who-single' : ''}`} id={hasNews ? undefined : 'who'}>
     <div>
       <p class="kicker">Why the name?</p>
       <p>The name comes from the Belters of the TV series <em>The Expanse</em>, the people who live and work in the asteroid belt, far from Earth. Underestimated, and at home where nobody thought people could be. I want to see a solar system like that unfold. This site works out, in public, how likely that is.</p>
     </div>
-    <div>
+    {!hasNews && (
+      <div>
       <p class="kicker">Who is asking</p>
       <p>I'm John, 40 years old, and I write about AI, sentience and the spread of conscious life beyond Earth at <a href="https://sentient-horizons.com" rel="noopener">Sentient Horizons</a>. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page. It puts a number on the wish and it shows me which links are likely to move in the next few years, so I know where to watch, and which ones would move the odds most.</p>
-    </div>
+      </div>
+    )}
   </section>
 
   <section class="section chain" id="chain">
