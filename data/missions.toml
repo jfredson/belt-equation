@@ -25,7 +25,7 @@
 # him to change; `why_draft = true` until he has. The mark is private: the page stopped showing it on
 # 2026-10-27 (John: a note addressed to him must never be on the public site).
 
-checked = "2026-11-08"
+checked = "2026-11-14"
 
 # ---------------------------------------------------------------- the Moon
 
@@ -85,8 +85,8 @@ what = "A heavy rocket built to be flown again, both halves, and one of the two 
 why = "If a rocket this big can fly, land and fly again like an airliner, nearly everything else on this page gets cheaper. It is the one machine my odds lean on most."
 why_draft = true
 steps = ["L-fully-reusable-heavy-launcher-recovers-both-stages", "L-orbital-propellant-transfer-at-scale", "L-heavy-launcher-100-per-year", "L-launch-price-below-200-dollars-per-kg"]
-checked = "2026-11-09"
-notes = "So far the tower has caught the booster three times, and two caught boosters have flown again. No upper stage has yet been caught."
+checked = "2026-11-14"
+notes = "So far the tower has caught the booster three times, and two caught boosters have flown again. The tower caught an upper stage for the first time on 14 November 2026. No flight has yet brought both parts home."
 
 [[mission.milestone]]
 what = "Flight 14, the first Starship flight to reach orbit"
@@ -95,14 +95,13 @@ state = "done"
 sources = [{ label = "Wikipedia, list of Starship launches", url = "https://en.wikipedia.org/wiki/List_of_Starship_launches" }]
 
 [[mission.milestone]]
-what = "Flight 15, the first try at catching both the booster and the upper stage"
+what = "Flight 15: the launch tower catches the upper stage for the first time; the booster catch is called off and the booster is lost"
 when = "2026-11-13"
-net = true
-state = "plan"
+state = "done"
 was = "2026-11-08"
 moved_on = "2026-11-05"
-note = "SpaceX gives a 75-minute window opening at 4:45 p.m. Central time, pending regulatory approval, for a flight of about 14 orbits and more than 22 hours."
-sources = [{ label = "SpaceX, Starship Flight 15", url = "https://www.spacex.com/launches/starship-flight-15" }, { label = "Wikipedia, list of Starship launches", url = "https://en.wikipedia.org/wiki/List_of_Starship_launches" }]
+note = "Launched 13 November 2026. The booster gave up its catch after a low fuel alarm and was lost over the Gulf of Mexico. The upper stage made 14 orbits and was caught by the tower on 14 November, about 22 and a half hours after liftoff. Both parts did not come home, so this is not yet a full recovery."
+sources = [{ label = "Space.com, live updates on Flight 15", url = "https://www.space.com/news/live/spacex-starship-flight-15-live-updates-nov-14-2026-starship-first-double-landing-attempt" }, { label = "CNBC, the catch", url = "https://www.cnbc.com/2026/11/14/spacex-plans-to-try-first-ever-catch-of-starship-rocket-from-orbit.html" }, { label = "SpaceX, Starship Flight 15", url = "https://www.spacex.com/launches/starship-flight-15" }]
 
 [[mission.milestone]]
 what = "One Starship refuels another in orbit, the first time"
