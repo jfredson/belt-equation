@@ -73,8 +73,11 @@ yet. The file name follows the chosen title; it changes freely until publishing.
   "for a special event to be held in Berlin, Germany, on November 25th"; 25 to 30 km; the early phase lasts
   two rectangular cycles, "until December 2nd", then 8 to 20 km. Both facts the brief asked to confirm are
   on the page.
-- Wikipedia's article on Hera (https://en.wikipedia.org/wiki/Hera_(space_mission)): launch 7 October 2024;
-  the second braking burn "later in October 2026", 2,300 km from Didymos, 70 m/s (used only in the
+- ESA's page for the Hera mission
+  (https://www.esa.int/missions/about-us/directorates/operations/space-safety/hera), opened 2026-11-14:
+  "Launch: 7 October 2024". The post cites this page for the launch date, in place of Wikipedia.
+- Wikipedia's article on Hera (https://en.wikipedia.org/wiki/Hera_(space_mission)): launch 7 October 2024
+  (matches ESA); the second braking burn "later in October 2026", 2,300 km from Didymos, 70 m/s (used only in the
   Missions record, not the post).
 
 ## Left out, with the reason
@@ -117,6 +120,28 @@ looked for, named with his role; Darmstadt, Berlin and the three countries, as p
 which pull request 78 handles); `python3 scripts/export.py` OK; `python3 scripts/check_news.py` OK (5
 posts); `python3 -m unittest scripts/test_news.py` OK; `npm run build` in `site/` OK (107 pages);
 `python3 scripts/check_site.py` OK.
+
+## Fixes after review, 2026-11-14 (John: "Yes, send them"; the title stays)
+
+1. Launch date: now sourced to ESA's own Hera page, which gives "Launch: 7 October 2024". Wikipedia is no
+   longer a source of the post.
+2. The open question about the size of the push: ESA's release asks "which properties explain a deflection
+   so much greater than impact simulations predicted?", meaning which of Dimorphos's own properties
+   explain it. The post said only "why the push was so much larger than computer models had predicted",
+   which was broader. It now reads "which of its properties explain why the push was so much larger than
+   computer simulations of the impact had predicted".
+3. The distance from Earth: ESA's release, published on the day of arrival, gives 196.5 million km. The
+   post now says "across a gap that was 196.5 million kilometres on the day it arrived".
+4. "What to watch for" no longer opens "The first is ..."; it opens "First comes the picture of Dimorphos".
+5. Added to "Why it matters", in John's voice: "I follow Hera because holding a spacecraft steady beside a
+   body with almost no gravity is the same skill that any work at an asteroid will need." No claim about
+   the odds or any estimate.
+
+The branch was then rebased onto `origin/main` (pull requests 79, 81 and 82 merged that day). Only the
+changelog conflicted; main's lines were kept and this post's two lines re-applied beneath them, with "for
+John's go" changed to "not yet published" to match pull request 81's rule that changelog lines say what
+was decided, not who ruled. `data/missions.toml` merged without conflict. The checks below were re-run
+after the fixes.
 
 ## Still to do before publishing
 
