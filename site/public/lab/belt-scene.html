@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <title>The inner solar system and the belt · The Belt Equation</title>
+  <meta name="description" content="An interactive map of the Sun, the inner planets, Jupiter and the main asteroid belt. Drag to look around, pinch or scroll to zoom." />
+  <style>
+    /* Colours are the site's "Ore" skin, dark theme (site/src/styles/skin.css). This page is a
+       pilot served as a plain file, so the values are copied here rather than imported. */
+    :root {
+      --bg: #070a0e; --panel: #0f141b; --text: #f0ebe2; --text-soft: #d3cdc1; --muted: #8c929c;
+      --line: rgba(240, 235, 226, 0.10); --line-strong: rgba(240, 235, 226, 0.20);
+      --accent: #d9825a; --accent-hover: #e6946d; --accent-3: #7fa6c4; --on-accent: #1a0f08;
+      --radius: 8px;
+      --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: var(--sans); }
+    body { overflow: hidden; -webkit-text-size-adjust: 100%; }
+    #scene { position: fixed; inset: 0; display: block; touch-action: none; }
+    #labels { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+    .label {
+      position: absolute; transform: translate(-50%, -140%); font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.04em; color: var(--text-soft); text-shadow: 0 0 6px var(--bg), 0 0 2px var(--bg);
+      white-space: nowrap; will-change: transform;
+    }
+    .label.sun { color: var(--accent); }
+    .label.belt { color: var(--accent-3); }
+    header, aside, footer { position: fixed; z-index: 2; }
+    header { top: 0; left: 0; right: 0; padding: 14px 16px 0; pointer-events: none; }
+    header h1 { font-family: var(--serif); font-weight: 400; font-size: 20px; margin: 0; letter-spacing: 0.01em; }
+    header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; max-width: 46ch; }
+    aside {
+      left: 16px; bottom: 16px; background: rgba(15, 20, 27, 0.82); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 12px 14px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      font-size: 13px; width: min(300px, calc(100vw - 32px));
+    }
+    aside label { display: flex; align-items: center; gap: 8px; margin: 6px 0; cursor: pointer; }
+    aside input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+    aside input[type="range"] { width: 100%; accent-color: var(--accent); margin: 6px 0 2px; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .row b { font-weight: 500; }
+    .row output { font-family: var(--mono); font-size: 12px; color: var(--text-soft); }
+    .clock { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .buttons { display: flex; gap: 8px; margin-top: 10px; }
+    button {
+      font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+      border: 1px solid var(--line-strong); background: transparent; color: var(--text);
+    }
+    button:hover { background: rgba(240, 235, 226, 0.06); }
+    button.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    button.primary:hover { background: var(--accent-hover); }
+    footer {
+      right: 16px; bottom: 16px; max-width: min(360px, calc(100vw - 32px)); font-size: 12px; color: var(--muted);
+      line-height: 1.45; text-align: right;
+    }
+    footer a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(217, 130, 90, 0.4); }
+    footer a:hover { color: var(--accent-hover); }
+    footer details { text-align: left; background: rgba(15, 20, 27, 0.82); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 8px 12px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    footer summary { cursor: pointer; color: var(--text-soft); }
+    footer p { margin: 8px 0 0; }
+    #fallback { position: fixed; inset: 0; display: none; place-items: center; padding: 24px; text-align: center; color: var(--text-soft); }
+    @media (max-width: 640px) {
+      header h1 { font-size: 17px; }
+      header p { display: none; }
+      aside { left: 12px; right: 12px; bottom: 12px; width: auto; padding: 10px 12px; }
+      /* On a phone the note sits under the title, out of the way of the controls. */
+      footer { left: 12px; right: 12px; top: 44px; bottom: auto; max-width: none; }
+      footer details { font-size: 12px; }
+    }
+  </style>
+  <!-- The 3D library, pinned to one version so the page cannot change under a reader. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-label="A map of the inner solar system you can turn and zoom"></canvas>
+  <div id="labels" aria-hidden="true"></div>
+  <div id="fallback"><p>This map needs a browser with 3D graphics turned on. The planet figures it draws are in the
+    <a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/">NASA planetary fact sheet</a>.</p></div>
+
+  <header>
+    <h1>The inner solar system and the belt</h1>
+    <p>Drag to look around. Scroll or pinch to zoom. Drag with two fingers, or the right mouse button, to slide the view.</p>
+  </header>
+
+  <aside aria-label="Controls">
+    <div class="row"><b>Speed of time</b> <output id="speed-out">30 days a second</output></div>
+    <input id="speed" type="range" min="0" max="5" step="1" value="3" aria-label="Speed of time" />
+    <label><input id="orbits" type="checkbox" checked /> Orbit lines</label>
+    <label><input id="names" type="checkbox" checked /> Names</label>
+    <div class="clock" id="clock">0 days have passed</div>
+    <div class="buttons">
+      <button id="pause" class="primary" type="button">Pause</button>
+      <button id="reset" type="button">Reset view</button>
+    </div>
+  </aside>
+
+  <footer>
+    <details>
+      <summary>Not to scale. What this map shows, and where its numbers come from</summary>
+      <p>The Sun and the planets are drawn hundreds of times larger than they really are compared with the distances
+        between them. At true scale Earth would be smaller than a single pixel on this page, so the sizes are
+        exaggerated to be visible, and only the distances and the speeds are to scale with each other.</p>
+      <p>Each planet's distance from the Sun, its size, and how long it takes to go round once are from the
+        <a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/">NASA planetary fact sheet</a>. Orbits are drawn as
+        circles at each planet's average distance, in one flat plane; the real orbits are slightly oval and slightly
+        tilted. Starting positions are arbitrary, so this is not the sky on any particular date.</p>
+      <p>The belt is drawn as a few thousand points between 2.06 and 3.27 times Earth's distance from the Sun, the
+        region where most asteroids orbit (<a href="https://en.wikipedia.org/wiki/Asteroid_belt">Asteroid belt, Wikipedia</a>).
+        The points are placeholders for a crowd of rocks, not real asteroids, and the real belt is mostly empty space.</p>
+    </details>
+  </footer>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // ---- The numbers ---------------------------------------------------------------
+    // Source: NASA planetary fact sheet, https://nssdc.gsfc.nasa.gov/planetary/factsheet/
+    // (last updated 18 March 2025, read 2026-10-27). Distance from the Sun in millions of km,
+    // diameter in km, orbital period in days. Earth's distance, 149.6 million km, is one
+    // astronomical unit (AU), and the scene uses 10 units per AU.
+    const AU_KM = 149.6;
+    const PLANETS = [
+      { name: 'Mercury', distance: 57.9,  diameter: 4879,   period: 88.0,  color: 0x9c9388 },
+      { name: 'Venus',   distance: 108.2, diameter: 12104,  period: 224.7, color: 0xd9bd8a },
+      { name: 'Earth',   distance: 149.6, diameter: 12756,  period: 365.2, color: 0x7fa6c4 },
+      { name: 'Mars',    distance: 228.0, diameter: 6792,   period: 687.0, color: 0xd9825a },
+      { name: 'Jupiter', distance: 778.5, diameter: 142984, period: 4331,  color: 0xc9a98a },
+    ];
+    // The main belt's inner and outer limits: the 4:1 and 2:1 Kirkwood gaps at 2.06 and 3.27 AU
+    // (Wikipedia, "Asteroid belt", section "Orbits", read 2026-10-27).
+    const BELT_INNER_AU = 2.06, BELT_OUTER_AU = 3.27, BELT_COUNT = 4000;
+    const UNITS_PER_AU = 10;
+    const EARTH_YEAR_DAYS = 365.2;
+
+    // Sizes are exaggerated so that the planets can be seen at all. Each drawn radius grows with
+    // the square root of the true diameter, so Jupiter still reads as the giant without hiding
+    // its neighbours. Earth is drawn at 0.38 scene units; at true scale it would be 0.0004.
+    const drawnRadius = (diameterKm) => 0.38 * Math.sqrt(diameterKm / 12756);
+    const SUN_RADIUS = 1.4; // true scale: 0.047 scene units
+
+    // ---- Renderer, scene, camera ---------------------------------------------------
+    const canvas = document.getElementById('scene');
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+    } catch (err) {
+      document.getElementById('fallback').style.display = 'grid';
+      throw err;
+    }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x070a0e);
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
+    const HOME = { position: new THREE.Vector3(0, 60, 88), target: new THREE.Vector3(0, 0, 0) };
+    // On a narrow phone screen, start further back so Jupiter's orbit still fits across.
+    if (window.innerWidth < 640) HOME.position.multiplyScalar(1.35);
+    camera.position.copy(HOME.position);
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 4;
+    controls.maxDistance = 400;
+    controls.maxPolarAngle = Math.PI * 0.95;
+    controls.target.copy(HOME.target);
+
+    // ---- Light -----------------------------------------------------------------------
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const sunLight = new THREE.PointLight(0xfff2dc, 1600, 0, 2);
+    scene.add(sunLight);
+
+    // ---- The Sun ---------------------------------------------------------------------
+    const sun = new THREE.Mesh(
+      new THREE.SphereGeometry(SUN_RADIUS, 32, 24),
+      new THREE.MeshBasicMaterial({ color: 0xffd7a0 })
+    );
+    scene.add(sun);
+    // A soft glow: a small picture drawn in code, shown as a sprite that always faces the camera.
+    const glowTexture = (() => {
+      const c = document.createElement('canvas'); c.width = c.height = 128;
+      const g = c.getContext('2d');
+      const grad = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+      grad.addColorStop(0, 'rgba(255, 220, 170, 0.9)');
+      grad.addColorStop(0.25, 'rgba(255, 190, 120, 0.35)');
+      grad.addColorStop(1, 'rgba(255, 170, 90, 0)');
+      g.fillStyle = grad; g.fillRect(0, 0, 128, 128);
+      const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+    })();
+    const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+    glow.scale.set(SUN_RADIUS * 7, SUN_RADIUS * 7, 1);
+    scene.add(glow);
+
+    // ---- The planets and their orbit lines --------------------------------------------
+    const planetMeshes = [];
+    const orbitLines = new THREE.Group();
+    scene.add(orbitLines);
+    const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xf0ebe2, transparent: true, opacity: 0.18 });
+    const phaseSeed = [0.3, 2.1, 4.4, 1.2, 5.6]; // arbitrary starting angles, not real positions
+    PLANETS.forEach((p, i) => {
+      const radiusAU = p.distance / AU_KM;
+      const mesh = new THREE.Mesh(
+        new THREE.SphereGeometry(drawnRadius(p.diameter), 28, 20),
+        new THREE.MeshLambertMaterial({ color: p.color })
+      );
+      mesh.userData = { orbit: radiusAU * UNITS_PER_AU, periodDays: p.period, phase: phaseSeed[i], name: p.name };
+      scene.add(mesh);
+      planetMeshes.push(mesh);
+
+      const pts = [];
+      for (let k = 0; k <= 180; k++) {
+        const a = (k / 180) * Math.PI * 2;
+        pts.push(new THREE.Vector3(Math.cos(a) * mesh.userData.orbit, 0, Math.sin(a) * mesh.userData.orbit));
+      }
+      orbitLines.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), orbitMaterial));
+    });
+
+    // ---- The belt ----------------------------------------------------------------------
+    // Each point has its own distance, starting angle and tilt, and moves at the speed a body at
+    // that distance really would (Kepler's third law: period grows with distance to the power 1.5).
+    // The positions are worked out on the graphics chip each frame, so four thousand points cost
+    // the phone almost nothing.
+    const belt = (() => {
+      let seed = 20261027;
+      const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+      const dist = new Float32Array(BELT_COUNT), angle = new Float32Array(BELT_COUNT);
+      const tilt = new Float32Array(BELT_COUNT), node = new Float32Array(BELT_COUNT), size = new Float32Array(BELT_COUNT);
+      for (let i = 0; i < BELT_COUNT; i++) {
+        // Thicker through the middle than at the edges: the average of two draws.
+        const u = (rnd() + rnd()) / 2;
+        dist[i] = (BELT_INNER_AU + u * (BELT_OUTER_AU - BELT_INNER_AU)) * UNITS_PER_AU;
+        angle[i] = rnd() * Math.PI * 2;
+        tilt[i] = (rnd() - 0.5) * 0.28;   // up to about 8 degrees either way
+        node[i] = rnd() * Math.PI * 2;
+        size[i] = 1.2 + rnd() * 1.6;
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(BELT_COUNT * 3), 3)); // unused, required
+      geo.setAttribute('dist', new THREE.BufferAttribute(dist, 1));
+      geo.setAttribute('angle0', new THREE.BufferAttribute(angle, 1));
+      geo.setAttribute('tilt', new THREE.BufferAttribute(tilt, 1));
+      geo.setAttribute('node', new THREE.BufferAttribute(node, 1));
+      geo.setAttribute('psize', new THREE.BufferAttribute(size, 1));
+      geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), BELT_OUTER_AU * UNITS_PER_AU + 1);
+      const mat = new THREE.ShaderMaterial({
+        uniforms: { uYears: { value: 0 }, uPixelRatio: { value: renderer.getPixelRatio() }, uColor: { value: new THREE.Color(0xb8b0a4) } },
+        vertexShader: `
+          attribute float dist, angle0, tilt, node, psize;
+          uniform float uYears, uPixelRatio;
+          varying float vFade;
+          void main() {
+            float au = dist / ${UNITS_PER_AU.toFixed(1)};
+            float period = pow(au, 1.5);                 // years, Kepler's third law
+            float a = angle0 + 6.2831853 * uYears / period;
+            vec3 p = vec3(cos(a) * dist, 0.0, sin(a) * dist);
+            // tilt the orbit about a line through the Sun
+            float cn = cos(node), sn = sin(node), ct = cos(tilt), st = sin(tilt);
+            vec3 axis = vec3(cn, 0.0, sn);
+            p = p * ct + cross(axis, p) * st + axis * dot(axis, p) * (1.0 - ct);
+            vec4 mv = modelViewMatrix * vec4(p, 1.0);
+            gl_Position = projectionMatrix * mv;
+            gl_PointSize = psize * uPixelRatio * clamp(60.0 / -mv.z, 0.6, 3.0);
+            vFade = clamp(120.0 / -mv.z, 0.35, 1.0);
+          }`,
+        fragmentShader: `
+          uniform vec3 uColor;
+          varying float vFade;
+          void main() {
+            vec2 d = gl_PointCoord - 0.5;
+            if (dot(d, d) > 0.25) discard;
+            gl_FragColor = vec4(uColor, 0.85 * vFade);
+          }`,
+        transparent: true, depthWrite: false,
+      });
+      const points = new THREE.Points(geo, mat);
+      scene.add(points);
+      return { points, mat };
+    })();
+
+    // ---- The stars ---------------------------------------------------------------------
+    (() => {
+      const N = 2500, pos = new Float32Array(N * 3);
+      let seed = 9;
+      const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+      for (let i = 0; i < N; i++) {
+        const u = rnd() * 2 - 1, th = rnd() * Math.PI * 2, r = 900;
+        const s = Math.sqrt(1 - u * u);
+        pos[i * 3] = r * s * Math.cos(th); pos[i * 3 + 1] = r * u; pos[i * 3 + 2] = r * s * Math.sin(th);
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const mat = new THREE.PointsMaterial({ color: 0xf0ebe2, size: 1.6, sizeAttenuation: false, transparent: true, opacity: 0.7 });
+      scene.add(new THREE.Points(geo, mat));
+    })();
+
+    // ---- Names ---------------------------------------------------------------------------
+    const labelLayer = document.getElementById('labels');
+    const makeLabel = (text, cls) => {
+      const el = document.createElement('div');
+      el.className = 'label' + (cls ? ' ' + cls : ''); el.textContent = text; labelLayer.appendChild(el); return el;
+    };
+    const labels = [
+      { el: makeLabel('Sun', 'sun'), get: () => sun.position, lift: -SUN_RADIUS, below: true },
+      ...planetMeshes.map((m) => ({ el: makeLabel(m.userData.name), get: () => m.position, lift: m.geometry.parameters.radius })),
+      { el: makeLabel('The belt', 'belt'), get: () => beltLabelPos, lift: 0 },
+    ];
+    const beltLabelPos = new THREE.Vector3(0, 0.6, -((BELT_INNER_AU + BELT_OUTER_AU) / 2) * UNITS_PER_AU);
+    const tmp = new THREE.Vector3();
+    function placeLabels() {
+      const w = window.innerWidth, h = window.innerHeight;
+      for (const L of labels) {
+        tmp.copy(L.get()); tmp.y += L.lift;
+        tmp.project(camera);
+        const behind = tmp.z > 1;
+        const x = (tmp.x * 0.5 + 0.5) * w, y = (-tmp.y * 0.5 + 0.5) * h;
+        if (behind || x < -40 || x > w + 40 || y < -20 || y > h + 20) { L.el.style.display = 'none'; continue; }
+        L.el.style.display = '';
+        L.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, ${L.below ? '40%' : '-140%'})`;
+      }
+    }
+
+    // ---- Controls on the page ------------------------------------------------------------
+    // How many days pass for each real second, by slider position.
+    const SPEEDS = [
+      { days: 0,   text: 'stopped' },
+      { days: 1,   text: '1 day a second' },
+      { days: 7,   text: '1 week a second' },
+      { days: 30,  text: '30 days a second' },
+      { days: 120, text: '4 months a second' },
+      { days: 365.2, text: '1 year a second' },
+    ];
+    const speedInput = document.getElementById('speed');
+    const speedOut = document.getElementById('speed-out');
+    const clockEl = document.getElementById('clock');
+    const pauseBtn = document.getElementById('pause');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let paused = reducedMotion;
+    let daysElapsed = 0;
+    const updateSpeedText = () => { speedOut.textContent = SPEEDS[speedInput.value].text; };
+    speedInput.addEventListener('input', updateSpeedText);
+    updateSpeedText();
+    const setPaused = (v) => { paused = v; pauseBtn.textContent = paused ? 'Play' : 'Pause'; };
+    setPaused(paused);
+    pauseBtn.addEventListener('click', () => setPaused(!paused));
+    document.getElementById('orbits').addEventListener('change', (e) => { orbitLines.visible = e.target.checked; });
+    document.getElementById('names').addEventListener('change', (e) => { labelLayer.style.display = e.target.checked ? '' : 'none'; });
+    document.getElementById('reset').addEventListener('click', () => {
+      camera.position.copy(HOME.position); controls.target.copy(HOME.target); controls.update();
+    });
+
+    function describeClock(days) {
+      if (days < 365.2) return `${Math.floor(days)} days have passed`;
+      const years = days / 365.2;
+      return `${years.toFixed(1)} years have passed`;
+    }
+
+    // ---- Drawing ---------------------------------------------------------------------------
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    let last = performance.now();
+    let hidden = document.hidden;
+    document.addEventListener('visibilitychange', () => { hidden = document.hidden; last = performance.now(); if (!hidden) requestAnimationFrame(frame); });
+
+    function frame(now) {
+      if (hidden) return;
+      const dt = Math.min((now - last) / 1000, 0.1);
+      last = now;
+      if (!paused) daysElapsed += dt * SPEEDS[speedInput.value].days;
+      const years = daysElapsed / EARTH_YEAR_DAYS;
+
+      for (const m of planetMeshes) {
+        const a = m.userData.phase + Math.PI * 2 * (daysElapsed / m.userData.periodDays);
+        m.position.set(Math.cos(a) * m.userData.orbit, 0, Math.sin(a) * m.userData.orbit);
+        m.rotation.y += dt * 0.5;
+      }
+      belt.mat.uniforms.uYears.value = years;
+      clockEl.textContent = describeClock(daysElapsed);
+
+      controls.update();
+      renderer.render(scene, camera);
+      placeLabels();
+      requestAnimationFrame(frame);
+    }
+    frame(performance.now()); // draw the first picture at once, then keep going at the screen's rate
+  </script>
+</body>
+</html>
