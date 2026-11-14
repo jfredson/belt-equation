@@ -19,6 +19,7 @@ const NEWS_ON_HOME = 3;
 const newsPosts = await datedPosts();
 const latestNews = newsPosts.length >= 2 ? newsPosts.slice(0, NEWS_ON_HOME) : [];
 const startHere = await opener();
+const hasNews = latestNews.length > 0;
 
 const numbers = tree.numbers;
 const headlineKey = tree.headline_tier;
@@ -109,7 +110,7 @@ const contact = factorByLetter('C');
 ---
 
 <Base>
-  <section class="home-hero">
+  <section class={`home-hero${hasNews ? ' has-news' : ''}`}>
     <div class="home-hero-main">
       <p class="eyebrow">One man's odds of leaving Earth, tracked in public</p>
       <p class="big-number" data-bind="headline">{fmt(current.headline)}</p>
@@ -188,17 +189,28 @@ const contact = factorByLetter('C');
       </aside>
     )}
     </div>
+    {hasNews && (
+      <div class="hero-who who" id="who">
+      <p class="kicker">Who is asking</p>
+      <p>I'm John, 40 years old, and I write about AI, sentience and the spread of conscious life beyond Earth at <a href="https://sentient-horizons.com" rel="noopener">Sentient Horizons</a>. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page. It puts a number on the wish and it shows me which links are likely to move in the next few years, so I know where to watch, and which ones would move the odds most.</p>
+      </div>
+    )}
   </section>
 
-  <section class="section who" id="who">
+  {/* With the news panel under the dial, the right column runs past the left one, so "Who is
+      asking" sits in the first screen's left column (above) and fills what would be a gap; "Why
+      the name?" keeps this row alone. Without the panel both stay here, side by side. */}
+  <section class={`section who${hasNews ? ' who-single' : ''}`} id={hasNews ? undefined : 'who'}>
     <div>
       <p class="kicker">Why the name?</p>
       <p>The name comes from the Belters of the TV series <em>The Expanse</em>, the people who live and work in the asteroid belt, far from Earth. Underestimated, and at home where nobody thought people could be. I want to see a solar system like that unfold. This site works out, in public, how likely that is.</p>
     </div>
-    <div>
+    {!hasNews && (
+      <div>
       <p class="kicker">Who is asking</p>
       <p>I'm John, 40 years old, and I write about AI, sentience and the spread of conscious life beyond Earth at <a href="https://sentient-horizons.com" rel="noopener">Sentient Horizons</a>. I want to leave the planet before I die, and I'd rather know my real odds than keep the wish vague. So I built the probability tree behind this page. It puts a number on the wish and it shows me which links are likely to move in the next few years, so I know where to watch, and which ones would move the odds most.</p>
-    </div>
+      </div>
+    )}
   </section>
 
   <section class="section chain" id="chain">

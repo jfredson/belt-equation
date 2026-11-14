@@ -278,6 +278,17 @@ a.dim:hover { color: var(--accent); }
 .move p { margin: 0; font-size: 16px; line-height: 1.5; }
 .move .btn { align-self: flex-start; margin-top: 6px; }
 /* ---- latest news beside the headline, under the dial (John, 2026-11-14; proposal home-latest-news-2026-11-14, second option) ---- */
+/* With the panel the right column is the longer one. "Who is asking" takes the second row of the
+   left column so no gap opens under the buttons; any slack falls below it, at the section's end. */
+.home-hero.has-news { grid-template-rows: auto 1fr; row-gap: 30px; }
+.home-hero.has-news .home-hero-main { grid-column: 1; grid-row: 1; }
+.home-hero.has-news .home-hero-side { grid-column: 2; grid-row: 1 / span 2; }
+.hero-who { grid-column: 1; grid-row: 2; display: block; padding-top: 0; scroll-margin-top: 90px; }
+.who.who-single { grid-template-columns: 1fr; max-width: 760px; }
+@media (max-width: 900px) {
+  .home-hero.has-news { grid-template-rows: none; row-gap: 28px; }
+  .home-hero.has-news .home-hero-main, .home-hero.has-news .home-hero-side, .hero-who { grid-column: auto; grid-row: auto; }
+}
 .home-hero-side { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .side-news { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
 .side-news-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: var(--sans); }
