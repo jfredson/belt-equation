@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-11-14
+
+- Home page: the three newest news posts are now listed on the right of the first screen, under the dial, as a date, a kind and a title that links to the post, with a link to all the news and a line sending a new reader to the "Start here" post (site/src/pages/index.astro). Before this, nothing on the home page said a post existed. "Who is asking" moves up into the left column under the two buttons, so the longer right column leaves no gap; "Why the name?" keeps its own row below. Chosen by John over a block of cards below the first screen (sentient-horizons/design/proposals/home-latest-news-2026-11-14.md). No number, definition or record changes.
+
 ## 2026-11-09
 
 - Proposal on computing from equipment built off Earth: the gate node's claim to check is cleared. Blue Origin's own page of 2023-02-10 confirms its Blue Alchemist laboratory made solar cells from lunar soil simulant, now linked in the proposed node's notes. The proposal only; nothing in the tree changes.
