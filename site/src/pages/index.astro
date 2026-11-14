@@ -6,6 +6,19 @@ import Base from '../layouts/Base.astro';
 import { tree, percent, factorByLetter, snapshots, ledger, direction, movePoints } from '../lib/tree';
 import { latestScan, scanSummary } from '../lib/scans';
 import { longDate } from '../lib/dates';
+import { datedPosts, opener, postPath, KIND_LABEL } from '../lib/news';
+
+// The latest news, on the right of the first screen under the dial (chosen by John on
+// 2026-11-14 over a block of cards below the first screen; both are drawn in
+// sentient-horizons/design/proposals/home-latest-news-2026-11-14.md). Titles and links only:
+// the three newest posts, newest first, so a returning reader sees what is new the moment the
+// page opens. The pinned "Start here" post is not one of the three; it gets its own line
+// underneath. The panel is left off while the site has fewer than two dated posts, because a
+// list of one reads as a site nobody is keeping up.
+const NEWS_ON_HOME = 3;
+const newsPosts = await datedPosts();
+const latestNews = newsPosts.length >= 2 ? newsPosts.slice(0, NEWS_ON_HOME) : [];
+const startHere = await opener();
 
 const numbers = tree.numbers;
 const headlineKey = tree.headline_tier;
@@ -135,6 +148,7 @@ const contact = factorByLetter('C');
       </div>
     </div>
 
+    <div class="home-hero-side">
     <div class="dial" id="dial">
       <div class="dial-head">
         <span class="dial-label">How long do I get?</span>
@@ -153,6 +167,26 @@ const contact = factorByLetter('C');
         <div><span class="stat accent" data-bind="headline">{fmt(current.headline)}</span><span class="stat-label">I'm out there working when it does</span></div>
       </div>
       <p class="dial-foot">These are my odds, in my lifetime.<br /><a href="/run/">Run the same tree for your lifetime</a>.<br />How likely is a much longer life? That's the question <a href="https://outrunningageing.com" rel="noopener">Outrunning Ageing</a> tracks.</p>
+    </div>
+    {latestNews.length > 0 && (
+      <aside class="side-news" aria-labelledby="side-news-title">
+        <div class="side-news-head">
+          <h2 class="dial-label" id="side-news-title">Latest news</h2>
+          <a href="/news/">All news</a>
+        </div>
+        <ul class="side-news-list">
+          {latestNews.map((p) => (
+            <li>
+              <p class="side-news-meta"><time datetime={p.data.date}>{longDate(p.data.date)}</time><span class={`kind${p.data.kind === 'mission-news' ? ' kind-mission' : p.data.kind === 'discovery' ? ' kind-discovery' : ''}`}>{KIND_LABEL[p.data.kind]}</span></p>
+              <a class="side-news-title" href={postPath(p)}>{p.data.title}</a>
+            </li>
+          ))}
+        </ul>
+        {startHere && (
+          <p class="side-news-foot">New here? <a href={postPath(startHere)}>Start with where the odds stand</a>.</p>
+        )}
+      </aside>
+    )}
     </div>
   </section>
 
