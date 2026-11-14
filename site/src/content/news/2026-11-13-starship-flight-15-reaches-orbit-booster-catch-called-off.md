@@ -15,7 +15,7 @@ sources:
     url: https://www.cnbc.com/2026/11/13/spacex-launches-starship-in-key-test-flight-of-massive-rocket.html
 ---
 
-[SpaceX](https://www.spacex.com/) launched the fifteenth test flight of its [Starship](https://www.spacex.com/vehicles/starship/) rocket on November 13th, 2026, and [called off the catch of the booster](https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-flight-15-chopsticks-double-catch-super-heavy-ship) a few minutes later, while the upper stage went on to orbit, where it is still flying as I write.
+[SpaceX](https://www.spacex.com/) launched the fifteenth test flight of its [Starship](https://www.spacex.com/vehicles/starship/) rocket on November 13th, 2026, and [called off the catch of the booster](https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-flight-15-chopsticks-double-catch-super-heavy-ship) a few minutes later, while the upper stage went on to orbit, where it was still flying that evening.
 
 ## What happened
 
@@ -43,9 +43,9 @@ If everything stays healthy, the catch would come at [about 3:17 in the afternoo
 
 ## Why it matters
 
-No one has caught an upper stage coming back from orbit. If Saturday's catch works, it will be the first. Because the booster was lost, this flight can no longer be [the first full recovery of a rocket that reached orbit](https://www.spacex.com/launches/starship-flight-15), which needs both parts to come home from the same flight.
+No Starship upper stage has yet been recovered. If Saturday's catch works, it will be [the first](https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-flight-15-chopsticks-double-catch-super-heavy-ship). Because the booster was lost, this flight can no longer be [the first full recovery of a rocket that reached orbit](https://www.spacex.com/launches/starship-flight-15), which needs both parts to come home from the same flight.
 
-A rocket whose two parts both come back and fly again would cost far less per flight than one that is thrown away. The same rocket is also one of the Moon landers that NASA has chosen for its [Artemis programme](https://www.nasa.gov/humans-in-space/artemis/), which aims to return astronauts to the Moon.
+Starship is also [one of the Moon landers](https://www.space.com/space-exploration/launches-spacecraft/spacex-starship-flight-15-chopsticks-double-catch-super-heavy-ship) that NASA has chosen for its [Artemis programme](https://www.nasa.gov/humans-in-space/artemis/), which aims to return astronauts to the Moon.
 
 ## What to watch for
 

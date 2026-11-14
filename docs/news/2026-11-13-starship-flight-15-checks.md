@@ -79,3 +79,14 @@ CNBC and Space.com are linked at the reports themselves.
 - The sentence "would cost far less per flight than one that is thrown away" is a plain statement of why
   reuse matters and carries no source; cut it or source it.
 - The share kit and the outreach task that every news post gets.
+
+## Published 2026-11-13 (John: "Publish tonight")
+
+John chose to publish on launch night as a launch-day post, with the flight still under way. Before
+publishing, Space.com's live updates were read again (about 5:57 p.m. Pacific): no change, the upper stage
+still coasting. Three edits were made: the opening now says the upper stage "was still flying that
+evening"; the unsourced sentence on the cost of reuse was cut; and "No one has caught an upper stage"
+became "No Starship upper stage has yet been recovered", which is what Space.com's report supports. The
+Voice Calibration and Cold Reader passes, the title-rules check and the share kit are still not done. The
+upper stage's outcome on 2026-11-14 goes in a follow-up post or an added section, and in
+`data/missions.toml`.
