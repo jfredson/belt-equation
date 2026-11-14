@@ -137,3 +137,21 @@ moves. Proposed, not applied: a held-steady ledger entry for this flight, like t
 Flight 14, at Sunday's scan.
 
 Still owed: the title-rules check, the Voice Calibration and Cold Reader passes, and a picture.
+
+## Title changed 2026-11-14 (on a branch, for the master session to merge)
+
+John's words, as his master session passed them on: "merge 78 with the new title". Pull request 78 had
+already been merged and published at John's "Merge and publish" earlier the same afternoon, so the
+title change is its own pull request. The title goes from "Starship's fifteenth flight reaches orbit, but SpaceX calls off the booster catch" to "SpaceX catches a Starship upper stage for the first time, a day after losing the booster". The post's address and
+file name stay as they are: the post is public at that address, and the site takes the address from the
+file name, not from the title.
+
+Against the title rules (`sentient-horizons/editorial/title-rules.md`, read 2026-11-14 on that
+repository's main line; it was not in the checked-out branch on launch night): rule 1, a stranger can
+say what the post is about from the title alone; rule 2, it names SpaceX and Starship; rule 3, no coined
+phrase; rule 4, a plain claim; rule 5 does not apply; rule 6 does not apply; rule 7, the Reddit title in
+the share kit says the same and more. No attention device. One thing the rules say that this goes
+against: "After publishing, the title and the address stay." This is a change to a published title, made
+on John's word the day after publishing, like the two exceptions the rules record; unlike them, the
+address is kept. Every claim in the title is in the post with its source: the catch and that it is the
+first (Space.com's live updates, CNBC), and the booster lost the day before (Space.com, CNBC).
