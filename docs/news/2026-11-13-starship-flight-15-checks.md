@@ -90,3 +90,50 @@ became "No Starship upper stage has yet been recovered", which is what Space.com
 Voice Calibration and Cold Reader passes, the title-rules check and the share kit are still not done. The
 upper stage's outcome on 2026-11-14 goes in a follow-up post or an added section, and in
 `data/missions.toml`.
+
+## Updated 2026-11-14, after the upper stage came back (on a branch, not published)
+
+Asked for by John's master session of 2026-11-14, following the reminder John asked for on 2026-11-13.
+The update is on the branch `claude/starship-flight-15-return-2026-11-14` in a pull request; merging it
+publishes it, and that is John's.
+
+What the sources say (each opened 2026-11-14, about 2:40 p.m. Pacific):
+
+- Space.com's live updates (https://www.space.com/news/live/spacex-starship-flight-15-live-updates-nov-14-2026-starship-first-double-landing-attempt; the page's address now ends "nov-14", and the old address forwards to
+  it): entry of 21:31 UTC, "SpaceX caught the Starship upper stage today (Nov. 14) for the first time
+  ever", at "about 4:20 p.m. EST (2120 GMT)", 22.5 hours after launch; Dan Huot, "We caught a Starship,
+  and now everything changes." Entry of 20:42 UTC, Kate Tice: "Early indications are that the booster
+  ended its boostback [burn] early due to a low fuel mass alarm", the cause still being investigated,
+  and the booster's guidance "correctly aborted itself from the tower catch and went for an offshore
+  water divert". Entry of 20:29 UTC: a 10-second, single-engine deorbit burn. Entry of 19:28 UTC: the
+  final early-return check passed. Entry of 13:00 UTC: the second early-return check passed; Huot on the
+  heat shield being "in a good posture for a reentry".
+- CNBC's report by Lora Kolodny (https://www.cnbc.com/2026/11/14/spacex-plans-to-try-first-ever-catch-of-starship-rocket-from-orbit.html, published 4:14 p.m. Eastern): SpaceX "successfully caught the
+  upper stage"; it "flew around the Earth 14 times"; the booster was diverted "to an offshore splashdown
+  in the Gulf of Mexico where it exploded before hitting the water".
+- SpaceX's own page for the flight still carried its pre-launch text when opened, so the outcome rests
+  on Space.com and CNBC, and on SpaceX's broadcast as Space.com quotes it.
+
+Changes to the post: the summary, the opening and the booster paragraphs are rewritten; "What comes
+next" becomes "The catch"; "Why it matters" and "What to watch for" are rewritten; an "Updated" line
+is added under the title. CNBC's first report said the booster "burst into flames" in the Gulf; its
+second says it exploded before reaching the water, and the post now gives the second. Space.com's live
+updates also say the booster's flight termination system was set off; the post does not say so, since
+the line is a picture caption and not a SpaceX statement.
+
+Not verified: whether SpaceX says the caught upper stage can fly again (no source read says either
+way; the post says so); the exact minute of the catch (Space.com gives "about 4:20 p.m. EST" in one
+entry and a plan of 4:16 in others; the post says "about 3:20 in the afternoon, Texas time").
+
+The title is unchanged, because a published title is John's to change. It now covers only half the
+story. A suggestion for him: "SpaceX catches a Starship upper stage for the first time, a day after
+losing the booster". The post's address would stay as it is.
+
+The record: `data/missions.toml` now marks the Flight 15 milestone done, with what happened to each
+part. Nothing in the tree changes in this pull request. The step this flight bears on, "A heavy launcher
+recovers both of its stages intact from one orbital flight", asks for both parts from a single flight,
+retrieved and confirmed fit to fly again; the booster was lost, so the step is not met and no number
+moves. Proposed, not applied: a held-steady ledger entry for this flight, like the one written for
+Flight 14, at Sunday's scan.
+
+Still owed: the title-rules check, the Voice Calibration and Cold Reader passes, and a picture.
