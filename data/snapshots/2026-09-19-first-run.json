@@ -99,21 +99,21 @@
     }
   },
   "nodes": {
-    "A-pipeline-graduation": {
+    "A-withdrawn-id-1": {
       "baseline": 0.8491,
       "moderate": 0.84935,
       "strong": 0.8527,
       "radical": 0.85075,
       "open": 0.8529
     },
-    "A-commercial-crew-survival-training-industry-exists": {
+    "A-withdrawn-id-8": {
       "baseline": 0.4933,
       "moderate": 0.59985,
       "strong": 0.7527,
       "radical": 0.87815,
       "open": 0.91945
     },
-    "A-military-survival-instructor-hired-into-spaceflight-training": {
+    "A-withdrawn-id-2": {
       "baseline": 0.65255,
       "moderate": 0.7489,
       "strong": 0.84895,
@@ -141,7 +141,7 @@
       "radical": 0.0,
       "open": 0.0
     },
-    "A-military-role-with-off-earth-rotation-obtained": {
+    "A-withdrawn-id-3": {
       "baseline": 0.0699,
       "moderate": 0.1195,
       "strong": 0.1886,
@@ -169,14 +169,14 @@
       "radical": 0.8302,
       "open": 0.86405
     },
-    "A-reenlist-at-six-years": {
+    "A-withdrawn-id-4": {
       "baseline": 1.0,
       "moderate": 1.0,
       "strong": 1.0,
       "radical": 1.0,
       "open": 1.0
     },
-    "A-separate-at-six-years-into-civilian-space-work": {
+    "A-withdrawn-id-6": {
       "baseline": 0.0,
       "moderate": 0.0,
       "strong": 0.0,
@@ -633,11 +633,11 @@
     }
   },
   "decisions": {
-    "six-year-fork": {
+    "withdrawn-fork-1": {
       "options": [
         {
-          "id": "A-reenlist-at-six-years",
-          "name": "Re-enlist at the six-year mark",
+          "id": "A-withdrawn-id-4",
+          "name": "Wording withdrawn until May 2027, because it named my current career",
           "current_plan": true,
           "headline": {
             "baseline": 0.0,
@@ -648,8 +648,8 @@
           }
         },
         {
-          "id": "A-separate-at-six-years-into-civilian-space-work",
-          "name": "Separate at the six-year mark into civilian space or defence work",
+          "id": "A-withdrawn-id-6",
+          "name": "Wording withdrawn until May 2027, because it named my current career",
           "current_plan": false,
           "headline": {
             "baseline": 0.0,
@@ -672,12 +672,12 @@
     },
     "reaches_headline": [
       "A-civilian-spaceflight-training-role-obtained",
-      "A-commercial-crew-survival-training-industry-exists",
+      "A-withdrawn-id-8",
       "A-in-a-role-whose-holders-rotate-off-earth",
-      "A-military-role-with-off-earth-rotation-obtained",
-      "A-pipeline-graduation",
-      "A-reenlist-at-six-years",
-      "A-separate-at-six-years-into-civilian-space-work",
+      "A-withdrawn-id-3",
+      "A-withdrawn-id-1",
+      "A-withdrawn-id-4",
+      "A-withdrawn-id-6",
       "A-working-in-or-for-the-off-earth-industry",
       "B-closed-loop-life-support-year-off-earth",
       "B-crewed-spin-gravity-demonstration",
@@ -706,7 +706,7 @@
       "R-space-funding-holds-through-a-recession"
     ],
     "nodes": {
-      "A-pipeline-graduation": {
+      "A-withdrawn-id-1": {
         "reaches_headline": true,
         "headline": {
           "baseline": 0.0,
@@ -744,7 +744,7 @@
           "open": 0.0
         }
       },
-      "A-commercial-crew-survival-training-industry-exists": {
+      "A-withdrawn-id-8": {
         "reaches_headline": true,
         "headline": {
           "baseline": 0.0,
@@ -782,7 +782,7 @@
           "open": 0.0
         }
       },
-      "A-military-survival-instructor-hired-into-spaceflight-training": {
+      "A-withdrawn-id-2": {
         "reaches_headline": false,
         "headline": {
           "baseline": 0.0,
@@ -896,7 +896,7 @@
           "open": 0.0
         }
       },
-      "A-military-role-with-off-earth-rotation-obtained": {
+      "A-withdrawn-id-3": {
         "reaches_headline": true,
         "headline": {
           "baseline": 0.0,

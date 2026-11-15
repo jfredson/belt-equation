@@ -13,51 +13,64 @@
 # A step renamed twice has two rows, and the compute script follows them to the newest id. The
 # renames of 2026-11-14 came with a rewording of the same steps that keeps their meaning; each
 # reworded field is a revision on its step in data/A-access.toml.
+#
+# The old ids that named my current career are written here, and in the saved runs, as
+# withdrawn codes (A-withdrawn-id-1 to A-withdrawn-id-8, withdrawn-fork-1) instead of the ids
+# themselves, decided 2026-11-14. Each code stands for one old id and is used for nothing else.
+# The codes are plain numbers, not worked out from the old words, so they cannot be turned back
+# into them. This is the one change ever made to the saved runs: only these labels changed, and
+# every number in every run is as it was.
 
 [[renamed]]
-old = "A-pipeline-graduation"
+old = "A-withdrawn-id-1"
 new = "A-current-training-completed"
 date = 2026-10-03
 why = "The id described my current career, which no public surface does until May 2027 (decided 2026-09-25; rename ruled 2026-10-03)."
 
 [[renamed]]
-old = "A-military-survival-instructor-hired-into-spaceflight-training"
+old = "A-withdrawn-id-2"
 new = "A-someone-from-current-role-hired-into-spaceflight-training"
 date = 2026-10-03
 why = "The id described my current career, which no public surface does until May 2027 (decided 2026-09-25; rename ruled 2026-10-03)."
 
 [[renamed]]
-old = "A-military-role-with-off-earth-rotation-obtained"
+old = "A-withdrawn-id-3"
 new = "A-current-career-role-with-off-earth-rotation-obtained"
 date = 2026-10-03
 why = "The id described my current career, which no public surface does until May 2027 (decided 2026-09-25; rename ruled 2026-10-03)."
 
 [[renamed]]
-old = "A-reenlist-at-six-years"
-new = "A-stay-past-six-years"
+old = "A-withdrawn-id-4"
+new = "A-withdrawn-id-5"
 date = 2026-10-03
 why = "The id described my current career, which no public surface does until May 2027 (decided 2026-09-25; rename ruled 2026-10-03)."
 
 [[renamed]]
-old = "A-separate-at-six-years-into-civilian-space-work"
-new = "A-leave-at-six-years-into-civilian-space-work"
+old = "A-withdrawn-id-6"
+new = "A-withdrawn-id-7"
 date = 2026-10-03
-why = "The id used service wording for leaving a contract, and no public surface describes my current career until May 2027 (decided 2026-09-25; rename ruled 2026-10-03)."
+why = "The id described my current career, which no public surface does until May 2027 (decided 2026-09-25; rename ruled 2026-10-03)."
 
 [[renamed]]
-old = "A-stay-past-six-years"
+old = "A-withdrawn-id-5"
 new = "A-stay-in-current-career"
 date = 2026-11-14
 why = "The id still pointed at my current career, which no public surface describes until May 2027 (decided 2026-09-25; renamed 2026-11-14 after a review of the live site)."
 
 [[renamed]]
-old = "A-leave-at-six-years-into-civilian-space-work"
+old = "A-withdrawn-id-7"
 new = "A-leave-current-career-for-civilian-space-work"
 date = 2026-11-14
 why = "The id still pointed at my current career, which no public surface describes until May 2027 (decided 2026-09-25; renamed 2026-11-14 after a review of the live site)."
 
 [[renamed]]
-old = "A-commercial-crew-survival-training-industry-exists"
+old = "A-withdrawn-id-8"
 new = "A-commercial-crew-emergency-training-industry-exists"
 date = 2026-11-14
 why = "Read beside the route from my current career, the id pointed at it, and no public surface describes it until May 2027 (decided 2026-09-25; renamed 2026-11-14 after a review of the live site)."
+
+[[renamed]]
+old = "withdrawn-fork-1"
+new = "career-fork"
+date = 2026-11-14
+why = "The choice point's id described my current career, which no public surface does until May 2027 (decided 2026-09-25; renamed 2026-11-14 after a review of the live site)."

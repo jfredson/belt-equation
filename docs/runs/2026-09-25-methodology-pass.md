@@ -4,7 +4,7 @@ The methodology pass is the one structural review that the outside-model review 
 
 What landed:
 
-- **Item 96:** a note in definitions.md that A3 requiring A2 is a limit of the one route the tree models. The direct-migration route waits for the access-branch review after pipeline graduation (May 2027). Words only.
+- **Item 96:** a note in definitions.md that A3 requiring A2 is a limit of the one route the tree models. The direct-migration route waits for the access-branch review after the end of the current training (May 2027). Words only.
 - **Item 97:** Tier 1 is tested by the hundred-workers node alone, so a crewed station counts. The reusable lunar lander, the lunar reactor and the lunar programme left Tier 1's list; they still gate Tier 3 through lunar material at scale.
 - **Item 98:** a note in definitions.md that the tier headcounts describe each tier and the requirement lists test it. Counting people directly is left to version two. Words only.
 - **Item 99:** the child born and raised off Earth moved from Tier 2's definition to Tier 4's, matching the 2026-09-19 move of the requirement itself. Words only.
@@ -45,7 +45,7 @@ Against `2026-09-25-c5`, with the same seed, so a figure whose tier did not chan
 | A2 at Tier 1, the second number | 6.0 → 8.9 | 10.8 → 14.8 | 18.3 → 23.6 | 27.2 → 32.4 | 29.6 → 34.7 |
 | Regime link on the home page chain | 18.4 → 21.5 | 25.0 → 28.8 | 37.9 → 43.0 | 57.0 → 63.3 | 66.1 → 72.2 |
 
-**Did not move, to the last play-through:** the headline (A2 0.47 / 1.2 / 3.5 / 10.7 / 14.7 percent), Tier 3, A0, A1, A3, every node's own figure, the Contact Clause, the decision comparison at the six-year fork, and the launch, energy, drive, biology, motive and access links of the chain. The attribution puts the headline's move at exactly zero in every scenario, against a noise band of 0.10 points by 2071.
+**Did not move, to the last play-through:** the headline (A2 0.47 / 1.2 / 3.5 / 10.7 / 14.7 percent), Tier 3, A0, A1, A3, every node's own figure, the Contact Clause, the decision comparison at the career fork, and the launch, energy, drive, biology, motive and access links of the chain. The attribution puts the headline's move at exactly zero in every scenario, against a noise band of 0.10 points by 2071.
 
 Tier 1, Tier 2 and the second number moved as the proposal predicted for item 97 (it had Tier 1 at 34.9 and the second number at 8.8 by 2071, from the 2026-09-20 tree; the C5 landing gave the Contact Clause dice of their own, which shifts every figure by a few tenths). Tier 4 moved as predicted for item 100 part (a). The regime link rose because it no longer includes the lunar programme directly; that step now sits under lunar material at scale, which the launch link carries. The launch link lost the reusable lander for the same reason, and its rate did not change, because lunar material at scale already requires the lander.
 
@@ -55,6 +55,6 @@ A rotation at a station or lunar base, Belt or no Belt, is now 8.9 percent by 20
 
 ## Left for the next sessions
 
-- The access-branch review after pipeline graduation (May 2027) takes item 96's direct-migration route, beside item 29's three personal nodes.
+- The access-branch review after the end of the current training (May 2027) takes item 96's direct-migration route, beside item 29's three personal nodes.
 - Item 98's headcount nodes and item 101's completion-date method are version-two candidates for a later annual review.
 - The anti-satellite ban and the megawatt radiator are now the two tracked steps that gate no tier. The first founding rule excludes a node for being irrelevant; both are kept by John's ruling, and the annual review may retire either.
