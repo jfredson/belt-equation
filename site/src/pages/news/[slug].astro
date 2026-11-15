@@ -2,6 +2,7 @@
 // One news post (tracker pattern, rule 4.12), copied from Outrunning Ageing's, the model.
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import RecentNews from '../../components/RecentNews.astro';
 import { longDate } from '../../lib/dates';
 import { tree, ledger } from '../../lib/tree';
 import { allPosts, cardPath, KIND_LABEL, type Post } from '../../lib/news';
@@ -28,6 +29,7 @@ const namedMissions = post.data.missions.map((id) => missions.missions.find((m) 
     <h1>{post.data.title}</h1>
     <p class="lede">{post.data.summary}</p>
   </section>
+  <div class="post-layout">
   <article class="post">
     <Content />
     {(named.length > 0 || namedMissions.length > 0 || post.data.sources.length > 0) && (
@@ -39,4 +41,6 @@ const namedMissions = post.data.missions.map((id) => missions.missions.find((m) 
     )}
     <p class="news-follow">Follow the news: <a href="/news/feed.xml">the feed</a> · <a href="https://x.com/SentHorizons" rel="noopener">@SentHorizons on X</a> · <a href="https://www.reddit.com/r/SentientHorizons/" rel="noopener">r/SentientHorizons on Reddit</a>.</p>
   </article>
+  <RecentNews currentId={post.id} />
+  </div>
 </Base>
