@@ -155,3 +155,183 @@ against: "After publishing, the title and the address stay." This is a change to
 on John's word the day after publishing, like the two exceptions the rules record; unlike them, the
 address is kept. Every claim in the title is in the post with its source: the catch and that it is the
 first (Space.com's live updates, CNBC), and the booster lost the day before (Space.com, CNBC).
+
+## Rewritten 2026-11-14 as an essay (branch `claude/flight-15-essay-2026-11-14`, not merged)
+
+Asked for by John's brief of 2026-11-14 (drafted in his planning chat): rewrite the post from scratch so
+that it leads with why the upper stage's catch matters, carries the cost argument and the chain up the
+tree, connects to the Quiet Galaxy, states the caveats, keeps the flight to one short section, and ends
+on what to watch. It is also meant to stand alone for a Sentient Horizons newsletter reader. Nothing is
+merged, deployed or sent. The address is unchanged.
+
+### The approach, reviewed before writing
+
+- **Reversing the proportions is right**, and it fits the Frontier Dispatch rule in
+  `sentient-horizons/editorial/content-strategy.md` ("a dispatch that reads as mission recap or roadmap
+  cheerleading has failed").
+- **One correction to the brief's framing, built into the essay.** The brief says the launch-cost link is
+  the one every later link depends on. In the tree that is true of every rung of the outcome ladder:
+  Tier 1 needs `M-hundred-people-working-off-earth-for-pay`, which depends on the hundred-flight year,
+  and every tier from Tier 2 up requires the $200-a-kilogram step. But the published essay *The Belt
+  Equation* says launch is "the healthy part of the chain" and that the Belt "is gated by whether anyone
+  ever makes money out there more than by rockets". To stay coherent with it, the essay says launch holds
+  up the ladder and is one of the healthiest links, and names the tightest link (something made off Earth
+  sold at a profit, about 6 percent by 2071). It does not say the biology steps depend on launch, because
+  they do not.
+- **Fit with the news section.** The post stays `kind: mission-news`, which `scripts/check_news.py`
+  accepts, and the Starship milestone is still marked within fourteen days. At about 2,150 words it is far
+  longer than the other posts. The Quiet Galaxy section reaches beyond a Belt news post; it is kept
+  because the brief asks for it and because it is what makes the piece newsletter material. If John wants
+  the Belt post shorter, that section is the one to move into the Sentient Horizons copy only.
+- **"Two Silences" does not exist.** No file, branch or commit in `sentient-horizons`, `quiet-galaxy`,
+  `calibration-problem` or anywhere under `~/Code` carries that title, and the live Sentient Horizons
+  feed and the Quiet Galaxy site have no such piece (searched 2026-11-14). The Quiet Galaxy connection is
+  drawn instead from *The Quiet Galaxy Hypothesis*, the corpus ledger's position 25 ("the Great Filter
+  reframes as a threshold from reach to restraint") and three of the Quiet Galaxy's explanation records:
+  `interstellar-travel-impractical`, `expansion-stalls` and `inward-turn`, each quoted from its own
+  `would_strengthen` or `would_weaken` line. If "Two Silences" is a working title for something not yet
+  written, John can say which.
+- **Other trackers left out.** The AGI Zeitgeist, The Upgrade Tree and Outrunning Ageing have no direct
+  link to a rocket catch, so none is named.
+
+### The newsletter: the post cannot go out as it is
+
+The Sentient Horizons newsletter (`sentient-horizons/ops/newsletter/README.md`) is one Buttondown issue
+per Sentient Horizons essay, and the draft makes itself only when an essay's status becomes `published`
+on that repository's `master`. A tracker news post has no route into it. So sharing this piece means a
+Sentient Horizons copy, published as a Frontier Dispatch, the way the AGI Zeitgeist dispatch of
+2026-10-24 was. The copy can carry the same text with three changes: drop the "Rewritten" note at the
+top, say in the first lines that the Belt Equation is John's tracker and link it (already done in the
+body), and pass the featured-image gate (`ops/protocols.md`: no `published` status without the woodcut
+banner, which John generates and approves). The other route, a hand-made Buttondown issue that links to
+the Belt post, breaks the one-issue-per-essay format and is not recommended. Nothing in
+`sentient-horizons` was changed in this session.
+
+### Title and address
+
+- **Title** changed to "Why SpaceX catching Starship's upper stage matters for everything beyond Earth".
+  It follows `title-rules.md` (names the subject, says the question the piece answers, no coined phrase).
+  This replaces John's own retitle of earlier today ("SpaceX catches a Starship upper stage for the first
+  time, a day after losing the booster", pull request #79), so it is his call; the old title is the
+  alternative and would still be accurate, though it describes the flight more than the essay.
+- **Address kept**: `/news/2026-11-13-starship-flight-15-reaches-orbit-booster-catch-called-off/`. The
+  post has been live since launch night and its address may have been shared. The slug describes the
+  first version, but readers rarely read an address, and keeping it needs no redirect. If John wants an
+  address that matches, the title-rules exceptions of 2026-10-24 and 2026-10-25 are the precedent: a new
+  file name and a permanent (301) redirect from the old address.
+
+### Dates
+
+The brief's example was "November 14, 2026". The site and John's ruling of 2026-10-21 spell dates in
+public prose as "November 14th, 2026", and the earlier version of this post did the same, so the essay
+keeps the house form. One find-and-replace changes it if John meant the brief literally.
+
+### Facts and their sources (each opened 2026-11-14)
+
+- **Launch, pad, vehicles.** Wikipedia's article on the flight (https://en.wikipedia.org/wiki/Starship_flight_15):
+  liftoff "November 13, 2026, 22:47:36 UTC (4:47:36 pm CST)", "from Orbital Launch Pad 2 at Starbase",
+  "The mission used Booster 22 and Ship 42". The essay gives 4:47 p.m. Texas time and links Wikipedia;
+  the universal time is left out of the prose because one time is enough for a reader.
+- **Booster abort and loss.** Space.com's launch report (Josh Dinner, link above): catch called off about
+  6.5 minutes after launch. Space.com's live updates (entry of 20:42 UTC, 2026-11-14): Kate Tice, "low fuel
+  mass alarm". CBS News (William Harwood, https://www.cbsnews.com/news/spacex-catch-starship-rocket/,
+  updated 2026-11-14 6:06 p.m. Eastern): it "ran out of fuel and exploded moments before hitting the water";
+  "the first such recovery of a Starship from orbit"; Dan Huot, "We caught a Starship, and now everything
+  changes"; Musk on early ships and boosters being "already outdated by improved designs in production or
+  on the test stand".
+- **Ship.** CNBC (Lora Kolodny, 2026-11-14): 26 Starlink V3 satellites; "flew around the Earth 14 times".
+  Wikipedia: caught "November 14, 2026, 21:20:03 UTC (3:20:03 pm CST)", 22 hours 32 minutes after liftoff.
+  Space.com's live updates: "about 4:20 p.m. EST", a single-engine deorbit burn of about ten seconds.
+- **Shotwell and Musk, 2026-10-20.** The Motley Fool's transcript of SpaceX's third-quarter earnings call
+  (https://www.fool.com/earnings/call-transcripts/2026/10/20/spacex-spcx-q3-2026-earnings-call-transcript/):
+  Shotwell, "refly the second stage by early next year" and "We'll attempt an on-orbit refueling early
+  next year"; Musk, the goal to "immediately land the rocket and launch it again just like an airplane",
+  "a little bit of refurbishment that's needed between each flight" at first, and "We expect Starship to
+  fly weekly at some point in the first half next year". Only the first half of the transcript was read
+  word for word; every quotation used comes from that half. Two trade sites carry the same Shotwell
+  target (eeNews Europe, 2026-10-23; New Space Economy, 2026-10-21); the transcript is cited instead.
+- **Falcon 9.** Wikipedia (https://en.wikipedia.org/wiki/Falcon_9): first booster landing "on flight 20 in
+  December 2015"; "Since 2018, SpaceX has routinely reused first stages"; the factory "continues to
+  produce one (expendable) second stage for each launch". Wikipedia's article on the launch market
+  (https://en.wikipedia.org/wiki/Space_launch_market_competition): a table of estimated cost per kilogram
+  giving Falcon 9 US$2,720 (no year stated, so the essay attributes it to "Wikipedia's table"), and the
+  record of price cuts from reused stages. "About a fourteenth" is 200 / 2,720 = 0.074.
+- **Space Shuttle.** Wikipedia (https://en.wikipedia.org/wiki/Space_Shuttle): "Five complete Space Shuttle
+  orbiter vehicles were built and flown on a total of 135 missions from 1981 to 2011"; cost per launch
+  "US$450 million (2011)", citing a NASA Kennedy Space Center page; the main engines "would be removed and
+  replaced in between flights"; the external tank "the only major component of the Space Shuttle system
+  that was not reused". The essay says these were among the reasons, and does not claim they were all
+  of them.
+- **Starship's design aim.** Wikipedia (https://en.wikipedia.org/wiki/SpaceX_Starship): "If completed as
+  designed, Starship would be the first fully reusable orbital rocket"; "SpaceX states that its goal is to
+  reduce launch costs by reusing and mass-producing both stages".
+- **The tree's figures** come from `data/L-launch.toml` and `data/M-motive.toml` (baseline scenario, 2071)
+  and `data/headline.json` (0.465 percent, computed 2026-10-11, last reading 2026-11-08). The 6 percent for
+  the profit step is the figure published in *The Belt Equation* essay. The August 2026 date for the first
+  planned ship catch is from the step's own description. "Three times in 2026" before this flight is from
+  the 2026-11-08 scan.
+- **Earlier verified, reused.** SpaceX's own flight page (opened 2026-11-13 by the session that wrote the
+  first version): three first-version boosters caught, two flown again. Its text could not be read on
+  2026-11-14 (the page returns no body text to a fetch), so it rests on the 2026-11-13 reading recorded
+  above.
+
+### Dropped, with the reason
+
+- **The Bernstein note.** The brief said a Bernstein note before launch reportedly called demonstrating
+  reusability "the most important step" for SpaceX's valuation, and to find the original or drop it. The
+  only public trace is an Investing.com report (Rachael Rajan, 2026-08-02, also on Yahoo Finance) of a
+  different Bernstein note, written before SpaceX's first quarterly results and not tied to Flight 15. Its
+  wording is "the most important topic is the achievement of rapid reuse of Starship rockets", and it
+  names no analyst. The note itself is not public. Dropped. If John wants it, the honest sentence is
+  "Analysts at the investment firm Bernstein wrote in August that the most important question for
+  SpaceX's value is whether it can reuse Starship quickly", linked to the Investing.com report.
+- **Musk's line that the booster loss "does not change our timeline"** (CBS): a promise about the future,
+  left out as not needed.
+- **The universal time of launch and catch**: in this file, not in the prose.
+
+### Links opened
+
+Every link in the post answered on 2026-11-14 (HTTP 200): the five Belt Equation step pages, the Radar
+page and home page, the two Sentient Horizons essays, the Quiet Galaxy home page and its three explanation
+pages, the Wikipedia articles (the flight, Falcon 9, the launch market, the Space Shuttle, Starship,
+Starbase, the Fermi Paradox, Gwynne Shotwell), CBS News, CNBC, the Motley Fool transcript, Starlink and
+SpaceX. The two Space.com pages and SpaceX's flight page answer but return no body text to a fetch; their
+content rests on the readings recorded above.
+
+### Voice Calibration (final gate) and Cold Reader passes, 2026-11-14
+
+Run from the master on `calibration-problem`'s `main` (master version 2026-10-18), plus Pattern 28 (keep
+the connecting words) from the workspace rules.
+
+- **Substance gate.** Every factual sentence carries a link; judgment is owned in the first person ("I
+  think that is right", "my estimate"). Adversarial read: a hostile expert's strongest objection is that
+  catching a stage proves nothing about cost, which the Shuttle paragraph meets head on, and that the
+  Quiet Galaxy link is a stretch, which the essay meets by saying no number moves there and that low orbit
+  is a long way from another star. Corpus coherence: checked against ledger position 25 and the *Belt
+  Equation* essay's "healthy part of the chain"; both now agree with the text.
+- **Fixed in the pass.** A mixed metaphor (floors and rungs; now the ladder throughout); "holds up
+  everything else in the tree" (overclaimed, since the biology steps do not rest on launch); an
+  announcing opener to the hopeful paragraph; "reading reads"; "the healthiest link" (the energy link is
+  as healthy); an unsourced detail about spent stages; and a causal "because" about the Shuttle's costs
+  that the source does not carry.
+- **Counted and kept.** No em dashes. Four contrasts, each a comparison the argument needs: "it does not
+  make the money", "A catch is also not a reflight", "narrower than 'the first reusable upper stage'", and
+  the Shuttle's "saves far less than it seems to". One imperative ("Think of an airline"), granting a
+  premise. "We" only for humanity, never for the reader's agreement.
+- **Cold Reader report.** Ninety-second test: the first paragraph needs no project vocabulary, and the
+  first term a newcomer meets ("upper stage") is explained in the same sentence. Coinage budget: "the
+  tree" and "steps" are the only project words, both explained where they arrive. Closed loop: the body
+  links outward far more than inward (Wikipedia, CBS, CNBC, Space.com, the transcript); the two corpus
+  links are named and introduced. Journey test: each section's turn has its reason in the paragraph
+  before it. The likeliest place a newcomer slips is the numbered chain, where "if the step before it has
+  already happened" carries the meaning of every figure; it is said once, before the list, in plain words.
+  The change that would help a newcomer most, as an option for John: cut the Quiet Galaxy bullets to
+  two, keeping "expansion stalls" and "the inward turn", whose evidence lines name Earth directly.
+
+### Still owed before publishing
+
+- John's read, and his rulings on the title, the tree proposal
+  (`docs/news/2026-11-14-flight-15-tree-proposal.md`) and the date style.
+- A share kit (`sentient-horizons/ops/tracker-news/share-kits/README.md`). The launch-night kit, if any,
+  describes the old piece.
+- If the newsletter route is taken, the Sentient Horizons copy and its banner.
