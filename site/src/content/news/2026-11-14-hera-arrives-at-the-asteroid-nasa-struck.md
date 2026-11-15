@@ -3,7 +3,7 @@ title: "Four years after NASA struck an asteroid on purpose, ESA's Hera spacecra
 date: 2026-11-14
 kind: mission-news
 missions: [hera]
-summary: The European Space Agency's Hera spacecraft arrived on November 11th, 2026, at the pair of asteroids NASA hit on purpose four years ago, to find out what the impact did. It is circling them from 25 to 30 kilometres away, and the first detailed pictures of the struck asteroid are due on November 25th.
+summary: The European Space Agency's Hera spacecraft arrived on November 11th, 2026, at a pair of asteroids that includes the one NASA hit on purpose four years ago, to find out what the impact did. It is circling them from 25 to 30 kilometres away, and the first detailed pictures of the struck asteroid are due on November 25th.
 sources:
   - label: ESA's release of November 11th, 2026, on Hera's arrival and its first orbits
     url: https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-spacecraft-in-rectangular-orbit-around-target-asteroids
