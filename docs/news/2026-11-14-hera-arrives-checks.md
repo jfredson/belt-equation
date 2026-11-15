@@ -151,3 +151,80 @@ after the fixes.
 - The share kit and the outreach task that every news post gets.
 - After 2026-11-25: a follow-up post or an added section on the pictures of Dimorphos, and the milestone
   marked done.
+
+## Voice Calibration and Cold Reader passes, after publishing (2026-11-14)
+
+John published the post on 2026-11-14 (pull request 80) and asked for both passes ("Yes, do both").
+Changes are on the branch `claude/hera-voice-cold-read-2026-11-14`. The title and address are unchanged,
+because the post is public. The site's practice for correcting a published post is a dated line in
+italics (the opening post's "*Corrected October 19th, 2026:*"; the Starship post's "*Updated ...*"), so
+the post now ends with one.
+
+**How the passes were run.** Voice Calibration: the master in `calibration-problem/editorial/`
+(version 2026-10-18, with Pattern 28 of 2026-10-21), passes 0 to 3 and the final check, read from that
+repository's `main`. Pass 4 (texture) is for essays only and was skipped. Cold Reader
+(`calibration-problem/editorial/cold-reader-protocol.md`): one reader working in a separate session, given
+only the rendered text, read it in both of the protocol's lenses: the skeptic with ninety seconds, and the
+uninformed reader modelled on John's father. No paid or outside service was used.
+
+**Voice Calibration findings.**
+
+- Substance gate (every claim checked again against ESA's two releases and Sky & Telescope):
+  - The opening called the asteroids "the pair that NASA struck". NASA struck one of them, so this was
+    stronger than the source. Fixed: "a pair that includes the one NASA struck".
+  - "Hera cannot settle into an ordinary circular orbit". ESA says such an orbit is "impractical".
+    Fixed: "ESA calls an ordinary circular orbit around them impractical".
+  - "not yet a method anyone can rely on". ESA's wording is that the method is not yet "a
+    well-understood planetary defence technique". Fixed: "not yet understood well enough to rely on".
+  - "which will show what the impact did to it" (the 25 November picture). Sky & Telescope says the
+    picture shows what Dimorphos "looks like now, post-smash". Fixed: "the first clear view of it since
+    the impact".
+  - John's sentence said "holding a spacecraft steady beside" the asteroids. The post's own flying
+    section has Hera drifting and turning corners 25 to 30 kilometres away, so "steady" and "beside"
+    were both wrong. It also said "the same skill that any work at an asteroid will need", which claimed
+    too much. See below.
+- Pass 1, vocabulary: no flagged words. Pattern 27 (first mentions): every name is introduced. DART is
+  never spelled out, but the sentence says what it did, so it was left alone.
+- Pass 2, patterns: every sentence has a main verb. No em dashes in prose; the en dash inside Kueppers's
+  quotation is his and stays. There is one contrast ("drifting away from them, not into them"), which
+  carries the point. Pattern 28 (missing connecting words): two cases, both also found by the cold
+  reader. The two gravity figures did not say which asteroid each belonged to. The safety sentence did
+  not say why a failed firing leaves Hera drifting away; ESA's release gives the reason (each firing
+  comes while it is moving away), and the post now says so.
+- Pass 3 and the final check: the opening states the news, and the ending looks ahead without summing up.
+
+**Cold Reader findings** (the reader's points are marked here as faults or taste).
+
+- Ninety-second test: attention dipped at the figures in "What happened" (mass, speed, minutes, plume),
+  because none of them had a scale. Fixed by giving the orbit time: Dimorphos takes about 12 hours to go
+  around Didymos (Sky & Telescope). The point that the push was far larger than the simulations
+  predicted now sits beside the 33 minutes, so it no longer first appears at the end (ESA's release).
+- Uninformed reader, faults fixed: which gravity figure goes with which asteroid; why a failed firing is
+  safe; "flowing toward its middle", which read as the asteroid's centre and now reads "toward its
+  equator, where the ridge is".
+- Uninformed reader, left as they are:
+  - Why weak gravity rules out an ordinary orbit. ESA gives no reason, so the post now just reports
+    ESA's word "impractical" and adds no reason of its own.
+  - "which could be how Dimorphos came to exist": the step from material thrown off to a moon is left
+    to ESA's own wording.
+  - 196.5 million kilometres has no scale; the reader called that taste.
+  - Which event in Berlin, and a landing on which asteroid: neither source says.
+  - DART is not spelled out.
+- Genre pattern-match: the post does not read as machine-written. Every figure is credited, and the
+  quotation admits the forecasts may all be wrong. The reader's one doubt was John's sentence.
+- John's sentence: the reader could not tell who "I" was, since nothing in the post says so. The
+  sentence also came from nowhere, straight after a paragraph about protecting Earth, and it overclaimed
+  in the ways listed above.
+
+**John's sentence, rewritten for his read.** It now ends the flying section, where the skill it names
+has just been described, and it says who is speaking:
+
+> On this site I keep track of whether I will live and work in space before I die. I follow Hera
+> because flying safely near a body with almost no gravity, as it is doing now, is one of the skills
+> that any work at an asteroid will need.
+
+It makes no claim about the odds or an estimate, and it does not write the site as if it acts. It speaks
+for John, so it is his to keep, change or cut.
+
+**Checks re-run:** `scripts/missions.py`, `scripts/export.py`, `scripts/check_news.py`, the full test
+suite, the site build and `scripts/check_site.py`.
