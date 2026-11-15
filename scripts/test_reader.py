@@ -210,8 +210,8 @@ class TheGridAgreesWithTheSnapshot(unittest.TestCase):
             self.assertIn(r["key"], cell["routes"])
 
     def test_no_route_runs_through_johns_own_path(self):
-        johns_own = {"A-current-training-completed", "A-stay-past-six-years",
-                     "A-leave-at-six-years-into-civilian-space-work",
+        johns_own = {"A-current-training-completed", "A-stay-in-current-career",
+                     "A-leave-current-career-for-civilian-space-work",
                      "A-civilian-spaceflight-training-role-obtained",
                      "A-current-career-role-with-off-earth-rotation-obtained",
                      "A-working-in-or-for-the-off-earth-industry",

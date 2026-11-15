@@ -26,7 +26,9 @@ The public face of the tree: beltequation.com (attached at website step 25; unti
 | `/missions/` | The space missions John follows on the way out, whether or not they move the number (added 2026-10-21, tracker pattern rule 4.20): a coming-up list, the timeline (`src/components/MissionTimeline.astro`, years across on a computer, a list by year on a phone), a table and CSV of every milestone, and one entry per mission, all from `data/missions.toml` through `src/data/missions.json`. |
 | `/disagree/` | How to name a missing node, challenge a criterion, or move a number, and what happens to critique. |
 
-Node ids are the URL keys because the schema promises they are never renamed once a probability has been recorded.
+Node ids are the URL keys because the schema promises they are never renamed once a probability has been recorded. The few renamed since, to keep John's current career off the site (2026-10-03 and 2026-11-14, listed in data/snapshots/renamed-ids.toml), lost their old addresses on purpose, since a redirect would keep the old id in use.
+
+`/method/`, `/story/` and `/disagree/` are no longer pages: since 2026-11-14 they are server redirects (301) in `public/_redirects`, which the build copies to `dist/_redirects` and Cloudflare reads at deploy.
 
 ## Commands
 

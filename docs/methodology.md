@@ -58,7 +58,7 @@ The Contact Clause is reported and never multiplied into any tier. It is on the 
 
 ## The decision comparison
 
-Some nodes in the access branch are John's decisions rather than the world's: at the six-year mark of his current contract, stay or leave for civilian space or defence work. These are never rolled. Instead the script runs the whole tree once per option, with that option forced and everything else as usual, and reports the headline for each. The difference between the rows is what the decision is worth, in probability of A2, under the tree's current beliefs about the world.
+Some nodes in the access branch are John's decisions rather than the world's: when the first chance to leave his current career comes, stay in it or leave for civilian work in or near the space industry. These are never rolled. Instead the script runs the whole tree once per option, with that option forced and everything else as usual, and reports the headline for each. The difference between the rows is what the decision is worth, in probability of A2, under the tree's current beliefs about the world.
 
 This is standard decision analysis: a decision node is not a random variable, and the value of an option is the outcome distribution given that you take it. It is also the reason the project exists as something more than a forecast. On the first pass (2026-09-19) the two options differ by under a point, which is inside the noise of an access branch that is still a sketch. The branch is rebuilt with real detail after John completes his current training in May 2027, and the comparison is re-run then; until that point the row is reported but not read.
 

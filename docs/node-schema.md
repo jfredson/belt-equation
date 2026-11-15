@@ -6,7 +6,7 @@ Drafted 2026-09-08 (roadmap step 2) and DECIDED the same day: Claude proposed si
 
 A node is one breakthrough, event, or decision that the tree tracks. It has a name anyone can read, a criterion that says exactly what would count as it having happened, and a place in the tree (its factor, and what it depends on). Later it gets a probability. A node without a resolution criterion is not a node.
 
-Two kinds of node exist. A **world event** is something that happens to the world (a launcher flies a hundred times in a year; a child is born off Earth). A **choice point** is something John decides (stay or leave at the six-year mark of his current contract). The tree is sampled for world events and forced for choice points, which is how the decision comparison works: run the whole tree once per option and compare.
+Two kinds of node exist. A **world event** is something that happens to the world (a launcher flies a hundred times in a year; a child is born off Earth). A **choice point** is something John decides (stay in his current career or leave it when the first chance comes). The tree is sampled for world events and forced for choice points, which is how the decision comparison works: run the whole tree once per option and compare.
 
 ## File format and layout
 
@@ -46,7 +46,7 @@ Required fields are marked. Everything else may be left out until it is known.
 | `breaking_point` | long shots | The point where current physics, engineering, or economics would have to give way, stated plainly. "We do not know how to keep a fusion plasma light enough to fly" is a breaking point; "fusion drives arrive" is a wish. |
 | `depends_on` | no | List of ids that must all resolve before this node can. Empty or absent means no dependencies. |
 | `depends_on_any` | no | List of groups, each a list of ids; at least one id in every group must resolve before this node can. This is how a node says "by either route", for example the biology node that resolves if partial-gravity health works out or if a rotating habitat with Earth-normal gravity exists. From 2026-09-25 it is the default form whenever more than one route could satisfy a child (docs/methodology.md, "Function over route"). |
-| `choice_group` | choice only | Name shared by the mutually exclusive options at one choice point, such as `"six-year-fork"`. The decision comparison forces exactly one node in a group to yes per run. |
+| `choice_group` | choice only | Name shared by the mutually exclusive options at one choice point, such as `"career-fork"`. The decision comparison forces exactly one node in a group to yes per run. |
 | `current_plan` | choice only | `true` on exactly one node in each choice group: the option John currently intends to take. The headline number is computed with every choice group set to its current plan, and the decision comparison reports how much each alternative moves it. |
 | `probability` | from Phase 3 | Table with one entry per scenario key from scenarios.toml: `{ baseline = 0.6, moderate = 0.65, strong = 0.7, radical = 0.75, open = 0.8 }`. Each number is the probability that the node resolves yes before that scenario's window, **given that its dependencies resolve**. Absent until the tree is stable. Choice nodes have no probability. |
 | `estimated_on` | with probability | Date (YYYY-MM-DD) of the current probability. |
@@ -108,14 +108,14 @@ This node lives in `data/L-launch.toml` and is the one the compute script is fir
 A choice-point node, for illustration only (the access branch stays a sketch until John completes his current training; the node in the data now carries fuller wording):
 
     [[node]]
-    id = "A-stay-past-six-years"
-    name = "Stay past the six-year mark of the current contract"
+    id = "A-stay-in-current-career"
+    name = "Stay in my current career when the first chance to leave comes"
     factor = "A"
     kind = "choice"
-    choice_group = "six-year-fork"
+    choice_group = "career-fork"
     current_plan = true
     description = "One option at the first fork in the personal pathway. The other option in the group is leaving for civilian work."
-    resolution = "A signed extension of John's current contract at the end of its six-year term."
+    resolution = "A dated record that John stayed in his current career past the first point at which he could have left it."
     source = "John's employment record"
     horizon = "mid"
     depends_on = ["A-current-training-completed"]

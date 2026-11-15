@@ -1,0 +1,24 @@
+# Server redirects for old addresses, read by Cloudflare when the site is deployed (Workers static
+# assets: https://developers.cloudflare.com/workers/static-assets/redirects/). The build copies this
+# file to dist/_redirects; Cloudflare reads it and does not serve it as a page. Added 2026-11-14 in
+# place of the in-page forwards, so a browser or a search engine gets a plain 301 (moved for good).
+# Each address is listed with and without its closing slash, since a rule matches only what it says.
+#
+# A browser keeps the part of a link after "#" across a redirect, unless the new address has a
+# "#" of its own, which then wins.
+
+# The page for readers' critique was /disagree/ until 2026-09-25; the intro essay still links there.
+/disagree/  /feedback/  301
+/disagree   /feedback/  301
+
+# /method/ became the first part of /about/ on 2026-10-21. No "#" here, so an old link to one part
+# of the method (/method/#x) still lands on that part (/about/#x); the plain /method/ lands on the
+# top of About, where the method is the first part.
+/method/  /about/  301
+/method   /about/  301
+
+# /story/ became the second part of /about/ on 2026-10-21. The known links to it are to the plain
+# address, so it goes straight to that part. A link to one story entry (/story/#x) lands at the
+# start of the story part rather than on the entry.
+/story/  /about/#story  301
+/story   /about/#story  301

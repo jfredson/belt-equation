@@ -5,8 +5,6 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://beltequation.com',
   trailingSlash: 'always',
-  // /disagree/ was the page's address until 2026-09-25; the intro essay and older links still point there.
-  redirects: { '/disagree/': '/feedback/' },
-  // /method/ and /story/ became the two parts of /about/ on 2026-10-21; their redirect pages are in
-  // src/pages/method.astro and src/pages/story.astro, so a link to one entry (/story/#an-entry) keeps its place.
+  // Old addresses (/disagree/, /method/, /story/) are server redirects in public/_redirects, which
+  // Cloudflare reads at deploy (since 2026-11-14; before that they were in-page forwards built here).
 });

@@ -80,8 +80,8 @@ this is how it happens, and the interpolation can be retired the day it does.
 **Recommended: three routes, each a list of world events already in the tree, plus at most one
 number the reader supplies. The reader's number is shown separately and labelled as theirs.**
 
-The access branch of the tree is John's: his current training, the six-year fork of his current
-contract, his current career turning into commercial crew training. None of that is a stranger's path, and a
+The access branch of the tree is John's: his current training, the fork in his current
+career, his current career turning into commercial crew training. None of that is a stranger's path, and a
 stranger's odds must not be run through it. So a route is defined from world events only:
 
 | Route | What the tree is asked | The reader's own part |
@@ -103,8 +103,8 @@ make a reading rather than follow an instruction, so it is flagged here rather t
 
 **Where the third route needed a reading.** "Contribute from Earth" is the A0 tier, and A0
 requires one event: working in or for the off-world industry. That event's own requirements are
-John's two route events, which are gated on his choice at the six-year fork. Strip John out and
-one world event is left underneath it: that an industry selling survival and contingency services
+John's two route events, which are gated on his choice at the career fork. Strip John out and
+one world event is left underneath it: that an industry selling emergency and contingency services
 to spaceflight crews exists. That is what the page uses. It is narrow. A0 means working in or for
 the off-world industry in any capacity, and the event the page leans on is about one Earth-side
 service industry in particular. The number the page shows for this route should be read as a
@@ -223,7 +223,7 @@ against the Python on every build. That is version two of this page, and it is n
 
 - The tree. No event added, cut, reworded or re-estimated.
 - The headline, the snapshots, the ledger, the Radar, and every number already on the site.
-- John's own path. No route touches his current training, the six-year fork, the two route events
+- John's own path. No route touches his current training, the career fork, the two route events
   under it, or the chain from his current career into crew training.
 - The five scenarios and the world spread, which are fixed until an annual review
   (docs/methodology.md, "What is fixed and what moves").

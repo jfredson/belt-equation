@@ -34,7 +34,7 @@ Six surfaces, in the order a first-time reader meets them.
 | `resolution` | A node resolved yes or no. A special event; it feeds the calibration score. | The first participant is dosed in a partial-reprogramming trial (already on the record, 2026-06-09). |
 | `revision` | A probability or rationale changed with no new event: an outside-model review, a reconsideration, a correction. | Step 27 review moves kilowatt power beaming to 0.30 by 2071. |
 | `structure` | The tree changed shape: a node added, cut, superseded, or rewired; a tier requirement moved; a criterion reworded. Breaks comparability and says so. | The child-born-off-Earth requirement moved from Tier 2 to Tier 4, 2026-09-19. |
-| `decision` | John took or changed a choice point, or the current plan at a fork changed. Carries the decision comparison's before-and-after. | A choice at the six-year fork, some years from now. |
+| `decision` | John took or changed a choice point, or the current plan at a fork changed. Carries the decision comparison's before-and-after. | A choice at the career fork, some years from now. |
 | `held-steady` | Something widely reported happened and no node moved. Names the nodes it was checked against and says why none resolved or changed. | A crewed lunar landing announcement that is a target date, not a landing. |
 
 **Entries are appended, never edited.** A mistake in an entry is fixed by a later entry that says so and points back. Numbers on an entry are computed by the export script from the snapshots and the node records, never typed by hand, so an entry cannot claim a delta the tree did not produce.

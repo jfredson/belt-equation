@@ -9,6 +9,10 @@
 # Renaming is not the ordinary way to change a published step (docs/methodology.md, "What is fixed
 # and what moves": a step whose meaning changes is retired and replaced). These renames change no
 # name, criterion, number or link; only the id, and with it the page's address.
+#
+# A step renamed twice has two rows, and the compute script follows them to the newest id. The
+# renames of 2026-11-14 came with a rewording of the same steps that keeps their meaning; each
+# reworded field is a revision on its step in data/A-access.toml.
 
 [[renamed]]
 old = "A-pipeline-graduation"
@@ -39,3 +43,21 @@ old = "A-separate-at-six-years-into-civilian-space-work"
 new = "A-leave-at-six-years-into-civilian-space-work"
 date = 2026-10-03
 why = "The id used service wording for leaving a contract, and no public surface describes my current career until May 2027 (decided 2026-09-25; rename ruled 2026-10-03)."
+
+[[renamed]]
+old = "A-stay-past-six-years"
+new = "A-stay-in-current-career"
+date = 2026-11-14
+why = "The id still pointed at my current career, which no public surface describes until May 2027 (decided 2026-09-25; renamed 2026-11-14 after a review of the live site)."
+
+[[renamed]]
+old = "A-leave-at-six-years-into-civilian-space-work"
+new = "A-leave-current-career-for-civilian-space-work"
+date = 2026-11-14
+why = "The id still pointed at my current career, which no public surface describes until May 2027 (decided 2026-09-25; renamed 2026-11-14 after a review of the live site)."
+
+[[renamed]]
+old = "A-commercial-crew-survival-training-industry-exists"
+new = "A-commercial-crew-emergency-training-industry-exists"
+date = 2026-11-14
+why = "Read beside the route from my current career, the id pointed at it, and no public surface describes it until May 2027 (decided 2026-09-25; renamed 2026-11-14 after a review of the live site)."
