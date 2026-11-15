@@ -16,6 +16,13 @@ sources:
     url: https://rubinobservatory.org/news/11000-new-asteroids
   - label: The orbit picture and its licence
     url: https://noirlab.edu/public/images/noirlab2626c/
+photos:
+  - file: 2026-10-27-rubin-first-dwarf-planet-candidate-orbit.jpg
+    source: https://noirlab.edu/public/images/noirlab2626c/
+    credit: "NSF–DOE Vera C. Rubin Observatory/NOIRLab/SLAC/AURA/R. Proctor; image processing M. Zamani (NSF NOIRLab); orbit data from the IAU Minor Planet Center; star map NASA/Goddard Space Flight Center Scientific Visualization Studio, Gaia DR2, ESA/Gaia/DPAC"
+    licence: "Creative Commons Attribution 4.0 International (NOIRLab's usage page, https://noirlab.edu/public/copyright/)"
+    licence_url: https://creativecommons.org/licenses/by/4.0/
+    read_on: 2026-11-14
 ---
 
 I want to leave the planet before I die, and [the odds this site works out](/) depend on seven kinds of things going right, from cheap launch to a seat for me. None of the seven is "we find a new world past Pluto". So this post moves nothing. I am writing it because this site is also a place to keep up with what is being found in our own solar system, and this week something was.
