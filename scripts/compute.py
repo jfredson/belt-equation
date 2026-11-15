@@ -572,7 +572,7 @@ READER_TAIL_HALF_LIFE = 41
 
 # The three routes a reader can pick, each a list of world nodes that already exist in the tree,
 # plus at most one number the reader supplies. Nothing from John's own path is in any of them:
-# his current training, the six-year fork and the route from his current career are his, and a stranger's
+# his current training, the fork in his current career and the route from it are his, and a stranger's
 # odds must not run through them. Decision 2 of docs/run-it-yourself-plan.md explains each
 # choice of nodes and what it leaves out.
 READER_ROUTES = [
@@ -591,7 +591,7 @@ READER_ROUTES = [
         "name": "Work a rotation",
         "blurb": "Hold a job whose holders are sent off Earth for months at a time.",
         "world_nodes": [
-            "A-commercial-crew-survival-training-industry-exists",
+            "A-commercial-crew-emergency-training-industry-exists",
             "M-hundred-people-working-off-earth-for-pay",
         ],
         "world_says": "There is an industry selling services to spaceflight crews, and a "
@@ -604,7 +604,7 @@ READER_ROUTES = [
         "key": "earth",
         "name": "Contribute from Earth",
         "blurb": "Work in or for the off-world industry without leaving the ground.",
-        "world_nodes": ["A-commercial-crew-survival-training-industry-exists"],
+        "world_nodes": ["A-commercial-crew-emergency-training-industry-exists"],
         "world_says": "There is an industry selling services to spaceflight crews.",
         "personal_asks": None,
         "default_personal": None,
@@ -1629,6 +1629,15 @@ def load_renamed_ids(folder: Path) -> dict[str, str]:
         if not r.get("old") or not r.get("new"):
             raise TreeError(f"{path.name}: every [[renamed]] row needs an old id and a new id")
         out[r["old"]] = r["new"]
+    # A step renamed twice (2026-10-03, then 2026-11-14) has two rows; follow them to the newest id,
+    # so a run saved before the first rename reads its step under the id the tree carries today.
+    for old in out:
+        seen = {old}
+        while out[old] in out:
+            if out[old] in seen:
+                raise TreeError(f"{path.name}: the renames from {old} go round in a circle")
+            seen.add(out[old])
+            out[old] = out[out[old]]
     return out
 
 

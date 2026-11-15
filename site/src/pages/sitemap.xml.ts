@@ -2,8 +2,8 @@
 // sites build theirs (upgrade-tree and quiet-galaxy, site/src/pages/sitemap.xml.ts; the shape is
 // the parent site's). Every public page at its stable address, nothing else: the fixed pages, one
 // page per factor, one per event in the tree, one per news post. Left out: the not-found page
-// (noindex), and /method/ and /story/, which have been redirects to /about/ since 2026-10-21 and
-// carry noindex. Added 2026-10-31, when a search for the family's sites by name found three of
+// (noindex), and /method/ and /story/, which have pointed to /about/ since 2026-10-21 and are server
+// redirects in public/_redirects. Added 2026-10-31, when a search for the family's sites by name found three of
 // them hard to find and four, this one among them, serving no sitemap at all.
 import type { APIRoute } from 'astro';
 import { tree } from '../lib/tree';
