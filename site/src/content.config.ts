@@ -12,7 +12,9 @@ import { glob } from 'astro/loaders';
 // newly found in the solar system, worth knowing about whether or not it touches a step. It names no record and
 // no mission and carries its sources. It sticks to the news, and speaks of the odds only where the find bears on a
 // step (John, 2026-11-09; until then it had to end on what it does and does not change for the odds).
-export const NEWS_KINDS = ['start-here', 'rung-reached', 'estimate-revised', 'flagged-item-ruled', 'claim', 'headline-moved', 'method-changed', 'mission-news', 'discovery'] as const;
+// 'year-review' is the tenth kind (asked for by John 2026-11-15, for an end-of-year post on each tracker): the year's
+// findings and the dated events of the next year. Like a discovery it names no record and no mission and carries its sources.
+export const NEWS_KINDS = ['start-here', 'rung-reached', 'estimate-revised', 'flagged-item-ruled', 'claim', 'headline-moved', 'method-changed', 'mission-news', 'discovery', 'year-review'] as const;
 
 // YAML reads a bare 2026-10-18 as a date; the site keeps dates as YYYY-MM-DD strings.
 const isoDate = z.union([z.string().regex(/^\d{4}-\d{2}-\d{2}$/), z.date().transform((d) => d.toISOString().slice(0, 10))]);

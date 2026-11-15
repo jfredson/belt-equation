@@ -29,6 +29,10 @@ candidate) is about something newly found in the solar system, whether or not it
 names no record and no mission, so the check asks of it only what it asks of every post (a source, a
 link beside every figure).
 
+A year in review (the tenth kind, "year-review"; asked for by John 2026-11-15, for a post at the end of
+each year) gathers the year's findings and the dated events of the year ahead. It names no record and
+no mission, so the check asks of it only what it asks of every post.
+
 Until 2026-11-09 the check also required a mission news or discovery post to end on what the event
 does and does not change for the odds. John dropped that on 2026-11-09: these posts stick to the
 news, and speak of the odds only where the event bears on a step ("Not every article needs to
@@ -53,8 +57,8 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed", "mission-news", "discovery"}
-UNRECORDED = ("start-here", "mission-news", "discovery")  # the kinds that name no record
+KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed", "mission-news", "discovery", "year-review"}
+UNRECORDED = ("start-here", "mission-news", "discovery", "year-review")  # the kinds that name no record
 MISSION_POSTS_PER_WEEK = 2
 WINDOW_DAYS = 14
 NAME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
@@ -249,7 +253,7 @@ def check(posts_dir: Path, records: dict, pictures_dir: Path | None = None) -> t
             problems.append(f"{name}: the frontmatter date {fm['date']} differs from the file name's {m.group(1)}")
         kind = fm.get("kind")
         if kind not in KINDS:
-            problems.append(f"{name}: kind {kind!r} is not one of the nine")
+            problems.append(f"{name}: kind {kind!r} is not one of the ten")
         if kind == "start-here":
             openers += 1
         recs = fm.get("records") or []

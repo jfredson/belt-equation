@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-11-15
+
+- News (draft, held until the week of 2026-12-28): the year-end post for 2026, "What 2026 did to my odds of working out past Mars, and what to watch in 2027" (docs/news/2026-12-29-year-in-review-checks.md). News posts gain a tenth kind, "the year in review", which names no record and no mission and is checked like a discovery. No number moved.
+
 ## 2026-11-14
 
 - The deploy's check for notes addressed to John (`scripts/check_site.py`, since 2026-10-27) now uses the wider list of phrases the four sibling trackers adopted the same day, and the rule it enforces is written in `CLAUDE.md`. On its first run it found two reasons for an estimate change that cited the change's number on GitHub; the citation is gone. No number moved.

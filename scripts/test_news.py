@@ -135,6 +135,33 @@ class Discovery(unittest.TestCase):
         self.assertTrue(any("only a mission news post names missions" in p for p in self.run_check(bad)))
 
 
+class YearReview(unittest.TestCase):
+    """A year in review, the tenth kind (asked for by John 2026-11-15): names no record or mission."""
+
+    RECORDS = {"nodes": [], "entries": [], "scans": [], "missions": []}
+    GOOD = ("---\ntitle: What the year did to my odds\ndate: 2026-12-29\nkind: year-review\nsummary: The year.\n"
+            "sources:\n  - label: The story so far\n    url: https://example.org/story\n---\n\n"
+            "The number held at [0.465 percent](https://example.org/story).\n\nNext year has a review.\n")
+
+    def run_check(self, text, name="2026-12-29-the-year.md"):
+        import check_news
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp); (d / name).write_text(text, encoding="utf-8")
+            problems, n = check_news.check(d, self.RECORDS)
+        return problems
+
+    def test_a_good_post_passes(self):
+        self.assertEqual(self.run_check(self.GOOD), [])
+
+    def test_a_figure_still_needs_a_link(self):
+        bad = self.GOOD.replace("Next year has a review.", "It held for 8 weeks.")
+        self.assertTrue(self.run_check(bad))
+
+    def test_it_may_not_name_a_mission(self):
+        bad = self.GOOD.replace("sources:", "missions: [hera]\nsources:")
+        self.assertTrue(any("only a mission news post names missions" in p for p in self.run_check(bad)))
+
+
 class MissionsFile(unittest.TestCase):
     """scripts/missions.py refuses a missions file that cannot be trusted (rule 4.20)."""
 
