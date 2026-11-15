@@ -4,7 +4,7 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 ## 2026-11-15
 
-- News (draft, held until the week of 2026-12-28): the year-end post for 2026, "What 2026 did to my odds of working out past Mars, and what to watch in 2027" (docs/news/2026-12-29-year-in-review-checks.md). News posts gain a tenth kind, "the year in review", which names no record and no mission and is checked like a discovery. No number moved.
+- News (draft, held until the week of 2026-12-28): the year-end post for 2026, "What 2026 did to my odds of working out past Mars, and what to watch in 2027" (docs/news/2026-12-29-year-in-review-checks.md). News posts gain a tenth kind, "the year in review", the same on all five trackers: at most one a calendar year, and any record it names must show a dated change in that year. No number moved.
 
 ## 2026-11-14
 

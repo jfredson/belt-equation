@@ -29,9 +29,12 @@ candidate) is about something newly found in the solar system, whether or not it
 names no record and no mission, so the check asks of it only what it asks of every post (a source, a
 link beside every figure).
 
-A year in review (the tenth kind, "year-review"; asked for by John 2026-11-15, for a post at the end of
+A year in review (the tenth kind, "year-in-review"; asked for by John 2026-11-15, for a post at the end of
 each year) gathers the year's findings and the dated events of the year ahead. It names no record and
-no mission, so the check asks of it only what it asks of every post.
+no mission. It is checked like every post, with two rules of its own (John's ruling of 2026-11-15, the
+same on all five trackers): at most one such post in a calendar year, and every record it does name must
+show a dated change in the post's own calendar year, in place of the fourteen-day window, so a review
+still cannot announce what the record does not show.
 
 Until 2026-11-09 the check also required a mission news or discovery post to end on what the event
 does and does not change for the odds. John dropped that on 2026-11-09: these posts stick to the
@@ -57,8 +60,8 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed", "mission-news", "discovery", "year-review"}
-UNRECORDED = ("start-here", "mission-news", "discovery", "year-review")  # the kinds that name no record
+KINDS = {"start-here", "rung-reached", "estimate-revised", "flagged-item-ruled", "claim", "headline-moved", "method-changed", "mission-news", "discovery", "year-in-review"}
+UNRECORDED = ("start-here", "mission-news", "discovery", "year-in-review")  # the kinds that name no record
 MISSION_POSTS_PER_WEEK = 2
 WINDOW_DAYS = 14
 NAME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
@@ -121,7 +124,12 @@ def paragraphs(body: str) -> list[str]:
 
 
 def record_changed_near(rec: dict, when: date, readings: list[dict]) -> bool:
-    lo, hi = when - timedelta(days=WINDOW_DAYS), when + timedelta(days=WINDOW_DAYS)
+    return record_changed_between(rec, when - timedelta(days=WINDOW_DAYS), when + timedelta(days=WINDOW_DAYS), readings)
+
+
+def record_changed_between(rec: dict, lo: date, hi: date, readings: list[dict]) -> bool:
+    """A dated change on the record (a revision, a resolution, a ledger entry, or a scan item ruled or
+    moved) falling between lo and hi, both days included."""
     dates: list[str] = []
     for rv in rec.get("revisions") or []:
         if rv.get("date"):
@@ -237,6 +245,7 @@ def check(posts_dir: Path, records: dict, pictures_dir: Path | None = None) -> t
     mission_weeks: dict[tuple[int, int], list[str]] = {}
     files = sorted(p for p in posts_dir.glob("*.md")) if posts_dir.exists() else []
     openers = 0
+    reviews_by_year: dict[int, list[str]] = {}
     for path in files:
         name = path.name
         m = NAME_RE.match(name)
@@ -285,6 +294,11 @@ def check(posts_dir: Path, records: dict, pictures_dir: Path | None = None) -> t
                     problems.append(f"{name}: {mid} has no milestone marked done, moved or failed within {WINDOW_DAYS} days of {when}; a post cannot announce what the Missions page does not show")
             iso = when.isocalendar()
             mission_weeks.setdefault((iso[0], iso[1]), []).append(name)
+        if when and kind == "year-in-review":
+            reviews_by_year.setdefault(when.year, []).append(name)
+            for rid in recs:
+                if rid in by_id and not record_changed_between(by_id[rid], date(when.year, 1, 1), date(when.year, 12, 31), readings):
+                    problems.append(f"{name}: {rid} shows no dated change in {when.year}; a post cannot announce what the record does not show")
         if when and kind not in UNRECORDED:
             for rid in recs:
                 if rid in by_id and not record_changed_near(by_id[rid], when, readings):
@@ -295,6 +309,9 @@ def check(posts_dir: Path, records: dict, pictures_dir: Path | None = None) -> t
     for (y, wk), names in sorted(mission_weeks.items()):
         if len(names) > MISSION_POSTS_PER_WEEK:
             problems.append(f"week {wk} of {y}: {len(names)} mission news posts ({', '.join(names)}); the ceiling is {MISSION_POSTS_PER_WEEK} a week")
+    for y, names in sorted(reviews_by_year.items()):
+        if len(names) > 1:
+            problems.append(f"{y}: {len(names)} posts of kind year-in-review ({', '.join(names)}); there is at most one a calendar year")
     if openers > 1:
         problems.append(f"{posts_dir}: {openers} posts of kind start-here; there is one per site")
     return problems, len(files)

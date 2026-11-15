@@ -1,22 +1,23 @@
 # The year-end post for 2026: sources and checks
 
 The post: `site/src/content/news/2026-12-29-what-2026-did-to-my-odds-and-what-to-watch-in-2027.md`, kind
-`year-review` (new; see below). Drafted 2026-11-15 by Claude, asked for by John the same day: an
+`year-in-review` (new; see below). Drafted 2026-11-15 by Claude, asked for by John the same day: an
 end-of-year post on each of the five trackers with the year's most important findings and the events to
 watch in 2027, published in the week of 2026-12-28. It is held: merging it deploys it, and its date is
 2026-12-29, so merge only in that week.
 
 ## The new kind
 
-No existing kind fits. `discovery` and `mission-news` would mislabel it, and a number kind would need a
-record changed within fourteen days. Added: `year-review`, shown as "the year in review", which names no
-record and no mission and is checked like a discovery (a source with an address, a link beside every
-figure). Touched: `site/src/content.config.ts`, `site/src/lib/news.ts`, `scripts/check_news.py`,
-`scripts/social-image.mjs` (card label), `scripts/test_news.py` (three tests).
+Ruled by John on 2026-11-15, the same on all five trackers: a news kind `year-in-review`, shown as "the
+year in review". It may name no record and no mission. Two rules of its own replace the fourteen-day
+window: at most one such post in a calendar year, and every record the post names must show a dated
+change in the post's own calendar year, so it still cannot announce what the record does not show.
+Touched: `site/src/content.config.ts`, `site/src/lib/news.ts`, `scripts/check_news.py`,
+`scripts/social-image.mjs` (card label), `scripts/test_news.py` (seven tests, including the kind being
+accepted, a second post in one year refused, and a named record with no change that year refused). The
+shared tracker rules (rule 4.11 in sentient-horizons) gain the kind in a separate change.
 
-| choice | confidence | standard or judgment | strongest alternative |
-|---|---|---|---|
-| A tenth kind, `year-review` | moderate: one post a year, and a label that says what it is | judgment | file it as `discovery` with no code change; cheaper, but the News list would call a year's review "a discovery" |
+This post names no record, so the calendar-year rule has nothing to check in it today.
 
 ## The site's own numbers (read 2026-11-15)
 

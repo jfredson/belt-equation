@@ -135,31 +135,54 @@ class Discovery(unittest.TestCase):
         self.assertTrue(any("only a mission news post names missions" in p for p in self.run_check(bad)))
 
 
-class YearReview(unittest.TestCase):
-    """A year in review, the tenth kind (asked for by John 2026-11-15): names no record or mission."""
+class YearInReview(unittest.TestCase):
+    """A year in review, the tenth kind (John's ruling of 2026-11-15, the same on all five trackers): at most
+    one a calendar year, and a record it names must show a dated change in the post's own calendar year."""
 
-    RECORDS = {"nodes": [], "entries": [], "scans": [], "missions": []}
-    GOOD = ("---\ntitle: What the year did to my odds\ndate: 2026-12-29\nkind: year-review\nsummary: The year.\n"
+    RECORDS = {"nodes": [{"id": "early-leaf", "revisions": [{"date": "2026-02-03"}], "resolved_on": None},
+                         {"id": "old-leaf", "revisions": [{"date": "2025-06-01"}], "resolved_on": None}],
+               "entries": [], "scans": [], "missions": []}
+    GOOD = ("---\ntitle: What the year did to my odds\ndate: 2026-12-29\nkind: year-in-review\nsummary: The year.\n"
             "sources:\n  - label: The story so far\n    url: https://example.org/story\n---\n\n"
             "The number held at [0.465 percent](https://example.org/story).\n\nNext year has a review.\n")
 
-    def run_check(self, text, name="2026-12-29-the-year.md"):
+    def run_check(self, posts):
         import check_news
         with tempfile.TemporaryDirectory() as tmp:
-            d = Path(tmp); (d / name).write_text(text, encoding="utf-8")
+            d = Path(tmp)
+            for name, text in posts.items():
+                (d / name).write_text(text, encoding="utf-8")
             problems, n = check_news.check(d, self.RECORDS)
         return problems
 
-    def test_a_good_post_passes(self):
-        self.assertEqual(self.run_check(self.GOOD), [])
+    def test_the_kind_is_accepted(self):
+        self.assertEqual(self.run_check({"2026-12-29-the-year.md": self.GOOD}), [])
+
+    def test_a_record_changed_earlier_in_the_same_year_passes(self):
+        # Ten months before the post: outside the fourteen-day window, inside the calendar year.
+        ok = self.GOOD.replace("sources:", "records: [early-leaf]\nsources:")
+        self.assertEqual(self.run_check({"2026-12-29-the-year.md": ok}), [])
+
+    def test_a_record_with_no_change_that_year_is_refused(self):
+        bad = self.GOOD.replace("sources:", "records: [old-leaf]\nsources:")
+        self.assertTrue(any("shows no dated change in 2026" in p for p in self.run_check({"2026-12-29-the-year.md": bad})))
+
+    def test_a_second_post_in_the_same_year_is_refused(self):
+        second = self.GOOD.replace("date: 2026-12-29", "date: 2026-12-31")
+        problems = self.run_check({"2026-12-29-the-year.md": self.GOOD, "2026-12-31-the-year-again.md": second})
+        self.assertTrue(any("at most one a calendar year" in p for p in problems))
+
+    def test_one_post_in_each_of_two_years_passes(self):
+        next_year = self.GOOD.replace("date: 2026-12-29", "date: 2027-12-29")
+        self.assertEqual(self.run_check({"2026-12-29-the-year.md": self.GOOD, "2027-12-29-the-year.md": next_year}), [])
 
     def test_a_figure_still_needs_a_link(self):
         bad = self.GOOD.replace("Next year has a review.", "It held for 8 weeks.")
-        self.assertTrue(self.run_check(bad))
+        self.assertTrue(self.run_check({"2026-12-29-the-year.md": bad}))
 
     def test_it_may_not_name_a_mission(self):
         bad = self.GOOD.replace("sources:", "missions: [hera]\nsources:")
-        self.assertTrue(any("only a mission news post names missions" in p for p in self.run_check(bad)))
+        self.assertTrue(any("only a mission news post names missions" in p for p in self.run_check({"2026-12-29-the-year.md": bad})))
 
 
 class MissionsFile(unittest.TestCase):

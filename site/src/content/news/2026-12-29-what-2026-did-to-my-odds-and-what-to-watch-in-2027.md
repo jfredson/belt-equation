@@ -1,7 +1,7 @@
 ---
 title: "What 2026 did to my odds of working out past Mars, and what to watch in 2027"
 date: 2026-12-29
-kind: year-review
+kind: year-in-review
 summary: Starship reached orbit and then caught its own upper stage coming home, four astronauts flew around the Moon, and spacecraft reached two asteroids. None of it moved my estimate, and every change to the number since September came from rethinking my own reasoning. Here is what the year showed, and the dated events of 2027 that could move it, starting with the yearly review on January 3rd.
 sources:
   - label: The story so far, every move of the number since September 2026
