@@ -245,3 +245,16 @@ suite, the site build and `scripts/check_site.py`.
 4. "The change was far larger than computer simulations of the impact had predicted" is cut from "What
    happened", because "Why it matters" already says it. The 12-hour orbit stays there for scale.
 
+
+## Summary line corrected (2026-11-14)
+
+John, answering "Fix the Hera post's summary line so it says the pair includes the one NASA hit?":
+"Yes, fix it". The summary in the post's front matter said Hera arrived "at the pair of asteroids NASA
+hit on purpose four years ago", which reads as if NASA hit both. It now says "at a pair of asteroids
+that includes the one NASA hit on purpose four years ago", to match the body's opening. The rest of the
+summary and the body are unchanged.
+
+The summary has one copy, in the front matter. The page's lead line, the news list, the feed and the two
+link-preview descriptions all read it from there when the site is built, and the share card draws only
+the title, so nothing else needed editing. No dated correction line is added to the page; the change is
+recorded in the changelog.
