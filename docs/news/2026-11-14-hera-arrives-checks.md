@@ -157,8 +157,8 @@ after the fixes.
 John published the post on 2026-11-14 (pull request 80) and asked for both passes ("Yes, do both").
 Changes are on the branch `claude/hera-voice-cold-read-2026-11-14`. The title and address are unchanged,
 because the post is public. The site's practice for correcting a published post is a dated line in
-italics (the opening post's "*Corrected October 19th, 2026:*"; the Starship post's "*Updated ...*"), so
-the post now ends with one.
+italics (the opening post's "*Corrected October 19th, 2026:*"; the Starship post's "*Updated ...*"). One
+was drafted, then left off on John's word (see below).
 
 **How the passes were run.** Voice Calibration: the master in `calibration-problem/editorial/`
 (version 2026-10-18, with Pattern 28 of 2026-10-21), passes 0 to 3 and the final check, read from that
@@ -228,3 +228,20 @@ for John, so it is his to keep, change or cut.
 
 **Checks re-run:** `scripts/missions.py`, `scripts/export.py`, `scripts/check_news.py`, the full test
 suite, the site build and `scripts/check_site.py`.
+
+**John's four changes, 2026-11-14 ("Yes, all four"), relayed by the master session:**
+
+1. John's sentence now reads only: "I follow Hera because flying safely near a body with almost no
+   gravity is one of the skills that any work at an asteroid will need." Two things were cut: the
+   sentence before it ("On this site I keep track of whether I will live and work in space before I
+   die."), because John ruled today that tracker news never leans on "before I die" and that a news post
+   can stick to the news; and "as it is doing now".
+2. The dated correction line is left off the page, on John's word, because the post had not yet been
+   shared anywhere; he dropped the same kind of note from an essay today for the same reason. The
+   changelog line stays.
+3. The 25 November picture now reads "the first detailed pictures of Dimorphos", which matches the post's
+   summary. ESA's picture release says "Detailed images of both asteroids will be unveiled on 25
+   November"; it does not say "first clear view since the impact", so that phrase went.
+4. "The change was far larger than computer simulations of the impact had predicted" is cut from "What
+   happened", because "Why it matters" already says it. The 12-hour orbit stays there for scale.
+
