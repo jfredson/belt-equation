@@ -335,3 +335,11 @@ the connecting words) from the workspace rules.
 - A share kit (`sentient-horizons/ops/tracker-news/share-kits/README.md`). The launch-night kit, if any,
   describes the old piece.
 - If the newsletter route is taken, the Sentient Horizons copy and its banner.
+
+### Published, 2026-11-14
+
+John read the draft in the preview and said "This is excellent. Publish it." It went out with the new
+title and the house date style, as drafted. Nothing in `data/` was changed: the essay says the numbers
+hold and that the next weekly scan (2026-11-15) reads the catch, which matches the hold proposal, but
+John has not ruled on that proposal directly, so it stays open for the scan. Still not done: the share
+kit, and the Sentient Horizons copy for the newsletter, which waits on his say.
