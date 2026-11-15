@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-11-15
+
+- The deploy's check for working notes on public pages (`scripts/check_site.py`) now also stops notes that talk about the author in the third person or tell how a page was opened (decided 2026-11-15). Until now it stopped only notes addressed to me. Five phrase patterns are added, the same five The Quiet Galaxy added the same day, with tests in `scripts/test_check_site.py`. A name followed by a surname still passes. The built site passed the wider check as it stood, so no page's wording changed. No number moved.
+
 ## 2026-11-14
 
 - The deploy's check for notes addressed to John (`scripts/check_site.py`, since 2026-10-27) now uses the wider list of phrases the four sibling trackers adopted the same day, and the rule it enforces is written in `CLAUDE.md`. On its first run it found two reasons for an estimate change that cited the change's number on GitHub; the citation is gone. No number moved.
