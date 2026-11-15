@@ -148,7 +148,11 @@ after the fixes.
 - John's read, and his choice of title.
 - The Voice Calibration and Cold Reader passes were not run as full passes; the draft was written to the
   plain-language rule and checked for em dashes (none in prose) and a link beside every figure.
-- The share kit and the outreach task that every news post gets.
+- ~~The share kit and the outreach task that every news post gets.~~ Done 2026-11-14: the kit is
+  `ops/tracker-news/share-kits/belt-equation-2026-11-14-hera-arrives-at-the-asteroid-nasa-struck.md` in the
+  sentient-horizons repository (its pull requests 255 and 259, merged), and the task is "Share: Four years
+  after NASA struck an asteroid on purpose, ESA's Hera spacecraft has arrived to see what changed" in the
+  Sentient Horizons Outreach project, due 2026-11-24. Nothing has been posted yet; John posts it himself.
 - After 2026-11-25: a follow-up post or an added section on the pictures of Dimorphos, and the milestone
   marked done.
 
