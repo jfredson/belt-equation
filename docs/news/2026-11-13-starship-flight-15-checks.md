@@ -343,3 +343,14 @@ title and the house date style, as drafted. Nothing in `data/` was changed: the 
 hold and that the next weekly scan (2026-11-15) reads the catch, which matches the hold proposal, but
 John has not ruled on that proposal directly, so it stays open for the scan. Still not done: the share
 kit, and the Sentient Horizons copy for the newsletter, which waits on his say.
+
+### Video of the catch added, 2026-11-15
+
+John asked for the video of the catch on the published post ("Add the video to the Belt Equation post
+too"), after the same video went on the Sentient Horizons Dispatch. It sits below the opening paragraph:
+Space.com's video of the flight on YouTube (https://www.youtube.com/watch?v=A6-zruZTfOA, published
+2026-11-14, embedding allowed), starting at 10:27, as the tower's arms close around the ship, through
+YouTube's privacy-enhanced player (youtube-nocookie.com). SpaceX's own channel had no Flight 15 video on
+2026-11-14, and the clip on Reddit was SpaceX footage reposted by someone who does not own it. The video
+changes nothing the post says, so the post's rewrite note is unchanged. The site's security header limits
+only who may frame this site, so the embed is allowed.
