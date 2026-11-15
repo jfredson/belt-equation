@@ -12,6 +12,13 @@ sources:
     url: https://www.minorplanetcenter.net/db_search/show_object?object_id=C%2F2026+S1
   - label: The picture and its licence
     url: https://www.esa.int/media/a-composite-of-eight-euclid-vis-exposures-of-comet-c-2026-s1-euclid
+photos:
+  - file: 2026-11-09-euclid-first-new-comet.jpg
+    source: https://www.esa.int/media/a-composite-of-eight-euclid-vis-exposures-of-comet-c-2026-s1-euclid
+    credit: "ESA/Euclid/Euclid Consortium/NASA, M. Pöntinen et al. 2026"
+    licence: "Creative Commons Attribution-ShareAlike 3.0 IGO (the source page gives CC BY-SA 3.0 IGO or ESA Standard Licence)"
+    licence_url: https://creativecommons.org/licenses/by-sa/3.0/igo/
+    read_on: 2026-11-14
 ---
 
 The [European Space Agency](https://www.esa.int/) [announced on October 19th, 2026](https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-discovers-new-comet) that its Euclid space telescope has found its first previously unknown comet, now named C/2026 S1 (Euclid).
