@@ -17,6 +17,18 @@ Background-job sessions cannot push to `main`. If a task here runs as a backgrou
 say up front that the result will land on a branch, and open a pull request so the merge
 is one click.
 
+## Public text is written for visitors
+
+Ruled by John on 2026-10-27 for notes on the Missions page, and widened on 2026-11-14 after a
+review of the live sites. Every step's `notes`, a revision's `why`, the scan records, the
+missions, the news posts and the changelog's site-facing lines appear on public pages, so each
+is written for a visitor: what changed or was decided, and why. Never who was told or what is
+waiting for whom ("flagged for John", "John's ruling", "put to me"), and never how the work was
+done (which computer, a session, a routine, a pull request or a commit). A note saying who
+proposed a number stays where it bears on trust. `scripts/check_site.py` reads the built site
+after every build and stops the deploy if a page carries one of those phrases, the same check
+the four sibling trackers run.
+
 ## Design
 
 The site wears its own skin, "Ore" (ruled by John 2026-10-17 from the proposal in
