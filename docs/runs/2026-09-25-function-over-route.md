@@ -68,7 +68,7 @@ The steps the pass rewired rose a good deal on their own; the headline did not, 
 - **The fast drive (candidate 4)** rose from 3.4 to 5.1 percent by 2071, and is level with no deadline (47.7 → 47.8). The re-estimate was set so the fusion-plant route alone gives about the old chance; the rise by 2071 is the fission route, plus the world draw treating two moderate numbers differently from one small one. It feeds only Tier 4, which rose with it.
 - **Closed-loop life support (candidate 9)** did not move beyond the dice, as intended.
 
-The decision comparison at the six-year fork is unchanged in reading: 0.59 against 0.56 percent by 2071, 3.77 against 3.99 by 2095, inside the noise, and the row stays reported but not read until the access-branch review.
+The decision comparison at the career fork is unchanged in reading: 0.59 against 0.56 percent by 2071, 3.77 against 3.99 by 2095, inside the noise, and the row stays reported but not read until the access-branch review.
 
 ## The second number
 

@@ -106,7 +106,7 @@
       "radical": 0.80975,
       "open": 0.8079
     },
-    "A-commercial-crew-survival-training-industry-exists": {
+    "A-withdrawn-id-8": {
       "baseline": 0.50145,
       "moderate": 0.5826,
       "strong": 0.71795,
@@ -169,14 +169,14 @@
       "radical": 0.76765,
       "open": 0.8177
     },
-    "A-stay-past-six-years": {
+    "A-withdrawn-id-5": {
       "baseline": 1.0,
       "moderate": 1.0,
       "strong": 1.0,
       "radical": 1.0,
       "open": 1.0
     },
-    "A-leave-at-six-years-into-civilian-space-work": {
+    "A-withdrawn-id-7": {
       "baseline": 0.0,
       "moderate": 0.0,
       "strong": 0.0,
@@ -814,11 +814,11 @@
     }
   ],
   "decisions": {
-    "six-year-fork": {
+    "withdrawn-fork-1": {
       "options": [
         {
-          "id": "A-stay-past-six-years",
-          "name": "Stay past the six-year mark of the current contract",
+          "id": "A-withdrawn-id-5",
+          "name": "Wording withdrawn until May 2027, because it named my current career",
           "current_plan": true,
           "headline": {
             "baseline": 0.00465,
@@ -829,8 +829,8 @@
           }
         },
         {
-          "id": "A-leave-at-six-years-into-civilian-space-work",
-          "name": "Leave at the six-year mark into civilian space or defence work",
+          "id": "A-withdrawn-id-7",
+          "name": "Wording withdrawn until May 2027, because it named my current career",
           "current_plan": false,
           "headline": {
             "baseline": 0.0057,
@@ -853,12 +853,12 @@
     },
     "reaches_headline": [
       "A-civilian-spaceflight-training-role-obtained",
-      "A-commercial-crew-survival-training-industry-exists",
+      "A-withdrawn-id-8",
       "A-current-career-role-with-off-earth-rotation-obtained",
       "A-current-training-completed",
       "A-in-a-role-whose-holders-rotate-off-earth",
-      "A-leave-at-six-years-into-civilian-space-work",
-      "A-stay-past-six-years",
+      "A-withdrawn-id-7",
+      "A-withdrawn-id-5",
       "A-working-in-or-for-the-off-earth-industry",
       "B-closed-loop-life-support-year-off-earth",
       "B-crewed-spin-gravity-demonstration",
@@ -937,7 +937,7 @@
           "open": 0.0
         }
       },
-      "A-commercial-crew-survival-training-industry-exists": {
+      "A-withdrawn-id-8": {
         "reaches_headline": true,
         "headline": {
           "baseline": 0.00465,

@@ -12,7 +12,7 @@ The external forecaster baseline (docs/forecasts/) is a different thing and stay
 
 The seven world factors and the Contact Clause: window, launch, energy, drive, biology, motive, regime, and C1 to C4. Everything on each node goes to the reviewer: name, description, resolution criterion and source, dependencies, horizon class, the five probabilities with their date and rationale, and for long shots the mechanism and breaking point. The reviewer also gets the scenario table and the tier requirement lists, so a criterion can be judged against what it gates.
 
-The access branch is not reviewed before pipeline graduation (May 2027), by John's standing rule. Its five personal nodes are sketch-grade and its world nodes (the training industry, the instructor hire, the seat price) go in with the first post-graduation review.
+The access branch is not reviewed before the end of the current training (May 2027), by John's standing rule. Its five personal nodes are sketch-grade and its world nodes (the training industry, the instructor hire, the seat price) go in with the first post-graduation review.
 
 The methodology (the world-draw spread, the tier definitions, the scoring rule) is not part of this review. It gets its own single pass after the node review is done, with a different brief, so structural critique does not arrive mixed into node critique.
 
