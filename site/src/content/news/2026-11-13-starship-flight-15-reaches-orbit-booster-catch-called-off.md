@@ -33,6 +33,12 @@ sources:
 
 Every rocket that has ever reached orbit has thrown part of itself away, and [SpaceX](https://www.spacex.com/)'s giant [Starship](https://www.spacex.com/vehicles/starship/) did so again on its fifteenth flight, when its booster was lost over the Gulf of Mexico. But on November 14th, 2026, the launch tower in South Texas [caught the other half](https://www.cbsnews.com/news/spacex-catch-starship-rocket/), the upper stage, as it came home from orbit about 22 hours after it left. That stage was the last part of the rocket still discarded on every flight. If it can be caught, checked and sent up again within days, then the price of reaching orbit stops being the price of building a new rocket, and every plan for working beyond Earth starts from that lower price.
 
+<div style="position:relative;width:100%;aspect-ratio:16/9;margin:1.5rem 0 0.5rem;">
+  <iframe src="https://www.youtube-nocookie.com/embed/A6-zruZTfOA?start=627" title="The tower catching Starship's upper stage, November 14th, 2026" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+*The catch, from [Space.com's video channel](https://www.youtube.com/watch?v=A6-zruZTfOA&t=627s). The video starts at 10:27, as the tower's arms close around the ship.*
+
 ## The part that was always thrown away
 
 Think of an airline that built a new aeroplane for every trip. Fuel and crews would be a rounding error beside the cost of the plane, and tickets would cost what an aeroplane costs. Rockets have mostly worked that way. SpaceX broke half of the pattern with [Falcon 9](https://en.wikipedia.org/wiki/Falcon_9), its workhorse rocket, whose booster has landed and flown again routinely since 2018. Reuse is a large part of why its price fell, and [Wikipedia's table of launch prices](https://en.wikipedia.org/wiki/Space_launch_market_competition) now puts a Falcon 9 at about $2,720 for each kilogram delivered to low orbit. But the other half never came back. SpaceX's factory still [builds a new second stage for every Falcon 9 launch](https://en.wikipedia.org/wiki/Falcon_9), and each one flies only once.
