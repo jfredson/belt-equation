@@ -4,6 +4,7 @@ Every change to the tree, the definitions, or the headline numbers, with absolut
 
 ## 2026-11-15
 
+- Weekly scan (scheduled task, 2026-11-15): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-11-15.toml. Starship's Flight 15, whose upper stage was caught from orbit on 2026-11-14 while its booster was lost, was read against the two launch steps and is in the ledger as a held-steady entry; no number moved. 2 discoveries in the solar system: Hera's arrival at Didymos and Dimorphos (ESA, 2026-11-11), and the OGLE survey's archive detections of the dwarf planet candidate 2026 ED138 (preprint, 2026-11-11).
 - The deploy's check for working notes on public pages (`scripts/check_site.py`) now also stops notes that talk about the author in the third person or tell how a page was opened (decided 2026-11-15). Until now it stopped only notes addressed to me. Five phrase patterns are added, the same five The Quiet Galaxy added the same day, with tests in `scripts/test_check_site.py`. A name followed by a surname still passes. The built site passed the wider check as it stood, so no page's wording changed. No number moved.
 
 ## 2026-11-14

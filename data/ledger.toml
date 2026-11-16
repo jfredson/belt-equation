@@ -856,3 +856,22 @@ source = "https://www.implicator.ai/openai-372-math-results-mathematicians-race-
 checked_against = ["C1"]
 author = "scan"
 snapshot = "2026-10-11-scan"
+
+[[entry]]
+id = "2026-11-15-starship-upper-stage-caught-booster-lost"
+date = 2026-11-15
+occurred_on = 2026-11-14
+kind = "held-steady"
+title = "The launch tower caught Starship's upper stage from orbit for the first time on 2026-11-14, but the booster was lost, so the launch steps stay where they were"
+body = """
+Flight 15 lifted off on 2026-11-13 and reached orbit. The booster's catch was called off, and it ran
+out of fuel and broke up over the Gulf of Mexico before reaching the water. The upper stage spent
+about 22 hours in orbit and was caught by the launch tower on 2026-11-14, the first recovery of a
+Starship from orbit. The step asks for both stages of one orbital flight to be physically retrieved
+and confirmed by the operator as able to fly again; only one stage came back, and no statement that
+it can fly again has been made, so the step is not met. It is also the second orbital flight of
+2026, not a hundred in a year."""
+source = "https://www.cbsnews.com/news/spacex-catch-starship-rocket/"
+checked_against = ["L-fully-reusable-heavy-launcher-recovers-both-stages", "L-heavy-launcher-100-per-year"]
+author = "scan"
+snapshot = "2026-11-15-scan"

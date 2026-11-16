@@ -1,13 +1,13 @@
 {
-  "computed_on": "2026-10-11",
-  "last_reading": "2026-11-08",
-  "snapshot": "2026-10-11-scan",
+  "computed_on": "2026-11-15",
+  "last_reading": "2026-11-15",
+  "snapshot": "2026-11-15-scan",
   "method": {
     "document": "docs/methodology.md",
     "runs": 20000,
     "seed": 2026,
     "world_spread": 1.0,
-    "commit": "9322a94",
+    "commit": "88e90ca",
     "status": "reviewed",
     "status_note": "the outside-model review was ruled in full on 2026-09-20; the figures are no longer a first pass"
   },
