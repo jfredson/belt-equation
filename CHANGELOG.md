@@ -2,6 +2,10 @@
 
 Every change to the tree, the definitions, or the headline numbers, with absolute dates. Newest first.
 
+## 2026-11-22
+
+- Weekly scan (scheduled task, 2026-11-22): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-11-22.toml. Nothing in the week bore on a step's criterion, and the missions to watch were read with no change. 2 discoveries in the solar system: eleven new bodies beyond Neptune found in TESS images (preprint, 2026-11-13), and Kuiper Belt dust pointing to an ancient store of ice rich in heavy oxygen (NASA, 2026-11-18).
+
 ## 2026-11-15
 
 - Weekly scan (scheduled task, 2026-11-15): 17 nodes read, 0 moved, 0 resolved, 0 flagged for John; record at data/scans/2026-11-15.toml. Starship's Flight 15, whose upper stage was caught from orbit on 2026-11-14 while its booster was lost, was read against the two launch steps and is in the ledger as a held-steady entry; no number moved. 2 discoveries in the solar system: Hera's arrival at Didymos and Dimorphos (ESA, 2026-11-11), and the OGLE survey's archive detections of the dwarf planet candidate 2026 ED138 (preprint, 2026-11-11).

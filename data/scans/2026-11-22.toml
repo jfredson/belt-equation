@@ -1,0 +1,197 @@
+[scan]
+date = 2026-11-22
+ran_at = "2026-11-23T02:08:18Z"
+scope = "weekly"
+nodes_checked = 17
+searches = 43
+commit_before = "a6b52ff"
+discovery_sources = 7
+note = "Weekly scope: 17 leaf nodes read. Nothing moved and nothing in the week bore on a criterion. The missions to watch were read with no change, and the discovery watch read all seven sources."
+
+[[item]]
+node = "W-dog-rapamycin-trial-reports-longer-life"
+verdict = "quiet"
+queries = ["Dog Aging Project TRIAD rapamycin trial lifespan results November 2026", "rapamycin companion dogs placebo lifespan trial published journal Kaeberlein Promislow news"]
+found = "No lifespan result. TRIAD is still described as in progress, and the only published paper is its design and rationale."
+
+[[item]]
+node = "W-regulator-accepts-aging-as-an-indication"
+verdict = "quiet"
+queries = ["FDA aging indication drug approval pathway guidance November 2026", "EMA OR FDA healthspan longevity drug label regulator decision geroscience week"]
+found = "No guidance, pathway decision or approval in the window. The FDA's planned update of its regulatory science priorities, which is to name aging as a topic, is still unpublished, and the Reagan-Udall Foundation's July 2026 meeting summary says no approval pathway for an aging indication exists."
+
+[[item]]
+node = "W-regulator-accepts-a-biological-measure-of-aging-as-a-trial-endpoint"
+verdict = "quiet"
+queries = ["FDA biomarker qualification epigenetic clock biological age primary endpoint 2026", "regulator agrees pivotal trial biological aging clock surrogate endpoint longevity biotech announcement November 2026"]
+found = "No regulator has accepted an aging clock as a primary endpoint. No clock is among the FDA's qualified biomarkers, and no agreed pivotal trial design using one turned up."
+
+[[item]]
+node = "L-heavy-launcher-100-per-year"
+verdict = "quiet"
+queries = ["Starship Flight 16 date SpaceX after Flight 15 November 2026", "Starship launch cadence 2027 flights per year Starbase pad orbital launch count 2026"]
+found = "No Starship flight in the window. Flight 16 has only a tentative, unconfirmed date of 2026-12-10, and SpaceX's aim of weekly flights in 2027 is a plan, not a count."
+
+[[item]]
+node = "L-fully-reusable-heavy-launcher-recovers-both-stages"
+verdict = "quiet"
+queries = ["SpaceX caught Starship ship reflight inspection post-flight statement Flight 15 ship reuse", "Super Heavy booster and ship both caught same flight orbital Starship recovery news this week"]
+found = "Nothing new since Flight 15, when the upper stage was caught on 2026-11-14 and the booster was lost. No flight has brought both stages home, and SpaceX has made no statement that the caught upper stage can fly again without rebuild."
+
+[[item]]
+node = "L-orbital-propellant-transfer-at-scale"
+verdict = "quiet"
+queries = ["Starship ship-to-ship propellant transfer test date NASA HLS November 2026", "orbital refueling demonstration tanker depot Starship 2027 news this week"]
+found = "No ship-to-ship transfer has been demonstrated, and the first test is still placed in early 2027."
+
+[[item]]
+node = "L-crew-lands-on-moon-in-reusable-lander"
+verdict = "quiet"
+queries = ["NASA Artemis IV crewed lunar landing lander Starship HLS Blue Moon news November 2026", "Artemis III 2027 docking test Isaacman lander update this week"]
+found = "No change in the window. Artemis III is still an Earth-orbit docking test planned for mid 2027, the first crewed landing is planned for Artemis IV in 2028, and NASA has assigned neither lander to it."
+
+[[item]]
+node = "L-cryogenic-propellant-stored-in-orbit-six-months-and-used"
+verdict = "quiet"
+queries = ["cryogenic propellant long-duration storage orbit boil-off demonstration November 2026", "LOXSAT Eta Space results OR Blue Origin cryogenic fluid management orbit test 2026"]
+found = "No result bearing on ten tonnes held for six months. LOXSAT, a small satellite test of storage technology, has reported no flight results, and no large storage flight has happened."
+
+[[item]]
+node = "E-megawatt-spacecraft-operates-in-orbit"
+verdict = "quiet"
+queries = ["megawatt spacecraft power orbit launch orbital data center satellite November 2026", "Starcloud OR K2 Space OR Cowboy Space high-power satellite kilowatts solar array in orbit news this week"]
+found = "Nothing near a megawatt is flying. A market survey of 2026-11-04 says no operator runs a megawatt-scale system in orbit, and the largest designs announced, such as K2 Space's 100-kilowatt satellite for about 2028, are far smaller."
+
+[[item]]
+node = "E-megawatt-heat-rejected-for-thirty-days-in-vacuum"
+verdict = "quiet"
+queries = ["space radiator megawatt heat rejection flight test reactor thermal November 2026", "NASA SR-1 Freedom fission reactor OR Fission Surface Power radiator test news this week"]
+found = "No megawatt radiator has flown. NASA's megawatt radiator work is still design study, and the space reactors with flight plans are tens of kilowatts."
+
+[[item]]
+node = "B-mammal-born-and-weaned-in-partial-gravity"
+verdict = "quiet"
+queries = ["mice born partial gravity space station centrifuge offspring weaned study 2026", "JAXA MHU lunar gravity mouse reproduction next generation results OR Tiangong mouse breeding November 2026"]
+found = "No report of a mammal conceived, born and weaned at sustained partial gravity. The JAXA study of partial gravity and offspring has published no such result, and the Chinese mouse litters reported to March 2026 were born on Earth."
+
+[[item]]
+node = "B-crewed-spin-gravity-demonstration"
+verdict = "quiet"
+queries = ["artificial gravity crewed rotating spacecraft demonstration announcement November 2026", "Vast Haven-1 launch date spin experiment OR Haven Demo update 2027"]
+found = "No crewed rotating module has flown or been given a flight date. Vast's Haven-1 is still listed for early 2027 with no crew aboard at launch."
+
+[[item]]
+node = "B-staple-crop-grown-from-seed-to-harvest-off-earth"
+verdict = "quiet"
+queries = ["crop harvest space station wheat rice potato Tiangong ISS harvest kilogram November 2026", "Shenzhou-22 OR Shenzhou-23 crew rice wheat cultivation experiment harvest yield space station news"]
+found = "Nothing new in the window. The rice grown on Tiangong in 2026 is an experiment of a few dozen plants with no harvest weight reported, so the one-kilogram criterion is not met."
+
+[[item]]
+node = "M-paying-customer-for-work-done-in-orbit"
+verdict = "quiet"
+queries = ["in-orbit manufacturing revenue commercial customer Varda Redwire Space Forge filing November 2026", "orbital computing pharmaceutical crystal in-space production paying customer revenue earnings this week"]
+found = "No filing reports ten million dollars of third-party revenue from work done in orbit. Redwire does not break out such revenue, and Varda, a private company, has disclosed none."
+
+[[item]]
+node = "M-power-beamed-from-orbit-to-ground-at-kilowatt-scale"
+verdict = "quiet"
+queries = ["space solar power beaming orbit to ground kilowatt demonstration result November 2026", "Cowboy Space Reason-1 laser power beaming ground receiver result OR Overview Energy OR JAXA OHISAMA orbit test"]
+found = "No orbit-to-ground kilowatt result. Cowboy Space's Reason-1, launched 2026-10-01, has reported no power received on the ground and aims for 30 to 100 watts, and the kilowatt figures on record are ground tests."
+
+[[item]]
+node = "M-commercial-insurance-written-on-a-private-lunar-asset"
+verdict = "quiet"
+queries = ["lunar lander insurance policy premium underwriter announcement November 2026", "ispace Mission 3 OR Intuitive Machines IM-3 OR Firefly Blue Ghost 2 insured insurance cover lunar mission 2026"]
+found = "No new lunar policy with a stated premium. Only older cover turned up, such as the 2022 Mitsui Sumitomo policy on ispace's first lander, with no premium disclosed."
+
+[[item]]
+node = "C1"
+verdict = "quiet"
+queries = ["AlphaEvolve mathematical discoveries paper journal published peer-reviewed 2026", "AlphaTensor Nature October 2022 47 multiplications 4x4 modulo 2", "Erdős unit distance conjecture disproof OpenAI journal accepted published peer review", "AI discovered proof mathematics peer-reviewed journal November 2026 new result beyond human", "OpenAI OR DeepMind AI mathematics result verification Lean mathematicians reaction week November 2026"]
+found = "Verify list: AlphaEvolve's mathematics results are still a preprint (arXiv 2511.02864, last revised in December 2025) with no journal acceptance found. AlphaTensor's facts are confirmed as stated (Nature, 2022-10-05, 47 multiplications for 4x4 matrices in arithmetic modulo 2, against 49), and it stays unresolved under the strict reading. The Erdős unit-distance disproof announced on 2026-05-20 is still carried by OpenAI's note and arXiv papers only, with no journal publication or acceptance found. FunSearch was not searched, as the verify list says to leave it until after 2026-12-31. Nothing new in the window met the criterion; coverage of 2026-11-19 was commentary on how far machine-checked AI proofs can be trusted."
+
+[[mission]]
+mission = "tianwen-2"
+milestone = "Studies the asteroid and collects a sample"
+change = "checked"
+queries = ["Tianwen-2 Kamo'oalewa sample collection CNSA November 2026"]
+found = "No sample collection has been reported; the spacecraft is still surveying the asteroid, with departure planned for 2027-04-24, so the milestone stays planned."
+
+[[mission]]
+mission = "astroforge"
+milestone = "Its second spacecraft, DeepSpace-2, launches"
+change = "checked"
+queries = ["AstroForge DeepSpace-2 Vestri launch date"]
+found = "AstroForge's pages still give both late 2026 and 2027, with no date, which the file's span already covers."
+
+[[mission]]
+mission = "hera"
+milestone = "First detailed pictures of Dimorphos since DART struck it, shown at an event in Berlin"
+change = "checked"
+queries = ["ESA Hera Dimorphos images 25 November Berlin unveiling"]
+found = "ESA's page of 2026-11-19 announces a live broadcast of Hera's first images of Dimorphos, and ESA still gives 2026-11-25 for the release."
+
+[[mission]]
+mission = "hera"
+milestone = "Releases its two small satellites, Milani and Juventas"
+change = "checked"
+queries = ["ESA Hera Dimorphos images 25 November Berlin unveiling"]
+found = "No date given for releasing the two small satellites, so early 2027 stands."
+
+[[mission]]
+mission = "europa-clipper"
+milestone = "Swings past Earth"
+change = "checked"
+queries = ["Europa Clipper Earth flyby December 3 2026 NASA"]
+found = "NASA's timeline still gives 2026-12-03, with no change found."
+
+[[mission]]
+mission = "artemis"
+milestone = "Artemis III: a crew tests docking with one or both Moon landers in orbit around Earth"
+change = "checked"
+queries = ["Artemis III 2027 docking test Isaacman lander update this week"]
+found = "NASA still gives 2027, with summer 2027 the most recent date reported, so nothing is sharpened."
+
+[[mission]]
+mission = "starship"
+milestone = "One Starship refuels another in orbit, the first time"
+change = "checked"
+queries = ["Starship ship-to-ship propellant transfer test date NASA HLS November 2026"]
+found = "Still placed in early 2027, with no change found in the window."
+
+[[mission]]
+mission = "change-7-8"
+milestone = "Chang'e 7 launches to look for ice in the south pole's shadowed craters"
+change = "checked"
+queries = ["Chang'e-7 launch date 2027 CNSA lunar south pole"]
+found = "The postponement of 2026-08-23 to 2027 stands, and no firmer date has been given."
+
+[[mission]]
+mission = "haven-1"
+milestone = "Launches"
+change = "checked"
+queries = ["Vast Haven-1 launch Vast-1 crew news November 2026"]
+found = "Vast's most recent statement is still no earlier than the first quarter of 2027."
+
+[[mission]]
+mission = "haven-1"
+milestone = "Its first crew of four, Vast-1, flies up to stay aboard"
+change = "checked"
+queries = ["Vast Haven-1 launch Vast-1 crew news November 2026"]
+found = "No date and no named crew for Vast-1, so no earlier than 2027 stands."
+
+[[discovery]]
+title = "Eleven new bodies beyond Neptune found in eight years of TESS images"
+date = 2026-11-13
+source = "https://arxiv.org/abs/2611.18452"
+found = "A preprint submitted on 2026-11-13 reports a search of the TESS space telescope's images from 2018 to 2026 that found eleven new trans-Neptunian objects, confirmed in older ground-based images, and eight more candidates, lying about 25 to 57 times Earth's distance from the Sun."
+node = "none"
+via = "arXiv, planetary science papers"
+
+[[discovery]]
+title = "Dust from the Kuiper Belt points to an ancient store of ice rich in heavy oxygen"
+date = 2026-11-18
+source = "https://science.nasa.gov/blogs/science-news/2026/11/18/nasa-scientists-find-clues-to-ancient-ice-beyond-neptune/"
+found = "NASA reported on 2026-11-18 that twelve dust grains collected high in Earth's atmosphere and traced to the Kuiper Belt carry minerals formed when water reacted with dust early in the solar system, the strongest evidence yet of an ancient reservoir of ice there enriched in heavier oxygen isotopes (published in Science Advances)."
+node = "none"
+via = "NASA Science, the solar system"
