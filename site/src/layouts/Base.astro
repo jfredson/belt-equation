@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Starfield from '../components/Starfield.astro';
 import { tree } from '../lib/tree';
 import { longDate } from '../lib/dates';
+import { SEARCH_TITLES } from '../lib/search-titles';
 
 interface Props {
   title?: string;
@@ -13,13 +14,19 @@ interface Props {
 }
 
 const {
-  title = 'The Belt Equation',
-  description = 'What is the probability that, before I die, I live and work in a solar system where human industry reaches beyond Earth and Mars? A public, long-horizon prediction project: a tree of breakthroughs, each with a probability anyone can argue with.',
+  title: pageTitle = 'The Belt Equation',
+  description: pageDescription = 'What is the probability that, before I die, I live and work in a solar system where human industry reaches beyond Earth and Mars? A public, long-horizon prediction project: a tree of breakthroughs, each with a probability anyone can argue with.',
   noindex = false,
   image,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// The title and description search engines show, where src/lib/search-titles.ts gives one for this
+// page (2026-11-27); otherwise the page's own. The heading on the page is not touched.
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const searchEntry = SEARCH_TITLES[path];
+const title = searchEntry ? `${searchEntry.title} · The Belt Equation` : pageTitle;
+const description = searchEntry?.description ?? pageDescription;
 // The preview picture link cards show (site/public/social-preview.png, made by scripts/social-image.mjs); an absolute address, as the tags require.
 const socialImage = new URL(image ?? '/social-preview.png', Astro.site).href;
 const currentYear = new Date().getFullYear();
